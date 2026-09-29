@@ -1,0 +1,211 @@
+{
+ "slug": "derivatives-implied-relative-value",
+ "name": "Derivatives-implied relative value (options, futures, merger-arb spreads vs Polymarket)",
+ "category": "Arbitrage",
+ "maturity": "Emerging",
+ "seed_category": "new (options-implied relative value)",
+ "one_line": "Price 'above/hits X by date' and earnings markets off listed option surfaces, sell the persistently rich YES, optionally hedge with verticals or perps.",
+ "scope": "Cover the replication toolkit (vertical/width for terminal, ~2x delta or reflection for one-touch, SVI/SSVI plus Breeden-Litzenberger), measured wedges (BTC +5.6-6.3 pp vs Binance options, +11 pp vs Deribit, half-life ~4 h, 2023 sample; gold +8.9 pp, silver +5.3 pp, 2026), the reality check that much of it is variance-risk plus longshot premium, worked practitioner trades (IBIT call spread vs '$110k by March'), earnings hybrids (TSLA beat rate vs market odds), basis risks (Chainlink/Binance reference vs option index, expiry mismatch), 100% collateral with no cross-margin, fee 0.04-0.07, and Polymarket Perps as a same-collateral delta hedge. Boundary: pure ladder monotonicity checks are combinatorial-logical-arbitrage; unhedged longshot selling is longshot-selling-flb; perps venue economics are perps-lp-rewards-basis.",
+ "sub_variants": [
+  "terminal 'above K' digital vs vertical",
+  "one-touch 'hits K' vs barrier pricing",
+  "commodity threshold markets vs CME options",
+  "earnings markets vs implied move",
+  "perps-hedged variant"
+ ],
+ "merged_from": [
+  "traders: Options-implied pricing of finance / crypto-threshold / earnings markets",
+  "academic: Options-implied vs prediction-market probability convergence",
+  "onchain-bots: Options-implied versus Polymarket crypto threshold stat-arb",
+  "adjacent-transfer: Options-implied relative value"
+ ],
+ "flags": "Deribit/Polymarket access is jurisdiction-dependent.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2606.19517",
+   "note": "Mean gap 5.6 pp (t=6.46), 11 pp vs Deribit; delta-hedged alpha marginal on 16 trades; 2023 sample [pre-2025 data, possibly stale]"
+  },
+  {
+   "url": "https://zenodo.org/doi/10.5281/zenodo.21232132",
+   "note": "2,671 daily obs: gold +8.9 pp, silver +5.3 pp, half-lives under three days"
+  },
+  {
+   "url": "https://podshopguy.substack.com/p/polymarket-overprices-volatility",
+   "note": "Worked IBIT call-spread vs Polymarket touch trade with basis risks (self-reported)"
+  },
+  {
+   "url": "https://moontowermeta.com/prediction-market-arbitrage-using-option-chains-to-find-mispriced-bets/",
+   "note": "Ex-options MM recipe: vertical/width, one-touch ~2x delta"
+  },
+  {
+   "url": "https://github.com/beshsigma/polymarket-deribit-pricing",
+   "note": "Reality check: apparent mispricing largely evaporates; VRP plus FLB (do not run)"
+  },
+  {
+   "url": "https://news.polymarket.com/p/an-options-degen-looks-at-tsla-earnings",
+   "note": "TSLA beat rate 38% vs 73% market odds; hybrid structures"
+  }
+ ],
+ "parent_slug": "options-implied-relative-value",
+ "seed": "new",
+ "extra_scope": "WIDENED per critic: besides crypto / equity price ladders vs Deribit / CME option-implied distributions, cover FOMC decision markets vs fed funds futures (FedWatch), economic-data ladders vs nowcasts, M&A / deal-close markets vs merger-arb spreads, and any other listed-derivative reference.",
+ "n": "11",
+ "band": "established",
+ "file": "11-derivatives-implied-relative-value.md",
+ "critic_notes": [
+  "WIDEN options-implied-relative-value to 'derivatives-implied relative value' so Finance and Economics are answered: (i) FOMC decision markets against fed funds futures / FedWatch (E5: a 6-10 pp gap in one 2026 episode, snippet-level, unverified); (ii) M&A deal-close markets against merger-arbitrage spreads (The Oracle 'Just Call Them', 2025-12-29, interview with an event-driven fund manager; no PnL); (iii) Pyth-settled equity / index / commodity ladders, which are tiny today (Gamma, fetched 2026-09-20: SPY September 'hit' ladder, 23 markets, $140k total and ~$2.5k 24 h volume, finance fee 4%, maker rebate 25%)."
+ ],
+ "cross_band_note": "From the speculative critic: 'options-implied density vs BTC threshold ladders' is an established cross-venue quant trade (evidence pack E5 measures a 5.6-point gap with a ~4-hour half-life, which may be a premium): cover it here.",
+ "raw_discovery_candidates": [
+  {
+   "name": "Options-implied pricing of finance / crypto-threshold / earnings markets",
+   "one_line": "Price 'above X by date' and earnings-move markets off listed options (Deribit/Binance/CME/equity options) and trade the gap, hedging in options or Polymarket Perps.",
+   "category": "Arbitrage",
+   "maturity": "Experimental",
+   "mechanism": "Convert the options surface into risk-neutral probabilities for the Polymarket strike/date and compare with the book; a paper finds a mean gap of 5.6-6.3 percentage points between Binance-options-implied and Polymarket BTC threshold prices. For earnings, combine historical beat rates and implied moves (TSLA: beats 38% historically vs 73% market price) and optionally pair a Polymarket leg with straddles/calls. Polymarket's own perps venue (launched 2026-09-03, up to 20x on BTC/ETH, ~10x equities) now offers an in-account delta hedge in the same collateral.",
+   "edge_source": "A deep external derivatives market pricing the same distribution.",
+   "why_might_beat_market": "Retail prices these by narrative; but finance is the most efficient category (maker-taker gap only 0.17pp on Kalshi), so expect thin, competitive edges.",
+   "failure_modes": "Risk-neutral vs real-world probability wedge, settlement-source differences (Chainlink TWAP vs exchange index), fees 0.04 + hedge costs, small depth, the cited gap sample is old (2023 contracts).",
+   "cheap_validation": "Daily snapshot of Deribit-implied probabilities vs Polymarket crypto threshold markets for 30 days; measure convergence PnL of fading gaps >4pp net of fees.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv 2606.19517 Do Prediction Markets Match Option Prices? Bitcoin Threshold Evidence from Binance and Polymarket",
+     "date": "2026-06-17",
+     "quality": "paper",
+     "supports": "Mean pricing gap 5.6pp (6.3pp pooled across three markets)"
+    },
+    {
+     "url": "https://news.polymarket.com/p/an-options-degen-looks-at-tsla-earnings",
+     "title": "The Oracle x Unusual Whales: An options degen looks at TSLA earnings",
+     "date": "2025-10-20",
+     "quality": "credible-report",
+     "supports": "TSLA beat rate 38% vs 73% market odds; 9 of 12 quarters moved more than options implied; hybrid Poly + options structures"
+    },
+    {
+     "url": "https://news.polymarket.com/p/inside-polymarket-perps",
+     "title": "The Oracle: Inside Polymarket Perps",
+     "date": "2026-09-09",
+     "quality": "credible-report",
+     "supports": "Perps launched 2026-09-03, cross-margin in pUSD, up to 20x; no evidence yet of cross-trading with prediction markets"
+    },
+    {
+     "url": "https://www.jbecker.dev/research/prediction-market-microstructure",
+     "title": "Becker microstructure study",
+     "date": "2026-01-18",
+     "quality": "hard-data",
+     "supports": "Finance category maker-taker gap only 0.17pp (near-efficient)"
+    }
+   ]
+  },
+  {
+   "name": "Options-implied vs prediction-market probability convergence (BTC, gold, silver thresholds)",
+   "one_line": "Polymarket 'above X by date' contracts trade 5-9 points rich to option-implied risk-neutral probabilities; sell the rich YES and delta-hedge or pair with a digital replicated from listed options.",
+   "category": "Arbitrage",
+   "maturity": "Experimental",
+   "mechanism": "Compute the risk-neutral probability of each threshold from the option surface (Binance/Deribit for BTC, CME for gold/silver), compare with the Polymarket mid, and sell YES (buy NO) when the gap exceeds costs; hedge delta with futures or a tight call spread. The gap mean-reverts with an AR(1) half-life of ~4 hours for BTC and <3 days for metals, and is largest when the option-implied probability is low and expiry is far (longshot-style demand).",
+   "edge_source": "Retail speculative demand for out-of-the-money upside on Polymarket versus professionally arbitraged option surfaces.",
+   "why_might_beat_market": "Requires options infrastructure and cross-margin that most Polymarket participants lack; the hedge turns a directional longshot-selling trade into relative value.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2606.19517v1",
+     "title": "Do Prediction Markets Match Option Prices? Bitcoin Threshold Evidence from Binance and Polymarket (Portnaya), arXiv",
+     "date": "2026-06-17",
+     "quality": "paper",
+     "supports": "Mean gap +5.58 pp (main contract, 214 hourly obs) and +6.33 pp pooled (287 obs); +11.05 pp vs Deribit; AR(1) 0.849, half-life ~4.2 h; delta-hedged backtest 16 trades, net alpha 0.067, t=2.10, p=0.053, win rate 69%, median hold 3.5 h. Data are Aug-Sep 2023 [pre-2025 sample, possibly stale] and n is small."
+    },
+    {
+     "url": "https://zenodo.org/doi/10.5281/zenodo.21232132",
+     "title": "Prediction Markets vs. Options-Implied Probabilities: Evidence from Gold and Silver Futures (Carpenter), Zenodo",
+     "date": "2026-08-22",
+     "quality": "paper",
+     "supports": "2,671 daily observations on 24 CME-threshold contracts over six months: Polymarket overprices upside by 8.9 pp (gold) and 5.3 pp (silver); AR(1) half-lives under three days; divergence shrinks toward expiry; presented as an upper bound on behavioural mispricing because of risk-neutral vs physical measure."
+    }
+   ],
+   "failure_modes": "Risk-neutral is not physical probability (risk premium can justify part of the gap); basis between oracle/settlement source and option underlying; shorting YES = buying NO ties up (1-p) capital; finance-category taker fee 0.04; thin depth on threshold strikes.",
+   "cheap_validation": "Daily snapshot of all live commodity/crypto threshold markets vs Breeden-Litzenberger digitals for 30 days; trade only gaps > 2x estimated cost in paper mode; check that convergence, not resolution luck, drives PnL.",
+   "adjacent_grounding": "Classic digital-option replication and the sportsbook-vs-exchange convergence literature; same logic as the 'do prediction markets match option prices' tests run on election/Fed contracts.",
+   "flags": ""
+  },
+  {
+   "name": "Options-implied versus Polymarket crypto threshold stat-arb",
+   "one_line": "Trade the gap between Polymarket 'BTC above X by date' prices and the digital value implied by listed options, delta-hedged.",
+   "category": "Arbitrage",
+   "maturity": "Experimental",
+   "mechanism": "For each threshold market compute the risk-neutral binary value from a listed call spread on the same strike and maturity (Binance or Deribit). Polymarket Yes prices sit persistently above the option-implied value, most at low probabilities and long maturities, and the gap mean-reverts with a half-life of about four hours. The agent sells the rich side on Polymarket (or buys No), hedges delta on the options/perp venue and unwinds as the gap closes.",
+   "edge_source": "Segmented venues; speculative demand for cheap Yes on Polymarket; slow information transmission.",
+   "why_might_beat_market": "The wedge is statistically strong, but the tradable proxy was only marginally significant after costs, and the main sample is 2023, before fees and before professional makers arrived.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.19517",
+     "title": "Do Prediction Markets Match Option Prices? Bitcoin Threshold Evidence from Binance and Polymarket (Portnaya)",
+     "date": "2026-06-17",
+     "quality": "paper",
+     "supports": "Mean gap 5.6 pp over 214 hourly observations (t=6.46), 6.3 pp pooled over 287; AR(1) half-life ~4 h; 11 pp versus Deribit; delta-hedged proxy profitable after conservative costs 'with marginal statistical precision'. Main sample September 2023 [pre-2025 data, possibly stale]."
+    }
+   ],
+   "failure_modes": "Stale sample; crypto taker fee 0.07 now applies; resolution source differences (Chainlink TWAP vs option settlement index); borrow/margin on the hedge leg.",
+   "cheap_validation": "Recompute the gap for current weekly/monthly BTC threshold markets against Deribit for two weeks; check that the 2023 sign and size still hold.",
+   "adjacent_grounding": "Same paper (https://arxiv.org/abs/2606.19517) is the grounding; it is itself the adjacent-field test (options literature applied to Polymarket).",
+   "flags": ""
+  },
+  {
+   "name": "Options-implied relative value: fade overpriced crypto threshold and touch binaries against the Deribit or IBIT surface",
+   "one_line": "Polymarket 'BTC above or hits X' prices sit about 5-11 pp above option-implied probabilities. Sell the binary, preferably as a maker, and hedge the tail with a call spread if you want.",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "mechanism": "Fit a volatility surface (SVI or SSVI) to Deribit or IBIT options. Terminal 'above K' markets price as N(d2) or a tight call spread divided by its width. 'Hits K by T' markets price as one-touch, roughly twice the delta, or by the reflection principle. Compare these with Polymarket. The documented wedge is positive, persistent with a half-life of about 4 hours, and largest at low implied probabilities and long maturities. Sell YES, or buy NO, where the wedge exceeds fees, and hedge with a vertical spread. Mismatches matter: the Binance BTCUSDT reference against IBIT or the Deribit index, and the expiry date against the resolution date.",
+   "edge_source": "Retail longshot and volatility demand on Polymarket, against a professional options market they cannot easily arbitrage. Access and fungibility are limited, and both legs must be fully collateralised.",
+   "why_might_beat_market": "Professionals find the margin treatment unattractive because the short binary is 100% collateralised with no offset against Deribit. A small team that accepts the capital inefficiency can harvest what amounts to a variance and longshot premium.",
+   "adjacent_grounding": "Digital and one-touch replication with verticals, and harvesting the variance risk premium.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.19517",
+     "title": "Do Prediction Markets Match Option Prices? Bitcoin Threshold Evidence from Binance and Polymarket",
+     "date": "2026-06-17",
+     "quality": "paper",
+     "supports": "Polymarket YES was on average 5.6 pp above the Binance-option-implied value (t=6.46). The pooled gap was 6.3 pp and 11 pp against Deribit. The wedge is largest at low probabilities and long maturities, with an AR(1) half-life of about 4 h. Delta-hedged net alpha was 0.067 (t=2.10) on only 16 trades. The sample is from 2023 [pre-2025 data, possibly stale]."
+    },
+    {
+     "url": "https://podshopguy.substack.com/p/polymarket-overprices-volatility",
+     "title": "Polymarket Overprices Volatility (Mike Platt)",
+     "date": "2025-01-21",
+     "quality": "self-reported",
+     "supports": "Worked trade: buy an IBIT Mar 62/63 call spread and sell 95 Polymarket '$110k by Mar 31' contracts. It returns 32-131% if there is no touch. It lists the basis risks: expiry a week early, the Binance reference, and IBIT tracking."
+    },
+    {
+     "url": "https://moontowermeta.com/prediction-market-arbitrage-using-option-chains-to-find-mispriced-bets/",
+     "title": "Prediction Market Arbitrage: Using Option Chains to Find Mispriced Bets (Kris Abdelmessih)",
+     "date": "2025-11-26",
+     "quality": "credible-report",
+     "supports": "An ex-options market maker's recipe: vertical price divided by width approximates P(above), and one-touch approximates twice the delta. His example has a BTC $250k contract at 9% on Kalshi against about 3.6% from a lognormal model."
+    },
+    {
+     "url": "https://github.com/beshsigma/polymarket-deribit-pricing",
+     "title": "beshsigma/polymarket-deribit-pricing",
+     "date": "2026-07-25",
+     "quality": "self-reported",
+     "supports": "Reality check: Polymarket touch markets systematically overprice against realised touch frequency, but the apparent 5-130x mispricing 'largely evaporates'. It is the variance risk premium plus favorite-longshot bias. The edge is thin with real tail risk."
+    },
+    {
+     "url": "https://dev.to/xniiinx/probability-arbitrage-how-to-beat-polymarket-using-deribit-options-ln1",
+     "title": "Probability Arbitrage: How to Beat Polymarket Using Deribit Options",
+     "date": "undated / unclear",
+     "quality": "marketing",
+     "supports": "Claims '$150k+ profit' from N(d2) against up/down markets. The author is selling the bot and nothing is verified. Treat as a lead."
+    },
+    {
+     "url": "https://github.com/djienne/POLYMARKET_UP_DOWN_DERIBIT_STRATEGY",
+     "title": "djienne SSVI plus Breeden-Litzenberger probability engine with backtester",
+     "date": "2026-02-11",
+     "quality": "self-reported",
+     "supports": "A reference implementation with edge thresholds of 2.4% and 1.8%. No results are published."
+    }
+   ],
+   "failure_modes": "The short-tail payoff is one touch against many wins. Capital is locked for months at 100% collateral. There is reference-index and expiry basis risk. The crypto taker fee of 0.07 applies if you cross. The wedge is a risk premium, not a free lunch.",
+   "cheap_validation": "A daily snapshot job for 30 days that records the Polymarket ladder against the Deribit-implied ladder. Record the wedge by moneyness and tenor, then the realised outcomes.",
+   "flags": "Deribit and Polymarket access depends on jurisdiction."
+  }
+ ]
+}

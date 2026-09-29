@@ -1,0 +1,70 @@
+{
+ "slug": "event-hedge-desk-structured-products",
+ "name": "Event-hedge desk and hedged baskets on Polymarket rails",
+ "category": "Service & data business",
+ "maturity": "Purely theoretical",
+ "one_line": "Sell event-risk hedges or packaged baskets (tariffs, elections, rate decisions, weather) to businesses and investors, laying the risk off on Polymarket / Kalshi and earning a structuring margin.",
+ "scope": "A speculative SERVICE business dropped by the consolidator for regulatory risk: include it, flagged. Cover: who has real event exposure, what the basket / hedge product looks like, depth limits on Polymarket vs the notional a business needs, precedent (Kalshi hedging marketing, weather derivatives, OTC event swaps), the regulatory wall (swap dealing, CFTC, broker / adviser registration, offshore venue access) per evidence pack E9, and the cheapest validation (customer discovery + paper pricing against live books, no capital). Boundary: managed vaults and data products are data-analytics-api-products.",
+ "key_evidence": [],
+ "sub_variants": [],
+ "merged_from": [
+  "wildcard: Event-hedge desk and hedged baskets on Polymarket rails"
+ ],
+ "flags": "Highest regulatory risk in the survey: likely requires licensing; offshore venue access for clients is a legal problem.",
+ "n": "84",
+ "band": "speculative",
+ "file": "84-event-hedge-desk-structured-products.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Event-hedge desk and hedged baskets on Polymarket rails",
+   "one_line": "Sell businesses and funds a packaged hedge (or a themed basket) built from Polymarket contracts, earning a service fee and maker-side flow instead of taking directional risk.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "1) Intake: client describes an exposure in plain language (tariff ruling, shutdown, rate path, strike, weather, election outcome affecting a contract). 2) A mapping agent searches live Polymarket (and Kalshi) markets, builds the cheapest basket that offsets the P&L profile, quantifies basis risk from rule text, and sizes against real book depth. 3) Revenue options: advisory/SaaS fee (Blanket-style, non-custodial); being the maker on the other side of the client's flow (uninformed hedging flow is the best flow an LP can get); or packaging standing themed baskets ('tariff-risk', 'Fed-path', 'conflict-risk') as a published index with a rebalancing rule and selling the data/API. 4) On Polymarket US, combos/RFQ gives a native multi-leg quoting surface (per evidence pack E1, not re-fetched) where parlays are documented as overpriced - the desk can be the quoter. 5) Keep custody and execution with the client to stay out of fund/broker regulation.",
+   "edge_source": "Price-insensitive hedging flow; product/UX gap - the whole 2026 hedging build-out is on Kalshi and nothing comparable was found for Polymarket's deeper global political/geopolitical books.",
+   "why_might_beat_market": "This does not try to beat the price; it monetises being the counterparty and the translator. Demand is real and current: Kalshi+Blanket, Kalshi+USHCC, Game Point Capital sportsbook hedging (taker fees rebated above 300,000 contracts), Tradeweb and Cantor institutional distribution, a conference hedging $3M with a $12k position, Osasuna's $600k relegation hedge. Wall Street is wrapping contracts in ETFs (24+ filings, SEC paused them in May 2026), which leaves on-chain/API baskets open to small teams. Honest limits: hedgers need size and legal certainty that the offshore venue cannot give US corporates; basis risk from rule text is large; E6 found no vault/fund with disclosed TVL or fees, which may mean no demand rather than no supply.",
+   "adjacent_grounding": "Blanket (DeFi Rate 2026-08-07): AI tool mapping business risks to Kalshi contracts - trucking firm $50,000 diesel exposure hedged with $45,000 gross payout for $7,605; bar's $5,000 Knicks hedge. Kalshi Sportsbook Hedging Program filing with Game Point Capital (2026-02-10). Buterin: 'prediction markets should become hedging platforms' (TradingView headline 2026-02-14). Moshrefi et al. on parlay overpricing (arXiv 2607.14430) and automated parlay market makers with O(M^2) loss bounds (arXiv 2607.18299, arXiv 2603.22596, listings only). Dalen, 'Toward Black-Scholes for Prediction Markets' (arXiv 2510.15205, listing only) for basket risk. Insurance analogue: parametric cover.",
+   "failure_modes": "Regulatory perimeter (advice on event contracts, pooled vehicles, insurance law) - the business can be illegal while each trade is legal; depth too thin for real hedges outside elections/Fed/crypto; rule-text basis risk blows up the hedge (Khamenei last-price settlement on Kalshi); client concentration; Polymarket builds it in-house.",
+   "cheap_validation": "Two-week desk study, no capital: take 30 real exposures (publicly described by SMEs in the Kalshi hedging press) and have the mapping agent build Polymarket baskets; metrics: share with a contract whose payoff correlation to the exposure is plausibly >0.5, and share where depth within 3c covers >=$25k notional. Pass: >=40% on both. Then a landing-page smoke test: 200 targeted visits, pass at >=5% leaving contact details; first pilot as non-custodial advisory only.",
+   "flags": "Highest legal risk in this list: possible CTA/CPO/broker/insurance-producer registration triggers in the US, MiFID/insurance rules in the EU; Polymarket global excludes US persons; builder/omnibus integrations are excluded from some rebate programs. Get counsel before charging anyone.",
+   "evidence": [
+    {
+     "url": "https://defirate.com/news/blanket-kalshi-prediction-market-small-businesses/",
+     "title": "Blanket Aims to Bring Kalshi Prediction Market Hedging to Small Businesses",
+     "date": "2026-08-07",
+     "quality": "credible-report",
+     "supports": "AI risk-to-contract mapping tool; worked examples with dollar figures; non-custodial model; no Polymarket equivalent mentioned"
+    },
+    {
+     "url": "https://defirate.com/news/kalshi-files-sportsbook-hedging-program-partners-with-game-point-capital/",
+     "title": "Kalshi Files Sportsbook Hedging Program, Partners with Game Point Capital",
+     "date": "2026-02-10",
+     "quality": "credible-report",
+     "supports": "institutional hedging program; taker fees rebated above 300,000 contracts; bonus-insurance use case vs Lloyd's/Munich Re"
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=prediction+markets+hedging+businesses+OR+corporate+OR+insurance+Kalshi+OR+Polymarket+hedge+risk&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News RSS listing (headline only): 'Prediction markets take a swing at hedging for US small businesses' (Reuters 2026-08-28); 'NEXTPredict Bets $12K on Kalshi to Protect $3M Conference from Flight Chaos' (TSNN 2026-08-20); 'Controversy swirls over Spanish soccer club ... $600,000 Kalshi wager' (Fortune 2026-06-12); 'Prediction markets should become hedging platforms, says Buterin' (TradingView 2026-02-14)",
+     "date": "2026-02 to 2026-09",
+     "quality": "credible-report",
+     "supports": "breadth of current hedging demand, all on Kalshi (articles not fetched)"
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=prediction+market+ETF+OR+index+OR+basket+OR+%22structured+product%22+Polymarket+OR+Kalshi+filing&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News RSS listing (headline only): 'US SEC review delays first prediction-market ETFs' (Reuters 2026-05-05); 'SEC reviews more than 24 ETFs...' (CryptoSlate 2026-07-10); 'Bitwise Joins Roundhill in Race to Launch US Election Prediction ETFs' (DeFi Rate 2026-02-18)",
+     "date": "2026-02 to 2026-07",
+     "quality": "credible-report",
+     "supports": "basket/wrapper products are being built by incumbents and are stalled at the SEC (articles not fetched)"
+    },
+    {
+     "url": "https://defirate.com/?s=hedging",
+     "title": "DeFi Rate search results: 'Kalshi-Tradeweb Deal Signals Push Into Institutional Macro Hedging'; 'Cantor Fitzgerald Opens Kalshi Prediction Markets to Hedge Funds'",
+     "date": "2026 (undated in listing)",
+     "quality": "credible-report",
+     "supports": "institutional distribution for hedging is forming around Kalshi (listing only)"
+    }
+   ]
+  }
+ ],
+ "critic_notes": []
+}

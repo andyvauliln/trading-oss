@@ -1,0 +1,39 @@
+{
+ "slug": "newsroom-framing-twins",
+ "name": "Newsroom twins: forecast the wording that 'a consensus of credible reporting' will use",
+ "category": "Speculative-novel",
+ "maturity": "Purely theoretical",
+ "one_line": "For markets that settle on how media characterise an event, simulate the style and sourcing rules of the outlets that voters cite, and price the probability that coverage will use the contract's trigger word.",
+ "scope": "Build outlet twins from style guides and each outlet's archive: AP, Reuters, BBC, NYT, WSJ and Al Jazeera, plus state outlets where both-party confirmation matters. The input is a scenario description written before the event, taken from the ambiguity wargame's scenario list. The output is a distribution over headline and lede terms, for example 'invasion' against 'operation', 'extension' against 'pause', 'suit', or 'permanent'. A second stage maps the term shares to the rule and to how voters weigh outlets, which hands off to synthetic-uma-dispute-jury. E3-pack precedents make the point. In the Zelensky suit market ($237M), 40+ outlets said 'suit' and UMA still found no consensus. Others are the Venezuela 'invasion' market, the Iran 'permanent' peace market and the Strategy 'confirmation' timing case. Grounding: LLMs hold linear representations of outlet slant when simulating outlet text. Narrative-frame prediction has been tested. Journalist source-selection modelling exists. News citation of market odds rises 33% after price dislocations, which shows reflexivity. Validation needs no trading. For 50 ambiguous events after model cutoffs, predict term shares from the pre-event scenario text and score them against realised headline term frequencies. Then test whether the predicted term share adds to price inside the dispute-hazard model.",
+ "why_it_matters": "The list simulates UMA voters, proposers, speakers, critics, committees and traders. It does not simulate the media, which is the named resolution source in the wording that the list's own evidence says carries a 3.5x dispute lift. The list also cites $972M of volume in disputed events. The mechanism differs materially from the rules layer. The rules layer reads the contract, and this entry forecasts third-party text.",
+ "flags": "Never contact journalists or seed coverage. That is manipulation, and the E9 pack's Santos precedent shows words plus a position being sanctioned. Archive scraping is subject to ToS. Retrieval poisoning is a risk. If the file count is tight, fold this in as a section of rules-ambiguity-hazard-layer.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2503.02080v2",
+   "note": "2025-03, Kim, Evans, Schein: linear representations of political perspective. Probes predict news outlets' slant when the model simulates outlet text (arXiv listing only)."
+  },
+  {
+   "url": "http://arxiv.org/abs/2506.00737v1",
+   "note": "2025-05, Otmakhova and Frermann: LLMs predict narrative frames and their components across domains (arXiv listing only)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2411.05192v1",
+   "note": "[pre-2025] Spangher et al.: models journalist source-selection schemas over 4M articles (arXiv listing only)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.06005v1",
+   "note": "2026-09, Ibrahim and Zaki: 1,582 sentences quoting market odds in 6,990 articles. Citation rates are 33% higher after dislocations (arXiv listing only)."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "74",
+ "band": "speculative",
+ "file": "74-newsroom-framing-twins.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "ADD sub-variants to rules-ambiguity-hazard-layer. (a) A clarifier twin for Polymarket's Markets Team: the E3 pack counts 1,549 creator-authoritative clarifications, 83.34% of them after request creation but before the first proposal, and clarifications decided the Venezuela-invasion and Strategy-BTC markets. No agent in the list models the clarifier. (b) A shadow-proposer feed: UMA's Optimistic Truth Bot (launched March 2025, Perplexity plus GPT-4 with an Overseer) shadows human proposers and posts recommendations on X. When its output disagrees with a live proposal, that is a free dispute early-warning feature. Its 2026 status and accuracy are unverified. Sources: https://blog.uma.xyz/articles/inside-umas-optimistic-truth-bot (2025-07-30) and https://blog.uma.xyz/articles/managed-proposers-update (2025-11-08: whitelist 37 to 177, wrong proposals down 59%, disputes down 68%, self-reported by UMA). (c) If newsroom-framing-twins is not given a file, fold it in here.",
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band."
+ ]
+}

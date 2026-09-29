@@ -1,0 +1,106 @@
+{
+ "slug": "logit-space-belief-vol-quoting",
+ "name": "Control-theoretic / belief-volatility-aware quoting in logit space",
+ "category": "Market-making",
+ "maturity": "Experimental",
+ "one_line": "Quote binary contracts with an inventory-control model defined on log-odds, with a structural belief-volatility term that widens before scheduled information and near the 0 / 1 boundaries.",
+ "scope": "Non-AI experimental market-making model. Cover the papers (control-theoretic quoting in logit space; belief-volatility-aware quoting), what was shown in simulation or on Kalshi only, why binary payoff boundaries break Avellaneda-Stoikov style assumptions, how it would plug into an existing Polymarket quoting bot as a fair-value / spread module, and a cheap validation: replay on recorded Polymarket books vs the owner's current quoting logic (metric: spread capture net of adverse selection per unit inventory risk). Boundary: practical event market making is file event-market-making-spread-carry.",
+ "key_evidence": [],
+ "sub_variants": [],
+ "merged_from": [
+  "academic: Control-theoretic quoting in logit space",
+  "adjacent-transfer: Belief-volatility-aware quoting"
+ ],
+ "n": "79",
+ "band": "speculative",
+ "file": "79-logit-space-belief-vol-quoting.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Control-theoretic quoting in logit space with a structural volatility forecast (and fee-curve-aware rebate capture)",
+   "one_line": "Replace Avellaneda-Stoikov-on-prices with a bounded-martingale / logit jump-diffusion quoting engine whose volatility input is p(1-p)/tau plus a spread-and-volume term.",
+   "category": "Market-making",
+   "maturity": "Experimental",
+   "mechanism": "Model price as dp = p(1-p)*sigma*dW with Bernoulli settlement, solve the reduced HJB (or the logit-space A-S approximation r_x = x - q*gamma*sigma_b^2*(T-t)) for bid/ask skew as a function of inventory, price level and time to resolution. Feed it the structural variance forecast h^2 = p(1-p)/tau + K*nu(V)*s^2/4, which beats GARCH by 34%. Add a jump premium around scheduled news and cap inventory inversely to p(1-p). Because rebates and liquidity rewards are weighted by p(1-p) fee-equivalent and by quadratic distance to mid, the same engine decides where tight quoting is paid for and where it is just adverse selection.",
+   "edge_source": "Better risk-adjusted inventory control than myopic quoting: same expected PnL with a fraction of the tail risk, which lets you run more size per unit of capital and stay two-sided when rewards require it.",
+   "why_might_beat_market": "Depth on Polymarket is a near-uniform grid rather than top-heavy (L1 share of top-10 depth 0.136) and ~32 effective makers per market - evidence that most makers run simple ladder bots.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2607.17991v1",
+     "title": "Optimal Market Making in Prediction Markets (Feil, Nendel), arXiv",
+     "date": "2026-07-20",
+     "quality": "paper",
+     "supports": "10,000-path Monte Carlo: optimal vs baseline mean PnL 12.39 vs 12.47, std 10.34 vs 28.11, terminal inventory 15.2 vs 49.4, VaR5% 4.20 vs 32.41, ES5% 9.68 vs 40.50 - 63% lower std for 0.6% less expected profit. Simulation only."
+    },
+    {
+     "url": "https://arxiv.org/html/2510.15205v2",
+     "title": "Toward Black-Scholes for Prediction Markets: A Unified Kernel and Market Maker's Handbook (Dalen), arXiv",
+     "date": "2025-10-17",
+     "quality": "paper",
+     "supports": "Logit jump-diffusion kernel, Kalman+EM calibration of belief volatility and jumps, cross-event hedge ratio beta = (S'_i/S'_j)*rho_ij; forecast MSE 70.28 vs 77.41 random-walk on synthetic paths (no live PnL)."
+    },
+    {
+     "url": "https://arxiv.org/html/2607.08199v2",
+     "title": "Volatility in Prediction Markets: A Structural Approach (Xi, Moallemi, Pai, Wang), arXiv",
+     "date": "2026-07-09",
+     "quality": "paper",
+     "supports": "880,719 Kalshi contract-hours: GARCH+DR-AS interval score 0.462 vs 0.7675 plain GARCH; volatility drivers ranked: price level 59.2x, time to resolution 7.4x, volume 3.3x, spread 1.7x; pooled parameters beat per-category refits in 9 of 11 categories."
+    },
+    {
+     "url": "https://docs.polymarket.com/developers/market-makers/maker-rebates-program",
+     "title": "Polymarket docs - Maker Rebates Program",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Rebate = your fee-equivalent share of a per-market pool (20% crypto, 15% sports, 25% others); fee-equivalent = C*rate*p*(1-p), so rebates accrue fastest at p~0.5."
+    },
+    {
+     "url": "https://docs.polymarket.com/developers/market-makers/liquidity-rewards",
+     "title": "Polymarket docs - Liquidity Rewards",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Score ((v-s)/v)^2 * b, single-sided discount c=3.0, two-sided mandatory outside [0.10,0.90], 1-minute random sampling, daily payout."
+    }
+   ],
+   "failure_modes": "All evidence is simulated or Kalshi-based; model error near resolution jumps; on Polymarket feed-inferred trade direction matches on-chain truth only ~59% of the time (Dubach), so any calibration that uses signed flow from the websocket is biased - use on-chain OrderFilled.",
+   "cheap_validation": "Shadow-quote: run the optimal policy and your current policy on recorded L2 + on-chain fills for 2-4 weeks with a queue-position fill model; compare ES5% and reward score per unit inventory.",
+   "adjacent_grounding": "Avellaneda-Stoikov / Gueant-Lehalle-Fernandez-Tapia stochastic-control market making from equities and FX, transplanted to bounded binary payoffs.",
+   "flags": ""
+  },
+  {
+   "name": "Belief-volatility-aware quoting (a structural volatility model driving spread and inventory, 'gamma' near 50/50 and near deadlines)",
+   "one_line": "Replace fixed-spread liquidity provision with an options-market-maker's volatility model for bounded binary prices. Widen where realised belief volatility will be high and tighten where it will not.",
+   "category": "Market-making",
+   "maturity": "Experimental",
+   "mechanism": "Forecast each contract's short-horizon price variance from structural drivers. A Wright-Fisher deadline term has volatility highest at p near 0.5 and rising into resolution. A Glosten-Milgrom term has volatility rising with informed flow, proxied by spread and volume. Add category jumpiness on top: economics is smooth and sports is jumpy. Set the half-spread and inventory limits from that forecast, not from a static rewards-driven spread. A logit jump-diffusion kernel gives the matching risk-neutral framework for hedging across strikes or related contracts.",
+   "edge_source": "Better adverse-selection pricing than the reward-farming makers who quote constant spreads.",
+   "why_might_beat_market": "Most open-source Polymarket makers use static parameters, and poly-maker has 1.5k stars. The structural model beats GARCH out of sample and transfers across categories. It is a pure software edge.",
+   "adjacent_grounding": "Options market-making (volatility-surface-driven quoting) and Avellaneda-Stoikov inventory models.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.08199",
+     "title": "Volatility in Prediction Markets: A Structural Approach (Xi, Moallemi, Pai, Wang)",
+     "date": "2026-07-09",
+     "quality": "paper",
+     "supports": "On a Kalshi panel, structural Wright-Fisher plus Glosten-Milgrom variables dominate ARCH and GARCH. Adding residual GARCH is best overall. Category-specific fitting does not help out of sample, so one model transfers."
+    },
+    {
+     "url": "https://arxiv.org/abs/2510.15205",
+     "title": "Toward Black Scholes for Prediction Markets: A Unified Kernel and Market Maker's Handbook",
+     "date": "2025-10-17",
+     "quality": "paper",
+     "supports": "A logit jump-diffusion treatment of the traded probability as a Q-martingale. It reduces belief-variance forecast error and frames maker hedging."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.24366",
+     "title": "The Anatomy of a Decentralized Prediction Market",
+     "date": "2026-04-27",
+     "quality": "paper",
+     "supports": "Polymarket stylised facts for calibrating a maker: a longshot spread premium, a roughly uniform depth profile, and category-dependent effective spreads. Trade direction can only be inferred to about 59% accuracy from the public feed, so use on-chain data."
+    }
+   ],
+   "failure_modes": "The model was fitted on Kalshi. Liquidity-reward scoring pays for tightness, so a wider, smarter quote earns fewer rewards. News-jump risk remains.",
+   "cheap_validation": "Backtest your current liquidity-provision agent's fills with volatility-scaled spreads against static ones on recorded books. Compare adverse-selection loss per fill.",
+   "flags": ""
+  }
+ ],
+ "critic_notes": []
+}

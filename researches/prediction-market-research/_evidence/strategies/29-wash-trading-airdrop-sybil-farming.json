@@ -1,0 +1,278 @@
+{
+ "slug": "wash-trading-airdrop-sybil-farming",
+ "name": "Wash trading, airdrop and Sybil / multi-account farming (flagged)",
+ "category": "Incentive farming (flagged)",
+ "maturity": "Established practice, unrealised payoff",
+ "seed_category": "anti-Sybil defenses / airdrop farming (flagged)",
+ "one_line": "Manufactured volume and wallet clusters aimed at a hoped-for POLY token, tiers, leaderboards or builder rewards; large historically, now fee-negative and detectable.",
+ "scope": "Cover measured prevalence (Columbia ~25% of historical volume, ~60% peak Dec 2024, 45% in sports, 14-15% of wallets; per-market self-counterparty median ~1%, p99 10.6%; naive volume overstated 2.45-3.08x), detectors (counterparty-network clustering, self/round-trip matching, common-funder graphs such as 24,539 wallets from one funder), what is and is not confirmed about a token (official help centre: no announced airdrop; vendor timeline of CMO statement and trademark filings is secondhand), the fee arithmetic that makes wash loops negative-sum (taker rebate <=50%, maker pool 15-25%, level-up bonuses 5-17% of fees), hedged 'organic-looking' guides, builder-code self-volume and points schemes promising token pass-through, and the only rational posture: keep genuine flow in one attributable non-omnibus account. Include how the owner's anti-Sybil tooling maps onto these detectors. Boundary: legitimate tier optimisation is fee-tier-taker-incentives.",
+ "sub_variants": [
+  "wallet-cluster wash rings",
+  "delta-neutral cross-venue 'organic' volume farming",
+  "builder-code self-attributed volume for weekly rewards",
+  "third-party points schemes promising airdrop share",
+  "detector build for cleaning volume signals"
+ ],
+ "merged_from": [
+  "traders: POLY airdrop positioning",
+  "academic: Wash trading for volume-linked incentives or airdrop positioning",
+  "onchain-bots: Wash-trading rings for airdrop, points and volume status",
+  "platform-surface: Token / airdrop expectation farming",
+  "platform-surface: Self-attributed builder volume for weekly rewards",
+  "services: Builder-attributed self-volume and airdrop-share farming"
+ ],
+ "flags": "Wash trading and self-matching are ToS violations and illegal on the CFTC-regulated venue; multi-accounting breaches programme terms with clawback; builder codes can be disabled for self-referred or automated non-bona-fide activity. Token/airdrop unconfirmed.",
+ "key_evidence": [
+  {
+   "url": "https://fortune.com/2025/11/07/polymarket-wash-trading-inflated-prediction-markets-columbia-research/",
+   "note": "Columbia: ~25% of volume, ~60% peak, 45% of sports volume, 14% of wallets flagged"
+  },
+  {
+   "url": "https://arxiv.org/html/2604.24366v2",
+   "note": "Per-market wash share: median 0.97%, p90 4.5%, p99 10.6%, max 22.2%"
+  },
+  {
+   "url": "https://arxiv.org/html/2603.03136v3",
+   "note": "Naive OrderFilled volume overstates turnover 2.45x (median 3.08x)"
+  },
+  {
+   "url": "https://help.polymarket.com/en/articles/13364250-does-polymarket-have-a-token",
+   "note": "Official: no announced airdrop or TGE; all rewards in pUSD"
+  },
+  {
+   "url": "https://dev.to/polytrage/the-poly-airdrop-whats-confirmed-whats-speculation-27aj",
+   "note": "Vendor timeline of token statements and filings (secondhand, marketing)"
+  },
+  {
+   "url": "https://docs.polymarket.com/programs/builders/fees.md",
+   "note": "Builder code revocable for self-referred / automated non-bona-fide activity"
+  },
+  {
+   "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=ALL&limit=50",
+   "note": "Builders with 2-3 users and eight-to-nine-figure volume (cause inferred)"
+  }
+ ],
+ "parent_slug": "wash-trading-airdrop-farming",
+ "deepen": true,
+ "seed": "10 Sybil / multi-account farming + 9 points / airdrop",
+ "extra_scope": "Critic: prevalent but nobody has been paid (no token, no announced airdrop, post-fee loops negative-sum). Write it survey-level plus as a DETECTOR / defence specification for the owner's anti-Sybil work: no evasion how-to. Add the rival-venue points-farming-hedged-on-Polymarket sub-variant (Opinion: volume vs open interest, points value collapse).",
+ "n": "29",
+ "band": "established",
+ "file": "29-wash-trading-airdrop-sybil-farming.md",
+ "critic_notes": [
+  "ADD as sub-variant (wash-trading-airdrop-farming or cross-venue): rival-venue points farming hedged on Polymarket's deeper book. E5: Opinion shows ~$10B cumulative volume against ~$31M open interest, and its points lost ~86% of OTC value after the airdrop ratio was announced. Press-level evidence, no PnL; absent from the list.",
+  "wash-trading-airdrop-farming: 'Established' is true of prevalence, not of profit. No token exists, the help centre says no airdrop or TGE is announced, and post-fee loops are negative-sum, so nobody has been paid. Label 'Established practice, unrealised payoff' and present it as a detector / defence file, not an income strategy.",
+  "wash-trading-airdrop-farming (as a way to make money): the payoff is hypothetical and the conduct prohibited. It earns its file only as the anti-Sybil / volume-cleaning detector specification."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "POLY airdrop positioning: hedged volume + LP activity (and the wash-trading shadow)",
+   "one_line": "Accumulate 'organic-looking' volume and liquidity provision, often delta-neutral across venues, in expectation of a POLY token airdrop.",
+   "category": "Incentive farming",
+   "maturity": "Experimental",
+   "mechanism": "Guides advise hedged positions across Polymarket and Kalshi/other venues, steady LP/rewards activity, linked X accounts and avoidance of obvious multi-account patterns; they assume volume- and LP-weighted allocation with logarithmic tiers. What is reported as confirmed (secondhand via a vendor blog): CMO statement on 2025-10-23 that 'there will be a token, there will be an airdrop', USPTO POLY/$POLY filings on 2026-02-04, and an employee saying on 2026-05-13 that no snapshot had occurred and eligibility involves 'positive contributions, link your accounts'. A Columbia study estimated ~25% of historical volume was wash trading (peak ~60% in Dec 2024; ~15% of wallets flagged), which is the population anti-Sybil filters will target.",
+   "edge_source": "Speculative option on token distribution rules.",
+   "why_might_beat_market": "If the reader's strategies already generate large genuine maker/taker volume, the option is free; farming for its own sake is paying fees for an unknown payout.",
+   "failure_modes": "Criteria unknown, Sybil filtering (funding-graph clusters of thousands of proxy wallets are trivially visible on-chain), fees now apply to almost all categories, US regulatory constraints on a token, valuation guesses ($3-30B FDV) are pure speculation.",
+   "cheap_validation": "None needed beyond keeping genuine activity in one clearly attributable, X-linked account; do not split flow across wallets.",
+   "flags": "Multi-accounting breaches ToS; wash trading is illegal on a CFTC-regulated venue. Detection: counterparty-graph algorithms (Columbia), common-funder clustering (community tools).",
+   "evidence": [
+    {
+     "url": "https://dev.to/polytrage/the-poly-airdrop-whats-confirmed-whats-speculation-27aj",
+     "title": "dev.to (Polytrage): The POLY airdrop - what's confirmed, what's speculation",
+     "date": "2026-06-02",
+     "quality": "marketing",
+     "supports": "Timeline of token/airdrop statements and filings (secondhand; author sells an airdrop checker)"
+    },
+    {
+     "url": "https://gizmodo.com/study-finds-around-a-quarter-of-polymarket-trades-are-fake-2000683231",
+     "title": "Gizmodo: Study finds around a quarter of Polymarket trades are fake (Columbia)",
+     "date": "2025-11-07",
+     "quality": "credible-report",
+     "supports": "~25% of volume wash trades, ~60% peak Dec 2024, ~15% of 1.26M wallets flagged"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=polymarket%20airdrop%20farming&size=50&sort=desc&sort_type=score&after=1751328000",
+     "title": "Reddit r/CryptoTrenching 1onapiv/1oncssi/1oo2jqd and r/CryptoCurrency 1r2gy87 airdrop-farming guides",
+     "date": "2025-11 to 2026-02",
+     "quality": "marketing",
+     "supports": "Delta-neutral hedging playbooks, warnings that wash/multi-account patterns are flagged, speculative allocation maths"
+    }
+   ]
+  },
+  {
+   "name": "Wash trading for volume-linked incentives or airdrop positioning",
+   "one_line": "Self-matching inflates volume for leaderboards, rewards and hoped-for token allocation; microstructure studies find it small at the median market but large in the tail, and academic detectors now exist.",
+   "category": "Incentive farming",
+   "maturity": "Established as behaviour; payoff speculative",
+   "mechanism": "Survey level only. Wallet clusters trade back and forth (directly or via one-step round trips) to accumulate volume at low net cost. Detection: self-counterparty and round-trip matching on-chain, and network-based clustering (Columbia group). Naive volume is further inflated mechanically - OrderFilled sums double count exchange legs - so volume-based farming targets are noisy measures anyway. Since Fee Structure V2 (2026-03-30) taker fees make wash volume costly everywhere except fee-free geopolitics.",
+   "edge_source": "Expectation that a future token/points scheme rewards raw volume.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2604.24366v2",
+     "title": "The Anatomy of a Decentralized Prediction Market (Dubach), arXiv",
+     "date": "2026-04-27",
+     "quality": "hard-data",
+     "supports": "Direct + one-step round-trip wash share per market: median 0.97%, p90 4.5%, p99 10.6%, max 22.2% (a lower bound)."
+    },
+    {
+     "url": "https://api.crossref.org/works/10.2139/ssrn.5714122",
+     "title": "Network-Based Detection of Wash Trading (Sirolly, Ma, Kanoria, Sethi), SSRN - metadata only",
+     "date": "2025-11-17",
+     "quality": "paper",
+     "supports": "Existence of a network-based wash-trading detector from the Columbia group; its headline share-of-volume estimate could not be retrieved in this session (unverified)."
+    },
+    {
+     "url": "https://arxiv.org/html/2603.03136v3",
+     "title": "The Anatomy of a Blockchain Prediction Market (Tsang, Yang), arXiv",
+     "date": "2026-03-03",
+     "quality": "hard-data",
+     "supports": "Naive OrderFilled volume overstated exchange-equivalent turnover 2.45x in the October 2024 Trump market ($958M vs $391M), median 3.08x across active election markets."
+    },
+    {
+     "url": "https://arxiv.org/html/2606.16852v1",
+     "title": "The Ghosts of Polymarket (Shen et al.), arXiv",
+     "date": "2026-06-15",
+     "quality": "hard-data",
+     "supports": "Organised sybil infrastructure is real: one funder seeded 24,539 fresh wallets at ~one per minute; $13,397.65 of liquidity rewards captured illegitimately."
+    }
+   ],
+   "failure_modes": "Fees now make it expensive; detectors published; sybil filtering likely in any distribution; no confirmed token terms (unverified).",
+   "cheap_validation": "Not recommended. If evaluating exposure, compute cost per $ of wash volume under the current fee curve by category.",
+   "flags": "ToS violation; wash trading is prohibited on CFTC-regulated venues (Polymarket US). Survey only."
+  },
+  {
+   "name": "Wash-trading rings for airdrop, points and volume status",
+   "one_line": "Clusters of wallets trade with each other to manufacture volume ahead of a rumoured token.",
+   "category": "Incentive farming",
+   "maturity": "Established",
+   "mechanism": "Survey level. Wallet clusters that trade mostly with each other and rarely with outsiders cycle positions to inflate volume and trade counts; peaks coincide with token rumours. Detection is network-based on the public Polygon ledger (Columbia) and by self-counterparty share in fills (Dubach). Polymarket's 2026 design pushes against it: p*(1-p) taker fees, weighted volume discounted by (1 - price), explicit wash/self-match exclusions in rebate and referral terms, and stricter surveillance rules announced 2026-03-23. Blockratize filed POLY/$POLY trademarks in Feb 2026; whether a token or airdrop has launched was not verified this session.",
+   "edge_source": "Expected airdrop allocation per dollar of fake volume; zero-fee era made it nearly free.",
+   "why_might_beat_market": "Pay-off is unrealised and unknowable; since March 2026 every wash round-trip pays taker fees unless done at price extremes, and Sybil filtering is standard in airdrops. High probability of zero.",
+   "evidence": [
+    {
+     "url": "https://fortune.com/2025/11/07/polymarket-wash-trading-inflated-prediction-markets-columbia-research/",
+     "title": "Polymarket wash trading study, Columbia (Fortune)",
+     "date": "2025-11-07",
+     "quality": "credible-report",
+     "supports": "Sirolly, Ma, Kanoria, Sethi: wash trading averaged 25% of volume over three years, ~60% at the Dec 2024 peak, ~5% May 2025, ~20% Oct 2025; 45% of sports and 17% of election volume; 14% of 1.26M wallets flagged; motive linked to token rumours."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.24366",
+     "title": "The Anatomy of a Decentralized Prediction Market (Dubach)",
+     "date": "2026-04-27",
+     "quality": "paper",
+     "supports": "Self-counterparty wash share median 1% with a 22% upper tail across 600 markets (52 days, 2026)."
+    },
+    {
+     "url": "https://finance.yahoo.com/news/polymarket-parent-firm-files-trademark-124949388.html",
+     "title": "Polymarket parent firm files trademark applications for 'POLY' (Yahoo) - search result, not opened",
+     "date": "2026-02-06",
+     "quality": "credible-report",
+     "supports": "Snippet only: Blockratize filed POLY and $POLY wordmarks."
+    },
+    {
+     "url": "https://cointelegraph.com/news/polymarket-rules-update-manipulation-insider-trading",
+     "title": "Polymarket tightens rules to curb manipulation, insider trading risks",
+     "date": "2026-03-23",
+     "quality": "credible-report",
+     "supports": "Enhanced monitoring and surveillance; limits on easily manipulated markets."
+    }
+   ],
+   "failure_modes": "Sybil exclusion; fees; wash trading is unlawful on regulated venues (Polymarket US is a CFTC DCM) and ToS-violating offshore; Kalshi publicly alleges 70% wash in top Polymarket markets, raising scrutiny (MSN headline, body not readable).",
+   "cheap_validation": "None recommended. If anything, build the detector (cluster wallets by counterparty concentration) and use it to clean volume signals for other agents.",
+   "flags": "Wash trading: ToS-violating, illegal on regulated venue; Sybil."
+  },
+  {
+   "name": "Token / airdrop expectation farming",
+   "one_line": "Accumulate wallet history, volume and programme participation in the hope of a future token distribution; officially there is none announced and all rewards are paid in pUSD.",
+   "category": "Incentive farming",
+   "maturity": "Experimental",
+   "mechanism": "The help centre states that all trading and liquidity rewards are paid in pUSD and that Polymarket has not announced plans for any airdrop or token generation event, warning that such claims are scams. Farmers nevertheless run volume through one or many wallets, hold positions, provide liquidity and use builder apps, betting that a retroactive distribution would weight these. Under the 2026 fee regime this is no longer free: round-trip taker volume in fee-enabled categories costs 2-3.5% of notional at mid prices, so farming drifts to geopolitics (fee-free, zero taker-rebate weight) or to maker-only activity that is paid anyway. The only rational form is incidental: keep genuine activity in self-custodied, non-omnibus wallets so any future programme can attribute it.",
+   "edge_source": "Speculation on unannounced issuer generosity; no verifiable edge.",
+   "why_might_beat_market": "It probably does not; treat as a free option on activity you would do anyway, never as a reason to trade.",
+   "failure_modes": "No token may ever ship, or criteria may exclude farmed/Sybil clusters; fees and spread are certain costs; multi-wallet farming fragments taker-rebate tiers and referral eligibility.",
+   "cheap_validation": "None needed beyond confirming the official statement; cost-benefit is negative for any activity not already profitable.",
+   "flags": "Sybil multi-accounting violates programme terms (linked accounts are named in referral and rebate terms); on-chain clustering makes it detectable. Any third-party claim that a token or points programme is confirmed is unverified in this session.",
+   "evidence": [
+    {
+     "url": "https://help.polymarket.com/en/articles/13364250-does-polymarket-have-a-token",
+     "title": "Does Polymarket Have a Token?",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "All rewards in pUSD; no announced plans for an airdrop or token generation event; scam warning."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+     "title": "Taker Rebate Program",
+     "date": "live 2026-05-28",
+     "quality": "hard-data",
+     "supports": "Geopolitics earns zero weighted volume; inauthentic trading forfeits rebates and tier status."
+    }
+   ]
+  },
+  {
+   "name": "Self-attributed builder volume for weekly rewards",
+   "one_line": "Stamp your own market-making and arbitrage flow with your own builderCode so it counts toward the volume-based weekly USDC builder rewards and leaderboard rank.",
+   "category": "Incentive farming",
+   "maturity": "Experimental",
+   "mechanism": "Verified builders receive extra weekly USDC rewards based on attributed volume (Sunday-Saturday UTC periods). A trading team that also holds a builder code can attach it to every order its own agents sign, so high-turnover strategies (5-minute crypto quoting, sports in-play) inflate attributed volume at zero marginal cost. Builder fees on own flow are a wash, so the only income is the discretionary weekly reward and grant eligibility. Polymarket indexes OrderFilled events per builder, so the flow is fully visible to the programme team, and rewards are marked 'subject to approval'.",
+   "edge_source": "Programme design pays on gross attributed volume, which a market maker produces as a by-product.",
+   "why_might_beat_market": "If rewards are paid pro rata to volume without a user-count filter, a single active MM can rank among the top builders (top-10 threshold about $12M/month).",
+   "failure_modes": "The builder terms explicitly list automated and self-referred activity as grounds to disable a code; reward sizes are unpublished; losing the code also loses relayer limits the bots depend on.",
+   "cheap_validation": "Ask builder@polymarket.com in writing whether proprietary flow is reward-eligible before doing anything; the answer costs nothing and removes the ToS ambiguity.",
+   "flags": "ToS grey area to violation: docs name self-referred and automated non-bona fide activity as disqualifying. How it is detected: all attribution is on-chain per builder code and the leaderboard is public; a builder whose volume comes from one or two wallets is trivially visible.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "title": "Builder Fees",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Right to disable builder codes for fraudulent, automated, self-referred or non-bona fide activity."
+    },
+    {
+     "url": "https://builders.polymarket.com/",
+     "title": "Polymarket Builders",
+     "date": "fetched 2026-09-20",
+     "quality": "marketing",
+     "supports": "Extra weekly rewards based on volume, reward periods Sunday-Saturday UTC, leaderboard thresholds."
+    }
+   ]
+  },
+  {
+   "name": "Builder-attributed self-volume and airdrop-share farming",
+   "one_line": "Attach your own builder code to your own (or a few friends') high-volume trading to collect weekly builder rewards, grants and leaderboard rank, or promise users a cut of a hoped-for token drop.",
+   "category": "Incentive farming",
+   "maturity": "Experimental",
+   "mechanism": "Weekly builder rewards are volume-based. A trading firm that routes its own market-making or arbitrage flow under a builder profile therefore ranks alongside real apps. The leaderboard shows several entries with 1-3 active users and eight- to nine-figure volume. A second variant is points programmes that pledge to pass through part of any future token allocation to the most active users.",
+   "edge_source": "Incentive design that pays on raw attributed volume.",
+   "why_might_beat_market": "If you already generate large organic volume from market making, attribution is free incremental income, provided Polymarket treats it as bona fide.",
+   "evidence": [
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=ALL&limit=50",
+     "title": "Builder leaderboard, all-time",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "MagicMarkets $116M / 3 users; PolymarketScan.org $45.3M / 3 users; Sharkbetting $83.5M / 3 users; Polywatchdog $14.9M / 2 users. The cause is my inference. Some low-user entries, such as Jupiter and Gate, are omnibus integrations."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "title": "Builder Fees",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Polymarket may revoke fees collected through \"fraudulent, deceptive, misleading, automated, self-referred, or other non-bona fide trading activity\"."
+    },
+    {
+     "url": "https://polyhelper.io",
+     "title": "Poly Helper points programme",
+     "date": "undated",
+     "quality": "marketing",
+     "supports": "It pledges up to 50% of any received \"$POLY\" drop to its top 1,000 users."
+    }
+   ],
+   "failure_modes": "The weekly reward size is undisclosed. Disqualification is discretionary. The token is unconfirmed. Wash-style volume costs taker fees.",
+   "cheap_validation": "Ask builder@polymarket.com whether proprietary flow under your own code is eligible before relying on it.",
+   "flags": "ToS RISK: self-referred or non-bona fide volume is explicitly grounds for revocation. It is detected through user-count-to-volume ratios and wallet linkage. The POLY token is UNVERIFIED in the sources fetched."
+  }
+ ]
+}

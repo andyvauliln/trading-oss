@@ -1,0 +1,513 @@
+{
+ "slug": "elite-selection-bargaining-simulators",
+ "name": "Closed-electorate selection and coalition-bargaining simulators (structure first, role-play second)",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "simulated stakeholder polling",
+ "one_line": "Combine network and veto-player structure, a deterministic bargaining solver and agent straw polls. Use them to flag structurally dead longshots in selection markets and to price rule-aware coalition ladders.",
+ "scope": "Cover secret or elite selection events: UN Secretary-General, Nobel committee, conclave, TIME Person of the Year. Also cover government-formation ladders. The thesis to examine is that structure worked where naive LLM elicitation failed: the Bocconi conclave network study ranked Prevost central while pundits and AI models missed him. Cover multiplex-network priors, successive straw polls with veto ballots, and coalition talks grounded in party manifestos and mapped through the market's exact rule, for example a party counts only if it holds a cabinet minister. Cover the Bueno-de-Mesquita-style hybrid where LLMs elicit only position, salience and clout and a transparent solver plays the dynamics. Tie selection to the favourite-longshot evidence: purchases below 10c lose 19.3c per dollar, but the sign flips when contracts are grouped by event. Give name-masked retro-tests and a forward test of a flagged-longshot short basket against an unselected one. Boundary: bodies whose members vote publicly are in decision-body-member-twins.",
+ "sub_variants": [
+  "Network-centrality prior plus veto-dead flag for longshot selling",
+  "Manifesto-grounded coalition negotiation mapped to the contract rule",
+  "LLM-elicited actor table plus deterministic bargaining solver (BDM hybrid)"
+ ],
+ "merged_from": [
+  "Closed-electorate selection simulator (UN Secretary-General, Nobel committee, conclave-class votes)",
+  "Coalition-formation negotiation simulator",
+  "LLM-elicited stakeholder bargaining solver (Bueno de Mesquita-style hybrid)",
+  "FOMC committee digital twin for dissent-count and second-order Fed markets",
+  "Committee simulacra: member-level role-play of small decision bodies",
+  "Committee-in-silico for central banks, traded on the side markets not the rate decision",
+  "Legislative whip-count twin",
+  "Synthetic benches: per-member twins of courts, legislatures and the UMA voter set (courts and legislature part)"
+ ],
+ "flags": "Short-longshot books carry tail risk, so hard-cap exposure per event. These are n=1 events where insider leaks dominate late pricing.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2505.17635",
+   "note": "A pre-conclave network analysis found Prevost uniquely central. Pundits, bookmakers and AI models missed him."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.12878",
+   "note": "588M trades: sub-10c purchases lose 19.3c/$ per contract, but gain 4.1c when grouped by parent event."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=Nobel%20Peace%20Prize&limit_per_type=10&events_status=active",
+   "note": "Nobel Peace 2026: $24.3M volume, $1.86M liquidity, 24 candidates."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=Secretary-General&limit_per_type=15&events_status=active",
+   "note": "UNSG: $200k volume, $78k liquidity, 26 candidate markets."
+  },
+  {
+   "url": "http://arxiv.org/abs/2607.15095v2",
+   "note": "Digital Pantheon: manifesto-anchored party agents simulate real coalition talks with auditable provenance."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=coalition&limit_per_type=15&events_status=active",
+   "note": "Swedish coalition ladder: 16 outcomes, $17.7k volume, $223k liquidity. The rule is one cabinet minister."
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Bruce_Bueno_de_Mesquita",
+   "note": "Tertiary source on the expected-utility model. The 90% CIA accuracy claim is disputed."
+  },
+  {
+   "url": "http://arxiv.org/abs/2502.16339v1",
+   "note": "LLM plus game-theoretic rationalizability predicts coalition outcomes in Diplomacy."
+  },
+  {
+   "url": "https://arxiv.org/abs/2512.15728",
+   "note": "FedSight: 93.75% on 2023-24 meetings. No comparison to futures-implied odds. No leakage control."
+  },
+  {
+   "url": "https://arxiv.org/abs/2511.02469",
+   "note": "Hawk/dove latent-belief debate agents beat LLM baselines on FOMC decisions. No market comparison."
+  },
+  {
+   "url": "https://arxiv.org/abs/2508.13635",
+   "note": "Simulated ECB-presser readers: disagreement correlates ~0.5 with OIS volatility over 293 events."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=Fed%20decision&limit_per_type=10&events_status=active",
+   "note": "Decision market $8.07M volume vs dissent market $4.3k volume, $15.2k liquidity."
+  },
+  {
+   "url": "https://arxiv.org/abs/2506.11798",
+   "note": "EP roll-call persona simulation: weighted F1 ~0.793. Documents left-lean bias."
+  },
+  {
+   "url": "https://arxiv.org/abs/2505.00006",
+   "note": "Per-congressperson language models predict roll calls and party-line crossing."
+  },
+  {
+   "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0174698",
+   "note": "[pre-2025] Classical SCOTUS model: 70.2% case accuracy, 71.9% vote accuracy."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.00420",
+   "note": "Power: ~350 resolved predictions to detect a 0.02 edge. Per-meeting validation is underpowered."
+  }
+ ],
+ "absorbed": [
+  {
+   "slug": "decision-body-member-twins",
+   "name": "Named-member twins of small decision bodies (central banks, legislatures, courts) for second-order markets",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "simulated stakeholder polling",
+   "one_line": "Give each named voter one agent grounded in their speeches and votes. Simulate the vote conditional on the headline decision and trade the dissent-count, vote-split, wording and pivotal-member markets that have no institutional anchor.",
+   "scope": "Cover per-member simulation of bodies with public individual records. For FOMC, ECB and BoE, cover dissent-count ladders, statement wording and presser word lists, conditional on the decision the futures already price. For legislatures, cover whip counts on the 5-10 pivotal members, with agenda timing modelled separately by a base-rate model. For courts, cover vote splits and opinion authorship after oral argument. Present the evidence honestly. FedSight's 93.75% has no futures baseline and no leakage control. Roll-call accuracy is mostly trivial party-line prediction. The classical SCOTUS model reaches 70.2%. Aaru could not simulate Powell. Address the under-prediction of dissent from 'farcical harmony', turnover, and statistical power: 8 meetings a year against the ~350-prediction bar, which forces pooling across bodies. Give the live liquidity gap of $8.07M on the decision vs $4.3k on dissents. Give forward-only validation and a mode-collapse kill check. Boundaries: secret-ballot electorates and coalition talks are in elite-selection-bargaining-simulators. UMA voter simulation is in synthetic-uma-dispute-jury.",
+   "sub_variants": [
+    "FOMC / ECB dissent-count and statement-wording twin",
+    "Simulated-reader disagreement as a post-meeting volatility signal",
+    "Legislative pivotal-member whip count multiplied by a base-rate agenda model",
+    "Per-justice twins for vote split and authorship side markets"
+   ],
+   "merged_from": [
+    "FOMC committee digital twin for dissent-count and second-order Fed markets",
+    "Committee simulacra: member-level role-play of small decision bodies",
+    "Committee-in-silico for central banks, traded on the side markets not the rate decision",
+    "Legislative whip-count twin",
+    "Synthetic benches: per-member twins of courts, legislatures and the UMA voter set (courts and legislature part)"
+   ],
+   "flags": "Blackout-period leaks and non-public court information are MNPI. Trading on them is insider trading. Presser mention markets carry script-leak risk.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2512.15728",
+     "note": "FedSight: 93.75% on 2023-24 meetings. No comparison to futures-implied odds. No leakage control."
+    },
+    {
+     "url": "https://arxiv.org/abs/2511.02469",
+     "note": "Hawk/dove latent-belief debate agents beat LLM baselines on FOMC decisions. No market comparison."
+    },
+    {
+     "url": "https://arxiv.org/abs/2508.13635",
+     "note": "Simulated ECB-presser readers: disagreement correlates ~0.5 with OIS volatility over 293 events."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Fed%20decision&limit_per_type=10&events_status=active",
+     "note": "Decision market $8.07M volume vs dissent market $4.3k volume, $15.2k liquidity."
+    },
+    {
+     "url": "https://arxiv.org/abs/2506.11798",
+     "note": "EP roll-call persona simulation: weighted F1 ~0.793. Documents left-lean bias."
+    },
+    {
+     "url": "https://arxiv.org/abs/2505.00006",
+     "note": "Per-congressperson language models predict roll calls and party-line crossing."
+    },
+    {
+     "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0174698",
+     "note": "[pre-2025] Classical SCOTUS model: 70.2% case accuracy, 71.9% vote accuracy."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "note": "Power: ~350 resolved predictions to detect a 0.02 edge. Per-meeting validation is underpowered."
+    }
+   ]
+  }
+ ],
+ "extra_scope": "MERGED per critic: this file is now 'small decision bodies' with a public-vote section (member twins: FOMC dissents, legislative whip counts on pivotal members, courts) and a secret-vote / bargaining section, plus the critic's bilateral deadline-bargaining sub-variant (deals, strikes, shutdown ends, ceasefire extensions). Be honest about tradable capacity (e.g. $4.3k volume on FOMC dissents vs $8.07M on the decision). The absorbed entry is under 'absorbed'.",
+ "n": "52",
+ "band": "speculative",
+ "file": "52-elite-selection-bargaining-simulators.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Closed-electorate selection simulator (UN Secretary-General, Nobel committee, conclave-class votes)",
+   "one_line": "Network-structure priors plus agent straw polls with veto players. The main use is identifying which longshots are structurally dead and selling them.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1. Enumerate the actual electors.\n   - UNSC: 15 members with P5 vetoes.\n   - Norwegian Nobel Committee: five members.\n   - Conclave: the College of Cardinals.\n   The UNSC and Nobel counts are background knowledge, not verified this session.\n2. Build a multiplex relational network from public records, plus each elector's stated red lines.\n3. Compute status, brokerage and coalition metrics as a prior, following Soda et al.\n4. Have elector agents play successive straw polls with encourage, discourage and veto ballots. Run this across LLM families.\n5. Output a win distribution and a \"veto-dead\" flag per candidate.\n6. Sell flagged longshots as a maker. Buy structurally central underdogs in small size.",
+   "edge_source": "A structural veto and network analysis that pundit-driven pricing ignores, combined with the documented favorite-longshot bias in multi-candidate Polymarket events.",
+   "why_might_beat_market": "Two supporting facts:\n- The Bocconi network study, released before the 8 May 2025 conclave, found Prevost uniquely central while he was \"largely ignored by pundits, bookmakers, and AI models\".\n- On Polymarket, purchases below 10c lose 19.3c per dollar across 588M trades. The pattern is robust in Politics.\n\nThe simulator's job is selection: which sub-10c names are truly dead.\n\nThese markets are liquid enough to matter:\n- Nobel Peace 2026: $24.3M volume, $1.86M liquidity.\n- UNSG: $200k volume, $78k liquidity.\n- TIME POTY: $505k liquidity.\n\nCaveats:\n- These are n=1 events.\n- Late pricing is dominated by insider flow.\n- The same abstract says AI models missed Prevost. Naive LLM elicitation is the thing that failed; structure is the thing that worked.",
+   "adjacent_grounding": "Network science and agent-based models of papal elections:\n- Soda, Iorio, Rizzo, In the Network of the Conclave (https://arxiv.org/abs/2505.17635).\n- Crokidakis, When cardinals strategize (arXiv 2505.07014).\n- Antonioni et al., Complex totopapa (arXiv 2505.01553).\n- Benjamini et al., The Conclave Process (arXiv 2607.22324).\n- Favorite-longshot evidence: Cardozo and Rivero-Wildemauwe (https://arxiv.org/abs/2609.12878).\n\nI found no evidence of this on Polymarket or Kalshi.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2505.17635",
+     "title": "In the Network of the Conclave (Soda, Iorio, Rizzo)",
+     "date": "2025-05-23",
+     "quality": "paper",
+     "supports": "A network analysis publicly released before the 8 May 2025 election showed Prevost held a uniquely central position while pundits, bookmakers and AI models ignored him."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "Across 588M trades, purchases below 10c lose 19.3c per dollar and purchases at 90c or above earn 0.83c. The bias is robust in Politics and Crypto and absent in Sports. Its magnitude depends on how contracts are grouped: -6.3c per individual contract against +4.1c when grouped by parent event."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Nobel%20Peace%20Prize&limit_per_type=10&events_status=active",
+     "title": "Polymarket Gamma API: Nobel Peace Prize 2026",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "$24.3M volume, $1.86M liquidity, 24 candidates. The top candidate is priced at 14.5%."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Secretary-General&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: Next UN Secretary-General",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "$200k volume, $78k liquidity, 26 candidate markets. Grynspan is priced at 44.5%."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Person%20of%20the%20Year&limit_per_type=10&events_status=active",
+     "title": "Polymarket Gamma API: TIME Person of the Year 2026",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "$54.5k volume, $505k liquidity, 18 markets."
+    }
+   ],
+   "failure_modes": "- Secret ballots give no ground truth for calibrating elector agents.\n- Insider leaks move prices before any model can.\n- Validation is n=1 per event.\n- LLMs memorise historical outcomes, which creates leakage.\n- Agents are too agreeable, so consensus forms unrealistically fast.\n- The grouped-event favorite-longshot result (+4.1c) warns that blanket longshot selling inside one event is not uniformly profitable. Selection matters.",
+   "cheap_validation": "Retro-test with name-masked actors (\"Candidate C, region X, opposed by P5 member Y\"). This blunts memorisation. Cover past UNSG selections, the 2013 and 2025 conclaves, and 10 Nobel years.\n\nPass on the retro-test:\n- The eventual winner is in the sim's top 3 in at least 60% of events, AND\n- No winner is ever flagged veto-dead.\n\nForward test: paper trade the UNSG and Nobel 2026 markets.\n\nPass on the forward test: a flagged-longshot short basket, realised after fees, beats an unselected sub-10c short basket in the same events.",
+   "flags": "Short-longshot books carry tail risk. Hard-cap the exposure per event."
+  },
+  {
+   "name": "Coalition-formation negotiation simulator",
+   "one_line": "Manifesto-grounded party agents negotiate cabinets across seat scenarios to price \"which coalition governs\" ladders, with the resolution rule built into the simulation.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1. Build one party agent per party, grounded by RAG over manifestos, leader statements and red lines.\n2. Draw seat distributions from the result, or from polls before the election.\n3. Run multi-round formation talks, including formateur order, confidence-and-supply options and portfolio allocation.\n4. Repeat across LLM families and seeds to get a distribution over cabinets.\n5. Apply the market's exact rule. The Swedish market counts a party only if it holds at least one cabinet minister. Each simulated cabinet therefore maps to exactly one ladder outcome.\n6. Compare with prices and rest maker orders on mispriced combinations.",
+   "edge_source": "A rule-aware mapping from negotiation outcomes to contract outcomes, plus systematic reading of local-language party documents.",
+   "why_might_beat_market": "Two common trader errors:\n- Combinatorial coalition ladders are hard for humans to price coherently.\n- Traders conflate support parties with coalition members.\n\nThe Swedish ladder has 16 markets, $17.7k volume and $223k liquidity. Deep resting liquidity with low traded volume means quotes are stale when news arrives.\n\nCaveats:\n- Formation timing (\"by date\") is essentially unforecastable by simulation.\n- Personal animosities and intra-party votes drive real outcomes, and LLMs smooth those away.",
+   "adjacent_grounding": "Multi-agent LLM political negotiation:\n- Digital Pantheon (arXiv 2607.15095). Simulates the 2019 Flemish coalition talks with DPO plus RAG and provenance tracking.\n- POLCA and a hierarchical MDP for European coalition negotiations (arXiv 2402.11712) [pre-2025, possibly stale].\n- Kulkarni et al., dynamic coalition structure detection combining LLMs and game theory in Diplomacy (arXiv 2502.16339).\n\nI found no evidence on prediction markets.",
+   "evidence": [
+    {
+     "url": "http://arxiv.org/abs/2607.15095v2",
+     "title": "Digital Pantheon: Simulating and Auditing Coalition Formation with LLM Agents",
+     "date": "2026-07-16",
+     "quality": "paper",
+     "supports": "Party-persona agents with manifesto-anchored lineage simulate real coalition negotiations. Provision provenance is auditable."
+    },
+    {
+     "url": "http://arxiv.org/abs/2402.11712v1",
+     "title": "Modelling Political Coalition Negotiations Using LLM-based Agents (POLCA)",
+     "date": "2024-02-18",
+     "quality": "paper",
+     "supports": "Treats coalition negotiation as an NLP task and provides a multilingual manifesto dataset. [pre-2025, possibly stale]"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=coalition&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: Which coalition will form the next Swedish government?",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "16 outcome markets, $17.7k volume, $223k liquidity. The rule is that a party counts only if it provides at least one cabinet minister."
+    }
+   ],
+   "failure_modes": "- Agents are too agreeable, so deals form too easily.\n- Agents cannot represent leader-level animosities or party-membership ballots.\n- Seat-scenario error dominates before the election.\n- Historical formations are memorised.\n- Few events per year.",
+   "cheap_validation": "- Backtest on government formations that occurred after the model's training cutoff.\n- Mask party names and replace them with ideological descriptors.\n- Metric: log score of the actual cabinet against the market price on election night, where a market existed. Otherwise compare against a minimal-connected-winning-coalition baseline.\n- Pass: better log score than the baseline in at least 4 of 6 formations, AND never assigns under 5% to the realised cabinet.",
+   "flags": ""
+  },
+  {
+   "name": "LLM-elicited stakeholder bargaining solver (Bueno de Mesquita-style hybrid)",
+   "one_line": "LLM analysts fill in the actor table of position, salience and clout. A deterministic bargaining model, not LLM role-play, computes the outcome distribution.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "1. For a policy-outcome market, have independent analyst agents extract a stakeholder table: actor, position on a 0-100 issue scale, salience, capability, and any veto.\n2. Each agent reads a different source partition.\n3. Treat analyst disagreement as the input uncertainty distribution.\n4. Run a game-theoretic bargaining solver (median-voter-with-power or challenge rounds) many times over sampled inputs.\n5. Map the distribution of settlement positions onto the market threshold, for example \"tariff at or above X\" or \"deal includes Y\".\n6. Blend with the market price. Trade only large, stable gaps as a maker.",
+   "edge_source": "LLMs are good at reading and position extraction. They are bad at multi-round dynamic play. A transparent solver does the dynamics instead.",
+   "why_might_beat_market": "Pure LLM role-play shows farcical harmony and trait-insensitivity (Lamparth). A structured solver avoids that, and it is auditable.\n\nStakeholder expected-utility models have a long, contested applied track record. Wikipedia reports a declassified CIA assessment rating the model 90% accurate. That is a tertiary source, and the claim is disputed in the literature. Unverified beyond that.\n\nCaveats:\n- Such models predict issue positions, not dates. Most Polymarket policy contracts are \"by date\".\n- The mappable market universe is therefore small.\n- Input elicitation error dominates.",
+   "adjacent_grounding": "- Political-science expected-utility and Predictioneer's Game models (https://en.wikipedia.org/wiki/Bruce_Bueno_de_Mesquita).\n- LLM plus game-theory hybrids: Kulkarni et al., Dynamic Coalition Structure Detection in Natural Language-based Interactions (arXiv 2502.16339).\n- Motivation from the Lamparth et al. wargame findings.\n\nI found no LLM-BDM hybrid in arXiv. An arXiv query returned 0 results. I found nothing on prediction markets.",
+   "evidence": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Bruce_Bueno_de_Mesquita",
+     "title": "Bruce Bueno de Mesquita - Wikipedia",
+     "date": "undated",
+     "quality": "credible-report",
+     "supports": "Describes the expected-utility model (median voter, N-player bargaining) and the successor Predictioneer's Game. Says a declassified CIA assessment rated the model 90 percent accurate. This is a tertiary source and a list of criticisms exists."
+    },
+    {
+     "url": "http://arxiv.org/abs/2502.16339v1",
+     "title": "Dynamic Coalition Structure Detection in Natural Language-based Interactions",
+     "date": "2025-02-22",
+     "quality": "paper",
+     "supports": "Combining LLM language understanding with game-theoretic rationalizability to predict coalition outcomes in Diplomacy."
+    },
+    {
+     "url": "https://arxiv.org/abs/2403.03407",
+     "title": "Human vs. Machine (Lamparth et al.)",
+     "date": "2024-03-06",
+     "quality": "paper",
+     "supports": "Pure LLM dialogue simulation lacks quality and trait sensitivity. This motivates moving the dynamics into a solver. [pre-2025, possibly stale]"
+    }
+   ],
+   "failure_modes": "- Garbage-in: position and salience elicitation is noisy.\n- One-dimensional issue scales fit few contracts.\n- No timing output.\n- The historical 90% claim has selection and definition problems.\n- Small mappable universe.",
+   "cheap_validation": "- Take 30 resolved policy-outcome questions from Polymarket or Metaculus, after cutoff, with actors anonymised.\n- Compare three forecasts: solver output, direct LLM forecast, and market mid at T-30d.\n- Pass: the solver's Brier is better than the direct LLM forecast by at least 10% relative, AND it is within 0.01 Brier of the market.\n- If the solver is worse than the direct LLM, drop it. Two days of analyst time build the prototype.",
+   "flags": ""
+  },
+  {
+   "name": "FOMC committee digital twin for dissent-count and second-order Fed markets",
+   "one_line": "Simulate the 12 voters conditional on the decision the futures already price, and trade the dissent-count ladder, which has no futures hedge.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1. Build one agent per FOMC participant, grounded in speeches, past votes and dissents, and regional conditions.\n2. Take the rate decision scenario from the liquid decision market and fed funds futures. Do not forecast it.\n3. Feed in the Beige Book and the data releases.\n4. Simulate the go-round and the vote under that scenario across several LLMs and seeds.\n5. Convert the results into a distribution over 0, 1, 2, 3 and 4+ dissents. Shrink it toward the historical conditional base rate.\n6. Quote the dissent brackets as a maker. Extend the same twins to statement-wording and presser mention markets.",
+   "edge_source": "A labour-saving synthesis of a large public speech corpus, applied in a market with almost no professional attention and no TradFi instrument to arbitrage against.",
+   "why_might_beat_market": "Live liquidity gap:\n- The October 2026 decision market has $8.07M volume and $2.48M liquidity.\n- The October dissent market has $4.3k volume and $15.2k liquidity.\n- The dissent ladder is priced at 47.5% none, 19.5% one, 9.5% two and 12% three.\n\nThat level of dispersion suggests uncertainty a careful hawk-dove tracker could reduce.\n\nCaveats:\n- The FedSight and MiniFed accuracy claims are for the rate decision and were never benchmarked against futures. Treat them as plausibility evidence only.\n- A rules-based hawk/dove spreadsheet may capture most of the edge.\n- Aaru reported it could not simulate Powell.",
+   "adjacent_grounding": "Multi-agent LLM central-bank simulation:\n- FedSight AI (https://arxiv.org/abs/2512.15728). Reports 93.75% accuracy on 2023-2024 meetings against MiniFed and random-forest baselines, with no futures baseline.\n- Takano et al., hawkish-dovish latent-belief debate (arXiv 2511.02469).\n- MiniFed (arXiv 2410.18012) [pre-2025, possibly stale].\n\nI found no repo or paper applying this to prediction markets. A GitHub search for FOMC simulation LLM agents returned 0 results.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2512.15728",
+     "title": "FedSight AI: Multi-Agent System Architecture for Federal Funds Target Rate Prediction",
+     "date": "2025-12-05",
+     "quality": "paper",
+     "supports": "Member agents debate and vote. Reports 93.75% accuracy on 2023-24 meetings. No comparison with futures-implied probabilities and no leakage control stated."
+    },
+    {
+     "url": "http://arxiv.org/abs/2511.02469v1",
+     "title": "Modeling Hawkish-Dovish Latent Beliefs in Multi-Agent Debate-Based LLMs for Monetary Policy Decision Classification",
+     "date": "2025-11-04",
+     "quality": "paper",
+     "supports": "Explicit hawk/dove belief modelling improves FOMC decision classification."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Fed%20decision&limit_per_type=10&events_status=active",
+     "title": "Polymarket Gamma API: Fed decision vs dissent markets",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "The decision market has $8.07M volume and $2.48M liquidity. The dissent market has $4.3k volume and $15.2k liquidity. Dissent markets are listed for October, December and January."
+    },
+    {
+     "url": "https://fortune.com/2026/06/17/aaru-cofounder-ned-koh-ai-startup-sales-pitch-do-not-trust-us/",
+     "title": "Fortune on Aaru",
+     "date": "2026-06-17",
+     "quality": "credible-report",
+     "supports": "A negative result. Aaru tried to simulate Trump and Powell and could not predict outcomes accurately, even with decades of public statements."
+    }
+   ],
+   "failure_modes": "- LLM committees show \"farcical harmony\" (Lamparth et al.) and so under-predict dissent.\n- Backtests on 2023-24 sit inside training data.\n- Only about 8 meetings per year.\n- Personnel turnover breaks the twins.\n- Dissent often depends on private chair-management that leaves no public trace.",
+   "cheap_validation": "Backtest:\n- Use only meetings after the cutoff of an open-weight model.\n- Score ranked probability against two benchmarks: the base-rate model (dissent frequency conditional on hold or move), and the market price at T-24h where a market existed.\n- Pass: beats both on at least 6 of 8 meetings.\n\nLive test, only if the backtest passes:\n- Quote $50-100 per bracket for 4 meetings.\n- Pass: positive P&L after fees, with no bracket mispriced by more than 15pp at resolution.",
+   "flags": ""
+  },
+  {
+   "name": "Committee simulacra: member-level role-play of small decision bodies (FOMC and similar) for second-order markets",
+   "one_line": "Simulate each named committee member as an agent grounded in their own speeches and votes. Let them deliberate and vote. Trade the markets that lack a liquid external reference, such as dissent counts, vote splits and statement wording, rather than the headline decision.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental (three academic FOMC simulators 2024-2025; no evidence of use on Polymarket or Kalshi)",
+   "mechanism": "1) Build one agent per committee member, conditioned on that member's speeches, past votes and hawk/dove latent position, plus the current data pack (Beige Book, CPI, payrolls).\n2) Run structured deliberation and a vote, M times with different seeds and evidence orderings. This yields a distribution over decision, vote split, number of dissents and key statement phrases.\n3) Map the distributions onto Polymarket and Kalshi contracts: decision, number of dissents, 'will X dissent', and statement or press-conference 'mentions' markets.\n4) For the headline decision, defer to fed-funds-futures-implied odds. Trade only contracts where no derivatives market provides a reference and the simulated distribution differs from the price by more than fee plus spread (mentions feeRate 0.04, economics 0.05).\n5) Extend the same approach to the ECB, BoE, BoJ, OPEC+ and courts to increase the sample size.",
+   "edge_source": "Structured simulation of a small and well-documented electorate, where outcomes depend on identifiable individuals' reaction functions and not on dispersed public information.",
+   "why_might_beat_market": "Small committees are the best case for role-play. There are few actors, large public corpora per actor and formal voting rules. Secondary contracts such as dissents and word mentions are priced by retail with no arbitrage anchor. Honest limit: the headline rate decision is already priced efficiently by rates markets. FedSight's 93.75% accuracy covered 2023-2024 meetings, when most decisions were well telegraphed, so it says little about alpha. None of the three papers compares against market-implied probabilities.",
+   "adjacent_grounding": "Multi-agent LLM simulation of institutions, and wargaming:\n- FedSight AI (https://arxiv.org/abs/2512.15728, 2025-12-05): member agents debate and vote; 93.75% accuracy and 93.33% stability on 2023-2024 meetings; beats MiniFed and an ordinal random forest; no FedWatch comparison.\n- Takano, Hirano & Nakagawa, hawkish-dovish latent beliefs in debate-based LLMs (https://arxiv.org/abs/2511.02469, 2025-11-04).\n- MiniFed (arXiv 2410.18012, 2024-10-23) [pre-2025].\n- Hogan & Brennen, 'Open-Ended Wargames with LLMs' (Snow Globe; arXiv 2404.11446, 2024-04-17) [pre-2025] for geopolitical crisis role-play.",
+   "failure_modes": "- Tiny n: 8 FOMC meetings a year. This cannot reach the ~350-prediction power bar without pooling many bodies and contract types.\n- Agents caricature members and drift toward stereotyped hawk or dove positions.\n- LLM debate herding.\n- Statement-wording markets depend on drafting by staff the agents do not model.\n- Leakage: past meetings are in the training data, so only post-cutoff meetings count.\n- Mentions markets have low liquidity.",
+   "cheap_validation": "Pool post-cutoff meetings of 5-6 central banks x {decision, dissent count, 3-5 wording contracts} to reach n >= 80 within 6 months.\n\nScore the log-loss of the simulated distribution against the Polymarket or Kalshi price 24h before the event. Pass is positive alpha with one-sided p < 0.1. State explicitly that this is underpowered.\n\nA cheaper pre-test is whether the simulator reproduces the realised dissent count in >= 70% of 2025-2026 meetings. Paper trade only until n >= 150.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2512.15728",
+     "title": "FedSight AI: Multi-Agent System Architecture for Federal Funds Target Rate Prediction (arXiv)",
+     "date": "2025-12-05",
+     "quality": "paper",
+     "supports": "An LLM member-agent simulation of FOMC deliberation and voting achieved 93.75% accuracy on 2023-2024 meetings. There is no comparison to market-implied odds."
+    },
+    {
+     "url": "https://arxiv.org/abs/2511.02469",
+     "title": "Modeling Hawkish-Dovish Latent Beliefs in Multi-Agent Debate-Based LLMs for Monetary Policy Decision Classification (arXiv)",
+     "date": "2025-11-04",
+     "quality": "paper",
+     "supports": "Agents with distinct initial beliefs that iteratively revise 'significantly outperform' standard LLM baselines on FOMC decisions."
+    },
+    {
+     "url": "https://arxiv.org/abs/2410.18012",
+     "title": "MiniFed: Integrating LLM-based Agentic-Workflow for Simulating FOMC Meeting (arXiv) [pre-2025, possibly stale]",
+     "date": "2024-10-23",
+     "quality": "paper",
+     "supports": "A five-stage simulation of FOMC meetings with behavioural alignment to real members."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "title": "Foresight Arena (arXiv)",
+     "date": "2026-05-01",
+     "quality": "paper",
+     "supports": "Power analysis: about 350 resolved binaries for a 0.02 edge. This shows why per-meeting validation is badly underpowered."
+    }
+   ]
+  },
+  {
+   "name": "Committee-in-silico for central banks, traded on the side markets not the rate decision",
+   "one_line": "Simulate named FOMC/ECB members to price dissent counts, statement wording and press-conference mentions, where no futures market anchors the price.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) One agent per voting member, conditioned on that member's speeches, past dissents and the staff-style data pack (CPI, payrolls, financial conditions); run a structured deliberation (FedSight / MiniFed style) 500 times. 2) Do NOT trade the rate decision - fed funds futures/CME already price it and Polymarket's 'Fed Decision in October' has $8.08M volume. 3) Read off the by-products: distribution of dissent count, probability specific phrases survive in the statement, chair press-conference word list (mention markets), dot-plot medians. 4) Quote those thin side markets as maker and use the rate-decision market as the hedge leg when the simulated dissent/hawkishness distribution implies a tail the side market ignores. 5) Second use: post-event volatility - dispersion among simulated 'reader' agents of the statement predicted OIS volatility (r~0.5), which maps to 'how many cuts by year-end' ladder repricing.",
+   "edge_source": "Member-level text history applied to markets that have no institutional anchor (no futures on dissents or on words).",
+   "why_might_beat_market": "The decision itself is un-beatable (futures-anchored, deep). But dissent counts, statement wording and chair vocabulary are functions of identifiable individuals' stated positions, and those markets are priced by a handful of retail accounts: 'October Fed Dissents' had $4.3k volume and $13.8k liquidity on 2026-09-20. A new chair (CNBC headline 'What Warsh will say...', 2026-08-27) resets every human trader's base rates while a twin can be re-conditioned on his prior record. Honest limit: FedSight's 93.75% on 2023-24 meetings has no stated leakage control and no comparison to futures-implied odds; Aaru says Powell-type individuals cannot be simulated; capacity on the side markets is tens of dollars to low thousands.",
+   "adjacent_grounding": "FedSight AI (arXiv 2512.15728): multi-agent FOMC simulation, 93.75% accuracy / 93.33% stability on 2023-24, beats MiniFed and ordinal random forest; abstract gives no futures baseline or leakage control. Takano, Hirano, Nakagawa (arXiv 2511.02469, PRIMA 2025): hawkish/dovish latent-belief debate agents 'significantly outperform' LLM baselines. MiniFed (arXiv 2410.18012) [pre-2025]. Collodel (arXiv 2508.13635): 30 simulated heterogeneous traders reading ECB pressers; disagreement correlates ~0.5 with realised OIS volatility over 293 events. Lin et al. (arXiv 2608.30522): 300 survey households turned into persistent agents to study central-bank communication. LiveMacroEval (arXiv 2608.30110): LLM nowcasts comparable to Bloomberg consensus on 16 indicators.",
+   "failure_modes": "Backtests sit inside training data; eight meetings a year gives no power; committee sims converge to consensus ('farcical harmony') and under-predict dissents; membership/chair changes; side markets too thin to matter and may not be listed every meeting; mention markets carry script-leak risk.",
+   "cheap_validation": "Forward-only across the next 6 FOMC + 6 ECB meetings: publish dissent-count distribution, 10 statement-phrase probabilities and a 20-word presser list before each meeting. Metric: log-loss versus Polymarket/Kalshi side-market mids and versus a 'last meeting repeats' baseline. Pass: beats both baselines on pooled log-loss across >=100 binary items with bootstrap CI excluding 0. Trade $10-$50 maker clips only after passing. Kill if simulated dissent variance is <50% of historical variance (mode collapse check).",
+   "flags": "None beyond standard insider rules; blackout-period leaks are MNPI.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2512.15728",
+     "title": "FedSight AI: Multi-Agent System Architecture for Federal Funds Target Rate Prediction",
+     "date": "2025-12-05",
+     "quality": "paper",
+     "supports": "93.75% accuracy on 2023-24 FOMC; no futures comparison or leakage control in abstract"
+    },
+    {
+     "url": "https://arxiv.org/abs/2511.02469",
+     "title": "Modeling Hawkish-Dovish Latent Beliefs in Multi-Agent Debate-Based LLMs for Monetary Policy Decision Classification",
+     "date": "2025-11-04",
+     "quality": "paper",
+     "supports": "belief-conditioned committee debate beats LLM baselines (no numbers in abstract)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2508.13635",
+     "title": "Interpreting the Interpreter: Can We Model post-ECB Conferences Volatility with LLM Agents?",
+     "date": "2025-08-19",
+     "quality": "paper",
+     "supports": "simulated-reader disagreement ~0.5 correlation with OIS volatility, 293 events (arXiv listing abstract)"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Fed%20decision&limit_per_type=10&events_status=active",
+     "title": "Gamma API: active Fed events",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Fed Decision October $8.08M volume / $2.37M liquidity vs October Fed Dissents $4.3k volume / $13.8k liquidity"
+    },
+    {
+     "url": "https://fortune.com/2026/06/17/aaru-cofounder-ned-koh-ai-startup-sales-pitch-do-not-trust-us/",
+     "title": "Aaru cofounder: 'do not trust us' (Fortune)",
+     "date": "2026-06-17",
+     "quality": "credible-report",
+     "supports": "vendor admits named individuals like Trump or Powell have too much variance to simulate"
+    }
+   ]
+  },
+  {
+   "name": "Legislative whip-count twin",
+   "one_line": "One agent per legislator simulates a specific vote under scenarios. The target is the 5-10 pivotal members, not the party-line mass.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1. Build a legislator agent from their voting record, public statements, district lean and leadership or donor pressure. This follows the Political Actor Agent architecture.\n2. Simulate the floor vote on a concrete bill text, nominee or procedural motion under several scenarios: leadership whip on or off, amendments.\n3. Aggregate to P(pass) and a margin distribution.\n4. Model agenda control separately as P(vote held by date). Use a base-rate model for this, not the simulation.\n5. Multiply the two and compare with markets on passage, shutdown, confirmation or the nuclear option.\n6. Trade only where the pivotal-member analysis disagrees with the price by more than fees plus a safety margin.",
+   "edge_source": "A systematic, always-on whip count from public statements, in markets priced by generalists.",
+   "why_might_beat_market": "Congress markets are often stale between headlines. \"Government shutdown by Oct 1\" has $15.7k volume and $20.4k liquidity. The nuclear-option market has $561k lifetime volume but only $1.1k current liquidity.\n\nCaveats:\n- The reported headline accuracy is mostly trivial party-line prediction. The EP weighted F1 is about 0.79, and PAA reports \"superior performance\" with no number in its abstract.\n- The edge, if any, is in pivotal members and procedural reading.\n- Professional DC whip counts and lobby-shop intelligence exist and likely reach the large markets quickly.",
+   "adjacent_grounding": "Roll-call simulation with LLM agents:\n- Political Actor Agent (https://arxiv.org/abs/2412.07144), AAAI 2025, 117th-118th House [pre-2025, possibly stale].\n- Kreutner et al., Persona-driven Simulation of Voting Behavior in the European Parliament (https://arxiv.org/abs/2506.11798), weighted F1 about 0.793, EACL 2026 Findings.\n\nI found no evidence on Polymarket or Kalshi.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2412.07144",
+     "title": "Political Actor Agent: Simulating Legislative System for Roll Call Votes Prediction with LLMs",
+     "date": "2024-12-10",
+     "quality": "paper",
+     "supports": "An agent-based role-play framework that predicts US House roll calls for the 117th-118th Congress. The abstract gives no numeric accuracy. [pre-2025, possibly stale]"
+    },
+    {
+     "url": "https://arxiv.org/abs/2506.11798",
+     "title": "Persona-driven Simulation of Voting Behavior in the European Parliament with LLMs",
+     "date": "2025-06-13",
+     "quality": "paper",
+     "supports": "Zero-shot persona prompting reaches a weighted F1 of about 0.793. Documents left-leaning bias."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=shutdown&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: shutdown and nuclear-option markets",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "\"Shutdown by Oct 1\" has $15.7k volume and $20.4k liquidity. The nuclear-option market has $561k volume and $1.1k liquidity. The \"shutdown and House winner\" combo has $342k volume and $58k liquidity."
+    }
+   ],
+   "failure_modes": "- Accuracy is lowest exactly on pivotal members.\n- Agenda control and timing are not simulable.\n- Logrolling and side-payments are invisible in public text.\n- LLM left-lean bias.\n- Few market-linked votes.",
+   "cheap_validation": "- Evaluate on roll calls after the model cutoff, restricted to votes with a margin under 10.\n- Metric: accuracy on members who broke party line, against a party-line baseline. Pass: at least +10pp.\n- Second metric: Brier on passage against the market mid at T-48h for at least 20 market-linked votes. Pass: positive Brier skill score.",
+   "flags": ""
+  },
+  {
+   "name": "Synthetic benches: per-member twins of courts, legislatures and the UMA voter set",
+   "one_line": "Model each decision-maker on a small, fixed panel (9 justices, swing legislators, UMA's active voters) separately, then aggregate simulated votes into outcome and vote-split probabilities.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) For each panel member build a twin: a classical feature model (Katz-style) plus an LLM conditioned on that member's past opinions/votes/questions. 2) Feed event-specific evidence: oral-argument transcripts (who was interrupted, hostile-question counts), briefs, whip counts, member tweets; for UMA, the rule text, clarifications and Discord arguments. 3) Simulate the panel 1,000 times with correlated errors (members are not independent: bloc structure) to get P(outcome), P(vote split), P(author). 4) Trade only the derivative markets the crowd prices lazily - vote-split brackets, 'who writes the opinion', timing of decision, party-line-crossing counts - and use the twin as a second opinion on headline markets right after oral argument, when prices jump (tariff case: odds 'collapsed' during argument per Kalshi News headline). 5) For UMA, use the twin only after a dispute exists, to price the DVM vote.",
+   "edge_source": "Small, well-documented panels with decades of individual-level history; events (oral argument, markup) that release rich text the crowd digests impressionistically.",
+   "why_might_beat_market": "Panel decisions are an aggregation of a few known individuals with long paper trails, so member-level modelling can add information the crowd's gestalt misses, especially on vote-split and authorship side markets that have no professional coverage. Honest limit: the classical SCOTUS model gets 70.2% case-level accuracy - close to 'always guess reverse'; GPT justice-agents were only 'better than random'; headline SCOTUS markets after oral argument are well-followed; and Polymarket currently has almost no SCOTUS depth (three court-related events, $300-$26k volume). LLMs agree with UMA's final vote 89.58% of the time once disputed but cannot predict which markets will be disputed.",
+   "adjacent_grounding": "Katz, Bommarito, Blackman, PLOS ONE 2017: 70.2% case / 71.9% justice-vote accuracy over 1816-2015 [pre-2025, possibly stale]. Hamilton, 'Blind Judgement: Agent-Based Supreme Court Modelling with GPT' (arXiv 2301.05327): nine per-justice models, better than random on 96 cases [pre-2025]. 'Toward a digital twin of U.S. Congress' (Helm et al., arXiv 2505.00006): per-member LMs on every congressperson's tweets predict roll-call votes and party-line crossing (no accuracy figure in abstract). 'Political Actor Agent' (arXiv 2412.07144) roll-call prediction for the 117-118th House [pre-2025]. Wen et al. (arXiv 2604.15674): LLM vs UMA 89.58%. Multi-agent courtroom deliberation: comparable accuracy to single LLMs but different errors (Steging, arXiv 2606.30906).",
+   "failure_modes": "Few events per year (SCOTUS ~60 cases, of which a handful get markets) so no statistical power for years; leakage - any backtest on pre-cutoff cases is void; twins produce 'farcical harmony' and under-represent idiosyncratic votes; correlated member errors make the panel look more certain than it is; leaks (Dobbs-style) dominate; UMA voter set and whale concentration change over time.",
+   "cheap_validation": "(a) Leak-free backtest is impossible for LLM twins, so run forward: from the October 2026 term, publish timestamped probabilities for every argued case the day after argument; score Brier against Polymarket/Kalshi mid where a market exists and against the 'reverse' base rate otherwise. Pass: >=30 cases, Brier better than both baselines, and side-market (vote split) log-loss better than a historical-frequency prior. (b) UMA twin: replay the next 40 disputes forward; pass if agreement with final DVM outcome >=90% AND the ~10% misses are not concentrated in high-value markets. Trade nothing until (a) or (b) passes; then $25-$50 clips.",
+   "flags": "No ToS issue with modelling. Trading court outcomes with any non-public information is insider trading. UMA: do not combine with voting power in ways that could look like outcome manipulation.",
+   "evidence": [
+    {
+     "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0174698",
+     "title": "A general approach for predicting the behavior of the Supreme Court of the United States",
+     "date": "2017-04-12 [pre-2025, possibly stale]",
+     "quality": "paper",
+     "supports": "70.2% case-level, 71.9% vote-level accuracy, 1816-2015"
+    },
+    {
+     "url": "https://arxiv.org/abs/2301.05327",
+     "title": "Blind Judgement: Agent-Based Supreme Court Modelling With GPT",
+     "date": "2023-01-12 [pre-2025]",
+     "quality": "paper",
+     "supports": "nine per-justice models, better-than-random on 96 cases (arXiv listing abstract)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2505.00006",
+     "title": "Toward a digital twin of U.S. Congress",
+     "date": "2025-04-04",
+     "quality": "paper",
+     "supports": "per-congressperson LMs on tweets predict roll-call behaviour and party-line crossing"
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.15674",
+     "title": "Can LLMs Help Decentralized Dispute Arbitration? UMA-Resolved Markets on Polymarket",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "89.58% agreement with UMA final resolution after dispute; cannot predict disputes ex ante (arXiv listing abstract)"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Supreme%20Court&limit_per_type=15&events_status=active",
+     "title": "Gamma API: active Supreme Court events",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "only 3 events, $300-$26k volume: capacity is currently negligible on Polymarket"
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=Supreme+Court+ruling+prediction+market+Kalshi+OR+Polymarket+tariffs+decision+traders+AI+model&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News RSS listing (headline only): 'Trump tariff odds collapse during Supreme Court showdown' (Kalshi News 2025-11-05); 'Prediction markets put Trump tariff win at 24% following oral arguments' (Fox Business 2025-11-12)",
+     "date": "2025-11",
+     "quality": "credible-report",
+     "supports": "oral argument is the repricing event; big cases do attract volume (articles not fetched)"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "MERGE or shrink decision-body-member-twins into elite-selection-bargaining-simulators as one 'small decision bodies' file with public-vote and secret-vote sections. The tradable capacity on the public-vote side is $4.3k volume on FOMC dissents against $8.07M on the decision, and 8 meetings a year against a bar of roughly 350 predictions. If the entry is kept separate, add higher-repetition bodies with public individual records: regulatory commissions (SEC, FCC, FTC votes) and FDA advisory committees.",
+  "ADD sub-variant to elite-selection-bargaining-simulators: bilateral deadline bargaining for deals, strikes, shutdown ends and ceasefire extensions, using the BDM-style solver plus the experimental deadline effect (agreements cluster just before the deadline). Live capacity: the US-Iran final deal ladder has $17.84M volume and $404k liquidity (Gamma API, fetched today). If outside-view-procedural-clock-engine is accepted, house the hazard part there and keep the actor-table solver here.",
+  "simulated-stakeholder-polling / decision-body-member-twins / elite-selection-bargaining-simulators / synthetic-uma-dispute-jury all carry the seed label 'simulated stakeholder polling'. Only the first is polling. The other three are institutional twins. This is harmless for coverage, since the seed has its own entry. The owner should not read it as four takes on one idea, though. Only one of them tests polling simulation.",
+  "decision-body-member-twins: tradable capacity is $4.3k volume on FOMC dissents. There are 8 meetings a year against a bar of roughly 350 predictions. FedSight has no futures baseline and no leakage control. Roll-call accuracy is mostly party-line. Aaru concedes Powell-class individuals cannot be simulated. Only the legislative whip-count on pivotal members has capacity plausible enough to justify the work. Merge it into the elite-selection file."
+ ]
+}

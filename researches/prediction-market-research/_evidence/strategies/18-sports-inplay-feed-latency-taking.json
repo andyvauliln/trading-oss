@@ -1,0 +1,242 @@
+{
+ "slug": "sports-inplay-feed-latency-taking",
+ "name": "In-play sports feed-latency taking",
+ "category": "Information edge",
+ "maturity": "Emerging (flagship claims unverified)",
+ "seed_category": "new (in-play sports)",
+ "one_line": "Take stale in-play quotes off a faster event feed, or scale into model-mispriced lines and hold to settlement; the two styles behind the largest sports accounts.",
+ "scope": "Cover ONLY the speed variant: taking stale in-play quotes using faster score / event feeds than the makers have. Include Polymarket's order-delay rules on live sports, data-licence terms and courtsiding legality, what wallet reconstructions actually show (the critic says the flagship mechanism is unverified and contradicted by evidence pack E4), fees after V2, and who the counterparties are. Boundary: model-driven holding is sports-model-driven-taking; quoting is sportsbook-anchored-sports-mm.",
+ "sub_variants": [
+  "live score / stadium-feed sniping in football and US sports",
+  "esports game-API parsing bots",
+  "model-driven probe-wait-slam hold-to-settlement",
+  "Kelly-sized live minor-sports betting"
+ ],
+ "merged_from": [
+  "traders: In-play sports latency trading",
+  "onchain-bots: Live-data latency taking in esports and in-play sports",
+  "adjacent-transfer: In-play data-feed latency, or courtsiding by API",
+  "traders: Model-driven sports taker that scales in and holds to settlement"
+ ],
+ "flags": "Courtsiding and out-of-licence use of official data breach venue/data-provider terms; possible surveillance attention on the CFTC-regulated US venue; not prohibited by Polymarket international itself.",
+ "key_evidence": [
+  {
+   "url": "https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=VOL&limit=25",
+   "note": "swisstony $23.63M PnL on $1.855B volume (1.27%)"
+  },
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?q=swisstony&size=30&sort=desc&sort_type=score",
+   "note": "Teardown and failed copy attempt 1 s late ($150 to $138); mechanism claim unverified"
+  },
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?ids=1tgbkd0,1sccina",
+   "note": "KCH123: $743K in 33 days, 10.7K buys / zero sells, NBA vs NHL ROI split"
+  },
+  {
+   "url": "https://kotaku.com/polymarket-betting-dota2-bot-trump-truth-predict-2000656106",
+   "note": "Esports bot ~$230k in five months, $200-$20,000 per bet"
+  },
+  {
+   "url": "https://news.polymarket.com/p/meet-your-market-maker",
+   "note": "Victim-side confirmation: seeing the play first is worth ~40c of EV"
+  },
+  {
+   "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+   "note": "Sports marketable orders wait out a delay and cannot be cancelled"
+  }
+ ],
+ "parent_slug": "sports-automated-takers",
+ "parent_scope": "Cover two taker styles. (1) Feed latency: official/scout/game-API data vs 15-60 s broadcast delay, esports parsing bots (TeemuTeemuTeemu ~$230k), swisstony scale (hard data) vs claimed mechanism (unverified), size limits from resting depth, per-market secondsDelay, taker delay removals (World Cup), copy-failure proof that the edge lives in the first second. (2) Model-driven: KCH123 probe-wait-slam execution, zero sells, sport-specific ROI (NBA +72.9% vs NHL +0.6%), variance and bankroll, CLV-vs-Pinnacle validation. Include fee 0.05 at mid prices and taker-rebate effect. Boundary: maker-side use of the same feeds is sportsbook-anchored-sports-mm / event-market-making; in-play drift, panic-fade and final-minutes ideas are speculative band; copying these wallets is screened-copy-trading.",
+ "seed": "5 fast execution / new",
+ "n": "18",
+ "band": "established",
+ "file": "18-sports-inplay-feed-latency-taking.md",
+ "critic_notes": [
+  "SPLIT sports-automated-takers into (a) in-play feed-latency taking and (b) model-driven pre-game / hold-to-settlement taking. They differ in edge (speed and data licence vs model), build (low-latency infrastructure vs modelling and bankroll) and risk (data-terms / surveillance vs variance). E4's Leo Labs reconstruction classes 14 of 18 top sports wallets as directional buy-and-hold, so the evidence base of (a) is one esports bot plus X-thread mechanism claims. Add to (b) a sub-variant the list lacks: systematic underdog buying. arXiv 2609.12878 finds no favourite-longshot bias in sports (longshots +2.4% equal-weighted, +18.1% pooled, pre-fee sample) and The Oracle reports RN1 at 53% of trades under 50c and swisstony at 60%+ of entries under 50c.",
+  "sports-automated-takers: 'Established' is supported for directional / model-driven holding (leaderboard PnL), not for in-play feed latency, whose flagship mechanism is unverified and contradicted by E4's wallet reconstruction. Label the sub-variants separately."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "In-play sports latency trading (event data faster than the book)",
+   "one_line": "Take stale in-play prices in the seconds after goals/scores using a data feed that beats broadcast and other traders.",
+   "category": "Information edge",
+   "maturity": "Established",
+   "mechanism": "A bot subscribes to a low-latency live event feed and lifts resting orders on the now-favoured side before makers reprice. Community teardowns attribute this to swisstony (90% football, ~96k trades at the time, ~$156 average profit per trade); the mechanism attribution is unverified, but the account's scale is hard data. The sports MM interview independently confirms the same asymmetry from the victim side. Position sizes are many small-to-mid clips (typically $10-15k) because in-play depth is limited.",
+   "edge_source": "Seconds of latency advantage on a discrete, price-jumping event; TV viewers are 15-40 s behind (claim from Reddit teardown).",
+   "why_might_beat_market": "Requires licensed/fast data and execution infra most participants lack; makers who cannot pull in time fund it.",
+   "failure_modes": "Data-rights cost and legality, makers adding event-driven pulls, sports taker fee 0.05 at mid prices, any future sports taker delay (unverified whether one applies), capacity limited by in-play depth. A copy-trader 1 s behind lost money (85 trades, $150 -> $138), showing the edge is entirely in the first second.",
+   "cheap_validation": "Record Polymarket in-play book updates for a weekend of football with timestamps and compare to a commercial live-score API timestamp; measure how long stale quotes survive after a goal and how much size is available.",
+   "flags": "Courtsiding-style or unlicensed data use can breach venue/data-provider terms; on the CFTC-regulated US venue this may attract surveillance attention.",
+   "evidence": [
+    {
+     "url": "https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=VOL&limit=25",
+     "title": "All-time leaderboard by volume",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "swisstony #1: $23,630,766 PnL on $1,854,632,179 volume (1.27%)"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=swisstony&size=30&sort=desc&sort_type=score",
+     "title": "Reddit r/PredictionsMarkets 1t77hcd 'turned $5 into $7.7m... all from football. i tried copying him' + r/Polymarket_Traders posts on swisstony overtaking Theo4",
+     "date": "2026-05-08 to 2026-07-28",
+     "quality": "self-reported",
+     "supports": "Claimed pre-broadcast data edge (unverified), 96k trades/$730M volume at the time, copy attempt lost money because copies landed 1 s late; swisstony passed Theo4 ($22.05M) with 151,812 predictions"
+    },
+    {
+     "url": "https://news.polymarket.com/p/meet-your-market-maker",
+     "title": "The Oracle: sports MM interview",
+     "date": "2025-10-11",
+     "quality": "self-reported",
+     "supports": "'If you could see that wasn't a touchdown first, you would have gotten 40 cents of EV' - in-play information asymmetry is real and costly to makers"
+    }
+   ]
+  },
+  {
+   "name": "Live-data latency taking in esports and in-play sports",
+   "one_line": "React to in-game events (kills, objectives, points, breaks) from a faster data path than the Polymarket book.",
+   "category": "Information edge",
+   "maturity": "Established",
+   "mechanism": "The bot ingests live game state (official game-data feeds, parsed streams, live-score APIs, reportedly over-the-air TV antennas to beat streaming delay) and recomputes win probability on each event. It takes stale quotes before makers reprice, in sizes of $200-$20,000, mostly in Dota 2, LoL and Counter-Strike, with similar tooling appearing for tennis. NBA data shows mispricings cluster in the final minutes of games, which is where this edge concentrates. Maker programs now require quotes to rest 3.5 s to earn rewards, which keeps stale quotes exposed.",
+   "edge_source": "Seconds-level information latency between the venue of the event and the order book; thin maker coverage in esports.",
+   "why_might_beat_market": "A named wallet demonstrably did it for five months; sportsbook-style in-play delays are absent on the CLOB, so the fastest data path wins.",
+   "evidence": [
+    {
+     "url": "https://kotaku.com/polymarket-betting-dota2-bot-trump-truth-predict-2000656106",
+     "title": "How ... A Bot [Makes] $230,000 Betting On Video Games (Kotaku, citing X user ArchiveExplorer and Polymarket history)",
+     "date": "2025-12-30",
+     "quality": "credible-report",
+     "supports": "Wallet 'TeemuTeemuTeemu': ~$230k profit in five months ($208,521 in three), 1,127 bets, $200-$20,000 per bet, largest win $89,300; 'monitors live game parses stream and official data faster than market'."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00864",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets",
+     "date": "2026-04-22",
+     "quality": "paper",
+     "supports": "In-play inefficiencies overwhelmingly concentrated in the final minutes of live play."
+    },
+    {
+     "url": "https://www.cnbc.com/2026/08/01/traders-go-full-time-on-prediction-markets-using-ai-bots-and-antennas.html",
+     "title": "How traders gain an edge on prediction markets (CNBC) - snippet only, page returned 403",
+     "date": "2026-08-01",
+     "quality": "credible-report",
+     "supports": "Snippet: full-time traders 'from using AI bots to purchasing an antenna'. Body not read; details unverified."
+    },
+    {
+     "url": "https://github.com/livetennisapi/polymarket-tennis",
+     "title": "polymarket-tennis toolkit (GitHub search result)",
+     "date": "2026-08-18",
+     "quality": "marketing",
+     "supports": "Lead: live score/serve/break-point vs market price data layer being marketed to bot builders."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-03-17",
+     "quality": "hard-data",
+     "supports": "March Madness rewards: $2M+, orders must rest 3.5 s to be eligible (live and pregame markets)."
+    }
+   ],
+   "failure_modes": "Data-feed licensing/ToS; match-fixing and delay-abuse scrutiny in esports; makers widening in-play; sports fee 0.05 at mid prices; league partnerships (MLB, May 2026) may bring integrity rules and delays.",
+   "cheap_validation": "For 20 matches timestamp public game-event APIs against Polymarket book changes; if the book moves before your feed does, the edge is already gone for that title.",
+   "flags": "Courtsiding-adjacent; using official/paid data outside licence terms is a ToS/legal risk. Not illegal per se on Polymarket international; check venue rules."
+  },
+  {
+   "name": "In-play data-feed latency, or courtsiding by API: official and venue feeds against broadcast-delayed counterparties",
+   "one_line": "Trade live sports and esports markets off data feeds that run 8-45 seconds ahead of the TV or stream that retail watches.",
+   "category": "Information edge",
+   "maturity": "Established",
+   "mechanism": "Subscribe to low-latency official data, such as league feeds, scout data, or esports game APIs like Riot and OpenDota. Map scoring and state events to a win-probability jump. Lift stale resting orders, or pull and replace your own quotes, before broadcast viewers react. Broadcast delay is reported at 15-40 s for TV and 30-60 s for streams. Esports tournament streams are deliberately delayed by minutes according to one X post, though official APIs can also be delayed. Polymarket's countermeasure is a configurable in-game taker delay, which protects makers who are also on fast feeds.",
+   "edge_source": "The information arrives seconds ahead of most counterparties. The remaining resting liquidity comes from slower makers and retail limit orders.",
+   "why_might_beat_market": "Polymarket's live liquidity partly comes from retail and slower makers. Sportsbooks suspend their markets on key events, and an order book does not. Reported wallet PnLs are large. Treat the claimed mechanisms as unverified.",
+   "evidence": [
+    {
+     "url": "https://phemex.com/news/article/algorithm-exploits-broadcast-lag-to-turn-5-into-37m-on-polymarket-53969",
+     "title": "Algorithm Exploits Broadcast Lag to Turn $5 into $3.7M on Polymarket",
+     "date": "2026-01-16",
+     "quality": "self-reported",
+     "supports": "The 'Swisstony' wallet's $3.7M is attributed to stadium-API data versus a 15-40 s broadcast lag. The source is an X post by @browomo. The mechanism is third-party speculation."
+    },
+    {
+     "url": "https://finbold.com/claude-ai-powered-trading-bot-turns-1-into-3-3-million-on-polymarket/",
+     "title": "Claude AI powered trading bot turns $1 into $3.3M on Polymarket",
+     "date": "2026-04-03",
+     "quality": "credible-report",
+     "supports": "Wallet sovereign2013 made 37,247 predictions since July 2025 in NCAAB, CFB, NBA and ATP. It shows about $1.54M monthly PnL on the public profile and places bets several times a minute."
+    },
+    {
+     "url": "https://www.quantvps.com/blog/how-latency-impacts-polymarket-trading-performance",
+     "title": "How Latency Impacts Polymarket Bot Performance",
+     "date": "2026-05-01",
+     "quality": "marketing",
+     "supports": "Claims esports parsing bots made over $200k in late 2025 with a 30-40 s advantage from official LoL and Dota2 APIs over Twitch streams. This is a VPS vendor, so treat it as a lead."
+    },
+    {
+     "url": "https://www.reddit.com/r/Polymarket/comments/1u3w51h/world_cup_inplay_trading_now_runs_with_zero_delay/",
+     "title": "World Cup in-play trading now runs with zero delay (search snippet only)",
+     "date": "2026-06-12",
+     "quality": "credible-report",
+     "supports": "Snippet: Polymarket reduced the in-game taker delay on all World Cup matches from 1 second to no delay, after 'reducing in-game taker delays across major sports'."
+    },
+    {
+     "url": "https://www.reddit.com/r/PolymarketHQ/comments/1jhkvf4/how_do_polymarket_bots_achieve_really_fast/",
+     "title": "How do Polymarket bots achieve really fast reactions on live score changes? (snippet only)",
+     "date": "2025-03-22",
+     "quality": "self-reported",
+     "supports": "Snippet: about a 4 s delay before the first price change after a goal. It discusses courtsiders being 0.5-3 s ahead of Polymarket."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+     "title": "Order Lifecycle, Polymarket docs",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Marketable orders on configured sports markets wait out a delay window before matching and cannot be cancelled while pending."
+    },
+    {
+     "url": "https://asksurf.ai/pulse/en/lag-arbitrage-algo-dominance-prediction-markets",
+     "title": "Lag Arbitrage Shows Prediction Markets Are Now a Speed Game",
+     "date": "2026-03-27",
+     "quality": "marketing",
+     "supports": "Claims about 70% of sports volume is algorithmic, an 8 s data lag is exploited, and sports is 42% of volume. No primary links are given."
+    }
+   ],
+   "failure_modes": "Official feeds are expensive and licence-restricted. A taker delay lets makers on the same feed pull quotes first. Where the delay is removed, you race other feed-holders. Size is limited to the stale resting liquidity. The PnL stories all come from X posts.",
+   "cheap_validation": "Record the Polymarket book against timestamped play-by-play for 20 matches. One collector repo already covers NBA, NHL, Dota and CS2. Measure how many cents of stale liquidity could be taken per event after the configured delay.",
+   "flags": "In-venue courtsiding breaches ticket terms and has led to ejections and bans in tennis. Reselling or scraping official data can breach its licence. It is not prohibited by Polymarket itself. Several jurisdictions geo-block Polymarket (France, Spain, Netherlands in 2026)."
+  },
+  {
+   "name": "Model-driven sports taker that scales in and holds to settlement ('probe-wait-slam')",
+   "one_line": "Automated sports model buys mispriced spreads/moneylines in many small probes then large clips, never sells, redeems at settlement.",
+   "category": "Directional trading",
+   "maturity": "Established",
+   "mechanism": "A pre-game/in-game sports model produces a fair price; the execution layer probes with tiny fills (median ~$6.67), waits, then takes size (single fills up to ~$190k) when liquidity appears, e.g. 119 fills at exactly $0.50 over 192 minutes on one NBA spread. No exits: every position rides to resolution, so variance is absorbed by bankroll (one NHL game cost $143k). A smaller practitioner reports the same idea in live less-popular sports with Kelly-fraction sizing.",
+   "edge_source": "A better sports model than the Polymarket crowd/makers, plus patient execution that does not move the book.",
+   "why_might_beat_market": "Polymarket sports lines are partly set by retail flow and thinly staffed makers; NBA spreads/totals and minor sports are softer than sharp books.",
+   "failure_modes": "Sport-specific: the dissected account made +72.9% ROI in NBA but only +0.6% on $3.48M in NHL; averaging down into losers; taker fees at mid prices; model decay; large bankroll needed.",
+   "cheap_validation": "Backtest an existing public sports model (or closing sharp lines as the 'model') against Polymarket prices at T-60/T-10 minutes for a season; measure CLV vs Pinnacle close net of 0.05 fee.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1tgbkd0,1sccina",
+     "title": "Reddit r/PredictionsMarkets 1tgbkd0 'The #1 Trader on Polymarket (12.5+ Million P/L)' - KCH123 teardown",
+     "date": "2026-05-18",
+     "quality": "credible-report",
+     "supports": "$743K in 33 days, 10.7K buys / zero sells, NBA +$722K on $990K (82.9% win, 1,676 bets), NHL +$20K on $3.48M, probe/wait/slam fills, $143K single-game loss"
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/leaderboard?timePeriod=MONTH&orderBy=PNL&limit=25",
+     "title": "Monthly leaderboard by PnL",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Kch-Temp +$758k on $6.24M volume this month; many sports-named accounts in top 25"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rjbmjs,1sgpbqh,1u3rn8s",
+     "title": "Reddit r/polymarket_bets 1rjbmjs 'The amount of money that can be made in live sports trading is insane'",
+     "date": "2026-03-03",
+     "quality": "self-reported",
+     "supports": "Quant options trader: model-picked +EV live bets beat his Poly-vs-Kalshi arb; ~6% average ROI per bet at 15% Kelly (images only, unverified)"
+    }
+   ]
+  }
+ ]
+}

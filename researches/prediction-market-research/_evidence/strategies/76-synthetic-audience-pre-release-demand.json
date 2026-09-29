@@ -1,0 +1,42 @@
+{
+ "slug": "synthetic-audience-pre-release-demand",
+ "name": "Synthetic audience panels for pre-release demand brackets (box-office openers, first-week views and streams)",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "one_line": "Before any trajectory data exist, poll an LLM audience panel with a purchase-intent elicitation method validated on real consumers, convert intent to a demand distribution, and hand over to a trajectory model once early numbers print.",
+ "scope": "Use semantic-similarity rating elicitation. Poststratify the panel to the title's audience. Calibrate intent to dollars, views or streams on past releases. Hand off to a statistical trajectory model at Thursday previews or day-1 views; the dropped count-process engine belongs to the quant band. Use OASIS-class diffusion sims only for what they were validated on, which is propagation scale at about 30% NRMSE per the E8 pack. PopSim reports 8.82% lower popularity-prediction error. State the counter-evidence. LLM taste is 'super-omnivorous' per the list's 2606.30085. Simulated rationales predict purchase intent worse than human reasons. Professional tracking already exists for wide releases. Capacity today: a wide-release opener has $348k volume and $88k liquidity, MrBeast week-1 views $85k and $21k, the Top Spotify Album market $69k, and Netflix weekly ladders $3-4k. Validation: 40 openers after model cutoff. Compare bracket log-loss for panel-only, the public tracking range and the market mid at T-3 days.",
+ "why_it_matters": "The list's culture coverage stops at critics' scores ($2.7k-$31.6k ladders) and Oscars. Audience-demand brackets are the larger and more repetitive part of the Culture category, with weekly box office and recurring creator videos. The adjacent evidence is stronger for aggregates than for individuals. The method reaches 90% of human test-retest reliability on purchase intent across 57 surveys and 9,300 responses. I recommend merging this with critic-pool-panel-twins into one 'culture panels' file covering critics, juries and audiences, and not adding a separate file.",
+ "flags": "Studio, platform and creator insiders hold MNPI on previews and analytics. Source scraping is subject to ToS. Culture taker feeRate is 0.05.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2510.08338",
+   "note": "2025-10, Maier et al.: semantic-similarity rating reproduces human purchase intent at 90% of test-retest reliability over 57 surveys and 9,300 responses. KS similarity is above 0.85."
+  },
+  {
+   "url": "https://arxiv.org/abs/2512.02533",
+   "note": "2025-12, PopSim: an LLM multi-agent propagation sandbox cuts social-media popularity prediction error by 8.82% on average."
+  },
+  {
+   "url": "http://arxiv.org/abs/2607.24649v2",
+   "note": "2026-07, counter-evidence: human-derived reasons predict purchase intent better than LLM-simulated rationales (arXiv listing only)."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=box%20office&limit_per_type=15&events_status=active",
+   "note": "Resident Evil opening weekend: $347.7k volume, $88.5k liquidity, 6 brackets, resolved on The Numbers."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=views&limit_per_type=15&events_status=active",
+   "note": "MrBeast week-1 views: $85.0k volume. Day-2 views: $13.7k volume."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "76",
+ "band": "speculative",
+ "file": "76-synthetic-audience-pre-release-demand.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "WIDEN critic-pool-panel-twins into 'culture panels: critic, jury and audience twins'. (a) Add Eurovision-class contests, where national juries plus televote are aggregated mechanically. Eurovision Winner 2026 shows $193.9M volume and $5.74M open interest across 37 country markets (Gamma API, fetched today; any wash share is unverified). Counter-evidence to state: a network-plus-preference voting model gave predictions 'not much improved' over betting tables (arXiv 2002.06609, listing only). Bloc and diaspora bias is well documented (arXiv 1705.06721, 1308.6312). Bookmakers are therefore the anchor and the twin is at best a residual. (b) Absorb synthetic-audience-pre-release-demand. As scoped today, with RT ladders of $2.7k-$31.6k, the entry is too small for a file."
+ ]
+}

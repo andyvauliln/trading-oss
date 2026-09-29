@@ -1,0 +1,214 @@
+{
+ "slug": "rules-dispute-trading",
+ "name": "Rule-ambiguity, clarification and dispute-phase trading (betting on the adjudicator)",
+ "category": "Information edge",
+ "maturity": "Emerging",
+ "seed_category": "resolution sniping / oracle-layer information edge",
+ "one_line": "Trade markets whose price ignores the rule text, and the dislocations that follow UMA disputes and Polymarket clarifications, by modelling how the vote will go.",
+ "scope": "Cover rules-lawyering as a daily practice, the lifecycle (proposal, 2 h challenge, reset, DVM vote, 4-6 days; clarifications 83% before first proposal; 1.01% dispute rate; $972M in disputed events), case studies (Strategy BTC-sale 81% to <1%, $345M Iran peace-deal, Venezuela 'invade'), recurring ambiguity types (event vs announcement timing, source conflicts, too-early), UMA voter concentration and conflicts (nine wallets >50%, >300 conflicted disputes), Polymarket overruling precedent, LLM adjudicator agreement ~89.6% (after-the-fact, tradeable mispricing unproven), dispute-category mix, capital lock and sizing. Boundary: earning bonds or voting rewards is uma-side-operations; buying undisputed decided outcomes is near-certain-bond-carry; cross-venue settlement mismatches are cross-venue-arbitrage-leadlag.",
+ "sub_variants": [
+  "pre-resolution rules-text mispricing",
+  "dispute-window dislocation trading",
+  "clarification-event trading",
+  "LLM adjudicator triage"
+ ],
+ "merged_from": [
+  "traders: Resolution-process trading (rules-lawyering, dispute trading, bond economy)",
+  "onchain-bots: Dispute-phase trading (betting on the UMA vote)",
+  "platform-surface: Dispute and clarification dislocation trading",
+  "academic: UMA dispute / adjudication trading with an LLM adjudicator"
+ ],
+ "flags": "Combining positions with UMA voting or proposing is a conflict of interest treated as manipulation; harassing resolution sources is criminal.",
+ "key_evidence": [
+  {
+   "url": "https://docs.polymarket.com/concepts/resolution.md",
+   "note": "Bond, 2 h challenge, two rounds then DVM, 4-6 days, 50/50 outcome; page still says anyone can propose"
+  },
+  {
+   "url": "https://thenextweb.com/news/polymarket-345-million-iran-peace-deal-dispute-uma-whale-voting",
+   "note": "Nine wallets >50% of votes; >300 conflicted disputes; contracts tradable during vote"
+  },
+  {
+   "url": "https://www.coindesk.com/markets/2026/06/02/strategy-sold-bitcoin-in-late-may-and-told-the-market-in-june-here-s-how-polymarket-bettors-are-fighting-over-when-it-counts",
+   "note": "81% Yes during dispute to under 1% after clarification, $79M at stake"
+  },
+  {
+   "url": "https://arxiv.org/html/2604.15674v1",
+   "note": "558 disputed events, $972.4M; LLM agreement 89.58%; cannot predict which get disputed"
+  },
+  {
+   "url": "https://arxiv.org/html/2609.15368v1",
+   "note": "159,447 proposals, 1,604 disputes, 1,478 resets, 1,711 clarifications by route"
+  },
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?ids=1u75kwq",
+   "note": "Trader-side account of the Iran dispute (self-reported; whale claim unverified by poster)"
+  }
+ ],
+ "parent_slug": "rules-dispute-trading",
+ "deepen": true,
+ "seed": "8 resolution sniping (oracle-lawyering)",
+ "n": "15",
+ "band": "established",
+ "file": "15-rules-dispute-trading.md",
+ "critic_notes": [
+  "MOVE oracle-governance material (conflicted voting, whale Schelling dynamics, weekend proposals timed against clarifications) out of the flags of rules-dispute-trading and uma-side-operations into its own flagged entry (proposed above), or rename oracle-input-manipulation to cover both inputs and adjudicators. At present it falls between three boundaries.",
+  "uma-side-operations: not a business at any scale a trading team would care about (E3: 'being a proposer or disputer is not a business'; best observed economics are cents to a few dollars per request against three- and four-figure bonds). Its value is the information feed, which could be a section inside rules-dispute-trading; keep a file only because it answers the 'staking' seed."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Resolution-process trading: rules-lawyering, dispute trading and the proposer/disputer bond economy",
+   "one_line": "Make money from the oracle layer: trade markets whose price ignores the rule text, trade during disputes, and earn bonds by proposing/disputing correctly.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "Three linked activities: (1) read resolution rules and 'additional context' more carefully than the crowd (full-time traders list this first); (2) during the 2-hour challenge / 4-6 day dispute window the market stays open, so price becomes a bet on the UMA vote - buy the side the rules support when panic prices it cheaply, or stay out when whale voters are conflicted; (3) post the $750 bond as proposer or disputer: the correct party gets its bond back plus half the opponent's. Scale: 159,447 proposals and 1,604 disputes observed on-chain; $972M of volume sat in disputed events; an LLM agreed with final UMA outcomes 89.6% of the time, suggesting automatable triage.",
+   "edge_source": "Legalistic reading + knowledge of UMA voter behaviour; most traders price the headline, not the rule.",
+   "why_might_beat_market": "Disputed markets gap violently; few participants model the adjudicator.",
+   "failure_modes": "Adjudication can contradict the plain rule text (a $345M Iran 'permanent peace deal' market was proposed YES on a 60-day framework; the poster claims nine UMA wallets hold >50% of votes - unverified); clarifications can change meaning mid-market; capital locked 4-6 days; bond loss if wrong; whether proposing is still fully permissionless is unverified (docs say 'anyone can propose').",
+   "cheap_validation": "Build a classifier over historical disputes (rule text, evidence, final vote) and test whether buying the rule-supported side at dispute-time prices was profitable.",
+   "flags": "Voting UMA while holding a position is a conflict of interest that the community treats as manipulation.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Polymarket docs: resolution",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "$750 bond, 2-hour challenge, second round then DVM vote, 4-6 days total, winner receives half of loser's bond, clarifications published on-chain"
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv 2609.15368 (oracle lifecycle counts) and 2604.15674 (LLMs vs UMA disputes)",
+     "date": "2026-09-14 / 2026-04-17",
+     "quality": "paper",
+     "supports": "159,447 proposals, 1,604 disputes, 159,133 settlements; $972.4M volume in disputed events; LLM 89.58% agreement with final resolutions"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1u75kwq",
+     "title": "Reddit r/CryptoCurrency 1u75kwq 'I'm going to lose $700,000 to a $345 million Polymarket scam' (score 1,734)",
+     "date": "2026-06-16",
+     "quality": "self-reported",
+     "supports": "Dispute on 'US x Iran permanent peace deal by June 15'; market tradable during vote; alleged UMA whale concentration (unverified)"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1pzawkq",
+     "title": "Reddit r/predictionalpha 1pzawkq 'Prediction Markets Are My Full Time Job'",
+     "date": "2025-12-30",
+     "quality": "self-reported",
+     "supports": "Ex-options trader: meticulous reading of resolution criteria and position sizing as the core of a full-time practice"
+    }
+   ]
+  },
+  {
+   "name": "Dispute-phase trading (betting on the UMA vote)",
+   "one_line": "Trade contracts that are in dispute by forecasting how a concentrated, conflicted voter set will rule.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "Proposals carry a $750 pUSD bond and a 2-hour challenge window; after two disputes the question goes to a UMA vote and the whole process takes 4-6 days, during which the contract keeps trading. Nine wallets control more than half of voting power, over 60% of active voters hold Polymarket accounts, and in more than 300 disputes at least one voter had a stake. Voters are penalised for dissent, so outcomes follow the expected majority. An agent that models voter precedent and rule wording can price the disputed contract better than panicked holders; web-enabled LLMs already match final rulings about 90% of the time.",
+   "edge_source": "Predictable governance behaviour plus forced sellers who need liquidity during a 4-6 day lock.",
+   "why_might_beat_market": "Dispute discounts are driven by liquidity need and outrage, not by vote forecasting. Size can be large ($345M stuck in one Iran market, $50M in the Strategy market).",
+   "evidence": [
+    {
+     "url": "https://thenextweb.com/news/polymarket-345-million-iran-peace-deal-dispute-uma-whale-voting",
+     "title": "Polymarket's $345 million Iran peace bet is stuck ... (TNW, citing Bloomberg)",
+     "date": "2026-06-15",
+     "quality": "credible-report",
+     "supports": "9 wallets >50% of UMA voting tokens; >60% of active voters hold Polymarket accounts; >300 disputes with a conflicted voter; contracts remain tradable during disputes, 'effectively betting on the outcome of the governance vote'."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Resolution (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Permissionless proposal, $750 pUSD bond, 2 h challenge, two rounds then DVM, ~48 h vote, 4-6 days total."
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv listing: 'Can LLMs Help Decentralized Dispute Arbitration?' (2604.15674) and 'Resolution Is Not Settlement' I/II (2609.15368, 2609.15373)",
+     "date": "2026-04-17 / 2026-09-14",
+     "quality": "paper",
+     "supports": "Listing-level: LLMs reach 89.58% agreement with final UMA resolutions but cannot predict which markets get disputed; 185,550 adapter-question lifecycles reconstructed, request-to-proposal medians range from 182 s to 744,151 s by route."
+    },
+    {
+     "url": "https://cointelegraph.com/news/polymarket-dispute-strategys-bitcoin-sale-resolves-no",
+     "title": "Polymarket users cry foul after Strategy sale market resolves to 'no' (Cointelegraph) - search result, not opened",
+     "date": "2026-06-04",
+     "quality": "credible-report",
+     "supports": "Example of a contested rules-interpretation outcome."
+    }
+   ],
+   "failure_modes": "Polymarket has overruled UMA voters at least once (Trump-Xi call market, March 2026, MSN headline only); 4-6 day capital lock; holding UMA and voting on own positions is a conflict that attracts scrutiny.",
+   "cheap_validation": "Collect all 2026 disputed markets, the price during dispute and the final ruling; test whether a rules-text LLM forecast beat the dispute-period price.",
+   "flags": "Voting UMA on markets where you hold positions is a governance-manipulation risk; trading only is legal-grey-free."
+  },
+  {
+   "name": "Dispute and clarification dislocation trading",
+   "one_line": "Trade the price collapse or spike that follows a UMA dispute or a Polymarket rules clarification by modelling how the vote will go, e.g. the Strategy-bitcoin-sale market that fell from 81% Yes to under 1%.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "When a proposal is disputed the winning side's price drops because capital is locked 4-6 more days and the outcome now depends on UMA voters; when Polymarket posts an on-chain clarification the price can gap the other way. In the June 2026 market on whether Strategy sold bitcoin by May 31 the rules did not say whether the sale or its confirmation had to fall inside the window; Yes traded at 81% during the dispute and went below 1% after Polymarket's clarification backed No, on a market CoinDesk sized at $79M. The build is a rules-and-precedent engine: a corpus of past UMA votes, clarifications and the recurring ambiguity types (event vs announcement timing, source-of-truth conflicts, too-early), a monitor on proposal/dispute/clarification events, and a sizing rule that compares market price with modelled vote probability. Clarifications cannot change fundamental intent but voters take them into account; UMA voters and Polymarket have split before.",
+   "edge_source": "Legal-style interpretation skill and precedent data; most holders panic-sell or anchor on the real-world outcome rather than on how rules will be read.",
+   "why_might_beat_market": "Disputed flagship markets move tens of points within hours and the historical voter consensus is usually lopsided (>90%), so correct reads are high-conviction.",
+   "failure_modes": "Tail risk of a vote against apparent rule text (large UMA holders can have positions); capital lock; clarifications arrive without warning; thin books during disputes.",
+   "cheap_validation": "Assemble the last 50 disputed Polymarket markets, record price at dispute time and final outcome, and test whether a simple precedent classifier would have beaten the market-implied probability.",
+   "flags": "Do not combine with UMA voting on the same market (conflict of interest). Harassing resolution sources has led to public scandal (journalist threatened over an Iran strike market in March 2026).",
+   "evidence": [
+    {
+     "url": "https://www.coindesk.com/markets/2026/06/02/strategy-sold-bitcoin-in-late-may-and-told-the-market-in-june-here-s-how-polymarket-bettors-are-fighting-over-when-it-counts",
+     "title": "Strategy sold bitcoin in late May... how Polymarket bettors are fighting over when it counts",
+     "date": "2026-06-02",
+     "quality": "credible-report",
+     "supports": "Rule ambiguity, 81% Yes during dispute to under 1% after clarification, $79M at stake, three camps (Yes / No / too early), UMA holders have final say."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Resolution",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Dispute paths and 4-6 day timelines, clarifications cannot change fundamental intent, 50/50 outcome."
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "title": "Polymarket (Wikipedia)",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "2026 controversies around insider trading and the March 2026 journalist-harassment incident tied to a resolution source."
+    }
+   ]
+  },
+  {
+   "name": "UMA dispute / adjudication trading with an LLM adjudicator",
+   "one_line": "When a proposal is disputed the price reflects the vote, not the event; web-enabled LLMs match UMA's final ruling ~89% of the time on disputed markets, giving a systematic way to price dispute outcomes.",
+   "category": "Information edge",
+   "maturity": "Experimental",
+   "mechanism": "Monitor on-chain oracle lifecycle events (proposal, dispute, reset, clarification). On a dispute, run an adjudicator pipeline that reads the rules, clarifications and evidence and outputs the probability of each ruling; trade when the market price diverges from it, sizing for the ~10% disagreement rate. Do not try to predict which markets will be disputed from rule text - that is at chance level. Clarifications matter: 83% arrive after request creation but before the first proposal, so rule-change monitoring is an input.",
+   "edge_source": "Adjudication risk is priced by panicked holders and ignored by models that only forecast the real-world event.",
+   "why_might_beat_market": "Disputed markets carried $972M of volume and few participants model the oracle process itself.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2604.15674v1",
+     "title": "Can LLMs Help Decentralized Dispute Arbitration? A Case Study of UMA-Resolved Markets on Polymarket (Wen et al.), arXiv",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "558 user-disputed events (259 fully resolved) out of 140,582 events as of 2025-10-27, $972.4M volume; agreement with UMA's final resolution: DeepSeek V3.1 89.58%, Qwen Max 89.19%, Claude 4.5 Sonnet 88.03%; predicting which events will be disputed from rule text: 37-57% (chance); disputes: sports 31.5%, politics 20.4%, crypto 16.7%."
+    },
+    {
+     "url": "https://arxiv.org/html/2609.15368v1",
+     "title": "Resolution Is Not Settlement, Part I (Nechepurenko), arXiv",
+     "date": "2026-09-14",
+     "quality": "hard-data",
+     "supports": "159,447 proposals, 1,604 disputes (1.01%), 1,478 resets; 1,711 clarifications of which 83.34% precede the first proposal; routes: legacy OO, OOv2, ManagedOOv2 (whitelisted proposers)."
+    },
+    {
+     "url": "https://api.openalex.org/works?search=polymarket&per-page=100&sort=cited_by_count:desc&select=display_name,publication_date,doi,cited_by_count&filter=from_publication_date:2024-06-01",
+     "title": "OpenAlex listing: Do prediction markets price events or adjudication? Evidence from the disputed Polymarket markets, Economics Letters (doi 10.1016/j.econlet.2026.113176)",
+     "date": "2026-08-02",
+     "quality": "paper",
+     "supports": "Title-level lead only (paywalled; content unverified)."
+    }
+   ],
+   "failure_modes": "The paper does not study prices during disputes, so tradeable mispricing is unproven; 10% error on binary-to-zero outcomes is expensive; token-holder votes can be idiosyncratic; agreement was measured after the fact, with possible leakage of the outcome into web search.",
+   "cheap_validation": "Collect price at dispute time for the 259 resolved disputes, run the adjudicator with web access cut off at dispute timestamp, and compute PnL of trading toward its ruling.",
+   "flags": "Do not combine with UMA voting power or proposer/disputer roles while holding positions - conflict-of-interest and manipulation exposure."
+  }
+ ]
+}

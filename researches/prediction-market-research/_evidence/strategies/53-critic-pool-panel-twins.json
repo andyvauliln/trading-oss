@@ -1,0 +1,147 @@
+{
+ "slug": "critic-pool-panel-twins",
+ "name": "Critic-pool and awards-voter twins for mechanically aggregated scores",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "new",
+ "one_line": "Treat the Tomatometer, or an awards ballot, as a sum of verdicts by an enumerable panel with public track records. Model each member, convolve into a bracket distribution before the embargo lifts, then Bayes-update on the early reviews.",
+ "scope": "Cover a per-critic fresh/rotten propensity model: a statistical core plus an optional LLM persona built from each critic's review corpus. Cover roster and filing-time simulation against the resolution snapshot. Cover the Poisson-binomial bracket distribution, the selection bias in the first 20-40 reviews, and the post-embargo Beta-Binomial update. Extend to Oscars side categories using guild-bloc archetypes and preferential counting. State the evidence honestly. Synthetic panels do well on aggregates at 90% of test-retest. LLM taste simulation is 'super-omnivorous', so it predicts fresh too often. Individual twins correlate r=0.20 with their humans. Humans already trade Rotten Tomatoes scores statistically on Kalshi. Once ~30-50 reviews are in, the twin adds nothing. Capacity: Polymarket RT ladders hold $2.7k-$31.6k. Validate leak-free by backtesting the pure statistical model on 100 films first. Add the LLM layer only if it improves bracket log-loss at embargo plus 6 hours. Boundary: spoken-word twins are in speaker-twin-mention-montecarlo.",
+ "sub_variants": [
+  "Pure per-critic logistic model (no LLM, leak-free backtest)",
+  "LLM critic persona layer for pre-embargo pricing",
+  "Guild and bloc voter archetypes for Oscars side categories"
+ ],
+ "merged_from": [
+  "Critic and awards-voter taste twins (Rotten Tomatoes score ladders, Oscars)",
+  "Critic-pool simulator for Rotten Tomatoes brackets and awards"
+ ],
+ "flags": "Scraping Rotten Tomatoes or review sites may breach their ToS. Never solicit, pay or pressure critics; that would be manipulation, and the statistic is reported to be riggable. Trading on Kalshi needs US eligibility.",
+ "key_evidence": [
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=Rotten%20Tomatoes&limit_per_type=15&events_status=active",
+   "note": "Five live RT ladders. Volume $2.7k-$31.6k. Mid-strike prices 0.35-0.58."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=Oscars&limit_per_type=15&events_status=active",
+   "note": "Oscars 2027 Best Actor: $137k volume, $197k liquidity, six months out."
+  },
+  {
+   "url": "http://arxiv.org/abs/2606.30085v2",
+   "note": "Counter-evidence: 554,940 synthetic respondents show a super-omnivorous taste bias."
+  },
+  {
+   "url": "https://arxiv.org/abs/2510.08338",
+   "note": "Synthetic consumer panels reach 90% of human test-retest reliability on aggregates."
+  },
+  {
+   "url": "https://arxiv.org/abs/2509.19088",
+   "note": "Digital twins correlate r=0.20 with their humans. Stereotyped and under-individuated."
+  },
+  {
+   "url": "http://arxiv.org/abs/2510.14205v3",
+   "note": "DPRF: iterative persona refinement improves role-play alignment, including on movie reviews."
+  }
+ ],
+ "n": "53",
+ "band": "speculative",
+ "file": "53-critic-pool-panel-twins.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Critic and awards-voter taste twins (Rotten Tomatoes score ladders, Oscars)",
+   "one_line": "Build per-critic fresh/rotten twins from each critic's public review corpus. Simulate who will review and how. Output the Tomatometer distribution before the embargo lifts.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "1. Build a roster of Tomatometer-approved critics likely to review the title, using past coverage by genre, outlet and studio.\n2. Build a per-critic twin. This is a classifier or LLM persona grounded in that critic's past reviews and known tastes.\n3. Condition the twins on the trailer, festival reactions, director and cast history, and early social reactions.\n4. Simulate the arrival order and verdict of reviews to get a distribution of the score at the market's resolution timestamp.\n5. Price the \"at least X\" ladder. Rest maker orders before the embargo. Re-estimate as real reviews land, with a Beta-Binomial update using the critic-mix.\n6. For the Oscars, apply the same idea with guild and branch-weighted voter archetypes and preferential-ballot counting for Best Picture.",
+   "edge_source": "Individual-level public corpora exist for every elector, which is rare. The score is a mechanical aggregate of a known, enumerable population.",
+   "why_might_beat_market": "RT ladders are thin and priced by a few enthusiasts:\n- Resident Evil: $31.6k volume, $35.7k liquidity.\n- Digger: $9.4k volume, $2.4k liquidity.\n- Others: $3-15k.\n\nMid-ladder strikes sit near 35-58%, so real uncertainty remains days before release.\n\nCaveats:\n- Once about 30-50 reviews are in, a simple Beta-Binomial does most of the work. The twin only matters before the embargo.\n- LLM taste simulation is documented to be \"super-omnivorous\": it flattens taste distinctions.\n- Capacity is a few hundred dollars per title.\n- The Oscars are more liquid (Best Actor 2027: $137k volume, $197k liquidity). There, precursor-award statistical models are the entrenched baseline.",
+   "adjacent_grounding": "- Persona alignment on movie reviews: DPRF (arXiv 2510.14205).\n- Counter-evidence on LLM taste simulation: Tastes without distinction, 554,940 synthetic respondents (arXiv 2606.30085).\n- Narrative-prompt Oscar forecasting: Pham and Cunningham (arXiv 2404.07396) [pre-2025, possibly stale]. It claims 100% on a post-cutoff Oscars sample. Small n, so treat it as anecdote.\n\nA GitHub search for Rotten Tomatoes plus Polymarket or Kalshi found nothing relevant.",
+   "evidence": [
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Rotten%20Tomatoes&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: Rotten Tomatoes score markets",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Five live RT ladders with $2.7k-$31.6k volume and $1.1k-$35.7k liquidity. Mid-strike prices are 0.35-0.58."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Oscars&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: Oscars 2027 Best Actor",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "$137k volume, $197k liquidity, 23 markets, six months before the ceremony."
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.30085v2",
+     "title": "Tastes without distinction: silicon samples and the synthetic construction of tastes",
+     "date": "2026-06-29",
+     "quality": "paper",
+     "supports": "Counter-evidence. 554,940 synthetic respondents show a super-omnivorous bias and distorted relationships between taste and culture."
+    },
+    {
+     "url": "http://arxiv.org/abs/2510.14205v3",
+     "title": "DPRF: Dynamic Persona Refinement Framework",
+     "date": "2025-10-16",
+     "quality": "paper",
+     "supports": "Iterative persona refinement improves the behavioural alignment of role-play agents, including on a movie-review scenario."
+    }
+   ],
+   "failure_modes": "- Taste flattening, which predicts \"fresh\" too often.\n- Roster uncertainty: which critics review, and when.\n- RT's own curation and score-timing quirks at the resolution timestamp.\n- Reviews leaking before the embargo.\n- Tiny capacity.\n- Review-scraping terms of service.",
+   "cheap_validation": "- Backtest on 100 wide releases after the model cutoff.\n- Freeze information at T-embargo.\n- Metric 1: MAE of the final Tomatometer against a regression baseline using director or franchise history and festival score.\n- Metric 2: ladder Brier against the market mid at embargo lift.\n- Pass: MAE improvement of at least 1.5 points AND a positive Brier skill score.\n- Then paper trade 10 titles.",
+   "flags": "Respect Rotten Tomatoes and review-site terms of service when scraping corpora."
+  },
+  {
+   "name": "Critic-pool simulator for Rotten Tomatoes brackets and awards",
+   "one_line": "Treat the Tomatometer as a sum of binary verdicts by known critics: model each critic's fresh/rotten propensity for this film, convolve into a score distribution, and update as early reviews land.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) Scrape each RT-approved critic's verdict history with film metadata (genre, studio, director, franchise, festival buzz). 2) Per-critic twin = logistic model plus an LLM that reads that critic's past reviews and the new film's trailer/synopsis/first-reaction posts and outputs P(fresh). 3) The final score is a Poisson-binomial over the critics expected to review by the resolution timestamp; simulate which critics file before the cut-off (resolution is usually a snapshot date) and get the bracket distribution. 4) After embargo lift, Bayes-update with the actual early verdicts (the first 20-40 reviews are biased toward trade press and fans). 5) Quote the bracket ladder as maker (Culture maker fee 0, taker 0.05 x p(1-p)); same machinery extends to Oscars via simulated guild/voter blocs.",
+   "edge_source": "Decomposition of an aggregate into identifiable individuals with public track records; knowledge of review-count timing versus the resolution snapshot; early-review selection bias.",
+   "why_might_beat_market": "The crowd anchors on hype and on the first handful of reviews; the statistic is mechanically a vote count over a largely known panel, so member-level modelling is a real structural advantage, and LLM synthetic panels do best at aggregates (semantic-similarity elicitation hit 90% of human test-retest reliability on 9,300 purchase-intent responses). Honest limits: humans already do the statistical version on Kalshi ('young traders getting rich on Rotten Tomatoes scores', MarketWatch 2025, headline only); Polymarket RT events are tiny ($2.7k-$31.6k volume, $1.1k-$36k liquidity), so revenue is pocket change unless run on Kalshi too; and the statistic is manipulable - NY Magazine ran 'I Figured Out How to Rig Rotten Tomatoes Prediction Markets' (2026-06-12, headline only).",
+   "adjacent_grounding": "Synthetic consumer panels: Maier et al., 'LLMs Reproduce Human Purchase Intent via Semantic Similarity Elicitation' (arXiv 2510.08338): 90% of human test-retest reliability, KS similarity >0.85. Netzer & Sambandam (arXiv 2609.13995): screen questions by R^2>0.7, cuts badly-answered questions 25.9% -> 4.3%. Tigre et al. (arXiv 2609.13148): 83-94% bias reduction on 172,884 paired human-GPT responses. Caution: digital twins r=0.20 at individual level (arXiv 2509.19088); sunscreen concept test where LLM simulations lacked predictive alignment (arXiv 2607.24649). Oscars: markets called 19 of 24 winners on $200M+ volume (Business Insider / DeFi Rate headlines), so headline awards are efficient; the side categories are where a bloc simulator could matter. No paper found on LLM critic twins for review aggregates.",
+   "failure_modes": "Which critics count and when is controlled by RT (reviews added or reclassified late); studios gate embargoes; small review counts make brackets knife-edge; per-critic LLM twins are stereotyped and under-dispersed; someone with a critic relationship or a late-filed review can move the number; capacity.",
+   "cheap_validation": "Backtest the purely statistical per-critic model on 100 films from 2025-26 (no LLM, so no leakage problem) for bracket log-loss versus a naive 'final = current score' rule at embargo+6h. Then forward paper-trade 30 films on Kalshi + Polymarket with the LLM layer added. Pass: bracket log-loss at embargo+6h beats market-implied distribution on >=60% of films and simulated maker PnL > 0 after fees; fail if the LLM layer does not improve on the statistical model (then ship the statistical model alone).",
+   "flags": "Never solicit, pay or pressure critics or file reviews (manipulation). Scraping RT may breach its terms - check. Kalshi-side trading requires US eligibility.",
+   "evidence": [
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=rotten%20tomatoes&limit_per_type=10&events_status=active",
+     "title": "Gamma API: active Rotten Tomatoes score events",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "5 live events, volume $2.7k-$31.6k, liquidity $1.1k-$36.4k, 4-9 brackets each"
+    },
+    {
+     "url": "https://arxiv.org/abs/2510.08338",
+     "title": "LLMs Reproduce Human Purchase Intent via Semantic Similarity Elicitation of Likert Ratings",
+     "date": "2025-10-09",
+     "quality": "paper",
+     "supports": "synthetic panels reach 90% of human test-retest reliability on aggregates (arXiv listing abstract)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2509.19088",
+     "title": "Digital Twins as Funhouse Mirrors (Peng et al.)",
+     "date": "2025-09-23, rev. 2026-04-19",
+     "quality": "paper",
+     "supports": "individual-level twin correlation r=0.20; stereotyping, insufficient individuation"
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=%22Rotten+Tomatoes%22+prediction+market+rig+OR+manipulate+OR+traders+score+Kalshi&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News RSS listing (headline only): 'I Figured Out How to Rig Rotten Tomatoes Prediction Markets' (New York Magazine 2026-06-12); 'How young traders are getting rich betting on things like Rotten Tomatoes scores' (MarketWatch 2025-05-23); 'The Odyssey's RT odds soar as review embargo comes to a close' (Kalshi News 2026-07-13)",
+     "date": "2025-05 to 2026-07",
+     "quality": "credible-report",
+     "supports": "humans already trade RT statistically; statistic is manipulable; embargo is the repricing event (articles not fetched)"
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=Polymarket+OR+Kalshi+%22Rotten+Tomatoes%22+OR+%22box+office%22+OR+Oscars+traders+model&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News RSS listing (headline only): 'Kalshi and Polymarket Generate Over $200M on Oscars, Calling 19 of 24 Winners' (DeFi Rate 2026-03-16)",
+     "date": "2026-03-16",
+     "quality": "credible-report",
+     "supports": "awards markets have depth and are mostly efficient on headline categories"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "WIDEN critic-pool-panel-twins into 'culture panels: critic, jury and audience twins'. (a) Add Eurovision-class contests, where national juries plus televote are aggregated mechanically. Eurovision Winner 2026 shows $193.9M volume and $5.74M open interest across 37 country markets (Gamma API, fetched today; any wash share is unverified). Counter-evidence to state: a network-plus-preference voting model gave predictions 'not much improved' over betting tables (arXiv 2002.06609, listing only). Bloc and diaspora bias is well documented (arXiv 1705.06721, 1308.6312). Bookmakers are therefore the anchor and the twin is at best a residual. (b) Absorb synthetic-audience-pre-release-demand. As scoped today, with RT ladders of $2.7k-$31.6k, the entry is too small for a file.",
+  "critic-pool-panel-twins, as currently scoped: RT ladders hold $2.7k-$31.6k. The entry admits humans already trade RT statistically, the twin adds nothing after 30-50 reviews, the LLM taste layer has negative evidence (super-omnivorous bias), and individual twins correlate at r=0.20. It earns a file only if widened to the large mechanically aggregated events. Eurovision 2026 shows $193.9M volume, and Oscars and audience-demand brackets add more. Even then, bookmakers anchor Eurovision, and a published voting model did not beat betting tables."
+ ]
+}

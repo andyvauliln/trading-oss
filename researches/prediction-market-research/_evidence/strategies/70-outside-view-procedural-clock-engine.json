@@ -1,0 +1,56 @@
+{
+ "slug": "outside-view-procedural-clock-engine",
+ "name": "Outside-view engine: procedural-clock feasibility and reference-class hazards for 'by date' ladders",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "one_line": "Compile each 'will X happen by date' market into the formal procedure that must complete, attach computed reference-class completion-time distributions, and sell rungs that are procedurally infeasible or priced above the outside-view hazard.",
+ "scope": "(a) Procedure-graph extraction: steps, minimum durations and veto points for legislative calendars, treaty ratification, court scheduling, launch licensing, merger reviews and UNSC procedure. (b) Reference-class tournament: three or more candidate classes with computed base rates, not remembered ones, a red-team challenge on class membership, and a Fermi cross-check. This section should absorb the two duplicate reference-class variants now sitting in adversarial-debate-price-residual and sponsor-and-inform-niche-models. (c) Hazard term structure across the ladder: fit a constant or Weibull hazard and compare it with the market-implied one. Calendar spreads, rung k minus rung k-1, isolate 'happens in month k'. (d) Deadline-effect correction for bargaining events: agreements cluster right before the deadline, so the hazard is back-loaded, not constant. Present the negatives. Prompt-only base-rate tricks add little, so the edge has to come from the data pipeline. Insider flow dominates late in geopolitics ladders. 'Nothing ever happens' NO-buying already exists as a 987-star meme bot with no published PnL. Capital locks for months. Validation: on 60+ resolved by-date ladders after model cutoffs, compare market-implied and realised hazard by category and time-to-deadline. Then test whether 'minimum remaining procedural steps' improves log-loss over price alone. Score event-clustered.",
+ "why_it_matters": "By-date ladders are among the most liquid non-sports books. The US-Iran final nuclear deal ladder has $17.84M volume, $404k liquidity and 8 rungs. The US-Russia nuclear deal ladder has $662k volume. The list handles these ladders only inside the geopolitics wargame entry, using simulation, the most biased tool in the band. The outside view is the best-documented human debiasing method. Mechanism: completion-time optimism, plus acquiescence. In Buehler 1994 only 13% finished by their own 50% date and 45% by their 99% date. Geopolitics is fee-free, so small hazard edges are tradable. The engine is also the natural home for the list's orphaned reference-class material.",
+ "flags": "Geopolitics markets face insider-trading scrutiny. War-related contracts are restricted in some jurisdictions. NO positions on long ladders lock capital for months. This overlaps the behavioural-bias band if that band already has a 'YES-optimism / status-quo' entry, so check for duplication.",
+ "key_evidence": [
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=deal%20by&limit_per_type=20&events_status=active",
+   "note": "Polymarket Gamma API, fetched 2026-09-20. 'US-Iran Final Nuclear Deal by...?': $17,843,673 volume, $404,320 liquidity. US-Russia nuclear deal ladder: $661.6k volume."
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Planning_fallacy",
+   "note": "Wikipedia, undated. Buehler et al. 1994: predicted 33.9 days against an actual 55.5. Only 13% finished by their 50% date. Reference-class forecasting is the named correction."
+  },
+  {
+   "url": "https://arxiv.org/abs/2506.01578v1",
+   "note": "2025-06, Schoenegger, Jones, Tetlock, Mellers: 38 prompts. A base-rate reference gives only slight benefits, so the edge must come from pipelines (arXiv listing)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2604.18576v4",
+   "note": "2026-04, Bayesian Linguistic Forecaster: sequential updating plus hierarchical calibration beats GPT-5 and Grok on 400 ForecastBench questions (arXiv listing only)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.02286v2",
+   "note": "2026-05, Nechepurenko: an exponential-hazard fit (half-life 2.9 days) on 18 deadline-resolved military-geopolitics Polymarket markets. Hazard baselines already exist (arXiv listing only)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.08199v2",
+   "note": "2026-07, Xi, Moallemi, Pai, Wang: a Wright-Fisher deadline-resolution volatility model tested on Kalshi (arXiv listing only)."
+  },
+  {
+   "url": "https://api.openalex.org/works?search=deadline%20effect%20bargaining%20experiment&per-page=8&select=id,doi,title,publication_year,cited_by_count,authorships",
+   "note": "OpenAlex listing. Roth, Murnighan and Schoumaker, 'The Deadline Effect in Bargaining' (225 citations). Lim and Murnighan 1994, doi 10.1006/obhd.1994.1032. Karagozoglu and Kocher 2018, doi 10.1007/s10683-018-9579-y."
+  },
+  {
+   "url": "https://github.com/sterlingcrispin/nothing-ever-happens",
+   "note": "GitHub, 987 stars. The bot buys NO on non-sports yes/no markets and publishes no PnL ('for entertainment only'). The naive version is already public."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "70",
+ "band": "speculative",
+ "file": "70-outside-view-procedural-clock-engine.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "ADD sub-variant to elite-selection-bargaining-simulators: bilateral deadline bargaining for deals, strikes, shutdown ends and ceasefire extensions, using the BDM-style solver plus the experimental deadline effect (agreements cluster just before the deadline). Live capacity: the US-Iran final deal ladder has $17.84M volume and $404k liquidity (Gamma API, fetched today). If outside-view-procedural-clock-engine is accepted, house the hazard part there and keep the actor-table solver here.",
+  "CONSOLIDATE the duplicate reference-class material. adversarial-debate-price-residual has a 'Reference-class proposer/challenger debate for the prior' variant, and sponsor-and-inform-niche-models has 'Reference-class tournament with a Fermi cross-check'. Put both in one place, ideally the proposed outside-view-procedural-clock-engine.",
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band."
+ ]
+}

@@ -1,0 +1,55 @@
+{
+  "n": "05",
+  "slug": "genesis-window-new-listing-liquidity",
+  "file": "05-genesis-window-new-listing-liquidity.md",
+  "band": "established",
+  "name": "New-listing (genesis-window) liquidity provision and initial price discovery",
+  "one_line": "Be the first sensible quote in new non-sports markets, where first-minute takers pay 12-16c half-spreads, sized by how much of that cost is adverse selection per category.",
+  "category": "Market-making",
+  "maturity": "Emerging: rent measured on ~160k fee-free markets; no operator PnL; post-fee not re-measured",
+  "requires_ai": "optional: LLM prior and rules parsing for unanchored new markets",
+  "edge": "Empty books at listing; first takers pay the visible spread",
+  "capital": "<$1k-$10k; per-market exposure small; hand over after 1-3 h",
+  "build_time": "2-4 weeks on a quoting engine",
+  "opportunity_size": "maker keeps median 1.5-3.5c/share early outside sports; R/E 0.25-0.35 politics/geo, 0.86 economy",
+  "expected_results": "no public data; guess $10-60/day gross before rewards",
+  "competition": "thin in first minutes; farmers arrive within the hour",
+  "flag": "none",
+  "validate": "Record first 3 h of new non-sports markets for 14 days; pass realised >=1.5c and R/E >=0.5",
+  "top_risk": "Informed first takers in politics and geopolitics; rebates compressing the rent",
+  "evidence_grade": "A",
+  "solo_fit": 4,
+  "solo_fit_reason": "Tiny capital, measured category-level rent, event-driven engineering a solo team can do, stacks with first-quoter reward share; the unknown is how much fees/rebates already compressed it.",
+  "compounds_with": [
+    "maker-reward-pool-farming",
+    "event-market-making-spread-carry",
+    "cross-venue-leadlag-signals",
+    "derivatives-implied-relative-value",
+    "llm-forecasting-agents",
+    "market-anchored-selective-deference"
+  ],
+  "speed_class": "latency-sensitive: first-minute rent halves within 1-6 minutes",
+  "results_1k": "$0 to +$200/month (guess)",
+  "results_5k": "+$100 to +$800/month (guess)",
+  "results_10k": "+$200 to +$1,500/month (guess)",
+  "min_capital": "~$1k: tiny per-market exposure",
+  "capacity_ceiling": "~$20k-50k: rent is per new market, early takers trade small",
+  "services": [
+    "CLOB WS new_market + book",
+    "Gamma keyset API",
+    "CLOB rewards endpoints",
+    "Kalshi / Deribit seeds",
+    "optional LLM API",
+    "HF genesis-window dataset",
+    "VPS"
+  ],
+  "monthly_running_cost": "minimum ~$10-20; comfortable ~$100-150",
+  "changes_made": [
+    "Verified Tables 2, 6 and 9 and the rebate prediction from the PDF text.",
+    "Live 24 Sep: 53 of 72 new non-sports markets under 6 h had reward configs; the newest 1,100 markets were all sports/crypto templates."
+  ],
+  "open_doubts": [
+    "All rent numbers are fee-free (pre-2026-03-30).",
+    "Live spread snapshot is quotes, not effective spreads, and tag-sampled."
+  ]
+}

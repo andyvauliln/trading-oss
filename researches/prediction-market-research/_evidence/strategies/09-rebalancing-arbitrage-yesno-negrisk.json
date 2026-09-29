@@ -1,0 +1,249 @@
+{
+ "slug": "rebalancing-arbitrage-yesno-negrisk",
+ "name": "Same-platform rebalancing arbitrage: YES+NO sets and NegRisk converter / baskets",
+ "category": "Arbitrage",
+ "maturity": "Established but effectively closed to newcomers (verify)",
+ "seed_category": "same-platform arbitrage - YES+NO / neg-risk rebalancing",
+ "one_line": "Lock the complement identity in one binary (merge/split) and the NO-to-YES conversion identity in neg-risk events; large historically, saturated and fee-gated now.",
+ "scope": "Cover single-condition long/short set arbitrage and neg-risk rebalancing: mechanics of split, merge, convert, redeem via the gasless relayer and V2 adapter; reconcile the ~$40M headline ($10.58M single-condition + $29.02M neg-risk) with the execution-aware $1.12M reconstruction (97% converter-enabled, 81% from partial conversions and inventory recycling, top-10 = 75%, median profit per conversion $0.08, violations lasting seconds). Explain YES-side residual as capital-lockup carry, augmented neg-risk 'Other' pitfalls, per-leg taker fees since 2026-03-30, fee-free geopolitics and maker-legged variants, orphan-leg evidence (60/69 pairs). Boundary: logical dependencies across separate markets go to combinatorial-logical-arbitrage; crypto split-sell as a maker business is short-crypto-maker-side; reverted-fill counterparties are ghost-fills-bot-hunting.",
+ "sub_variants": [
+  "single-market YES+NO long (buy both, merge)",
+  "single-market short (split, sell both)",
+  "NegRisk NO-to-YES conversion with inventory recycling",
+  "YES-basket hold-to-settlement carry",
+  "maker-legged / fee-free-category variants"
+ ],
+ "merged_from": [
+  "traders: NegRisk converter / basket arbitrage",
+  "academic: NegRisk converter arbitrage including partial conversions",
+  "onchain-bots: Single-condition YES+NO rebalancing",
+  "onchain-bots: NegRisk basket rebalancing and NO->YES conversion arbitrage",
+  "platform-surface: Neg-risk convert / split / merge arbitrage under the 2026 fee regime"
+ ],
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2508.03474v1",
+   "note": "On-chain Apr 2024-Apr 2025: single-condition $10.58M, neg-risk $29.02M; top address $2.01M over 4,049 txs"
+  },
+  {
+   "url": "https://arxiv.org/abs/2608.00666",
+   "note": "Executable reconstruction: $1.12M total, $1.086M converter, $32k baskets, per-conversion profit collapse"
+  },
+  {
+   "url": "https://zenodo.org/doi/10.5281/zenodo.22739555",
+   "note": "Apparent coherence violations are mostly microstructure artefacts; genuine sub-$1 arb <=2.7% gross"
+  },
+  {
+   "url": "https://docs.polymarket.com/concepts/negative-risk.md",
+   "note": "Convert mechanics, augmented events, avoid 'Other'/placeholders"
+  },
+  {
+   "url": "https://finance.yahoo.com/news/polymarket-users-lost-millions-dollars-143016473.html",
+   "note": "DL News: top three wallets $4.2M, typical margins 1-5%"
+  },
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?q=polymarket%20arbitrage&size=60&sort=desc&sort_type=score&after=1740000000",
+   "note": "Practitioner posts: 60/69 paired fills with orphans erasing profit; fees-kill-arb sentiment"
+  }
+ ],
+ "parent_slug": "rebalancing-arbitrage-yesno-negrisk",
+ "seed": "3 same-platform arbitrage",
+ "n": "09",
+ "band": "established",
+ "file": "09-rebalancing-arbitrage-yesno-negrisk.md",
+ "critic_notes": [
+  "rebalancing-arbitrage-yesno-negrisk: 'Established' should read 'established and effectively closed': median $0.08 per conversion, ten addresses hold 75%, violations last seconds, per-leg fees since 2026-03-30. The residual YES-basket side is capital-lock carry, not arbitrage."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "NegRisk converter / basket arbitrage (smaller than people think)",
+   "one_line": "Use the NegRisk adapter's NO->YES-basket conversion and YES+NO / multi-outcome sums to lock riskless spreads.",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "mechanism": "In negative-risk events, a NO share in one outcome converts into YES shares of all others, so baskets whose executable cost is below payoff can be formed and recycled before settlement. A depth-aware reconstruction finds ~$1.12M total executable arbitrage profit, $1.086M of it via the converter and only ~$32k via settlement-based baskets; violations cluster on the YES side where no converter exists. In NBA markets, 290 combinatorial episodes yielded a median 101 bps. Community wallet-watching shows accounts buying YES and NO for ~1c/share locks with huge capital tie-up.",
+   "edge_source": "Protocol primitives most traders do not use; speed.",
+   "why_might_beat_market": "It mostly does not for newcomers: totals are small relative to platform volume and dominated by incumbents.",
+   "failure_modes": "Leg risk (a simple 0.48/0.48 BTC up/down bot completed 60 of 69 pairs and the 9 orphans ate all profit), fees on all categories since 2026-03-30 (one Reddit title: 'arbitrage strategies are done'), capital lock until resolution when no converter path exists, gas/relayer limits.",
+   "cheap_validation": "Scan read-only for a week: count executable (depth-aware, fee-aware) violations >50 bps and their lifetime; compare with your order round-trip time.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "title": "Gebele, Mutzel, Matthes: Executable Arbitrage and Market Efficiency in Prediction Markets",
+     "date": "2026-08-01",
+     "quality": "paper",
+     "supports": "~$1.12M total; $1.086M converter-enabled; $32k settlement-based; NO-side violations rarer and shorter-lived"
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv 2605.00864 Arbitrage Analysis in Polymarket NBA Markets",
+     "date": "2026-04-22",
+     "quality": "paper",
+     "supports": "290 active episodes, median return 101 bps"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=polymarket%20arbitrage&size=60&sort=desc&sort_type=score&after=1740000000",
+     "title": "Reddit: r/arbitragebetting 1s3lgn5 (0.48/0.48 bot), r/Polymarket 1v85bps (wallet buying both sides), r/PredictionsMarkets 1s1xhjy",
+     "date": "2026-03 to 2026-07",
+     "quality": "self-reported",
+     "supports": "60/69 paired fills with orphans erasing profit; ~1c/share locks with heavy capital use; fees-kill-arb sentiment"
+    }
+   ]
+  },
+  {
+   "name": "NegRisk converter arbitrage including partial conversions and inventory recycling",
+   "one_line": "Buy NO baskets (or subsets) in mutually-exclusive events and convert through the NegRisk adapter to collateral + YES, recycling inventory; the only same-platform arbitrage channel with material realised profit, now heavily competed.",
+   "category": "Arbitrage",
+   "maturity": "Established (saturated; per-trade profit collapsing)",
+   "mechanism": "In an n-outcome negRisk event, holding NO on k outcomes converts to (k-1) units of collateral plus YES on the complement. Bots accumulate NO legs, largely with maker-assisted fills (~80%), convert, and sell or hold the resulting YES. 81% of realised profit came from partial conversions and inventory recycling rather than clean full-set conversions. The plain alternative - buying every YES (or every NO) and holding the basket to settlement - earned only $32k in the whole sample.",
+   "edge_source": "Transient incoherence of multi-outcome books (sum of prices != 1) plus the adapter's ability to release collateral early; YES-side violations are ~58x more frequent than NO-side on the CLOB (2,098 vs 36 episodes).",
+   "why_might_beat_market": "It probably does not any more for a new entrant: top-10 addresses take 75% and median profit per conversion is $0.08; the residual edge is in maker-assisted leg accumulation and inventory recycling, not detection speed.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2608.00666v1",
+     "title": "Executable Arbitrage and Market Efficiency in Prediction Markets (Gebele, Mutzel, Matthes), arXiv",
+     "date": "2026-08-01",
+     "quality": "hard-data",
+     "supports": "259M trades through 2025-12-31: $1.12M total executable arbitrage profit; $1.086M converter-enabled (core full-set conversions $205,531 = 18.9%, partial/recycling $880,469 = 81.1%); settlement-based baskets $32,283 (5,923 CLOB baskets); top-10 addresses 75%; median profit per conversion $1 -> $0.20 -> $0.08; exact-duration violations median 16.15 s (YES) / 7.99 s (NO); one excluded 7-minute anomaly on 2025-12-12 produced $381,748 from 75 conversions."
+    },
+    {
+     "url": "https://arxiv.org/abs/2508.03474",
+     "title": "Unravelling the Probabilistic Forest: Arbitrage in Prediction Markets (Saguillo, Ghafouri, Kiffer, Suarez-Tangil), arXiv",
+     "date": "2025-08-05",
+     "quality": "paper",
+     "supports": "On-chain estimate of ~$40M extracted via market-rebalancing and combinatorial arbitrage on Polymarket (upper-bound style estimate; compare the $1.12M executable figure above)."
+    },
+    {
+     "url": "https://zenodo.org/doi/10.5281/zenodo.22739555",
+     "title": "polymarket-coherence: price coherence in mutually-exclusive prediction markets (Breguez), Zenodo",
+     "date": "2026-09-14",
+     "quality": "hard-data",
+     "supports": "Reproducible study: apparent multi-outcome coherence violations are liquidity/microstructure artefacts; genuine sub-$1 arbitrage is infrequent, <=2.7% gross, limited to small dense fields."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-07-14",
+     "quality": "hard-data",
+     "supports": "CLOB v1 Neg Risk Adapter deprecated 2026-07-14; integrations must use the v2 adapter; fees now charged in almost every category since 2026-03-30, which the pre-2026 profit estimates did not face."
+    }
+   ],
+   "failure_modes": "Leg risk on partial fills, gas for large fields (0.70-25.3M gas for 55-196 outcomes), taker fees since Fee Structure V2, negative-tail conversions increasingly common after 2024, adapter migration risk.",
+   "cheap_validation": "Replay the paper's method on post-April-2026 (V2, fee-enabled) data: count conversions by the known top addresses and their realised per-conversion profit net of the new fee curve before building anything.",
+   "flags": ""
+  },
+  {
+   "name": "Single-condition YES+NO rebalancing (buy both under $1 / split and sell both over $1)",
+   "one_line": "Lock the complement identity inside one binary market via merge or split.",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "mechanism": "Long side: when best ask YES + best ask NO < $1, buy both and merge the set into $1 collateral. Short side: when bids sum > $1, split $1 into a set and sell both legs. Both are atomic in payoff terms but not in execution, so legging risk exists. Typical realized margins were 1-5%.",
+   "edge_source": "Transient book dislocations during news/volatility; retail market orders sweeping one side.",
+   "why_might_beat_market": "It paid $10.6M in a year pre-fees, but the per-opportunity window has collapsed to seconds in liquid markets; remaining value is in the long tail of thin markets and in volatile moments.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2508.03474v1",
+     "title": "Unravelling the Probabilistic Forest: Arbitrage in Prediction Markets (Saguillo et al., IMDEA)",
+     "date": "2025-08-05",
+     "quality": "paper",
+     "supports": "On-chain, 2024-04-01..2025-04-01, 86M bids, 17,218 conditions: single-condition long arb $5,899,287, short arb $4,682,075 (total $10.58M). Top address $2,009,632 over 4,049 transactions; top-10 >$7.9M with 2,215-4,533 trades each ('bot-like')."
+    },
+    {
+     "url": "https://finance.yahoo.com/news/polymarket-users-lost-millions-dollars-143016473.html",
+     "title": "Polymarket users lost millions to 'bot-like' bettors (DL News via Yahoo)",
+     "date": "2025-08-22",
+     "quality": "credible-report",
+     "supports": "Top three wallets: 10,200+ bets, $4.2M; most instances 1-5%; one trade bought YES and NO under 2c each for ~$59k."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00864",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets (Cheng, Yang, Zou)",
+     "date": "2026-04-22",
+     "quality": "paper",
+     "supports": "75M book snapshots, 173 games: only 7 executable in-game single-market episodes, median duration 3.6 s."
+    }
+   ],
+   "failure_modes": "Taker fees on both legs since March 2026 (up to 2x fee at mid prices); one-leg fills; ghost-fill style counterparties historically cancelled the matched leg; windows of seconds need co-located infra.",
+   "cheap_validation": "Log best-ask sums across all active binaries for 72 h via WS; count episodes where sum < 1 - 2*fee - 0.5c lasting >1 s with >50 shares depth.",
+   "flags": ""
+  },
+  {
+   "name": "NegRisk basket rebalancing and NO->YES conversion arbitrage",
+   "one_line": "Exploit multi-outcome events where the YES prices do not sum to 1, using the NegRisk adapter's convert path.",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "mechanism": "In negative-risk events one NO token converts atomically into one YES of every other outcome. When NO prices are cheap relative to the basket, bots buy NO, convert, and sell or hold the resulting YES set; when all YES sum below $1 they buy the basket and wait for settlement. Only the NO->YES direction is executable before settlement, so NO-side violations are short-lived while YES-side violations persist and require capital lock-up to resolution. Augmented events add placeholder/'Other' outcomes that must not be traded.",
+   "edge_source": "Protocol asymmetry: one direction is an executable primitive, the other is a carry trade; many-leg books drift as retail piles into one candidate.",
+   "why_might_beat_market": "This was by far the largest realized arbitrage pool ($29M in a year). The residual is a financing business on the YES side that HFT bots avoid because capital is tied up.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2508.03474v1",
+     "title": "Unravelling the Probabilistic Forest (IMDEA)",
+     "date": "2025-08-05",
+     "quality": "paper",
+     "supports": "NegRisk market rebalancing realized $29,015,853: buying NO $17,307,114, buying YES $11,092,286, selling YES $612,189, selling NO $4,264."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "title": "Executable Arbitrage and Market Efficiency in Prediction Markets (Gebele, Mutzel, Matthes)",
+     "date": "2026-08-01",
+     "quality": "paper",
+     "supports": "Depth-aware reconstruction with on-chain conversion traces: $1.12M arbitrage profit, $1.086M converter-enabled vs $32k settlement-based; violations concentrate on the unsupported YES side; NO-side violations rarer and shorter-lived."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/negative-risk.md",
+     "title": "Negative Risk Markets (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Convert mechanics; warning to trade only named outcomes and avoid 'Other'/placeholders; old adapter deprecated 2026-07-14 per changelog."
+    }
+   ],
+   "failure_modes": "Multi-leg execution with taker fees per leg; depth on the cheapest legs is tiny; augmented NegRisk 'Other' redefinitions; capital locked for months on YES-basket carry; adapter migration (V2) broke old integrations.",
+   "cheap_validation": "For every active NegRisk event compute depth-aware cost of the full YES basket and of NO+convert; annualize the YES-basket discount by days to resolution and compare with pUSD yield alternatives.",
+   "flags": ""
+  },
+  {
+   "name": "Neg-risk convert / split / merge arbitrage under the 2026 fee regime",
+   "one_line": "Event-level arbitrage through the NegRisk adapter and full-set split/merge still exists but must now be run maker-legged or in fee-free categories, with gasless relayer operations.",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "mechanism": "In neg-risk events 1 NO of any outcome converts atomically into 1 YES of every other outcome (releasing collateral when several NOs are converted), and any binary market allows split of 1 pUSD into YES+NO and merge back. When the sum of YES asks across an event is below 1, or the sum of NO asks is below n-1, buying the set and converting/merging/redeeming locks a profit. A peer-reviewed-style on-chain study estimated about $40M of realised arbitrage profit on Polymarket from exactly these single-market and cross-market inconsistencies. Since Fee Structure V2 each taker leg costs feeRate x p x (1-p) per share (up to 1.0-1.75c), so an n-leg taker arb needs a gap of several cents; the surviving variants are (a) geopolitics and other zero-fee markets where conversion arb is still frictionless, (b) maker-legged arbs that rest the legs and collect rebates, (c) augmented neg-risk events where converted NO sets also deliver the unnamed placeholder and Other outcomes. Split, merge, convert and redeem are gas-free through the builder relayer; the v1 adapter was retired 2026-07-17.",
+   "edge_source": "Mechanical no-arbitrage identities enforced only by traders; fees and leg risk now deter most bots, leaving wider but rarer gaps.",
+   "why_might_beat_market": "Fee-aware routing (which legs to take, which to rest, which category) is a second-order optimisation most legacy arb bots written for the zero-fee era do not do.",
+   "failure_modes": "Leg risk when resting; 1 s / 50 ms matching delays on some markets; adapter convert fee parameter exists in the contract design (current value unverified); Other/placeholder semantics in augmented events can change payoff assumptions; competition from the same bots that took the $40M.",
+   "cheap_validation": "Replay one month of book snapshots for all neg-risk events, compute set-arb gaps net of per-market feeSchedule, and split results by fee-free vs fee-enabled category and by taker vs maker-legged execution.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2508.03474",
+     "title": "Unravelling the Probabilistic Forest: Arbitrage in Prediction Markets (Saguillo, Ghafouri, Kiffer, Suarez-Tangil)",
+     "date": "2025-08-05",
+     "quality": "paper",
+     "supports": "On-chain estimate of about 40 million USD of realised arbitrage profit on Polymarket from within-market and cross-market mispricing."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/negative-risk.md",
+     "title": "Negative Risk Markets",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "1 NO converts to 1 YES in every other market via the adapter; augmented neg-risk with placeholders and explicit Other; trade only named outcomes."
+    },
+    {
+     "url": "https://github.com/Polymarket/neg-risk-ctf-adapter",
+     "title": "neg-risk-ctf-adapter README",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Convert NO positions to YES positions plus collateral; a fee rate on conversion exists in the design and accrues to a Vault (value not stated)."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Predictions changelog",
+     "date": "2026-03-30 and 2026-07-14 entries",
+     "quality": "hard-data",
+     "supports": "Fee Structure V2 categories with geopolitics fee-free; v1 Neg Risk Adapter deprecated, redeem deadline 2026-07-17."
+    }
+   ]
+  }
+ ]
+}

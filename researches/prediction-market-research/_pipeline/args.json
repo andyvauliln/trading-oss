@@ -1,0 +1,1506 @@
+{
+ "stage2_slices": [
+  [
+   {
+    "n": "01",
+    "slug": "maker-reward-pool-farming",
+    "file": "01-maker-reward-pool-farming.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "06",
+    "slug": "combos-rfq-market-making",
+    "file": "06-combos-rfq-market-making.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "11",
+    "slug": "derivatives-implied-relative-value",
+    "file": "11-derivatives-implied-relative-value.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "16",
+    "slug": "uma-side-operations",
+    "file": "16-uma-side-operations.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "21",
+    "slug": "llm-forecasting-agents",
+    "file": "21-llm-forecasting-agents.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "26",
+    "slug": "screened-copy-trading",
+    "file": "26-screened-copy-trading.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "31",
+    "slug": "market-manipulation-and-exploits",
+    "file": "31-market-manipulation-and-exploits.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "51",
+    "slug": "simulated-stakeholder-polling",
+    "file": "51-simulated-stakeholder-polling.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "56",
+    "slug": "adversarial-debate-price-residual",
+    "file": "56-adversarial-debate-price-residual.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "61",
+    "slug": "evaluation-promotion-allocation-metalayer",
+    "file": "61-evaluation-promotion-allocation-metalayer.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "66",
+    "slug": "dependence-pricing-combos-joint",
+    "file": "66-dependence-pricing-combos-joint.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "71",
+    "slug": "print-process-twins-numeric-brackets",
+    "file": "71-print-process-twins-numeric-brackets.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "76",
+    "slug": "synthetic-audience-pre-release-demand",
+    "file": "76-synthetic-audience-pre-release-demand.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "81",
+    "slug": "flow-fading-and-leadlag-statarb",
+    "file": "81-flow-fading-and-leadlag-statarb.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ],
+  [
+   {
+    "n": "02",
+    "slug": "event-market-making-spread-carry",
+    "file": "02-event-market-making-spread-carry.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "07",
+    "slug": "cross-venue-locked-arbitrage",
+    "file": "07-cross-venue-locked-arbitrage.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "12",
+    "slug": "short-crypto-latency-taker",
+    "file": "12-short-crypto-latency-taker.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "17",
+    "slug": "news-event-feed-latency-taking",
+    "file": "17-news-event-feed-latency-taking.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "22",
+    "slug": "weather-markets",
+    "file": "22-weather-markets.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "27",
+    "slug": "whale-informed-flow-tracking",
+    "file": "27-whale-informed-flow-tracking.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "32",
+    "slug": "builder-code-routing-business",
+    "file": "32-builder-code-routing-business.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "52",
+    "slug": "elite-selection-bargaining-simulators",
+    "file": "52-elite-selection-bargaining-simulators.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "57",
+    "slug": "cross-lingual-source-silo-tilt",
+    "file": "57-cross-lingual-source-silo-tilt.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "62",
+    "slug": "llm-monoculture-herd-factor",
+    "file": "62-llm-monoculture-herd-factor.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "67",
+    "slug": "semantic-market-graph-relative-value",
+    "file": "67-semantic-market-graph-relative-value.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "72",
+    "slug": "unnamed-outcome-unpacking",
+    "file": "72-unnamed-outcome-unpacking.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "77",
+    "slug": "platform-ai-context-audit",
+    "file": "77-platform-ai-context-audit.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "82",
+    "slug": "settlement-window-and-regime-edges",
+    "file": "82-settlement-window-and-regime-edges.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ],
+  [
+   {
+    "n": "03",
+    "slug": "short-crypto-maker-side",
+    "file": "03-short-crypto-maker-side.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "08",
+    "slug": "cross-venue-leadlag-signals",
+    "file": "08-cross-venue-leadlag-signals.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "13",
+    "slug": "resolution-sniping-post-outcome",
+    "file": "13-resolution-sniping-post-outcome.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "18",
+    "slug": "sports-inplay-feed-latency-taking",
+    "file": "18-sports-inplay-feed-latency-taking.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "23",
+    "slug": "recurring-count-mention-counter-markets",
+    "file": "23-recurring-count-mention-counter-markets.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "28",
+    "slug": "taker-rebates-fee-tier-overlay",
+    "file": "28-taker-rebates-fee-tier-overlay.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "33",
+    "slug": "data-analytics-api-products",
+    "file": "33-data-analytics-api-products.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "53",
+    "slug": "critic-pool-panel-twins",
+    "file": "53-critic-pool-panel-twins.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "58",
+    "slug": "market-anchored-selective-deference",
+    "file": "58-market-anchored-selective-deference.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "63",
+    "slug": "crowd-price-path-simulation",
+    "file": "63-crowd-price-path-simulation.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "68",
+    "slug": "sponsor-and-inform-niche-models",
+    "file": "68-sponsor-and-inform-niche-models.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "73",
+    "slug": "reward-pool-minority-game",
+    "file": "73-reward-pool-minority-game.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "78",
+    "slug": "two-book-crowd-differential",
+    "file": "78-two-book-crowd-differential.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "83",
+    "slug": "perps-lp-rewards-basis",
+    "file": "83-perps-lp-rewards-basis.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ],
+  [
+   {
+    "n": "04",
+    "slug": "sportsbook-anchored-sports-mm",
+    "file": "04-sportsbook-anchored-sports-mm.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "09",
+    "slug": "rebalancing-arbitrage-yesno-negrisk",
+    "file": "09-rebalancing-arbitrage-yesno-negrisk.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "14",
+    "slug": "near-certain-bond-carry",
+    "file": "14-near-certain-bond-carry.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "19",
+    "slug": "sports-model-driven-taking",
+    "file": "19-sports-model-driven-taking.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "24",
+    "slug": "longshot-selling-flb",
+    "file": "24-longshot-selling-flb.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "29",
+    "slug": "wash-trading-airdrop-sybil-farming",
+    "file": "29-wash-trading-airdrop-sybil-farming.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "34",
+    "slug": "referral-affiliate-content-businesses",
+    "file": "34-referral-affiliate-content-businesses.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "54",
+    "slug": "speaker-twin-mention-montecarlo",
+    "file": "54-speaker-twin-mention-montecarlo.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "59",
+    "slug": "recursive-self-improving-forecaster",
+    "file": "59-recursive-self-improving-forecaster.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "64",
+    "slug": "rules-ambiguity-hazard-layer",
+    "file": "64-rules-ambiguity-hazard-layer.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "69",
+    "slug": "arena-leaderboard-vote-simulation",
+    "file": "69-arena-leaderboard-vote-simulation.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "74",
+    "slug": "newsroom-framing-twins",
+    "file": "74-newsroom-framing-twins.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "79",
+    "slug": "logit-space-belief-vol-quoting",
+    "file": "79-logit-space-belief-vol-quoting.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "84",
+    "slug": "event-hedge-desk-structured-products",
+    "file": "84-event-hedge-desk-structured-products.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ],
+  [
+   {
+    "n": "05",
+    "slug": "genesis-window-new-listing-liquidity",
+    "file": "05-genesis-window-new-listing-liquidity.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "10",
+    "slug": "combinatorial-logical-arbitrage",
+    "file": "10-combinatorial-logical-arbitrage.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "15",
+    "slug": "rules-dispute-trading",
+    "file": "15-rules-dispute-trading.md",
+    "band": "established",
+    "deepen": true
+   },
+   {
+    "n": "20",
+    "slug": "statistical-mispricing-models",
+    "file": "20-statistical-mispricing-models.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "25",
+    "slug": "discretionary-research-bets",
+    "file": "25-discretionary-research-bets.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "30",
+    "slug": "mnpi-insider-trading",
+    "file": "30-mnpi-insider-trading.md",
+    "band": "established",
+    "deepen": false
+   },
+   {
+    "n": "50",
+    "slug": "agent-society-simulation-forecasting",
+    "file": "50-agent-society-simulation-forecasting.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "55",
+    "slug": "internal-agent-prediction-market",
+    "file": "55-internal-agent-prediction-market.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "60",
+    "slug": "evolutionary-agent-strategy-factory",
+    "file": "60-evolutionary-agent-strategy-factory.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "65",
+    "slug": "synthetic-uma-dispute-jury",
+    "file": "65-synthetic-uma-dispute-jury.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "70",
+    "slug": "outside-view-procedural-clock-engine",
+    "file": "70-outside-view-procedural-clock-engine.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "75",
+    "slug": "active-price-probing",
+    "file": "75-active-price-probing.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "80",
+    "slug": "inplay-behavioural-fades",
+    "file": "80-inplay-behavioural-fades.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ]
+ ],
+ "stage3_chunks": [
+  [
+   "01-maker-reward-pool-farming.md",
+   "02-event-market-making-spread-carry.md",
+   "03-short-crypto-maker-side.md",
+   "04-sportsbook-anchored-sports-mm.md",
+   "05-genesis-window-new-listing-liquidity.md",
+   "06-combos-rfq-market-making.md",
+   "07-cross-venue-locked-arbitrage.md",
+   "08-cross-venue-leadlag-signals.md",
+   "09-rebalancing-arbitrage-yesno-negrisk.md",
+   "10-combinatorial-logical-arbitrage.md"
+  ],
+  [
+   "11-derivatives-implied-relative-value.md",
+   "12-short-crypto-latency-taker.md",
+   "13-resolution-sniping-post-outcome.md",
+   "14-near-certain-bond-carry.md",
+   "15-rules-dispute-trading.md",
+   "16-uma-side-operations.md",
+   "17-news-event-feed-latency-taking.md",
+   "18-sports-inplay-feed-latency-taking.md",
+   "19-sports-model-driven-taking.md",
+   "20-statistical-mispricing-models.md"
+  ],
+  [
+   "21-llm-forecasting-agents.md",
+   "22-weather-markets.md",
+   "23-recurring-count-mention-counter-markets.md",
+   "24-longshot-selling-flb.md",
+   "25-discretionary-research-bets.md",
+   "26-screened-copy-trading.md",
+   "27-whale-informed-flow-tracking.md",
+   "28-taker-rebates-fee-tier-overlay.md",
+   "29-wash-trading-airdrop-sybil-farming.md",
+   "30-mnpi-insider-trading.md"
+  ],
+  [
+   "31-market-manipulation-and-exploits.md",
+   "32-builder-code-routing-business.md",
+   "33-data-analytics-api-products.md",
+   "34-referral-affiliate-content-businesses.md",
+   "50-agent-society-simulation-forecasting.md",
+   "51-simulated-stakeholder-polling.md",
+   "52-elite-selection-bargaining-simulators.md",
+   "53-critic-pool-panel-twins.md",
+   "54-speaker-twin-mention-montecarlo.md",
+   "55-internal-agent-prediction-market.md"
+  ],
+  [
+   "56-adversarial-debate-price-residual.md",
+   "57-cross-lingual-source-silo-tilt.md",
+   "58-market-anchored-selective-deference.md",
+   "59-recursive-self-improving-forecaster.md",
+   "60-evolutionary-agent-strategy-factory.md",
+   "61-evaluation-promotion-allocation-metalayer.md",
+   "62-llm-monoculture-herd-factor.md",
+   "63-crowd-price-path-simulation.md",
+   "64-rules-ambiguity-hazard-layer.md",
+   "65-synthetic-uma-dispute-jury.md"
+  ],
+  [
+   "66-dependence-pricing-combos-joint.md",
+   "67-semantic-market-graph-relative-value.md",
+   "68-sponsor-and-inform-niche-models.md",
+   "69-arena-leaderboard-vote-simulation.md",
+   "70-outside-view-procedural-clock-engine.md",
+   "71-print-process-twins-numeric-brackets.md",
+   "72-unnamed-outcome-unpacking.md",
+   "73-reward-pool-minority-game.md",
+   "74-newsroom-framing-twins.md",
+   "75-active-price-probing.md"
+  ],
+  [
+   "76-synthetic-audience-pre-release-demand.md",
+   "77-platform-ai-context-audit.md",
+   "78-two-book-crowd-differential.md",
+   "79-logit-space-belief-vol-quoting.md",
+   "80-inplay-behavioural-fades.md",
+   "81-flow-fading-and-leadlag-statarb.md",
+   "82-settlement-window-and-regime-edges.md",
+   "83-perps-lp-rewards-basis.md",
+   "84-event-hedge-desk-structured-products.md"
+  ]
+ ],
+ "all_items": [
+  {
+   "n": "01",
+   "slug": "maker-reward-pool-farming",
+   "file": "01-maker-reward-pool-farming.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "02",
+   "slug": "event-market-making-spread-carry",
+   "file": "02-event-market-making-spread-carry.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "03",
+   "slug": "short-crypto-maker-side",
+   "file": "03-short-crypto-maker-side.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "04",
+   "slug": "sportsbook-anchored-sports-mm",
+   "file": "04-sportsbook-anchored-sports-mm.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "05",
+   "slug": "genesis-window-new-listing-liquidity",
+   "file": "05-genesis-window-new-listing-liquidity.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "06",
+   "slug": "combos-rfq-market-making",
+   "file": "06-combos-rfq-market-making.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "07",
+   "slug": "cross-venue-locked-arbitrage",
+   "file": "07-cross-venue-locked-arbitrage.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "08",
+   "slug": "cross-venue-leadlag-signals",
+   "file": "08-cross-venue-leadlag-signals.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "09",
+   "slug": "rebalancing-arbitrage-yesno-negrisk",
+   "file": "09-rebalancing-arbitrage-yesno-negrisk.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "10",
+   "slug": "combinatorial-logical-arbitrage",
+   "file": "10-combinatorial-logical-arbitrage.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "11",
+   "slug": "derivatives-implied-relative-value",
+   "file": "11-derivatives-implied-relative-value.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "12",
+   "slug": "short-crypto-latency-taker",
+   "file": "12-short-crypto-latency-taker.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "13",
+   "slug": "resolution-sniping-post-outcome",
+   "file": "13-resolution-sniping-post-outcome.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "14",
+   "slug": "near-certain-bond-carry",
+   "file": "14-near-certain-bond-carry.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "15",
+   "slug": "rules-dispute-trading",
+   "file": "15-rules-dispute-trading.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "16",
+   "slug": "uma-side-operations",
+   "file": "16-uma-side-operations.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "17",
+   "slug": "news-event-feed-latency-taking",
+   "file": "17-news-event-feed-latency-taking.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "18",
+   "slug": "sports-inplay-feed-latency-taking",
+   "file": "18-sports-inplay-feed-latency-taking.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "19",
+   "slug": "sports-model-driven-taking",
+   "file": "19-sports-model-driven-taking.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "20",
+   "slug": "statistical-mispricing-models",
+   "file": "20-statistical-mispricing-models.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "21",
+   "slug": "llm-forecasting-agents",
+   "file": "21-llm-forecasting-agents.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "22",
+   "slug": "weather-markets",
+   "file": "22-weather-markets.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "23",
+   "slug": "recurring-count-mention-counter-markets",
+   "file": "23-recurring-count-mention-counter-markets.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "24",
+   "slug": "longshot-selling-flb",
+   "file": "24-longshot-selling-flb.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "25",
+   "slug": "discretionary-research-bets",
+   "file": "25-discretionary-research-bets.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "26",
+   "slug": "screened-copy-trading",
+   "file": "26-screened-copy-trading.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "27",
+   "slug": "whale-informed-flow-tracking",
+   "file": "27-whale-informed-flow-tracking.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "28",
+   "slug": "taker-rebates-fee-tier-overlay",
+   "file": "28-taker-rebates-fee-tier-overlay.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "29",
+   "slug": "wash-trading-airdrop-sybil-farming",
+   "file": "29-wash-trading-airdrop-sybil-farming.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "30",
+   "slug": "mnpi-insider-trading",
+   "file": "30-mnpi-insider-trading.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "31",
+   "slug": "market-manipulation-and-exploits",
+   "file": "31-market-manipulation-and-exploits.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "32",
+   "slug": "builder-code-routing-business",
+   "file": "32-builder-code-routing-business.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "33",
+   "slug": "data-analytics-api-products",
+   "file": "33-data-analytics-api-products.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "34",
+   "slug": "referral-affiliate-content-businesses",
+   "file": "34-referral-affiliate-content-businesses.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "50",
+   "slug": "agent-society-simulation-forecasting",
+   "file": "50-agent-society-simulation-forecasting.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "51",
+   "slug": "simulated-stakeholder-polling",
+   "file": "51-simulated-stakeholder-polling.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "52",
+   "slug": "elite-selection-bargaining-simulators",
+   "file": "52-elite-selection-bargaining-simulators.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "53",
+   "slug": "critic-pool-panel-twins",
+   "file": "53-critic-pool-panel-twins.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "54",
+   "slug": "speaker-twin-mention-montecarlo",
+   "file": "54-speaker-twin-mention-montecarlo.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "55",
+   "slug": "internal-agent-prediction-market",
+   "file": "55-internal-agent-prediction-market.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "56",
+   "slug": "adversarial-debate-price-residual",
+   "file": "56-adversarial-debate-price-residual.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "57",
+   "slug": "cross-lingual-source-silo-tilt",
+   "file": "57-cross-lingual-source-silo-tilt.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "58",
+   "slug": "market-anchored-selective-deference",
+   "file": "58-market-anchored-selective-deference.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "59",
+   "slug": "recursive-self-improving-forecaster",
+   "file": "59-recursive-self-improving-forecaster.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "60",
+   "slug": "evolutionary-agent-strategy-factory",
+   "file": "60-evolutionary-agent-strategy-factory.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "61",
+   "slug": "evaluation-promotion-allocation-metalayer",
+   "file": "61-evaluation-promotion-allocation-metalayer.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "62",
+   "slug": "llm-monoculture-herd-factor",
+   "file": "62-llm-monoculture-herd-factor.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "63",
+   "slug": "crowd-price-path-simulation",
+   "file": "63-crowd-price-path-simulation.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "64",
+   "slug": "rules-ambiguity-hazard-layer",
+   "file": "64-rules-ambiguity-hazard-layer.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "65",
+   "slug": "synthetic-uma-dispute-jury",
+   "file": "65-synthetic-uma-dispute-jury.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "66",
+   "slug": "dependence-pricing-combos-joint",
+   "file": "66-dependence-pricing-combos-joint.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "67",
+   "slug": "semantic-market-graph-relative-value",
+   "file": "67-semantic-market-graph-relative-value.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "68",
+   "slug": "sponsor-and-inform-niche-models",
+   "file": "68-sponsor-and-inform-niche-models.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "69",
+   "slug": "arena-leaderboard-vote-simulation",
+   "file": "69-arena-leaderboard-vote-simulation.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "70",
+   "slug": "outside-view-procedural-clock-engine",
+   "file": "70-outside-view-procedural-clock-engine.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "71",
+   "slug": "print-process-twins-numeric-brackets",
+   "file": "71-print-process-twins-numeric-brackets.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "72",
+   "slug": "unnamed-outcome-unpacking",
+   "file": "72-unnamed-outcome-unpacking.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "73",
+   "slug": "reward-pool-minority-game",
+   "file": "73-reward-pool-minority-game.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "74",
+   "slug": "newsroom-framing-twins",
+   "file": "74-newsroom-framing-twins.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "75",
+   "slug": "active-price-probing",
+   "file": "75-active-price-probing.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "76",
+   "slug": "synthetic-audience-pre-release-demand",
+   "file": "76-synthetic-audience-pre-release-demand.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "77",
+   "slug": "platform-ai-context-audit",
+   "file": "77-platform-ai-context-audit.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "78",
+   "slug": "two-book-crowd-differential",
+   "file": "78-two-book-crowd-differential.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "79",
+   "slug": "logit-space-belief-vol-quoting",
+   "file": "79-logit-space-belief-vol-quoting.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "80",
+   "slug": "inplay-behavioural-fades",
+   "file": "80-inplay-behavioural-fades.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "81",
+   "slug": "flow-fading-and-leadlag-statarb",
+   "file": "81-flow-fading-and-leadlag-statarb.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "82",
+   "slug": "settlement-window-and-regime-edges",
+   "file": "82-settlement-window-and-regime-edges.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "83",
+   "slug": "perps-lp-rewards-basis",
+   "file": "83-perps-lp-rewards-basis.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "84",
+   "slug": "event-hedge-desk-structured-products",
+   "file": "84-event-hedge-desk-structured-products.md",
+   "band": "speculative",
+   "deepen": false
+  }
+ ],
+ "stage2_slices_remaining": [
+  [
+   {
+    "n": "52",
+    "slug": "elite-selection-bargaining-simulators",
+    "file": "52-elite-selection-bargaining-simulators.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "57",
+    "slug": "cross-lingual-source-silo-tilt",
+    "file": "57-cross-lingual-source-silo-tilt.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "62",
+    "slug": "llm-monoculture-herd-factor",
+    "file": "62-llm-monoculture-herd-factor.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "67",
+    "slug": "semantic-market-graph-relative-value",
+    "file": "67-semantic-market-graph-relative-value.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "72",
+    "slug": "unnamed-outcome-unpacking",
+    "file": "72-unnamed-outcome-unpacking.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "77",
+    "slug": "platform-ai-context-audit",
+    "file": "77-platform-ai-context-audit.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "82",
+    "slug": "settlement-window-and-regime-edges",
+    "file": "82-settlement-window-and-regime-edges.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ],
+  [
+   {
+    "n": "53",
+    "slug": "critic-pool-panel-twins",
+    "file": "53-critic-pool-panel-twins.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "58",
+    "slug": "market-anchored-selective-deference",
+    "file": "58-market-anchored-selective-deference.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "63",
+    "slug": "crowd-price-path-simulation",
+    "file": "63-crowd-price-path-simulation.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "68",
+    "slug": "sponsor-and-inform-niche-models",
+    "file": "68-sponsor-and-inform-niche-models.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "73",
+    "slug": "reward-pool-minority-game",
+    "file": "73-reward-pool-minority-game.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "78",
+    "slug": "two-book-crowd-differential",
+    "file": "78-two-book-crowd-differential.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "83",
+    "slug": "perps-lp-rewards-basis",
+    "file": "83-perps-lp-rewards-basis.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ],
+  [
+   {
+    "n": "54",
+    "slug": "speaker-twin-mention-montecarlo",
+    "file": "54-speaker-twin-mention-montecarlo.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "59",
+    "slug": "recursive-self-improving-forecaster",
+    "file": "59-recursive-self-improving-forecaster.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "64",
+    "slug": "rules-ambiguity-hazard-layer",
+    "file": "64-rules-ambiguity-hazard-layer.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "69",
+    "slug": "arena-leaderboard-vote-simulation",
+    "file": "69-arena-leaderboard-vote-simulation.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "74",
+    "slug": "newsroom-framing-twins",
+    "file": "74-newsroom-framing-twins.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "79",
+    "slug": "logit-space-belief-vol-quoting",
+    "file": "79-logit-space-belief-vol-quoting.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "84",
+    "slug": "event-hedge-desk-structured-products",
+    "file": "84-event-hedge-desk-structured-products.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ],
+  [
+   {
+    "n": "55",
+    "slug": "internal-agent-prediction-market",
+    "file": "55-internal-agent-prediction-market.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "60",
+    "slug": "evolutionary-agent-strategy-factory",
+    "file": "60-evolutionary-agent-strategy-factory.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "65",
+    "slug": "synthetic-uma-dispute-jury",
+    "file": "65-synthetic-uma-dispute-jury.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "70",
+    "slug": "outside-view-procedural-clock-engine",
+    "file": "70-outside-view-procedural-clock-engine.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "75",
+    "slug": "active-price-probing",
+    "file": "75-active-price-probing.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "80",
+    "slug": "inplay-behavioural-fades",
+    "file": "80-inplay-behavioural-fades.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ],
+  [
+   {
+    "n": "56",
+    "slug": "adversarial-debate-price-residual",
+    "file": "56-adversarial-debate-price-residual.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "61",
+    "slug": "evaluation-promotion-allocation-metalayer",
+    "file": "61-evaluation-promotion-allocation-metalayer.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "66",
+    "slug": "dependence-pricing-combos-joint",
+    "file": "66-dependence-pricing-combos-joint.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "71",
+    "slug": "print-process-twins-numeric-brackets",
+    "file": "71-print-process-twins-numeric-brackets.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "76",
+    "slug": "synthetic-audience-pre-release-demand",
+    "file": "76-synthetic-audience-pre-release-demand.md",
+    "band": "speculative",
+    "deepen": false
+   },
+   {
+    "n": "81",
+    "slug": "flow-fading-and-leadlag-statarb",
+    "file": "81-flow-fading-and-leadlag-statarb.md",
+    "band": "speculative",
+    "deepen": false
+   }
+  ]
+ ],
+ "done_items_2026_09_24": [
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "11"
+ ],
+ "done_items_2026_09_28": [
+  {
+   "n": "12",
+   "slug": "short-crypto-latency-taker",
+   "file": "12-short-crypto-latency-taker.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "13",
+   "slug": "resolution-sniping-post-outcome",
+   "file": "13-resolution-sniping-post-outcome.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "14",
+   "slug": "near-certain-bond-carry",
+   "file": "14-near-certain-bond-carry.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "15",
+   "slug": "rules-dispute-trading",
+   "file": "15-rules-dispute-trading.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "16",
+   "slug": "uma-side-operations",
+   "file": "16-uma-side-operations.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "17",
+   "slug": "news-event-feed-latency-taking",
+   "file": "17-news-event-feed-latency-taking.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "18",
+   "slug": "sports-inplay-feed-latency-taking",
+   "file": "18-sports-inplay-feed-latency-taking.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "19",
+   "slug": "sports-model-driven-taking",
+   "file": "19-sports-model-driven-taking.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "20",
+   "slug": "statistical-mispricing-models",
+   "file": "20-statistical-mispricing-models.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "21",
+   "slug": "llm-forecasting-agents",
+   "file": "21-llm-forecasting-agents.md",
+   "band": "established",
+   "deepen": false
+  }
+ ],
+ "_note_2026_09_28": "Files 01-31 exist on disk (12-21 and 22-31 written 2026-09-28 in two batches by 10 parallel fork agents each, plus one cite-check + skeptic fork per file). stage2_slices_remaining rebuilt: 38 items in 5 slices (32-34 established, 50-84 speculative). Next batch in numeric order: 32, 33, 34, 50, 51, 52, 53, 54, 55, 56.",
+ "done_items_2026_09_28_b": [
+  {
+   "n": "22",
+   "slug": "weather-markets",
+   "file": "22-weather-markets.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "23",
+   "slug": "recurring-count-mention-counter-markets",
+   "file": "23-recurring-count-mention-counter-markets.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "24",
+   "slug": "longshot-selling-flb",
+   "file": "24-longshot-selling-flb.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "25",
+   "slug": "discretionary-research-bets",
+   "file": "25-discretionary-research-bets.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "26",
+   "slug": "screened-copy-trading",
+   "file": "26-screened-copy-trading.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "27",
+   "slug": "whale-informed-flow-tracking",
+   "file": "27-whale-informed-flow-tracking.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "28",
+   "slug": "taker-rebates-fee-tier-overlay",
+   "file": "28-taker-rebates-fee-tier-overlay.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "29",
+   "slug": "wash-trading-airdrop-sybil-farming",
+   "file": "29-wash-trading-airdrop-sybil-farming.md",
+   "band": "established",
+   "deepen": true
+  },
+  {
+   "n": "30",
+   "slug": "mnpi-insider-trading",
+   "file": "30-mnpi-insider-trading.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "31",
+   "slug": "market-manipulation-and-exploits",
+   "file": "31-market-manipulation-and-exploits.md",
+   "band": "established",
+   "deepen": false
+  }
+ ],
+ "done_items_2026_09_29": [
+  {
+   "n": "32",
+   "slug": "builder-code-routing-business",
+   "file": "32-builder-code-routing-business.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "33",
+   "slug": "data-analytics-api-products",
+   "file": "33-data-analytics-api-products.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "34",
+   "slug": "referral-affiliate-content-businesses",
+   "file": "34-referral-affiliate-content-businesses.md",
+   "band": "established",
+   "deepen": false
+  },
+  {
+   "n": "50",
+   "slug": "agent-society-simulation-forecasting",
+   "file": "50-agent-society-simulation-forecasting.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "51",
+   "slug": "simulated-stakeholder-polling",
+   "file": "51-simulated-stakeholder-polling.md",
+   "band": "speculative",
+   "deepen": false
+  }
+ ],
+ "_note_2026_09_29": "Files 01-34, 50, 51 exist on disk. 32 and 33 were written 2026-09-28 by the two-slot run that then hit a usage limit; they were verified 2026-09-29. 34, 50, 51 written and verified 2026-09-29 with at most 2 agents in parallel (owner's rule). stage2_slices_remaining: 33 items (52-84, all speculative). Next batch in numeric order: 52, 53, 54, 55, 56."
+}

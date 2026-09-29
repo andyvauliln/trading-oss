@@ -1,0 +1,181 @@
+{
+ "slug": "cross-lingual-source-silo-tilt",
+ "name": "Cross-lingual source-silo tilt on non-Anglophone and geopolitics markets",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "new",
+ "one_line": "Hold the model fixed and forecast twice, once from English-only context and once from local-language primary sources. Apply the difference as a tilt to the market price, mainly in fee-free geopolitics markets.",
+ "scope": "Cover agents restricted to one information ecosystem each: English wire, local official and military-analytical sources, adversary media, OSINT. Cover per-silo bias calibration on resolved markets. Define the signal as local minus English, not either forecast alone. Add the latency leg on local primary publications. The anchor result is that English news context was wrong 64-72% of the time on Ukraine territorial-capture pushes across four models, that the bias lives in the sources, and that Ukrainian sources reduce it. The file must state the gap: the paper uses the market as its reference, so nobody has shown that Polymarket PRICES share the bias. Cover the fact that arbiter maps and media, not ground truth, settle these markets (the ISW edit). Cover local-source propaganda, local traders already being present, insider flow, and single-theatre overfit. Validate with a Hindcast-style replay on 300+ non-Anglosphere markets that tests price plus lambda times tilt. Boundary: generic evidence partitioning is in information-partitioned-delphi-panel.",
+ "sub_variants": [
+  "Two-pipeline tilt (local minus English) as a price adjustment",
+  "K-silo bias-corrected reliability-weighted crowd",
+  "Local primary-source speed leg for resolution-relevant publications"
+ ],
+ "merged_from": [
+  "Source-siloed geopolitics crowd (language- and allegiance-partitioned agents) in the fee-free category",
+  "Source-ecosystem arbitrage: local-language primary-source reading vs an English-headline crowd",
+  "Cross-lingual source arbitrage on non-Anglophone markets"
+ ],
+ "flags": "War and casualty markets carry reputational risk and, in some countries, legal risk. Check sanctions rules for Russia-related markets. Never contact or pressure resolution sources. Insider-trading enforcement attention on geopolitics markets is rising.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2607.20441",
+   "note": "111 Ukraine markets, ~93k predictions. English context was wrong 64-72% of the time. The bias comes from the sources. The market price was the reference."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.14051",
+   "note": "Hindcast: a leak-closed replay. Retrieval hurts where the archive held only speculation."
+  },
+  {
+   "url": "https://docs.polymarket.com/trading/fees",
+   "note": "Geopolitics feeRate is 0, so small tilts are tradable."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=parliamentary%20election&limit_per_type=20&events_status=active",
+   "note": "Russian parliamentary election: $48.1M volume, $5.37M liquidity. Non-English markets have depth."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.17503",
+   "note": "Coverage of Africa and Latin America is driven by settlement legibility and is selective."
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Polymarket",
+   "note": "The ISW map was edited and then reverted around a market deadline. The arbiter settles the market, not the territory."
+  }
+ ],
+ "n": "57",
+ "band": "speculative",
+ "file": "57-cross-lingual-source-silo-tilt.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Source-siloed geopolitics crowd (language- and allegiance-partitioned agents) in the fee-free category",
+   "one_line": "Build agents that can only read one information ecosystem each: English wire news, local-language military or official sources, adversary media, or OSINT feeds. Trade the measured bias of the English-news-conditioned consensus on geopolitics markets, where Polymarket charges no taker fee.",
+   "category": "Information edge",
+   "maturity": "Experimental (the bias was measured on 111 Ukraine-related Polymarket markets in a 2026 paper; hobbyist OSINT-to-Polymarket simulators exist; no verified PnL)",
+   "mechanism": "1) For each geopolitics market, run K silo agents with the same base model and strictly disjoint corpora, partitioned by language and source allegiance.\n2) Record each silo's probability trajectory and the inter-silo spread.\n3) Calibrate each silo's historical bias against resolved markets. The published result is that English-news context pushes territorial-capture predictions the wrong way 64-72% of the time, and Ukrainian military sources reduce the distortion.\n4) Forecast = bias-corrected, reliability-weighted combination of the silos.\n5) If the Polymarket price tracks the English-silo view while better-calibrated local silos disagree, take the local-silo side.\n6) Because geopolitics markets are fee-free, the hurdle is only the spread, so smaller divergences than in other categories are tradeable.",
+   "edge_source": "A systematic bias in the source corpus that most (English-reading) traders and most LLM bots share. Information partitioning keeps the correction from being averaged away.",
+   "why_might_beat_market": "Khandoga et al. show that the bias lives in the source text rather than the model. A model contaminated with the actual outcomes showed the same error rate when it was given English news context. If the marginal Polymarket trader and the marginal LLM bot both read the same English coverage, the price inherits that bias. Honest limit: Polymarket geopolitics traders include OSINT specialists and, per 2026 papers, probable insiders. The bias is documented for one conflict only. Geopolitics markets carry the highest resolution-dispute risk.",
+   "adjacent_grounding": "Computational social science and OSINT:\n- Khandoga et al., 'Belief Propagation in LLM World Models: Measuring Strategic Information Bias with Prediction Markets' (https://arxiv.org/abs/2607.20441, 2026-05-12): 111 Ukraine-related markets, about 93,000 predictions, four models.\n- InfoDelphi, for the partitioning rationale (2607.01661).\n- Lo et al.'s capability paradox, where a shared misinformation environment turns correlated behaviour into a liability (https://arxiv.org/abs/2609.04373, 2026-09-03).\n- Hobby implementation: PrediHermes (WorldOSINT + Polymarket + MiroFish simulation, no accuracy or PnL data) (https://github.com/nativ3ai/hermes-geopolitical-market-sim).\n- Numinous lists an 'Indicia' OSINT feed (X/Twitter, LiveUAMap) for its forecasting miners (https://github.com/numinouslabs/numinous).",
+   "failure_modes": "- Local-language sources have their own propaganda bias. The bias correction is fitted on few resolved events.\n- Translation and transliteration errors.\n- Insider flow dominates these markets (Nechepurenko's information-leakage work on the 2026 Iran cluster, arXiv 2605.02286).\n- Ambiguous resolution rules and UMA disputes.\n- Thin capacity in many geopolitics markets.\n- Ethical optics of trading on war outcomes.",
+   "cheap_validation": "Re-run the Khandoga design on their 111 Ukraine markets plus 100 or more newer geopolitics markets from other theatres, with post-cutoff, date-masked retrieval.\n\nPass if the silo-corrected forecast has positive alpha against the market at n >= 200, and if, where the local and English silos disagree by >= 15 points, the price subsequently moves toward the local silo >= 60% of the time.\n\nFail if the effect exists only for Ukraine territorial markets (single-theatre overfit).",
+   "flags": "Trading on armed-conflict outcomes raises ethical concerns. Some jurisdictions and venues restrict war and assassination markets. Insider-trading enforcement attention on these markets is rising (2026 papers on Polymarket insider cases).",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.20441",
+     "title": "Belief Propagation in LLM World Models: Measuring Strategic Information Bias with Prediction Markets (arXiv)",
+     "date": "2026-05-12",
+     "quality": "paper",
+     "supports": "111 Ukraine-related markets, about 93,000 predictions. English news context biased territorial predictions wrong 64-72% of the time. Ukrainian military sources reduce the distortion. The bias originates in the sources, not the models."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "title": "Polymarket docs - Fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Geopolitical and world-events markets are fee-free (feeRate 0), against 0.04-0.07 elsewhere."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.04373",
+     "title": "Why Better Models Can Create Riskier Systems: Evidence from LLM Agents in Financial Markets (arXiv, Ross, So, De Simone, Pozniak, Lo)",
+     "date": "2026-09-03",
+     "quality": "paper",
+     "supports": "Frontier LLM traders behave in a correlated way, increasingly so with capability. Under a shared misinformation environment that correlation becomes a system-level liability."
+    },
+    {
+     "url": "https://github.com/nativ3ai/hermes-geopolitical-market-sim",
+     "title": "PrediHermes (GitHub)",
+     "date": "2026-09-13",
+     "quality": "self-reported",
+     "supports": "Hobbyist pipeline combining OSINT feeds, Polymarket CLOB discovery and MiroFish multi-agent simulation to compare simulated probabilities with market prices. No accuracy or PnL reported."
+    }
+   ]
+  },
+  {
+   "name": "Source-ecosystem arbitrage: local-language primary-source reading vs an English-headline crowd",
+   "one_line": "For non-Anglophone events, run an LLM pipeline on local-language primary sources (gazettes, court dockets, regional military analysts) and trade where the Polymarket crowd is anchored on biased English coverage - mostly in fee-free geopolitics markets.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) Tag each market with the language/country of its resolving facts and its authoritative primary sources (from the compiled resolution spec). 2) Build per-region retrieval over local-language official and specialist sources; keep English wire coverage as a separate corpus. 3) Elicit two LLM forecasts with the model held fixed: English-only context vs local+specialist context. 4) The signal is the DIFFERENCE between the two (an estimate of ecosystem-induced bias), applied as a tilt to the market price rather than as a standalone forecast; trade only when the tilt exceeds a threshold and a concrete primary-source fact explains it. 5) Also use local primary sources for speed on resolution-relevant publications (official results pages, decrees).",
+   "edge_source": "Textual/informational: systematic bias and lag in the information diet of the marginal trader.",
+   "why_might_beat_market": "Khandoga et al. (111 Ukraine markets, ~93,000 predictions, four models) show English news context systematically biases territorial predictions - wrong 64-72% of the time when pushing toward capture - and that the bias lives in the sources, not the model; adding Ukrainian military-analytical sources reduces it. Geopolitics markets are fee-free on Polymarket, so small tilts are tradable. HONEST CAVEAT: that paper uses the market price as the calibration reference - it shows an LLM fed English news is worse than the market, not that the market shares the bias. Whether Polymarket prices embed English-media bias is untested. Dudley & Magdaleno do show markets underperforming simple statistical baselines in a specialist domain (infectious disease), which supports 'specialist source beats crowd' in niches.",
+   "adjacent_grounding": "Computational social science on media-ecosystem bias; OSINT practice; LLM belief-extraction: https://arxiv.org/abs/2607.20441; leakage-controlled retrieval evaluation showing retrieval hurts when the archive holds only speculation: Hindcast (https://arxiv.org/abs/2607.14051); niche-domain market underperformance: arXiv 2605.11220 (listing only). No Polymarket strategy of this type found.",
+   "failure_modes": "The market may already incorporate local sources via local traders; translation and source-reliability errors; propaganda in local-language sources; few resolved markets per region so validation is slow; LLM forecasts themselves are correlated and weak as standalone signals.",
+   "cheap_validation": "Hindcast-style replay on resolved 2025-2026 geopolitics/elections markets outside the Anglosphere (target n>=300) with a model whose cutoff precedes them: compute tilt = f(local) - f(English); test whether market price + lambda x tilt has lower Brier than market price alone out-of-sample. Pass: Brier improvement >=0.005 with bootstrap CI above zero and positive simulated PnL at zero fees. Fail otherwise - then keep only the 'primary-source speed' component for the resolution-sniping agent.",
+   "flags": "Geopolitics/war markets carry reputational and, in some jurisdictions, legal sensitivity; several 2026 insider cases were in this category.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.20441",
+     "title": "Belief Propagation in LLM World Models: Measuring Strategic Information Bias with Prediction Markets (Khandoga et al.)",
+     "date": "2026-05-12 (announced 2026-07)",
+     "quality": "paper",
+     "supports": "English news context wrong 64-72% when pushing toward territorial capture; bias originates in sources; local specialist sources reduce it."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.14051",
+     "title": "Hindcast: Replaying Prediction Markets to Evaluate LLM Forecasters (Ye et al.)",
+     "date": "2026-07-15",
+     "quality": "paper",
+     "supports": "Leak-closed evaluation protocol; retrieval helps only where the archive discussed the event, hurts where it held speculation."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Polymarket docs - Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Geopolitics category feeRate 0 - fee-free, no maker rebates."
+    }
+   ]
+  },
+  {
+   "name": "Cross-lingual source arbitrage on non-Anglophone markets",
+   "one_line": "Trade markets about non-English-speaking countries using local-language primary sources, exploiting a measured, directional bias in the English-language information that both human traders and LLM bots consume.",
+   "category": "Information edge",
+   "maturity": "Experimental",
+   "mechanism": "1) Tag every Polymarket market by the language of its ground truth (Ukrainian/Russian front-line reports, German Landtag polls, Brazilian court dockets, Korean prosecutors' releases, Arabic state media). 2) For each, run two retrieval pipelines with the same model: English-only context and local-source context (official gazettes, regional outlets, local pollsters, Telegram channels of record); the DIFFERENCE between the two forecasts is the signal, because it isolates source bias from model error. 3) Where the market price sits near the English-context forecast and the local-context forecast disagrees by more than fees+spread, take the local side, sized linearly in the disagreement. 4) Add a latency leg: local-language wire monitors with machine translation for scheduled events (court rulings, election-night regional counts) where English coverage lags. 5) Keep a per-language calibration table; drop languages where the local pipeline does not beat the English one.",
+   "edge_source": "Information-ecosystem bias: English news was wrong 64-72% of the time when it pushed territorial-capture predictions on Ukraine markets, across four model families, and the bias came from the sources not the models.",
+   "why_might_beat_market": "Polymarket's marginal trader and most LLM agents read English. Khandoga et al. show the English corpus is directionally biased on Ukraine territorial questions and that adding Ukrainian military-analytical sources reduces that bias for every clean model. These markets have real depth (Russian parliamentary election: $48.1M volume, $5.4M liquidity; German state-election markets are listed). Honest limits: the paper measures LLM-forecast bias, not market-price bias - it does not show the PRICE is wrong; locals do trade (Polymarket is used heavily in Ukraine, Israel, Korea: 18 Korean users referred to prosecutors over $12.7M in bets per BeInCrypto headline); gains from local sources were 'partial and model-dependent'; E7 found no study of multilingual edge.",
+   "adjacent_grounding": "Khandoga et al., 'Belief Propagation in LLM World Models' (arXiv 2607.20441): 111 Ukraine markets, ~93,000 predictions, 4 models, contaminated-model control. Adegbenro (arXiv 2606.17503): Africa inventory is 'overwhelmingly football', LatAm dominated by Venezuela; legibility and traded value negatively related. Bazyari et al. (arXiv 2605.21521, listing only): breaking-news latency depends on the channel ecosystem; Bluesky/Facebook/YouTube win 24-32% of races. Multilingual entity-relation extraction for European political elites (arXiv 2606.27347, listing only). Computational-social-science analogue: home-bias and local-information advantage in equity markets.",
+   "failure_modes": "Local sources are themselves partisan or state-controlled (choosing which locals to trust is the whole game); machine translation of military/legal jargon; resolution depends on English-language arbiters (ISW map, major media) not on ground truth - the ISW Myrnohrad edit shows the map, not the territory, settles the market; geopolitics markets are fee-free but also where insider flow concentrates; sanctions/legal exposure trading some countries' events.",
+   "cheap_validation": "8-week forward test on all open markets whose ground truth is in Ukrainian, Russian, German, Portuguese, Spanish, Korean or Arabic (expect 150-400 markets). For each, log English-context P, local-context P and market mid weekly. Metric: Brier of (mid) vs (mid shifted 30% toward local-context P). Pass: shifted forecast beats mid with bootstrap CI excluding 0 AND the improvement is concentrated where |local - English| > 10 points. Cost ~$1/market-week. Only then trade, maker-first, $25 clips.",
+   "flags": "War and casualty markets carry reputational and, in some countries, legal risk (DeepState accused Polymarket of misusing its data; calls to ban 'gruesome' war bets). Never contact or pressure resolution sources. Check sanctions rules for Russia-related markets.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.20441",
+     "title": "Belief Propagation in LLM World Models: Measuring Strategic Information Bias with Prediction Markets",
+     "date": "2026-05-12",
+     "quality": "paper",
+     "supports": "English news context wrong 64-72% on territorial-capture pushes; Ukrainian sources reduce bias; bias is in sources, consistent across 4 architectures"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.17503",
+     "title": "What Prediction Markets Can See (Africa and Latin America)",
+     "date": "2026-06-13",
+     "quality": "paper",
+     "supports": "selective, legibility-driven coverage of non-Anglophone regions"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=parliamentary%20election&limit_per_type=20&events_status=active",
+     "title": "Gamma API: Russian parliamentary election event",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "$48.1M volume, $5.37M liquidity, 16 markets - depth exists in non-English political markets"
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "title": "Polymarket - Wikipedia (ISW Myrnohrad incident, sourced to Meduza 2025-12-01)",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "resolution source (ISW map) was edited then reverted around a market deadline: the arbiter, not ground truth, settles"
+    },
+    {
+     "url": "https://www.bing.com/search?q=polymarket+mention+markets+language+model+predict+what+trump+will+say",
+     "title": "Bing result snippet for polymarket.com/breaking",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "snippet lists 'Will SPD win the most seats in the 2026 Mecklenburg-Vorpommern parliamentary elections?' - German state-level markets are listed"
+    }
+   ]
+  }
+ ],
+ "critic_notes": []
+}

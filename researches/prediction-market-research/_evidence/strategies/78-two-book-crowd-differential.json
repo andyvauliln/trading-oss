@@ -1,0 +1,30 @@
+{
+ "slug": "two-book-crowd-differential",
+ "name": "Two-crowd differential: use the Polymarket US versus international price gap as a sentiment index, not an arbitrage",
+ "category": "Cross-venue signal (route to the cross-venue band if no equivalent exists there)",
+ "maturity": "Purely theoretical",
+ "one_line": "Two legally separated crowds price the same events under one brand. Log both books, learn which crowd is better calibrated by category and horizon, and trade only on the venue you can lawfully access.",
+ "scope": "Grounding: the closed-end-fund discount as a sentiment index (Lee, Shleifer, Thaler 1991) and twin-listed shares. Both venues list public market-data endpoints. Steps: match events across the two books. Adjust for rule differences, because the US book settles by exchange determination with a death carve-out at last traded price, while the international book settles through UMA. Compute per-category calibration of each book on resolved events. The signal is the gap times the learned reliability. This is explicitly not an arbitrage, because one controlled group cannot lawfully hold both legs (E9 pack). Unknowns: the size of the overlap outside sports. My arXiv query for lead-lag between the books returned nothing relevant. Validation: 8 weeks of logging and 300+ matched resolved markets.",
+ "why_it_matters": "The E1, E5 and E9 packs all stress that the two books are separate populations: KYC'd US retail and intermediaries on one side, global crypto-native traders on the other. The packs give international at $4.59B and US at $3.82B for August 2026. No entry in this band uses the population difference as information. Partisan and home-team composition effects are testable for free.",
+ "flags": "US persons may not touch the international venue, and entities they control may not either. Polymarket US market data are licensed as 'personal, non-commercial' (E9 pack), so check before systematic collection.",
+ "key_evidence": [
+  {
+   "url": "https://docs.polymarket.us/llms.txt",
+   "note": "Polymarket US docs index, undated. Lists public market-data endpoints for markets, book, BBO, price history, search and the incentives feed."
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Closed-end_fund_puzzle",
+   "note": "Wikipedia, undated. Lee, Shleifer, Thaler 1991: the discount as a noise-trader sentiment index. Zweig 1993 used it to predict."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "78",
+ "band": "speculative",
+ "file": "78-two-book-crowd-differential.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band."
+ ]
+}

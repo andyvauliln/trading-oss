@@ -1,0 +1,498 @@
+{
+ "slug": "internal-agent-prediction-market",
+ "name": "Synthetic crowd with an internal market: LMSR wealth dynamics, wagering and meta-prediction",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "synthetic crowd / internal prediction market",
+ "one_line": "Have heterogeneous agents (different model families and different evidence shards) trade or wager internally so that money-weighted credibility self-calibrates. Add second-order questions that separate 'the market knows something' from 'the market is wrong'. Trade only the gated divergence from Polymarket.",
+ "scope": "Cover three mechanism-design aggregators for an in-house agent crowd. (a) An internal LMSR whose agent bankrolls compound on resolved markets, which makes wealth updates a form of Bayesian model averaging. (b) WALLA-style incentive-compatible wagering, where aggregate stake sets position size. (c) Meta-prediction: each agent reports its own probability, its predicted peer mean and its predicted market price. This enables peer-prediction weighting, a surprisingly-popular correction and a 'knowledgeable dissent' filter. The file's centre is the monoculture constraint: rho = 0.70, ten agents behave like about 1.4 independent forecasters, a 10-agent market scored below a single agent, and persona prompts do not decorrelate. The file must state the obligation to beat a plain logistic aggregator or be dropped. Include N_eff health metrics and kill rules, cost, and a replay on 400+ post-cutoff markets with ablations. Boundaries: evidence-partition design is in information-partitioned-delphi-panel. Blending and gating against the price is in market-anchored-selective-deference. Conversational debate is in adversarial-debate-price-residual.",
+ "sub_variants": [
+  "Cross-model LMSR with bankroll compounding and N_eff kill switch",
+  "WALLA wagering: aggregate stake as position size",
+  "Peer-prediction weighting and surprisingly-popular correction",
+  "Knowledgeable-dissent filter (agents predict the market price but disagree with it)"
+ ],
+ "merged_from": [
+  "Cross-model internal LMSR with wealth dynamics",
+  "Information-partitioned internal prediction market (agents trade instead of talk)",
+  "Internal wagering market: position size from sub-agents' stakes",
+  "Meta-prediction crowd: surprisingly-popular and peer-prediction weighting, plus a 'knowledgeable dissent' filter",
+  "Information-partitioned stakeholder Delphi as the aggregation core",
+  "Information-partitioned Delphi panel (designed evidence asymmetry)",
+  "OSINT sensor swarm with partitioned evidence"
+ ],
+ "flags": "No specific flags. The international venue's geo-restrictions apply to automated trading.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2606.26583",
+   "note": "LLM LMSR: rho=0.70, N_eff ~1.4, a 10-agent market scored 67.6% vs 70.2% for one agent. Cross-model mixing cuts rho to 0.40. Dataset is TruthfulQA, not forecasting."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.04389",
+   "note": "WALLA: incentive-compatible wagering that matches centralised aggregation."
+  },
+  {
+   "url": "https://arxiv.org/abs/2512.05998",
+   "note": "Largest wagers were over 99% correct vs ~74% for minimal bets. Single author, maths and logic tasks."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.18269",
+   "note": "A logistic aggregator over 15 LLMs beats the mean by 23% Brier. The learned signal is model disagreement. The market is still ~2x better."
+  },
+  {
+   "url": "https://arxiv.org/abs/1106.4509",
+   "note": "[pre-2025] Market equilibria implement product-of-experts and mixture-of-experts ensembles."
+  },
+  {
+   "url": "https://arxiv.org/abs/1910.03779",
+   "note": "[pre-2025] Peer-prediction weighting improved Brier on 14 human forecast datasets without ground truth."
+  },
+  {
+   "url": "https://arxiv.org/abs/2603.06801",
+   "note": "Peer prediction inside LLM debate recovers the truth when the initial majority is wrong."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.13038",
+   "note": "Wallet-profile persona injection did not reduce error correlation (r ~0.77)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.01661",
+   "note": "Brier gain of 12-18% from partitioned evidence. The gains vanish without asymmetry. About $12 of API cost."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.30802",
+   "note": "Debate can degrade accuracy, so keep the independent aggregate as a fallback."
+  },
+  {
+   "url": "https://arxiv.org/abs/2603.06801",
+   "note": "Plain debate cannot beat majority voting when errors are correlated."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.03310",
+   "note": "Five coordination configurations on 100 Polymarket markets. Differences do not survive Bonferroni at n=100."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.25958",
+   "note": "PolyGnosis 2.0: a Polymarket plus GDELT OSINT harness. Structural partitioning is mandatory. Consensus bias persists."
+  },
+  {
+   "url": "http://arxiv.org/abs/2604.14199v1",
+   "note": "PolyBench: only 2 of 7 LLMs were profitable. This is the base rate for ungated LLM trading."
+  }
+ ],
+ "absorbed": [
+  {
+   "slug": "information-partitioned-delphi-panel",
+   "name": "Information-partitioned Delphi panel (designed evidence asymmetry)",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "synthetic crowd / internal prediction market",
+   "one_line": "Give each agent a disjoint private slice of the evidence plus a shared public core, and allow only rationale exchange. Diversity then comes from information, not persona adjectives. Use the output as a filter and sizing input.",
+   "scope": "Cover the InfoDelphi design. Documents are routed by BM25 relevance into a public core and private shards. Partitions may be stakeholder or source lenses: legal filings, trade press, local press, on-chain flow. There are one or two rationale rounds. Aggregation is logit-space with confidence weights. Partitioning is kept orthogonal to model family. The key result is a Brier improvement from 0.216 to 0.178 on 375 Polymarket-derived questions. The gain vanishes when all evidence is shared, and the design was never benchmarked against the market price. Present the counter-evidence: debate can re-herd, and learned aggregation still loses to the market on clean questions. Conclude that this is a disagreement and uncertainty signal for other strategies, not standalone alpha. Include the OSINT sensor-swarm variant, where one agent per physical or bureaucratic feed holds private context. Validate by replication with a rho=1.0 ablation and an 8-week forward shadow run. Boundary: the language or allegiance silo whose signal is the difference between silos is in cross-lingual-source-silo-tilt.",
+   "sub_variants": [
+    "BM25 public/private shard routing, 3-5 agents, 2 rounds",
+    "Stakeholder-lens partitions with a learned linear aggregator",
+    "OSINT sensor swarm: one agent per feed, red-team spoof screen"
+   ],
+   "merged_from": [
+    "Information-partitioned stakeholder Delphi as the aggregation core",
+    "Information-partitioned Delphi panel (designed evidence asymmetry)",
+    "OSINT sensor swarm with partitioned evidence"
+   ],
+   "flags": "OSINT variant: use public data only. Anything from officials or contractors is MNPI. Spoofed or planted signals are a risk. Data-feed ToS apply.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.01661",
+     "note": "Brier gain of 12-18% from partitioned evidence. The gains vanish without asymmetry. About $12 of API cost."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "note": "Debate can degrade accuracy, so keep the independent aggregate as a fallback."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.06801",
+     "note": "Plain debate cannot beat majority voting when errors are correlated."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.03310",
+     "note": "Five coordination configurations on 100 Polymarket markets. Differences do not survive Bonferroni at n=100."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.25958",
+     "note": "PolyGnosis 2.0: a Polymarket plus GDELT OSINT harness. Structural partitioning is mandatory. Consensus bias persists."
+    },
+    {
+     "url": "http://arxiv.org/abs/2604.14199v1",
+     "note": "PolyBench: only 2 of 7 LLMs were profitable. This is the base rate for ungated LLM trading."
+    }
+   ]
+  }
+ ],
+ "extra_scope": "MERGED per critic: this file is now the 'diversity-engineered synthetic crowd' (internal market + information-partitioned Delphi panel). Both are bounded by the same constraint (agent correlation rho ~0.70, effective N ~1.4) and need the same ablation harness (rho=1.0 control, plain logistic aggregator, independent-vote arm). Cover both mechanisms in sub-sections; the absorbed entry is under 'absorbed'.",
+ "n": "55",
+ "band": "speculative",
+ "file": "55-internal-agent-prediction-market.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Cross-model internal LMSR with wealth dynamics",
+   "one_line": "Run 8-12 heterogeneous agents (different base models x disjoint retrieval shards) in an internal LMSR. Their bankrolls compound on resolved Polymarket markets, so the internal price becomes a self-weighting forecast. Trade the gated divergence from the real book.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental (lab LLM-LMSR sims and pre-LLM artificial prediction markets exist; no verified operator trades Polymarket on an internal market price)",
+   "mechanism": "1) For each target market, spawn agents that differ in base model family (not persona), in retrieval shard and in knowledge cutoff.\n2) Each agent forms a belief and trades sequentially in an internal LMSR (for example b=100, 3 rounds). It sees the internal price but not the Polymarket price.\n3) Bet size is fractional Kelly on the agent's internal bankroll. Bankrolls are marked to resolution of past Polymarket markets, so persistently better agents gain price impact. In the Storkey sense this is wealth update as Bayesian model averaging.\n4) The closing internal price p_int is compared with the Polymarket mid p_mkt, and fair value = w*p_int + (1-w)*p_mkt with w around 0.3.\n5) Trade only if |fair - mid| exceeds taker fee (feeRate*p*(1-p)) + half-spread + a safety margin. Otherwise post maker quotes skewed toward fair value.\n6) Log the pairwise error correlation rho and N_eff = N/(1+(N-1)rho) as a health metric, and kill the pool when N_eff falls below 2.",
+   "edge_source": "Performance-weighted aggregation of decorrelated machine forecasters. The edge comes from diversity (different models and different evidence), not from the market mechanism itself.",
+   "why_might_beat_market": "It cannot beat a liquid market outright. The best published AI system scores Brier 0.1258 against the market's 0.1106. The realistic claim is that it carries additive information, since a 0.33/0.67 AI/market blend scored 0.106. Wealth dynamics do automatically what a solo team cannot do by hand, which is reweight agents per category as models drift. Honest limit: a simple learned logistic aggregator may match the LMSR. Douven found that logistic regression matched an MLP and beat the mean by 23% Brier. The internal market therefore has to beat logit-averaging of the same agents, or be dropped.",
+   "adjacent_grounding": "Machine learning and mechanism design:\n- Storkey, 'Machine Learning Markets' (arXiv 1106.4509, 2011) [pre-2025, possibly stale], and Storkey/Millin/Geras on isoelastic agents (arXiv 1206.6443, 2012) [pre-2025]: market equilibria implement product-of-experts and mixture-of-experts, and wealth updates implement Bayesian updates.\n- Barbu & Lay, artificial prediction markets for classification (arXiv 1102.1465, 2011) [pre-2025].\n- Begin et al., 'Preference Optimization Drives Monoculture in LLM Prediction Markets' (https://arxiv.org/abs/2606.26583, 2026-06-25): LLM agents in an LMSR with b=100. rho=0.70, N_eff about 1.4, and a 10-agent market (67.6%) did worse than a single agent (70.2%). Cross-model diversity cut rho from 0.68 to 0.40.\n- Chakravorti et al., hybrid human+bot replication markets (https://arxiv.org/abs/2605.27394, 2026-04-19).\n- Aitchison et al., 'Diversity is the Strength of the AI Crowd' (https://arxiv.org/abs/2606.29661, 2026-06-29).",
+   "failure_modes": "- Monoculture: same-lab models, shared news sources and RLHF convergence.\n- In the Begin et al. run, N_eff stayed flat from N=5 to N=40, so adding agents buys nothing.\n- Wealth concentration makes the market one agent's view.\n- Sequential-trading order effects and herding on the internal price.\n- Cost: PolySwarm warns of 'thousands of dollars per day' for 50 personas across hundreds of markets.\n- Latency: minutes per market rules out news-speed trading.\n- Backtest leakage inflates apparent skill (frontier-vs-small gap 35.8% to 8.9% on clean questions in Douven).\n- Monoculture evidence comes from TruthfulQA, not forecasting, so transfer is unproven.",
+   "cheap_validation": "Backtest on 400 or more Polymarket binaries that resolved after the latest training cutoff in the pool, with date-masked retrieval (Hindcast or OracleProto style).\n\nCompare internal-LMSR price, logit-mean of the same agents, a logistic aggregator, and the market mid at the same timestamp.\n\nPass bars:\n(a) rho <= 0.45 and N_eff >= 2.5 with 8-10 agents;\n(b) the LMSR beats the logit-mean of the same agents by >= 2% Brier. If not, keep the agents and drop the market mechanism;\n(c) the blended forecast has a positive Alpha score against the market, with a bootstrap 95% CI excluding 0 at n >= 350 (Foresight Arena power analysis).\n\nBudget, my estimate rather than a sourced figure: InfoDelphi reports $12 per 375 questions on a mini model with 3 agents x 2 rounds. Expect 10-50x that with frontier models and 10 agents.",
+   "flags": "None specific. Automated trading on the international Polymarket venue is subject to geo-restrictions and ToS. Polymarket US is a separate CFTC-regulated venue.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets (arXiv)",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "LLM agents in an LMSR (b=100): rho=0.70, N_eff about 1.4. The 10-agent market (67.6%) did worse than a single agent (70.2%). Cross-model diversity cut rho from 0.68 to 0.40; role diversity rho 0.443. Dataset is TruthfulQA, not live markets."
+    },
+    {
+     "url": "https://arxiv.org/abs/2511.07678",
+     "title": "AIA Forecaster: Technical Report (arXiv)",
+     "date": "2025-11-10",
+     "quality": "paper",
+     "supports": "On 1,610 liquid-market questions: AI Brier 0.1258, market 0.1106, blend 0.106 with AI weight 0.33 [0.12, 0.47]. Averaging 10 runs is 'absolutely essential'."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "title": "Wisdom of LLM Crowds: Aggregation and Contamination (arXiv, Douven)",
+     "date": "2026-05-26",
+     "quality": "paper",
+     "supports": "15 LLMs on 254 Manifold questions. Logistic regression aggregator beat the mean by 23% Brier and matched an MLP. The recovered signal is pure model disagreement. Market Brier 0.098 is about 2x better than the LLM mean. Contamination gap 35.8% to 8.9%."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.29661",
+     "title": "Diversity is the Strength of the AI Crowd (arXiv, ICML 2026 workshop)",
+     "date": "2026-06-29",
+     "quality": "paper",
+     "supports": "On the Metaculus AI Benchmark, the best ensembles combine accurate but decorrelated models (Grok 4 contributes disproportionately). More samples from similar models add little."
+    },
+    {
+     "url": "https://arxiv.org/abs/1106.4509",
+     "title": "Machine Learning Markets (arXiv, Storkey) [pre-2025, possibly stale]",
+     "date": "2011-06-22",
+     "quality": "paper",
+     "supports": "Prediction-market equilibria implement product-of-experts and mixture-of-experts ensembles."
+    },
+    {
+     "url": "https://github.com/sneg55/SimSwarm",
+     "title": "SimSwarm (GitHub)",
+     "date": "2026-07-25",
+     "quality": "self-reported",
+     "supports": "Hobby project where LLM agents 'debate, trade, and publish' in a simulated ecosystem with internal prediction-market data. No Polymarket link and no validation."
+    }
+   ]
+  },
+  {
+   "name": "Information-partitioned internal prediction market (agents trade instead of talk)",
+   "one_line": "Replace debate with an internal LMSR market whose agents differ by base model AND by which evidence partition they may see, bankrolls evolving with realised scores; trade externally only when the internal price and Polymarket diverge.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) K agents = cross product of model families and evidence partitions (wire news, primary documents, quantitative data, social, base-rate-only, contrarian red team). (2) Each trades an internal LMSR market on the question with a bankroll; bankrolls are updated by realised proper-score PnL after resolution (multiplicative-weights / Bayesian model averaging over time). (3) Internal price = panel forecast; bet size of each agent is logged as a confidence signal. (4) External order when |internal - Polymarket| exceeds costs, scaled by internal depth and by measured effective number of independent agents N_eff. (5) Agents whose errors correlate > 0.6 with a richer agent are retired.",
+   "edge_source": "Self-calibrating aggregation with money-weighted credibility and enforced information diversity; avoids conformity dynamics of conversational debate.",
+   "why_might_beat_market": "Market-style aggregation makes weights adapt automatically and bet size is informative (in a simulated betting framework 'whale' bets of 40k+ coins were correct ~99% of the time). Honest limits, which are severe: Begin et al. show LLM-only markets are monocultural - rho=0.70, ten agents ~ 1.4 effective forecasters, flat from N=5 to 40, and the 10-agent market (67.6%) was WORSE than one standalone agent (70.2%); only cross-model diversity helped (rho 0.68->0.40). Nous shows persona/profile injection does not decorrelate (r~0.77). Schneider found extra distributed context did not improve accuracy. So unless N_eff is demonstrably > 3 this collapses to a plain learned linear aggregator, which Douven shows is as good as a neural one.",
+   "adjacent_grounding": "Agent-based prediction-market research: Preference Optimization Drives Monoculture in LLM Prediction Markets https://arxiv.org/abs/2606.26583 ; Going All-In on LLM Accuracy (fake prediction markets) https://arxiv.org/abs/2512.05998 ; Nous https://arxiv.org/abs/2606.13038 ; Diversity is the Strength of the AI Crowd https://arxiv.org/abs/2606.29661 ; Wisdom of LLM Crowds https://arxiv.org/abs/2607.18269 ; proper betting https://arxiv.org/abs/2607.06166 ; coordination configurations on 100 Polymarket markets https://arxiv.org/abs/2605.03310 . Not found trading on Polymarket/Kalshi.",
+   "failure_modes": "Monoculture; slow bankroll learning (few resolutions per month per category); internal-market gaming by verbose agents; cost scales with K; information partitions starve agents of decisive evidence.",
+   "cheap_validation": "On 300 resolved questions (post-cutoff) measure pairwise error correlation and N_eff = K/(1+(K-1)rho). PASS: rho <= 0.4 (N_eff >= 3 at K=8) AND internal-market Brier < best single agent AND <= logistic-regression aggregator; FAIL -> ship the logistic aggregator instead. Cost estimate: 300 x K calls, a few hundred dollars.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "rho=0.70, N_eff ~1.4 for 10 agents, market accuracy 67.6% < single agent 70.2%; cross-model diversity lowers rho 0.68->0.40; DPO is the causal driver."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.13038",
+     "title": "Nous: An Attempt to Extract and Inject the Cognition Behind Prediction-Market Behavior",
+     "date": "2026-06-11",
+     "quality": "paper",
+     "supports": "Behavioural profiles from 100 Polymarket wallets injected into prompts failed to reduce ensemble error correlation (r~0.77) or improve Brier."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.29661",
+     "title": "Diversity is the Strength of the AI Crowd",
+     "date": "2026-06-29",
+     "quality": "paper",
+     "supports": "On Metaculus AI Benchmark questions the best ensembles combine accurate but decorrelated model families (e.g. Grok 4 contributes disproportionately)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2512.05998",
+     "title": "Going All-In on LLM Accuracy: Fake Prediction Markets, Real Confidence Signals",
+     "date": "2025-12-01",
+     "quality": "paper",
+     "supports": "In a simulated betting framework bet size is a usable confidence signal (whale bets ~99% correct)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.03310",
+     "title": "Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems",
+     "date": "2026-05-05",
+     "quality": "paper",
+     "supports": "Five coordination configurations on 100 post-cutoff Polymarket markets with Murphy decomposition; differences do not survive Bonferroni at n=100 - shows how large a test must be."
+    }
+   ]
+  },
+  {
+   "name": "Internal wagering market: position size from sub-agents' stakes",
+   "one_line": "Sub-agents report a probability plus a wager of internal credits under an incentive-compatible mechanism; wager-weighted consensus versus the Polymarket price is the signal, aggregate stake is the size, and evolving balances are the capital allocator and the culling rule.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Each agent holds an internal credit balance. (2) Per market it submits a probability and a wager without seeing others' submissions; a WALLA-style payout with a leave-one-out baseline makes truthful reporting a dominant strategy and makes the optimal wager increase with the agent's expected advantage. (3) The wager-weighted probability minus the executable price gives direction; total credits wagered, mapped through the proper-betting rule, gives real position size. (4) Balances update on resolution, so agents that know when they do not know survive by betting small, and agents with real niche information accumulate influence exactly where they have it. (5) Wager policies are learned, so the mechanism improves as history accumulates.",
+   "edge_source": "Per-question, endogenous confidence. Outcome-weighted averaging (Hedge) knows which agent is good on average; a wager reveals which agent has information on this particular market.",
+   "why_might_beat_market": "Stated LLM confidence is nearly useless, wagered confidence is not: in a betting frame, the largest wagers were over 99% correct versus about 74% for minimal bets, and five of seven LLMs lost money on Polymarket data despite uniformly high stated confidence. WALLA matches centralised aggregation while remaining decentralised and incentive compatible. Since sizing is the dominant PnL lever, a legible confidence signal is worth more than a slightly better point forecast. Honest limit: it fixes an internal aggregation failure, not a market one, and with correlated agents an internal market reproduces monoculture (ten-agent LLM market 67.6% vs single agent 70.2%).",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: nothing found. Adjacent field: wagering mechanisms and LLM aggregation (WALLA, Luo, Pennock, Wang 2607.04389), betting frames as LLM confidence signals (Todasco 2512.05998), LLM prediction-market monoculture (Begin et al. 2606.26583), online learning in betting markets - profit vs elicitation trade-off (2406.04062 [pre-2025, possibly stale]).",
+   "failure_modes": "Wealth concentration on a lucky agent; herding if any information about others' wagers leaks; LLM wagers poorly calibrated for rare events; small-sample balance dynamics; extra tokens per question; wager policies overfit to the replay set.",
+   "cheap_validation": "Replay on >= 500 resolved post-cutoff markets comparing equal-weight, Hedge-weighted and wager-weighted pools. Metrics: Brier, risk-coverage curve of wager size vs correctness, and proper-betting PnL. Pass: wager size beats stated confidence on area under the risk-coverage curve by >= 10% and wager-weighted PnL >= Hedge-weighted. Fail: wagers carry no rank information about correctness.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.04389",
+     "title": "Decentralized Aggregation of LLM Predictions via Wagering Mechanisms",
+     "date": "2026-07-05",
+     "quality": "paper",
+     "supports": "WALLA: dominant-strategy incentive compatible, advantage-aligned wagers, matches centralised aggregation on QA and forecasting benchmarks"
+    },
+    {
+     "url": "https://arxiv.org/abs/2512.05998",
+     "title": "Going All-In on LLM Accuracy: Fake Prediction Markets, Real Confidence Signals",
+     "date": "2025-12-01",
+     "quality": "paper",
+     "supports": "Large wagers >99% accurate vs ~74% for minimal bets; accuracy gain itself weak (81.5% vs 79.1%, p = .089); single author, maths/logic tasks"
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.14199",
+     "title": "PolyBench",
+     "date": "2026-04-03",
+     "quality": "paper",
+     "supports": "38,666 Polymarket markets, 36,165 predictions: only 2 of 7 LLMs profitable (+17.6%, +6.2% CWR); high stated confidence does not translate into profit"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "Internal LLM markets underperform a single agent when members are correlated"
+    },
+    {
+     "url": "https://arxiv.org/html/2607.06166v1",
+     "title": "When do prophets profit in prediction markets?",
+     "date": "2026-07-07",
+     "quality": "paper",
+     "supports": "Sizing rule dominates: proper betting vs Kelly on the same forecasts"
+    }
+   ]
+  },
+  {
+   "name": "Meta-prediction crowd: surprisingly-popular and peer-prediction weighting, plus a 'knowledgeable dissent' filter",
+   "one_line": "Ask every agent for three numbers: its own probability, its prediction of the other agents' mean, and its prediction of the Polymarket price. Use the second-order answers to find minority-truth signals and to tell 'the market knows something' apart from 'the market is wrong'.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical on Polymarket and Kalshi (nothing found). Experimental elsewhere: peer-prediction aggregation on human forecast datasets, and surprisingly-popular/peer prediction inside LLM debate.",
+   "mechanism": "1) Information-partitioned agents each report p_own, p_peers (expected crowd mean) and p_mkt_hat (expected Polymarket mid). They do not see the live price.\n2) Weight agents by peer-prediction score, meaning how well they predict others. This works as an expertise proxy without ground truth, as in Wang-Liu-Chen.\n3) Apply a surprisingly-popular-style correction: shift the aggregate toward the side whose actual support exceeds its predicted support.\n4) Classify the divergence from the market.\n   (i) Agents predict the market price accurately (|p_mkt_hat - p_mkt| <= 3 points) yet disagree with it (|p_own - p_mkt| >= 10 points). This is knowledgeable dissent, a tradeable candidate.\n   (ii) Agents mispredict the market itself. The market contains information or flow the crowd cannot see, so defer and do not trade.\n5) Trade class (i) only, sized by quarter-Kelly on the shrunk edge.",
+   "edge_source": "Second-order beliefs carry information that first-order averaging discards. The specific failure targeted is a confidently wrong correlated majority, in the crowd or in the market.",
+   "why_might_beat_market": "Surprisingly-popular logic recovers the truth when the minority holds the key fact and knows the majority does not. In markets this corresponds to a stale narrative price. The market-prediction check is a cheap detector of insider or private-flow information. If well-informed public-information agents cannot explain the price, informed flow is more likely the cause than mispricing. Honest limit: LLM agents' predictions about each other may simply reflect shared training rather than private signals. No study shows surprisingly-popular aggregation improving LLM forecasting of real events.",
+   "adjacent_grounding": "Information elicitation and peer prediction:\n- Wang, Liu & Chen, 'Forecast Aggregation via Peer Prediction' (https://arxiv.org/abs/1910.03779, 2019, rev. 2022) [pre-2025]: a peer-prediction-scored expertise weighting gave 'significant and consistent' Brier and log-score gains on 14 human forecast datasets without historical performance data.\n- Luo & Liu, 'Machine Truth Serum' (https://arxiv.org/abs/1909.13004, 2019) [pre-2025]: Bayesian Truth Serum and surprisingly-popular voting applied to classifier ensembles beat majority vote when the majority is wrong.\n- Liu et al., AceMAD (https://arxiv.org/abs/2603.06801, 2026-03-06): agents predict their peers' belief distributions, and truth-holders anticipate the crowd's misconception. This recovers sparse truth when the initial majority is wrong.\n- Han et al., 'The Art of Two-Round Voting' with generative-AI voters (https://arxiv.org/abs/2505.10377, 2025-05-15).\n- Hosseini et al., surprisingly-popular voting and SP-Rank (arXiv 2406.00870; 2601.05253).\n- Qiu et al., peer prediction for LLM truthfulness up to 405B parameters (arXiv 2601.20299, 2026-01-28).",
+   "failure_modes": "- LLM peer predictions are near-identical across agents (monoculture), which gives a degenerate surprisingly-popular signal.\n- No private signals means no theory guarantee.\n- Agents may have memorised typical market prices.\n- The three-number elicitation triples token cost.\n- The rule 'the market knows something' can also mean the market is manipulated. Ibrahim & Zaki estimate $0.7-1.0M to move a prominent market 5 points.\n- Small effect sizes need n > 350.",
+   "cheap_validation": "This adds three fields to the same backtest harness as the other ideas at almost no extra cost.\n\nPass bars:\n(a) the peer-prediction-weighted aggregate beats the logit-mean of the same agents by >= 3% Brier (bootstrap CI excluding 0);\n(b) the knowledgeable-dissent subset (n >= 150) shows positive alpha against the market, while the complement shows alpha <= 0. That monotonic split is the real test.\n\nFail if p_peers has cross-agent sd < 2 points, which means there is no second-order information.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/1910.03779",
+     "title": "Forecast Aggregation via Peer Prediction (arXiv) [pre-2025, possibly stale]",
+     "date": "2019-10-09",
+     "quality": "paper",
+     "supports": "Peer-prediction scores identify expert forecasters without ground truth and improve aggregate Brier and log score on 14 human forecast datasets."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.06801",
+     "title": "Breaking the Martingale Curse: Multi-Agent Debate via Asymmetric Cognitive Potential Energy (arXiv)",
+     "date": "2026-03-06",
+     "quality": "paper",
+     "supports": "A peer-prediction mechanism inside LLM debate recovers the truth when initial majorities are wrong. Plain debate cannot beat majority vote."
+    },
+    {
+     "url": "https://arxiv.org/abs/1909.13004",
+     "title": "Machine Truth Serum (arXiv) [pre-2025, possibly stale]",
+     "date": "2019-09-28",
+     "quality": "paper",
+     "supports": "Surprisingly-popular logic applied to ML ensembles outperforms majority voting when the minority is right."
+    },
+    {
+     "url": "https://arxiv.org/abs/2505.10377",
+     "title": "The Art of Two-Round Voting (arXiv)",
+     "date": "2025-05-15",
+     "quality": "paper",
+     "supports": "The surprisingly-popular strategy arises as a natural equilibrium. Generative-AI voter experiments show two-round (poll, then vote) mechanisms reach the correct outcome more often under some conditions."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.06005",
+     "title": "Price Dislocations, News Citations, and Epistemic Leverage on Polymarket (arXiv)",
+     "date": "2026-09-05",
+     "quality": "paper",
+     "supports": "44,976 price dislocations of >= 5 points from concentrated one-sided trading in 173.7M trades. It costs about $0.7-1.0M to move a prominent market 5 points. So 'the market disagrees with the crowd' can be flow, not information."
+    }
+   ]
+  },
+  {
+   "name": "Information-partitioned stakeholder Delphi as the aggregation core",
+   "one_line": "Each agent is a stakeholder class with an exclusive evidence partition, replacing generic personas. Deliberation is kept only where it measurably helps. The output is used as a trade filter.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "1. For each market, route retrieved evidence into private partitions by stakeholder lens: local-language press, legal filings, trade press, official statements, market and on-chain flow.\n2. Add a small shared public set.\n3. Each stakeholder agent forecasts independently with a rationale.\n4. Run one or two rationale-exchange rounds. Keep the independent aggregate as a fallback.\n5. Combine with confidence weights and a learned linear aggregator. Use inter-agent disagreement as an uncertainty signal.\n6. Blend with the market price. Trade only when disagreement is low and the gap to market exceeds the fee plus 2 sigma of historical model error.\n7. Log everything for calibration.",
+   "edge_source": "Real diversity of information, from sources the predominantly English-speaking crowd under-reads. This replaces the fake diversity of persona adjectives.",
+   "why_might_beat_market": "Supporting evidence:\n- InfoDelphi reports a 12-18% Brier improvement over the strongest baselines on 375 Polymarket-derived questions. Removing the information asymmetry eliminates most of the gain. Identical-evidence swarms just herd.\n\nCounter-evidence:\n- Kota 2026: deliberation (about 76%) underperformed independent aggregation (83.43%) because confidently wrong models flipped correct ones. Error correlations were 0.53-0.69.\n- Douven 2026: even learned aggregation of 15 LLMs stayed substantially below market accuracy on clean post-cutoff questions.\n- PolyBench: only 2 of 7 models had positive returns.\n\nConclusion: this is a filter and sizing input for other strategies. It is not standalone alpha.",
+   "adjacent_grounding": "Multi-agent LLM forecasting:\n- InfoDelphi and PolyGym (https://arxiv.org/abs/2607.01661).\n- PolySwarm, a 50-persona Polymarket swarm (https://arxiv.org/abs/2604.03888).\n- PolyGnosis 2.0 (arXiv 2605.25958).\n- Wisdom of LLM Crowds (https://arxiv.org/abs/2607.18269).\n- Kota, multi-agent oracle (https://arxiv.org/abs/2605.30802).\n- Wisdom of the Silicon Crowd (arXiv 2402.19379) [pre-2025, possibly stale].\n- ForecastBench (arXiv 2409.19839) [pre-2025, possibly stale]. At that date, experts beat the top LLM with p<0.001.\n- Prophet Arena (arXiv 2510.17638).\n- Polymarket/agents, the official repo, 3.8k stars, last pushed 2024 [pre-2025, possibly stale].",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.01661",
+     "title": "Diverse Evidence, Better Forecasts: Multi-Agent Deliberation Under Information Asymmetry",
+     "date": "2026-07-02",
+     "quality": "paper",
+     "supports": "A 12-18% Brier and 4-8pp accuracy gain on 375 prediction-market questions. The gains vanish without information asymmetry."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.03888",
+     "title": "PolySwarm: A Multi-Agent LLM Framework for Prediction Market Trading and Latency Arbitrage",
+     "date": "2026-04-04",
+     "quality": "paper",
+     "supports": "A 50-persona swarm on Polymarket with Bayesian blending against the market price and quarter-Kelly sizing. The abstract claims better calibration than single models and gives no numbers."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "title": "Wisdom of LLM Crowds: Aggregation and Contamination in Language Model Ensembles",
+     "date": "2026-05-26",
+     "quality": "paper",
+     "supports": "15 LLMs, 254 market questions. Contamination shrank the apparent capability gap from 35.8% to 8.9%. LLMs remained substantially less accurate than the market even at the model's cutoff."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "title": "Design and Evaluation of Multi-Agent AI Oracle Systems for Prediction Market Resolution",
+     "date": "2026-05-29",
+     "quality": "paper",
+     "supports": "Independent aggregation 83.43% against deliberative consensus about 76%. Error correlations of 0.529-0.689 cap ensemble gains."
+    },
+    {
+     "url": "http://arxiv.org/abs/2604.14199v1",
+     "title": "PolyBench",
+     "date": "2026-04-03",
+     "quality": "paper",
+     "supports": "38,666 Polymarket snapshots. Only 2 of 7 LLMs had positive returns (17.6% and 6.2%)."
+    },
+    {
+     "url": "http://arxiv.org/abs/2510.17638v2",
+     "title": "LLM-as-a-Prophet: Prophet Arena",
+     "date": "2025-10-20",
+     "quality": "paper",
+     "supports": "Live evaluation. Small calibration errors. Information aggregation is slower than markets."
+    }
+   ],
+   "failure_modes": "- Correlated errors across models.\n- Debate flipping correct answers.\n- Contamination-inflated backtests.\n- Retrieval leakage of post-resolution text.\n- Cost scales with agents times rounds times markets.\n- Latency makes this useless for fast news.",
+   "cheap_validation": "- Shadow-run on every new Polymarket market in 3 categories for 8 weeks. This is forward-only, so leakage is impossible.\n- Log three forecasts at T+24h after listing: the independent aggregate, the post-deliberation aggregate, and the market mid.\n- Pass: a positive Brier skill score against the market on the low-disagreement subset with n of at least 150, AND post-deliberation no worse than independent.\n- If deliberation is worse, drop the rounds and halve the cost.",
+   "flags": ""
+  },
+  {
+   "name": "Information-partitioned Delphi panel (designed evidence asymmetry)",
+   "one_line": "Give each agent a disjoint private slice of the retrieved evidence plus a shared public core. Run 2 rounds of rationale exchange. This mimics dispersed private information, not personas.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental (evaluated on Polymarket-derived questions in a 2026 paper; no evidence of live trading)",
+   "mechanism": "1) Retrieve N documents for the market question.\n2) Route by BM25 relevance. The top 50% form a shared public pool. The remainder are dealt round-robin into disjoint private shards, one per agent. Use 3-5 agents and a different base model each where possible.\n3) Round 1: independent forecasts with rationales.\n4) Round 2: agents read the others' rationales (not just their numbers) and revise. This is the only channel through which private evidence can travel.\n5) Aggregate with confidence weights in logit space.\n6) Shrink toward the Polymarket mid (w around 0.3) and trade, or skew maker quotes, when the residual edge exceeds fees.\n7) Keep partitioning orthogonal to model choice so the two decorrelation sources stack.",
+   "edge_source": "The aggregation failure exploited is herding when every agent sees identical evidence. Partitioning forces error decorrelation and makes deliberation informative.",
+   "why_might_beat_market": "Human markets aggregate dispersed private signals, and an LLM panel normally has none. This design creates dispersion synthetically. It therefore fixes the specific reason multi-agent LLM forecasting collapses to a single-agent forecast. It does not give the panel information that humans lack. The edge over the market remains the blend-level additive effect, mostly early in a market's life and in thin markets. Against a liquid late-stage market it should lose.",
+   "adjacent_grounding": "Multi-agent LLM research and the Delphi method:\n- Li et al., InfoDelphi (https://arxiv.org/abs/2607.01661, 2026-07-02). On 375 PolyGym questions with resolution dates on or after 2025-09-01: InfoDelphi Brier 0.178 / 77.9% accuracy; chain-of-thought single agent 0.216 / 69.9%; homogeneous debate 0.202. With everything public (rho=1.0) it degrades to 0.193. Without rationale sharing it scores 0.211. Inter-agent variance collapses 90-92% when evidence is all-public. Cost was about $12 per 375 questions on GPT-5.4-mini.\n- Bertolotti & Mari, LLM-based Delphi study (arXiv 2502.21092, 2025-02-28).\n- Nechepurenko & Shuvalov, coordination configurations on 100 post-cutoff Polymarket markets (https://arxiv.org/abs/2605.03310, 2026-05-05).",
+   "failure_modes": "- InfoDelphi did not benchmark against the market price. Beating LLM baselines is not the same as beating Polymarket.\n- Retrieval may surface too few documents to partition meaningfully on thin topics.\n- Rationale exchange can re-herd (the 'martingale curse' of debate, arXiv 2603.06801).\n- Confidently wrong agents flip correct ones. Debate lowered accuracy to about 76% against 83.43% for an independent vote in Kota (2605.30802).\n- Retrieval leakage in backtests.",
+   "cheap_validation": "Replicate on 400 or more post-cutoff Polymarket markets with timestamp-locked retrieval.\n\nPass bars:\n(a) at least 10% Brier improvement over the same model as a single agent;\n(b) the rho=1.0 ablation loses most of the gain (sanity check);\n(c) the market blend has positive alpha with a CI excluding 0 at n >= 350.\n\nFail if the gain disappears under date-masked retrieval. Cost is tens of dollars on mini models.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.01661",
+     "title": "Diverse Evidence, Better Forecasts: Multi-Agent Deliberation Under Information Asymmetry (arXiv)",
+     "date": "2026-07-02",
+     "quality": "paper",
+     "supports": "12-18% Brier and 4-8pp accuracy gain from partitioned evidence on 375 prediction-market questions. Removing the asymmetry eliminates most deliberation gains. About $12 total API cost."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "title": "Design and Evaluation of Multi-Agent AI Oracle Systems for Prediction Market Resolution (arXiv)",
+     "date": "2026-05-29",
+     "quality": "paper",
+     "supports": "On 1,189 KalshiBench questions, debate degraded accuracy to about 76% against 83.43% for independent confidence-weighted voting. Cross-model error correlations were 0.529-0.689."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.06801",
+     "title": "Breaking the Martingale Curse: Multi-Agent Debate (arXiv)",
+     "date": "2026-03-06",
+     "quality": "paper",
+     "supports": "Standard multi-agent debate cannot improve belief correctness beyond majority voting when errors are correlated."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.03310",
+     "title": "Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems (arXiv)",
+     "date": "2026-05-05",
+     "quality": "paper",
+     "supports": "Five coordination configurations on 100 post-cutoff Polymarket markets. Pairwise differences did not survive Bonferroni correction at n=100, a warning on sample size."
+    }
+   ]
+  },
+  {
+   "name": "OSINT sensor swarm with partitioned evidence",
+   "one_line": "Many narrow agents each watch one physical-world or bureaucratic signal (flights, ships, dockets, gazettes, NOTAMs, outage maps) and deliberate under enforced information asymmetry to update geopolitical and regulatory markets.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "1) Map each target market to observable precursors: ADS-B patterns of government/tanker aircraft, AIS gaps, NOTAM/airspace closures, embassy advisories, court dockets (PACER/RSS), Federal Register and foreign gazettes, procurement notices, satellite-derived indices where affordable, even the 'Pentagon pizza' proxies. 2) One sensor agent per feed with its own anomaly model and base rate; agents do NOT share raw context. 3) Aggregate InfoDelphi-style: each agent brings its private evidence to a deliberation round; this designed asymmetry produced 12-18% Brier gains on 375 market questions and the gains vanished when all agents saw everything. 4) A red-team agent screens for planted or spoofed signals (Polymarket's own AI context cited fabricated articles per evidence pack E7, not re-fetched). 5) Output feeds (a) a fair-value shift for the LP bot in fee-free geopolitics markets and (b) alerts for human confirmation before any taker trade.",
+   "edge_source": "Breadth and persistence of monitoring across dull primary feeds; evidence diversity that multi-agent systems otherwise lack.",
+   "why_might_beat_market": "Geopolitical markets are fee-free, deep and move on physical events that leave public traces minutes to days ahead; retail attention is episodic while agents can watch 200 feeds continuously. Multi-agent forecasting only helps when agents hold different evidence, which a sensor architecture gives by construction. Honest limits: the largest documented winners in these markets were insiders, not OSINT (Maduro raid, Iran strikes, Israeli officers indicted); a PolyGnosis-type academic system reports architecture lessons, not PnL; the '$80k pizza-bot' story is a headline from an exchange blog (unverified); OSINT signals have terrible base rates (most tanker surges are exercises).",
+   "adjacent_grounding": "Li et al., InfoDelphi (arXiv 2607.01661): partitioned public/private evidence, +12-18% Brier, +4-8 points accuracy on PolyGym (375 questions); removing asymmetry kills the gain. Wang et al., PolyGnosis 2.0 (arXiv 2605.25958): multi-agent synthesis of Polymarket anomalies with GDELT flows, 'perspective mismatches' as signals; unconstrained reflection causes logical drift. Khan et al. debate-with-asymmetric-information results (evidence pack E8, not re-fetched). US Naval Institute Proceedings ran 'Prediction Markets Could Be a Valuable OSINT Tool' (2026-06-16, headline only) - the reverse direction. Wargaming caution: LLMs are escalation-biased (E8, not re-fetched), so the aggregator will over-price conflict unless calibrated.",
+   "failure_modes": "False positives and alert fatigue; adversaries and pranksters spoof signals once it is known traders watch them; data-source ToS and cost (commercial ADS-B/AIS/satellite feeds); latency versus Telegram/X humans; trading just before an insider-driven move and being flagged as suspicious; resolution is decided by media/arbiters, not by the sensor reading.",
+   "cheap_validation": "Backfill is leak-free here because sensor data are timestamped and non-textual: take 12 months of free ADS-B/NOTAM/docket feeds, define 5 anomaly detectors, and event-study Polymarket prices around detector firings (own book logs). Metric: mean signed price move in the following 1h/24h and hit rate of direction, versus placebo firing times. Pass: >=2 detectors with 24h directional hit rate >=58% over >=50 firings each and move > spread. Then 6-week paper trade with human-in-the-loop confirmation.",
+   "flags": "Only public data; anything obtained from officials, staff or contractors is MNPI (three-prong insider rule in ToS and CFTC reach, per evidence pack E9, not re-fetched). Never touch or pressure data sources (ISW edit; alleged French weather-station tampering; journalist harassment in Mar 2026 - all in Wikipedia's Polymarket article). War/death markets carry reputational risk.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.01661",
+     "title": "Diverse Evidence, Better Forecasts: Multi-Agent Deliberation Under Information Asymmetry",
+     "date": "2026-07-02",
+     "quality": "paper",
+     "supports": "designed information asymmetry: +12-18% Brier on 375 prediction-market questions; gains vanish without asymmetry"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.25958",
+     "title": "PolyGnosis 2.0: Agentic Harness Engineering for Polymarket and OSINT Insight Extraction",
+     "date": "2026-05-25",
+     "quality": "paper",
+     "supports": "someone is building Polymarket+GDELT OSINT agents; structural partitioning mandatory; consensus bias persists (arXiv listing abstract)"
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=Polymarket+OSINT+OR+%22flight+tracking%22+OR+%22pizza%22+OR+%22satellite%22+OR+%22ISW+map%22+traders&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News RSS listing (headline only): 'Pentagon Pizza Index, Prediction Markets Tipped Investors On Iran Strikes' (Investor's Business Daily 2026-03-02); 'A trader made a profit of $80,000 on Polymarket by using a pizza order monitoring bot' (Bitget 2026-01-04); 'How I built a Pentagon level setup to trade geopolitical markets on Polymarket' (DataDrivenInvestor 2026-04-09); 'Prediction Markets Could Be a Valuable OSINT Tool' (U.S. Naval Institute 2026-06-16)",
+     "date": "2026-01 to 2026-06",
+     "quality": "self-reported",
+     "supports": "traders already run OSINT-proxy bots; profit claims unverified (articles not fetched)"
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "title": "Polymarket - Wikipedia",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "insider cases dominate geopolitical wins (Venezuela soldier $400k+, Israeli officers $244k/$46k); ISW map edit; journalist harassment; alleged weather-data tampering"
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "title": "Polymarket fees",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Geopolitics feeRate 0 - taker entries are free, so alert-driven taking is viable there"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "MERGE internal-agent-prediction-market and information-partitioned-delphi-panel into one 'diversity-engineered synthetic crowd' file. Both are bounded by the same constraint: rho is about 0.70 and N_eff about 1.4. Both need the same ablation harness, meaning an rho=1.0 control, a plain logistic aggregator and an independent-vote arm. Both feed the stacker and neither trades alone. The Delphi entry itself concludes 'not standalone alpha', rests on one paper and was never benchmarked against the market price. The owner's seed 'synthetic crowd / internal prediction market' stays covered.",
+  "information-partitioned-delphi-panel: it rests on a single paper (Brier 0.216 to 0.178 on 375 questions) that was never benchmarked against the market price. The gain vanishes once evidence is shared. The entry concludes it is 'a disagreement and uncertainty signal for other strategies, not standalone alpha'. Fold it into the synthetic-crowd file."
+ ]
+}

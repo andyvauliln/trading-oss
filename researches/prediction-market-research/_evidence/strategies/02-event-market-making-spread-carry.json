@@ -1,0 +1,283 @@
+{
+ "slug": "event-market-making-spread-carry",
+ "name": "Event-market making: spread capture vs settlement carry, rebate wedge and taker-delay last look",
+ "category": "Market-making",
+ "maturity": "Established",
+ "seed_category": "liquidity provision / market making - true spread capture",
+ "one_line": "Two-sided quoting across many event markets where on-chain evidence says the rent is mostly settlement carry and selection, helped by the maker rebate, taker-fee wedge and matching delays.",
+ "scope": "Cover the professional inventory business across politics/culture/tech/long-tail markets: who the ~800 bot accounts and institutional entrants (Wintermute etc.) are, PnL decomposition (91.4% of persistent makers' profit at settlement, median effective half-spread ~0, ~32 effective makers), role switching by skilled wallets, merge-based exits, toxicity/regime switching (poly-maker reference design), deterministic maker rebate per fill (0.19-0.35c/share at 50c), the taker-fee wedge, and venue matching delays (sports 1 s, crypto 50 ms) as a maker cancel option. Include the on-chain-vs-feed trade-direction caveat (59%). Boundary: subsidy-first quoting goes to maker-reward-pool-farming; 5m/15m crypto to short-crypto-maker-side; sportsbook-anchored sports quoting to sportsbook-anchored-sports-mm; longshot-side underwriting to longshot-selling-flb; theoretical quoting models (logit HJB, structural volatility) are in the speculative band.",
+ "sub_variants": [
+  "long-tail multi-market quoting with merge exits",
+  "settlement-carry inventory policy (hold, do not flatten)",
+  "rebate-aware quoting inside the taker-fee wedge",
+  "matching-delay / last-look cancel logic",
+  "insider-toxicity quote pulling in fee-free geopolitics"
+ ],
+ "merged_from": [
+  "onchain-bots: Professional two-sided market making across event markets",
+  "academic: Settlement-carry market making (screening rent)",
+  "platform-surface: Rebate-aware maker quoting inside the taker-fee wedge",
+  "adjacent-transfer: Exploiting the asymmetric speed bump",
+  "platform-surface: Matching delays as a maker's free option"
+ ],
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2609.20017v1",
+   "note": "588M trades: 91.4% of persistent makers' profit arrives at settlement; profit concentrated on buys at 0.50-1.00"
+  },
+  {
+   "url": "https://arxiv.org/html/2604.24366v2",
+   "note": "Median effective half-spread ~0, ~32 effective makers, feed trade direction only ~59% accurate"
+  },
+  {
+   "url": "https://www.newser.com/story/388532/polymarkets-biggest-winners-arent-human.html",
+   "note": "Bloomberg via Newser: ~800 bot accounts >$100k each, ~$131M Jan 2025-Apr 2026"
+  },
+  {
+   "url": "https://doi.org/10.2139/ssrn.6396698",
+   "note": "Top-5% skilled wallets earn $121/market as makers, $63 as takers; spread transfer negligible (abstract)"
+  },
+  {
+   "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+   "note": "Per-market rebate pools 20/15/25%, fee-equivalent weighting, daily pUSD"
+  },
+  {
+   "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+   "note": "Pending marketable orders cannot be cancelled; resting orders can"
+  },
+  {
+   "url": "https://github.com/warproxxx/poly-maker",
+   "note": "Reference architecture and author's warning that MM can lose money (do not run)"
+  }
+ ],
+ "parent_slug": "event-market-making-spread-carry",
+ "deepen": true,
+ "seed": "1 market making",
+ "n": "02",
+ "band": "established",
+ "file": "02-event-market-making-spread-carry.md",
+ "critic_notes": [
+  "COUNT: the five proposed entries would take the band to 32. To stay near the target, send perps-lp-rewards-basis to the speculative band, keep builder-tagged flow as a sub-variant of event-market-making-spread-carry plus screened-copy-trading if no PnL evidence turns up, and fold tech-ai-model-markets' manipulation part into oracle-input-manipulation's fragility taxonomy. news-event-feed-latency-taking, genesis-window-new-listing-liquidity and oracle-governance-capture should be files."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Professional two-sided market making across event markets",
+   "one_line": "High-frequency quoting across hundreds of markets for spread, rebates and rewards, run as an inventory business.",
+   "category": "Market-making",
+   "maturity": "Established",
+   "mechanism": "Post-only two-sided quotes around a microprice/flow-based fair value, inventory skew, volatility/toxicity widening and a regime switch that pulls quotes on news. Inventory exits by merging YES+NO pairs rather than crossing the spread. Income is spread + liquidity rewards + 15-25% of taker fees per market. The winners trade far more often, across more markets, and enter earlier at better prices than retail; one account made about $3M in 2026 on more than a million trades in Oscars markets alone.",
+   "edge_source": "Being the counterparty to late, price-insensitive retail flow; scale across the long tail (about 70% of closed markets had under $10k volume per a CNBC analysis, snippet only).",
+   "why_might_beat_market": "It is where the measured money is: bot-like accounts' gains mirror retail losses almost one for one. Institutions (Wintermute) are in, but specialists keep edges in niche, low-liquidity markets that large firms avoid.",
+   "evidence": [
+    {
+     "url": "https://www.newser.com/story/388532/polymarkets-biggest-winners-arent-human.html",
+     "title": "Bots Are Winning Big on Polymarket (Newser summary of Bloomberg analysis)",
+     "date": "2026-05-10",
+     "quality": "credible-report",
+     "supports": "~800 high-frequency bot accounts each cleared >$100k, ~$131M collectively Jan 2025-Apr 2026, mirroring $131M retail losses; bots trade more often, across more markets, enter earlier at better prices. Bloomberg original not fetchable."
+    },
+    {
+     "url": "https://finance.yahoo.com/markets/crypto/articles/weve-calculated-your-chances-of-winning-money-on-polymarket-155955143.html",
+     "title": "We've calculated your chances of winning money on Polymarket (Washington Post via Yahoo; data from Akey, Gregoire, Harvie, Martineau)",
+     "date": "2026-05-11",
+     "quality": "hard-data",
+     "supports": "All trades Nov 2022-2026-03-29: 1,200 accounts took >half of profits ($591M); top winners 'probably automated'; one user $3M since January on >1M Oscars trades."
+    },
+    {
+     "url": "https://finance.yahoo.com/markets/crypto/articles/wintermute-providing-liquidity-kalshi-polymarket-162008202.html",
+     "title": "Wintermute Is Providing Liquidity on Kalshi and Polymarket",
+     "date": "2026-05-29",
+     "quality": "credible-report",
+     "supports": "Institutional MM confirmed quoting two-sided on both venues, moving capital dynamically; calls liquidity 'early-stage'."
+    },
+    {
+     "url": "https://finance.yahoo.com/markets/crypto/articles/3-polymarket-traders-capture-27-024219212.html",
+     "title": "3% of Polymarket Traders Capture 27% of All Profits, Yale Study Finds",
+     "date": "2026-09-13",
+     "quality": "credible-report",
+     "supports": "1.72M accounts, 210,322 markets; skilled share ~3%, expected to fall below 1%; BofA analyst: specialists keep edges in niche low-liquidity markets."
+    },
+    {
+     "url": "https://github.com/warproxxx/poly-maker",
+     "title": "poly-maker README (1.5k stars, V2 rewrite)",
+     "date": "read 2026-09-20",
+     "quality": "self-reported",
+     "supports": "Reference architecture of the practice: maker-only BUY-YES/BUY-NO, merge exit, toxicity EWMA, QUIET/TRENDING/EVENT regimes; explicit warning that MM 'is competitive and can lose money'."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.24366",
+     "title": "The Anatomy of a Decentralized Prediction Market (Dubach)",
+     "date": "2026-04-27",
+     "quality": "paper",
+     "supports": "30B book events, 600 markets: longshot spread premium, near-uniform depth profile, maker-wallet diversity with concentrated tail; public-feed trade direction matches on-chain truth only ~59%, so markouts must use OrderFilled events."
+    }
+   ],
+   "failure_modes": "News jumps (binary payoff = gap risk to 0/1); adverse selection by insiders (documented 97% win-rate wallets); rebate/reward cuts by decree; record-level fills cannot identify quote lifecycle, so competitor analysis from chain data is limited.",
+   "cheap_validation": "Run poly-maker-style logic in paper mode on 20 long-dated political markets; attribute would-be PnL into spread, markout, rewards and rebates; go live only where markout loss < rewards+rebates.",
+   "flags": ""
+  },
+  {
+   "name": "Settlement-carry market making (screening rent)",
+   "one_line": "Quote outside the informed-signal band, get filled mainly by uninformed tail demand, and earn by carrying the underpriced complementary claim to resolution rather than by capturing spread.",
+   "category": "Market-making",
+   "maturity": "Established",
+   "mechanism": "Post resting bids on the favoured side (0.50-1.00 band) wide enough that informed flow does not hit them first; uninformed longshot/tail buyers lift the other side, leaving the maker long the underpriced complement. Inventory is deliberately held to settlement instead of being flattened. In multi-outcome events the per-leg committed markup accumulates with the number of outcomes, so large negRisk fields pay more. Skilled wallets switch roles: they make in high-volume, short-duration markets and take elsewhere.",
+   "edge_source": "Adverse-selection screening plus the favourite-longshot premium paid by tail-demand takers; on-chain PnL shows the rent is realised at settlement.",
+   "why_might_beat_market": "Most retail MM bots optimise spread capture and inventory flattening, which this evidence says is ~0 on Polymarket; the rent belongs to whoever is willing to warehouse resolution risk with good selection.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2609.20017v1",
+     "title": "Who Aggregates Information? Screening, Rent, and the Coexistence of CLOB and AMM Prediction Markets (Zang, Andrade, Nakajima), arXiv",
+     "date": "2026-09-17",
+     "quality": "paper",
+     "supports": "588M Polymarket trades / $67B: 91.4% of persistent makers' profit arrives at settlement, <9% from pre-resolution spread capture; profit almost entirely from buying (+$70K vs +$2.6K selling, units as reported), concentrated at 0.50-0.80 (+$52.4K) and 0.80-1.00 (+$24.8K); set-completion cost rises +0.060 per outcome across 16,036 multi-outcome events, 96% of it committed markup; sample fee context: takers 1.8%, makers 0, no rebate."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6396698",
+     "title": "Skilled Liquidity Provision in Prediction Markets: Evidence from 150 Million Trades (H.-C. Yang), SSRN via Crossref abstract",
+     "date": "2026-03-19",
+     "quality": "paper",
+     "supports": "Aggregate spread transfer is negligible; top-5% skilled traders earn $121 per market as makers and $63 as takers, extracting $228M over three years; ordinary traders lose on both sides; skilled wallets make more in higher-volume, shorter-duration markets; OOS persistence and wash-trade exclusions reported."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6443103",
+     "title": "Who Wins and Who Loses in Prediction Markets? Evidence from Polymarket (Akey, Gregoire, Harvie, Martineau), SSRN via Crossref abstract",
+     "date": "2026-04-07",
+     "quality": "paper",
+     "supports": "2.4M users, $67B: top 1% capture 76.5% of gains; limit-order users benefit most; liquidity-taking drives losses - for ~1 in 5 losers the cost of taking liquidity alone flips PnL negative."
+    },
+    {
+     "url": "https://arxiv.org/html/2604.24366v2",
+     "title": "The Anatomy of a Decentralized Prediction Market (Dubach), arXiv",
+     "date": "2026-04-27",
+     "quality": "paper",
+     "supports": "Median effective half-spread on top-100 markets ~0 (-0.0003 prob pts); Glosten-Harris adverse-selection component median 0; quoted half-spread ~400 bps at mid prices, 1,300-1,800 bps below 0.10, 53 bps above 0.90; median maker HHI 0.031 (~32 effective makers)."
+    }
+   ],
+   "failure_modes": "Regime dependence: in trending markets the longshot side is underpriced (+0.225 gap) and the favourite overpriced (-0.205), reversing the edge; warehouse risk is lumpy (resolution jump ~35% of total belief variance per Ando, SSRN 7086539); capital intensive; ghost-fill style counterparty attacks target exactly this inventory.",
+   "cheap_validation": "From your own fill history split maker PnL into (a) round-trip spread PnL and (b) mark-to-settlement PnL by price band and by market regime (trending vs flippy); if (b) dominates, switch the inventory policy from flatten to carry in the bands where it is positive.",
+   "flags": ""
+  },
+  {
+   "name": "Rebate-aware maker quoting inside the taker-fee wedge",
+   "one_line": "In fee-enabled categories the maker rebate is algebraically a fixed share of the fee generated by your own fills (0.19-0.35c per share at 50c) and the taker fee (1.0-1.75c at 50c) shields quotes from marginal informed flow; price both into the quoting model.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "Takers pay fee = shares x feeRate x p x (1-p); makers pay nothing. Each market's rebate pool is 20% (crypto), 15% (sports) or 25% (all other fee categories) of that market's taker fees and is split by each maker's fee-equivalent on filled maker volume, which reduces to rebate% x the fee generated by your own fills. At p = 0.5 that is 0.35c/share in crypto, 0.19c in sports, 0.25c in politics/finance/tech/mentions and 0.31c in economics/culture/weather/other; it falls to zero toward the extremes. Rebates pay daily in pUSD above $1; post-only orders guarantee maker status. Because a taker must overcome up to 1.75c of fee, a maker can quote inside the band where true value has moved less than the fee without being profitably hit.",
+   "edge_source": "Structural fee asymmetry set by the venue: negative effective maker fee plus a protective taker cost, largest at mid-priced, high-turnover markets such as 5-minute and 15-minute crypto.",
+   "why_might_beat_market": "On 0.1c-tick markets a 0.25-0.35c rebate is worth several ticks; quoters that ignore it are systematically too wide and lose queue priority to those that include it.",
+   "failure_modes": "High-tier takers pay only half the fee (Taker Rebate Program up to 50%), so the wedge is thinner against exactly the most informed flow; crypto taker delay was cut from 250ms to 50ms on 2026-08-17; rates change by changelog (sports rebate cut 25%->15% on 2026-07-10); some markets are zero-fee per feeSchedule and pay no rebate.",
+   "cheap_validation": "From your own historical maker fills compute rebate% x fee per fill and compare with realised 1s/10s/60s markouts by category; this shows immediately in which categories rebate covers adverse selection.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+     "title": "Maker Rebates Program",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Fee-equivalent formula, per-market pools, 20/15/25% shares, daily pUSD, $1 minimum."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Fee formula and per-category feeRate table; makers never charged; geopolitics fee-free."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Predictions changelog",
+     "date": "2026-07-10 and 2026-08-17 entries",
+     "quality": "hard-data",
+     "supports": "Sports fee 0.03->0.05 and rebate 25%->15%; crypto taker delay 250ms->50ms."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/events?limit=4&active=true&closed=false&tag_slug=crypto&order=volume24hr&ascending=false",
+     "title": "Gamma API crypto event",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Live feeSchedule on a crypto market: rate 0.07, takerOnly true, rebateRate 0.2, feeType crypto_fees_v2."
+    }
+   ]
+  },
+  {
+   "name": "Exploiting the asymmetric speed bump: maker last look under the taker delay",
+   "one_line": "On delayed markets, takers are locked for 50-250 ms or more while makers can still cancel. Quote tighter than is otherwise safe and pull on the external signal.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "Markets flagged for taker delay hold a marketable order and then re-validate it, and the taker cannot cancel in the meantime. A resting maker can cancel during that window. A maker subscribed to the driving signal (Binance or Chainlink for crypto, the score feed for sports) gets a free look before being hit. This works like FX last look or an IEX-style speed bump. The strategy quotes inside competitors who do not use the window, captures rebates (20% crypto, 15% sports), and re-widens when Polymarket shortens the delay. The delay went from 250 ms to 50 ms on crypto on 2026-08-17, and from 1 s to zero on the World Cup.",
+   "edge_source": "A venue rule that shifts adverse-selection risk from makers to takers. The edge goes to the maker with the fastest cancel path.",
+   "why_might_beat_market": "The rule is recent and its parameters change often, so whoever tracks the changelog and re-tunes first wins. It needs low-latency cancel infrastructure, not capital.",
+   "adjacent_grounding": "FX last look and the IEX and Aequitas speed bumps. No paper was found specific to Polymarket's delay, which is unverified.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+     "title": "Order Lifecycle, Polymarket docs",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Marketable orders on flagged markets are held for 250 ms and then re-validated. They cannot be cancelled while pending. Resting orders can be cancelled at any time before matching."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-08-17",
+     "quality": "hard-data",
+     "supports": "'The taker delay on crypto markets is now 50ms, down from 250ms.' Also covers the Chainlink TWAP resolution changes of Aug 7 and 14."
+    },
+    {
+     "url": "https://x.com/sandmark_news/status/2062118463813157315",
+     "title": "Sandmark post on the 250 ms taker delay (search snippet only)",
+     "date": "2026-06-03",
+     "quality": "credible-report",
+     "supports": "Snippet: a 250 ms taker delay on crypto and finance markets from 5 June 2026, 'locking orders once they enter the delay window to reduce automated gaming by high-frequency bots'."
+    }
+   ],
+   "failure_modes": "At 50 ms the window is only useful to co-located bots. Polymarket can change or remove delays per market without notice. Everyone who is fast converges to the same tight quotes, and the rebate pool is split pro rata.",
+   "cheap_validation": "Measure your cancel round-trip against the delay per market, using the itode flag on /clob-markets. Simulate how many adverse fills you would have escaped at 50 ms and at 250 ms.",
+   "flags": ""
+  },
+  {
+   "name": "Matching delays as a maker's free option",
+   "one_line": "Quote tighter than fair-value uncertainty would normally allow in markets where marketable orders are held before matching (sports 1 s, crypto 50 ms, perps 20 ms), using a faster external feed to cancel inside the delay.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "Polymarket holds marketable orders in a pending state on selected markets before re-validating and matching: Gamma shows secondsDelay = 1 on NFL game markets, the changelog sets the crypto taker delay at 50 ms (250 ms before 2026-08-17), and Perps applies 20 ms. The taker cannot cancel a pending marketable order, while resting makers can cancel freely. A maker with a sub-second sports data feed or a direct exchange price feed therefore sees the triggering event before the delayed taker order reaches its quote and can pull or reprice, which is economically a last-look right granted by the venue. The quoting engine keys spread width to (own feed latency minus venue delay) rather than to event volatility alone; order responses return status 'delayed', and market.trading.secondsDelay is readable per market.",
+   "edge_source": "Venue-designed asymmetry between takers and makers; monetised by whoever has the fastest relevant external data.",
+   "why_might_beat_market": "In sports with a 1 s hold, a maker on a 300-500 ms scores feed avoids most goal/score pick-offs and can earn the concentrated live rewards at tighter spreads than competitors.",
+   "failure_modes": "Delay shrinks over time (crypto already cut 5x); liquidity programmes can impose minimum rest times (3.5 s in March Madness) that neutralise fast cancels; cancel rate limits; competitors with official low-latency data.",
+   "cheap_validation": "For one weekend, timestamp your feed's score events against the first book move on Polymarket; if your feed leads by more than the cancel round-trip but less than 1 s, the option has value.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+     "title": "Order Lifecycle",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Taker delay on selected crypto and finance up/down markets, sports/game delay windows, pending marketable orders cannot be cancelled."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Predictions changelog",
+     "date": "2026-08-17 and 2026-03-17 entries",
+     "quality": "hard-data",
+     "supports": "Crypto taker delay now 50 ms, down from 250 ms; 3.5-second minimum order life for March Madness reward eligibility."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/markets?slug=nfl-cin-hou-2026-09-20",
+     "title": "Gamma API NFL market",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "secondsDelay 1 on a live NFL moneyline."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/perps.md",
+     "title": "Perps changelog",
+     "date": "2026-06-10 entry",
+     "quality": "hard-data",
+     "supports": "20-millisecond taker delay for immediately matching perps orders."
+    }
+   ]
+  }
+ ]
+}

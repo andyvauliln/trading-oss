@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trading Agent Architectures</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --panel: #ffffff; --ink: #14161a; --muted: #5b6270;
+    --line: #e2e5ea; --accent: #0f766e; --chip: #eef2f5; --shadow: 0 1px 2px rgba(20,22,26,.06), 0 8px 24px rgba(20,22,26,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d0f13; --panel: #14171d; --ink: #e9ecf1; --muted: #98a1b0;
+      --line: #242932; --accent: #5eead4; --chip: #1b2029; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d0f13; --panel: #14171d; --ink: #e9ecf1; --muted: #98a1b0;
+    --line: #242932; --accent: #5eead4; --chip: #1b2029; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.6 ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 56px 16px 72px; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 36px; }
+  h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 12px; }
+  .lede { color: var(--muted); max-width: 68ch; margin: 0; font-size: 16px; }
+  .meta { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; font-size: 12.5px; color: var(--muted); }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); margin: 40px 0 16px; font-weight: 600; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  a.card {
+    display: block; text-decoration: none; color: inherit; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 16px;
+    box-shadow: var(--shadow); transition: border-color .15s ease, transform .15s ease;
+  }
+  a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .kind { font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); font-weight: 600; }
+  .title { font-size: 17px; font-weight: 600; margin: 7px 0 6px; letter-spacing: -.01em; }
+  .desc { color: var(--muted); font-size: 14px; margin: 0; }
+  footer { margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13.5px; }
+  footer a { color: var(--accent); }
+  code { background: var(--chip); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Trading Agent Architectures</h1>
+    <p class="lede">Nine architectures for automated trading agents, from single-agent memory designs to multi-agent firms, market simulations and the deterministic control plane a live desk needs. Each diagram is a self-contained page with light/dark themes, search, focus, relationship tracing and export.</p>
+    <div class="meta">
+      <span class="chip">9 diagrams</span>
+      <span class="chip">5 diagram types</span>
+      <span class="chip">Built with archify</span>
+      <span class="chip">Showcase profile · 9/9 checks</span>
+    </div>
+  </header>
+
+  <h2>Agent designs</h2>
+  <div class="grid">
+    <a class="card" href="diagrams/01-tradingagents.html">
+      <div class="kind">Architecture</div>
+      <div class="title">TradingAgents</div>
+      <p class="desc">A trading firm as a role-split agent team: four analysts, an adversarial bull/bear debate, a trader, a risk committee and a fund manager gate.</p>
+    </a>
+    <a class="card" href="diagrams/02-finmem.html">
+      <div class="kind">Architecture</div>
+      <div class="title">FinMem</div>
+      <p class="desc">One agent, three memory layers with different decay rates, retrieval scored by recency × relevancy × importance, and risk character as an explicit parameter.</p>
+    </a>
+    <a class="card" href="diagrams/03-finagent.html">
+      <div class="kind">Architecture</div>
+      <div class="title">FinAgent</div>
+      <p class="desc">Multimodal perception over numbers, text and chart images, with dual-level reflection and classic indicator strategies entering as callable priors.</p>
+    </a>
+    <a class="card" href="diagrams/04-contesttrade.html">
+      <div class="kind">Data flow</div>
+      <div class="title">ContestTrade</div>
+      <p class="desc">Two internal contests: data agents compete for prompt context by knapsack, research agents compete for capital by predicted Sharpe.</p>
+    </a>
+    <a class="card" href="diagrams/06-finrl.html">
+      <div class="kind">Architecture</div>
+      <div class="title">FinRL</div>
+      <p class="desc">The pre-LLM baseline: environment, agent and application layers with a numeric state vector, an explicit reward function and no language in the loop.</p>
+    </a>
+  </div>
+
+  <h2>Processes and dynamics</h2>
+  <div class="grid">
+    <a class="card" href="diagrams/05-alpha-discovery.html">
+      <div class="kind">Workflow</div>
+      <div class="title">Agentic alpha discovery loop</div>
+      <p class="desc">Hypothesis, executable factor, point-in-time guard, costed backtest, acceptance gate — with failed trials fed back as generation-time context.</p>
+    </a>
+    <a class="card" href="diagrams/07-market-simulation.html">
+      <div class="kind">Sequence</div>
+      <div class="title">LLM agent market simulation</div>
+      <p class="desc">One trading round where agents' own limit orders clear against each other, so the price they observe is produced rather than replayed.</p>
+    </a>
+  </div>
+
+  <h2>Running one in production</h2>
+  <div class="grid">
+    <a class="card" href="diagrams/08-production-stack.html">
+      <div class="kind">Architecture</div>
+      <div class="title">Seven-layer reference stack</div>
+      <p class="desc">Deterministic signals before inference, a rules engine after the proposal, a tested kill switch, and an evidence ledger that can reconstruct any order.</p>
+    </a>
+    <a class="card" href="diagrams/09-graded-autonomy.html">
+      <div class="kind">Lifecycle</div>
+      <div class="title">Graded autonomy</div>
+      <p class="desc">Autonomy as a versioned per-instrument contract: five levels, escalation that pauses an order without demotion, and deterministic containment.</p>
+    </a>
+  </div>
+
+  <footer>
+    Written notes, comparison table and sources live in <code>README.md</code>. Diagram sources are in <code>specs/</code> and can be re-rendered with <code>archify deliver</code>.
+  </footer>
+</div>
+</body>
+</html>

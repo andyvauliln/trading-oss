@@ -1,0 +1,307 @@
+{
+ "slug": "evolutionary-agent-strategy-factory",
+ "name": "Evolutionary agent population and autoresearch strategy factory",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "self-improving / recursive forecasting agents",
+ "one_line": "Evolve a quality-diversity archive of agents whose fitness is marginal contribution to the market-anchored blend. Run a leakage-guarded autoresearch loop that proposes structural strategies. Breed new agents by recombining modules that carry positive PnL attribution.",
+ "scope": "Cover population-level self-improvement. A MAP-Elites archive over model family, information diet and niche, with Numerai-MMC-style leave-one-out fitness, so that selection buys orthogonality and not another copy of the consensus. GEPA-style reflective prompt mutation. A keep-or-revert autoresearch loop over the full trade archive, restricted to point-in-time tool registries, with thresholds deflated by trial count and an untouched event-clustered holdout. Compositional breeding of typed modules (signal, sizing, execution) using an attribution ledger. An ecological co-evolution gym that replays the team's own L2 books against reactive rival archetypes, including fee and tick perturbations taken from the changelog. Include the hard negatives: honest evaluation rejected every LLM-discovered equity strategy, a leaky Sharpe-35 oracle passed DSR and PBO, 70% of mutations were reverted, and greedy search is a strong default. Include the hobby systems elastifund and atlas-gic, and the builder-fee commercial layer. Validation: planted-edge recovery, sim-to-live rank agreement, top-k chosen by marginal contribution vs top-k chosen by own Brier. Boundary: promotion statistics are in evaluation-promotion-allocation-metalayer.",
+ "sub_variants": [
+  "QD archive with marginal-contribution (MMC-style) fitness",
+  "Autoresearch structural-strategy loop with tool-registry leakage guard",
+  "Compositional module breeding with attribution ledger",
+  "Co-evolution gym against simulated rival bots",
+  "Builder-code monetisation of proven agents"
+ ],
+ "merged_from": [
+  "Quality-diversity agent population with marginal-contribution (MMC-style) fitness",
+  "Autoresearch strategy factory with structural leakage guards and search-aware deflation",
+  "Agent OS as the strategy: compositional breeding of verified strategy modules (plus builder-code monetisation)",
+  "Ecological co-evolution gym: evolve agents against a simulated population of rival bots"
+ ],
+ "flags": "Auto-generated trading code must never reach live keys without human review. Offering agents to third parties for builder fees may trigger adviser or CTA-type regulation. Geo-restrictions apply.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2608.27734",
+   "note": "Honest evaluation rejects every LLM-discovered strategy. A leaky Sharpe-35 oracle survives DSR and PBO."
+  },
+  {
+   "url": "https://arxiv.org/abs/2505.22954",
+   "note": "Darwin Godel Machine: archive-based self-modification. SWE-bench 20% to 50%."
+  },
+  {
+   "url": "https://arxiv.org/abs/2507.19457",
+   "note": "GEPA reflective prompt evolution: 35x fewer rollouts than GRPO."
+  },
+  {
+   "url": "https://docs.numer.ai/",
+   "note": "The Numerai staked Meta Model and MMC scoring. The template for the fitness function."
+  },
+  {
+   "url": "https://github.com/CrunchyJohnHaven/elastifund",
+   "note": "Self-reported self-improving OS live on Polymarket and Kalshi. 10 strategies rejected. Tiny PnL."
+  },
+  {
+   "url": "https://github.com/chrisworsey55/atlas-gic",
+   "note": "Self-reported: 54 prompt mutations, 16 kept. Fitness is a 5-day Sharpe."
+  },
+  {
+   "url": "https://arxiv.org/abs/2602.00948",
+   "note": "FinEvo: strategy outcomes depend on the competitor ecology."
+  },
+  {
+   "url": "http://arxiv.org/abs/2606.16852v1",
+   "note": "Ghost fills: 24.3% of filled orders reverted at peak hours. This limits simulator realism."
+  }
+ ],
+ "n": "60",
+ "band": "speculative",
+ "file": "60-evolutionary-agent-strategy-factory.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Quality-diversity agent population with marginal-contribution (MMC-style) fitness",
+   "one_line": "Evolve a MAP-Elites archive of forecaster agents whose fitness is their leave-one-out contribution to the market-anchored blend, not their own Brier or Sharpe, so that selection pressure buys orthogonality instead of a better copy of the consensus.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Archive cells are behaviour descriptors: base-model family, information diet (news only, primary documents, order flow, non-English sources, base-rate tables), reasoning style, market niche. (2) Fitness of an agent = change in the blend's market-relative proper score when the agent is removed (Numerai's Meta Model Contribution idea), estimated on post-cutoff resolved markets plus forward paper. (3) Mutations are LLM-written: reflective prompt edits from post-mortems (GEPA style), retrieval-source swaps, deliberately partitioned evidence so agents hold private slices. (4) Keep-or-revert per cell; an accurate agent that is 0.9-correlated with incumbents is culled. (5) Capital goes to the blend, never to individual agents.",
+   "edge_source": "Informational and model diversity that other LLM-bot operators do not select for; the pool's effective number of independent forecasters rises from about 1.4 toward the number of genuinely different information diets.",
+   "why_might_beat_market": "Agent count is not diversity: DPO-tuned agents have error correlation 0.70, N_eff stays flat from 5 to 40 agents, a ten-agent market scored 67.6% vs 70.2% for one agent; cross-family mixing cuts rho from 0.68 to 0.40. Partitioned evidence improves Brier 12-18% on 375 prediction-market questions and the gain disappears when all agents see the same evidence. Four frontier agents gave the identical top pick in 92% of World Cup matches and none beat the bookmaker. Standard keep-if-Sharpe-improves loops therefore converge to the consensus everyone else's bot holds. Honest limit: a diverse pool mostly narrows the gap to the price; it cannot invent non-public information, and novelty rarely tops quality (Heuresis: one novel idea in the top ten of 3,222 scored runs).",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: single-lineage keep/revert variants exist (bennyjo/phil on Polymarket, paper; chrisworsey55/atlas-gic on equities with a Kalshi mention: 54 prompt mutations, 16 survived, fitness = rolling Sharpe over 5 trading days, +22% in 173 days self-reported), none with diversity-aware fitness. Adjacent field: open-ended agent evolution (Darwin Godel Machine: SWE-bench 20.0% to 50.0% via an archive of self-modified agents; ADAS meta agent search; GEPA: +6% on average over GRPO with 35x fewer rollouts), Population Based Training (DeepMind 2017), co-evolving LoRA populations (PopuLoRA: population mean beats the best single agent on 10 benchmarks), Numerai's staked Meta Model with MMC scoring, LLM quality-diversity search (IDEAgent 2607.22375, AgenticGEO 2603.20213).",
+   "failure_modes": "Fitness noise far larger than fitness differences (a 5-day Sharpe window is statistically meaningless); mode collapse back to the dominant model family; Goodharting on the replay set; leave-one-out estimates unstable with correlated members; cost scales with population x markets x checkpoints; 'Greedy is a strong default' (2603.27415) - elaborate evolution may not beat simple hill climbing.",
+   "cheap_validation": "Offline on >= 300 markets opened after every model's training cutoff: build 12 agents (3 model families x 4 information diets). Metrics: mean pairwise error correlation and leave-one-out blend Brier. Pass: mean rho <= 0.45 AND a 5-agent set chosen by marginal contribution beats the top-5-by-own-Brier set by >= 0.003 blend Brier with event-clustered CI above zero. Fail: marginal-contribution selection is no better than top-k.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "rho = 0.70; ten agents about 1.4 independent forecasters; 67.6% vs 70.2%; cross-model diversity 0.68 to 0.40"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.01661",
+     "title": "Diverse Evidence, Better Forecasts: Multi-Agent Deliberation Under Information Asymmetry",
+     "date": "2026-07-02",
+     "quality": "paper",
+     "supports": "Partitioned private evidence: 12-18% Brier improvement on 375 prediction-market questions; identical evidence collapses into herding"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.17765",
+     "title": "FIFA World Cup 2026 as a Contamination-Free Benchmark for LLM Forecasting Agents",
+     "date": "2026-07-20",
+     "quality": "paper",
+     "supports": "Identical top pick in 92% of 104 matches; ROI -18% to +10%; betting the favourite beat all four agents"
+    },
+    {
+     "url": "https://arxiv.org/abs/2505.22954",
+     "title": "Darwin Godel Machine",
+     "date": "2025-05-29, rev. 2026-03-12",
+     "quality": "paper",
+     "supports": "Archive-based open-ended self-improvement: SWE-bench 20.0% to 50.0%, Polyglot 14.2% to 30.7%"
+    },
+    {
+     "url": "https://arxiv.org/abs/2507.19457",
+     "title": "GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning",
+     "date": "2025-07-25, rev. 2026-02-14",
+     "quality": "paper",
+     "supports": "Reflective prompt mutation with Pareto frontier; 35x fewer rollouts than GRPO"
+    },
+    {
+     "url": "https://docs.numer.ai/",
+     "title": "Numerai tournament docs",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Only staked predictions enter the Meta Model; scoring by CORR and Meta Model Contribution; payouts and burns"
+    },
+    {
+     "url": "https://github.com/chrisworsey55/atlas-gic",
+     "title": "ATLAS self-improving trading agents (autoresearch loop)",
+     "date": "created 2026-03-11, seen 2026-09-20",
+     "quality": "self-reported",
+     "supports": "54 prompt modifications, 16 (30%) kept, 37 reverted; Darwinian agent weights 0.3-2.5; +22% in 173 days claimed"
+    }
+   ]
+  },
+  {
+   "name": "Autoresearch strategy factory with structural leakage guards and search-aware deflation",
+   "one_line": "Coding agents continuously propose, implement and backtest structural (not predictive) strategies on the full Polymarket trade archive, but can only act through point-in-time tools, every trial is counted against them, and only forward paper results unlock capital.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "(1) A keep-or-revert autoresearch loop generates hypotheses about structural quirks: calibration pockets by category x price band x time to close, maker-side ladders, listing-time and weekend effects, negative-risk conversion timing, post-dispute drift. (2) Agents may only call registry-validated point-in-time feature tools over the archive (public datasets now cover 1.20 billion trades / 1.30 million markets, plus own L2 recordings), so look-ahead is excluded by construction rather than by review. (3) Every evaluation is logged and the pass threshold is deflated by the agent's own trial count. (4) Final judgement uses an event-clustered, time-forward holdout the agents never see, with fills modelled at queue position and the documented taker delay. (5) Survivors enter the promotion ladder; everything else is archived as a negative result so the loop does not rediscover it.",
+   "edge_source": "Breadth of search over a young, frequently re-parameterised venue, with far more independent ground-truth outcomes than any equity backtest, and precise factor definitions that naive analyses get wrong.",
+   "why_might_beat_market": "Definitions matter: purchases below 10c lose 19.3c per dollar contract-by-contract but gain 4.1c once contracts are grouped by parent event, so a careful searcher finds pockets a casual one mis-signs. A solo practitioner found a NO-side maker edge on Kalshi mention markets via Claude-Code-assisted calibration analysis: $5,515.94 net on $342,506.13 cost over 2,717 settled markets, while his LLM-probability approach lost money. Honest limit: on equities, honest evaluation 'rejects every LLM-discovered strategy' (two frontier models, up to 100 candidates, five runs) and a leaky oracle with Sharpe 35 passed Deflated Sharpe and PBO; expect more than 90% of candidates to die (elastifund: 10 tested and rejected in cycle one; atlas-gic: 70% of mutations reverted), and survivors to be capacity-limited.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: CrunchyJohnHaven/elastifund ('research -> implement -> test -> record -> publish', live on Polymarket and Kalshi, self-reported +$131.52 on 128 contracts, wallet $458.13, promotion gate currently failing); McInerney's manual version on Kalshi. Adjacent field: LLM-driven code evolution for quant alpha (CogAlpha 2511.18850; AlphaAgent 2502.16789 with alpha-decay regularisation; Agora 2606.29194: sealed information flow, 91-day holdout Sharpe 1.87 vs 1.334; EVOQUANT 2607.12455: average test Sharpe -0.298 to 0.538; XAlpha 2607.08332), karpathy/autoresearch (96k stars) and its trading port atlas-gic, and the honest-evaluation critique 2608.27734.",
+   "failure_modes": "Search-induced overfitting; look-ahead through resolution timestamps, post-hoc edited market metadata and survivorship in archives; backtest fills at displayed depth ignore queue position and ghost fills; discovered edges are tiny in size (NBA combinatorial episodes: median 101 bps, 76.9% limited to 14.8 shares); decay after publication; auto-generated code risk.",
+   "cheap_validation": "Step 1, planted-edge test: inject 3 synthetic edges and 1 deliberately leaky feature into a copy of the archive; pass if the loop recovers >= 2 planted edges and the tool registry blocks the leak. Step 2, real run of 200 candidates: pass if >= 1 survives the trial-count-deflated test on the untouched holdout AND 4 weeks of forward paper with net PnL > 0 over >= 300 simulated fills. Fail: zero survivors - then keep the loop only as a hypothesis generator for humans.",
+   "flags": "Auto-generated trading code must never reach live keys without human review; no third-party repo code is executed.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2608.27734",
+     "title": "What survives honest evaluation? Leakage-safe, search-aware assessment of LLM-driven trading strategy discovery",
+     "date": "2026-08-27",
+     "quality": "paper",
+     "supports": "Every LLM-discovered strategy rejected; leaky oracle with Sharpe 35 survives DSR and PBO; tool-registry guardrail and trial-count deflation"
+    },
+    {
+     "url": "https://mcinerney.ai/writings/how-i-botted-6k-prediction-markets-as-i-slept/",
+     "title": "How I botted $6k on prediction markets as I slept",
+     "date": "2026-05",
+     "quality": "self-reported",
+     "supports": "$5,515.94 net on $342,506.13 cost, 2,717 settled markets, 15,277 fills; structural NO-side maker edge; LLM probability approach unprofitable"
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "hard-data",
+     "supports": "Sign of longshot return flips with contract grouping; category dependence"
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.04217v2",
+     "title": "Polymarket-v1 Database",
+     "date": "2026-06-02",
+     "quality": "hard-data",
+     "supports": "1.20 billion trade records across 1.30 million markets with ground-truth aggressor side (seen in arXiv listing)"
+    },
+    {
+     "url": "https://github.com/CrunchyJohnHaven/elastifund",
+     "title": "elastifund README",
+     "date": "created 2026-03-07, updated 2026-04-26",
+     "quality": "self-reported",
+     "supports": "Self-described self-improving agentic OS live on Polymarket/Kalshi; 10 strategies tested and rejected; small realised PnL; open reconciliation issues"
+    },
+    {
+     "url": "http://arxiv.org/abs/2605.00864v1",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets",
+     "date": "2026-04-22",
+     "quality": "hard-data",
+     "supports": "290 combinatorial episodes, median 101 bps, 76.9% constrained to 14.8 shares: capacity of structural edges"
+    },
+    {
+     "url": "https://github.com/karpathy/autoresearch",
+     "title": "karpathy/autoresearch",
+     "date": "created 2026-03-06, seen 2026-09-20",
+     "quality": "credible-report",
+     "supports": "The modify-verify-keep/revert autonomous research loop pattern (seen in GitHub search results)"
+    }
+   ]
+  },
+  {
+   "name": "Agent OS as the strategy: compositional breeding of verified strategy modules (plus builder-code monetisation)",
+   "one_line": "Decompose every working bot into typed modules with a PnL-attribution ledger, let a meta-agent breed new agents by recombining modules that carry positive attribution in adjacent cells, gate them through guarded backtests and the promotion ladder, and optionally earn builder fees by offering proven agents to other users.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Standardise module types: universe filter, signal, fair-value blend, sizing rule, execution style (maker skew vs taker), exit/hedge, risk gate. (2) Maintain an attribution ledger per module and per edge-map cell using ablation / leave-one-out replays. (3) A meta-agent proposes compositions whose parents have positive attribution in neighbouring cells - for example copy-trading wallet-skill filter x LLM fair-value blend x LP quote-skew execution - writes the glue code, and submits it to the guarded backtest and the e-value ladder. (4) Promotion is sparse and versioned in git (keep/revert); a harness tree routes each market to the agent that owns its cell. (5) Commercial layer: Polymarket's Builder Program allows an app to add up to 100 bps taker / 50 bps maker on orders it routes, so agents with a public forward record can earn on other people's flow.",
+   "edge_source": "Pre-validated building blocks with measured attribution - an asset the owner's existing LP, cross-venue arb, sniping and copy-trading bots already generate and that newcomers must build from zero.",
+   "why_might_beat_market": "Recombination searches a space of roughly 5^7 = 78k compositions using parts that already passed validation, which is far cheaper than evolving from raw prompts. Evidence that combinations beat parts: forecaster + market blend 0.106 vs 0.1106 market alone; openthomas reached break-even only after combining three fixes; LLM-evolved heuristic portfolios with a selector beat individual evolved rules in scheduling (DSevolve). Honest limit: interaction effects are estimated on small samples, most compositions are redundant, attribution under correlated modules is ill-posed, and no one has shown compositional breeding of trading agents working live.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: platform layer only - Olas Polystrat (user-owned autonomous Polymarket agents, vendor says about 37% had positive PnL), elastifund ('self-improving agentic operating system', self-reported, tiny), Polymarket/agent-skills (static skills, 188 stars, no feedback loop). Adjacent field: Automated Design of Agentic Systems (Meta Agent Search over an archive of agents, transfers across domains), Darwin Godel Machine, Adaptive Auto-Harness (stateful multi-agent evolver + harness tree, tested on prediction-market streams), FINSKILLOPS (controlled skill patches, 6 of 33 promoted), coordination as an architectural layer tested on 100 Polymarket markets (two of five configurations dominate the Pareto frontier), DSevolve (2603.27628).",
+   "failure_modes": "Attribution noise and combinatorial multiple testing; capital interference between agents (self-crossing, conflicting inventory); operational risk of auto-generated code with live keys; module interfaces ossify; for the commercial layer: user-paid builder fees make marginal agents net-negative for customers, creating reputational and regulatory exposure.",
+   "cheap_validation": "Retro test on your own logs: compute module attributions on months 1-3, let the meta-agent propose 10 compositions, evaluate on months 4-6 replay plus 4 weeks forward paper. Pass: >= 2 of 10 compositions beat their best parent net of costs with event-clustered CI above zero. Fail: none beats parents - then the OS's value is operational (speed of building), not alpha.",
+   "flags": "Offering trading agents to third parties for a fee may trigger adviser/CTA-type regulation depending on jurisdiction; Polymarket international vs US-exchange terms and geo-restrictions apply; builder fees are paid by the end user on top of platform fees.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2408.08435",
+     "title": "Automated Design of Agentic Systems",
+     "date": "2024-08-15, rev. 2025-03-02",
+     "quality": "paper",
+     "supports": "Meta agent programs new agents from an archive; discovered agents beat hand-designed ones and transfer across domains and models"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.01770",
+     "title": "Adaptive Auto-Harness",
+     "date": "2026-06-01",
+     "quality": "paper",
+     "supports": "Sustained self-improvement on prediction-market streams via multi-agent evolver, harness tree with routing and human-steering hooks"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.03310",
+     "title": "Coordination as an Architectural Layer for LLM-Based Multi-Agent Systems",
+     "date": "2026-05-05",
+     "quality": "paper",
+     "supports": "Five coordination configurations on 100 Polymarket markets; Murphy decomposition separates calibration from discrimination; two configurations on the Pareto frontier"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "title": "Polymarket docs: Builder fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Builder fee = notional x bps / 10000; caps 100 bps taker, 50 bps maker; paid by the user, additive to platform fees"
+    },
+    {
+     "url": "https://www.coindesk.com/tech/2026/03/15/ai-agents-are-quietly-rewriting-prediction-market-trading",
+     "title": "AI agents are quietly rewriting prediction market trading",
+     "date": "2026-03-15",
+     "quality": "credible-report",
+     "supports": "Olas Polystrat agent platform on Polymarket; 'over 37%' of agents with positive PnL (vendor figure)"
+    },
+    {
+     "url": "https://github.com/Polymarket/agent-skills",
+     "title": "Polymarket/agent-skills",
+     "date": "seen 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Official static skills for agents (auth, trading, data, websockets, CTF ops, bridging, gasless, neg-risk); no learning loop"
+    },
+    {
+     "url": "http://arxiv.org/abs/2609.19680v1",
+     "title": "FINSKILLOPS: A Self-Evolving Multi-Agent System for SEC Filing QA",
+     "date": "2026-09-17",
+     "quality": "paper",
+     "supports": "Sparse skill promotion: 6 of 33 proposed skills promoted; errors 20.0% to 12.5% (seen in arXiv listing)"
+    }
+   ]
+  },
+  {
+   "name": "Ecological co-evolution gym: evolve agents against a simulated population of rival bots",
+   "one_line": "A replay-plus-agents simulator built from your own L2 recordings in which parametrised rival archetypes react to your orders; candidate agents are selected for robustness across ecologies and rule perturbations rather than best-case backtest PnL.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "(1) Replay recorded books for a market family and overlay reactive models of known archetypes: reward-farming LPs quoting at fixed offsets, resolution snipers, copy-traders keyed to leader wallets, LLM takers, zero-intelligence noise. (2) Calibrate archetype parameters so that simulated spread, depth and fill statistics match your live logs. (3) Evolve candidate agents under selection, innovation and environmental perturbation (fee-rate, tick-size and taker-delay changes taken from the real changelog). (4) Fitness = worst-quartile PnL across ecologies. (5) Survivors go to forward paper via the promotion ladder; sim-to-live rank agreement is tracked as the simulator's own score.",
+   "edge_source": "Other bots' rigid, observable rules. In thin books your order changes others' behaviour, which static backtests ignore; a co-evolved agent learns to trade against mechanical counterparties and to survive rule changes.",
+   "why_might_beat_market": "In ecological market games strategies 'dominate, collapse, or form coalitions depending on their competitors', patterns invisible to static backtests; on Kalshi replay with maker/taker semantics and fees, naive agents lose to friction while fee-aware algorithmic strategies stay competitive. Polymarket's bot population is unusually legible (public wallets, open-source bot templates with hundreds of forks), which makes archetype modelling more feasible than in equities. Honest limit: the sim-to-real gap is the whole risk; rival models are guesses; execution artefacts such as reverted fills are hard to simulate.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: PredictionMarketBench offers Kalshi replay with fees but no reactive rivals; nothing co-evolutionary found. Adjacent field: FinEvo ecological market games (2602.00948), LLM traders in a persistent order book (Lopez-Lira 2504.10789), replay simulators for recursive self-improvement (Dream-RSI 2609.14858), Population Based Training (1711.09846 [pre-2025, possibly stale]).",
+   "failure_modes": "Overfitting to the simulator; mis-specified rivals; emergent collusion artefacts; compute cost; unmodelled venue pathologies - 24.3% of filled orders reverted during peak hours in one study of ghost fills; rule changes invalidate calibration.",
+   "cheap_validation": "Build the simulator for one liquid and one thin market family only. Metric: Spearman correlation between simulated and realised live ranking of 10 existing in-house strategy variants, and simulated vs live fill rates. Pass: rho >= 0.6 and fill rates within +/-20%, clearly better than the static backtest's rank agreement. Fail: no better than static backtest - shelve.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2602.00948",
+     "title": "FinEvo: Ecological Market Games for Financial Strategy Evolution",
+     "date": "2026-02-01",
+     "quality": "paper",
+     "supports": "Strategy outcomes depend on competitor ecology; selection, innovation, perturbation"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.00133",
+     "title": "PredictionMarketBench",
+     "date": "2026-01-28",
+     "quality": "paper",
+     "supports": "Execution-realistic Kalshi replay with maker/taker semantics and fees; naive agents lose to friction; fee-aware strategies competitive"
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.16852v1",
+     "title": "The Ghosts of Polymarket: When Off-Chain Matches Meet On-Chain Reverts",
+     "date": "2026-06-15",
+     "quality": "hard-data",
+     "supports": "1.95M reverted transactions; 24.3% of filled orders reverted in peak hours (seen in arXiv listing)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2504.10789",
+     "title": "Can Large Language Models Trade?",
+     "date": "2025-04-15",
+     "quality": "paper",
+     "supports": "LLM agents hold assigned trading roles in a persistent order-book simulation"
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Polymarket predictions changelog",
+     "date": "entries to 2026-09-04",
+     "quality": "hard-data",
+     "supports": "Real perturbations to simulate: fee, tick-size, taker-delay and resolution-window changes"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "evolutionary-agent-strategy-factory: the sub-variant 'Builder-code monetisation of proven agents' contradicts the E6 pack. The median builder could gross at most about $300 a month at the 100 bps cap. Every fill routed through a builder code is publicly enumerable with maker address and owner id, and codes are revocable for 'automated' or 'self-referred' flow. A proven strategy routed through a labelled code is leaked. Move monetisation to the services band and delete it here."
+ ]
+}

@@ -1,0 +1,279 @@
+{
+ "slug": "simulated-stakeholder-polling",
+ "name": "Simulated stakeholder polling: synthetic electorates and twin panels",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "simulated stakeholder polling",
+ "one_line": "Build a trace- or interview-grounded synthetic population, poststratify it, and nowcast vote shares or poll and approval prints in thin or under-polled markets where no professional poll exists.",
+ "scope": "Cover silicon sampling as a poll substitute in three forms. (a) PoSSUM-style social-trace agents with MrP for thin regional, foreign and primary election markets. (b) A standing interview-grounded twin panel re-polled daily for approval-rating and UMich sentiment brackets. (c) A weekly poll-print nowcast that supplies only the delta on a carry-forward baseline. State the negative evidence plainly: simulated respondents retrieve country-level and item-mean priors, LLMs explain 3.05% of respondent-specific variance, and the documented biases are progressive skew, third-party collapse and mode collapse. Explain why only real grounding data and a debiasing layer can help. Quantify capacity: print markets hold $50 to $10k, and liquid US races are already priced off professional aggregates. Include the hybrid tier where one commissioned real micro-poll calibrates or overrides the synthetic one, with value-of-information arithmetic and the Theo precedent. Give forward-only pre-registered validation. Boundary: simulations of small elite electorates are in elite-selection-bargaining-simulators.",
+ "sub_variants": [
+  "PoSSUM-style trace-grounded MrP for under-polled races",
+  "Interview-grounded (Twin-2K-500 / Park) standing panel for approval and UMich brackets",
+  "Weekly poll-print delta nowcast over a carry-forward baseline",
+  "Hybrid: commissioned real micro-poll as calibration or escalation tier",
+  "Fake-poll detector as the defensive twin"
+ ],
+ "merged_from": [
+  "Synthetic-electorate MrP for thin and foreign election markets",
+  "Interview-grounded standing twin panel for poll-number and survey-index markets",
+  "Synthetic electorate (silicon sampling) for poll-print, approval and low-coverage race markets",
+  "Buy the information: commissioned micro-polls and synthetic MrP (synthetic tier plus real-poll calibration)"
+ ],
+ "flags": "Scraping social platforms may breach their ToS. Inferring the political views of real users raises GDPR and ethics issues. Twin panels need human-subjects consent. Never publish synthetic numbers as real polling. Fabricated polls aimed at markets are a live 2026 scandal, and publishing one is fraud or manipulation. Election contracts are restricted in several jurisdictions.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2503.05529",
+   "note": "PoSSUM (2025-03): 1,054 X users, called 50 of 51 states, P(R)=0.65. This was a prospective test."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.18395",
+   "note": "Dynamo-K: called 3 of 3 Korean winners. Bias mitigation cut MAE 5.2x. Names three failure modes."
+  },
+  {
+   "url": "http://arxiv.org/abs/2609.16395v1",
+   "note": "Counter-evidence: silicon samples answer with country-level assumptions. Individual-level recovery is negligible."
+  },
+  {
+   "url": "https://arxiv.org/abs/2608.29455",
+   "note": "Counter-evidence: LLMs explain 3.05% of respondent variance vs 53.6% human test-retest."
+  },
+  {
+   "url": "https://arxiv.org/abs/2411.10109",
+   "note": "[pre-2025] Interview-grounded agents reach 83-86% of test-retest vs 74% for demographics only."
+  },
+  {
+   "url": "https://arxiv.org/abs/2409.09045",
+   "note": "[pre-2025] Negative: LLM predictions of future EU voting 'largely fail'."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=consumer%20sentiment&limit_per_type=15&events_status=active",
+   "note": "UMich bracket market: $10.8k volume, $3.7k liquidity. This sets the capacity ceiling."
+  },
+  {
+   "url": "https://fortune.com/2026/06/17/aaru-cofounder-ned-koh-ai-startup-sales-pitch-do-not-trust-us/",
+   "note": "Aaru claims its NYC primary call was within 2,000 votes (self-reported). Aaru admits it cannot simulate individuals."
+  }
+ ],
+ "n": "51",
+ "band": "speculative",
+ "file": "51-simulated-stakeholder-polling.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Synthetic-electorate MrP for thin and foreign election markets",
+   "one_line": "A trace-grounded synthetic poll with poststratification, run only on election markets where nobody has commissioned a real poll.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1. Build a synthetic electorate per geography from census and turnout marginals.\n2. Ground each agent in real data, not demographics alone. PoSSUM samples real X users, has a multimodal LLM infer vote intention from their recent posts, then uses MrP with structured priors to correct platform selection bias.\n3. Run three or more LLM families. Fit a debiasing layer on past elections for the documented progressive skew and the third-party and stronghold collapse.\n4. Poststratify to a turnout model to get a vote-share distribution with correlated error.\n5. Convert that to win or bracket probabilities. Compare with the Polymarket mid.\n6. Post resting maker orders only on events with sparse polling and low liquidity: regional and foreign elections, primaries, referendums.",
+   "edge_source": "A poll-like signal where no professional polling exists. Foreign-language digital traces that the English-speaking Polymarket crowd does not read.",
+   "why_might_beat_market": "Headline US races are priced off professional aggregates, so expect no edge there. House 2026 has $11.9M volume and $1.43M liquidity.\n\nThin regional markets are different. Polymarket's breaking page lists Mecklenburg-Vorpommern 2026. These markets anchor on punditry and one or two stale polls. A cheap synthetic poll is new information there.\n\nThe honest caveat: evidence suggests silicon samples mostly retrieve country- or item-level priors (Wang 2026). Without real trace grounding this collapses into an expensive fundamentals model. PoSSUM's accuracy came from real users plus MrP, not from LLM imagination.",
+   "adjacent_grounding": "Computational social science and silicon sampling:\n- PoSSUM (Cerina 2025, https://arxiv.org/abs/2503.05529). An October 2024 poll of 1,054 X users called 50 of 51 states, gave the Republican a 0.65 win probability, and had lower state-level bias than most pollsters.\n- Dynamo-K (https://arxiv.org/abs/2605.18395). Called 3 of 3 Korean presidential winners, with 2.1pp MAE on the 0.73pp-margin 2022 race. Documents three systematic LLM failure modes.\n- FlockVote (arXiv 2512.05982). Covers the seven swing states of 2024.\n- ElectionSim (arXiv 2410.20746) [pre-2025, possibly stale].\n- Argyle et al., Out of One, Many (arXiv 2209.06899) [pre-2025, possibly stale].\n- Commercial: Aaru claims its NYC mayoral simulation landed within 2,000 votes of nearly 2M (self-reported, via Fortune 2026-06-17).\n\nI found no evidence of anyone trading this on Polymarket or Kalshi.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2503.05529",
+     "title": "PoSSUM: A Protocol for Surveying Social-media Users with Multimodal LLMs (Cerina)",
+     "date": "2025-03-07",
+     "quality": "paper",
+     "supports": "A trace-grounded silicon sample plus MrP called 50 of 51 states in an October 2024 poll, with a 0.65 Republican win probability."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.18395",
+     "title": "Diagnosing Korean-Language LLM Political Bias (Dynamo-K)",
+     "date": "2026-05-18",
+     "quality": "paper",
+     "supports": "Called 3 of 3 presidential winners. Bias mitigation cut MAE 5.2x. Names three failure modes: progressive bias, third-party salience collapse and regional polarization collapse."
+    },
+    {
+     "url": "http://arxiv.org/abs/2609.16395v1",
+     "title": "Silicon sampling answers with country-level assumptions, not individual attitudes (Wang)",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "Counter-evidence. Adding the country name moved median correlation from -0.03 to 0.52. Individual-level recovery was negligible."
+    },
+    {
+     "url": "http://arxiv.org/abs/2507.00657v1",
+     "title": "Generative Exaggeration in LLM Social Agents",
+     "date": "2025-07-01",
+     "quality": "paper",
+     "supports": "On 21M 2024-election interactions, LLM agents amplified polarization beyond empirical baselines."
+    },
+    {
+     "url": "https://fortune.com/2026/06/17/aaru-cofounder-ned-koh-ai-startup-sales-pitch-do-not-trust-us/",
+     "title": "Fortune on Aaru",
+     "date": "2026-06-17",
+     "quality": "self-reported",
+     "supports": "Aaru claims its NYC mayoral simulation was within 2,000 votes of nearly 2M. The company reported this itself and it is not independently audited."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Senate%20vote&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API snapshot",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "House 2026 has $11.9M volume and $1.43M liquidity. Senate 2026 has $4.77M and $711k. This is the liquid benchmark where no edge is expected."
+    }
+   ],
+   "failure_modes": "- Progressive bias, third-party salience collapse and stronghold under-prediction (Dynamo-K).\n- Homogenized responses (2507.02919).\n- Leakage: all 2024 \"replications\" are in-sample for current LLMs.\n- Turnout modelling dominates the error.\n- Cost and access limits on X and other trace APIs.\n- Few elections per year gives low statistical power.\n- Thin markets mean capacity of hundreds to low thousands of USD.",
+   "cheap_validation": "Forward-only test:\n- Pre-register forecasts on every Polymarket election event with under $250k liquidity over the next 6 months.\n- Score vote-share MAE against the final polling average.\n- Score Brier against the market mid at T-7d.\n\nPass:\n- Brier skill score against the market of at least +0.03 on at least 30 resolved contracts, AND\n- MAE no worse than the polling-average MAE in at least 60% of races.\n\nAny backtest must use an open-weight model whose training cutoff predates the election, with a frozen retrieval corpus.",
+   "flags": "- Scraping social platforms may breach their terms of service.\n- Inferring political views of real users raises GDPR and ethics issues outside the US."
+  },
+  {
+   "name": "Interview-grounded standing twin panel for poll-number and survey-index markets",
+   "one_line": "Recruit a small real panel once, turn each respondent into an LLM twin, and re-poll the twins daily to nowcast approval-rating and consumer-sentiment bracket markets.",
+   "category": "Information edge",
+   "maturity": "Experimental",
+   "mechanism": "1. Recruit 200-500 real respondents stratified to the target population. Alternatively bootstrap from the public Twin-2K-500 dataset.\n2. Ground one agent per person in a long interview or a 500-question battery.\n3. Each day, expose the twins to a news digest.\n4. Re-ask the exact wording used by the resolving source: the approval question, or the five UMich index questions.\n5. Fit a state-space model that maps twin-panel drift to the actual published series and its house effects.\n6. Output bracket probabilities before each release and rest maker orders in the bracket markets.",
+   "edge_source": "A proprietary, continuously updated pseudo-survey. Each agent is anchored to a real person, which avoids the mode collapse seen with demographic personas.",
+   "why_might_beat_market": "These markets are thin and priced by hobbyists, so a modestly skilled nowcast can win. Snapshot figures:\n- UMich September 2026: $10.8k volume, $3.7k liquidity.\n- \"Trump approval on Sept 25\": $50 volume, $1.1k liquidity.\n- \"How low will approval go in 2026\": $144k volume, the largest of these.\n\nCapacity is tens to hundreds of dollars per market. A time-series model of the published aggregate is a strong baseline that the twins may not beat.\n\nLLMs predict item means well but capture only 3.05% of respondent-specific variation. The panel's value would therefore be aggregate drift under news shocks, not individual fidelity.",
+   "adjacent_grounding": "Generative agents of real people:\n- Park et al. (https://arxiv.org/abs/2411.10109) [pre-2025, possibly stale]. 1,052 Americans, 2-hour interviews. Combined agents reach 86% normalized accuracy against 74% for demographics only, per the abstract as fetched.\n- Twin-2K-500 (arXiv 2505.17479). 2,058 people, 500 questions, public.\n- Lin et al. 2026 (https://arxiv.org/abs/2608.30522). 300 Michigan Surveys of Consumers households became persistent agents that reproduced some post-Liberation-Day distributional patterns.\n- Commercial: Simile raised a $200M Series B at a $2B valuation in July 2026 (company site, marketing).\n- Aaru's EY example: the simulation predicted 40% retention against a real 20-30%, while humans stated 82% (Fortune, self-reported).\n\nI found no evidence of use on prediction markets.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2411.10109",
+     "title": "LLM Agents Grounded in Self-Reports Enable General-Purpose Simulation of Individuals (Park et al.)",
+     "date": "2024-11-15",
+     "quality": "paper",
+     "supports": "Interview-grounded twins reach 86% of participants' own test-retest consistency, against 74% for demographic-only personas. [pre-2025, possibly stale]"
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.30522",
+     "title": "Tariff Threats, Macroeconomic Expectations, and Policy Communication Strategies: a Multi-Agent System",
+     "date": "2026-08-31",
+     "quality": "paper",
+     "supports": "300 Michigan Survey households became persistent LLM agents. They reproduce some distributional patterns. The authors say the method needs human validation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.29455",
+     "title": "Item-Mean Surrogates: Why Richer Persona Data Fail to Improve LLMs as Human Surrogates",
+     "date": "2026-08-29",
+     "quality": "paper",
+     "supports": "Counter-evidence. LLMs explain 3.05% of respondent-specific variation, against 53.6% human test-retest. Their response distributions are compressed."
+    },
+    {
+     "url": "https://www.simile.com/",
+     "title": "Simile company site",
+     "date": "undated (2026)",
+     "quality": "marketing",
+     "supports": "Claims 85% of human self-retest accuracy. Reports a $200M Series B at a $2B valuation. Does not mention prediction markets."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=consumer%20sentiment&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: UMich Consumer Sentiment September 2026",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "A six-bracket market with $10.8k volume and $3.7k liquidity."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=approval%20rating&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: Trump approval markets",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "\"How low in 2026\" has $144k volume. The date-specific bracket market has $50 volume and $1.1k liquidity."
+    }
+   ],
+   "failure_modes": "- Twins go stale as the real people change.\n- News exposure is unrealistic: real people do not read a digest.\n- Aggregate drift is dominated by item means, so the twins add little over time-series models.\n- The resolving aggregator's methodology and house effects drive bracket outcomes.\n- Panel cost: my estimate is low five figures USD for a recruited panel. This estimate is unverified.\n- Tiny market capacity.",
+   "cheap_validation": "Step 1, no recruitment: build twins from the public Twin-2K-500 data.\n- Replay 12 months of post-cutoff news.\n- Predict the direction and bracket of UMich prelim-to-final and month-on-month changes.\n\nPass on step 1:\n- Directional accuracy of at least 60%, AND\n- Bracket log score better than an AR(1)-plus-prelim baseline in at least 8 of 12 months.\n\nStep 2, only if step 1 passes: paper trade for 3 months against market prices at T-24h. Require a positive Brier skill score.",
+   "flags": "Human-subjects consent is needed for building twins of panel members. Store interview data securely."
+  },
+  {
+   "name": "Synthetic electorate (silicon sampling) for poll-print, approval and low-coverage race markets",
+   "one_line": "Simulate a demographically weighted population of respondent agents to nowcast the next poll or approval print, or an under-polled race. Trade the recurring markets that resolve on those numbers.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental (academic results are mixed and mostly negative for vote prediction; commercial synthetic-polling claims could not be verified this session; no documented prediction-market use)",
+   "mechanism": "1) Build a panel of respondent agents from real survey microdata, or interview-grounded agents where available. Weight it to the target pollster's likely-voter frame.\n2) Each week, update the agents with the week's salient news and ask the exact poll question. Aggregate to a predicted topline with uncertainty from resampling personas and models.\n3) Combine with a poll-average carry-forward baseline. The synthetic panel supplies only the delta since the last real poll.\n4) Map this to markets that resolve on a specific print (approval rating bands, 'who leads poll X', primary outcomes in sparsely polled races) and trade when the predicted band probability differs from the price by more than fees. Politics feeRate is 0.04, which is 1c per share at p=0.5.\n5) Recurring weekly resolution gives fast feedback for reweighting.",
+   "edge_source": "Nowcasting the reaction of a population between sparse real measurements. The target is the poll number, which is a well-defined statistical object, not the election itself.",
+   "why_might_beat_market": "Between polls, the market prices the last print plus narrative. A calibrated reaction model could lead by days. Weekly markets compound the sample quickly. Honest limit: the peer-reviewed evidence is against it for vote choice. Von der Heyde et al. find that LLM predictions of future voting 'largely fail' (26,000 EU voters) and show party bias in Germany. Park et al.'s 86% figure is replication of individuals' own survey answers, which is not forecasting of opinion change. Treat this as a low-prior idea whose main attraction is cheap, fast falsification.",
+   "adjacent_grounding": "Computational social science:\n- Park et al., 'LLM Agents Grounded in Self-Reports' (https://arxiv.org/abs/2411.10109, 2024-11, rev. 2026-06) [pre-2025 origin]: agents built from 1,052 Americans' interviews reach 83-86% of test-retest consistency, against 74% for demographics only.\n- Yu et al., multi-step reasoning for US election prediction on ANES plus synthetic personas (arXiv 2411.03321, 2024) [pre-2025].\n- Von der Heyde et al., EU Parliament 2024 (arXiv 2409.09045, 2024) and German opinion (arXiv 2407.08563, 2024) [pre-2025]: failure and bias.\n- MiroFish society simulation (https://github.com/666ghj/MiroFish): 74.1k stars, no accuracy validation.",
+   "failure_modes": "- LLMs homogenise subgroup opinion and lean left or liberal in several studies.\n- Persona prompts do not induce real diversity (Nous null result).\n- Pollster house effects and methodology changes dominate week-to-week movement.\n- News-to-opinion elasticity is tiny and LLMs over-react.\n- Approval-band markets are thin.\n- Demographic-only agents are weak (the 74% baseline).",
+   "cheap_validation": "Pure paper test, with no trading needed. For 12 weeks, predict each weekly approval or poll print before release.\n\nPass if MAE is below the carry-forward poll-average baseline by >= 10%, and if the implied band probabilities have a better log score than the Polymarket price at T-24h on >= 30 resolved weekly markets.\n\nFail fast at week 6 if MAE is no better than baseline.",
+   "flags": "Avoid presenting synthetic poll numbers publicly as real polling, which risks misinformation.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2411.10109",
+     "title": "LLM Agents Grounded in Self-Reports Enable General-Purpose Simulation of Individuals (arXiv)",
+     "date": "2024-11-15 (rev. 2026-06-28)",
+     "quality": "paper",
+     "supports": "Interview and survey-grounded agents of 1,052 Americans reach 83-86% of participants' own test-retest consistency, against 74% for demographic-only agents."
+    },
+    {
+     "url": "https://arxiv.org/abs/2409.09045",
+     "title": "United in Diversity? Contextual Biases in LLM-Based Predictions of the 2024 European Parliament Elections (arXiv) [pre-2025, possibly stale]",
+     "date": "2024-08-29",
+     "quality": "paper",
+     "supports": "Negative evidence: LLM-based predictions of future voting behaviour 'largely fail', with unequal accuracy across countries."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.13038",
+     "title": "Nous: An Attempt to Extract and Inject the Cognition Behind Prediction-Market Behavior (arXiv)",
+     "date": "2026-06-11",
+     "quality": "paper",
+     "supports": "Prompt-level persona injection does not reduce ensemble error correlation or improve Brier (p about 0.95). This is a warning for persona-based synthetic respondents."
+    },
+    {
+     "url": "https://github.com/666ghj/MiroFish",
+     "title": "MiroFish (GitHub)",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "self-reported",
+     "supports": "Popular (74.1k stars) multi-agent 'parallel digital world' prediction engine. It shows no quantitative accuracy validation and mentions no prediction markets."
+    }
+   ]
+  },
+  {
+   "name": "Buy the information: commissioned micro-polls and synthetic MrP for under-polled, high-volume races",
+   "one_line": "When a market's depth exceeds the price of a real survey, buy the survey (or run a PoSSUM-style social-media MrP) and trade the gap before any public poll exists.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "1) Screen for races where (market volume and resting depth) >> (cost of information) and public polling is sparse or low quality: mayoral races, primaries, runoffs, foreign regional elections. Example: LA mayor had $93M on Kalshi + $13.5M on Polymarket and was rattled by a poll later exposed as fake. 2) Tier the purchase: (a) near-free synthetic poll - PoSSUM protocol (multimodal LLM reads ~1,000 public social profiles, then MrP with structured priors); (b) cheap online-panel poll with a 'who will your neighbours vote for' item; (c) full probability sample only if (a) and (b) disagree with the price by more than the fee+spread. 3) Convert to a win probability with a proper error model (house effects, late swing), compare with price, enter as maker over days. 4) Decide ex ante whether to publish after entry (legal if the poll is real and honestly reported) or stay private. 5) Defensive twin: a fake-poll detector (pollster registry checks, crosstab plausibility, domain age) to fade moves caused by bogus polls.",
+   "edge_source": "Private primary data where the public information set is thin; value-of-information arithmetic that retail traders never do.",
+   "why_might_beat_market": "Prediction-market depth in 2026 elections is now large relative to the cost of measurement, and the precedent exists: the French trader 'Theo' said he commissioned private polls and won about $85M on roughly $30M staked in 2024. Off-cycle and local races have few public polls, so one decent sample is a large share of all information. Honest limits: ACX argues Theo was 'an intelligent person with a good argument who got lucky' and that private polls are not massively better than public ones; one poll has a +/-4-point margin, which is only worth buying when the price sits far from your prior; synthetic polls have fat-tailed misses (Aaru projected Harris +4.2 per evidence pack E8, not re-fetched).",
+   "adjacent_grounding": "Cerina, PoSSUM (arXiv 2503.05529): 1,054 X users, fielded 17-26 Oct 2024, called 50 of 51 states, Republican win probability 0.65, lower state-level bias than most pollsters - a prospective, scored test. Aaru (Fortune 2026-06-17): simulated 2M voters, NYC mayoral primary 'within 2,000 votes' (vendor claim). Hewitt et al.: GPT-4 predicts survey-experiment effects r=0.85 (evidence pack E8, not re-fetched). Neighbour/expectation questions: used by Theo per WSJ as summarised by ACX. Poll prices were not retrievable this session (unverified; team must get quotes).",
+   "failure_modes": "Sampling error larger than the mispricing; herding toward your own poll; synthetic respondents under-dispersed and skewed; your order flow reveals the information before you are filled; if you publish, accusations of pushing the market; if a vendor fabricates data you are trading on noise; fake-poll scandals (WI governor and LA mayor, Aug 2026) have put every poll-market interaction under press and regulatory scrutiny.",
+   "cheap_validation": "Stage 1 (free): run PoSSUM-style synthetic polls on the next 10 state/local races with Polymarket or Kalshi markets, pre-register win probabilities, score Brier versus market mid at the same timestamp. Pass: synthetic poll + market blend beats market alone on Brier and errors are not one-directional. Stage 2: one real online-panel poll on a race where depth within 3c of mid is >= 20x the poll cost (get three vendor quotes first); success = poll-implied probability differs from price by >=8 points AND post-entry public polls move the price toward you. Budget cap: one poll.",
+   "flags": "Commissioning and privately trading on a genuine poll is lawful research; publishing a fabricated or selectively reported poll is fraud/manipulation and is now a live scandal. Check ToS conduct code and local election-polling disclosure laws before publishing anything. Election contracts are banned or contested in several jurisdictions.",
+   "evidence": [
+    {
+     "url": "https://www.astralcodexten.com/p/congrats-to-polymarket-but-i-still",
+     "title": "Congrats To Polymarket, But I Still Think They Were Mispriced (Astral Codex Ten)",
+     "date": "2024-11-07 [pre-2025, possibly stale]",
+     "quality": "credible-report",
+     "supports": "Theo told the WSJ he commissioned private polls; bet est. $30-75M; author's view that it was luck, and that private polls are not massively better"
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "title": "Polymarket - Wikipedia",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "French trader: ~$30M staked across four accounts in Oct 2024, $85M winnings, WSJ sourcing; Polymarket found no manipulation"
+    },
+    {
+     "url": "https://arxiv.org/abs/2503.05529",
+     "title": "PoSSUM: A Protocol for Surveying Social-media Users with Multimodal LLMs",
+     "date": "2025-03-07",
+     "quality": "paper",
+     "supports": "prospective synthetic poll: 1,054 users, 50/51 states, P(R)=0.65, lower bias than most pollsters"
+    },
+    {
+     "url": "https://defirate.com/news/106m-volume-los-angeles-mayor-race-prediction-markets/",
+     "title": "Over $106M Has Been Traded on LA's Mayor Race",
+     "date": "2026-09-03",
+     "quality": "credible-report",
+     "supports": "$93M Kalshi + $13.5M Polymarket on one municipal race; an 11-point-lead poll 'later exposed as fake'"
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=%22fake+poll%22+prediction+markets+Polymarket+OR+Kalshi&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News RSS listing (headline only): 'How prediction markets became the center of a fake California poll scandal' (SFGATE 2026-08-19); 'What a fake poll reveals about worries around prediction markets and the midterms' (NPR 2026-08-28); 'Bass Vs Raman Odds: The Fake Poll Kalshi Didn't Buy' (OddsShopper 2026-08-20)",
+     "date": "2026-08",
+     "quality": "credible-report",
+     "supports": "fabricated polls aimed at markets are a current phenomenon; detection is itself an edge (articles not fetched)"
+    },
+    {
+     "url": "https://fortune.com/2026/06/17/aaru-cofounder-ned-koh-ai-startup-sales-pitch-do-not-trust-us/",
+     "title": "Aaru profile (Fortune)",
+     "date": "2026-06-17",
+     "quality": "self-reported",
+     "supports": "synthetic electorate claims (NYC primary within 2,000 votes), $1B valuation, ARR < $10M"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "simulated-stakeholder-polling / decision-body-member-twins / elite-selection-bargaining-simulators / synthetic-uma-dispute-jury all carry the seed label 'simulated stakeholder polling'. Only the first is polling. The other three are institutional twins. This is harmless for coverage, since the seed has its own entry. The owner should not read it as four takes on one idea, though. Only one of them tests polling simulation."
+ ]
+}

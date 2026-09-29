@@ -1,0 +1,27 @@
+{
+ "slug": "platform-ai-context-audit",
+ "name": "Machine-context audit: detect fabricated or slanted in-product AI summaries and test the retail drift they cause",
+ "category": "Speculative-novel",
+ "maturity": "Purely theoretical",
+ "one_line": "Continuously fact-check Polymarket's own AI 'Market Context' timelines, and where they cite non-existent or mislabelled sources in a directional way, test for and fade the retail flow that reads them.",
+ "scope": "Collect context entries for markets of $1M and above. An agent checks that each citation resolves to a real article from the claimed outlet. Sign each error by the outcome it favours. Run an event study of price and small-ticket flow after the entry appears. The defensive use is to block the team's own agents from ingesting platform context. A sub-variant is a poisoned-source sentinel for the LLM-bot herd, since a Pravda-network domain was cited 1,000+ times per the E7 pack. The decisive unknown is whether these errors move prices at all. The first step is pure logging over 8-12 weeks.",
+ "why_it_matters": "The E7 pack lists this fact and no entry monetises it or defends against it. The CJR audit covered 152 markets with at least $1M at stake and 65,000+ entries. Nearly a third of annotated markets carried fake AP URLs, concentrated in election markets. The examples were directional, including a fake AOC announcement and a Harris-Iran deal attributed to the FT that linked to a pro-Russian network. Polymarket did not respond. Every retail user on the page sees this common-mode input. I recommend folding it into llm-monoculture-herd-factor, renamed 'predictable-herd factor', as the 'machine-generated context' sub-variant, not giving it a separate file.",
+ "flags": "The ToS bans scraping the site with robots or crawlers (E9 pack). Never create or seed content. Trading against a known platform defect while it goes unreported is an optics risk.",
+ "key_evidence": [
+  {
+   "url": "https://www.cjr.org/tow_center/polymarkets-ai-is-feeding-users-fabricated-information.php",
+   "note": "Columbia Journalism Review, 2026-08-27. The audit covered 152 markets at $1M and above and 65,000+ entries. Nearly a third had fabricated AP links. The search vendor was Linkup. Polymarket did not respond."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "77",
+ "band": "speculative",
+ "file": "77-platform-ai-context-audit.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "RENAME llm-monoculture-herd-factor to 'predictable-herd factor' and add three sub-variants. (a) Copy-cascade harvesting: follower flow is labelled on-chain by builder code (PolyCop and Polygun fills; median copy delay 5.6 min, p90 9.6; E6 pack). A leader fill therefore predicts follower takers minutes later. Note the collapse to about $28.5M a month of copy-bot volume in Aug 2026 (E6 pack), which makes capacity small. (b) Machine-context audit (see missing: platform-ai-context-audit). (c) Poisoned-source sentinel. Trading ahead of your own followers is prohibited. Providing liquidity to strangers' public copy flow is not.",
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band."
+ ]
+}

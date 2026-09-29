@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "FinRL: Three-Layer Reinforcement Learning Stack",
+    "quality_profile": "showcase",
+    "viewBox": [1060, 800],
+    "views": [
+      { "id": "loop", "label": "The interaction loop", "focus": ["agent", "env", "obs"], "note": "Action out, observation and reward back: the entire contract between agent and market." },
+      { "id": "layers", "label": "Layer separation", "focus": ["processor", "env", "agent", "train"], "note": "Each layer exposes an API upward, so the layer beneath stays replaceable." },
+      { "id": "promotion", "label": "Train to live", "focus": ["train", "backtestapp", "paper"], "note": "A policy is promoted only after walk-forward validation and a costed backtest." }
+    ]
+  },
+  "components": [
+    { "id": "processor", "type": "backend", "label": "Data Processor", "sublabel": "clean, align, indicators", "pos": [80, 120], "size": [200, 110], "tag": "vendor connectors" },
+    { "id": "env", "type": "cloud", "label": "Trading Environment", "sublabel": "Gym-style episode", "pos": [80, 330], "size": [200, 130] },
+    { "id": "obs", "type": "database", "label": "Observation & Reward", "sublabel": "cash, holdings, prices", "pos": [80, 570], "size": [200, 110], "tag": "Δ value − costs" },
+    { "id": "agent", "type": "backend", "label": "DRL Agent", "sublabel": "PPO · SAC · TD3 · DDPG", "pos": [430, 380], "size": [230, 130] },
+    { "id": "replay", "type": "database", "label": "Replay Buffer", "sublabel": "sampled for updates", "pos": [430, 600], "size": [230, 110] },
+    { "id": "train", "type": "backend", "label": "Train → Validate", "sublabel": "walk-forward splits", "pos": [790, 120], "size": [200, 110], "tag": "hyperparameter search" },
+    { "id": "backtestapp", "type": "backend", "label": "Backtest & Metrics", "sublabel": "Sharpe, drawdown, return", "pos": [790, 330], "size": [200, 110] },
+    { "id": "paper", "type": "external", "label": "Paper / Live Trading", "sublabel": "broker API", "pos": [790, 540], "size": [200, 110] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Environment Layer", "wraps": ["processor", "env", "obs"] },
+    { "kind": "region", "label": "Agent Layer", "wraps": ["agent", "replay"] },
+    { "kind": "region", "label": "Application Layer", "wraps": ["train", "backtestapp", "paper"] }
+  ],
+  "connections": [
+    { "id": "features", "from": "processor", "to": "env", "label": "aligned features", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelDy": 62 },
+    { "id": "step", "from": "env", "to": "obs", "label": "step() result", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelDy": 62 },
+    { "id": "feedback", "from": "obs", "to": "agent", "label": "s_t , r_t", "variant": "emphasis", "fromSide": "right", "toSide": "left", "via": [[370, 625], [370, 445]] },
+    { "id": "action", "from": "agent", "to": "env", "label": "action a_t", "variant": "emphasis", "fromSide": "top", "toSide": "right", "via": [[545, 290], [330, 290], [330, 395]] },
+    { "id": "store", "from": "agent", "to": "replay", "label": "store transitions", "variant": "dashed", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelDy": 62 },
+    { "id": "episodes", "from": "train", "to": "agent", "label": "train / validate episodes", "fromSide": "left", "toSide": "right", "via": [[720, 175], [720, 445]] },
+    { "id": "tuned", "from": "train", "to": "backtestapp", "label": "tuned policy", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelDy": 62 },
+    { "id": "deploy", "from": "backtestapp", "to": "paper", "label": "deploy", "variant": "emphasis", "fromSide": "bottom", "toSide": "top", "route": "straight", "labelDy": 62 }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Layers, not a script", "items": ["Environment, agent and application are separately replaceable", "Each layer exposes an API upward and hides the one below", "The same agent code runs against backtest, paper and live environments"] },
+    { "dot": "emerald", "title": "No language in the loop", "items": ["Perception is a numeric state vector, not a prompt", "The reward function encodes the objective explicitly", "Reactive, millisecond-scale decisions with no deliberation step"] },
+    { "dot": "amber", "title": "What it trades away", "items": ["Fast and cheap at inference, but the policy cannot explain itself", "Unstructured news and filings need a separate feature pipeline", "Regime shifts require retraining rather than re-reading the context"] }
+  ]
+}

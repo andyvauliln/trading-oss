@@ -1,0 +1,170 @@
+{
+ "slug": "recurring-count-mention-counter-markets",
+ "name": "Recurring count, mention and public-counter markets",
+ "category": "Information edge",
+ "maturity": "Emerging",
+ "seed_category": "information edge / niche modelling",
+ "one_line": "Model repeating count processes (Elon tweet weeks) and trade 'will X say Y' strikes from base rates early and transcript speed live.",
+ "scope": "Cover tweet-count markets (transition matrix, pacing curve, outlier flag, calibration gaps by bucket, NO on 10-20% buckets 90/97, $46.5M weekly volume, public dashboards eroding the edge, counting-rule disputes) and mention markets (speaker base rates from past transcripts, early thin-book entries, live keyword sniping, 'Axios' 96% win-rate wallet claim, small retail results, one-miss blow-ups, speaker griefing). State plainly that no verified transcript/ASR bot PnL was found and that insiders who see the script are documented counterparties (CFTC teleprompter case). Fees 0.04-0.05, rebate 25%. Boundary: generic longshot selling is longshot-selling-flb; insider conduct is informed-flow-and-insider-trading; rule-wording disputes are rules-dispute-trading.",
+ "sub_variants": [
+  "weekly count-process model with intra-week repricing",
+  "pre-event base-rate mention pricing",
+  "live audio / transcript keyword sniping"
+ ],
+ "merged_from": [
+  "traders: Recurring count-process markets (Elon tweet counts and similar) modelling",
+  "traders: Mention-market trading",
+  "onchain-bots: Mention markets (what a speaker will say)"
+ ],
+ "flags": "Mention markets have high insider exposure (CFTC settlement Aug 2026); outcomes can be manipulated by the speaker.",
+ "key_evidence": [
+  {
+   "url": "https://news.polymarket.com/p/tweet-quant",
+   "note": "86 weeks of data, calibration gaps, pacing and momentum factors, $46.5M weekly volume"
+  },
+  {
+   "url": "https://news.polymarket.com/p/this-tool-finds-polymarket-traders",
+   "note": "Polymarket Analytics founder: 96% win-rate mention wallet, speed trading as a style"
+  },
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?q=%22mention%20market%22%20OR%20%22mention%20markets%22%20strategy&size=40&sort=desc&sort_type=score&after=1751328000",
+   "note": "Retail results: 14/15 for +$320; early entries 63c/52c to high 80s; CEO troll"
+  },
+  {
+   "url": "https://www.cnn.com/2026/08/28/politics/trump-teleprompter-operator-settles-insider-trading-case",
+   "note": "Snippet only: CFTC action over bets on speech content"
+  },
+  {
+   "url": "https://hn.algolia.com/api/v1/items/48007503",
+   "note": "WSJ as quoted: bettor lost $41,000 on one mention bet"
+  }
+ ],
+ "parent_slug": "recurring-count-mention-markets",
+ "seed": "4 statistical models (niche)",
+ "extra_scope": "WIDENED per critic: the same build applies to any market resolved on a continuously updating public counter: box office, review-aggregator scores, streaming / chart counts, video views, and the LMArena leaderboard for 'best AI model on date X' plus model-release markets (specialist wallets exist: see critic_addition). Say where PnL evidence exists and where it does not.",
+ "critic_addition": {
+  "slug": "tech-ai-model-markets",
+  "name": "Tech / AI-model markets: leaderboard tracking, release-timing reads and their manipulation fringe",
+  "category": "Information edge",
+  "maturity": "Emerging",
+  "one_line": "Specialist wallets trade 'best AI model on date X' (resolved on the LMArena text leaderboard) and model-release / AI-company markets from leaderboard telemetry, lab chatter and rule fine print; the resolution source itself has been vote-botted.",
+  "scope": "Cover the Tech / AI category, which has no entry. (1) Market family: monthly 'best AI model' ladders resolved on lmarena.ai Text Arena Overall with a named style-control setting; release-date markets (GPT-5 before date); AI-company valuation / IPO markets resolved on Nasdaq Private Market data (live: Anthropic valuation ladder ~$4.9M volume, IPO closing market cap ~$0.87M). (2) Documented edges: continuous leaderboard polling and score-interval arithmetic, pre-release anonymous-model spotting, Discord / X chatter, fading launch hype (WSJ via Reddit mirror, secondhand: ~$20M AI-market volume in Aug 2025; one trader $3.2M staked for $170k profit, $10k in hours fading GPT-5 timing hype); Polymarket's own newsletter profiles three specialist wallets with 58.8%, 85.7% and 91.7% accuracy and '80% or better win rate' across GPT-5 / OpenAI categories (no dollar PnL given; one $13k loss on a model-ranking bet). (3) Rule-text edge: a May 2026 market priced YES 95% while the leaderboard under the stated 'style control OFF' setting showed another model two Elo points ahead (1504 vs 1502), with dispute instructions and a $500 bond cited. (4) Flagged fringe: a self-reported confession of botting LMArena votes (claimed 10-30% of OpenAI-vs-Google votes, $5k + $10k profit, Dec 2024-Jan 2025), plus lab-employee MNPI (cases already in the insider entry). Fee 0.04, maker rebate 25%. Boundary: tampering belongs to oracle-input-manipulation; employee trading to informed-flow-and-insider-trading; generic rule disputes to rules-dispute-trading.",
+  "why_it_matters": "The brief asks that every Polymarket category be answered; Tech / AI is not. It is a recurring monthly ladder with a machine-readable, thinly voted resolution source (4k-50k votes per model per the confession), which makes it both the most automatable niche after weather / tweet counts and one of the most manipulable: exactly the 'resolution fragility' case the owner's defensive screen should flag. A team building AI agents is unusually well placed to read this category.",
+  "flags": "Manipulating LMArena votes to move a resolution source is market manipulation and a ToS breach (defensive relevance only). Lab employees trading release or benchmark markets is MNPI. The WSJ figures are secondhand via a Reddit repost; the confession is anonymous and unverified.",
+  "key_evidence": [
+   {
+    "url": "https://news.polymarket.com/p/ai-overlords",
+    "note": "The Oracle (Polymarket), 2026 (fetched): three AI-market specialist wallets, accuracy 58.8% / 85.7% / 91.7%, category win rates, largest loss $13k; no dollar PnL totals"
+   },
+   {
+    "url": "https://api.pullpush.io/reddit/search/submission/?ids=1i7zd5a,1msr9q3,1t0j02y",
+    "note": "Reddit mirror (fetched): r/LargeLanguageModels 2025-01-23 vote-botting confession ($5k + $10k, self-reported); r/AIxProduct 2025-08-17 repost of WSJ 'Gamblers Now Bet on AI Models Like Racehorses' ($20M Aug 2025 volume, $170k profit on $3.2M; secondhand, WSJ original not fetched); r/Polymarket 2026-05-01 style-control-OFF resolution warning"
+   },
+   {
+    "url": "https://gamma-api.polymarket.com/events?tag_slug=ai&closed=false&limit=25&order=volume24hr&ascending=false",
+    "note": "Polymarket Gamma API, fetched 2026-09-20: Anthropic valuation ladder $4.92M volume / $401k liquidity, IPO closing market cap $865k; resolution on Nasdaq Private Market data (summariser output was truncated to two events)"
+   }
+  ]
+ },
+ "n": "23",
+ "band": "established",
+ "file": "23-recurring-count-mention-counter-markets.md",
+ "critic_notes": [
+  "WIDEN recurring-count-mention-markets, or add sub-variants, so Culture is answered: the same build applies to any market resolved on a continuously updating public counter (box office, review aggregator scores, streaming and chart counts, video views, the LMArena leaderboard). No PnL evidence was found this session for the culture examples (unverified), and The Oracle's Oscars piece (2026-03-13) contains opinion only, so this should be a sub-variant, not a file. Culture / awards otherwise has no entry."
+ ],
+ "cross_band_note": "From the speculative critic: the NO-side laddered maker overlay in mention markets (structural YES overpricing; only self-reported profit record) belongs here, not in the speculative speaker-twin file. The speaker-twin itself has negative evidence (Brier 0.1470 vs 0.1402 for the market).",
+ "raw_discovery_candidates": [
+  {
+   "name": "Recurring count-process markets (Elon tweet counts and similar) modelling",
+   "one_line": "Model a weekly count with momentum, intra-week pacing and outlier terms; trade bucket mispricings and re-price as the week unfolds.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Build a transition matrix between low/medium/high weeks (e.g. a Low week is followed by Low 61% of the time), a pacing curve (~69% of the weekly total is posted by Tuesday) and a z-score outlier flag (85% of outliers are upside). Compare the implied bucket distribution with market prices: 10-20% buckets realised 7.4% vs 13.7% implied, 30-50% buckets realised ~43% vs 34.9% implied. Trade at the weekly open and again as the running count collapses the distribution. Weekly volume reached $46.5M in the last week of February 2026, so capacity is meaningful.",
+   "edge_source": "Simple statistical structure in a repeating series that a bucketed retail market misprices (longshots over-, favourites under-priced).",
+   "why_might_beat_market": "Dozens of repeats give fast feedback and real statistical power, unlike one-off political bets.",
+   "failure_modes": "Behavioural regime change by one person, counting-rule disputes (what counts as a tweet), a public dashboard (elonXforecast.com) now shares the model, mentions-style fee 0.04-0.05.",
+   "cheap_validation": "Rebuild the pacing model from public post counts, backtest bucket prices at open and mid-week for the last 30 weeks net of fees.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://news.polymarket.com/p/tweet-quant",
+     "title": "The Oracle: Tweet Quant (Terry Lee)",
+     "date": "2026-03-19",
+     "quality": "credible-report",
+     "supports": "86 weeks of data, 35-week backtest, calibration gaps, pacing and momentum factors, $46.5M weekly volume"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/search?query=polymarket%20arbitrage&tags=comment&numericFilters=created_at_i%3E1735689600&hitsPerPage=40",
+     "title": "HN comment by idogrady (PolyTools)",
+     "date": "2025-11-20",
+     "quality": "marketing",
+     "supports": "Tool vendors target tweet-count markets with ARIMA/Prophet/LSTM - sign of growing competition"
+    }
+   ]
+  },
+  {
+   "name": "Mention-market trading (base rates early, transcript speed live)",
+   "one_line": "Buy under-priced 'will X say Y' strikes early from speaker base rates, then trade the live event with faster audio/transcript detection.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "Pre-event: check how often the speaker/company used the word in prior calls or speeches, enter when books are thin (one Kalshi trader bought drug-name mentions at 63c and 52c that traded to the high 80s within a day). Live: keyword sniping as the word is spoken. Polymarket Analytics' founder cites a wallet ('Axios') with a 96% win rate on mention markets and names speed trading on mentions as a distinct profitable style; a 1,000-wallet taxonomy lists 'keyword sniping during live events'. Small retail results: 14/15 correct for +$320 on one earnings-call slate.",
+   "edge_source": "Tedious base-rate research plus seconds of reaction speed on live audio.",
+   "why_might_beat_market": "Markets are numerous, small, and beneath institutional attention; fee 0.04.",
+   "failure_modes": "Participants can grief the market (a CEO read out the bet words at the end of a call); ambiguous counting rules and disputes; one missed 80c+ 'lock' wipes many wins; WSJ profiled a bettor who lost $41,000 on one mention bet.",
+   "cheap_validation": "Scrape 8 quarters of transcripts for 20 companies, compute word hit rates, compare to opening prices on Kalshi/Polymarket for one earnings season.",
+   "flags": "Speakers or their staff trading these markets would be insider trading; outcome can be manipulated by the speaker.",
+   "evidence": [
+    {
+     "url": "https://news.polymarket.com/p/this-tool-finds-polymarket-traders",
+     "title": "The Oracle: This tool finds Polymarket traders (Polymarket Analytics founder)",
+     "date": "2025-06-12",
+     "quality": "credible-report",
+     "supports": "'Axios with a 96% win rate on mention markets'; speed trading on mentions as a profitable style"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=%22mention%20market%22%20OR%20%22mention%20markets%22%20strategy&size=40&sort=desc&sort_type=score&after=1751328000",
+     "title": "Reddit r/Kalshi posts 1rdtk82, 1sf9fuv, 1rs5gq5; r/XGramatikInsights 1oo36qa",
+     "date": "2025-11 to 2026-04",
+     "quality": "self-reported",
+     "supports": "14/15 for +$320; early entry 63c/52c -> high 80s; problem of one missed high-priced strike; Coinbase CEO troll"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/48007503",
+     "title": "HN thread on WSJ 'Why Almost Everyone Loses - Except a Few Sharks - On Prediction Markets'",
+     "date": "2026-05-04",
+     "quality": "credible-report",
+     "supports": "WSJ (as quoted): 2.9 unprofitable Kalshi users per profitable one; a bettor lost $41,000 on a mention-market bet"
+    }
+   ]
+  },
+  {
+   "name": "Mention markets (what a speaker will say)",
+   "one_line": "Trade word-mention contracts using speaker base rates, prepared-text leaks into public sources, and live transcription.",
+   "category": "Information edge",
+   "maturity": "Experimental",
+   "mechanism": "Mention markets resolve on whether a named word or phrase is said during an event. The lens brief listed transcript bots here, but no on-chain or press evidence of a profitable transcript/ASR bot was found in this session. What was found is the opposite kind of edge: a White House teleprompter operator was penalised by the CFTC for betting on the content of Trump's speeches. Mentions carry a 0.04 fee rate with a 25% maker rebate and a 1.3 weight in taker-rebate volume.",
+   "edge_source": "Hypothesised: live speech-to-text latency and base-rate models. Documented: insiders who see the script.",
+   "why_might_beat_market": "Unproven. The documented insider presence makes these markets toxic for makers, and any live-ASR edge competes with people who have already read the speech.",
+   "evidence": [
+    {
+     "url": "https://www.cnn.com/2026/08/28/politics/trump-teleprompter-operator-settles-insider-trading-case",
+     "title": "Trump's longtime teleprompter operator to pay $65,000 fine to settle insider-trading case (CNN) - snippet only",
+     "date": "2026-08-28",
+     "quality": "credible-report",
+     "supports": "CFTC settlement over bets on Trump speech content (via Kalshi); NBC/The Hill snippets give $172K total."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Fees (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Mentions feeRate 0.04; maker rebate 25% per the maker rebates page."
+    }
+   ],
+   "failure_modes": "Insider counterparties; ambiguous resolution (plural forms, transcripts vs audio); low depth.",
+   "cheap_validation": "Backfill resolved mention markets and test a pure base-rate model (speaker x word frequency from past transcripts) against closing prices before building any audio pipeline.",
+   "adjacent_grounding": "None verified this session.",
+   "flags": "High insider-trading exposure; enforcement precedent exists (CFTC, Aug 2026)."
+  }
+ ]
+}

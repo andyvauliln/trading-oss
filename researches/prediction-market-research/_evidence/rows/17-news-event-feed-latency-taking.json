@@ -1,0 +1,62 @@
+{
+  "n": "17",
+  "slug": "news-event-feed-latency-taking",
+  "file": "17-news-event-feed-latency-taking.md",
+  "band": "established",
+  "name": "Scheduled-release and breaking-news latency taking (earnings, macro prints, agency / court decisions, election-night returns, live ceremonies)",
+  "one_line": "Sweep the resting orders nobody cancelled in the 2-10 s after a scheduled public number prints (FOMC, CPI, payrolls, EPS); the mirror is a calendar cancel module for the owner's own quotes, which are the prey.",
+  "category": "Information edge (latency on public information)",
+  "maturity": "Established but small for Fed decisions and BLS prints (tapes show 3 wallets taking $99k/$20k/$5k at +4-9 s on 16 Sep 2026, ~$5.7k gross taker edge in 10 s across two markets); Established but thin, probably decayed, for earnings ($5.5k realised by the one identifiable specialist since Feb 2026; the March '$32k' claim cannot be matched to a wallet); unscheduled headlines, election night and ceremonies unverified",
+  "requires_ai": "optional; offline rule compilation (GAAP vs non-GAAP, rounding), never in the release path",
+  "edge": "Stale resting orders through a scheduled print (reward-farmed Fed books); first informed clips at +4-7 s",
+  "capital": "<$1k earnings/BLS clips; $5k-$50k to take the Fed; locked 1-2 h",
+  "build_time": "2-3 weeks on an existing execution stack; calendar cancel module 2-3 days",
+  "opportunity_size": "Fed day ~$140k notional / ~$5.7k gross edge in 10 s; CPI + jobs ~$1.1k/month; earnings $0-110 per event; earnings shrinking",
+  "expected_results": "wallets: $44.0k realised (macro, 10 weeks), $5.5k (earnings, 7 months); solo guess $0-300/month plus $300-1,500 per Fed day if first",
+  "competition": "3 wallets take the Fed in 6 s, 20 in 10 s; 40-43 wallets on CPI within 30 s",
+  "flag": "none for public-information speed; grey on newswire/X terms; MNPI prohibited (file 30)",
+  "validate": "Paper-trade the October calendar with own L2 recorder; pass if parse time beats T+4 s Fed / T+6 s BLS and paper edge > $300",
+  "top_risk": "Winner-take-all race; a 500 ms wire already lost in Q1 2026",
+  "evidence_grade": "A",
+  "solo_fit": 2,
+  "solo_fit_reason": "The taker side is a source-latency race with a few hundred dollars of prey per event outside eight Fed days a year; the maker-side calendar cancel is cheap, evidenced and directly protects the owner's LP and reward bots.",
+  "compounds_with": [
+    "maker-reward-pool-farming",
+    "event-market-making-spread-carry",
+    "resolution-sniping-post-outcome",
+    "statistical-mispricing-models",
+    "recurring-count-mention-counter-markets",
+    "rules-ambiguity-hazard-layer"
+  ],
+  "speed_class": "latency-sensitive: decided in 0.3-5 s source-to-order; venue clock is 1 s",
+  "results_1k": "marginal; -$65 to +$100/month (guess)",
+  "results_5k": "$0-600/month (guess)",
+  "results_10k": "$0-800/month, Fed-month skew (guess)",
+  "min_capital": "~$2k; hosting exceeds a normal month's edge below it",
+  "capacity_ceiling": "resting size at the print: ~$5.7k edge on a Fed day, ~$0.7k CPI, ~$100 per earnings event",
+  "services": [
+    "Polymarket Gamma/CLOB/Data API",
+    "bls.gov schedule + releases",
+    "federalreserve.gov press releases",
+    "company IR / PR wires / SeekingAlpha",
+    "Alpaca or Benzinga headline feed (optional)",
+    "X API (optional)",
+    "Dublin VPS + us-east-1 reader",
+    "Telonex L2 history (optional)"
+  ],
+  "monthly_running_cost": "minimum ~$75-100; comfortable ~$200-350",
+  "changes_made": [
+    "Reconstructed second-by-second tapes for the 16 Sep Fed decision, 11 Sep CPI, 4 Sep payrolls/unemployment and six earnings releases from the Data API; measured capacity, timing and gross edge per event.",
+    "Profiled the repeat sniper wallets (macro specialist $44.0k realised since Jul 2026; earnings specialist $5.5k since Feb 2026).",
+    "Verified via /clob-markets that earnings, Fed, CPI, daily BTC and daily SPX markets carry no taker-delay flag (only hourly BTC markets do); earnings, CPI and Fed markets carry the 0.05 economics fee, not 0.04 finance.",
+    "Documented that Kalshi closes CPI 5 min and payrolls 1 min before the print and lists no earnings series, so Polymarket is the only venue with a post-print window.",
+    "Cite-check pass (2026-09-28 16:12-16:20 UTC, all 22 sources re-fetched or re-queried): Fed, CPI, payrolls and unemployment tapes re-run with inclusive windows; the winning Fed market's gross taker edge corrected from ~$1.5k to ~$2.5k (SELL-NO takers were undercounted) and the Fed-day total from ~$4.7k to ~$5.7k; trade and wallet counts at +10 s updated (35/20 and 28/16); the claim of a live liquidity-reward config on the Nike earnings market could not be reproduced and was replaced by the two $1,000/day pools on the live Fed October markets; the maker-mirror module quantified ($0.69 of pool per minute out of band vs ~4c per share given up at the print); the '$32k vs $5.5k' earnings comparison reworded because the two cannot be shown to be the same wallet; the 'offset cap 1,000' claim removed (2,500 trades reachable; /v2/trades takes condition + start/end); Massive's Benzinga partner news dataset ($99/month) added; IMDEA source description corrected (crypto microbets excluded, SII trade dataset, 17 Oct 2025 - 29 Mar 2026); $1k row cut to -$65 to +$100."
+  ],
+  "open_doubts": [
+    "The Q1 2026 earnings leader's data path (sub-500 ms) is unknown and its wallet was never identified; the Aug-Sep tapes show first prints at +2-4 s, so either it left or the prey is gone.",
+    "Data API trade timestamps are 1-s match times; sub-second ordering within the +4-7 s pack cannot be resolved.",
+    "The 0x2f63 wallet's $77k realised PnL mixes geopolitics deadline trades with release sniping; its release-only share is unknown.",
+    "Election-night and ceremony variants rest on press anecdotes (CNBC snippet, HTTP 403) only.",
+    "The writer's 16:02 UTC reading of a live rewards config on the Nike earnings market could not be reproduced at 16:16 UTC; reward-farmed resting size is evidenced on the Fed October markets, not on earnings markets."
+  ]
+}

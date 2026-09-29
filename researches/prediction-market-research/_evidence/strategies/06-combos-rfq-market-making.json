@@ -1,0 +1,215 @@
+{
+ "slug": "combos-rfq-market-making",
+ "name": "Combos (parlay) RFQ market making",
+ "category": "Market-making",
+ "maturity": "Emerging",
+ "seed_category": "new (2026 product surface)",
+ "one_line": "Quote 2-50 leg sports parlays in 400 ms RFQ auctions (200 ms on the US venue), earn the parlay premium, hedge legs on the CLOB and graduate to Last Look.",
+ "scope": "Cover the RFQ sequence (400 ms quote window, 10 s acceptance, 1 s last look; US: 200 ms / 3 s / 1 s delay), onboarding and Last Look eligibility (~$2,500 notional, 15% rejection cap), collateral vs inventory sourcing, Positions Framework, Collateral Return, leg universe (sports moneyline/spread/total), correlation pricing and same-game blow-up risk, Kalshi evidence that parlays are overpriced ~3% per leg (1.22x at 10 legs) and combos at 36% of contracts, early Polymarket US beta volumes, unpublished combo fees, reported in-house Polymarket desk. Include the listen-only RFQ logging validation. Boundary: requester-side stale-leg picking is speculative band; builder front-ends selling combos are builder-code-routing-business; same-game single-market consistency arb is combinatorial-logical-arbitrage.",
+ "sub_variants": [
+  "independent-leg pricing with markup",
+  "correlated same-game pricing",
+  "CLOB leg hedging",
+  "Polymarket US institutional RFQ"
+ ],
+ "merged_from": [
+  "academic: Parlay / combo underwriting (RFQ responder) against calibrated legs",
+  "onchain-bots: Combo (parlay) RFQ market making",
+  "adjacent-transfer: Combos (parlay) RFQ quoting",
+  "platform-surface: Combos (parlay) RFQ market making"
+ ],
+ "flags": "Maker access and Last Look require approval and a relationship with Polymarket; US venue requires institutional onboarding on a CFTC DCM.",
+ "key_evidence": [
+  {
+   "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+   "note": "400 ms window, Last Look at ~$2,500 notional, 15% rejection cap, collateral vs inventory"
+  },
+  {
+   "url": "https://arxiv.org/html/2607.14430v1",
+   "note": "Kalshi parlays: ~3% per-leg inflation, 1.037 at 7 legs, 1.305 at 11 legs; single legs calibrated"
+  },
+  {
+   "url": "https://news.bitcoin.com/igaming/polymarket-us-tests-parlays-as-kalshi-banks-25m-in-fees/",
+   "note": "US beta volumes; offshore launch 2026-06-10; Kalshi parlay volume growth"
+  },
+  {
+   "url": "https://news.bloomberglaw.com/securities-law/parlay-bets-are-burning-gamblers-as-market-takes-off-on-kalshi",
+   "note": "Combos 36% of contracts; retail buys longshots, sophisticated traders take the other side (partly paywalled)"
+  },
+  {
+   "url": "https://docs.polymarket.com/trading/combos/collateral-return.md",
+   "note": "Early release of pUSD from offsetting combos; quoting is capital intensive"
+  },
+  {
+   "url": "https://docs.polymarket.us/trader-guide/combos.md",
+   "note": "US: 200 ms window, 3 s last look, 1 s execution delay"
+  }
+ ],
+ "parent_slug": "combos-rfq-market-making",
+ "seed": "new",
+ "extra_scope": "Also cover the REQUESTER side (combo taker exploiting correlation mispricing and stale legs), which discovery rated purely theoretical. The critic doubts the 'Emerging' label: keep it only if you can show at least one external (non-Polymarket) combo maker live, else label Experimental.",
+ "n": "06",
+ "band": "established",
+ "file": "06-combos-rfq-market-making.md",
+ "critic_notes": [
+  "combos-rfq-market-making: 'Emerging' rests on Kalshi parlay data and Polymarket docs; no external Polymarket combo maker's results exist, access and Last Look need approval, and an in-house desk is reported. Keep Emerging only if the file can show at least one non-Polymarket maker live; otherwise Experimental.",
+  "combos-rfq-market-making: gated access, reported in-house desk, no external maker results, combo fees unpublished. A short file at most; the Kalshi parlay-overpricing evidence is the only hard content."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Parlay / combo underwriting (RFQ responder) against calibrated legs",
+   "one_line": "Multi-leg parlays are overpriced by ~3% per leg even when each leg is perfectly calibrated; respond to parlay RFQs and hedge with the single-leg books.",
+   "category": "Market-making",
+   "maturity": "Emerging (documented on Kalshi; Polymarket availability unverified)",
+   "mechanism": "Price each requested parlay as the product of leg mids (adjusted for cross-game correlation, which is ~0 for different games), quote the customer at the prevailing inflated market level, and optionally lay off legs in the single-game CLOBs. Median overpricing is nil for 2-4 legs, 3.7% at 7 legs, 22% at 10 legs, 30.5% at 11 legs. Kalshi now instantiates ~1.09M on-demand combo tickers per day, so the flow is large.",
+   "edge_source": "Lottery demand for high-multiplier tickets; customers cannot easily compare to the fair product of legs.",
+   "why_might_beat_market": "Sportsbook-style margin inside an exchange wrapper, with transparent hedging instruments on the same venue.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2607.14430v1",
+     "title": "Prices, Probabilities, and Parlays: Systematic Bias in Sports Prediction Markets (Moshrefi), arXiv",
+     "date": "2026-07-15",
+     "quality": "paper",
+     "supports": "12,639 cross-game parlay trades (Mar-May 2026, Kalshi): median overpricing ratio ~1.00 for 2-4 legs, 1.005 (5), 1.037 (7), 1.223 (10), 1.305 (11); per-leg inflation ~3% (beta 0.029, R2 0.94) while single legs 30-240 min from expiry are calibrated."
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:kalshi&start=0&max_results=60&sortBy=submittedDate&sortOrder=descending",
+     "title": "arXiv listing: On-Demand Combinatorial Event Markets on Kalshi (Nechepurenko, 2609.17610); ParlayMarket (2603.22596); APMM (2607.18299)",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "7,611,594 unique combo market tickers created at ~1.087M per day, 94.82% in the largest collection; AMM designs bound parlay maker loss at O(M^2) - abstract-level only."
+    }
+   ],
+   "failure_modes": "Correlated legs (same game) break the product rule; tail payouts are lumpy - bankroll must survive an 11-leg hit; RFQ access and venue eligibility; whether Polymarket offers an equivalent product is unverified.",
+   "cheap_validation": "Pull Kalshi combo trade prints for a month, compute realised PnL of a hypothetical responder pricing at the traded price and hedging nothing vs hedging legs.",
+   "flags": "Kalshi is a US CFTC venue; access/eligibility constraints. Polymarket equivalent: unverified."
+  },
+  {
+   "name": "Combo (parlay) RFQ market making",
+   "one_line": "Quote multi-leg Combo requests within 400 ms and earn the parlay premium retail pays.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "Combos are 2-10 leg contracts paying $1 only if all legs hit; they do not trade on the CLOB but through request-for-quote. Approved makers receive each request, must answer within a 400 ms window with a price per YES Combo share, and can fill from collateral (taking the NO side at 1 - price) or inventory. Makers with about $2,500 of Combo notional get Last Look but are paused if they reject more than 15% of selected quotes in an hour. Pricing edge comes from leg correlation and from hedging legs on the CLOB. Launched offshore 2026-06-10; Polymarket US API-only beta from 2026-08-05.",
+   "edge_source": "Retail demand for long-shot multi-leg payouts; few approved quoters; correlation modelling.",
+   "why_might_beat_market": "Same structure that earns sportsbooks their highest hold; Kalshi's parallel product did $13.78B in July 2026 and $25M taker fees in 16 days, while Polymarket's is weeks old with a short maker list. A newspaper headline says retail is losing big on combos while sophisticated traders profit (body paywalled, unverified).",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+     "title": "Combos Market Makers (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "400 ms submission window; pUSD per YES Combo share; collateral or inventory sourcing; Last Look at ~$2,500 Combo notional; >15% rejections in one hour may pause the maker; access by request form."
+    },
+    {
+     "url": "https://news.bitcoin.com/igaming/polymarket-us-tests-parlays-as-kalshi-banks-25m-in-fees/",
+     "title": "Polymarket US Tests Parlays as Kalshi Banks $25M in Fees",
+     "date": "2026-08-18",
+     "quality": "credible-report",
+     "supports": "US beta since 2026-08-05: $7.4M volume, $928,093 taker stakes, 16,173 trades; offshore launch 2026-06-10; 2-10 legs; Kalshi parlay volume $4.77B (May) to $13.78B (July)."
+    },
+    {
+     "url": "https://www.detroitnews.com/story/business/personal-finance/2026/07/30/retail-bettors-lose-big-on-complex-combo-bets/91105579007/",
+     "title": "Why retail bettors are losing big on combo wagers (Detroit News / Bloomberg) - HTTP 402, snippet only",
+     "date": "2026-07-30",
+     "quality": "credible-report",
+     "supports": "Snippet: retail piling into long-shot multi-leg bets while sophisticated traders profit. Numbers unverified."
+    }
+   ],
+   "failure_modes": "Correlated legs mispriced (same-game); adverse selection by sharp requesters; Last Look abuse limits; access gated by Polymarket; hedging legs costs taker fees.",
+   "cheap_validation": "Apply for RFQ access and log requests without quoting for two weeks; price each with independent-leg and correlated models against the winning quote to estimate achievable margin.",
+   "flags": "Polymarket US side is CFTC-regulated; eligibility rules apply."
+  },
+  {
+   "name": "Combos (parlay) RFQ quoting",
+   "one_line": "Become a quoter on Polymarket's new multi-leg RFQ. Price correlated parlays for retail and hedge the legs on the CLOB. This is the sportsbook's highest-margin product with optional last look.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "A requester sends an unsigned Combo request of 2-50 legs. Makers have 400 ms to return signed quotes in pUSD per YES share. The best quote goes to the user, who has 10 s to accept. Makers with Last Look then have 1 s to accept or reject. Last Look needs about $2.5k of combo notional and a relationship with Polymarket, and rejecting more than 15% in an hour gets you paused. The maker fills by minting and buying NO at 1 minus the price, or from inventory. The job is to price joint probabilities, because correlation is where retail misprices. Add a markup, then hedge the legs on the CLOB.",
+   "edge_source": "Retail demand for longshot parlays, plus pricing power over correlation. Parlays on Kalshi trade above the product of their leg prices, and the gap grows with the number of legs.",
+   "why_might_beat_market": "Few quoters have the infrastructure yet. The product is new and its docs carry no listed launch date. A 400 ms window rewards engineering, not balance sheet. Last look caps toxic fills. On Kalshi, combos were already 36% of contracts by July 2026.",
+   "adjacent_grounding": "Sportsbook same-game-parlay pricing, and last-look RFQ market making in bonds, ETFs and FX. Automated parlay market makers: https://arxiv.org/abs/2603.22596 and https://arxiv.org/abs/2607.18299",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+     "title": "Combos: Market Makers, Polymarket docs",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "RFQ websocket and REST endpoints, the 400 ms quote deadline, partial fills, Last Look eligibility (about $2,500 combo notional plus a communication line), the 15% rejection cap, and collateral locking across related combos."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/requesters.md",
+     "title": "Combos: Requesters, Polymarket docs",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "2-50 mutually compatible legs from combo-enabled markets. Requesters are limited to 15 create requests per minute."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.14430",
+     "title": "Prices, Probabilities, and Parlays",
+     "date": "2026-07-15",
+     "quality": "paper",
+     "supports": "Cross-game parlays on Kalshi are systematically overpriced against the product of contemporaneous leg prices, and the overpricing grows with leg count. The 2-5% magnitude came from an API summary and is unverified."
+    },
+    {
+     "url": "https://news.bloomberglaw.com/securities-law/parlay-bets-are-burning-gamblers-as-market-takes-off-on-kalshi",
+     "title": "Parlay Bets Are Burning Gamblers as Market Takes Off on Kalshi",
+     "date": "2026-07-29",
+     "quality": "credible-report",
+     "supports": "Combos are 36% of contracts traded. Retail buys longshot combinations and sophisticated traders take the other side. The article is partly paywalled."
+    }
+   ],
+   "failure_modes": "Correlated legs mispriced as independent is the classic same-game-parlay blow-up. Collateral is locked until the last leg resolves. Informed requesters pick off stale leg prices inside 400 ms. Rejecting too often gets you paused. Combo fees and Polymarket's volumes are unverified.",
+   "cheap_validation": "Connect to the RFQ websocket read-only. Log requests and winning quotes against the product of CLOB leg mids for 2 weeks, which gives the realised markup and the request flow in dollars per day before you commit collateral.",
+   "flags": "None identified. Check whether combo-enabled markets are geo-restricted, which is unverified."
+  },
+  {
+   "name": "Combos (parlay) RFQ market making",
+   "one_line": "Become a quoter in the new multi-leg Combos RFQ auctions: price 2-50 sports legs within a 400 ms window (200 ms on the US venue), win recreational parlay flow, and graduate to Last Look.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "A requester sends an unsigned RFQ for a conjunction of outcomes (currently sports moneyline, spread and total legs); connected makers submit signed quotes within 400 ms, the best quote is shown, the user has 10 s to accept, and makers with Last Look get 1 s to confirm. Last Look is granted to makers with about $2,500 of combo notional and a line of communication with Polymarket; rejecting more than 15% of selected quotes in an hour gets a maker paused. Quotes are funded from pUSD or from inventory; combo YES/NO are fully collateralised ERC-1155 positions on a new Positions Framework, can be split/merged, compress as legs resolve, and a Collateral Return plan releases pUSD from offsetting combos before resolution. Polymarket US runs the same product for institutional participants: 200 ms quote window, 3 s last look, 1 s delay before paired order submission, 1,000 new combos per user per week, void legs settle at Last Fair Market Price. Hedge legs on the CLOB.",
+   "edge_source": "Risk premium and correlation pricing on flow that is overwhelmingly recreational; few quoting engines exist yet; last look is a free option against stale-leg sniping.",
+   "why_might_beat_market": "Parlay pricing is the highest-margin product in sports betting and here legs can be hedged on a liquid CLOB; early quoters compete against a handful of firms rather than the full LP crowd.",
+   "failure_modes": "Correlated same-game legs mispriced as independent get picked off by sharp requesters; capital locked until the last leg resolves (partly fixed by Collateral Return); 400/200 ms deadlines demand colocated infrastructure; fee treatment for combos is unpublished; Last Look can be withdrawn.",
+   "cheap_validation": "Connect as a maker in listen-only mode and log the RFQ stream for two weeks: leg mix, requested size, and (from fills) the winning price versus the product of leg mids; this yields the realised parlay margin before writing a pricer.",
+   "flags": "Last Look requires an application and relationship with Polymarket; US venue requires institutional onboarding.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/combos/overview.md",
+     "title": "How Combos Work",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "RFQ sequence with 400 ms quote window, 10 s acceptance, 1 s last look."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+     "title": "Combos - Market Makers",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Onboarding requirements, Last Look eligibility (about $2,500 notional), 15% rejection limit, collateral vs inventory sourcing."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/collateral-return.md",
+     "title": "Collateral Return",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Early release of pUSD from offsetting combo positions; rationale that quoting combos is capital intensive."
+    },
+    {
+     "url": "https://docs.polymarket.us/trader-guide/combos.md",
+     "title": "Trader Guide - Combos (US)",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "200 ms submission window, 3 s last look, 1 s execution delay, gRPC RFQ event stream."
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/15458600-what-are-combos",
+     "title": "What are Combos?",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Combos currently on sports markets only (moneyline, spread, total)."
+    }
+   ]
+  }
+ ]
+}

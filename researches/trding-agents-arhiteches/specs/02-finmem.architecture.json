@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "FinMem: Layered-Memory Single Trading Agent",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1360,
+      830
+    ],
+    "views": [
+      {
+        "id": "ingest",
+        "label": "Perception and summarization",
+        "focus": [
+          "news",
+          "qreports",
+          "areports",
+          "prices",
+          "working"
+        ],
+        "note": "Working memory condenses raw filings, news and prices into short insights before anything is stored."
+      },
+      {
+        "id": "layers",
+        "label": "Layered long-term memory",
+        "focus": [
+          "working",
+          "shallow",
+          "intermediate",
+          "deep",
+          "retrieval"
+        ],
+        "note": "Each layer keeps its own decay rate, so a 10-K outlives a news headline."
+      },
+      {
+        "id": "decide",
+        "label": "Character and decision",
+        "focus": [
+          "profiling",
+          "retrieval",
+          "decision",
+          "action"
+        ],
+        "note": "Risk character and the top-M retrieved memories jointly produce the order."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "news",
+      "type": "external",
+      "label": "Daily News",
+      "sublabel": "headlines, sentiment",
+      "pos": [
+        40,
+        70
+      ],
+      "size": [
+        180,
+        76
+      ]
+    },
+    {
+      "id": "qreports",
+      "type": "external",
+      "label": "Quarterly 10-Q",
+      "sublabel": "earnings, guidance",
+      "pos": [
+        40,
+        175
+      ],
+      "size": [
+        180,
+        76
+      ]
+    },
+    {
+      "id": "areports",
+      "type": "external",
+      "label": "Annual 10-K",
+      "sublabel": "strategy, risk factors",
+      "pos": [
+        40,
+        280
+      ],
+      "size": [
+        180,
+        76
+      ]
+    },
+    {
+      "id": "prices",
+      "type": "external",
+      "label": "Price Series",
+      "sublabel": "daily returns",
+      "pos": [
+        40,
+        385
+      ],
+      "size": [
+        180,
+        76
+      ]
+    },
+    {
+      "id": "working",
+      "type": "backend",
+      "label": "Working Memory",
+      "sublabel": "summarize · observe · reflect",
+      "pos": [
+        270,
+        150
+      ],
+      "size": [
+        215,
+        160
+      ],
+      "tag": "scratchpad"
+    },
+    {
+      "id": "profiling",
+      "type": "backend",
+      "label": "Profiling Module",
+      "sublabel": "expertise + risk character",
+      "pos": [
+        270,
+        530
+      ],
+      "size": [
+        215,
+        130
+      ],
+      "tag": "seeking / averse / adaptive"
+    },
+    {
+      "id": "shallow",
+      "type": "database",
+      "label": "Shallow Layer",
+      "sublabel": "news · ~14 day stability",
+      "pos": [
+        555,
+        60
+      ],
+      "size": [
+        215,
+        90
+      ]
+    },
+    {
+      "id": "intermediate",
+      "type": "database",
+      "label": "Intermediate Layer",
+      "sublabel": "10-Q · ~90 day stability",
+      "pos": [
+        555,
+        185
+      ],
+      "size": [
+        215,
+        90
+      ]
+    },
+    {
+      "id": "deep",
+      "type": "database",
+      "label": "Deep Layer",
+      "sublabel": "10-K + reflections · ~365 day",
+      "pos": [
+        555,
+        310
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "tag": "promoted on profitable recall"
+    },
+    {
+      "id": "retrieval",
+      "type": "backend",
+      "label": "Retrieval Scorer",
+      "sublabel": "recency × relevancy × importance",
+      "pos": [
+        860,
+        150
+      ],
+      "size": [
+        225,
+        160
+      ],
+      "tag": "top-M cognitive span"
+    },
+    {
+      "id": "decision",
+      "type": "backend",
+      "label": "Decision Module",
+      "sublabel": "buy / sell / hold + rationale",
+      "pos": [
+        860,
+        530
+      ],
+      "size": [
+        225,
+        130
+      ]
+    },
+    {
+      "id": "action",
+      "type": "external",
+      "label": "Order & Realized Return",
+      "sublabel": "next-day P&L",
+      "pos": [
+        1160,
+        530
+      ],
+      "size": [
+        160,
+        130
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "news-in",
+      "from": "news",
+      "to": "working"
+    },
+    {
+      "id": "qreports-in",
+      "from": "qreports",
+      "to": "working"
+    },
+    {
+      "id": "areports-in",
+      "from": "areports",
+      "to": "working"
+    },
+    {
+      "id": "prices-in",
+      "from": "prices",
+      "to": "working"
+    },
+    {
+      "id": "store-shallow",
+      "from": "working",
+      "to": "shallow"
+    },
+    {
+      "id": "store-intermediate",
+      "from": "working",
+      "to": "intermediate"
+    },
+    {
+      "id": "store-deep",
+      "from": "working",
+      "to": "deep"
+    },
+    {
+      "id": "recall-shallow",
+      "from": "shallow",
+      "to": "retrieval"
+    },
+    {
+      "id": "recall-intermediate",
+      "from": "intermediate",
+      "to": "retrieval"
+    },
+    {
+      "id": "recall-deep",
+      "from": "deep",
+      "to": "retrieval"
+    },
+    {
+      "id": "topm",
+      "from": "retrieval",
+      "to": "decision",
+      "label": "top-M memories",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 110
+    },
+    {
+      "id": "character",
+      "from": "profiling",
+      "to": "decision",
+      "label": "risk character + expertise",
+      "variant": "emphasis"
+    },
+    {
+      "id": "place-order",
+      "from": "decision",
+      "to": "action",
+      "label": "order"
+    },
+    {
+      "id": "reflect-back",
+      "from": "action",
+      "to": "working",
+      "label": "realized return → reflection",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          1240,
+          745
+        ],
+        [
+          248,
+          745
+        ],
+        [
+          248,
+          230
+        ]
+      ],
+      "labelAt": [
+        760,
+        731
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Cognition-shaped memory",
+      "items": [
+        "Three layers mirror how long different financial facts stay useful",
+        "Each layer decays at its own rate instead of one flat context window",
+        "Retrieval ranks events by recency, semantic relevancy and importance"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Character as a parameter",
+      "items": [
+        "Risk-seeking, risk-averse and self-adaptive personas are explicit inputs",
+        "The self-adaptive persona switches on recent realized performance",
+        "Professional knowledge is separated from episodic market memory"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Single agent, no committee",
+      "items": [
+        "One agent replaces a role-split team; depth comes from memory, not headcount",
+        "Cognitive span caps how many memories reach the prompt",
+        "Events that preceded profitable trades are promoted to deeper layers"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "TradingAgents: LLM Trading Firm Architecture",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1280,
+      800
+    ],
+    "views": [
+      {
+        "id": "intel-path",
+        "label": "Analyst intake",
+        "focus": [
+          "market",
+          "fundamentals",
+          "news",
+          "sentiment",
+          "technical",
+          "reports"
+        ],
+        "note": "Four specialists gather evidence in parallel and write structured reports instead of chatting."
+      },
+      {
+        "id": "debate",
+        "label": "Bull vs bear debate",
+        "focus": [
+          "reports",
+          "bull",
+          "bear",
+          "resmgr"
+        ],
+        "note": "Free-form natural language is confined to the researcher debate, where disagreement adds value."
+      },
+      {
+        "id": "risk-gate",
+        "label": "Trade, risk, approval",
+        "focus": [
+          "resmgr",
+          "trader",
+          "riskteam",
+          "fundmgr",
+          "memory"
+        ],
+        "note": "The proposed trade must survive a three-way risk debate before the fund manager releases it."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "market",
+      "type": "external",
+      "label": "Market Data & Tools",
+      "sublabel": "prices, filings, news, social",
+      "pos": [
+        40,
+        230
+      ],
+      "size": [
+        190,
+        80
+      ],
+      "tag": "tool calls"
+    },
+    {
+      "id": "fundamentals",
+      "type": "backend",
+      "label": "Fundamentals Analyst",
+      "sublabel": "10-K / 10-Q, ratios",
+      "pos": [
+        280,
+        55
+      ],
+      "size": [
+        195,
+        70
+      ]
+    },
+    {
+      "id": "news",
+      "type": "backend",
+      "label": "News Analyst",
+      "sublabel": "macro + company events",
+      "pos": [
+        280,
+        170
+      ],
+      "size": [
+        195,
+        70
+      ]
+    },
+    {
+      "id": "sentiment",
+      "type": "backend",
+      "label": "Sentiment Analyst",
+      "sublabel": "social + insider flow",
+      "pos": [
+        280,
+        285
+      ],
+      "size": [
+        195,
+        70
+      ]
+    },
+    {
+      "id": "technical",
+      "type": "backend",
+      "label": "Technical Analyst",
+      "sublabel": "MACD, RSI, Bollinger",
+      "pos": [
+        280,
+        400
+      ],
+      "size": [
+        195,
+        70
+      ]
+    },
+    {
+      "id": "reports",
+      "type": "messagebus",
+      "label": "Structured Report State",
+      "sublabel": "typed documents, not transcripts",
+      "pos": [
+        530,
+        225
+      ],
+      "size": [
+        195,
+        90
+      ],
+      "tag": "no telephone effect"
+    },
+    {
+      "id": "bull",
+      "type": "backend",
+      "label": "Bull Researcher",
+      "sublabel": "argues the long case",
+      "pos": [
+        780,
+        95
+      ],
+      "size": [
+        190,
+        70
+      ]
+    },
+    {
+      "id": "bear",
+      "type": "backend",
+      "label": "Bear Researcher",
+      "sublabel": "argues the short case",
+      "pos": [
+        780,
+        340
+      ],
+      "size": [
+        190,
+        70
+      ]
+    },
+    {
+      "id": "resmgr",
+      "type": "backend",
+      "label": "Research Manager",
+      "sublabel": "ends debate, writes plan",
+      "pos": [
+        1025,
+        215
+      ],
+      "size": [
+        195,
+        80
+      ]
+    },
+    {
+      "id": "trader",
+      "type": "backend",
+      "label": "Trader Agent",
+      "sublabel": "direction + position size",
+      "pos": [
+        1025,
+        490
+      ],
+      "size": [
+        195,
+        80
+      ]
+    },
+    {
+      "id": "riskteam",
+      "type": "security",
+      "label": "Risk Debators",
+      "sublabel": "risky / neutral / safe",
+      "pos": [
+        780,
+        490
+      ],
+      "size": [
+        190,
+        80
+      ]
+    },
+    {
+      "id": "fundmgr",
+      "type": "security",
+      "label": "Fund Manager",
+      "sublabel": "approves and releases order",
+      "pos": [
+        530,
+        490
+      ],
+      "size": [
+        195,
+        80
+      ],
+      "tag": "final gate"
+    },
+    {
+      "id": "memory",
+      "type": "database",
+      "label": "Reflection Memory",
+      "sublabel": "decisions + realized returns",
+      "pos": [
+        780,
+        655
+      ],
+      "size": [
+        190,
+        75
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Analyst Team (parallel)",
+      "wraps": [
+        "fundamentals",
+        "news",
+        "sentiment",
+        "technical"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Research Team (multi-round debate)",
+      "wraps": [
+        "bull",
+        "bear",
+        "resmgr"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Trading Desk & Risk Control",
+      "wraps": [
+        "fundmgr",
+        "riskteam",
+        "trader"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "market-fundamentals",
+      "from": "market",
+      "to": "fundamentals"
+    },
+    {
+      "id": "market-news",
+      "from": "market",
+      "to": "news"
+    },
+    {
+      "id": "market-sentiment",
+      "from": "market",
+      "to": "sentiment"
+    },
+    {
+      "id": "market-technical",
+      "from": "market",
+      "to": "technical"
+    },
+    {
+      "id": "fundamentals-reports",
+      "from": "fundamentals",
+      "to": "reports"
+    },
+    {
+      "id": "news-reports",
+      "from": "news",
+      "to": "reports"
+    },
+    {
+      "id": "sentiment-reports",
+      "from": "sentiment",
+      "to": "reports"
+    },
+    {
+      "id": "technical-reports",
+      "from": "technical",
+      "to": "reports"
+    },
+    {
+      "id": "reports-bull",
+      "from": "reports",
+      "to": "bull",
+      "label": "read state"
+    },
+    {
+      "id": "reports-bear",
+      "from": "reports",
+      "to": "bear",
+      "label": "read state"
+    },
+    {
+      "id": "debate-rounds",
+      "from": "bull",
+      "to": "bear",
+      "label": "rebuttal, N rounds",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 95
+    },
+    {
+      "id": "bull-resmgr",
+      "from": "bull",
+      "to": "resmgr"
+    },
+    {
+      "id": "bear-resmgr",
+      "from": "bear",
+      "to": "resmgr"
+    },
+    {
+      "id": "plan-to-trader",
+      "from": "resmgr",
+      "to": "trader",
+      "label": "investment plan",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 105
+    },
+    {
+      "id": "trader-risk",
+      "from": "trader",
+      "to": "riskteam",
+      "label": "proposed trade",
+      "variant": "emphasis",
+      "fromSide": "left",
+      "toSide": "right",
+      "labelDy": -34
+    },
+    {
+      "id": "risk-fundmgr",
+      "from": "riskteam",
+      "to": "fundmgr",
+      "label": "risk verdict",
+      "variant": "security",
+      "fromSide": "left",
+      "toSide": "right",
+      "labelDy": -34
+    },
+    {
+      "id": "outcome-to-memory",
+      "from": "fundmgr",
+      "to": "memory",
+      "label": "decision + return",
+      "variant": "dashed"
+    },
+    {
+      "id": "recall-to-trader",
+      "from": "memory",
+      "to": "trader",
+      "label": "recall similar days",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Role decomposition",
+      "items": [
+        "Four analysts split perception by data modality and run concurrently",
+        "Each writes a typed report into shared state rather than a chat transcript",
+        "Quick models summarize and fetch; deep models reason and decide"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Disagreement as a mechanism",
+      "items": [
+        "Bull and bear researchers are adversarial by construction",
+        "A research manager terminates the debate and commits an investment plan",
+        "Risky, neutral and safe debators re-argue the trade before approval"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Why it is auditable",
+      "items": [
+        "Every decision carries a natural-language rationale chain",
+        "Structured documents stop detail loss across agent hops",
+        "Realized returns feed a reflection memory the trader recalls later"
+      ]
+    }
+  ]
+}

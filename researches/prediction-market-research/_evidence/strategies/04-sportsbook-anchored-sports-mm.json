@@ -1,0 +1,213 @@
+{
+ "slug": "sportsbook-anchored-sports-mm",
+ "name": "Sportsbook-anchored sports and esports market making (devigged fair value, pair lock, outside hedge)",
+ "category": "Market-making",
+ "maturity": "Established",
+ "seed_category": "liquidity provision / market making - sports (where the money is)",
+ "one_line": "Rest tiered maker bids around a devigged sharp-book price on sports and long-tail esports, lock pairs under $1 or hedge residuals at books.",
+ "scope": "Cover both scales of the same mechanism: the full-time Pinnacle-anchored sports maker (bankroll up to $300k on NFL Sundays, per-game caps, kill switches, tout-flow fade, drawdowns) and the small esports pair-lock bot (kacho: +$4,973 on $95.8k, fill rate 37.4% to 1.0% in four months). Detail devig methods (Shin bias), odds freshness as the real edge, 1c overbidding competition, sport-by-sport ROI, sports fee 0.05 / rebate 15% since 2026-07-10, zero-fee flags on some NFL markets, cancelled-match 50c resolution and DNP-grading rule mismatches as hazards. Boundary: reward-pool economics in maker-reward-pool-farming; in-play latency and model takers in sports-automated-takers; moneyline-spread-total consistency in combinatorial-logical-arbitrage; parlays in combos-rfq-market-making.",
+ "sub_variants": [
+  "sharp-line tiered quoting with sportsbook hedge",
+  "long-tail esports two-leg pair lock",
+  "long-dated futures below sharp fair value with hedge",
+  "tout-pump fade from own fill stream"
+ ],
+ "merged_from": [
+  "traders: Sharp-line-anchored sports market making with sportsbook hedge",
+  "traders: Long-tail esports / minor-sports two-leg lock",
+  "onchain-bots: Sportsbook-anchored maker quoting with pair-lock",
+  "adjacent-transfer: Sharp-line devig quoting"
+ ],
+ "flags": "Scraping sportsbook odds may breach book ToS (use licensed feeds); hedge accounts get limited; jurisdictional access limits.",
+ "key_evidence": [
+  {
+   "url": "https://news.polymarket.com/p/meet-your-market-maker",
+   "note": "Anonymous full-time sports MM: $300k in play, $25k/game cap, -$100k in ~10 days hockey, fast-click risk (self-reported)"
+  },
+  {
+   "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+   "note": "3,858 bets, +$8,293 locked arb, -$3,185 directional, public wallet"
+  },
+  {
+   "url": "https://kacho.io/why-my-polymarket-arbitrage-bot-lost-money",
+   "note": "Fill-rate collapse 37.4% to 1.0%, line-move stats, Shin devig effect"
+  },
+  {
+   "url": "https://github.com/kachence/polymm",
+   "note": "Retired bot code as reference design only (do not run)"
+  },
+  {
+   "url": "https://hn.algolia.com/api/v1/items/48221877",
+   "note": "SSRN abstract via HN: top 1% take 76.5%, 81% of top gains in sports, winners use limit orders"
+  },
+  {
+   "url": "https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=VOL&limit=25",
+   "note": "High-volume automated sports accounts earn ~0.1-1.3% of volume; several deeply negative"
+  }
+ ],
+ "parent_slug": "sportsbook-anchored-sports-mm",
+ "deepen": true,
+ "seed": "1 market making",
+ "n": "04",
+ "band": "established",
+ "file": "04-sportsbook-anchored-sports-mm.md",
+ "critic_notes": [
+  "sportsbook-anchored-sports-mm: 'Established' rests on two self-reports, one of whom retired after the fill rate fell from 37.4% to 1.0% and fees arrived. Keep Established for the large Pinnacle-anchored operator but mark the small esports pair-lock sub-variant as decayed."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Sharp-line-anchored sports market making with sportsbook hedge",
+   "one_line": "Quote Polymarket sports books around a devigged Pinnacle fair value, tier size by distance from fair, hedge residual inventory at outside books.",
+   "category": "Market-making",
+   "maturity": "Established",
+   "mechanism": "Fair value comes from a sharp sportsbook line (Pinnacle); the bot rests tiered bids on both outcomes (thicker at wider discounts), so any fill below fair is +EV. Inventory is capped per game ($25k NFL, ~$5k college football in the interview) and skewed as it builds; when Polymarket price crosses an outside book the position is closed there for a locked ~0.5%. A kill switch per sport pulls quotes around injury reports; in-play quoting is done only at calmer moments (halftime ~$5k/side). A data warehouse of own fills vs outcomes is used to check that realised edge matches modelled edge. Since 2026-07-10 sports takers pay feeRate 0.05 and makers share only 15% of that pool.",
+   "edge_source": "Being the patient counterparty to retail/tout-driven flow while anchored to a sharper external price; risk-parameter engineering rather than prediction. The interviewee also fades coordinated Discord tout pumps he detects in his own fill stream.",
+   "why_might_beat_market": "Polymarket cannot limit or ban sharp customers, so most would-be makers get 'fast-clicked' out; those with good pull logic and bankroll face thin competition outside marquee games. Long-tail sports (tennis, hockey totals) get whale attention but little retail MM.",
+   "failure_modes": "Fast-clicking on injury news (40-50c swings in NBA), in-play information asymmetry (someone sees the play before the book moves), multi-week drawdowns (-$100k in ~10 days on hockey), rebate cut to 15%, needs large bankroll (up to $300k in play on NFL Sundays).",
+   "cheap_validation": "For one league, log devigged Pinnacle price vs Polymarket book every few seconds for 3-4 weeks; simulate resting bids at fair-minus-delta and compute 1/5/30-minute markouts and fill rates; check injury-report timestamps against adverse fills.",
+   "flags": "Hedging at sportsbooks exposes accounts to limiting; some jurisdictions restrict Polymarket access.",
+   "evidence": [
+    {
+     "url": "https://news.polymarket.com/p/meet-your-market-maker",
+     "title": "The Oracle: Meet your market maker (anonymous full-time sports MM)",
+     "date": "2025-10-11",
+     "quality": "self-reported",
+     "supports": "Pinnacle-anchored quoting, $300k in play on NFL Sundays, $25k per-game cap, Super Bowl +$80k, -$100k in ~10 days on hockey, September +$60-65k, fast-click risk, tout fade, 'don't do this' warning"
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=VOL&limit=25",
+     "title": "Polymarket data-api all-time leaderboard by volume (fetched 2026-09-20)",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "High-volume automated accounts earn ~0.1-1.3% of volume: swisstony $23.63M/$1.855B, RN1 $13.86M/$1.264B, sovereign2013 $3.59M/$402M; several large-volume accounts are deeply negative (suntori -$8.15M)"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/48221877",
+     "title": "HN thread on SSRN 'Who wins and who loses in prediction markets? Evidence from Polymarket' (paper author vcf comments)",
+     "date": "2026-05-21",
+     "quality": "paper",
+     "supports": "Top 1% capture 76.5% of profits; winners provide liquidity with limit orders, losers take with market orders; 81% of gains in sports (as quoted in thread)"
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Polymarket docs: fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Sports taker feeRate 0.05, maker fee 0, sports maker rebate 15%"
+    }
+   ]
+  },
+  {
+   "name": "Long-tail esports / minor-sports two-leg lock from soft-book odds (maker-first)",
+   "one_line": "Post bids a cent above best bid on both teams where bookmaker-implied fair value shows >=5-7% edge; when both legs fill the pair costs <$1.",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "mechanism": "Scrape or buy bookmaker odds (the-odds-api, esports books), devig to a fair probability, and rest maker bids on hundreds of match markets simultaneously wherever edge exceeds min_edge. When one side fills, bid the opposite outcome so both sides are owned for under $1; unhedged legs remain as 'directional residue'. Worked best in CS2/Valorant/Dota where spreads were 20-30c with real volume. The operator's result: +$8,293 locked arb, -$3,185 on unhedged legs, +$4,973 net on $95.8k volume over Jan-Apr 2026.",
+   "edge_source": "Wide, neglected books in esports plus an external fair value; early on almost no competing makers.",
+   "why_might_beat_market": "Niche leagues (Honor of Kings +38.6% ROI, CoD +15.9%) are too small for large sports MMs; the bottleneck is odds freshness and tracking hundreds of markets, which a small team can engineer.",
+   "failure_modes": "Fill rate collapsed 37.4% (Jan) -> 15% -> 5% -> 1.0% (Apr) as faster bots overbid by 1c; stale odds (10-30 min) get picked off because pre-match esports lines jump 5pp+ in ~1/3 of matches (CoD median 10.9pp); Shin devigging biased toward favourites; cancelled matches refund 50c regardless of entry; three shipped bugs (swapped teams, reused odds); expansion into basketball/football was net negative.",
+   "cheap_validation": "Paper-quote for two weeks on esports only with 5-minute odds refresh; record would-be fills, queue position lost to 1c overbids, and post-fill line movement; abort if simulated fill rate <5%.",
+   "flags": "Scraping sportsbook odds may breach their ToS; no Polymarket ToS issue.",
+   "evidence": [
+    {
+     "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+     "title": "kacho.io: I ran an arbitrage bot on Polymarket. Here are the real numbers",
+     "date": "2026-06-06",
+     "quality": "self-reported",
+     "supports": "3,858 bets, $95,830 volume, +$4,973 net; arb +$8,293 vs directional -$3,185; per-game ROI; public wallet @b00k13; edge thinned by April with competition and fees"
+    },
+    {
+     "url": "https://kacho.io/why-my-polymarket-arbitrage-bot-lost-money",
+     "title": "kacho.io: adverse selection post-mortem",
+     "date": "2026-06-30",
+     "quality": "self-reported",
+     "supports": "Fill-rate collapse 37.4% -> 1.0%, line-movement stats over 2,555 matches, Shin's method effect, non-esports net negative, fix = 5-minute odds (~$3/day) and Rust rewrite"
+    },
+    {
+     "url": "https://github.com/kachence/polymm",
+     "title": "kachence/polymm (retired Python bot, Show HN)",
+     "date": "2026-07-21",
+     "quality": "self-reported",
+     "supports": "min_edge 5% default, quote 1c above best bid, hedge opposite side; 'Run it as-is and you'll donate to quicker bots'"
+    }
+   ]
+  },
+  {
+   "name": "Sportsbook-anchored maker quoting with pair-lock on sports and esports",
+   "one_line": "Use de-vigged bookmaker odds as fair value, rest bids on both teams with a minimum edge, and lock an arb when both fill.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "The bot pulls odds from bookmakers/odds APIs, removes vig, and posts limit bids 1c above best bid on each side only where its price leaves at least a 7% edge. If both teams fill, the pair sums below $1 and is a locked arbitrage; if one side fills it is a +EV directional position on paper. In practice the unhedged leg is adversely selected whenever the reference odds are stale. The documented run made money for two months and then decayed as faster quoters and fees arrived.",
+   "edge_source": "External fair value (sharp books) versus a thin CLOB; being first at the top of book in obscure matches (CS2, LoL, Dota).",
+   "why_might_beat_market": "Niche esports matches had few makers in Jan-Feb 2026. The author's own post-mortem says the edge was odds freshness and speed, not modelling.",
+   "evidence": [
+    {
+     "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+     "title": "I ran an arbitrage bot on Polymarket. Here are the real numbers (kacho.io)",
+     "date": "2026-06-09",
+     "quality": "self-reported",
+     "supports": "2026-01-06..03-31: 3,858 bets, 2,785 markets, $95,830 volume, net +$4,973; 1,075 locked arbs +$8,293; unhedged directional -$3,185; 236 cancelled matches -$134; CS2 +$2,380 on $30,123 (7.9% ROI); monthly profit $1,898 -> $2,506 -> $390 -> $180."
+    },
+    {
+     "url": "https://kacho.io/why-my-polymarket-arbitrage-bot-lost-money",
+     "title": "Adverse selection eating away my Polymarket bot's arbitrage profits (kacho.io)",
+     "date": "2026-06-30",
+     "quality": "self-reported",
+     "supports": "Fill rate fell from 37.4% of markets bid (Jan) to 1.0% (Apr); locked-arb profit $2,865 -> $4,158 -> $1,254 -> $17; odds up to 30 min stale; competitors outbid by 1c; rewrite to Rust with nine odds APIs at ~$3/day."
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/search?query=polymarket%20bot&tags=comment&hitsPerPage=30&numericFilters=created_at_i%3E1767225600",
+     "title": "HN comment by the polymm author (Show HN: Polymm)",
+     "date": "2026-07-21",
+     "quality": "self-reported",
+     "supports": "~$5k profit then losses; the open-sourced version lacks the scrapers that were the actual edge: 'a working foundation, not a money printer'."
+    }
+   ],
+   "failure_modes": "One-leg adverse selection; stale references; sports rebate cut to 15% and fee raised to 0.05 (2026-07-10); Shin de-vig overconfident on favorites; cancelled matches resolve 50/50.",
+   "cheap_validation": "Shadow-quote 50 esports matches: record when your would-be bids would have filled and the bookmaker line 5 minutes later; require positive markout on single-leg fills before going live.",
+   "flags": "Scraping sportsbook odds may breach those sites' terms."
+  },
+  {
+   "name": "Sharp-line devig quoting: sportsbook consensus as fair value, resting maker bids on Polymarket sports and esports",
+   "one_line": "Treat the de-vigged consensus of sharp books as truth, rest post-only bids on Polymarket below it, and complete the second leg when you can. This is closing-line-value betting run as a maker.",
+   "category": "Market-making",
+   "maturity": "Established",
+   "mechanism": "Pull odds from several sportsbooks or an odds API and strip the vig to get a fair probability. Rest post-only limit orders on Polymarket at fair value minus an edge threshold; the documented operator required 7%. Makers pay no fee and earn the 15% sports maker rebate. When one side fills, quote the complementary side to lock an arbitrage, or carry the +EV directional residual. The documented operator made all his money in esports (CoD, LoL, Dota2), where sportsbook lines are softer and Polymarket books thinner. Basketball and football lost money. What decides the outcome is quote freshness: stale bids get filled exactly when the line has moved against you.",
+   "edge_source": "Sportsbooks limit or ban winners and Polymarket does not, so sharp-line information reaches Polymarket with a delay. Retail takers cross the spread. Makers pay zero fees and get rebates. The edge belongs to whoever refreshes fair value fastest.",
+   "why_might_beat_market": "It is structural. The SSRN paper finds 81% of top-trader gains come from sports and that winners use limit orders. A solo operator with a paid low-latency odds feed and good leg management can still occupy thin leagues that the big shops ignore.",
+   "evidence": [
+    {
+     "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+     "title": "I ran an arbitrage bot on Polymarket. Here are the real numbers",
+     "date": "2026-06-06",
+     "quality": "self-reported",
+     "supports": "Jan-Apr 2026: 3,858 bets, $95,830 volume, net +$4,973. Locked arbitrage made +$8,293 and directional residuals lost -$3,185. Monthly PnL went $1,898, then $2,506, then $390, then $180. The author links a public wallet."
+    },
+    {
+     "url": "https://kacho.io/why-my-polymarket-arbitrage-bot-lost-money",
+     "title": "Adverse selection eating away my Polymarket bot's arbitrage profits",
+     "date": "2026-06-30",
+     "quality": "self-reported",
+     "supports": "Fill rate collapsed from 37.4% in January to 15%, then 5%, then 1.0% in April as faster bots outbid by a penny. Odds were up to 30 minutes stale. The median line move during a hold was 10.9 pp in CoD and 4.9 pp in LoL. Shin devigging cut favourite ROI from 11.7% to 1.5%. Core esports made +$5,617, basketball -$228, football -$165."
+    },
+    {
+     "url": "https://github.com/kachence/polymm",
+     "title": "kachence/polymm, the retired code behind a public $5k wallet",
+     "date": "2026-07-19",
+     "quality": "self-reported",
+     "supports": "Open-sourced code for a devig, quote and hedge bot. Do not run it; it is useful as a reference design only."
+    },
+    {
+     "url": "https://news.ycombinator.com/item?id=48221877",
+     "title": "HN thread on SSRN 6443103, Who wins and who loses in prediction markets",
+     "date": "2026-05-21",
+     "quality": "paper",
+     "supports": "Paper abstract relayed in the thread: 588M trades, $67B volume, the top 1% capture 76.5% of profits, winners provide liquidity with limit orders, and 81% of top gains come from sports. SSRN itself returned 403."
+    }
+   ],
+   "failure_modes": "Adverse selection on stale quotes is the dominant loss. Competition compresses fill rates within months. Team, market or sport mis-matching bugs cost money. Rules differ between venues (overtime, DNP, cancellation). Cancelled matches resolve 50/50, and the operator had 236 of them. The sports maker rebate was cut to 15% in July 2026.",
+   "cheap_validation": "Paper-quote for two weeks. Log your would-be bids against the sharp-book line at fill time and 5 minutes later. If the post-fill line move is negative on average, you are the stale quote. Test only leagues with no resident fast quoter.",
+   "flags": "Scraping sportsbook odds may breach those sites' ToS, so use a licensed odds API. Nothing here violates Polymarket rules."
+  }
+ ]
+}

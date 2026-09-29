@@ -1,0 +1,269 @@
+{
+ "slug": "longshot-selling-flb",
+ "name": "Favourite-longshot harvesting: systematic longshot selling / NO buying, conditioned on category",
+ "category": "Directional trading",
+ "maturity": "Emerging",
+ "seed_category": "directional / behavioural-bias harvesting",
+ "one_line": "Be the structural seller of overpriced sub-10-15c YES across many unrelated non-sports events, preferably as a maker, sized for rare correlated blow-ups.",
+ "scope": "Cover the evidence base (Polymarket 588M trades: <10c purchases lose 19.3c per dollar pooled, -6.3% equal-weighted, +4.1% when grouped by parent event; absent in sports; Kalshi takers -1.12% / makers +1.12%, category gaps 0.17-7.32 pp; risk-premium interpretation), maker vs taker implementations, the 'Nothing Ever Happens' always-buy-NO bot and why the naive version is priced in (73% resolve No, average No ~73c), post-hype NO entries, event-level diversification, capital lock at 0% yield, tail/dispute/insider risk concentrated exactly in these positions, and fee-free geopolitics having no rebate. Boundary: decided or near-resolved 95c+ positions are near-certain-bond-carry; tweet-count bucket NOs are detailed in recurring-count-mention-markets; options-hedged threshold shorts are options-implied-relative-value.",
+ "sub_variants": [
+  "maker-side resting YES offers / NO bids at the tail",
+  "always-buy-NO taker bot with filters",
+  "post-news-hype NO entries",
+  "category-conditioned portfolio (exclude sports, finance)"
+ ],
+ "merged_from": [
+  "traders: Systematic longshot selling / 'optimism tax' harvesting",
+  "academic: Favourite-side carry / systematic longshot underwriting",
+  "onchain-bots: Favorite-longshot harvesting",
+  "adjacent-transfer: Favorite-longshot or 'optimism tax' harvest",
+  "adjacent-transfer: 'Nothing ever happens' short-event-volatility carry"
+ ],
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2609.12878v1",
+   "note": "Category returns, offer-acceptor vs posted-offer split, sign flip under parent-event weighting"
+  },
+  {
+   "url": "https://www.jbecker.dev/research/prediction-market-microstructure",
+   "note": "Kalshi 72.1M trades: 1c YES EV -41% vs NO +23%; maker-taker gap by category"
+  },
+  {
+   "url": "https://hn.algolia.com/api/v1/items/47753472",
+   "note": "Always-buy-No bot thread: no returns shown; '1 loss sets you back 10-20 wins'"
+  },
+  {
+   "url": "https://finance.yahoo.com/markets/options/articles/nothing-ever-happens-bot-always-151603375.html",
+   "note": "73.3% resolve No; modelled returns only, wallet undisclosed"
+  },
+  {
+   "url": "https://doi.org/10.2139/ssrn.6468338",
+   "note": "Wang-transform risk loading: part of the bias is a risk premium (abstract)"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.2139/ssrn.7087538",
+   "note": "Counter-evidence: no FLB in Kalshi CPI markets"
+  }
+ ],
+ "parent_slug": "longshot-selling-flb",
+ "seed": "4 statistical models (behavioural bias)",
+ "n": "24",
+ "band": "established",
+ "file": "24-longshot-selling-flb.md",
+ "critic_notes": [],
+ "raw_discovery_candidates": [
+  {
+   "name": "Systematic longshot selling / 'optimism tax' harvesting",
+   "one_line": "Be the maker selling overpriced YES longshots (equivalently buying NO) across many non-sports markets, sized for rare blow-ups.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Retail takers overpay for low-probability YES outcomes; the counter-strategy rests NO bids / YES offers at longshot prices across a broad, diversified set and holds to resolution. Hard data: on Kalshi, takers earn -1.12% and makers +1.12% per trade, 5c contracts win 4.18%, and at 1c YES buyers have -41% EV vs +23% for NO buyers; on Polymarket, purchases below 10c lose 19.3c per dollar (588M trades). In Elon tweet-count markets, buying NO on every 10-20% bucket won 90 of 97. The naive 'always buy No under 0.65' bot, by contrast, reported no returns.",
+   "edge_source": "Favourite-longshot bias concentrated in taker YES flow; largest in entertainment/world-events categories (4.8-7.3pp maker-taker gap) and near zero in finance (0.17pp).",
+   "why_might_beat_market": "The bias is behavioural and persists in liquid markets; makers collectively capture it, and geopolitics markets are fee-free.",
+   "failure_modes": "'1 loss sets you back 10-20 wins'; capital locked at 0% yield for months; resolution/dispute risk on exactly the weird markets where longshots hit; few markets pass liquidity filters (~10/month in one test); correlation of tail events (war, regime change).",
+   "cheap_validation": "Replay one year of resolved non-sports markets: for every YES priced 2-15c at T-7d with >= $X depth, compute realised NO return net of fees and capital-days; bucket by category.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://www.jbecker.dev/research/prediction-market-microstructure",
+     "title": "Jonathan Becker: The Microstructure of Wealth Transfer in Prediction Markets (Kalshi, 72.1M trades)",
+     "date": "2026-01-18",
+     "quality": "hard-data",
+     "supports": "Takers -1.12% / makers +1.12%; 5c wins 4.18%; YES -41% vs NO +23% at 1c; category gaps finance 0.17pp to world events 7.32pp"
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv 2609.12878 The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "588M trades, 2.48M accounts; purchases below 10c lose 19.3c per dollar"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47753472",
+     "title": "HN thread (471 pts): Nothing Ever Happens - bot that always buys No",
+     "date": "2026-04-13",
+     "quality": "self-reported",
+     "supports": "Author: 73% of markets resolve No, bot shows 'no returns'; traderj0e: backtest '100% APR' but live $100 lost ~$5, '1 loss sets you back 10-20 wins'; superfrank: betting No right after news hype gives 'small, but consistent returns'"
+    },
+    {
+     "url": "https://news.polymarket.com/p/tweet-quant",
+     "title": "The Oracle: Tweet Quant",
+     "date": "2026-03-19",
+     "quality": "credible-report",
+     "supports": "NO on 10-20% buckets: 97 trades, 90 wins; 10-20% buckets realise 7.4% vs 13.7% implied"
+    }
+   ]
+  },
+  {
+   "name": "Favourite-side carry / systematic longshot underwriting, conditioned on category",
+   "one_line": "Harvest the favourite-longshot bias by being long >=0.90 contracts and short (via NO) <0.10 contracts, only in categories where the bias is documented, and never in sports.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Rank live markets by price bucket and category; buy favourites / buy NO against longshots with resting limit orders (posted-offer buyers lose far less than offer-acceptors), hold to resolution. Size by event, not by child market, because returns flip sign under parent-event weighting. Exclude sports (longshots +2.43%, favourites -0.23%) and low-bias finance; concentrate on culture, weather, tech, politics, crypto where longshot buyers lose 15-26%. Fees are near zero at the tails under the p(1-p) fee curve, so gross bias is close to net.",
+   "edge_source": "Persistent retail demand for lottery-like payoffs (risk-love / probability misperception) plus a positive risk premium on real-money venues; bias survives across wallet-experience quintiles and volume quartiles, so it is not being arbitraged away by learning.",
+   "why_might_beat_market": "The counterparty flow is structural (26.6% of longshot dollars come from a recurrent top decile that keeps coming back: 30.4% still top-decile after 6 months) and the tail fee is ~0.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2609.12878v1",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket (Cardozo, Rivero-Wildemauwe), arXiv",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "588M trades, 2.48M wallets, Nov-2022..Mar-2026: purchases <0.10 return -6.30% (equal-market) / -19.35% (dollar-pooled); >=0.90 return +0.277% / +0.83%; by category longshots: crypto -14.84%, politics -16.34%, weather -25.15%, culture -26.49%, tech -20.68%, finance -2.62%, sports +2.43%; offer-acceptors lose -31.17% vs posted-offer -3.50%; sign flips to +4.09% under equal parent-event weighting; fees and rewards excluded."
+    },
+    {
+     "url": "https://jbecker.dev/research/prediction-market-microstructure",
+     "title": "Kalshi microstructure study (J. Becker), blog, later SSRN",
+     "date": "2026-01-18",
+     "quality": "hard-data",
+     "supports": "72.1M Kalshi trades, $18.26B: 5c contracts win 4.18% vs 5% implied; 1c YES EV -41% vs NO +23%; NO beats YES at 69 of 99 price levels; takers -1.12% / makers +1.12% per trade; maker-taker gap by category: finance 0.17pp, politics 1.02, sports 2.23, crypto 2.69, entertainment 4.79, world events 7.32."
+    },
+    {
+     "url": "https://doi.org/10.65864/s9kc4p0b7t",
+     "title": "Makers and Takers: The Economics of the Kalshi Prediction Market (Buergi, Deng, Whelan), CESifo WP",
+     "date": "2026-01-27",
+     "quality": "paper",
+     "supports": "300,000+ Kalshi contracts show favourite-longshot bias; low-priced contracts underperform, high-priced outperform (abstract only)."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6468338",
+     "title": "Pricing Prediction Markets: Risk Premiums, Incomplete Markets... (Y. Yang), SSRN via Crossref abstract",
+     "date": "2026-04-07",
+     "quality": "paper",
+     "supports": "Wang-transform risk loading 0.176 calibrated on 2,460 resolved Polymarket contracts; positive risk premia confirmed on 291,309 cross-platform contracts - i.e. the bias is partly a harvestable risk premium."
+    },
+    {
+     "url": "https://api.crossref.org/works/10.2139/ssrn.7087538",
+     "title": "Zero-Price Contracts and the FLB in CPI Prediction Markets (Krause), SSRN",
+     "date": "2026-07-10",
+     "quality": "paper",
+     "supports": "Counter-evidence: Kalshi CPI markets (95 contracts) show essentially no FLB - the bias is category-specific."
+    }
+   ],
+   "failure_modes": "Returns per dollar on favourites are tiny (+0.3-0.8%) so one wrong 0.95 wipes ~20-60 wins; dollar-pooled longshot CI includes zero [-46.99,+8.30]; event-level weighting reverses the sign, meaning correlated child markets can all lose together; capital lock-up eats the favourite return on long-dated markets (see settlement-discount candidate); resolution/dispute risk sits exactly in the tail you are short.",
+   "cheap_validation": "Replicate on the public Polymarket-v1 database (arXiv 2606.04217) with your own fee curve: bucket by category x price x time-to-expiry, compute event-clustered returns for maker-side entries only, then paper-trade 300+ resolved positions (power analysis in arXiv 2605.00420 says ~350 for a 2% edge).",
+   "flags": ""
+  },
+  {
+   "name": "Favorite-longshot harvesting: systematic No / selling sub-10c outcomes",
+   "one_line": "Be the structural seller of lottery tickets: buy No broadly, or make markets on longshots at a premium.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Two builds share one edge. The taker build buys No on every non-sports market where No is under 65c with ~2% sizing and holds to resolution, relying on the 73% base rate of No. The maker build posts offers on sub-10c outcomes (or bids on the 90c+ complement) across many unrelated events. Hard data: buyers below 10c lose 19.3c per dollar, robust in crypto and politics and absent in sports, and the result flips when contracts are grouped by parent event, so diversification must be across events, not across candidates inside one event.",
+   "edge_source": "Retail lottery demand and sensational Yes framing; a documented longshot spread premium in the book.",
+   "why_might_beat_market": "It is the mirror image of where retail demonstrably loses the most per dollar. The open-source bot's live PnL is undisclosed, so the taker version is unproven; the maker version is what the winning bot cohort already does implicitly.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "Sub-10c purchases lose 19.3c per dollar; equal-weighted by contract -6.3c, but +4.1c when grouped by parent event; robust in Crypto and Politics, absent in Sports; top longshot-buyer decile = 26.6% of next-month low-price purchases."
+    },
+    {
+     "url": "https://finance.yahoo.com/markets/options/articles/nothing-ever-happens-bot-always-151603375.html",
+     "title": "'Nothing Ever Happens': This Bot Always Bets 'No' on Polymarket (Decrypt via Yahoo)",
+     "date": "2026-04-15",
+     "quality": "credible-report",
+     "supports": "73.3% of resolved markets end No (73.5% for 90-180 day markets, 52% for under a week); filter No < $0.65, 2% sizing; modelled 16-33% annual at 10-20% sizing; author has NOT shared wallet or live profit."
+    },
+    {
+     "url": "https://github.com/sterlingcrispin/nothing-ever-happens",
+     "title": "nothing-ever-happens (GitHub, 987 stars, 'mostly a meme')",
+     "date": "2026-04-12",
+     "quality": "self-reported",
+     "supports": "Open-source implementation; self-described as entertainment."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.24366",
+     "title": "Dubach microstructure paper",
+     "date": "2026-04-27",
+     "quality": "paper",
+     "supports": "Stylized fact: a longshot spread premium exists in the order book."
+    }
+   ],
+   "failure_modes": "Fat left tail (one 5c outcome that hits costs 19 winners); correlation inside one parent event; capital locked for months; base rate already partly priced where No > 65c; the event-grouping result warns that naive backtests overstate the edge.",
+   "cheap_validation": "Using the public Polymarket-v1 archive, simulate selling every sub-10c outcome at the bid with one position per parent event; report return and max drawdown by category.",
+   "flags": ""
+  },
+  {
+   "name": "Favorite-longshot or 'optimism tax' harvest: systematically supply longshot YES as a maker",
+   "one_line": "Longshot buyers lose about 19c per dollar on Polymarket. Be the resting seller of cheap YES, which means buying NO, across hundreds of markets.",
+   "category": "Market-making",
+   "maturity": "Established",
+   "mechanism": "Post resting asks on YES priced 1-10c, or equivalently bids on NO at 90-99c, across many unrelated low-price contracts. Avoid sports, where the bias is absent on Polymarket. Diversify across parent events, because grouping contracts by event flips the sign of the longshot return. Collect the behavioural premium plus maker rebates. The entire transfer goes from taker to maker.",
+   "edge_source": "Lottery-ticket preference among retail takers. The YES side is systematically overbought at low prices.",
+   "why_might_beat_market": "It has been documented on hundreds of millions of trades on both venues. It is capital-intensive per dollar of edge, which deters leveraged professionals.",
+   "adjacent_grounding": "Favorite-longshot bias in horse racing and on Betfair. Selling lottery-like options.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "588M trades and 2.48M accounts. Purchases below 10c lose 19.3c per dollar. Purchases at 90c or above earn 0.83c. Equal-weighted longshots lose 6.3c, but gain 4.1c when grouped by parent event. The bias is robust in Crypto and Politics and absent in Sports."
+    },
+    {
+     "url": "https://jbecker.dev/research/prediction-market-microstructure",
+     "title": "The Microstructure of Wealth Transfer in Prediction Markets (Jon Becker)",
+     "date": "2026-01-18",
+     "quality": "hard-data",
+     "supports": "Kalshi, 72.1M trades. Takers earn -1.12% and makers +1.12%. 1c contracts win 0.43% of the time. YES at 1c has an EV of -41% and NO +23%. The maker-taker gap is Finance 0.17 pp, Politics 1.02, Sports 2.23, Crypto 2.69, Weather 2.57, Entertainment 4.79, Media 7.28 and World Events 7.32. Before 2024 the sign was reversed, and it flipped when professional makers arrived."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.24366",
+     "title": "The Anatomy of a Decentralized Prediction Market",
+     "date": "2026-04-27",
+     "quality": "paper",
+     "supports": "30B Polymarket book events. Its first stylised fact is a longshot spread premium, meaning wider spreads on low-probability outcomes."
+    }
+   ],
+   "failure_modes": "The event-grouped result, where longshots gain 4.1c, means correlated tails inside one event can wipe out the premium. A NO position at 95c locks 95c of capital for 5c of payoff. Insiders trade exactly these longshots: 2026 had several prosecutions and a reported 150+ suspect wallets. Geopolitics markets are fee-free, so they pay no maker rebate.",
+   "cheap_validation": "From the public trade archive, compute realised maker-side returns for YES below 10c by category and by parent-event cluster over the last 6 months. Require the premium to be positive after clustering.",
+   "flags": ""
+  },
+  {
+   "name": "'Nothing ever happens' short-event-volatility carry (systematic NO and high-probability bonds)",
+   "one_line": "Buy NO on dramatic-sounding events and 90c+ favourites near expiry. About 73% of markets resolve NO, but the average NO price is also about 73c, so the edge is only in selection and timing.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Screen for standalone yes/no, non-sports markets where a status-quo outcome is priced below its base rate. One commenter's live variant buys NO right after a story starts trending. Size small and hold to resolution. The bond variant buys outcomes at 95c or above with short time to resolution, for an annualised carry. This is the prediction-market version of selling volatility: many small wins and rare full losses.",
+   "edge_source": "Attention and news-driven overpricing of change. It overlaps with the favorite-longshot premium on the 90c+ side, which earns 0.83c per dollar.",
+   "why_might_beat_market": "It only works with event selection. The naive version is priced in. A solo operator can curate a few dozen markets by hand or with an LLM, which does not scale for funds.",
+   "adjacent_grounding": "Short-volatility and carry strategies. 'Picking up pennies' risk management.",
+   "evidence": [
+    {
+     "url": "https://news.ycombinator.com/item?id=47753472",
+     "title": "HN: Nothing Ever Happens, a Polymarket bot that always buys No (471 points)",
+     "date": "2026-04-13",
+     "quality": "self-reported",
+     "supports": "The author says 73% of markets resolve No. A commenter says the average No price is also 73c. Another backtested about 100% APR, but with lookahead on resolution timing, and lost $5 on $100 live in a month. Only about 10 markets met liquidity and spread filters. 'Buy No right after a story breaks' was reported as more promising."
+    },
+    {
+     "url": "https://github.com/sterlingcrispin/nothing-ever-happens",
+     "title": "sterlingcrispin/nothing-ever-happens",
+     "date": "2026-04-12",
+     "quality": "self-reported",
+     "supports": "987 stars. The strategy is widely copied, so it is crowded. No PnL is published and it describes itself as 'mostly a meme'."
+    },
+    {
+     "url": "https://github.com/yourairdrop/bond",
+     "title": "yourairdrop/bond, a bond-style strategy framework",
+     "date": "2026-05-22",
+     "quality": "self-reported",
+     "supports": "'ran, produced a stable profitable window for a period of time, and was later retired'. No numbers are given."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias ... Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "Purchases at 90c or above earn only +0.83c per dollar in aggregate, and habitual favourite-buyers underperform others."
+    }
+   ],
+   "failure_modes": "One loss erases 10-20 wins. Capital is locked at no yield. UMA dispute and ambiguity risk hits 'sure things', for example the Venezuela 'invade' dispute and the $269M 'enter Iran' question in 2026. Insiders trade against you on exactly these tails.",
+   "cheap_validation": "Backtest WITHOUT knowing resolution dates. Use only markets with an explicit end date of 14 days or less and a depth filter. Include disputed and 50/50 outcomes.",
+   "flags": ""
+  }
+ ]
+}

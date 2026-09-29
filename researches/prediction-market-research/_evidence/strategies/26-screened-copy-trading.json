@@ -1,0 +1,142 @@
+{
+ "slug": "screened-copy-trading",
+ "name": "Copy trading with forensic and statistical wallet screening",
+ "category": "Information edge",
+ "maturity": "Emerging",
+ "seed_category": "copy trading",
+ "one_line": "Mirror a small set of slow-conviction wallets detected on-chain in 2-3 s, selected by randomisation-null skill tests rather than leaderboard PnL, with exit mirroring.",
+ "scope": "Cover selection (sign-randomisation null: 3.14% skilled, 44% retain status out of sample; Wilson intervals; 6,365 wallets to 72 passed; rolling-accuracy vs PnL ranking; weak monthly persistence), detection (OrderFilled websocket vs REST polling), gate stack and exit engine, measured copy differential (+1.62 pp vs own trades), which leaders are uncopyable (latency edges, maker-earned edges, split/hedged wallets, liquidity sweepers), realised small-bankroll results (+$256.85 on $500) and failures (1 s late copy of swisstony, vendor figure 67% underperform), migration breakage (pUSD, CLOB V2), bait risk from the ghost-fill era. Boundary: following anomalous fresh wallets is informed-flow-and-insider-trading; selling copy bots is builder-code-routing-business; fading bad wallets is speculative band.",
+ "sub_variants": [
+  "on-chain event-level mirror with exit engine",
+  "randomisation-null skill filter",
+  "maker/early-taker-only copying"
+ ],
+ "merged_from": [
+  "traders: On-chain copy-trading with forensic wallet screening",
+  "academic: Copy trading with a statistically validated skill filter"
+ ],
+ "flags": "Many third-party copy bots are custodial or outright drainers; never run researched bot repos.",
+ "key_evidence": [
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?ids=1stfa95,1tfkwia",
+   "note": "5-week build: 2-3 s detection, 6,365 to 72 wallet screen, +$256.85 on $500 (self-reported)"
+  },
+  {
+   "url": "https://api.crossref.org/works/10.2139/ssrn.6670318",
+   "note": "Copy trades beat followers' own trades by 1.62 pp (abstract)"
+  },
+  {
+   "url": "https://arxiv.org/html/2605.02287v2",
+   "note": "Summarises sign-randomisation study: 3.14% skilled, 44% persistence"
+  },
+  {
+   "url": "https://doi.org/10.2139/ssrn.6443103",
+   "note": "Top 1% capture 76.5% of gains but weak monthly persistence (abstract)"
+  },
+  {
+   "url": "https://dev.to/jacobyf/the-polymarket-copy-trading-trap-what-nobody-tells-you-about-following-prediction-market-whales-27b5",
+   "note": "Vendor analysis: 67% of copy traders underperform the copied wallet (marketing)"
+  },
+  {
+   "url": "https://hn.algolia.com/api/v1/items/47091557",
+   "note": "Practitioner objections: edge gone by the time fills are visible"
+  }
+ ],
+ "parent_slug": "screened-copy-trading",
+ "deepen": true,
+ "seed": "6 copy trading",
+ "n": "26",
+ "band": "established",
+ "file": "26-screened-copy-trading.md",
+ "critic_notes": [
+  "MOVE 'thin-book front-running of market orders' and 'selling into copy-followers' out of ghost-fills-bot-hunting, which should stay a pure settlement-atomicity threat model, into the proposed builder-tagged-flow-and-follower-flow entry (or, if that entry is rejected, into screened-copy-trading as a hazard section).",
+  "COUNT: the five proposed entries would take the band to 32. To stay near the target, send perps-lp-rewards-basis to the speculative band, keep builder-tagged flow as a sub-variant of event-market-making-spread-carry plus screened-copy-trading if no PnL evidence turns up, and fold tech-ai-model-markets' manipulation part into oracle-input-manipulation's fragility taxonomy. news-event-feed-latency-taking, genesis-window-new-listing-liquidity and oracle-governance-capture should be files.",
+  "screened-copy-trading is not weak as a file but its positive evidence is thin and the market is shrinking: +1.62 pp measured uplift (abstract), one $500 account, one paper experiment netting +$171, and copy-bot volume down 77% Apr-Aug 2026 with 1.6-2.0% all-in entry cost on bot-routed fills (E6). The file should lead with those numbers rather than with the build."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "On-chain copy-trading with forensic wallet screening",
+   "one_line": "Detect target wallets' fills from Polygon OrderFilled events in 2-3 s, mirror through safety gates, and mirror their exits too.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "A dual feed (on-chain websocket ~2-3 s; REST fallback 30-60 s) spots fills by screened wallets; a gate stack (price band, slippage, per-whale and per-topic caps, liquidity, minimum exit size) decides whether to send a FAK taker order; an exit engine mirrors whale sells plus TP/SL/time decay; resolved positions are auto-claimed. Screening is the core: 6,365 leaderboard wallets -> 72 passed (3.1%) using Wilson intervals on win rate, open-risk caps and bot/dust filters. Result: +$256.85 realised on a $500 bankroll in ~5 weeks. Works only on slow-conviction whales - the best one's whole edge was 1-3c lottery tickets - and fails on latency-edge accounts.",
+   "edge_source": "Free-riding on a minority of genuinely informed, slow traders; on-chain transparency.",
+   "why_might_beat_market": "Most copy tools poll REST and copy leaderboard names; event-level detection plus exit mirroring removes the two largest leaks.",
+   "failure_modes": "Whales move thin books 3-8c before you arrive; insiders sweep all liquidity; whales hedge across wallets; 67% of copy traders underperform the wallet they copy (vendor figure); a commercial copy bot lost 23% in one review; survivorship in leaderboards; collateral/API migrations (pUSD, CLOB v2) break bots.",
+   "cheap_validation": "Shadow-copy 20 screened wallets for a month with recorded fillable prices at +3 s; compare shadow PnL to the whales' PnL and attribute the gap.",
+   "flags": "Many third-party copy bots are custodial or outright drainers (see service-business candidate).",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1stfa95,1tfkwia",
+     "title": "Reddit r/PredictionTrading 1tfkwia 'I spent 5 weeks building a bot that copies whale wallets... +$256 on $500'",
+     "date": "2026-05-17",
+     "quality": "self-reported",
+     "supports": "Architecture, 2-3 s on-chain detection, 6,365 -> 72 wallet screen, gate mis-tuning (69 signals/0 trades), lottery-ticket whale, ghost positions, pUSD migration pain"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=swisstony&size=30&sort=desc&sort_type=score",
+     "title": "Reddit 1t77hcd copying swisstony",
+     "date": "2026-05-08",
+     "quality": "self-reported",
+     "supports": "Copying a latency-edge whale 1 s late: 34 wins / 51 losses, $150 -> $138"
+    },
+    {
+     "url": "https://dev.to/jacobyf/the-polymarket-copy-trading-trap-what-nobody-tells-you-about-following-prediction-market-whales-27b5",
+     "title": "dev.to: The Polymarket copy trading trap (author builds CtrlPoly)",
+     "date": "2026-03-20",
+     "quality": "marketing",
+     "supports": "67% of copy traders underperformed the copied whale (200+ wallets, vendor analysis); entry-delay and exit-management leaks"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47091557",
+     "title": "HN thread: Uncovering insiders and alpha on Polymarket with AI",
+     "date": "2026-02-20",
+     "quality": "self-reported",
+     "supports": "Practitioner objections: by the time fills are visible the edge is gone; a confident insider takes every offer"
+    }
+   ]
+  },
+  {
+   "name": "Copy trading with a statistically validated skill filter",
+   "one_line": "Select leaders by a sign-randomisation skill test and rolling out-of-sample accuracy rather than leaderboard PnL, and size by the measured copy-vs-own differential (~1.6 pts).",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "For every wallet with >=10 events, randomise trade directions 10,000 times at event level to get a null PnL distribution; keep wallets whose realised PnL is in the extreme tail, then re-test on a held-out period (44% retain the label). Copy only in markets where the leader acts as maker or early taker and where your entry slippage is smaller than the documented differential. Track decay: monthly performance persistence is weak in the broad population.",
+   "edge_source": "A small persistent skilled minority on a transparent ledger.",
+   "why_might_beat_market": "Leaderboards are dominated by luck and by one-shot insiders; the randomisation null removes both.",
+   "evidence": [
+    {
+     "url": "https://api.crossref.org/works/10.2139/ssrn.6670318",
+     "title": "The Return to Imitation: Evidence from Copy Trading on Polymarket (Oliphant), SSRN via Crossref abstract",
+     "date": "2026-04-28",
+     "quality": "paper",
+     "supports": "Copy trades outperform a follower's own non-copy trades in the same market by 1.62 percentage points."
+    },
+    {
+     "url": "https://arxiv.org/html/2605.02287v2",
+     "title": "Per-Market Information Leakage and Order-Flow Skill (Nechepurenko) - summarising the account-level sign-randomisation study",
+     "date": "2026-05-04",
+     "quality": "paper",
+     "supports": "1.72M accounts, 210,322 markets, $13.76B (2023-2025): 3.14% of accounts with >=10 events are 'skilled winners' capturing >30% of platform gains; 44% of those classified skilled in training retain the label on held-out data."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6443103",
+     "title": "Who Wins and Who Loses in Prediction Markets? (Akey, Gregoire, Harvie, Martineau), SSRN via Crossref abstract",
+     "date": "2026-04-07",
+     "quality": "paper",
+     "supports": "Top 1% capture 76.5% of gains, but monthly performance shows weak persistence - 'heterogeneous conditions rather than persistent skill'."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6396698",
+     "title": "Skilled Liquidity Provision in Prediction Markets (Yang), SSRN via Crossref abstract",
+     "date": "2026-03-19",
+     "quality": "paper",
+     "supports": "Top-5% by rolling historical accuracy persist out-of-sample and earn on both maker and taker sides - skill classification by accuracy, not PnL."
+    }
+   ],
+   "failure_modes": "1.62 pts is smaller than typical copy slippage in thin markets; skilled wallets earn much of their edge as makers, which cannot be copied; leaders split across wallets; conflicting persistence evidence; ghost-fill era showed copy bots being baited.",
+   "cheap_validation": "Walk-forward: classify on months 1-12, paper-copy months 13-15 with realistic delay (next block + your latency) and book-walking slippage; compare with copying the raw PnL leaderboard.",
+   "flags": ""
+  }
+ ]
+}

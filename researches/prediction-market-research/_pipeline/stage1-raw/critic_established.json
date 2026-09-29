@@ -1,0 +1,169 @@
+{
+ "missing": [
+  {
+   "slug": "news-event-feed-latency-taking",
+   "name": "Scheduled-release and breaking-news latency taking (earnings, macro prints, agency / court decisions, election-night returns, live ceremonies)",
+   "category": "Information edge (latency)",
+   "maturity": "Established (tiny capacity, winner-take-all); sub-variants other than earnings are Emerging / unverified",
+   "one_line": "Sweep resting orders that nobody cancelled in the first hundreds of milliseconds after a scheduled or breaking public fact; the list has this for crypto, sports, weather and mentions but not for the generic news case.",
+   "scope": "Cover the non-crypto, non-sports version of latency taking, which no entry in the list owns. (1) Scheduled releases: 'Will X beat earnings' markets (observed sniper wallet ~$32k 'near risk-free', wins 100% because 'many people forget to cancel their orders before the announcement'; challenger with a ~500 ms wire feed found the book 'swept before we receive the wires' and only won on EPS-definition ambiguity or when the leader hit size limits), macro prints and Fed decisions, agency / court publication times. (2) Unscheduled headlines from X / Truth Social / Telegram / wires (arXiv 2605.21521: X and news roughly tied on 109 Polymarket events, abstract-level). (3) Election-night returns models and live award ceremonies with stream delay: no PnL evidence found this session, mark unverified. (4) The maker-side mirror, which matters more to this owner: a release-calendar cancel / widen module for the LP bot, since the prey is exactly un-cancelled maker quotes. Include the 250 ms finance taker delay (pending, non-cancellable), fee 0.04-0.05 x p(1-p) being negligible at post-news extreme prices, capacity = resting stale size only, SDK pre-trade network checks and second-granularity match timestamps as measurement limits. Boundary: crypto spot-lead is short-crypto-latency-taker; in-play sports is sports-automated-takers; station readings are weather-markets; transcript sniping is recurring-count-mention-markets; LLM interpretation of news is speculative band; MNPI is informed-flow-and-insider-trading.",
+   "why_it_matters": "The owner's LP and resolution-sniping bots are the counterparty of this strategy today, and no file in the band tells them so. It is also the only entry that gives the Economics and Finance-earnings categories a home in the established band (macro nowcasting was sent to speculative). IMDEA's genesis-window study adds a useful nuance: economy markets have the widest opening spreads but low adverse selection because events are scheduled releases, so the risk is concentrated in the release second, which a calendar solves. A small team will not win the pure speed race on earnings (already lost by a team with a 500 ms feed) but can win on long-tail scheduled releases nobody watches and on definitional ambiguity.",
+   "flags": "Public-information speed trading is permitted (E9 traffic-light table). Licensed newswire / data redistribution terms apply. Anything sourced from an embargo breach or an insider is MNPI and belongs to the flagged insider entry.",
+   "key_evidence": [
+    {
+     "url": "https://eventwaves.substack.com/p/trying-to-build-a-low-latency-polymarket",
+     "note": "EventWaves, 2026-03-17 (fetched): observed bot ~$32k near risk-free on earnings-beat markets; ~500 ms announcement feed still too slow, book swept first; wins only on EPS ambiguity or leader size limits (self-reported, no wallet given)"
+    },
+    {
+     "url": "https://dev.to/abrownfox001/building-a-low-latency-polymarket-bot-for-earnings-markets-a-real-world-attempt-lessons--38md",
+     "note": "DEV Community (fetched): same project, 'never won on pure speed against the leader', project mothballed; search listing dates it 2026-06-15, page summariser read 2024: date unverified"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.21521",
+     "note": "arXiv 2026-05-18, seen in the arXiv API listing fetched this session: breaking-news vs social-media timing on Polymarket event anchors (abstract-level only)"
+    },
+    {
+     "url": "https://dspace.networks.imdea.org/bitstream/handle/20.500.12761/2065/Polymarket_Initial_Liquidity-3.pdf?sequence=1",
+     "note": "Jornell, Perez, Saguillo (fetched PDF): economy events are 'largely scheduled public releases, so early takers are rarely better informed'"
+    },
+    {
+     "url": "https://www.quantvps.com/blog/news-driven-polymarket-bots",
+     "note": "QuantVPS 2026-01-10, vendor marketing seen in search results: lead only, no PnL"
+    }
+   ]
+  },
+  {
+   "slug": "genesis-window-new-listing-liquidity",
+   "name": "New-listing (genesis-window) liquidity provision and initial price discovery",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "one_line": "Be the first sensible quote in the ~300k markets listed per month: first-minute takers pay a median 12-16c half-spread outside sports versus ~1c a few hours later.",
+   "scope": "Cover quoting in the first minutes to hours of a market's life as its own business. Hard numbers from ~160,000 contracts created Oct 2025-Mar 2026: median effective half-spread paid in the first minute 14.5c monetary policy, 12c economy, 16c geopolitics, 13.5c politics and elections, 12.5c crypto, 14c other, versus 1.5c sports; 3-6.5c at 1-6 min; ~1c by 1-3 h; most compression inside the first hour. Share of that cost the maker keeps (realised / effective, first six minutes, one-hour horizon): sports 1.00 (no rent, price discovery happened at sportsbooks), economy near 1 (scheduled releases, uninformed early takers), but geopolitics 0.25, politics 0.35, elections 0.29, other 0.33, i.e. two thirds of the opening spread there is adverse selection. Build: discovery (Gamma keyset pagination, WS new_market event), a fair-value seed per category (cross-listed Kalshi price, option surface, base rates, an LLM prior where E7 shows LLMs are least bad at Open+1), defensive sizing against informed first takers, placeholder / 'Other' handling in new neg-risk events, timing of reward-config start dates. State that the sample ends one day before Fee Structure V2 and that the authors expect rebates to compress opening spreads: re-measure before building. Boundary: steady-state quoting is event-market-making-spread-carry; pool share is maker-reward-pool-farming; new alt-coin up/down books are short-crypto-maker-side.",
+   "why_it_matters": "It is the one place where the evidence says a long-tail maker is paid a wide spread rather than ~0 (the list's own event-MM entry reports a median effective half-spread of ~0 and 91% of maker profit arriving at settlement). It is capacity-constrained and engineering-heavy (discovery and seeding across 300k listings a month), which is what keeps desks out and suits a solo technical team. The category split tells the owner where not to do it (politics / geopolitics without an information source; sports, where there is no rent).",
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://dspace.networks.imdea.org/bitstream/handle/20.500.12761/2065/Polymarket_Initial_Liquidity-3.pdf?sequence=1",
+     "note": "'Opening Wide, Moving Fast: Polymarket Spread Dynamics' (Lund / IMDEA, 2026, PDF text extracted locally): Table 9 half-spreads by time bucket and category; R/E ratios; fee-free sample ending the day before Fee Structure V2"
+    },
+    {
+     "url": "https://news.polymarket.com/p/automated-market-making-on-polymarket",
+     "note": "URL confirmed in The Oracle 2025 sitemap fetched this session; the '80-200% annualised in new markets' claim comes from evidence pack E4 [34] (PANews, self-reported, 2025-era) and was not re-fetched"
+    }
+   ]
+  },
+  {
+   "slug": "tech-ai-model-markets",
+   "name": "Tech / AI-model markets: leaderboard tracking, release-timing reads and their manipulation fringe",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "one_line": "Specialist wallets trade 'best AI model on date X' (resolved on the LMArena text leaderboard) and model-release / AI-company markets from leaderboard telemetry, lab chatter and rule fine print; the resolution source itself has been vote-botted.",
+   "scope": "Cover the Tech / AI category, which has no entry. (1) Market family: monthly 'best AI model' ladders resolved on lmarena.ai Text Arena Overall with a named style-control setting; release-date markets (GPT-5 before date); AI-company valuation / IPO markets resolved on Nasdaq Private Market data (live: Anthropic valuation ladder ~$4.9M volume, IPO closing market cap ~$0.87M). (2) Documented edges: continuous leaderboard polling and score-interval arithmetic, pre-release anonymous-model spotting, Discord / X chatter, fading launch hype (WSJ via Reddit mirror, secondhand: ~$20M AI-market volume in Aug 2025; one trader $3.2M staked for $170k profit, $10k in hours fading GPT-5 timing hype); Polymarket's own newsletter profiles three specialist wallets with 58.8%, 85.7% and 91.7% accuracy and '80% or better win rate' across GPT-5 / OpenAI categories (no dollar PnL given; one $13k loss on a model-ranking bet). (3) Rule-text edge: a May 2026 market priced YES 95% while the leaderboard under the stated 'style control OFF' setting showed another model two Elo points ahead (1504 vs 1502), with dispute instructions and a $500 bond cited. (4) Flagged fringe: a self-reported confession of botting LMArena votes (claimed 10-30% of OpenAI-vs-Google votes, $5k + $10k profit, Dec 2024-Jan 2025), plus lab-employee MNPI (cases already in the insider entry). Fee 0.04, maker rebate 25%. Boundary: tampering belongs to oracle-input-manipulation; employee trading to informed-flow-and-insider-trading; generic rule disputes to rules-dispute-trading.",
+   "why_it_matters": "The brief asks that every Polymarket category be answered; Tech / AI is not. It is a recurring monthly ladder with a machine-readable, thinly voted resolution source (4k-50k votes per model per the confession), which makes it both the most automatable niche after weather / tweet counts and one of the most manipulable: exactly the 'resolution fragility' case the owner's defensive screen should flag. A team building AI agents is unusually well placed to read this category.",
+   "flags": "Manipulating LMArena votes to move a resolution source is market manipulation and a ToS breach (defensive relevance only). Lab employees trading release or benchmark markets is MNPI. The WSJ figures are secondhand via a Reddit repost; the confession is anonymous and unverified.",
+   "key_evidence": [
+    {
+     "url": "https://news.polymarket.com/p/ai-overlords",
+     "note": "The Oracle (Polymarket), 2026 (fetched): three AI-market specialist wallets, accuracy 58.8% / 85.7% / 91.7%, category win rates, largest loss $13k; no dollar PnL totals"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1i7zd5a,1msr9q3,1t0j02y",
+     "note": "Reddit mirror (fetched): r/LargeLanguageModels 2025-01-23 vote-botting confession ($5k + $10k, self-reported); r/AIxProduct 2025-08-17 repost of WSJ 'Gamblers Now Bet on AI Models Like Racehorses' ($20M Aug 2025 volume, $170k profit on $3.2M; secondhand, WSJ original not fetched); r/Polymarket 2026-05-01 style-control-OFF resolution warning"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/events?tag_slug=ai&closed=false&limit=25&order=volume24hr&ascending=false",
+     "note": "Polymarket Gamma API, fetched 2026-09-20: Anthropic valuation ladder $4.92M volume / $401k liquidity, IPO closing market cap $865k; resolution on Nasdaq Private Market data (summariser output was truncated to two events)"
+    }
+   ]
+  },
+  {
+   "slug": "oracle-governance-capture",
+   "name": "Oracle-governance capture: conflicted UMA voting and strategic proposing (grey to prohibited; defensive relevance)",
+   "category": "Insider / manipulation-adjacent (flagged)",
+   "maturity": "Established (documented, ongoing, unremedied)",
+   "one_line": "Holders of UMA voting power, or of early-proposal timing, decide markets they are positioned in; the list only mentions this inside flags, while its oracle-manipulation entry covers what the oracle reads, not who adjudicates.",
+   "scope": "Survey-level, no how-to. Cover (1) the March 2025 Ukraine mineral-deal market: $7M, Yes 9% to 100% in a day on a whale-driven DVM vote, Polymarket calling it 'unprecedented' and refusing refunds because it 'wasn't a market failure' (E3 adds ~5M UMA, about 25% of the vote, from three accounts and a weekend proposal timed ahead of a clarification); (2) structure: nine wallets hold nearly half of all UMA voting power among 6,400+ accounts and 'often vote together'; at least 60% of active voters are linked to Polymarket accounts; in roughly one in five disputes a voter held a stake; more than 1,150 disputed markets in 2026 by mid-May; ~2,000 disputed contracts in a year and ~230 contracts worth over $1B decided in April 2026 alone; a delegate pool expelled a member who admitted voting on his own positions; reform 'largely stalled'; (3) economic security: UMA capitalisation ~$33-35M against individual disputed markets of $60M-$345M (E3); (4) why it persists: E9 finds no ToS clause on voting while positioned (traffic-light 'Grey'), the 0.1% slash for deviating from the majority, and the admin resolveManually override that is almost never used. Deliverables are defensive: voter-wallet to trader-wallet linkage graph, a whale-vote-following signal during live disputes, size haircuts when value at stake exceeds plausible vote cost, category and clarification-timing screens. Boundary: trading dispute dislocations is rules-dispute-trading; honest proposing / disputing / staking income is uma-side-operations; tampering with the measured input is oracle-input-manipulation.",
+   "why_it_matters": "It is the largest documented adjudication risk for the owner's resolution-sniping and bond-carry agents: the counterparty selling at 0.998 during a dispute may be a voter. The band keeps grey practices as their own flagged entries, yet this one, arguably the most consequential on the platform, has no file and falls between three entries' boundaries.",
+   "flags": "Voting on, proposing or disputing markets in which you hold a position is treated as manipulation by critics and may fall under the ToS fraud / 'position of influence' prongs even though no clause names it; CFTC reach over polymarket.com conduct has been asserted in 2026 insider cases. Do not build; defensive use only.",
+   "key_evidence": [
+    {
+     "url": "https://www.theblock.co/post/348171/polymarket-says-governance-attack-by-uma-whale-to-hijack-a-bets-resolution-is-unprecedented",
+     "note": "The Block, 2025-03-26 (fetched): $7M market, Yes 9% to 100%, 'unprecedented', no refunds"
+    },
+    {
+     "url": "https://www.financemagnates.com/fintech/polymarkets-arbitration-model-faces-conflict-of-interest-questions/",
+     "note": "Finance Magnates on the WSJ investigation, 2026-05-18 (fetched): at least 60% of active voters linked to Polymarket accounts, ~1 in 5 disputes with a conflicted voter, 1,150+ disputes in 2026, 'Scout' quote; no profit figures"
+    },
+    {
+     "url": "https://www.cryptotimes.io/2026/05/27/only-9-wallets-control-nearly-half-of-uma-voting-power-on-polymarket-bloomberg/",
+     "note": "Crypto Times on Bloomberg, 2026-05-27 (fetched): nine wallets about half of voting power, 6,400+ accounts, ~2,000 disputes, ~230 contracts over $1B in April, reform stalled"
+    }
+   ]
+  },
+  {
+   "slug": "builder-tagged-flow-and-follower-flow",
+   "name": "Builder-tagged order-flow segmentation and follower-flow trading (copy cascades, decoy wallets, exit-into-followers)",
+   "category": "Information edge (flow); grey where it shades into baiting",
+   "maturity": "Emerging (mechanism and data are hard; nobody's PnL is documented: if file authors find none, demote to speculative band)",
+   "one_line": "Every V2 fill carries the routing app's builder code, so retail wallet-app flow and copy-bot cascades can be labelled for free, while copied whales already hide behind secondary wallets, icebergs and merge exits and use followers as exit liquidity.",
+   "scope": "Cover the flow-side of copy trading that the list only touches in passing. (1) Data: GET /builder/trades is unauthenticated (spec security: []) and returns fee, feeUsdc, maker address, owner id, tx hash, side, price, size per fill; the builder field is in the signed order and in OrderFilled. E6's own queries: wallet-app flow (MetaMask, RedotPay) is ~100% taker, median ticket $2-5, paying 400 bps on top of platform fees, i.e. uninformed; PolyCop / Polygun fills are follower flow (median tickets $3.85 / $1.58, all-in entry cost ~1.6-2.0%); copy-bot volume fell 77% Apr-Aug 2026, so the prey is shrinking. (2) Uses: a toxicity / fill-quality feature for the LP bot (lean into labelled retail, pull on informed or cascade flow); a copy-cascade detector (leader fill, then 30-90 s polling bots arrive); measuring how much of a leader's apparent edge is follower impact. (3) Leader-side practices documented by Polymarket's own newsletter: secondary / tertiary accounts, iceberging under alert thresholds, merging YES+NO as a silent exit, followers becoming exit liquidity; 'unrecognized wallet addresses make major buys on the whale feed before the well known traders'; counter-trading negative-PnL accounts. (4) Own-side hygiene: never route proprietary flow through a labelled builder code (NautilusTrader hard-codes one). Boundary: choosing whom to copy is screened-copy-trading; fresh-wallet insider fingerprints are informed-flow-and-insider-trading; settlement-revert bait is ghost-fills-bot-hunting; earning builder fees is builder-code-routing-business.",
+   "why_it_matters": "E6 lists 'flow analytics keyed on the on-chain builder field' as something none of 170+ tools advertises, and the owner runs both LP and copy agents, so the same label is simultaneously a quote-skew input and a warning about what the copy bot cannot see. The list currently parks 'selling into copy-followers' and 'thin-book front-running of market buys' inside the ghost-fill exploit entry, where they do not belong.",
+   "flags": "Trading ahead of your own followers or users is front-running (ToS 4.2; Polymarket US Rule 7.2(j)). Talking up a position that followers then buy is manipulation (CFTC Santos settlement, E9). Anticipating third-party public copy flow has no prohibiting clause but baiting it with misleading orders does.",
+   "key_evidence": [
+    {
+     "url": "https://docs.polymarket.com/api-reference/trade/get-builder-trades.md",
+     "note": "Polymarket API reference (fetched): security: [], builder_code required, rows include fee, feeUsdc, maker, owner, transactionHash, side, price, size, market"
+    },
+    {
+     "url": "https://news.polymarket.com/p/copycat",
+     "note": "The Oracle + Stand.Trade, 2026-04-24 (fetched): secondary accounts, iceberging, merge exits, followers as exit liquidity; most-copied list (top crypto bot inactive since March 2026; RN1 53% of trades under 50c; ColdMath weather; swisstony 60%+ entries under 50c)"
+    },
+    {
+     "url": "https://news.polymarket.com/p/copytrade-wars",
+     "note": "The Oracle, 2025-09-22 (fetched): unknown wallets buying ahead of known traders on the whale feed; counter-trading negative-PnL accounts; one user 'over $10k per month' (self-reported)"
+    }
+   ]
+  }
+ ],
+ "merge_or_split": [
+  "METHOD NOTE: WebSearch was unavailable (session budget 200/200 used; both calls refused). Discovery used WebFetch on Brave Search (one results page, then HTTP 429 on every retry), the pullpush Reddit mirror, the arXiv API, HN Algolia, Polymarket docs / Gamma API and The Oracle sitemap; DuckDuckGo, Google, Startpage, Ecosia and Mojeek were blocked. All nine evidence packs E1-E9 were read (E8 skimmed: it concerns the speculative band). Several suspected gaps could therefore not be tested and are marked unverified below.",
+  "SPLIT sports-automated-takers into (a) in-play feed-latency taking and (b) model-driven pre-game / hold-to-settlement taking. They differ in edge (speed and data licence vs model), build (low-latency infrastructure vs modelling and bankroll) and risk (data-terms / surveillance vs variance). E4's Leo Labs reconstruction classes 14 of 18 top sports wallets as directional buy-and-hold, so the evidence base of (a) is one esports bot plus X-thread mechanism claims. Add to (b) a sub-variant the list lacks: systematic underdog buying. arXiv 2609.12878 finds no favourite-longshot bias in sports (longshots +2.4% equal-weighted, +18.1% pooled, pre-fee sample) and The Oracle reports RN1 at 53% of trades under 50c and swisstony at 60%+ of entries under 50c.",
+  "SPLIT informed-flow-and-insider-trading into (a) MNPI insider trading (survey only, prohibited, Established) and (b) informed-flow detection used as fast-follow, quote-pull trigger or alert product (grey, Emerging at best: the cited paper did not test following and the practitioner 'did not succeed'). One file with one maturity label hides that the buildable half is unproven.",
+  "SPLIT data-referral-content-businesses (17 merged candidates, 12 sub-variants) into (a) data / analytics / API / infrastructure products and (b) referral, affiliate, creator and content distribution including the scam fringe. Send 'managed vault / fund and OTC intermediary', 'no-code strategy builder' and 'calibrated probability data products' to the speculative band: E6 found every fund, credit and hedge product it checked to be an empty shell (uma.rocks 0 UMA delegated, Gondor 'coming soon', PolyFund no TVL) and no revenue figure for any signal or data vendor.",
+  "SPLIT cross-venue-arbitrage-leadlag into (a) locked cross-venue structures (widely practised and crowded: 301 GitHub repos for 'polymarket kalshi arbitrage', paid scanners; no documented realised PnL) and (b) lead-lag follower quoting and signals. Demote the international-vs-US order-book sub-variant to a flagged note or the speculative band: E5 and E9 agree it needs two properly domiciled entities and a US person cannot lawfully touch the international venue. Add a missing sub-variant: cross-venue short-dated crypto pairs, where Polymarket settles on a Chainlink TWAP and Kalshi on the average of 60 one-second CF Benchmarks RTI prints (E5 key fact 10), so the 'arb' carries index-basis risk.",
+  "MOVE 'thin-book front-running of market orders' and 'selling into copy-followers' out of ghost-fills-bot-hunting, which should stay a pure settlement-atomicity threat model, into the proposed builder-tagged-flow-and-follower-flow entry (or, if that entry is rejected, into screened-copy-trading as a hazard section).",
+  "MOVE oracle-governance material (conflicted voting, whale Schelling dynamics, weekend proposals timed against clarifications) out of the flags of rules-dispute-trading and uma-side-operations into its own flagged entry (proposed above), or rename oracle-input-manipulation to cover both inputs and adjudicators. At present it falls between three boundaries.",
+  "WIDEN options-implied-relative-value to 'derivatives-implied relative value' so Finance and Economics are answered: (i) FOMC decision markets against fed funds futures / FedWatch (E5: a 6-10 pp gap in one 2026 episode, snippet-level, unverified); (ii) M&A deal-close markets against merger-arbitrage spreads (The Oracle 'Just Call Them', 2025-12-29, interview with an event-driven fund manager; no PnL); (iii) Pyth-settled equity / index / commodity ladders, which are tiny today (Gamma, fetched 2026-09-20: SPY September 'hit' ladder, 23 markets, $140k total and ~$2.5k 24 h volume, finance fee 4%, maker rebate 25%).",
+  "WIDEN recurring-count-mention-markets, or add sub-variants, so Culture is answered: the same build applies to any market resolved on a continuously updating public counter (box office, review aggregator scores, streaming and chart counts, video views, the LMArena leaderboard). No PnL evidence was found this session for the culture examples (unverified), and The Oracle's Oscars piece (2026-03-13) contains opinion only, so this should be a sub-variant, not a file. Culture / awards otherwise has no entry.",
+  "ADD to maker-reward-pool-farming the Polymarket US application-only Market Maker Program and Liquidity Provider stipend (docs.polymarket.us/incentives/market-maker.md exists; terms redacted in CFTC filings per E2). Consider a short cross-reference index for the Polymarket US pieces now spread over five entries (LIP in maker-reward-pool-farming, volume pools and promo credits in fee-tier-taker-incentives, BBO signal in cross-venue, US RFQ in combos, ISV route in builder-code), because eligibility (US-only, KYC, own-name funding, Rule 7.2, kill-switch requirement) is one gating decision for the owner.",
+  "CLARIFY promo conversion in fee-tier-taker-incentives: the merged 'sign-up promo, bonus and referral extraction' candidate should state explicitly whether it covers sportsbook bonus-bet conversion with Polymarket US / Kalshi as the lay leg (the US analogue of Betfair matched betting). I could not verify practitioner evidence this session (search blocked): mark unverified or drop the sub-variant rather than imply coverage.",
+  "ADD as sub-variant (wash-trading-airdrop-farming or cross-venue): rival-venue points farming hedged on Polymarket's deeper book. E5: Opinion shows ~$10B cumulative volume against ~$31M open interest, and its points lost ~86% of OTC value after the airdrop ratio was announced. Press-level evidence, no PnL; absent from the list.",
+  "CROSS-REFERENCE the 'staking' seed to holding-rewards carry inside near-certain-bond-carry: it is the closest thing to staking on Polymarket itself (E2: ~$11.6k/day to ~48k wallets at 3.25%, ~$130M eligible value; complete-set eligibility is inferred, unverified). The orchestrator should confirm whether the owner meant UMA staking, holding rewards or both.",
+  "COUNT: the five proposed entries would take the band to 32. To stay near the target, send perps-lp-rewards-basis to the speculative band, keep builder-tagged flow as a sub-variant of event-market-making-spread-carry plus screened-copy-trading if no PnL evidence turns up, and fold tech-ai-model-markets' manipulation part into oracle-input-manipulation's fragility taxonomy. news-event-feed-latency-taking, genesis-window-new-listing-liquidity and oracle-governance-capture should be files."
+ ],
+ "misclassified": [
+  "short-crypto-latency-taker: maturity 'Established' contradicts its own scope (negative after fees for non-HFT takers; OpenMarket -0.116 per trade; pre-registered null). The Oracle (2026-04-24, fetched) confirms the poster-child crypto bot has been inactive since March 2026, and E4's reconstruction says 94% of that wallet's trades were paired YES+NO buys, not spot-lag snipes. Label it 'Established historically, decayed: no evidence of current profitability'. Category 'Arbitrage' is also wrong: it is directional latency taking with fee and adverse-selection risk.",
+  "perps-lp-rewards-basis: 'Emerging' requires early real examples; the scope itself admits 'the honest absence of any third-party PnL evidence', the venue is 17 days old, and E1 scoped Perps out of the survey. By the brief's own rule this is Experimental and belongs to the speculative band (or a stub).",
+  "combos-rfq-market-making: 'Emerging' rests on Kalshi parlay data and Polymarket docs; no external Polymarket combo maker's results exist, access and Last Look need approval, and an in-house desk is reported. Keep Emerging only if the file can show at least one non-Polymarket maker live; otherwise Experimental.",
+  "wash-trading-airdrop-farming: 'Established' is true of prevalence, not of profit. No token exists, the help centre says no airdrop or TGE is announced, and post-fee loops are negative-sum, so nobody has been paid. Label 'Established practice, unrealised payoff' and present it as a detector / defence file, not an income strategy.",
+  "informed-flow-and-insider-trading: a single 'Established' label covers an illegal practice that is established and a detection / fast-follow build that is Emerging at best. Two labels are needed even if the file stays merged.",
+  "cross-venue-arbitrage-leadlag: 'Emerging' understates locked Polymarket-Kalshi arbitrage as a practice (crowded, tooled, already in the owner's suite) and overstates the international-vs-US sub-variant (not lawfully runnable by one person). One label hides both; note also that E5 found no documented cross-venue arbitrageur PnL anywhere, so 'Established' would apply to activity, not to proven profit.",
+  "near-certain-bond-carry: category 'Arbitrage' is misleading. It is carry / tail-risk underwriting: break-even flip probability equals the discount (1% at 0.99), dispute rates run 0.2% (NBA) to 4.8% (geopolitics) per E3, gross edge +0.83c per dollar, and taker-side it is net negative in sports after fees (E4). Use 'Carry / risk premium'.",
+  "rebalancing-arbitrage-yesno-negrisk: 'Established' should read 'established and effectively closed': median $0.08 per conversion, ten addresses hold 75%, violations last seconds, per-leg fees since 2026-03-30. The residual YES-basket side is capital-lock carry, not arbitrage.",
+  "weather-markets: 'Emerging' looks under-rated relative to other entries. Named profitable accounts appear in a Bloomberg syndication, one wallet shows 1,752 of 1,769 wins, and a weather wallet (ColdMath) is among the ten most-copied accounts per The Oracle (2026-04-24, fetched). 'Established (small capacity)' is more consistent.",
+  "sports-automated-takers: 'Established' is supported for directional / model-driven holding (leaderboard PnL), not for in-play feed latency, whose flagship mechanism is unverified and contradicted by E4's wallet reconstruction. Label the sub-variants separately.",
+  "fee-tier-taker-incentives: 'Emerging' understates the programme and mislabels the thing. Taker rebates are the largest subsidy line on the venue (E2: ~$255k/day, 8,331 recipients in a week, two wallets ~$160k each), so the programme is Established; but it is a cost / routing overlay for other agents, not a standalone strategy, and wash-climbing is negative EV. Category should say 'overlay'.",
+  "uma-side-operations: 'Established' is formally right (177 whitelisted proposers, daily proposals) but economically it is negligible and risky (reward $2-5 against $500-750 bonds; one lost bond erases 150-375 wins; E6: the only delegation pool shows 0 UMA delegated; UMA capitalisation ~$35M with oracle-replacement risk). Category 'Incentive farming' oversells it; 'oracle-layer information feed' is more accurate.",
+  "sportsbook-anchored-sports-mm: 'Established' rests on two self-reports, one of whom retired after the fill rate fell from 37.4% to 1.0% and fees arrived. Keep Established for the large Pinnacle-anchored operator but mark the small esports pair-lock sub-variant as decayed."
+ ],
+ "weakest_entries": [
+  "perps-lp-rewards-basis: a different product on a venue launched 2026-09-03, no third-party PnL, US / Canada blocked, scoped out by E1. Docs restatement risk is high; does not deserve a file in this band.",
+  "uma-side-operations: not a business at any scale a trading team would care about (E3: 'being a proposer or disputer is not a business'; best observed economics are cents to a few dollars per request against three- and four-figure bonds). Its value is the information feed, which could be a section inside rules-dispute-trading; keep a file only because it answers the 'staking' seed.",
+  "combos-rfq-market-making: gated access, reported in-house desk, no external maker results, combo fees unpublished. A short file at most; the Kalshi parlay-overpricing evidence is the only hard content.",
+  "fee-tier-taker-incentives: mostly fee arithmetic from docs. Useful as a shared module that re-costs every taker strategy at 0 / 18 / 32 / 50% rebate, weak as a strategy file; the Polymarket US volume-pool and promo-credit parts are US-resident-only and bounded per KYC identity.",
+  "wash-trading-airdrop-farming (as a way to make money): the payoff is hypothetical and the conduct prohibited. It earns its file only as the anti-Sybil / volume-cleaning detector specification.",
+  "data-referral-content-businesses, sub-variants 'managed vault / fund and OTC intermediary', 'no-code strategy builder', 'forecast / calibrated probability data products', 'low-latency event and news feed': no revenue, TVL or subscriber evidence was found by any lens (E6 lists them under gaps or 'absence'). They pad the file.",
+  "cross-venue-arbitrage-leadlag, sub-variant 'international vs US order-book gap and BBO signal': legally unavailable to a single person and evidenced by one indicative endpoint; keep the free US BBO feed as a signal note only.",
+  "screened-copy-trading is not weak as a file but its positive evidence is thin and the market is shrinking: +1.62 pp measured uplift (abstract), one $500 account, one paper experiment netting +$171, and copy-bot volume down 77% Apr-Aug 2026 with 1.6-2.0% all-in entry cost on bot-routed fills (E6). The file should lead with those numbers rather than with the build."
+ ]
+}

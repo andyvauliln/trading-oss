@@ -1,0 +1,239 @@
+{
+ "slug": "short-crypto-latency-taker",
+ "name": "Short-duration crypto up/down: spot-lead / oracle-aware latency taking",
+ "category": "Arbitrage",
+ "maturity": "Established historically, now decayed for non-HFT takers (verify)",
+ "seed_category": "new (latency trading of short-duration crypto markets)",
+ "one_line": "Hit stale up/down quotes after Binance/Chainlink moves; the poster-child strategy of 2025 that public millisecond data now shows negative after fees for non-HFT takers.",
+ "scope": "Cover the taker side: history (0x8dxd-style wallets, fee introduction Jan-Mar 2026, 250 ms then 50 ms delay, TWAP settlement), the measured lag (347 ms median response, 16 ms median lead-lag), the fee at mid prices (up to 1.75c/share) and how taker-rebate tier changes break-even, Binance-vs-Chainlink basis, and the body of null and loss results (OpenMarket -0.116/trade, pre-registered btc-edge study, uruguabot, last-60-second entries -37.81%, paper-vs-live gaps). State clearly what infrastructure would be needed and whether the Aug 2026 delay cut reopens anything. Boundary: maker side is short-crypto-maker-side; spot pushing at expiry is oracle-input-manipulation; buying 95c+ decided windows is near-certain-bond-carry; TWAP partial-average pricing is speculative band.",
+ "sub_variants": [
+  "Binance-lead stale-quote sniping",
+  "Chainlink-feed-aware variant",
+  "late-window momentum entries (documented losers)"
+ ],
+ "merged_from": [
+  "traders: Short-dated crypto: spot-lead / oracle-aware taker",
+  "academic: CEX-to-Polymarket latency arbitrage on crypto up/down contracts",
+  "onchain-bots: Spot-lag latency taking on crypto up/down markets",
+  "adjacent-transfer: Spot-led latency arbitrage on crypto up/down markets"
+ ],
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2607.26245",
+   "note": "OpenMarket: 727M rows; model does not beat the book; -0.116 payoff units per trade after costs"
+  },
+  {
+   "url": "https://github.com/EVERYTHINGAICO/polymarket-btc-edge",
+   "note": "Pre-registered study, 9,225 windows: no taker edge after realistic costs (do not run)"
+  },
+  {
+   "url": "https://finance.yahoo.com/news/arbitrage-bots-dominate-polymarket-millions-100000888.html",
+   "note": "BeInCrypto: $313 to $414k wallet, 98% win rate; secondary report, mechanism unverified"
+  },
+  {
+   "url": "https://uruguabot.com/blog/we-lost-270-building-a-polymarket-bot.html",
+   "note": "Simulated +11% vs live -27%; stop overshoot, ghost positions"
+  },
+  {
+   "url": "https://cointelegraph.com/news/polymarket-quietly-adds-taker-fees-15-minute-crypto-markets",
+   "note": "Fees introduced specifically against HFT bots, proceeds rebated to makers"
+  },
+  {
+   "url": "https://dev.to/lkto1m/why-my-polymarket-bot-watches-chainlink-not-binance-the-oracle-gap-that-changes-every-close-1e96",
+   "note": "0.3-0.8% Binance/Chainlink divergence claim (self-reported; author contradicts changelog elsewhere)"
+  }
+ ],
+ "parent_slug": "short-crypto-latency-taker",
+ "seed": "new / 5 fast execution",
+ "n": "12",
+ "band": "established",
+ "file": "12-short-crypto-latency-taker.md",
+ "critic_notes": [
+  "short-crypto-latency-taker: maturity 'Established' contradicts its own scope (negative after fees for non-HFT takers; OpenMarket -0.116 per trade; pre-registered null). The Oracle (2026-04-24, fetched) confirms the poster-child crypto bot has been inactive since March 2026, and E4's reconstruction says 94% of that wallet's trades were paired YES+NO buys, not spot-lag snipes. Label it 'Established historically, decayed: no evidence of current profitability'. Category 'Arbitrage' is also wrong: it is directional latency taking with fee and adverse-selection risk."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Short-dated crypto: spot-lead / oracle-aware taker",
+   "one_line": "Buy the side implied by a Binance/Chainlink move before the Polymarket book reprices, tracking the actual Chainlink (now TWAP) settlement source.",
+   "category": "Arbitrage",
+   "maturity": "Experimental",
+   "mechanism": "Watch spot (Binance) and the Chainlink Data Streams feed that actually settles the market; when spot moves beyond a threshold relative to the window's reference price, take the corresponding Up/Down token if still cheap. Practitioners report Binance-vs-Chainlink divergences of 0.3-0.8% for 10-30 s in volatile moments, so watching the wrong feed flips close trades. Since 2026-08-07 settlement is a Chainlink TWAP (60 s for 5m since 2026-08-14), so the target is the expected average, not the last print.",
+   "edge_source": "Claimed 30-90 s repricing lag of Polymarket vs spot; oracle-basis awareness.",
+   "why_might_beat_market": "Evidence is contradictory: small samples show 70-80% win rates; the largest retail dataset found the ask already prices it (momentum side resolved 74.8% while Poly asked 75.3%).",
+   "failure_modes": "Fees (up to 1.75/100 shares at 50c) exceed the edge; paper-vs-live gap (+11% simulated vs -27% live; stops overshoot 86% of the time); positions API lag creating ghost positions; non-stationary 5-minute regimes (ML 57% train -> 48-50% live); losses documented: -$270 (uruguabot), -37.81% (supermalvo last-60s entries), 23-trade sample +$11.51 only.",
+   "cheap_validation": "Use the public OpenMarket-style synchronized Polymarket-Binance data or your own recorder; test fillable asks (not mids) 1-5 s after threshold moves, net of the 0.07 fee curve, over >=200 windows.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1qxlnyi",
+     "title": "Reddit r/PolymarketTrading 1qxlnyi 'trading Polymarket's 15-minute BTC binaries for 6 months' by ExpertDeep3431",
+     "date": "2026-02-06",
+     "quality": "self-reported",
+     "supports": "Spot leads by 30-60 s; >=0.015% move -> 96.6% direction accuracy; 81% win, +$3.48 EV per $10, but single-day 29-market sample; stops and mean-reversion scalps fail"
+    },
+    {
+     "url": "https://uruguabot.com/blog/we-lost-270-building-a-polymarket-bot.html",
+     "title": "uruguabot: We lost $270 building a Polymarket trading bot",
+     "date": "2026-08",
+     "quality": "self-reported",
+     "supports": "Simulated +11% vs live -27%, TP slippage -8.8c, stops overshoot 86%, orphan-adoption bug -$591, ghost fills from positions API lag"
+    },
+    {
+     "url": "https://dev.to/lkto1m/why-my-polymarket-bot-watches-chainlink-not-binance-the-oracle-gap-that-changes-every-close-1e96",
+     "title": "dev.to lkto1m: Why my bot watches Chainlink, not Binance",
+     "date": "2026-06-27",
+     "quality": "self-reported",
+     "supports": "0.3-0.8% Binance/Chainlink divergence for 10-30 s; win rate 52% -> 57-58% after switching feeds"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1qhgmxq,1qvpz4q",
+     "title": "Reddit r/PolymarketTrading 1qvpz4q 'tested 4 strategies, lost 37.81% on the first one'",
+     "date": "2026-02-04",
+     "quality": "self-reported",
+     "supports": "Last-60-seconds 0.80-0.99 entries lost 37.81%; Binance-lag strategy failed live due to bid/ask feed mismatch"
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv 2607.26245 OpenMarket: synchronized Polymarket-Binance dataset",
+     "date": "2026-07-28",
+     "quality": "paper",
+     "supports": "727M rows over 54 days; baseline model at -0.116 normalized payoff per attempted trade"
+    }
+   ]
+  },
+  {
+   "name": "CEX-to-Polymarket latency arbitrage on crypto up/down contracts",
+   "one_line": "Hit stale Polymarket quotes after Binance/Chainlink moves; public millisecond data says the edge is negative after fees for anyone not at the very front of the queue.",
+   "category": "Arbitrage",
+   "maturity": "Emerging (research evidence is negative for non-colocated takers)",
+   "mechanism": "Derive a fair digital price from spot (log-normal or empirical model), compare with the Polymarket book, and take liquidity when the quote is stale. The documented venue response lag to a >=5 bp Binance move is a median 347 ms, against a 16 ms median timestamp lead-lag. Takers face the platform taker delay (250 ms until 2026-08-17, 50 ms since) and the peak of the fee curve, since these contracts sit near p=0.5.",
+   "edge_source": "Speed versus makers who reprice slowly.",
+   "why_might_beat_market": "It mostly does not: spreads are one tick 91.9% of the time and the fee at p=0.5 is ~1.75 c/share (derived from rate 0.07). The 50 ms delay change in Aug-2026 shifts advantage from makers to fast takers, which is the one reason to re-test.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2607.26245v1",
+     "title": "OpenMarket: A Synchronized Polymarket-Binance Dataset for High-Frequency Prediction-Market Research (Young), arXiv",
+     "date": "2026-07-28",
+     "quality": "hard-data",
+     "supports": "727,098,247 rows, 2.94M lead-lag pairs, Feb-12..May-15-2026: median lag 16 ms (5th/95th -186/+316 ms); median response to large Binance moves 347 ms; walk-forward model AUC 0.8377 vs 0.8405 for the Polymarket mid itself; simulated trading -0.116 normalised payoff per trade at 1% fee + 0.5% slippage."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-08-17",
+     "quality": "hard-data",
+     "supports": "Taker delay on crypto markets 250 ms -> 50 ms (2026-08-17); 5-min markets launched 2026-02-12 with taker fees; fees extended to all crypto durations 2026-03-06; Chainlink TWAP resolution 2026-08-07/14."
+    },
+    {
+     "url": "https://arxiv.org/html/2604.03888v1",
+     "title": "PolySwarm: A Multi-Agent LLM Framework for Prediction Market Trading and Latency Arbitrage (Barot, Borkhatariya), arXiv",
+     "date": "2026-04-04",
+     "quality": "paper",
+     "supports": "Describes a CEX-implied-probability latency module with quarter-Kelly sizing but reports no live or backtest PnL - architecture only."
+    }
+   ],
+   "failure_modes": "Negative expectancy after fees in the only public ms-level study; adverse selection by faster takers; you pay the fee that funds makers' rebates; REST polling (5 s) is two orders of magnitude too slow.",
+   "cheap_validation": "Re-run OpenMarket-style measurement on post-2026-08-17 data (50 ms delay, TWAP settlement): distribution of stale-quote size x duration net of the 0.07 fee curve. If median capturable edge < fee, drop it.",
+   "flags": ""
+  },
+  {
+   "name": "Spot-lag latency taking on crypto up/down markets (5m/15m/1h)",
+   "one_line": "Hit stale Polymarket up/down quotes when Binance/Coinbase spot has already moved, before makers reprice.",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "mechanism": "Bot streams exchange spot/order-flow and the Polymarket book for BTC/ETH/SOL/XRP up/down contracts. When spot moves enough that the true probability is e.g. ~85% while the book still shows ~50/50, it takes the stale side and holds to the 5/15-minute resolution. Since 2026 the trade pays a taker fee of 0.07*p*(1-p) per share (peak $1.75 per 100 shares), passes a 50 ms taker delay (250 ms before 2026-08-17) and settles on a 60 s Chainlink TWAP rather than a snapshot. Profitability now depends on sub-100 ms infrastructure plus a high Taker Rebate tier.",
+   "edge_source": "Speed: Polymarket quotes respond to large Binance moves after a median 347 ms (collector-clock event study); retail-heavy counterparties.",
+   "why_might_beat_market": "The lag is measured and real, and flow in these markets is retail-dominated. But it is the most contested niche on the venue and Polymarket has explicitly priced it (fees, delay, TWAP).",
+   "evidence": [
+    {
+     "url": "https://finance.yahoo.com/news/arbitrage-bots-dominate-polymarket-millions-100000888.html",
+     "title": "Arbitrage Bots Dominate Polymarket With Millions in Profits as Humans Fall Behind (BeInCrypto via Yahoo Finance)",
+     "date": "2026-01-06",
+     "quality": "credible-report",
+     "supports": "Wallet analysis: bot exploiting lag vs Binance/Coinbase on BTC/ETH/SOL 15-min markets, $313 -> $414,000 in one month, 98% win rate, $4-5k per trade. Secondary report of an X wallet analysis; not independently verified."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.26245",
+     "title": "OpenMarket: A Synchronized Polymarket-Binance Dataset (G. Young, arXiv)",
+     "date": "2026-07-28",
+     "quality": "paper",
+     "supports": "727M rows, 54 days (2026-02-12..05-15); median 347 ms Polymarket response to large Binance moves; 43-feature walk-forward model does NOT beat the book, -0.116 payoff units per trade after fees/slippage. Hard negative result for non-HFT entrants."
+    },
+    {
+     "url": "https://cointelegraph.com/news/polymarket-quietly-adds-taker-fees-15-minute-crypto-markets",
+     "title": "Polymarket quietly introduces taker fees on 15-minute crypto markets (Cointelegraph)",
+     "date": "2026-01-06",
+     "quality": "credible-report",
+     "supports": "Fees introduced specifically on these markets, described by traders as directed against high-frequency bots; proceeds rebated to makers."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog (official docs)",
+     "date": "2026-08-17",
+     "quality": "hard-data",
+     "supports": "Crypto taker delay now 50 ms, down from 250 ms; TWAP resolution since 2026-08-07; crypto fee expansion dates."
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47500689",
+     "title": "Ask HN: Anyone trading prediction markets programmatically?",
+     "date": "2026-03-24",
+     "quality": "self-reported",
+     "supports": "Practitioner tried 5m/15m crypto arb and found it 'way too competitive and HFT' for an individual."
+    }
+   ],
+   "failure_modes": "Fee at 50c eats 3.5% of premium; taker delay lets makers cancel; TWAP settlement breaks naive last-tick payoff models; one public attempt with ms-level data found no out-of-sample edge; small bots lose (uruguabot: -$270 over 4,000+ logged trades, stop-loss slippage mean -6c).",
+   "cheap_validation": "Replay the public OpenMarket corpus: trigger on Binance moves > X bp, fill at Polymarket book 50 ms later, subtract 0.07*p*(1-p); require positive markout before writing any execution code.",
+   "flags": ""
+  },
+  {
+   "name": "Spot-led latency arbitrage on crypto up/down markets (Binance or Chainlink into Polymarket)",
+   "one_line": "The most-copied 'bot strategy' of 2025. For a retail-grade stack it is now demonstrably negative after fees, the delay and TWAP settlement.",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "mechanism": "Watch Binance order flow and the Chainlink stream. When spot moves, hit stale 5-minute, 15-minute or hourly up/down quotes before makers re-price. Polymarket responded in stages: taker fees from 2026-01-05, now a 0.07 rate on all crypto markets; a taker delay; and TWAP resolution. The Polymarket quote response to large Binance moves is a median 347 ms. A taker therefore has to clear the fee, roughly 1.75c per share at 50c, plus the delay window in which makers can pull their quotes.",
+   "edge_source": "Pure speed against slow makers. It was historically large and is now fee-gated.",
+   "why_might_beat_market": "For a small team as a taker it mostly does not. The honest reason to include it is that two public, careful null results exist. The winning variant is the maker side, covered in the speed-bump candidate.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.26245",
+     "title": "OpenMarket: A Synchronized Polymarket-Binance Dataset",
+     "date": "2026-07-28",
+     "quality": "paper",
+     "supports": "727M rows from Feb-May 2026. A 43-feature walk-forward model does not beat Polymarket's own implied probability. Simulated trading nets -0.116 payoff units per trade after fees and slippage. The median lag is 16 ms, and the quote response to large Binance moves is a median 347 ms."
+    },
+    {
+     "url": "https://github.com/EVERYTHINGAICO/polymarket-btc-edge",
+     "title": "polymarket-btc-edge, a pre-registered study",
+     "date": "2026-06-06",
+     "quality": "self-reported",
+     "supports": "9,225 windows, 11 Bonferroni-corrected hypotheses on Deribit order-flow signals: 'No edge for taker after realistic costs.' An earlier 54% momentum finding was publicly retracted for lookahead bias."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-01-05 to 2026-08-17",
+     "quality": "hard-data",
+     "supports": "Taker fees on 15-minute crypto markets from Jan 5, 2026 (peak 1.56%). 5-minute markets launched Feb 12. All crypto markets carry fees from Mar 1. Delay cut from 250 ms to 50 ms on Aug 17."
+    },
+    {
+     "url": "https://www.quantvps.com/blog/how-latency-impacts-polymarket-trading-performance",
+     "title": "How Latency Impacts Polymarket Bot Performance",
+     "date": "2026-05-01",
+     "quality": "marketing",
+     "supports": "Anecdote: a bot on the BTC 15-minute market went $1,000 to $1,869 in days, then lost 50% in two days after a parameter change. This is typical of overfit results."
+    },
+    {
+     "url": "https://asksurf.ai/pulse/en/lag-arbitrage-algo-dominance-prediction-markets",
+     "title": "Lag Arbitrage Shows Prediction Markets Are Now a Speed Game",
+     "date": "2026-03-27",
+     "quality": "marketing",
+     "supports": "Claims a bot made $385k trading the BTC probability lag. The claim is unsourced."
+    }
+   ],
+   "failure_modes": "Fees exceed the edge, makers cancel inside the delay, TWAP settlement removes last-second certainty, and the space is crowded with GitHub bots carrying over 1,000 stars.",
+   "cheap_validation": "Do not rebuild it. Download OpenMarket or marketlens data, apply the current 0.07 fee and 50 ms delay, and replicate the null result in a day.",
+   "flags": ""
+  }
+ ]
+}

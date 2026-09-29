@@ -1,0 +1,42 @@
+{
+ "slug": "news-event-feed-latency-taking",
+ "name": "Scheduled-release and breaking-news latency taking (earnings, macro prints, agency / court decisions, election-night returns, live ceremonies)",
+ "category": "Information edge (latency)",
+ "maturity": "Established (tiny capacity, winner-take-all); sub-variants other than earnings are Emerging / unverified",
+ "one_line": "Sweep resting orders that nobody cancelled in the first hundreds of milliseconds after a scheduled or breaking public fact; the list has this for crypto, sports, weather and mentions but not for the generic news case.",
+ "scope": "Cover the non-crypto, non-sports version of latency taking, which no entry in the list owns. (1) Scheduled releases: 'Will X beat earnings' markets (observed sniper wallet ~$32k 'near risk-free', wins 100% because 'many people forget to cancel their orders before the announcement'; challenger with a ~500 ms wire feed found the book 'swept before we receive the wires' and only won on EPS-definition ambiguity or when the leader hit size limits), macro prints and Fed decisions, agency / court publication times. (2) Unscheduled headlines from X / Truth Social / Telegram / wires (arXiv 2605.21521: X and news roughly tied on 109 Polymarket events, abstract-level). (3) Election-night returns models and live award ceremonies with stream delay: no PnL evidence found this session, mark unverified. (4) The maker-side mirror, which matters more to this owner: a release-calendar cancel / widen module for the LP bot, since the prey is exactly un-cancelled maker quotes. Include the 250 ms finance taker delay (pending, non-cancellable), fee 0.04-0.05 x p(1-p) being negligible at post-news extreme prices, capacity = resting stale size only, SDK pre-trade network checks and second-granularity match timestamps as measurement limits. Boundary: crypto spot-lead is short-crypto-latency-taker; in-play sports is sports-automated-takers; station readings are weather-markets; transcript sniping is recurring-count-mention-markets; LLM interpretation of news is speculative band; MNPI is informed-flow-and-insider-trading.",
+ "why_it_matters": "The owner's LP and resolution-sniping bots are the counterparty of this strategy today, and no file in the band tells them so. It is also the only entry that gives the Economics and Finance-earnings categories a home in the established band (macro nowcasting was sent to speculative). IMDEA's genesis-window study adds a useful nuance: economy markets have the widest opening spreads but low adverse selection because events are scheduled releases, so the risk is concentrated in the release second, which a calendar solves. A small team will not win the pure speed race on earnings (already lost by a team with a 500 ms feed) but can win on long-tail scheduled releases nobody watches and on definitional ambiguity.",
+ "flags": "Public-information speed trading is permitted (E9 traffic-light table). Licensed newswire / data redistribution terms apply. Anything sourced from an embargo breach or an insider is MNPI and belongs to the flagged insider entry.",
+ "key_evidence": [
+  {
+   "url": "https://eventwaves.substack.com/p/trying-to-build-a-low-latency-polymarket",
+   "note": "EventWaves, 2026-03-17 (fetched): observed bot ~$32k near risk-free on earnings-beat markets; ~500 ms announcement feed still too slow, book swept first; wins only on EPS ambiguity or leader size limits (self-reported, no wallet given)"
+  },
+  {
+   "url": "https://dev.to/abrownfox001/building-a-low-latency-polymarket-bot-for-earnings-markets-a-real-world-attempt-lessons--38md",
+   "note": "DEV Community (fetched): same project, 'never won on pure speed against the leader', project mothballed; search listing dates it 2026-06-15, page summariser read 2024: date unverified"
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.21521",
+   "note": "arXiv 2026-05-18, seen in the arXiv API listing fetched this session: breaking-news vs social-media timing on Polymarket event anchors (abstract-level only)"
+  },
+  {
+   "url": "https://dspace.networks.imdea.org/bitstream/handle/20.500.12761/2065/Polymarket_Initial_Liquidity-3.pdf?sequence=1",
+   "note": "Jornell, Perez, Saguillo (fetched PDF): economy events are 'largely scheduled public releases, so early takers are rarely better informed'"
+  },
+  {
+   "url": "https://www.quantvps.com/blog/news-driven-polymarket-bots",
+   "note": "QuantVPS 2026-01-10, vendor marketing seen in search results: lead only, no PnL"
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "seed": "5 news / event-driven fast execution",
+ "n": "17",
+ "band": "established",
+ "file": "17-news-event-feed-latency-taking.md",
+ "critic_notes": [
+  "COUNT: the five proposed entries would take the band to 32. To stay near the target, send perps-lp-rewards-basis to the speculative band, keep builder-tagged flow as a sub-variant of event-market-making-spread-carry plus screened-copy-trading if no PnL evidence turns up, and fold tech-ai-model-markets' manipulation part into oracle-input-manipulation's fragility taxonomy. news-event-feed-latency-taking, genesis-window-new-listing-liquidity and oracle-governance-capture should be files."
+ ],
+ "raw_discovery_candidates": []
+}

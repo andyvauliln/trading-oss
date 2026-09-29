@@ -1,0 +1,57 @@
+{
+  "n": "11",
+  "slug": "derivatives-implied-relative-value",
+  "file": "11-derivatives-implied-relative-value.md",
+  "band": "established",
+  "name": "Derivatives-implied relative value (options, futures, merger-arb spreads vs Polymarket)",
+  "one_line": "Price threshold, touch, earnings and FOMC markets off option surfaces and futures; sell the persistently rich upside YES, optionally hedged; much of the wedge is variance premium.",
+  "category": "Arbitrage",
+  "maturity": "Emerging; wedge real in sign, edge largely explained by VRP + FLB; 2026 short-tenor wedge ~0.5-0.9 pp",
+  "requires_ai": "no; optional rules/basis normalisation",
+  "edge": "Retail lottery demand vs professionally arbitraged option surfaces",
+  "capital": "$1k-$10k unhedged; $15k+ hedged (Deribit 0.1 BTC minimum)",
+  "build_time": "2-4 weeks with options experience",
+  "opportunity_size": "BTC ladders ~$0.3-0.9M/day each; commodity/equity ladders thin",
+  "expected_results": "hedged backtest 16 trades p=0.053; reality check finds no robust edge; guess $0-400/month at $10k",
+  "competition": "crypto ladder makers track Binance; finance category near-efficient",
+  "flag": "none (non-US); prohibited moving the settlement reference",
+  "validate": "30-day ladder vs option digital snapshots; pass convergence PnL t>2 and realised touch below price",
+  "top_risk": "Short-tail payoff: one trend day hits every rung",
+  "evidence_grade": "B",
+  "solo_fit": 3,
+  "solo_fit_reason": "Free data and a clean external reference make it quick to test; the edge is thin after fees and mostly a tail premium, so it suits an options-literate operator as a maker overlay.",
+  "compounds_with": [
+    "short-crypto-maker-side",
+    "combinatorial-logical-arbitrage",
+    "longshot-selling-flb",
+    "cross-venue-leadlag-signals",
+    "genesis-window-new-listing-liquidity",
+    "perps-lp-rewards-basis"
+  ],
+  "speed_class": "execution-sensitive: half-life hours to days; daily rungs need maker reactivity",
+  "results_1k": "-$60 to +$80/month unhedged (guess)",
+  "results_5k": "-$250 to +$250/month (guess)",
+  "results_10k": "-$400 to +$400/month (guess)",
+  "min_capital": "~$1k unhedged; ~$15-25k hedged",
+  "capacity_ceiling": "rung depth ~$40-50k each; ~$25-50k solo",
+  "services": [
+    "Deribit public API",
+    "Polymarket CLOB+Gamma",
+    "PolyBolt WS",
+    "Binance spot data",
+    "Polymarket Perps (hedge)",
+    "CME/IBIT option data (optional, paid)",
+    "VPS"
+  ],
+  "monthly_running_cost": "minimum ~$10-20; comfortable ~$100-200",
+  "changes_made": [
+    "Live Deribit vs Polymarket BTC Sep 27 ladder comparison added.",
+    "Deribit option minimum 0.1 BTC and spreads documented.",
+    "Critic widening (FOMC, M&A, Pyth ladders) covered briefly."
+  ],
+  "open_doubts": [
+    "2023 BTC sample and 16-trade backtest.",
+    "Horizon mismatch in live comparison not modelled exactly.",
+    "M&A deal-market evidence is interview-level only."
+  ]
+}

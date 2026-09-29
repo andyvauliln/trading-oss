@@ -1,0 +1,184 @@
+{
+ "slug": "agent-society-simulation-forecasting",
+ "name": "Agent-society and wargame simulation forecasting for geopolitics ladders",
+ "category": "Speculative-novel",
+ "maturity": "Emerging",
+ "seed_category": "agent-society simulation forecasting",
+ "one_line": "Run many multi-agent world or crisis rollouts, shrink the biased outcome frequencies toward base rates, and use the branch and tripwire playbooks to reprice fee-free geopolitics date ladders coherently.",
+ "scope": "Cover MiroFish/OASIS-class society simulators and red-cell/blue-cell/umpire wargame Monte Carlo as forecasters of Polymarket events. Set out the evidence that raw simulation output is biased: escalation, farcical harmony, role collapse, prompt-language sensitivity. Test whether base-rate shrinkage leaves any skill or does all the work. Give the defensible uses: branch enumeration, a consistent hazard rate across a date ladder, and tripwire monitoring for faster repricing. Include the commoditised bridge repos, none of which has a backtest, the fee-free geopolitics category and live ladder liquidity. Give cost per prediction. Give the blind test on 60+ resolved 'by date' markets comparing raw sim, shrunk sim, base rate only and market mid. Boundaries: named-member committee twins are in decision-body-member-twins. Cross-event dependence trading is in dependence-pricing-combos-joint. Source-language bias is in cross-lingual-source-silo-tilt.",
+ "sub_variants": [
+  "MiroFish/OASIS swarm bridge with base-rate shrinkage",
+  "Red-cell / blue-cell / umpire wargame Monte Carlo (50-200 rollouts)",
+  "Tripwire extraction plus OSINT monitoring for ladder repricing",
+  "Sim used only as scenario generator for conditional playbooks"
+ ],
+ "merged_from": [
+  "Bias-corrected crisis wargame ensemble for fee-free geopolitics ladders",
+  "Strategic-actor wargame Monte Carlo for fee-free geopolitics and committee markets"
+ ],
+ "flags": "Trading war and violence outcomes carries ethical and reputational risk. Some jurisdictions and the US venue restrict these contracts. Geopolitics markets face heightened insider-trading scrutiny. Models may refuse military content.",
+ "key_evidence": [
+  {
+   "url": "https://github.com/666ghj/MiroFish",
+   "note": "74k-star swarm engine. Its README has no accuracy validation. The tooling is commoditised."
+  },
+  {
+   "url": "https://github.com/nativ3ai/hermes-geopolitical-market-sim",
+   "note": "Existing MiroFish-to-Polymarket bridge with 48-60 agents. No backtests or PnL."
+  },
+  {
+   "url": "https://github.com/zzvimercm-git/mirofish-calibration",
+   "note": "A single LLM matched or beat a mini-swarm on n=5. Rho flipped sign between runs."
+  },
+  {
+   "url": "https://arxiv.org/abs/2403.03407",
+   "note": "[pre-2025] 214 experts vs LLMs: farcical harmony, more aggression, no sensitivity to player traits."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.16189",
+   "note": "Position paper naming five failure modes of LLM wargaming (2026-07)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2603.02128",
+   "note": "Six LLMs diverge from humans over rounds. Normative-cooperative framing (2026-03)."
+  },
+  {
+   "url": "https://docs.polymarket.com/trading/fees",
+   "note": "Official docs: Geopolitics taker feeRate is 0. Other categories are 0.04-0.07."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=ceasefire&limit_per_type=15&events_status=active",
+   "note": "US-Iran ceasefire ladder: $1.45M volume, $377k liquidity (2026-09-20)."
+  }
+ ],
+ "n": "50",
+ "band": "speculative",
+ "file": "50-agent-society-simulation-forecasting.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Bias-corrected crisis wargame ensemble for fee-free geopolitics ladders",
+   "one_line": "Run LLM wargames to enumerate pathways and tripwires for ceasefire and strike ladders. Shrink the known escalation bias toward base rates. Use the tripwires for faster repricing.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "1. Instantiate state, military and mediator agents with doctrine and recent OSINT.\n2. Run 100+ stochastic playthroughs per scenario, with a separate adjudicator model.\n3. Record the pathway frequencies that map to contract events: \"ceasefire holds through date\", \"agreement announced by date\".\n4. Shrink the raw frequencies toward the category base rate. Use a calibration curve fitted on resolved geopolitics markets.\n5. Extract the tripwire events that precede each branch. Monitor OSINT for those tripwires.\n6. Reprice the date ladder as soon as a tripwire fires. Geopolitics carries a 0 fee, so takers pay no fee there.",
+   "edge_source": "Pre-computed conditional playbooks make reaction faster and more coherent across a date ladder. They are not a source of superior level forecasts.",
+   "why_might_beat_market": "Two structural points:\n- Geopolitics is the one fee-free category (docs).\n- The ladders are liquid. US-Iran \"ceasefire continues through\" has $1.45M volume and $377k liquidity.\n\nRetail tends to overpay for dramatic YES outcomes. An open-source \"nothing-ever-happens\" bot that buys NO everywhere has 987 stars. LLMs share the same escalation bias, so raw sim output would replicate the crowd's error rather than correct it.\n\nThe defensible value is branch enumeration and ladder coherence: a consistent hazard rate across dates.\n\nNone of the existing MiroFish-to-Polymarket bridges publish any backtest. A small calibration rig found a single LLM beat a crude swarm, and its aggregate signals were pure noise at n=5.",
+   "adjacent_grounding": "LLM wargaming research:\n- Rivera et al., Escalation Risks (arXiv 2401.03408) [pre-2025, possibly stale].\n- Lamparth et al., Human vs. Machine, 214 national-security experts (https://arxiv.org/abs/2403.03407) [pre-2025, possibly stale].\n- Snow Globe (arXiv 2404.11446) [pre-2025, possibly stale].\n- Shrivastava et al., inconsistency (arXiv 2410.13204) [pre-2025, possibly stale].\n- Matlin et al., scoping review of 223 papers (arXiv 2509.17192).\n- Riedl and Matlin, Position: AI Is Not Ready for Strategic Conflicts (https://arxiv.org/abs/2609.16189).\n- Shibboleth Effect: prompt language shifts coerciveness (arXiv 2606.11082).\n\nAlready attempted on Polymarket:\n- nativ3ai/hermes-geopolitical-market-sim: WorldOSINT plus Polymarket plus MiroFish, 130 stars, no backtests.\n- PolFish, mirofish-pm, AXRZCE/Prophet and similar repos.\n- MiroFish itself has 74k stars, is backed by Shanda, and gives no validation in its README.",
+   "evidence": [
+    {
+     "url": "https://github.com/nativ3ai/hermes-geopolitical-market-sim",
+     "title": "PrediHermes / hermes-geopolitical-market-sim",
+     "date": "2026-03-16 (pushed 2026-06-17)",
+     "quality": "self-reported",
+     "supports": "An existing attempt. It pulls Polymarket markets for a geopolitical topic, runs MiroFish sims with 48-60 agents over 28-36 rounds, and compares sim probabilities with market probabilities. The README has no backtests or performance data."
+    },
+    {
+     "url": "https://github.com/666ghj/MiroFish",
+     "title": "MiroFish: A Simple and Universal Swarm Intelligence Engine, Predicting Anything",
+     "date": "2025-11-26 (74k stars on 2026-09-20)",
+     "quality": "marketing",
+     "supports": "The tooling is commoditised. It combines OASIS-based agent simulation and GraphRAG, with Shanda Group support. It provides no accuracy evidence."
+    },
+    {
+     "url": "https://github.com/zzvimercm-git/mirofish-calibration",
+     "title": "mirofish-calibration rig",
+     "date": "2026-06-22",
+     "quality": "self-reported",
+     "supports": "A single LLM matched or beat a crude mini-swarm on n=5 synthetic cases. Spearman rho flipped sign between runs. This is a methodology rehearsal only."
+    },
+    {
+     "url": "https://arxiv.org/abs/2403.03407",
+     "title": "Human vs. Machine: Behavioral Differences Between Expert Humans and Language Models in Wargame Simulations",
+     "date": "2024-03-06",
+     "quality": "paper",
+     "supports": "LLM-simulated teams are more aggressive. Their dialogue shows \"farcical harmony\". They show no sensitivity to player traits, even \"pacifist\" against \"aggressive sociopath\". [pre-2025, possibly stale]"
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.16189",
+     "title": "Position: AI Is Not Ready for Strategic Conflicts (Riedl, Matlin)",
+     "date": "2026-07-31",
+     "quality": "paper",
+     "supports": "Names five failure modes: decision laundering, adjudication opacity, role collapse, escalation-through-adjudication and failure of strategic imagination."
+    },
+    {
+     "url": "https://docs.polymarket.com/polymarket-learn/trading/fees",
+     "title": "Polymarket docs: fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "The Geopolitics taker feeRate is 0. All other categories are 0.04-0.07."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=ceasefire&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: ceasefire ladders",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "US-Iran \"ceasefire continues through\" has $1.45M volume and $377k liquidity. Saudi-Houthi has $18k and $52k. Israel-Lebanon has $13k and $31k."
+    }
+   ],
+   "failure_modes": "- Escalation bias.\n- Run-to-run inconsistency.\n- Role collapse.\n- An adjudicator LLM that invents reality.\n- Prompt-language sensitivity.\n- Model refusals on military content.\n- No ground truth for calibration.\n- Cost: PolFish reports $0.12-$0.54 per prediction at 15-170 agents (self-reported).\n- If the shrinkage step does all the work, the sim is decoration.",
+   "cheap_validation": "Setup: 60+ resolved Polymarket geopolitics \"by date\" markets after the model cutoff, run blind. Compare four forecasts on each:\n- Raw sim.\n- Base-rate-shrunk sim.\n- Base rate only.\n- Market mid at T-14d.\n\nPass:\n- The shrunk sim beats base rate only by at least 5% relative Brier, AND\n- Its Brier skill score against the market is at least 0.\n\nFail if the shrunk sim is statistically indistinguishable from base rate only, which is the most likely result.\n\nSeparately test tripwire latency. Measure the median minutes from a tripwire headline to a market move of 5c or more. If this is under 2 minutes, bots have already competed the edge away.",
+   "flags": "- Trading on war and violence outcomes carries reputational and ethical concerns.\n- Some jurisdictions and the US venue restrict these contracts."
+  },
+  {
+   "name": "Strategic-actor wargame Monte Carlo for fee-free geopolitics and committee markets",
+   "one_line": "Simulate the actual decision-makers (red cell, blue cell, umpire) over many stochastic rollouts, convert outcome frequencies into recalibrated probabilities, and trade Polymarket geopolitics markets, which currently carry zero taker fee.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) For a path-dependent question (ceasefire by date, rate decision, confidence vote, sanctions) instantiate actor agents with explicit objectives, constraints, red lines and information sets; different model families for opposing cells; an umpire adjudicates moves and chance events. (2) Run 50-200 rollouts varying assumptions and seeds; record outcome frequency and the dominant causal paths. (3) Recalibrate raw frequencies against resolved analogue markets (LLM sims are biased). (4) Mix with market price; trade when the gap exceeds spread (taker fee 0 in Geopolitics per docs; note geopolitics also earns zero taker-rebate weight). (5) Feed scenario branches into the conditional playbook idea.",
+   "edge_source": "Structured reasoning about multi-actor incentives and sequencing, which crowds handle narratively; fee-free category lowers the hurdle to about the spread.",
+   "why_might_beat_market": "Debate-style simulation of FOMC members with hawk/dove latent beliefs 'significantly outperforms' standard LLM baselines for rate-decision classification; multi-expert think-tank framework beats single-model forecasting on Middle East events. Honest limits: LLM wargames exhibit 'farcical harmony' and sensitivity to framing (Lamparth [pre-2025]), escalation bias (Rivera [pre-2025]), and normative-cooperative framing with limited adversarial reasoning (Solopova 2026), so raw frequencies are systematically biased; geopolitics is also where informed/insider flow is documented (Iran-cluster case studies) and where ~$1M can move price 5 pts; neither FOMC nor ThinkTank papers compare against market prices.",
+   "adjacent_grounding": "Wargaming and multi-agent LLM simulation: hawkish/dovish FOMC debate https://arxiv.org/abs/2511.02469 ; ThinkTank-ME https://arxiv.org/abs/2601.17065 ; LLMs as strategic actors in crisis simulations https://arxiv.org/abs/2603.02128 ; human vs LLM wargame behaviour https://arxiv.org/abs/2403.03407 [pre-2025]; escalation risks https://arxiv.org/abs/2401.03408 [pre-2025]; open-ended LLM wargames (Snow Globe) https://arxiv.org/abs/2404.11446 [pre-2025]; insider cases on Polymarket https://arxiv.org/abs/2605.02286 . Not found on Polymarket/Kalshi.",
+   "failure_modes": "Systematic behavioural bias of simulated actors; garbage-in actor models; cost (hundreds of long rollouts); few resolved analogues for recalibration; insider-dominated markets; ethical optics of trading conflict markets.",
+   "cheap_validation": "Backtest on >= 60 resolved post-cutoff committee/vote/rate-decision/ceasefire-type markets with date-filtered evidence: PASS if recalibrated simulation Brier <= market Brier + 0.01 AND market+sim mix beats market alone (paired bootstrap p<0.1); FAIL -> keep only as scenario generator. Start with FOMC/ECB decisions where ground truth is frequent.",
+   "flags": "Ethical/PR sensitivity of war and conflict markets; heightened insider-trading scrutiny in geopolitics markets; venue eligibility.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2511.02469",
+     "title": "Modeling Hawkish-Dovish Latent Beliefs in Multi-Agent Debate-Based LLMs for Monetary Policy Decision Classification",
+     "date": "2025-11-04",
+     "quality": "paper",
+     "supports": "Simulated FOMC deliberation with heterogeneous agent beliefs significantly outperforms standard LLM baselines for rate decisions (no market comparison)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2601.17065",
+     "title": "ThinkTank-ME: A Multi-Expert Framework for Middle East Event Forecasting",
+     "date": "2026-01-22",
+     "quality": "paper",
+     "supports": "Multi-expert collaboration outperforms single-model architectures on a geopolitical event benchmark."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.02128",
+     "title": "LLMs as Strategic Actors: Behavioral Alignment, Risk Calibration, and Argumentation Framing in Geopolitical Simulations",
+     "date": "2026-03-02",
+     "quality": "paper",
+     "supports": "Six LLMs diverge from humans over rounds, with normative-cooperative framing and limited adversarial reasoning - a bias to correct."
+    },
+    {
+     "url": "https://arxiv.org/abs/2403.03407",
+     "title": "Human vs. Machine: Behavioral Differences Between Expert Humans and Language Models in Wargame Simulations",
+     "date": "2024-03-06",
+     "quality": "paper",
+     "supports": "[pre-2025] 214 experts vs LLMs: LLM simulated dialogues 'maintain a farcical harmony', sensitive to scenario changes."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "title": "Polymarket docs - Fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Geopolitical and world-events markets are fee-free (taker rate 0)."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+     "title": "Polymarket docs - Taker Rebate Program",
+     "date": "live 2026-05-28",
+     "quality": "hard-data",
+     "supports": "Geopolitics carries zero weighted-volume for taker rebate tiers - fee-free but no rebate accrual."
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "agent-society-simulation-forecasting: 'Emerging' overstates maturity. The band rule allows 'Emerging' when early real examples exist, but every example cited has no backtest or is negative: the bridge repos show no PnL, the n=5 calibration had rho flip sign, and there are four wargaming failure papers. 'Experimental' is the honest label. The defensible uses the entry itself lists (branch enumeration, ladder hazard coherence, tripwires) overlap with the proposed outside-view engine.",
+  "agent-society-simulation-forecasting is an owner seed and must stay, but the owner should treat it as weak. Every cited validation is absent or negative. The only validated capability of OASIS-class simulators is propagation scale at about 30% NRMSE (E8 pack), which the entry does not use. Expect base-rate shrinkage to do all the work in the blind test. Pre-register 'shrunk sim equals base rate only' as the kill condition."
+ ]
+}

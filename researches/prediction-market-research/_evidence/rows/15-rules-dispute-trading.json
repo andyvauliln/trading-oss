@@ -1,0 +1,63 @@
+{
+  "n": "15",
+  "slug": "rules-dispute-trading",
+  "file": "15-rules-dispute-trading.md",
+  "band": "established",
+  "name": "Rule-ambiguity, clarification and dispute-phase trading (betting on the adjudicator)",
+  "one_line": "Trade the gap between rule text plus UMA precedent and the price: pre-resolution headline mispricing, the hours after a Polymarket clarification, and the 4-6 day dispute window in which the contract trades on the token vote.",
+  "category": "Information edge",
+  "maturity": "Emerging: mechanism and frequencies proven on-chain (7.1% of the 2,100 largest markets disputed, 9.5% of the largest 1,000; first proposal overturned in ~16%), no wallet-level PnL public; literal rule reading won 3 of 6 marquee 2026 cases; no live vote on any active market on 28 Sep",
+  "requires_ai": "optional; LLM adjudicator triage (88-90% agreement after the fact) and rules-diff reading",
+  "edge": "Vote forecastable from precedent and a concentrated electorate; forced sellers in the dispute window",
+  "capital": "$1k-$10k; 4-10 day correlated locks, thin books outside marquee cases",
+  "build_time": "3-5 weeks solo on an existing stack (monitor + precedent corpus)",
+  "opportunity_size": "149 disputes in top 2,100 markets ($4.9B volume); 2-5 tradeable windows a month, some months none; growing count, stalled reform",
+  "expected_results": "no public data; single cases +5% to +160% per dispute, -100% on a bad vote; guess -$500 to +$400/month at $10k",
+  "competition": "UMA whales and conflicted voters, rules-focused discretionary traders, LLM triage",
+  "flag": "none for trading; grey if voting or proposing while positioned; prohibited to delay or pressure",
+  "validate": "Replay 149+ disputes: second-proposal, rules-literal and LLM strategies vs price; pass +2 pts/trade, t>2",
+  "top_risk": "Vote contradicts the literal rule (12-16% of cases): binary loss",
+  "evidence_grade": "B",
+  "solo_fit": 3,
+  "solo_fit_reason": "Everything is observable through free APIs and the precedent corpus compounds with the owner's resolution-sniping stack, but the tradeable set is a few marquee disputes a month (none open today), the price already tracks the vote, and one adverse vote erases months.",
+  "compounds_with": [
+    "resolution-sniping-post-outcome",
+    "near-certain-bond-carry",
+    "uma-side-operations",
+    "rules-ambiguity-hazard-layer",
+    "synthetic-uma-dispute-jury",
+    "cross-venue-locked-arbitrage",
+    "market-manipulation-and-exploits"
+  ],
+  "speed_class": "execution-sensitive: minutes matter for clarifications (Strategy collapsed in four hours), days for votes",
+  "results_1k": "workable as a study account; -$130 to +$30/month (guess)",
+  "results_5k": "-$350 to +$180/month (guess)",
+  "results_10k": "-$620 to +$360/month (guess, consistent with the -$500 to +$400 gross guess)",
+  "min_capital": "~$1k; below it LLM and hosting exceed the edge",
+  "capacity_ceiling": "per-dispute depth: $10k-50k marquee, hundreds in the tail; ~$50-100k/month solo",
+  "services": [
+    "Gamma API (umaResolutionStatuses, customLiveness, rules)",
+    "Data API v2 /v2/resolutions",
+    "CLOB prices-history/book",
+    "Polygon RPC (adapter + OO events)",
+    "UMA vote dapp",
+    "LLM API (optional)",
+    "press/X feed",
+    "VPS"
+  ],
+  "monthly_running_cost": "minimum ~$10-30; comfortable ~$80-150",
+  "changes_made": [
+    "Maturity kept at Emerging with the literal-rules edge explicitly contradicted by 3 of 6 priced 2026 cases.",
+    "Own census: 149 disputed of top 2,100 closed markets, 24 overturned first proposals, 7 active disputes today with a $484-bid book on the largest.",
+    "Seven hourly CLOB price paths through disputes and clarifications added; Economics Letters 2026 paper (12.4% overturn, price predicts vote share) added at snippet level.",
+    "Oracle-governance manipulation routed to file 31; bonds and staking to file 16; Polymarket US noted as having no dispute window.",
+    "Verification pass 2026-09-28 16:18-16:25 UTC (31 sources re-fetched or re-queried): census re-run on the top 1,000 closed markets (95 disputed, 9.5%, 12.8% of volume; 15 of 95 first proposals overturned, 15.8%; final = second proposal in 73 of 77 DVM cases) confirms the 2,100-market figures; 'the only one in a DVM vote (Max Martin)' corrected: the Data API shows all seven active disputed markets as `challenged` with last state changes 8 March-17 August, so none is in a live vote and all are P4 reopenings; 'customLiveness 0 throughout' corrected (600-7,200 s on 74 of 2,100 active markets, mostly monthly crypto strike ladders); Strategy collapse re-timed to four hours (0.615 at 14:00, 0.411 at 17:00, 0.0005 at 18:00 UTC) and its 29-31 May range corrected; Israel-Hezbollah 27 April points corrected; the March 2026 journalist-harassment incident confirmed on Wikipedia and relabelled from unverified; $1k/$5k/$10k rows aligned with the -$500 to +$400 Expected-results guess; header grade collapsed to one letter (B); changelog entry dates and the Vantage price fixed; survivorship caveat added to the six case paths."
+  ],
+  "open_doubts": [
+    "No wallet-level PnL for dispute-window trading exists anywhere public; the return ranges are derived from six marquee case paths chosen for size.",
+    "Wang (Economics Letters 2026) is known only from a search snippet and API metadata; no abstract is served by Semantic Scholar, OpenAlex, Crossref or Unpaywall and Elsevier returns 403.",
+    "Gamma's lag behind on-chain clarification posts is unmeasured; the Strategy collapse landed within four hours on hourly data and may have been faster on-chain.",
+    "Whether a UMA vote is live on any market cannot be read from Gamma or the Data API alone (both show `challenged` on markets whose second dispute ended months ago); the UMA vote dapp was not scraped.",
+    "The Block's 98.6% and >99% vote figures rest on WebFetch extractions; the Khamenei and MicroStrategy-2025 price paths were not re-pulled."
+  ]
+}

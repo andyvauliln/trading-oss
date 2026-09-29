@@ -1,0 +1,327 @@
+{
+ "slug": "whale-informed-flow-tracking",
+ "name": "Whale / informed-flow tracking, fast-follow and follower-flow trades",
+ "category": "Information edge (flow)",
+ "maturity": "Emerging",
+ "seed_category": "information edge / anti-Sybil and surveillance (flagged)",
+ "one_line": "Insiders with military, corporate or script knowledge demonstrably trade Polymarket; others detect their on-chain fingerprint to follow, pull quotes or sell alerts.",
+ "scope": "The owner's seed category 7 (whale / wallet tracking and front-running-adjacent). Cover the DETECTION-and-react build only: fresh-wallet / conviction-size / funder-cluster detectors, academic screens and their measured predictive power, fast-follow economics (being exit liquidity, the practitioner who 'did not succeed', copycat bot results), use as a maker quote-pull / toxicity trigger, whale-alert products, PLUS the critic's addition: every V2 fill carries the routing app's builder code, so retail wallet-app flow and copy-bot cascades can be labelled; thin-book front-running of market orders and selling into copy-followers (flag as front-running-adjacent / manipulative where it is). Boundary: the illegal act of trading on MNPI is mnpi-insider-trading; PnL-ranked mirroring is screened-copy-trading.",
+ "sub_variants": [
+  "MNPI trading by insiders (prohibited; survey only)",
+  "fresh-wallet / Orca detector with fast-follow",
+  "informed-flow detector as quote-pull trigger",
+  "retail insider-alert products"
+ ],
+ "merged_from": [
+  "academic: Trading on material non-public information",
+  "onchain-bots: Trading on material non-public information",
+  "traders: Insider-cluster / fresh-wallet detection and following",
+  "academic: Informed-flow detection and following",
+  "onchain-bots: Insider-signal ('Orca') detection and fast-follow",
+  "services: Insider / unusual-activity alert service (retail)"
+ ],
+ "flags": "Front-running-adjacent; deliberately baiting or dumping on followers is manipulative; alert products have triggered builder audits.",
+ "key_evidence": [
+  {
+   "url": "https://doi.org/10.2139/ssrn.7259741",
+   "note": "Mitts & Ofir: 210,000+ pairs, ~70% win, ~$143M suspicious gains (abstract)"
+  },
+  {
+   "url": "https://arxiv.org/html/2605.02287v2",
+   "note": "1,950 flagged accounts; imbalance predicts outcome (t=8.65); on-chain PnL matches DOJ figure; following not tested"
+  },
+  {
+   "url": "https://www.al-monitor.com/originals/2026/08/exclusive-more-150-polymarket-wallets-may-have-traded-military-secrets-research",
+   "note": "Reuters/ACDC: 556 Orcas, 152 military wallets, 97.2%, copycat flow sizes"
+  },
+  {
+   "url": "https://mattlsmith.com/posts/real-data-google-polymarket-insider/",
+   "note": "On-chain reconstruction of Google case; fingerprint visible only by market family"
+  },
+  {
+   "url": "https://arxiv.org/html/2605.02286v2",
+   "note": "Counter-evidence: zero 30-min/2-h pre-event leakage in the $269M Iran market"
+  },
+  {
+   "url": "https://unchainedcrypto.com/polymarket-audits-builders-program-startups-over-insider-trading-concerns/",
+   "note": "Polycool/Kreo insider-finder marketing led to platform audit"
+  },
+  {
+   "url": "https://hn.algolia.com/api/v1/items/48007503",
+   "note": "Practitioner built an insider detector and 'did not succeed'"
+  }
+ ],
+ "parent_slug": "informed-flow-and-insider-trading",
+ "parent_scope": "Survey-level for the illegal part, build-level for detection. Cover documented cases and enforcement (Maduro operation soldier ~$410k, Israeli officers, Google Year-in-Search 22/23, OpenAI firing, teleprompter operator), scale estimates (~$143M flagged gains, 210k wallet-market pairs ~70% win; ACDC 556 Orcas, 152 military wallets 97.2%), the fingerprint (fresh wallet, single market family, conviction size at tiny prices, funder clusters), academic screens (lifecycle heuristic t=8.65 on outcome, ILS computable in 0.7% of markets, counter-evidence of zero pre-event leakage), follower economics (copycat bot $200k, being exit liquidity, practitioner failure), use as a maker toxicity trigger in fee-free geopolitics, and the alert-service variant that triggered Polymarket's builder audit. Boundary: PnL-based copying is screened-copy-trading; outcome manipulation is oracle-input-manipulation.",
+ "seed": "7 whale / wallet tracking",
+ "critic_addition": {
+  "slug": "builder-tagged-flow-and-follower-flow",
+  "name": "Builder-tagged order-flow segmentation and follower-flow trading (copy cascades, decoy wallets, exit-into-followers)",
+  "category": "Information edge (flow); grey where it shades into baiting",
+  "maturity": "Emerging (mechanism and data are hard; nobody's PnL is documented: if file authors find none, demote to speculative band)",
+  "one_line": "Every V2 fill carries the routing app's builder code, so retail wallet-app flow and copy-bot cascades can be labelled for free, while copied whales already hide behind secondary wallets, icebergs and merge exits and use followers as exit liquidity.",
+  "scope": "Cover the flow-side of copy trading that the list only touches in passing. (1) Data: GET /builder/trades is unauthenticated (spec security: []) and returns fee, feeUsdc, maker address, owner id, tx hash, side, price, size per fill; the builder field is in the signed order and in OrderFilled. E6's own queries: wallet-app flow (MetaMask, RedotPay) is ~100% taker, median ticket $2-5, paying 400 bps on top of platform fees, i.e. uninformed; PolyCop / Polygun fills are follower flow (median tickets $3.85 / $1.58, all-in entry cost ~1.6-2.0%); copy-bot volume fell 77% Apr-Aug 2026, so the prey is shrinking. (2) Uses: a toxicity / fill-quality feature for the LP bot (lean into labelled retail, pull on informed or cascade flow); a copy-cascade detector (leader fill, then 30-90 s polling bots arrive); measuring how much of a leader's apparent edge is follower impact. (3) Leader-side practices documented by Polymarket's own newsletter: secondary / tertiary accounts, iceberging under alert thresholds, merging YES+NO as a silent exit, followers becoming exit liquidity; 'unrecognized wallet addresses make major buys on the whale feed before the well known traders'; counter-trading negative-PnL accounts. (4) Own-side hygiene: never route proprietary flow through a labelled builder code (NautilusTrader hard-codes one). Boundary: choosing whom to copy is screened-copy-trading; fresh-wallet insider fingerprints are informed-flow-and-insider-trading; settlement-revert bait is ghost-fills-bot-hunting; earning builder fees is builder-code-routing-business.",
+  "why_it_matters": "E6 lists 'flow analytics keyed on the on-chain builder field' as something none of 170+ tools advertises, and the owner runs both LP and copy agents, so the same label is simultaneously a quote-skew input and a warning about what the copy bot cannot see. The list currently parks 'selling into copy-followers' and 'thin-book front-running of market buys' inside the ghost-fill exploit entry, where they do not belong.",
+  "flags": "Trading ahead of your own followers or users is front-running (ToS 4.2; Polymarket US Rule 7.2(j)). Talking up a position that followers then buy is manipulation (CFTC Santos settlement, E9). Anticipating third-party public copy flow has no prohibiting clause but baiting it with misleading orders does.",
+  "key_evidence": [
+   {
+    "url": "https://docs.polymarket.com/api-reference/trade/get-builder-trades.md",
+    "note": "Polymarket API reference (fetched): security: [], builder_code required, rows include fee, feeUsdc, maker, owner, transactionHash, side, price, size, market"
+   },
+   {
+    "url": "https://news.polymarket.com/p/copycat",
+    "note": "The Oracle + Stand.Trade, 2026-04-24 (fetched): secondary accounts, iceberging, merge exits, followers as exit liquidity; most-copied list (top crypto bot inactive since March 2026; RN1 53% of trades under 50c; ColdMath weather; swisstony 60%+ entries under 50c)"
+   },
+   {
+    "url": "https://news.polymarket.com/p/copytrade-wars",
+    "note": "The Oracle, 2025-09-22 (fetched): unknown wallets buying ahead of known traders on the whale feed; counter-trading negative-PnL accounts; one user 'over $10k per month' (self-reported)"
+   }
+  ]
+ },
+ "n": "27",
+ "band": "established",
+ "file": "27-whale-informed-flow-tracking.md",
+ "critic_notes": [
+  "SPLIT informed-flow-and-insider-trading into (a) MNPI insider trading (survey only, prohibited, Established) and (b) informed-flow detection used as fast-follow, quote-pull trigger or alert product (grey, Emerging at best: the cited paper did not test following and the practitioner 'did not succeed'). One file with one maturity label hides that the buildable half is unproven.",
+  "informed-flow-and-insider-trading: a single 'Established' label covers an illegal practice that is established and a detection / fast-follow build that is Emerging at best. Two labels are needed even if the file stays merged."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Trading on material non-public information (insiders in military, corporate and platform roles)",
+   "one_line": "People with classified or corporate inside knowledge bet on Polymarket; academics estimate ~$143M of suspicious gains, and several have been arrested, charged or fired.",
+   "category": "Information edge",
+   "maturity": "Established (illegal; documented prosecutions)",
+   "mechanism": "Survey level only. Documented pattern: a new wallet funded days before an event, concentrated in one market, large conviction, dormant after resolution. Cases in 2026 include a US special-forces soldier (Maduro operation, ~$410k, DOJ indictment 2026-04-23), Israeli air-force personnel (one earned $244k; charged), an OpenAI employee (fired) and a Google engineer (accused, WSJ 2026-05-30). Detection used lifecycle heuristics, order-imbalance tests and cross-referencing on-chain PnL with indictments.",
+   "edge_source": "Misappropriated information.",
+   "evidence": [
+    {
+     "url": "https://doi.org/10.2139/ssrn.7259741",
+     "title": "From Iran to Taylor Swift: Informed Trading in Prediction Markets (Mitts, Ofir), SSRN via Crossref abstract",
+     "date": "2026-08-11",
+     "quality": "paper",
+     "supports": "~$143M aggregate realised gains among statistically flagged suspicious trades; flagged traders win ~70% of resolved cases; authors argue current fraud frameworks fit poorly and propose surveillance and registration reforms."
+    },
+    {
+     "url": "https://arxiv.org/html/2605.02287v2",
+     "title": "Per-Market Information Leakage and Order-Flow Skill (Nechepurenko), arXiv",
+     "date": "2026-05-04",
+     "quality": "paper",
+     "supports": "On-chain PnL of the flagged lead account ($409,882.03) matches the DOJ indictment figure ($409,881) for the Venezuela operation case."
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "title": "Wikipedia: Polymarket (citing WSJ, Haaretz, AP, Wired)",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "Arrest/charges of a US soldier (WSJ 2026-01-08), Israeli officer earning $244,000 and charged (Haaretz 2026-03-28), two Israelis charged (AP 2026-02-12), OpenAI employee fired, Google engineer accused (WSJ 2026-05-30)."
+    }
+   ],
+   "failure_modes": "Criminal prosecution, forfeiture, account freezes; fully traceable ledger.",
+   "cheap_validation": "Not applicable - do not build.",
+   "flags": "Illegal (wire/commodities fraud, espionage and classified-information statutes, employer policies). Included only because the brief asks for a survey of grey/illegal practices and because it defines the adverse-selection risk your makers face in geopolitics (fee-free) markets."
+  },
+  {
+   "name": "Trading on material non-public information",
+   "one_line": "People with advance knowledge (military, corporate, production staff) bet before the news.",
+   "category": "Information edge",
+   "maturity": "Established",
+   "mechanism": "Survey level. The highest win rates on-chain belong to wallets that appear to know outcomes: soldiers before operations, an engineer before product announcements, staff who see a speech before it is given. They typically use new wallets, size up within an hour and target long-shot prices. Detection now comes from NGOs, academics and the platform's own surveillance, and enforcement has started.",
+   "edge_source": "Non-public knowledge of the outcome.",
+   "why_might_beat_market": "Included because it explains a large share of 'unbeatable' leaderboard wallets and is the main adverse-selection risk for market-making agents in geopolitics, mentions and corporate-event markets.",
+   "evidence": [
+    {
+     "url": "https://www.al-monitor.com/originals/2026/08/exclusive-more-150-polymarket-wallets-may-have-traded-military-secrets-research",
+     "title": "Reuters via Al-Monitor on ACDC report",
+     "date": "2026-08-20",
+     "quality": "credible-report",
+     "supports": "Soldier Gannon Ken Van Dyke charged (April 2026) after making $400,000 on Maduro's removal; 152 wallets, 97.2% win rate."
+    },
+    {
+     "url": "https://www.washingtonpost.com/technology/2026/05/27/google-employee-charged-with-insider-trading-polymarket/",
+     "title": "Google engineer charged with using inside information to win $1.2M on Polymarket (Washington Post) - snippet only",
+     "date": "2026-05-27",
+     "quality": "credible-report",
+     "supports": "DOJ charge; ~$1.2M winnings."
+    },
+    {
+     "url": "https://www.cnn.com/2026/08/28/politics/trump-teleprompter-operator-settles-insider-trading-case",
+     "title": "Trump's longtime teleprompter operator settles insider-trading case (CNN) - snippet only",
+     "date": "2026-08-28",
+     "quality": "credible-report",
+     "supports": "CFTC action over bets on the content of Trump speeches (placed via Kalshi); $65k fine, $172k total per NBC/The Hill snippets. Shows mention markets are insider-prone."
+    }
+   ],
+   "failure_modes": "Criminal charges, CFTC penalties, platform bans.",
+   "cheap_validation": "Not applicable. Use as a toxicity feature: widen or pull quotes in markets where a small set of people know the outcome in advance.",
+   "flags": "Illegal (wire fraud / CEA insider provisions), ToS-violating. Survey-level only."
+  },
+  {
+   "name": "Insider-cluster / fresh-wallet detection and following",
+   "one_line": "Flag new or narrowly specialised wallets making conviction-sized bets at tiny prices in one market family, and trade with them (or pull quotes).",
+   "category": "Information edge",
+   "maturity": "Experimental",
+   "mechanism": "Fingerprint from a reconstructed DOJ case: a Google employee's wallet went 22/23 (+~$1.2M) on 'Year in Search' markets with entries as low as 3c while being a net loser on 69 other markets - the signal appears only when PnL is segmented by market family. Practitioner detectors look for fresh wallets, first/second-ever trades of $10-40k, funding-graph clusters (one funder -> 7,200+ proxy wallets) and geopolitical timing (Venezuela: ~$35k -> ~$400k in 6 h; an Iran/Lebanon wallet 11/11). For a market maker the same detector is a quote-pull trigger.",
+   "edge_source": "Public on-chain footprints of non-public information.",
+   "why_might_beat_market": "Occasionally enormous asymmetry (3c entries); geopolitics is fee-free.",
+   "failure_modes": "Insiders sweep the book so followers get bad prices; decoys/countersignals; an HN practitioner built a detector and 'did not succeed'; base rate of false positives is high; enforcement is rising (DOJ charges May 2026; CFTC investigation and '150 wallets' research are headlines only).",
+   "cheap_validation": "Backtest the fingerprint on known cases (Google, Venezuela, Iran) and on a random month; measure price available 60 s after the flagged trade and hit rate.",
+   "flags": "Knowingly trading alongside suspected MNPI is legally grey and on the CFTC-regulated venue may create liability; insiders themselves have been criminally charged (Google engineer, Israeli air-force officers).",
+   "evidence": [
+    {
+     "url": "https://mattlsmith.com/posts/real-data-google-polymarket-insider/",
+     "title": "Matt L. Smith: The Data Behind the Google Polymarket Insider",
+     "date": "2026-06-02",
+     "quality": "hard-data",
+     "supports": "On-chain reconstruction: 22/23 wins in insider lane, entries from 3c, ~$1.2M; 69 other markets net negative; detection fingerprint"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=polymarket%20insider%20wallets%20bot&size=40&sort=desc&sort_type=score&after=1751328000",
+     "title": "Reddit r/quantfinance 1q6iajk and r/quant 1q8no79 on Venezuela wallets",
+     "date": "2026-01",
+     "quality": "credible-report",
+     "supports": "Fresh wallets, $10-40k first trades hours before news; ~$35k -> ~$400k in 6 hours"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rpul61,1s31toy",
+     "title": "Reddit r/atrioc 1s31toy 'I found Iran War Insiders' (CrowdIntel author)",
+     "date": "2026-03-25",
+     "quality": "marketing",
+     "supports": "11/11 wallet on Iran/Lebanon markets ($146K profit), funding clusters of 7,200+ and 956 proxy wallets"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/48007503",
+     "title": "HN comment by hx8",
+     "date": "2026-05-04",
+     "quality": "self-reported",
+     "supports": "Tried to detect insiders and ride coat-tails; 'did not succeed'; the most consistent winner seen was 'placing 95%+ odds many, many times a day'"
+    },
+    {
+     "url": "https://www.cnbc.com/2026/05/27/google-employee-polymarket-insider-trading.html",
+     "title": "CNBC: Google employee charged with $1M Polymarket insider trading (headline only - 403)",
+     "date": "2026-05-27",
+     "quality": "credible-report",
+     "supports": "Criminal charges for insider trading on Polymarket exist"
+    }
+   ]
+  },
+  {
+   "name": "Informed-flow detection and following (fresh single-market wallets, large-trade imbalance)",
+   "one_line": "Screen in real time for the on-chain signature of informed accounts - new wallet, one event, high conviction - and trade with their order imbalance before the price fully adjusts.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "Maintain wallet lifecycle features (age < 7 days, single-event concentration, size, funding source) and per-market signed imbalance from on-chain fills. When flagged-account imbalance appears, enter in the same direction and hold to the information event; the published heuristic's imbalance predicts next-period price change (t=2.54) and final outcome (t=8.65). A complementary post-hoc Information Leakage Score measures how much of the terminal move was priced before public news, useful for choosing categories (military/geopolitics) where leakage is recurrent.",
+   "edge_source": "Public, pseudonymous, real-time ledger of who is trading - something no traditional market offers.",
+   "why_might_beat_market": "Most wallet trackers rank by past PnL (which excludes one-shot insiders by construction); the lifecycle screen targets exactly the accounts leaderboards miss.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2605.02287v2",
+     "title": "Per-Market Information Leakage and Order-Flow Skill: Two Methodological Lenses on Informed Trading in Decentralized Prediction Markets (Nechepurenko), arXiv",
+     "date": "2026-05-04",
+     "quality": "paper",
+     "supports": "Lifecycle heuristic flags 1,950 accounts with mean realised profit $15,012.92 (median $2,758.29); flagged imbalance predicts next-period price (t=2.54) and final outcome (t=8.65); the lead flagged account in the Maduro cluster shows PnL $409,882.03, matching the DOJ-indicted figure of $409,881; cluster total $626,484.29 over 77 markets traded Dec-27-2025..Jan-2-2026; the paper does not test whether following is profitable."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.7259741",
+     "title": "From Iran to Taylor Swift: Informed Trading in Prediction Markets (Mitts, Ofir), SSRN via Crossref abstract",
+     "date": "2026-08-11",
+     "quality": "paper",
+     "supports": "Screen of 210,000+ wallet-market pairs (Feb-2024..Feb-2026): flagged traders profit in ~70% of resolved cases; ~$143M aggregate realised gains on suspicious trades."
+    },
+    {
+     "url": "https://arxiv.org/html/2605.02286v2",
+     "title": "Empirical Evaluation of Deadline-Resolved Information Leakage on Documented Polymarket Insider Cases (Nechepurenko), arXiv",
+     "date": "2026-05-04",
+     "quality": "paper",
+     "supports": "Counter-evidence on timing: in the $269M 'US forces enter Iran by April 30' market only ~11% of the move preceded the public event and 30-min/2-h pre-event leakage was exactly zero; only 88 of 12,708 markets (0.7%) yield computable leakage scores."
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "title": "Wikipedia: Polymarket (citing FT/ACDC, WSJ)",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "Anti-Corruption Data Collective via FT (2026-04-30): 52% of military long-shot bets ($2,500+, odds <=35%) succeeded vs 25% in politics and 14% overall; WSJ (2026-05-04): ~3% of traders account for most price discovery."
+    }
+   ],
+   "failure_modes": "Unknown precision (sybils, promo accounts, viral newcomers all look alike); decoy wallets; you are last in a fast queue; most markets show no measurable leakage; platform now freezes/bans accounts.",
+   "cheap_validation": "Event-study on historical on-chain data: enter at the next trade after a flagged account's cumulative position crosses $X, exit at resolution; report hit rate and return net of spread by category.",
+   "flags": "Legal/ethical grey zone: knowingly trading alongside suspected MNPI flow; CFTC/DOJ attention is high (indictment 2026-04-23). Not itself insider trading, but counsel-worthy."
+  },
+  {
+   "name": "Insider-signal ('Orca') detection and fast-follow",
+   "one_line": "Detect fresh wallets making concentrated long-shot bets in sensitive markets and follow within minutes.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "A detector flags wallets that place at least $2,500 within an hour on an outcome priced at 35% or less, especially new wallets in military/geopolitical markets (which are fee-free). ACDC found 556 such 'Orca' wallets; 152 military-focused ones won 97.2% of the time for $8M. On-chain data shows bots and whales already pile in behind them, sometimes with six-figure size. This differs from leaderboard copy trading: the signal is behavioural anomaly, not historical PnL. Academic 'information leakage score' work gives a quantitative version.",
+   "edge_source": "Public ledger reveals informed flow in real time; geopolitics markets have zero taker fee.",
+   "why_might_beat_market": "If the first mover truly has MNPI, the second mover still buys far below terminal value. But followers are now numerous and quick, and the first mover can sell to them.",
+   "evidence": [
+    {
+     "url": "https://www.al-monitor.com/originals/2026/08/exclusive-more-150-polymarket-wallets-may-have-traded-military-secrets-research",
+     "title": "Exclusive: More than 150 Polymarket wallets may have traded on military secrets (Reuters via Al-Monitor)",
+     "date": "2026-08-20",
+     "quality": "credible-report",
+     "supports": "ACDC method and numbers: 556 Orcas, 152 military, $8M, 97.2% win rate, data through 2026-05-05; copycat bot $200k and whale $100k after Iran-strike bet (June 2025); Polymarket says it referred dozens of wallets to authorities."
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv listing: ForesightFlow / Information Leakage Score papers (Nechepurenko, 2605.00493, 2605.02286, 2605.00459)",
+     "date": "2026-05-01",
+     "quality": "paper",
+     "supports": "Listing-level only: ILS framework quantifies the share of the terminal move priced before public news; at population scale only 0.7% of 12,708 markets yield a computable score, i.e. clean signals are rare."
+    },
+    {
+     "url": "https://www.businessinsider.com/polymarket-informed-insider-trades-study-2026-3",
+     "title": "'Informed' traders on Polymarket netted $143 million in 'anomalous' profit since 2024 (Business Insider) - snippet only",
+     "date": "2026-03-28",
+     "quality": "credible-report",
+     "supports": "Snippet: first estimate of suspicious-account profits, $143M 2024-2026. Body not fetchable."
+    }
+   ],
+   "failure_modes": "False positives (rich gamblers); being exit liquidity; legal exposure if one knowingly trades alongside leaked classified information; markets may be voided or restricted (Polymarket limited sensitive markets in March 2026); House Oversight probe (May 2026) and three federal investigations reported by Wired (snippet).",
+   "cheap_validation": "Backtest the ACDC rule on the public trade archive: for each trigger, measure price 10 min / 1 h / at resolution after the trigger, net of the follower's likely fill.",
+   "flags": "Legal grey: knowingly following suspected MNPI; reputational and regulatory risk. Not ToS-violating per se."
+  },
+  {
+   "name": "Insider / unusual-activity alert service (retail)",
+   "one_line": "Real-time alerts on fresh wallets making large, concentrated, low-probability bets. There is strong demand, but it is now the feature Polymarket audits builders over.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "Stream on-chain fills and score them on wallet age, deposit size, position concentration, entry price under 15%, volume spikes in quiet markets, and wallet clustering. Push alerts to Telegram, SMS or email with a trade link carrying your builder or referral code. Kreo bundles an \"Unusual Activity Tracker\", and Presage is a dedicated product in a waitlist stage.",
+   "edge_source": "Speed of on-chain anomaly detection before the price moves.",
+   "why_might_beat_market": "Documented insider episodes in 2026 (Iran strikes, the Maduro operation, Google Year-in-Search) did show fresh-wallet signatures before moves. Academic work shows the detectable domain is narrow.",
+   "evidence": [
+    {
+     "url": "https://www.usepresage.com/",
+     "title": "Presage",
+     "date": "2026-02",
+     "quality": "marketing",
+     "supports": "Six detectors and Telegram, SMS and email alerts. It is a waitlist with \"free tier at launch\" and no traction data."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00459",
+     "title": "Information Leakage at Population Scale (arXiv API listing)",
+     "date": "2026-05-01",
+     "quality": "paper",
+     "supports": "A deadline-ILS framework scaled to 12,708 markets yields computable values for only 0.7% of them."
+    },
+    {
+     "url": "https://mattlsmith.com/posts/real-data-google-polymarket-insider/",
+     "title": "The Data Behind the Google Polymarket Insider",
+     "date": "2026-06-01",
+     "quality": "hard-data",
+     "supports": "An on-chain reconstruction: 22 of 23 wins on insider markets at about 3c average entry, and losses on the other 69 markets. It matches DOJ figures within 1%."
+    },
+    {
+     "url": "https://unchainedcrypto.com/polymarket-audits-builders-program-startups-over-insider-trading-concerns/",
+     "title": "Polymarket Audits Builders Program Startups",
+     "date": "2026-04-15",
+     "quality": "credible-report",
+     "supports": "\"Find insiders before everyone else\" marketing triggered a platform audit."
+    }
+   ],
+   "failure_modes": "False positives dominate. Once it is widely sold the signal is front-run within seconds. Platform de-listing is a risk. Law enforcement is now prosecuting insiders (DOJ and CFTC cases in 2026), which reduces how often insiders trade.",
+   "cheap_validation": "Backtest the detectors on the 2026 documented cases plus 6 months of fills. Measure precision and the post-alert price path net of fees.",
+   "flags": "GREY: facilitating trading alongside suspected holders of material non-public information. Polymarket's March 2026 integrity rules and the builder audit apply. Frame the product as surveillance and research, never as \"trade with insiders\"."
+  }
+ ]
+}

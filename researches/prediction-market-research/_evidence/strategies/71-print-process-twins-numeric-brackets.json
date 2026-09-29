@@ -1,0 +1,38 @@
+{
+ "slug": "print-process-twins-numeric-brackets",
+ "name": "Print-process twins: model the publisher's measurement, rounding and revision rules that settle numeric bracket markets",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "one_line": "Compose a truth model with an explicit publisher transform (units, rounding, snapshot time, revision window, estimate-versus-final) and trade the bracket-boundary mass that the crowd prices as if the contract settled on the underlying truth.",
+ "scope": "An agent compiles a typed 'print spec' for each family from the rules text plus the source's methodology pages. Examples fetched today: Chicago's high temperature resolves in whole degrees F from NOAA O'Hare, and revisions count only until the next day's first datapoint. Hong Kong resolves to 0.1 C on HKO's 'Absolute Daily Max', and revisions are ignored. Box-office openers resolve on The Numbers 3-day weekend including Thursday previews. They stay open until The Numbers and Box Office Mojo show finalised figures, and an exact-boundary value goes to the higher bracket. Extend to one-decimal CPI prints, Netflix top-10 'views', MrBeast view counters, RT snapshots and the Arena score. Pipeline: truth distribution (NWP ensemble, tracking estimates, nowcast), then the transform, then bracket probabilities. Pay special attention to boundary-adjacent brackets, Sunday-estimate to Monday-actual revisions, and sensor or reporting quirks. Validation: 200+ resolved weather city-days and 50+ box-office weekends. Test whether boundary-adjacent brackets are worse calibrated than interior ones, and whether the transform layer improves bracket log-loss over the same truth model without it. Boundaries: text-semantic ambiguity is in rules-ambiguity-hazard-layer. Niches where a model beats the market are in sponsor-and-inform-niche-models.",
+ "why_it_matters": "High repetition, daily and weekly, solves the power problem that kills most entries in this band. Liquidity is real for the category. One Chicago city-day has $101k volume and $50k liquidity. Hong Kong has $107k and $73k. The Resident Evil opener has $348k and $88k. The E4 pack reports weather longshots at -25.2% equal-weighted and weather prices overconfident inside 48 hours, so the bracket tails are where retail errs. The work is text plus arithmetic, needs no forecasting superiority, and fits the owner's sniping stack, because the final print is usually known before the proposal. The list has no weather entry and no numeric-culture entry.",
+ "flags": "Source-site scraping is subject to ToS. Never contact data publishers. Weather and Culture taker feeRate is 0.05, so favour maker expression. Whether specialist weather traders already arbitrage rounding and station quirks is unverified and likely for the big cities. Test thin cities and non-weather families first.",
+ "key_evidence": [
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=highest%20temperature&limit_per_type=5&events_status=active",
+   "note": "Polymarket Gamma API, fetched 2026-09-20. Chicago: $101.4k volume, $49.9k liquidity, whole degrees F, NOAA O'Hare, revision cut-off rule. Hong Kong: $106.9k volume, $72.5k liquidity, one decimal C, no revisions."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=Resident%20Evil%20Opening%20Weekend&limit_per_type=3&events_status=active",
+   "note": "Rules: The Numbers 3-day weekend including previews. The market stays open until The Numbers and Box Office Mojo finalise. An exact boundary resolves to the higher bracket. $60-65M at 0.729 and $55-60M at 0.236."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=box%20office&limit_per_type=15&events_status=active",
+   "note": "Four live box-office ladders: $7.3k-$347.7k volume, $12.4k-$88.5k liquidity."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=views&limit_per_type=15&events_status=active",
+   "note": "MrBeast week-1 views: $85.0k volume, $20.8k liquidity. Netflix weekly views ladders: $2.8-4.5k volume. The counters' definitions are the contract."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "71",
+ "band": "speculative",
+ "file": "71-print-process-twins-numeric-brackets.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band."
+ ]
+}

@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Graded Autonomy for a Trading Agent",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1040,
+      760
+    ],
+    "views": [
+      {
+        "id": "ladder",
+        "label": "The autonomy ladder",
+        "focus": [
+          "l1",
+          "l2",
+          "l3",
+          "l4",
+          "l5"
+        ],
+        "note": "Autonomy is a per-instrument, per-notional, per-regime contract, not a global switch."
+      },
+      {
+        "id": "escalation",
+        "label": "Escalation without demotion",
+        "focus": [
+          "l3",
+          "escalate",
+          "review",
+          "l4",
+          "halt"
+        ],
+        "note": "An escalation pauses one order; only an unanswered review ends the session."
+      },
+      {
+        "id": "containment",
+        "label": "Breach and contract rollback",
+        "focus": [
+          "l5",
+          "breach",
+          "demote"
+        ],
+        "note": "Guardrail evaluation is arithmetic, and a confirmed breach rolls the contract back."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "Autonomy ladder"
+    },
+    {
+      "id": "gates",
+      "label": "Escalation"
+    },
+    {
+      "id": "exceptions",
+      "label": "Containment"
+    },
+    {
+      "id": "terminal",
+      "label": "Contract change"
+    }
+  ],
+  "states": [
+    {
+      "id": "l1",
+      "type": "start",
+      "label": "L1 · Advisory",
+      "sublabel": "human writes every order",
+      "lane": "main",
+      "col": 0,
+      "step": "01"
+    },
+    {
+      "id": "l2",
+      "type": "active",
+      "label": "L2 · Approval",
+      "sublabel": "agent thesis, human clicks",
+      "lane": "main",
+      "col": 1,
+      "step": "02",
+      "tag": "ship here"
+    },
+    {
+      "id": "l3",
+      "type": "active",
+      "label": "L3 · Conditional",
+      "sublabel": "tight envelope, monitored",
+      "lane": "main",
+      "col": 2,
+      "step": "03",
+      "tag": "earn this"
+    },
+    {
+      "id": "l4",
+      "type": "active",
+      "label": "L4 · Bounded",
+      "sublabel": "no pre-approval inside",
+      "lane": "main",
+      "col": 3,
+      "step": "04"
+    },
+    {
+      "id": "l5",
+      "type": "success",
+      "label": "L5 · Supervised",
+      "sublabel": "real-time oversight",
+      "lane": "main",
+      "col": 4,
+      "step": "05"
+    },
+    {
+      "id": "escalate",
+      "type": "decision",
+      "label": "Escalation Trigger",
+      "sublabel": "notional, stale data",
+      "lane": "gates",
+      "col": 0,
+      "tag": "pause the order",
+      "width": 112
+    },
+    {
+      "id": "review",
+      "type": "waiting",
+      "label": "Operator Review",
+      "sublabel": "named human on shift",
+      "lane": "gates",
+      "col": 1,
+      "tag": "wait",
+      "width": 112
+    },
+    {
+      "id": "breach",
+      "type": "failure",
+      "label": "Guardrail Breach",
+      "sublabel": "drawdown, concentration",
+      "lane": "exceptions",
+      "col": 2,
+      "tag": "recoverable",
+      "width": 112
+    },
+    {
+      "id": "halt",
+      "type": "failure",
+      "label": "Kill Switch",
+      "sublabel": "flatten + freeze",
+      "lane": "terminal",
+      "col": 1,
+      "yOffset": 130,
+      "tag": "terminal",
+      "width": 112
+    },
+    {
+      "id": "demote",
+      "type": "failure",
+      "label": "Demoted to L2",
+      "sublabel": "contract rolled back",
+      "lane": "terminal",
+      "col": 2,
+      "tag": "versioned",
+      "width": 112
+    }
+  ],
+  "transitions": [
+    {
+      "id": "promote-1",
+      "from": "l1",
+      "to": "l2",
+      "label": "track record",
+      "labelDy": 55
+    },
+    {
+      "id": "promote-2",
+      "from": "l2",
+      "to": "l3",
+      "label": "consistent approvals",
+      "labelDy": 55
+    },
+    {
+      "id": "promote-3",
+      "from": "l3",
+      "to": "l4",
+      "label": "clean envelope",
+      "labelDy": 58
+    },
+    {
+      "id": "promote-4",
+      "from": "l4",
+      "to": "l5",
+      "label": "audited quarter",
+      "labelDy": 55
+    },
+    {
+      "id": "threshold",
+      "from": "l3",
+      "to": "escalate",
+      "label": "threshold hit",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 65
+    },
+    {
+      "id": "limit-hit",
+      "from": "l5",
+      "to": "breach",
+      "label": "limit exceeded",
+      "variant": "security",
+      "labelAt": [
+        628,
+        243
+      ]
+    },
+    {
+      "id": "to-review",
+      "from": "escalate",
+      "to": "review",
+      "variant": "security"
+    },
+    {
+      "id": "released",
+      "from": "review",
+      "to": "l4",
+      "label": "released, level kept",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "route": "straight"
+    },
+    {
+      "id": "no-answer",
+      "from": "review",
+      "to": "halt",
+      "label": "no answer in window",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 45
+    },
+    {
+      "id": "remediate",
+      "from": "breach",
+      "to": "l5",
+      "label": "inside limits again",
+      "variant": "emphasis",
+      "labelAt": [
+        792,
+        240
+      ]
+    },
+    {
+      "id": "rollback",
+      "from": "breach",
+      "to": "demote",
+      "label": "post-mortem",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 45
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Autonomy is earned, not configured",
+      "items": [
+        "Each level is a contract over instruments, notional and market regime",
+        "Most desks should ship at approval workflow and graduate on evidence",
+        "Every order links to the contract version that authorized it"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Pausing is not failing",
+      "items": [
+        "Escalation triggers on notional, confidence decay, stale data or disagreement",
+        "Review holds one order; the agent keeps its level unless the window lapses",
+        "A named operator is on shift in every time zone the agent trades"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Containment is deterministic",
+      "items": [
+        "Guardrail evaluation is arithmetic, never a model judgement call",
+        "A first breach is recoverable inside limits; repetition trips the kill switch",
+        "Demotion rolls the execution authority contract back to a prior version"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+ "slug": "cross-venue-locked-arbitrage",
+ "name": "Cross-venue locked arbitrage (Polymarket vs Kalshi / exchanges / sportsbooks)",
+ "category": "Arbitrage",
+ "maturity": "Established practice (crowded; realised PnL poorly documented)",
+ "seed_category": "cross-platform arbitrage",
+ "one_line": "Beyond matched-pair arb: LP structures over equivalence and subset relations, and single-venue quoting off the deeper venue's price where locked arb is impractical.",
+ "scope": "Cover ONLY the locked two-leg structure: same event bought on both sides across venues. Go deep on what an existing arb builder underestimates: rule-text and settlement-source mismatch (documented divergent resolutions), capital lock-up and annualised return after fees on both legs, fee asymmetry after Polymarket fee V2, leg risk and partial fills, venue account limits and KYC (one natural person cannot lawfully hold every leg), stablecoin / FX basis, withdrawal latency, tax asymmetry, how crowded it is (hundreds of GitHub repos, paid scanners) and the honest absence or presence of documented realised PnL. The international-vs-US Polymarket order-book gap is a signal note only. Boundary: lead-lag quoting and signals are cross-venue-leadlag-signals; options / futures implied probabilities are derivatives-implied-relative-value.",
+ "sub_variants": [
+  "matched-pair and LP subset/neg-risk structures",
+  "Polymarket-only follower quoting off Kalshi depth",
+  "large-trade-imbalance follower trades",
+  "international vs US order-book gap and BBO signal"
+ ],
+ "merged_from": [
+  "academic: Cross-venue linear-program arbitrage over the joint outcome space",
+  "onchain-bots: Cross-venue lead-lag quoting (Kalshi depth leads Polymarket)",
+  "academic: Cross-venue lead-lag: trade the lagging venue",
+  "platform-surface: International vs US order-book gap"
+ ],
+ "flags": "Multi-venue KYC/geo restrictions; one natural person cannot lawfully hold both Polymarket international and US accounts; VPN access by US persons is a ToS violation detected by IP and on-chain analysis.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2601.01706v1",
+   "note": "102,275 events on 10 venues: 1,501 equivalence classes, 1,645 subset sets; 2-4% execution-adjusted deviations"
+  },
+  {
+   "url": "https://repozitorij.uni-lj.si/IzpisGradiva.php?id=187046&lang=eng",
+   "note": "Thesis: 796 structures, floor $6,148, capital-weighted 0.52%; 306/308 paid at or above floor"
+  },
+  {
+   "url": "https://doi.org/10.2139/ssrn.5331995",
+   "note": "Polymarket led Kalshi in 2024; large-trade imbalance predicts returns (abstract)"
+  },
+  {
+   "url": "https://hn.algolia.com/api/v1/items/47500591",
+   "note": "Practitioner: Kalshi 30-50k depth vs 5-10k on Polymarket, 2-3 s repricing lag (self-reported)"
+  },
+  {
+   "url": "https://gateway.polymarket.us/v1/markets/aec-nfl-cin-hou-2026-09-20/bbo",
+   "note": "Public no-auth US BBO endpoint; indicative gap vs international book"
+  },
+  {
+   "url": "https://about.darkhorseodds.com/guides/kalshi-polymarket-market-rules",
+   "note": "DNP prop graded No on Polymarket, last price on Kalshi, void at books: hedge-breaking mismatch"
+  }
+ ],
+ "parent_slug": "cross-venue-arbitrage-leadlag",
+ "parent_scope": "Cover (1) locked structures: semantic matching across venues, equivalence vs strict-subset vs negative-risk constructions, LP payoff-floor solver, realised evidence (796 structures in nine days, 0.52% capital-weighted; 2-4% persistent deviations), annualising against the ~4-7% settlement discount, settlement-rule mismatches as the whole risk (2024 election, DNP props, void conventions); (2) lead-lag: Kalshi depth 3-5x on US sports with 2-3 s Polymarket lag, Polymarket leading in 2024 election, large-trade imbalance signals, Wintermute closing gaps; (3) the international-vs-US Polymarket books as unconnected venues and the no-auth US BBO feed as a free signal. Boundary: options venues are options-implied-relative-value; sportsbook lines as fair value for quoting are sportsbook-anchored-sports-mm; promo hedging is fee-tier-taker-incentives.",
+ "deepen": true,
+ "seed": "2 cross-platform arbitrage",
+ "n": "07",
+ "band": "established",
+ "file": "07-cross-venue-locked-arbitrage.md",
+ "critic_notes": [
+  "SPLIT cross-venue-arbitrage-leadlag into (a) locked cross-venue structures (widely practised and crowded: 301 GitHub repos for 'polymarket kalshi arbitrage', paid scanners; no documented realised PnL) and (b) lead-lag follower quoting and signals. Demote the international-vs-US order-book sub-variant to a flagged note or the speculative band: E5 and E9 agree it needs two properly domiciled entities and a US person cannot lawfully touch the international venue. Add a missing sub-variant: cross-venue short-dated crypto pairs, where Polymarket settles on a Chainlink TWAP and Kalshi on the average of 60 one-second CF Benchmarks RTI prints (E5 key fact 10), so the 'arb' carries index-basis risk.",
+  "cross-venue-arbitrage-leadlag: 'Emerging' understates locked Polymarket-Kalshi arbitrage as a practice (crowded, tooled, already in the owner's suite) and overstates the international-vs-US sub-variant (not lawfully runnable by one person). One label hides both; note also that E5 found no documented cross-venue arbitrageur PnL anywhere, so 'Established' would apply to activity, not to proven profit.",
+  "cross-venue-arbitrage-leadlag, sub-variant 'international vs US order-book gap and BBO signal': legally unavailable to a single person and evidenced by one indicative endpoint; keep the free US BBO feed as a signal note only."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Cross-venue linear-program arbitrage over the joint outcome space, including subset relations",
+   "one_line": "Go beyond matched-pair Polymarket/Kalshi arbitrage: build a semantic identity layer across venues and solve an LP for a guaranteed payoff floor over equivalence, subset and negative-risk structures.",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "mechanism": "Match events across Polymarket, Kalshi and long-tail venues into equivalence classes and strict-subset relations (different resolution rules make many 'same' markets subsets of each other). For each structure solve an LP over outcome space for the cheapest portfolio with payoff floor > cost, using executable book prices. Hold to resolution or unwind on convergence. Resolution-rule differences are modelled as explicit states rather than ignored.",
+   "edge_source": "Law-of-one-price violations persisting because capital is segmented by venue, KYC and collateral type, and because semantically similar contracts are not fungible.",
+   "why_might_beat_market": "Most bots do pairwise equivalent-market arb; subset and multi-leg LP structures are less crowded, and 1,200-1,500 new matched pairs now appear per 42-day window.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2601.01706v1",
+     "title": "Semantic Non-Fungibility and Violations of the Law of One Price in Prediction Markets (Gebele, Matthes), arXiv",
+     "date": "2026-01-05",
+     "quality": "paper",
+     "supports": "102,275 events on 10 venues (2018..Aug-2025): ~6% cross-listed; 1,501 equivalence classes, 1,645 subset sets, 1,123 negative-risk constructions; median execution-adjusted deviations 2-4% even in liquid pairs, often persisting nearly the whole overlap; many opportunities >200% APY; simulated mechanical strategy 1,218.66% cumulative over 15 trades / 800 days (tiny n); ~8% of Polymarket markets have an equivalent elsewhere vs 2% of Kalshi's."
+    },
+    {
+     "url": "https://repozitorij.uni-lj.si/IzpisGradiva.php?id=187046&lang=eng",
+     "title": "Combinatorial Arbitrage Between Prediction Markets (Krasovec), Univ. of Ljubljana thesis",
+     "date": "2026-09-08",
+     "quality": "hard-data",
+     "supports": "Nine-day passive observation across Kalshi, Polymarket, Predict, Limitless: 796 arbitrage structures, modelled payoff floor $6,148, capital-weighted return 0.52%; of 308 resolved structures 306 paid at or above floor ($533 vs $522 floor); one shortfall ($0.38) was caused by settlement-rule differences."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.5331995",
+     "title": "Price Discovery and Trading in Modern Prediction Markets (Ng, Peng, Tao, Zhou), SSRN via Crossref abstract",
+     "date": "2025-07-01",
+     "quality": "paper",
+     "supports": "Significant price disparities across Polymarket, Kalshi, PredictIt, Robinhood before the 2024 election imply economically meaningful arbitrage."
+    }
+   ],
+   "failure_modes": "Semantic risk is the whole risk (Polymarket resolved the 2024 election on network calls, Kalshi on inauguration); capital locked on two venues to resolution, so the 0.52% per-structure return must beat the ~4-7% annualised settlement discount; venue/legal access; fees on both sides.",
+   "cheap_validation": "Passive logger like the thesis: 2 weeks, record structures with floor > cost net of both venues' fees, track realised payoff vs floor and days-to-resolution to get an annualised, capital-weighted figure.",
+   "flags": "Requires accounts on multiple venues; geo/KYC restrictions apply per venue."
+  },
+  {
+   "name": "Cross-venue lead-lag quoting (Kalshi depth leads Polymarket)",
+   "one_line": "Reprice Polymarket quotes off the deeper venue within its 2-3 second lag instead of chasing locked arbitrage.",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "mechanism": "For US sports and some macro contracts Kalshi carries several times Polymarket's depth, and Polymarket reprices a couple of seconds later. Rather than buying both venues for a locked spread (capital on two venues, different resolution rules, fees on both), the agent uses Kalshi's book as fair value and makes or takes on Polymarket only. Institutional makers already move capital dynamically between the two. Practitioners report 5-8c gaps on identical outcomes at times.",
+   "edge_source": "Price discovery happens on the deeper book; Polymarket is the follower in sports.",
+   "why_might_beat_market": "Single-venue execution removes the settlement-mismatch and capital-lock problems that make pure cross-venue arb hard for small teams.",
+   "evidence": [
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47500591",
+     "title": "The orderbook dynamics of prediction markets (HN post)",
+     "date": "2026-03-24",
+     "quality": "self-reported",
+     "supports": "'Kalshi shows 30-50k depth vs 5-10k on Poly for identical contracts', repricing lag of 2-3 seconds; described as a tradeable 'absorption signal'."
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47500689",
+     "title": "Ask HN: Anyone trading prediction markets programmatically?",
+     "date": "2026-03-24",
+     "quality": "self-reported",
+     "supports": "Builder of a Kalshi-Polymarket discrepancy detector reports spreads of 5-8 cents on identical outcomes."
+    },
+    {
+     "url": "https://finance.yahoo.com/markets/crypto/articles/wintermute-providing-liquidity-kalshi-polymarket-162008202.html",
+     "title": "Wintermute Is Providing Liquidity on Kalshi and Polymarket",
+     "date": "2026-05-29",
+     "quality": "credible-report",
+     "supports": "Institutional capital 'flows dynamically between both platforms'; the gap is being professionally closed."
+    },
+    {
+     "url": "https://www.zhinit.dev/blog/kalshi-polymarket-arbitrage",
+     "title": "Arbitrage Exists Between Kalshi and Polymarket but You Can't Exploit It - title only, page body did not render",
+     "date": "2026-08-06",
+     "quality": "self-reported",
+     "supports": "Title-level counter-evidence for the locked-arb version; content unverified."
+    }
+   ],
+   "failure_modes": "Contract wording and resolution sources differ between venues; Kalshi API access and US-person rules; the lag will compress as more MMs link the books.",
+   "cheap_validation": "Record both books for 30 matched sports contracts; estimate Granger-style lead-lag and the PnL of a Polymarket-only follower after 0.05 fees.",
+   "flags": "Kalshi is US-regulated; Polymarket international bars US persons: check eligibility for running both."
+  },
+  {
+   "name": "Cross-venue lead-lag: trade the lagging venue on the leader's large-trade flow",
+   "one_line": "Polymarket leads Kalshi in price discovery when liquidity is high, and net order imbalance from large trades predicts returns - trade the follower directionally rather than waiting for a locked arb.",
+   "category": "Information edge",
+   "maturity": "Experimental",
+   "mechanism": "Stream signed large trades on both venues (on-chain OrderFilled for Polymarket ground truth), compute rolling net large-trade imbalance per matched contract, and enter the lagging venue in the leader's direction with a short holding period. The venue with the larger directional large-trade flow is treated as leader for that window. Exit on convergence or time stop.",
+   "edge_source": "Segmented participants and slower repricing on the follower; informed large traders concentrate where depth is.",
+   "why_might_beat_market": "It monetises cross-venue gaps that never become risk-free arbitrage (the common case), using public flow data.",
+   "evidence": [
+    {
+     "url": "https://doi.org/10.2139/ssrn.5331995",
+     "title": "Price Discovery and Trading in Modern Prediction Markets (Ng, Peng, Tao, Zhou), SSRN via Crossref abstract",
+     "date": "2025-07-01",
+     "quality": "paper",
+     "supports": "Polymarket leads Kalshi in price discovery, particularly when liquidity and activity are high; net order imbalance from large trades strongly predicts subsequent returns; the venue with greater directional large-trade flow leads."
+    },
+    {
+     "url": "https://arxiv.org/html/2603.03136v3",
+     "title": "The Anatomy of a Blockchain Prediction Market: Polymarket in the 2024 U.S. Presidential Election (Tsang, Yang), arXiv",
+     "date": "2026-03-03",
+     "quality": "hard-data",
+     "supports": "Price impact: ~$9.1M of corrected flow moved the October Trump contract 5 pts (naive estimate $15.6M); $1M moved price 4-15 pts in January vs ~0.5 pt in October; naive volume overstates turnover 2.45x (median 3.08x) - flow signals must use turnover, not OrderFilled sums."
+    }
+   ],
+   "failure_modes": "Evidence is from one event (2024 election) and abstract-level; costs not reported; leadership may have shifted after Kalshi's 2025-26 growth; the French-whale episode shows the leader can also be the distorted venue (10-15 pts above competitors per Abid, SSRN 6670638).",
+   "cheap_validation": "Hasbrouck information-share / Granger test on 50 currently matched contracts using 1-minute mids; then an event-study of follower returns after top-decile large-trade imbalance on the leader, net of follower spread.",
+   "flags": ""
+  },
+  {
+   "name": "International vs US order-book gap: cross-book arbitrage and free lead-lag signal",
+   "one_line": "The same NFL game trades on two unconnected Polymarket books with different fees, collateral and crowds; arbitrage it if you legally hold both accounts, otherwise use the no-auth US BBO feed as a fair-value signal for quoting the international book.",
+   "category": "Arbitrage",
+   "maturity": "Experimental",
+   "mechanism": "Polymarket.com (pUSD on Polygon, non-US users) and the Polymarket US app/exchange (USD, CFTC DCM/DCO, US residents) are separate products with unconnected accounts and separate central limit order books. On 2026-09-20 during Bengals-Texans, fetches seconds apart showed US 0.880 bid / 0.885 ask (open interest 1.13M contracts, 2.89M traded) against international 0.89 bid / 0.90 ask ($2.71M volume) - indicative only, non-simultaneous, side mapping not verified. Fee regimes differ sharply: the international NFL markets showed zero fees that day, the US book charges taker theta 0.0695 and pays makers theta 0.0125, and each book has its own liquidity-reward schedule. An operator with a US entity and a non-US affiliate can lock gaps or, more practically, quote as maker on both and let one book hedge the other. A team with access to only one side can still stream gateway.polymarket.us/v1/markets/{slug}/bbo (public) as an input to its international sports quoting.",
+   "edge_source": "Segmented participant pools (US retail app users vs global crypto-native traders) and legal barriers that stop most arbitrageurs from holding both accounts.",
+   "why_might_beat_market": "US-book volume on NFL is already comparable to the international book, so the second price is informative; most international LPs do not consume it.",
+   "failure_modes": "Legal access is the binding constraint; USD and pUSD funding loops are slow (wires/ACH vs bridge) so inventory drifts; both books have matching delays (sports 1 s internationally); contract specs and settlement rules can differ (US uses a Settlement Committee and Last Fair Market Price for voids, international uses UMA).",
+   "cheap_validation": "Log both public BBO feeds with synchronized timestamps for one NFL week and measure gap frequency net of US taker fee, plus lead-lag cross-correlation at 1-10 s horizons.",
+   "flags": "Polymarket.com is not available to US residents and the US venue is built for US residents; one natural person cannot lawfully hold both. CoinDesk/Allium report $571M traded by US-linked wallets on the international site in 12 months via VPN - this is a ToS violation detected by IP blocking and on-chain behavioural analysis; do not build on it.",
+   "evidence": [
+    {
+     "url": "https://gateway.polymarket.us/v1/markets/aec-nfl-cin-hou-2026-09-20/bbo",
+     "title": "Polymarket US public BBO endpoint",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "bestBid 0.8800, bestAsk 0.8850, openInterest 1,131,891.95, sharesTraded 2,889,533.61 - public, no auth."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/markets?slug=nfl-cin-hou-2026-09-20",
+     "title": "Gamma API same game, international book",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "bestBid 0.89, bestAsk 0.90, volume $2.71M, feeType zero_fees, rewardsDailyRate 15,771.43, secondsDelay 1."
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/15458828-website-vs-app-what-s-the-difference",
+     "title": "Website vs App",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Separate products, accounts not connected, polymarket.com not accessible to US residents."
+    },
+    {
+     "url": "https://www.coindesk.com/tech/2026/07/03/americans-traded-usd571-million-on-polymarket-politic-bets-despite-u-s-ban",
+     "title": "Americans traded $571 million on Polymarket despite U.S. ban",
+     "date": "2026-07-03",
+     "quality": "credible-report",
+     "supports": "Allium analysis of US-linked wallets, VPN circumvention, on-chain behavioural detection."
+    }
+   ]
+  }
+ ]
+}

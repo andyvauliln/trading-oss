@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "ContestTrade: Internal Contest Between Agents",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1075,
+      780
+    ],
+    "views": [
+      {
+        "id": "condense",
+        "label": "Condense the corpus",
+        "focus": [
+          "news",
+          "market",
+          "data_agents"
+        ],
+        "note": "Parallel data agents cut a day of market noise down to short text factors that fit a prompt."
+      },
+      {
+        "id": "contest",
+        "label": "The contest mechanism",
+        "focus": [
+          "data_agents",
+          "contest1",
+          "research_agents"
+        ],
+        "note": "Quantify past value, predict near-term utility, then allocate scarce context by knapsack."
+      },
+      {
+        "id": "capital",
+        "label": "Capital follows performance",
+        "focus": [
+          "research_agents",
+          "judge",
+          "portfolio"
+        ],
+        "note": "A second contest ranks research agents and weights capital by predicted Sharpe."
+      }
+    ]
+  },
+  "stages": [
+    {
+      "label": "Raw Signals"
+    },
+    {
+      "label": "Data Team"
+    },
+    {
+      "label": "Factor Contest"
+    },
+    {
+      "label": "Research Team"
+    },
+    {
+      "label": "Capital Contest"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "news",
+      "type": "external",
+      "label": "News & Filings",
+      "sublabel": "announcements, reports",
+      "stage": 0,
+      "row": 1,
+      "width": 150,
+      "height": 78
+    },
+    {
+      "id": "market",
+      "type": "external",
+      "label": "Market Data",
+      "sublabel": "prices, volume",
+      "stage": 0,
+      "row": 3,
+      "width": 150,
+      "height": 78
+    },
+    {
+      "id": "data_agents",
+      "type": "backend",
+      "label": "Data Agents (N)",
+      "sublabel": "prioritize → read → summarize",
+      "stage": 1,
+      "row": 2,
+      "width": 150,
+      "height": 78,
+      "tag": "parallel"
+    },
+    {
+      "id": "contest1",
+      "type": "backend",
+      "label": "Factor Contest",
+      "sublabel": "quantify → predict → allocate",
+      "stage": 2,
+      "row": 2,
+      "width": 150,
+      "height": 78,
+      "tag": "0/1 knapsack"
+    },
+    {
+      "id": "tools",
+      "type": "external",
+      "label": "Tool Belt",
+      "sublabel": "search, screener, filings",
+      "stage": 2,
+      "row": 4,
+      "width": 150,
+      "height": 78
+    },
+    {
+      "id": "research_agents",
+      "type": "backend",
+      "label": "Research Agents (M)",
+      "sublabel": "Plan + ReAct, own beliefs",
+      "stage": 3,
+      "row": 2,
+      "width": 150,
+      "height": 78,
+      "tag": "parallel"
+    },
+    {
+      "id": "judge",
+      "type": "security",
+      "label": "Judger Panel",
+      "sublabel": "logic + evidence + Sharpe",
+      "stage": 4,
+      "row": 1,
+      "width": 150,
+      "height": 78
+    },
+    {
+      "id": "portfolio",
+      "type": "backend",
+      "label": "Weighted Signals",
+      "sublabel": "capital by predicted utility",
+      "stage": 4,
+      "row": 3,
+      "width": 150,
+      "height": 78
+    }
+  ],
+  "flows": [
+    {
+      "id": "news-agents",
+      "from": "news",
+      "to": "data_agents",
+      "label": "prioritized items",
+      "classification": "few hundred per day",
+      "labelAt": [
+        207.5,
+        338
+      ]
+    },
+    {
+      "id": "market-agents",
+      "from": "market",
+      "to": "data_agents",
+      "label": "price context",
+      "classification": "numeric",
+      "labelAt": [
+        207.5,
+        452
+      ]
+    },
+    {
+      "id": "agents-contest",
+      "from": "data_agents",
+      "to": "contest1",
+      "label": "text factors",
+      "classification": "≤ 4k tokens each",
+      "variant": "emphasis",
+      "labelAt": [
+        422.5,
+        338
+      ]
+    },
+    {
+      "id": "contest-research",
+      "from": "contest1",
+      "to": "research_agents",
+      "label": "factor portfolio",
+      "classification": "fits L* context",
+      "variant": "emphasis",
+      "labelAt": [
+        637.5,
+        338
+      ]
+    },
+    {
+      "id": "tools-research",
+      "from": "tools",
+      "to": "research_agents",
+      "label": "ReAct tool calls",
+      "classification": "time-bounded",
+      "labelAt": [
+        637.5,
+        566
+      ]
+    },
+    {
+      "id": "research-judge",
+      "from": "research_agents",
+      "to": "judge",
+      "label": "signals + evidence",
+      "classification": "symbol, action, limits",
+      "variant": "emphasis",
+      "labelAt": [
+        852.5,
+        338
+      ]
+    },
+    {
+      "id": "judge-portfolio",
+      "from": "judge",
+      "to": "portfolio",
+      "label": "capital allocation",
+      "classification": "positive utility only",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelAt": [
+        960,
+        395
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Context is the scarce resource",
+      "items": [
+        "Decision quality decays as prompt length grows, so factors compete for room",
+        "A zero-intelligence trader scores each observation's raw predictive value",
+        "A 0/1 knapsack keeps the highest-utility factors inside the effective context"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Two contests, one rule",
+      "items": [
+        "Quantify past performance, predict near-term utility, allocate accordingly",
+        "Data agents compete for context; research agents compete for capital",
+        "Only outputs from top-ranked agents reach the traded portfolio"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Noise is the enemy",
+      "items": [
+        "Agent diversity is deliberate: distinct beliefs produce uncorrelated errors",
+        "Ranking is driven by realized market feedback, not by self-assessment",
+        "An LLM judge panel scores reasoning quality alongside trailing Sharpe"
+      ]
+    }
+  ]
+}

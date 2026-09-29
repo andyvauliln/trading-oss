@@ -1,0 +1,213 @@
+{
+ "slug": "weather-markets",
+ "name": "Weather markets: ensemble-forecast bucket trading and station-observation sniping",
+ "category": "Information edge",
+ "maturity": "Established (small capacity): verify",
+ "seed_category": "information edge / resolution sniping (niche)",
+ "one_line": "Price daily city-temperature ladders from NWP ensembles and station quirks, or snipe the already-determined bucket seconds before the crowd sees the reading.",
+ "scope": "Cover both builds. Forecast: ensemble-to-bucket conversion, bias correction to the exact resolving station, rounding and local-day boundaries, where edge survives (wide 'or higher' tails, intraday nowcasting) versus crowded GFS-counting bots, named profitable accounts (Hans323, Atte ~$33k, HondaCivic) and honest post-mortems (linuzri 31% win rate, break-even HN maker). Sniping: HighTempTation-style 80c-to-99c sweeps with ~1-minute holds, capacity limited to resting asks, feed-source inference unverified. Include fee 0.05 / rebate 25%, maker-taker gap 2.57 pp on Kalshi weather, overconfidence within 48 h, thin depth, and sensor tampering (Paris CDG) as settlement risk. Boundary: generic 95c+ harvesting is near-certain-bond-carry; tampering itself is oracle-input-manipulation.",
+ "sub_variants": [
+  "ensemble forecast bucket pricing",
+  "intraday observation nowcasting",
+  "resolution-time station-feed sniping",
+  "maker quoting of buckets"
+ ],
+ "merged_from": [
+  "traders: Weather markets: forecast-model edge",
+  "traders: Weather markets: observation-latency sniping near resolution",
+  "onchain-bots: Weather-model trading of daily temperature and snowfall markets",
+  "adjacent-transfer: Weather-derivatives-style ensemble forecasting"
+ ],
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://www.claimsjournal.com/news/national/2026/04/15/336839.htm",
+   "note": "Bloomberg via Claims Journal: named weather traders, Jua pooled fund, Windborne interns"
+  },
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?ids=1vfghat,1seqcf5,1uw53zf",
+   "note": "$220 to $58k, 1,752/1,769 wins, ~1 min hold; second wallet $20.2k in 10 days"
+  },
+  {
+   "url": "https://github.com/linuzri/polymarket-bot",
+   "note": "Archived live post-mortem: wide bets +$32.24, exact buckets -$28.51, station and UTC bugs (do not run)"
+  },
+  {
+   "url": "https://jbecker.dev/research/prediction-market-microstructure",
+   "note": "Kalshi weather maker-taker gap 2.57 pp over 4.4M trades"
+  },
+  {
+   "url": "https://arxiv.org/html/2602.19520v2",
+   "note": "Weather markets overconfident within 48 h (slopes 0.69-0.97)"
+  },
+  {
+   "url": "https://www.engadget.com/big-tech/someone-allegedly-used-a-hairdryer-to-rig-polymarket-weather-bets-155312411.html",
+   "note": "Sensor tampering incident, ~$34k: settlement-source risk"
+  }
+ ],
+ "parent_slug": "weather-markets",
+ "seed": "4 statistical models (niche)",
+ "n": "22",
+ "band": "established",
+ "file": "22-weather-markets.md",
+ "critic_notes": [
+  "weather-markets: 'Emerging' looks under-rated relative to other entries. Named profitable accounts appear in a Bloomberg syndication, one wallet shows 1,752 of 1,769 wins, and a weather wallet (ColdMath) is among the ten most-copied accounts per The Oracle (2026-04-24, fetched). 'Established (small capacity)' is more consistent."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Weather markets: forecast-model edge",
+   "one_line": "Price daily city-temperature buckets from NWP/ensemble forecasts and trade against retail 'vibes' pricing.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "Pull NOAA/ECMWF-style forecasts for the resolving station, convert to bucket probabilities, and buy mispriced buckets (or paired adjacent buckets, e.g. 12C at 88c + 13C at 3c) early in the day; exit into convergence or hold to resolution. Tracked wallets that specialise in weather show very high trade counts (e.g. HondaCivic: 3,114 trades, 88% win, +$48.4K in 90 days, ~$1.5K average size). Weather takers pay feeRate 0.05; makers get a 25% rebate pool.",
+   "edge_source": "Public but under-used meteorological skill vs a casual crowd; many small independent bets daily.",
+   "why_might_beat_market": "Objective resolution, dozens of cities per day, low institutional interest; but edge is compressing (one reviewer saw a bot's advantage shrink from 38 to 8 points in four months - marketing source).",
+   "failure_modes": "Station-specific quirks (the resolving sensor, rounding, late revisions), thin books cap size, sensor tampering incidents, growing bot competition; an HN user found naive MM from one-day forecasts only break-even.",
+   "cheap_validation": "For 10 cities, compute bucket probabilities from a free ensemble API at fixed times for 30 days and compare log-loss to Polymarket mids; then check how much size was fillable at the mispriced levels.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rjbmjs,1sgpbqh,1u3rn8s",
+     "title": "Reddit r/polymarketAnalysis 1sgpbqh 'trader with 88% win rate across 3,114 trades' (HondaCivic, via Polycool)",
+     "date": "2026-04-09",
+     "quality": "marketing",
+     "supports": "Weather-specialist wallet: +$48.4K/90 days, 34.6 trades/day (tool-promo post; wallet stats checkable on-chain)"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1vjihej,1ske2ai,1rmdj8h",
+     "title": "Reddit r/PredictionsMarkets 1ske2ai 'Is there actually an information edge left' and 1rmdj8h '4 agents on a $400 laptop'",
+     "date": "2026-04-13 / 2026-03-06",
+     "quality": "self-reported",
+     "supports": "Practitioner view that weather is the inefficient niche; the '$150 -> $38,700, 91% win' agent story is unverified hype"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rpul61,1s31toy",
+     "title": "Reddit r/PillarLab 1rpul61 '7 bots, $9,200, got wrecked'",
+     "date": "2026-03-10",
+     "quality": "marketing",
+     "supports": "Only the weather bot was profitable (+$520 on $1.5k, 94 trades, 79% win) with edge shrinking 38 -> 8 points; other bots lost (product-promo post)"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/search?query=kalshi%20market%20maker&tags=comment&numericFilters=created_at_i%3E1751328000&hitsPerPage=60",
+     "title": "HN comment by hermannj314",
+     "date": "2026-03-27",
+     "quality": "self-reported",
+     "supports": "'being a market maker using a trivial model from one-day forecast data was break-even for me'"
+    }
+   ]
+  },
+  {
+   "name": "Weather markets: observation-latency sniping near resolution",
+   "one_line": "Buy the already-determined temperature bucket at ~80c seconds-to-minutes before the crowd sees the station reading, sweep to 99c, hold about a minute.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "The daily high/low becomes knowable from the resolving station's observations before the market fully reprices; a bot with a faster feed of those observations takes all asks from market price up to 99c. The dissected wallet (HighTempTation) went from a $220 deposit to >$58k with 1,752 wins in 1,769 positions and ~1-minute average hold; another account made $20.2k in 10 days on 359 trades at 98.9% win rate. It is uncopyable because the sniper consumes the liquidity himself. This is resolution sniping applied to a high-frequency, objective data source (the data-feed attribution is the post author's inference, unverified).",
+   "edge_source": "Latency on a public measurement; near-zero fee at extreme prices because fee scales with p(1-p).",
+   "why_might_beat_market": "Dozens of city markets resolve daily, each a small independent snipe; few participants wire up raw station feeds.",
+   "failure_modes": "Capacity (only the resting asks), observation corrections, sensor tampering (Paris CDG incident), competing snipers racing to the same prints, 50c-to-99c sweep leaves little margin if wrong once (17 losses can be large).",
+   "cheap_validation": "Log the resolving station's raw observation timestamps vs Polymarket book changes for two weeks; count how often asks below 95c remained after the outcome was determinable and their size.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1vfghat,1seqcf5,1uw53zf",
+     "title": "Reddit r/PredictionsMarkets 1vfghat '$220 into $58k trading weather markets with a 99% win rate, but you can't copytrade him' (score 205) and r/polymarket_bets 1seqcf5",
+     "date": "2026-08-04 / 2026-04-07",
+     "quality": "credible-report",
+     "supports": "1,752/1,769 wins, buys ~80c near resolution, ~1 min hold, sweeps liquidity to 99c; second wallet 359 trades, $20,200, 98.9%"
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Polymarket docs: fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Fee = C x feeRate x p x (1-p): at p=0.95-0.99 the taker fee is a small fraction of a cent per share"
+    }
+   ]
+  },
+  {
+   "name": "Weather-model trading of daily temperature and snowfall markets",
+   "one_line": "Convert ensemble forecasts and station quirks into probabilities for city high-temperature buckets and trade the mispriced buckets.",
+   "category": "Directional trading",
+   "maturity": "Established",
+   "mechanism": "Each day's market is a NegRisk ladder of temperature buckets resolved from a specific official station. Traders compute bucket probabilities from ensemble members (open GFS/ECMWF or proprietary models), correct for station bias and intraday observations, and trade against retail pricing; some automate execution. Named profitable accounts exist, a forecasting startup pools capital to trade max-temperature contracts, and weather-model company interns trade with company models. Category data show slightly better win odds in weather than elsewhere.",
+   "edge_source": "Domain model versus retail intuition; knowledge of the exact resolving station and its reporting cadence; many small daily markets that large funds ignore.",
+   "why_might_beat_market": "Small, repeatable, daily-resolving, low correlation to everything else; weather fee 0.05 with 25% maker rebate. Capacity is low (tens of thousands of dollars a year per the named traders), which is what keeps it alive.",
+   "evidence": [
+    {
+     "url": "https://www.claimsjournal.com/news/national/2026/04/15/336839.htm",
+     "title": "Weather Prediction Markets Are Booming. Can They Improve Forecasts? (Bloomberg via Claims Journal)",
+     "date": "2026-04-14",
+     "quality": "credible-report",
+     "supports": "Hans323: sixth-highest all-time profit on Polymarket weather, daily London/New York temperature bets; Atte ('1-800-LIQUIDITY'): ~$33,000 from weather since October using software to automate trades; startup Jua pools funds to trade max-temperature contracts; Windborne interns trade with company models; $6M Kalshi volume on the January snowstorm."
+    },
+    {
+     "url": "https://finance.yahoo.com/markets/crypto/articles/weve-calculated-your-chances-of-winning-money-on-polymarket-155955143.html",
+     "title": "Washington Post analysis via Yahoo",
+     "date": "2026-05-11",
+     "quality": "hard-data",
+     "supports": "Winning odds 'slightly higher on weather and tech markets - and a little lower on sports'."
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47500689",
+     "title": "Ask HN thread",
+     "date": "2026-03-24",
+     "quality": "self-reported",
+     "supports": "Commenter trades daily temperature markets using better weather data, targeting thin markets."
+    },
+    {
+     "url": "https://github.com/suislanchez/polymarket-kalshi-weather-bot",
+     "title": "polymarket-kalshi-weather-bot README (755 stars)",
+     "date": "read 2026-09-20",
+     "quality": "marketing",
+     "supports": "Lead: 31-member GFS ensemble via Open-Meteo, trade when edge >8%, 15% fractional Kelly. The headline '$1.8k' is SIMULATED; README says it places no real trades."
+    }
+   ],
+   "failure_modes": "Bucket edges of 1 degree make station rounding decisive; sensor anomalies and tampering (Paris, April 2026); thin books cap size; climate-ethics backlash may restrict markets (Guardian/CNN coverage, snippets).",
+   "cheap_validation": "Score 60 days of resolved city-temperature ladders: ensemble-count probabilities versus market mid at fixed hours before close; compute Brier skill and hypothetical PnL after 0.05 fees.",
+   "flags": ""
+  },
+  {
+   "name": "Weather-derivatives-style ensemble forecasting on city temperature buckets",
+   "one_line": "Turn ECMWF, GFS and ICON ensemble members into bucket probabilities and trade daily-high markets. It is heavily copied. The edge is thin and lives in wide 'X or higher' tails and in station details.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Pull ensemble forecasts, from Open-Meteo or NOAA. Bias-correct them to the exact resolution station and its reporting conventions: airport ASOS, rounding, local-day boundaries. Convert the member counts to bucket probabilities and trade when the edge exceeds a threshold. Public bots use 8%. Size with fractional Kelly. The one honest live post-mortem found that only wide 'or higher' contracts made money, and exact-degree buckets lost. The real alpha is intraday nowcasting from the live observation feed, and station-specific microclimate bias.",
+   "edge_source": "A professional NWP ensemble against retail intuition. The category has a large maker-taker gap: 2.57 pp on Kalshi.",
+   "why_might_beat_market": "Dozens of open-source bots now exist, so the naive version is competed away. An edge remains for anyone who models the specific sensor, the day-boundary rules and the late-day observation path better than the GFS-counting crowd.",
+   "adjacent_grounding": "CME HDD and CDD weather derivatives, and energy-desk ensemble post-processing.",
+   "evidence": [
+    {
+     "url": "https://github.com/linuzri/polymarket-bot",
+     "title": "linuzri/polymarket-bot, archived weather bot post-mortem",
+     "date": "2026-03-12",
+     "quality": "self-reported",
+     "supports": "Live: 62 fills, 12 wins from 39 resolved (31% win rate), about $100 to break-even. The weather leg made +$8.59. Wide 'or higher' bets made +$32.24 (86% ROI), and exact-temperature bets lost $28.51. It used 119 ensemble members. It documents station-mismatch bugs (KDFW versus KDAL), a UTC day-boundary bug costing about $30, and thin books despite 30-60c spreads."
+    },
+    {
+     "url": "https://github.com/suislanchez/polymarket-kalshi-weather-bot",
+     "title": "suislanchez/polymarket-kalshi-weather-bot (755 stars)",
+     "date": "2026-02-10",
+     "quality": "self-reported",
+     "supports": "31-member GFS counting, an 8% edge threshold and 0.15 Kelly. The '$1.8k highest profit' is SIMULATED, and the README says it places no real trades. The star count shows crowding."
+    },
+    {
+     "url": "https://jbecker.dev/research/prediction-market-microstructure",
+     "title": "The Microstructure of Wealth Transfer in Prediction Markets",
+     "date": "2026-01-18",
+     "quality": "hard-data",
+     "supports": "Kalshi weather: a maker-taker gap of 2.57 pp over 4.4M trades. Making weather markets pays more than taking them."
+    },
+    {
+     "url": "https://www.engadget.com/big-tech/someone-allegedly-used-a-hairdryer-to-rig-polymarket-weather-bets-155312411.html",
+     "title": "Someone allegedly used a hairdryer to rig Polymarket weather bets",
+     "date": "2026-05-04",
+     "quality": "credible-report",
+     "supports": "A Paris-CDG sensor was tampered with twice in a month for about $34k of winnings. This is settlement-source risk for honest model traders."
+    }
+   ],
+   "failure_modes": "Crowding. Thin depth. Resolution-station and rounding mistakes. Sensor tampering. The 0.05 taker fee if you cross. Forecast skill is already in the prices by the afternoon.",
+   "cheap_validation": "Score 60 days of your calibrated bucket probabilities against Polymarket mids at fixed clock times, using the Brier score and simulated maker fills only. Test the morning and afternoon windows separately.",
+   "flags": ""
+  }
+ ]
+}

@@ -1,0 +1,174 @@
+{
+ "slug": "recursive-self-improving-forecaster",
+ "name": "Recursive self-improving forecaster: outcome-RL on market-relative profit plus governed experience memory",
+ "category": "Speculative-novel",
+ "maturity": "Emerging",
+ "seed_category": "self-improving / recursive forecasting agents",
+ "one_line": "A single forecaster improves itself from its own resolved-market log. It is fine-tuned weekly with RLVR, rewarded by fee-adjusted proper-betting payoff against the logged price, and it keeps a curated and decaying lesson memory. It is deployed only in high-repetition market families and only as one expert in the stacker.",
+ "scope": "Cover the two self-improvement loops that act on one agent. (1) Continual outcome-RL on a 7-32B open model. Build the training asset: question, rules, frozen news snapshot, executable bid/ask and outcome. Make the reward market-relative proper-betting profit, not raw Brier. Use state-conditioned empirical-frequency rewards for fast templated families. Enforce a time-truncation harness. Use median sampling at inference. Counter forgetting under weekly updates. (2) Verbal RL: post-mortem lessons held in an Experience Bank and a Meta-Guideline Bank, each with utility weights, decay and retirement, routed through a per-family harness tree. Present the promising results: a 14B model matching o1 with >10% simulated ROI, and Live-Evo's +20.8% Brier. Present the three negative 2026 results: dense updates peak and then decline, memory fails on low-repetition streams, and curation decides whether experience helps or hurts. Discuss label-rate limits and GPU cost for a small team. Validate with a memory on/off A/B across templated families and the weight earned in the stacker. Boundary: population-level evolution is in evolutionary-agent-strategy-factory.",
+ "sub_variants": [
+  "RLVR with proper-betting reward against the logged executable price",
+  "State-conditioned reward for weather, sports and crypto-band families",
+  "Governed Experience Bank plus Meta-Guideline Bank",
+  "Per-family harness tree with sparse promotion"
+ ],
+ "merged_from": [
+  "Continual outcome-RL forecaster rewarded by market-relative proper-betting profit",
+  "Governed experience memory (verbal RL with insight curation) for templated market families"
+ ],
+ "flags": "None beyond ordinary trading. There is no audited live PnL for any RL-tuned or memory-evolving Polymarket agent.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2505.17989",
+   "note": "A 14B RLVR model on Polymarket questions matches o1. >10% ROI in a simulation with idealised fills."
+  },
+  {
+   "url": "http://arxiv.org/abs/2601.06336v2",
+   "note": "Future-as-Label: Qwen3-32B +27% Brier, calibration error halved."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.00164",
+   "note": "A 7B model reaches betting-market calibration on NFL. Single-outcome reward fails. State-conditioned reward works."
+  },
+  {
+   "url": "https://arxiv.org/abs/2602.02369",
+   "note": "Live-Evo: +20.8% Brier, +12.9% market return over 10 weeks on Prophet Arena."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.06960",
+   "note": "Negative: memory systems do not beat the no-experience pipeline on low-repetition streams with delayed rewards."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.17591",
+   "note": "The same experience degrades below zero-shot or dramatically improves, depending on curation."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.01770",
+   "note": "Dense harness updates peak early and then decline. A harness tree with routing sustains the gains."
+  },
+  {
+   "url": "https://github.com/PredictionMarketTrader/openthomas",
+   "note": "Self-reported replay: -$0.038 per contract to break-even after bias learning, blend and a timing fix."
+  }
+ ],
+ "n": "59",
+ "band": "speculative",
+ "file": "59-recursive-self-improving-forecaster.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Continual outcome-RL forecaster rewarded by market-relative proper-betting profit",
+   "one_line": "Weekly RLVR fine-tuning of a 7-32B open reasoning model on your own timestamped market log, where the reward is the fee-adjusted proper-betting payoff against the logged executable price rather than raw Brier, deployed only as one expert in the stacker.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "(1) Build the training asset the operator already half-owns: question + rule text + frozen news snapshot + executable bid/ask at decision time + outcome. (2) Reward each sampled forecast with the realised proper-betting payoff s = grad G(p) - grad G(q) against the logged price, minus the category fee, so the policy learns where to disagree with the price. (3) For fast-resolving templated families (weather stations, sports, crypto bands) replace the single noisy outcome with a state-conditioned empirical frequency as the reward target. (4) Enforce a time-truncation harness on retrieval during rollouts, use median-of-samples at inference, and retrain weekly on newly resolved markets with replay to limit forgetting. (5) The model never trades alone: it enters the stacker, which decides its weight.",
+   "edge_source": "A model tuned on this venue's own resolved questions and prices learns venue-specific, systematic price biases and rule quirks that a general-purpose frontier model is not optimised for.",
+   "why_might_beat_market": "A 14B RLVR model trained on Polymarket questions matched or beat o1 with much better calibration and showed over 10% simulated ROI on the test set; Qwen3-32B improved Brier 27%, halved calibration error and beat a 7x larger model; a 7B model reached betting-market calibration on NFL in-game win probability using the state-conditioned reward, whereas rewarding the single realised outcome 'fails'. Sizing dominates model choice (proper betting +22.1% / +8.1% vs Kelly -99.9% / -42.7% on identical forecasts), so making the sizing rule the reward aligns training with PnL. Honest limit: the simulated ROI uses idealised fills; the NFL model only matches the market, whose remaining edge is live information; nobody has published verified live PnL from an RL-tuned forecaster.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: Turtel et al. trained and paper-traded on Polymarket questions (simulated); no verified live deployment found. Adjacent field: reinforcement learning with verifiable rewards for forecasting (Outcome-based RL 2505.17989; Future-as-Label 2601.06336; Verifiable Rewards for Calibrated Probabilistic Forecasting 2607.00164), leakage-controlled data synthesis for future prediction (time-truncation harness 2607.25554; Agentic Time Machine 2606.21013 whose offline scores correlate strongly with live FutureX), and self-supervised fine-tuning on reasoning traces that beat the crowd (Halawi et al. 2402.18563 [pre-2025, possibly stale]).",
+   "failure_modes": "Reward hacking toward extreme longshots; delayed, noisy labels; catastrophic forgetting under weekly updates; retrieval leakage inflating reward; collapse to restating the price if the price is an input, information loss if it is not; question-mix shift (crypto and sports dominate volume); GPU cost and ops burden for a small team.",
+   "cheap_validation": "Offline: train on markets resolved before date T; test on >= 1,000 markets opened after T and after the base model's cutoff, with logged executable prices. Metrics: mean proper-betting return net of the fee formula with event-clustered CI, and the weight the model earns in the stacker. Pass: net return > 0 with 90% CI above zero AND stacker weight >= 0.15. Fail: profit only before fees or only in sub-10c buckets.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2505.17989",
+     "title": "Outcome-based Reinforcement Learning to Predict the Future",
+     "date": "2025-05-23, rev. 2025-12-01",
+     "quality": "paper",
+     "supports": "14B RLVR model matches/exceeds o1, better calibration, >10% ROI in simulated Polymarket trading; synthetic question augmentation; median sampling"
+    },
+    {
+     "url": "http://arxiv.org/abs/2601.06336v2",
+     "title": "Future-as-Label: Scalable Supervision from Real-World Outcomes",
+     "date": "2026-01-09",
+     "quality": "paper",
+     "supports": "Qwen3-32B +27% Brier, calibration error halved, beats Qwen3-235B (seen in arXiv listing)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.00164",
+     "title": "Verifiable Rewards for Calibrated Probabilistic Forecasting",
+     "date": "2026-06-30",
+     "quality": "paper",
+     "supports": "7B model reaches betting-market calibration on NFL in-game win probability; single-outcome reward fails, state-conditioned empirical win rate works"
+    },
+    {
+     "url": "https://arxiv.org/html/2607.06166v1",
+     "title": "When do prophets profit in prediction markets?",
+     "date": "2026-07-07",
+     "quality": "paper",
+     "supports": "Proper-betting payoff as the accuracy-to-profit bridge; Kelly ruinous on miscalibrated forecasts"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.25554",
+     "title": "Distilling Temporal Search and Reasoning: Evolving LLMs for Future Prediction",
+     "date": "2026-07-28",
+     "quality": "paper",
+     "supports": "Time-truncation harness enforces temporal cut-offs during data synthesis to reduce leakage"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.21013",
+     "title": "Agentic Time Machine as an Infrastructure for Future-Event Forecasting",
+     "date": "2026-06-19",
+     "quality": "paper",
+     "supports": "Reconstructed past web states give fast offline evaluation that correlates with live FutureX scores"
+    }
+   ]
+  },
+  {
+   "name": "Governed experience memory (verbal RL with insight curation) for templated market families",
+   "one_line": "Post-mortem lessons and per-family meta-guidelines, each carrying a utility weight updated by realised market-relative score, with explicit decay and retirement, applied only to high-repetition market families through a routed harness tree.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "(1) Journal every forecast, fill and settlement; after resolution a post-mortem agent writes a structured lesson: which evidence misled, which rule clause decided the outcome, which source was early. (2) Lessons go to an Experience Bank; a separate Meta-Guideline Bank records how to use them for each market family. (3) Each item's weight rises or falls according to whether retrieving it improved market-relative score on later questions, with time decay and hard retirement. (4) A rules / evidence / skills curation layer decides what is kept; nothing is appended without passing it. (5) At solve time a harness tree routes the market to its family harness (weekly mention markets, monthly CPI/jobs prints, station weather, recurring sports props, UMA clarification patterns) instead of one densely updated global prompt.",
+   "edge_source": "Institutional memory about recurring resolution quirks and source timing in templated markets, where the human crowd turns over and relearns each cycle.",
+   "why_might_beat_market": "Live-Evo reports +20.8% Brier and +12.9% market return over 10 weeks on Prophet Arena (Kalshi events). openthomas moved a weather agent's replay result from -$0.038 per contract to break-even by adding bias learning, market blend and a timing fix. Honest limit, and it is a strong one: on low-repetition streams with delayed implicit rewards, general-purpose memory systems 'do not consistently outperform the no-experience pipeline' (FinEvolveBench); the same accumulated experience either degrades performance below zero-shot or improves it dramatically depending on curation; a densely updated harness peaks early then declines. So this is only worth building for families with dozens of near-identical instances per month.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: Live-Evo (evaluated on Kalshi-based Prophet Arena); Adaptive Auto-Harness (evaluated on prediction-market and event-forecasting streams, beats five auto-harness baselines); hobby live/paper agents openthomas (max 8 active rules, rules retired on evidence) and bennyjo/phil (hourly playbook edits audited by a daily retro: keep, sharpen or revert). Adjacent field: verbal reinforcement learning and agent memory (insight governance 2606.17591, ICML 2026 RLxF workshop; FinEvolveBench 2606.06960; EvolveTrade 2609.17632; FINSKILLOPS 2609.19680: 6 of 33 proposed skills promoted, errors 20.0% to 12.5%).",
+   "failure_modes": "Superstition learning from single noisy outcomes; memory bloat and stale lessons after rule or fee changes; self-confirming narratives; post-resolution facts leaking into guidelines and contaminating later backtests; token cost of retrieval on every call.",
+   "cheap_validation": "A/B in forward paper: identical agent with memory on vs off on >= 150 markets across >= 3 templated families for 6 weeks. Metric: paired market-relative Brier per family. Pass: memory-on better by >= 0.005 with CI above zero in at least 2 of 3 families and no family worse than -0.005. Fail: benefit appears only on the weeks the lessons were written from.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2602.02369",
+     "title": "Live-Evo: Online Evolution of Agentic Memory from Continuous Feedback",
+     "date": "2026-02-02",
+     "quality": "paper",
+     "supports": "+20.8% Brier, +12.9% market return over 10 weeks on Prophet Arena; Experience Bank + Meta-Guideline Bank"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.06960",
+     "title": "FinEvolveBench",
+     "date": "2026-06-05, rev. 2026-08-12",
+     "quality": "paper",
+     "supports": "Negative result: memory systems do not consistently beat no-experience on low-repetition, delayed-reward financial streams"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.17591",
+     "title": "Closing the Feedback Loop: From Experience Extraction to Insight Governance in Verbal RL",
+     "date": "2026-06-16",
+     "quality": "paper",
+     "supports": "Same experience degrades below zero-shot or dramatically improves depending on the curation loop"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.01770",
+     "title": "Adaptive Auto-Harness",
+     "date": "2026-06-01",
+     "quality": "paper",
+     "supports": "Dense harness updates peak early then decline; harness tree with solve-time routing on prediction-market streams"
+    },
+    {
+     "url": "https://github.com/PredictionMarketTrader/openthomas",
+     "title": "openthomas README",
+     "date": "created 2026-07-03, seen 2026-09-12 update",
+     "quality": "self-reported",
+     "supports": "Journal -> Platt scaling -> playbook add/revise/deprecate; 21-day replay: -$0.038/contract naked vs -$0.000 with learning + blend + timing"
+    },
+    {
+     "url": "https://www.prophetarena.co/leaderboard/forecast",
+     "title": "Prophet Arena live leaderboard",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Context for the benchmark: Kalshi baseline 1-Brier 0.7998; best entry 0.8022, edge +0.0083; only four entries above market"
+    }
+   ]
+  }
+ ],
+ "critic_notes": []
+}

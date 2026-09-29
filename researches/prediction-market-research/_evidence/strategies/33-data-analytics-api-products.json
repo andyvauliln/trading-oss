@@ -1,0 +1,748 @@
+{
+ "slug": "data-analytics-api-products",
+ "name": "Data, analytics, API and infrastructure products",
+ "category": "Service & data business",
+ "maturity": "Established",
+ "seed_category": "service and data businesses",
+ "one_line": "Non-routing income around Polymarket: wallet analytics, datasets and APIs, news feeds, referral and affiliate programmes, content, bot-selling, plus capital wrappers; heavily commoditised and scam-adjacent.",
+ "scope": "Cover ONLY products: wallet trackers and analytics SaaS, terminals, alert services, historical order-book / leak-free replay datasets, data and API resale, forecast / calibrated-probability feeds, low-latency news feeds, market-integrity surveillance and employee-compliance monitoring, no-code strategy builders, managed vault / fund and OTC intermediary. Give pricing, revenue, users, funding where public, and say plainly where no revenue evidence exists (the critic lists several sub-variants with none). Boundary: fee-on-flow apps are builder-code-routing-business; audience businesses are referral-affiliate-content-businesses.",
+ "sub_variants": [
+  "wallet-tracking / trader analytics SaaS",
+  "historical order-book dataset resale",
+  "unified cross-venue API / infrastructure",
+  "low-latency event and news feed",
+  "forecast / calibrated probability data products",
+  "no-code strategy builder",
+  "official referral programmes (predictions, perps, US)",
+  "US affiliate CPA and paid creator deals (flagged)",
+  "education / newsletter content",
+  "custom bot development, bot-selling, clone scripts (grey)",
+  "managed vault / fund and OTC intermediary",
+  "scam fringe: drainers, malware repos, fake PnL (criminal)"
+ ],
+ "merged_from": [
+  "traders: Signals, analytics, data and affiliate/creator income",
+  "academic: Research-grade data and surveillance products",
+  "onchain-bots: Selling bots, signals and hype",
+  "platform-surface: Referral and affiliate stack",
+  "services: Wallet-tracking / trader-analytics SaaS",
+  "services: Historical tick / order-book dataset resale",
+  "services: Unified cross-venue API / developer infrastructure",
+  "services: Official referral programmes",
+  "services: Polymarket US affiliate / promo-code media",
+  "services: Paid creator / affiliated news-account deals",
+  "services: No-code strategy builder / hosted bot platform",
+  "services: Low-latency event / news feed",
+  "services: Forecast / probability data products",
+  "services: OTC / block / structured event-hedge intermediary",
+  "services: Managed fund, vault or copy-vault",
+  "services: Custom bot development, bot-selling and clone scripts",
+  "services: Education, newsletter and research content"
+ ],
+ "flags": "Undisclosed paid promotion is an FTC issue; fake-PnL marketing, custodial drainer bots and malware repos are fraud; self-referral is clawed back; pooling outside capital or arranging blocks is regulated (CPO/CTA/AIF, swaps); data redistribution rights under Polymarket ToS unverified; defamation risk when labelling wallets.",
+ "key_evidence": [
+  {
+   "url": "https://www.casino.org/news/polygun-buying-prediction-markets-data-purveyor-polymarket-analytics/",
+   "note": "Analytics site with 250,000+ users acquired by a copy-bot; terms undisclosed"
+  },
+  {
+   "url": "https://www.convexly.app/blog/polymarket-whale-audit",
+   "note": "Vendor withdrew whale audit: 85/100 rows truncated at 2,000 fills"
+  },
+  {
+   "url": "https://telonex.io",
+   "note": "Dataset resale pricing $99/$199/month (marketing)"
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.04217",
+   "note": "Free 1.20B-trade archive with true aggressor side commoditises the tape"
+  },
+  {
+   "url": "https://docs.polymarket.com/programs/referral-program.md",
+   "note": "10%/5% of net fees, 30 days or Platinum, $10k volume threshold, clawback"
+  },
+  {
+   "url": "https://www.cjr.org/tow_center/polymarket-affiliates-are-spreading-misinformation-on-x.php",
+   "note": ">=11 affiliate X accounts with >3x official impressions"
+  },
+  {
+   "url": "https://techcrunch.com/2026/06/21/polymarket-reportedly-paid-creators-to-post-deceptive-videos-about-fake-bets/",
+   "note": "Paid creators staged fake wins; audit promised"
+  },
+  {
+   "url": "https://dev.to/__747bb5a1521/the-ai-quant-bot-mirage-inside-the-polymarket-copytrade-scam-network-flooding-crypto-twitter-1856",
+   "note": "Drainer Telegram bots, fake terminals, Polycule hack (secondhand details unverified)"
+  }
+ ],
+ "parent_slug": "data-referral-content-businesses",
+ "parent_scope": "Cover each model with observed pricing and outcomes: wallet-analytics SaaS (freemium, exits by acquisition, Convexly withdrawal as the correctness bar, Data API v2 encroachment), historical book/tick resale ($99-249/month vs free academic dumps), unified cross-venue APIs (Dome and Polynode acquisitions, OSS floor), low-latency resolution-source feeds, calibrated probability products, no-code bot platforms; official referral programmes (10%/5% for 30 days, perps 20%, US $50 x 50), US affiliate CPA, paid creator deals and the deceptive-video scandal, numbers-first content as lead-gen; custom bot development and clone scripts; managed vaults/funds and OTC blocks as capital wrappers (headline-level evidence, heavy regulation). Document the scam fringe (drainer Telegram bots, malicious npm/GitHub repos, fake PnL). Boundary: builder-fee routing is builder-code-routing-business; insider-alert products are informed-flow-and-insider-trading.",
+ "seed": "service & data business",
+ "n": "33",
+ "band": "established",
+ "file": "33-data-analytics-api-products.md",
+ "critic_notes": [
+  "SPLIT data-referral-content-businesses (17 merged candidates, 12 sub-variants) into (a) data / analytics / API / infrastructure products and (b) referral, affiliate, creator and content distribution including the scam fringe. Send 'managed vault / fund and OTC intermediary', 'no-code strategy builder' and 'calibrated probability data products' to the speculative band: E6 found every fund, credit and hedge product it checked to be an empty shell (uma.rocks 0 UMA delegated, Gondor 'coming soon', PolyFund no TVL) and no revenue figure for any signal or data vendor.",
+  "data-referral-content-businesses, sub-variants 'managed vault / fund and OTC intermediary', 'no-code strategy builder', 'forecast / calibrated probability data products', 'low-latency event and news feed': no revenue, TVL or subscriber evidence was found by any lens (E6 lists them under gaps or 'absence'). They pad the file."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Signals, analytics, data and affiliate/creator income (with a large scam fringe)",
+   "one_line": "Sell whale alerts, wallet scores, datasets, dashboards or promotion; most 'strategy' content in this niche is a funnel for such products.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Observed models: freemium Telegram alert channels and 'consensus of sharp wallets' Pro tiers, wallet-analytics SaaS (Polymarket Analytics, Polycool, Hashdive, Convexly), historical data APIs (5-minute snapshots), airdrop checkers with referral links, Polymarket-badged affiliate X accounts (>=11 identified, reaching >3x the official account's impressions), and the Perps referral programme paying 20% of referred traders' fees weekly. The fringe: coordinated verified X accounts posting fake AI-bot PnL to push Telegram 'copytrade' bots that drain deposits, a malicious GitHub bot repo stealing keys, and paid creators staging fake wins (WSJ/Verge headlines).",
+   "edge_source": "Audience + data engineering; Polymarket's free, auth-less data API lowers cost.",
+   "why_might_beat_market": "Revenue is uncorrelated with trading PnL; the reader's internal wallet-screening and anti-Sybil tooling is a product others pay for.",
+   "failure_modes": "Saturation, reputational risk by association with scams, platform/API limit changes (offset cap 1,000; keyset limit 100), one vendor had to withdraw a public whale audit over truncated data.",
+   "cheap_validation": "Publish one rigorous public dataset/report (e.g. reward-share leaderboard) and measure inbound demand before building a paid tier.",
+   "flags": "Affiliate promotion without disclosure is an FTC issue; fake-PnL marketing and custodial 'copy bots' are fraud. Survey-level note: detection cues are Telegram bot links, impossible screenshots, 'paid partnership' tags.",
+   "evidence": [
+    {
+     "url": "https://dev.to/__747bb5a1521/the-ai-quant-bot-mirage-inside-the-polymarket-copytrade-scam-network-flooding-crypto-twitter-1856",
+     "title": "dev.to: The 'AI Quant Bot' mirage - Polymarket copytrade scam network",
+     "date": "2026-06-01",
+     "quality": "credible-report",
+     "supports": "Drainer Telegram bots (PolyGunSniperBot, KreoPolyBot named), fake terminals, Polycule hack ~$230k, malicious GitHub repo (secondhand details unverified)"
+    },
+    {
+     "url": "https://www.cjr.org/tow_center/polymarket-affiliates-are-spreading-misinformation-on-x.php",
+     "title": "CJR Tow Center: Polymarket affiliates are spreading misinformation on X",
+     "date": "2026-03-25",
+     "quality": "credible-report",
+     "supports": ">=11 affiliate accounts, >3x official impressions, badge by invitation; payment terms not disclosed"
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/referral-program.md",
+     "title": "Polymarket docs: Perps referral programme",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "20% of referred traders' Perps fees, weekly, uncapped per referral, invite limits scale with volume"
+    },
+    {
+     "url": "https://dev.to/__747bb5a1521/when-three-sharp-wallets-agree-what-consensus-signals-on-polymarket-actually-mean-19ki",
+     "title": "dev.to: When three sharp wallets agree (PolySignal author)",
+     "date": "2026-05-25",
+     "quality": "marketing",
+     "supports": "Example of a paid signal product with no published hit-rate evidence"
+    },
+    {
+     "url": "https://www.convexly.app/blog/polymarket-whale-audit",
+     "title": "Convexly: whale audit (withdrawn 2026-08-09)",
+     "date": "2026-04-11",
+     "quality": "marketing",
+     "supports": "85 of 100 published wallet rows were truncated at a 2,000-fill cap; findings withdrawn - caution on vendor wallet stats"
+    }
+   ]
+  },
+  {
+   "name": "Research-grade data and surveillance products (ground-truth aggressor data, informed-trading and credibility scores)",
+   "one_line": "Sell what the literature shows is missing: on-chain-verified trade direction, turnover-corrected volume, wallet skill/insider flags and resolution-lifecycle data.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "Index OrderFilled events, oracle lifecycle and redemptions into a queryable store with correct aggressor flags, mint/merge-adjusted turnover and wallet clustering; expose APIs and alerts (informed-flow flags, dislocation alerts, dispute monitor). Customers are funds, researchers, media and compliance teams at regulated venues. Your own trading agents consume the same features, so the cost is shared.",
+   "edge_source": "Public feeds are wrong in ways that matter (59% sign accuracy) and regulators/academics are calling for surveillance tooling.",
+   "why_might_beat_market": "Demand is evidenced by the 2026 flood of datasets and by law-and-finance papers proposing mandatory surveillance; incumbents' analytics mostly use naive volume and websocket-inferred direction.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2604.24366",
+     "title": "The Anatomy of a Decentralized Prediction Market (Dubach), arXiv",
+     "date": "2026-04-27",
+     "quality": "hard-data",
+     "supports": "30B order-book events over 52 days: feed-inferred trade direction agrees with on-chain truth only ~59% (vs ~80% Lee-Ready on Nasdaq); effective-spread sign flips in 50-67% of markets and Kyle's lambda in 43-60% depending on data source."
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&start=0&max_results=100&sortBy=submittedDate&sortOrder=descending",
+     "title": "arXiv listing: Polymarket-v1 Database (Qin, Yang, 2606.04217); Unlocking the Forecasting Economy datasets (2604.20421)",
+     "date": "2026-06-08",
+     "quality": "hard-data",
+     "supports": "1.20B trade records, 1.30M markets, $61B nominal volume with 100% ground-truth aggressor direction; 943M fills and 2M oracle events Oct-2020..Mar-2026 - shows both the demand and that a free baseline now exists."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.7259741",
+     "title": "From Iran to Taylor Swift: Informed Trading in Prediction Markets (Mitts, Ofir), SSRN via Crossref abstract",
+     "date": "2026-08-11",
+     "quality": "paper",
+     "supports": "Proposes mandatory platform registration and enhanced surveillance - a regulatory tailwind for surveillance tooling."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-09-04",
+     "quality": "hard-data",
+     "supports": "Data API v2 (2026-09-04) adds wallet PnL, profile stats and resolution-lifecycle reads - the platform itself is closing part of the gap; builder codes (2026-04..06) allow attribution of order flow for builder programmes."
+    }
+   ],
+   "failure_modes": "Free academic datasets and the official Data API v2 commoditise the base layer; revenue evidence is absent (no hard data found on any vendor's income); compliance buyers have long sales cycles.",
+   "cheap_validation": "Publish one differentiated feed (e.g. turnover-corrected volume + flagged-wallet imbalance) and measure paid conversions before building a platform.",
+   "flags": ""
+  },
+  {
+   "name": "Selling bots, signals and hype (including malware-laced 'free bots')",
+   "one_line": "Monetise other traders' hope: paid bots, copy-trade subscriptions, courses, and at the criminal end wallet-draining repos.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Survey level. A large share of 'Polymarket bot' content is a funnel: affiliate articles, paid copy-trading bots, Telegram signal groups and keyword-stuffed GitHub repos with inflated stars. Security researchers found a fake Polymarket trading bot on GitHub distributing an infostealer through about 30 malicious npm packages (July 2026) and malicious code in a popular copy-trading bot (December 2025). The legitimate end overlaps with the builder-code business; the illegitimate end steals private keys.",
+   "edge_source": "Information asymmetry between bot sellers and buyers; most buyers lose.",
+   "why_might_beat_market": "Not a trading edge. Listed because it is demonstrably how many 'bot' accounts on social media earn, and because it is a direct supply-chain threat to a team that studies these repos.",
+   "evidence": [
+    {
+     "url": "https://www.msn.com/en-us/news/technology/attackers-deliver-infostealer-to-polymarket-trading-bot-users-defi-devs-through-npm-packages/ar-AA26ZDwY",
+     "title": "Attackers deliver infostealer to Polymarket trading bot users, DeFi devs through npm packages (MSN) - snippet only",
+     "date": "2026-07-01",
+     "quality": "credible-report",
+     "supports": "Fake Polymarket bot on GitHub used to spread credential/wallet-key stealer; 30 malicious packages."
+    },
+    {
+     "url": "https://www.msn.com/en-us/news/technology/security-researchers-issue-alert-over-malicious-code-found-in-a-polymarket-copy-trading-bot-on-github/ar-AA1SMhFv",
+     "title": "Security researchers issue alert over malicious code found in a Polymarket copy-trading bot on GitHub (MSN) - snippet only",
+     "date": "2025-12-21",
+     "quality": "credible-report",
+     "supports": "Compromised open-source copy-trading bot by developer 'Trust412'."
+    },
+    {
+     "url": "https://techcrunch.com/2026/06/21/polymarket-reportedly-paid-creators-to-post-deceptive-videos-about-fake-bets/",
+     "title": "Polymarket reportedly paid creators to post deceptive videos about fake bets (TechCrunch) - search result, not opened",
+     "date": "2026-06-21",
+     "quality": "credible-report",
+     "supports": "Snippet: part of the profit-screenshot ecosystem is paid promotion."
+    }
+   ],
+   "failure_modes": "Fraud and computer-crime liability at the malicious end; reputational risk and refund disputes at the grey end.",
+   "cheap_validation": "None. Keep the repo's static-analysis-only rule; never install dependencies from researched bot repos.",
+   "flags": "Malware distribution and deceptive marketing are illegal; selling signals may be regulated advice in some jurisdictions."
+  },
+  {
+   "name": "Referral and affiliate stack across predictions, perps and the US app",
+   "one_line": "Monetise an audience or tool: 10% direct + 5% indirect of net prediction fees for a referee's first 30 days, 20% of perps fees with no cap or expiry, $50 per US referral (max 50), and an application-only US affiliate programme.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "International predictions referral (live 2026-05-28): referrer needs $10,000 lifetime volume; earns 10% of net trading fees from direct and 5% from second-level referrals until the referee hits Platinum tier or 30 days pass; paid daily in pUSD; computed after the referee's taker rebate; sign-up must occur within 30 days of the click. Perps referral: 20% of all trading fees of referred perps accounts, ongoing, no per-trader cap, weekly payout, invite allowance 10 -> 25 -> 100/250/500 unlocked at $100k/$500k/$1M combined volume. Polymarket US refer-a-friend: $50 credit to both sides after a $10 deposit, maximum 50 referrals ($2,500). Polymarket US also runs an approved-affiliate programme (terms by email only). The natural carrier is a free tool or content product (alerts, analytics, copy-trade UI) whose users sign up through the link.",
+   "edge_source": "Audience ownership; the 30-day window means value comes from a continuous stream of new high-volume sign-ups, while the perps programme pays an annuity.",
+   "why_might_beat_market": "A perps referee paying 4 bps taker on $50M/month generates $20k/month in fees, of which $4k goes to the referrer indefinitely; prediction-market referees in crypto categories pay the highest fees.",
+   "failure_modes": "Prediction referral is short (30 days) and fee-free categories pay nothing; perps programme terms 'may change'; omnibus integrations ineligible; perps blocked in US and Canada.",
+   "cheap_validation": "Put referral links on an existing tool or channel for one month and measure sign-ups reaching fee-paying volume; compare income with builder-fee income from the same users.",
+   "flags": "Self-referrals, linked accounts and inauthentic trading lead to disqualification and clawback per the programme terms; affiliate marketing of prediction markets is restricted or illegal in a growing list of jurisdictions.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/referral-program.md",
+     "title": "Referral Program",
+     "date": "effective 2026-05-28",
+     "quality": "hard-data",
+     "supports": "10%/5% of net fees, 30 days or Platinum cut-off, $10,000 volume requirement, daily pUSD, clawback clause, omnibus exclusion."
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/referral-program.md",
+     "title": "Perps Referral Program",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "20% of trading fees, ongoing, no per-trader cap, weekly payout, invite tiers."
+    },
+    {
+     "url": "https://docs.polymarket.us/incentives/user-programs.md",
+     "title": "User Incentive Programs (US)",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Refer-a-friend $50 to both, max 50 referrals, credited within 7 days."
+    },
+    {
+     "url": "https://docs.polymarket.us/incentives/referral.md",
+     "title": "Referral Incentive Program (US affiliates)",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Approved-affiliate programme exists; terms via affiliate@polymarket.com only."
+    }
+   ]
+  },
+  {
+   "name": "Wallet-tracking / trader-analytics SaaS (freemium, exit by acquisition)",
+   "one_line": "Leaderboards, wallet PnL, smart-money scores and alerts sold as subscriptions. Large audiences are proven, direct monetisation is weak, and exits have happened.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Index on-chain fills and Data API positions, compute per-wallet PnL, win-rate and category skill, and sell dashboards, alerts and API access. The audience then feeds a trading product through builder code, referral links or a copy bot. The observed end-state is acquisition by an execution product, not standalone SaaS profit.",
+   "edge_source": "Data engineering that is correct (full position histories and resolution accounting) plus audience capture.",
+   "why_might_beat_market": "Correctness is a real differentiator. Convexly had to withdraw a published 100-wallet audit because a 2,000-fill cap made it cover about 0.17% of one wallet's activity. A microstructure paper finds feed-inferred trade direction matches on-chain truth in only about 59% of buckets.",
+   "evidence": [
+    {
+     "url": "https://www.casino.org/news/polygun-buying-prediction-markets-data-purveyor-polymarket-analytics/",
+     "title": "PolyGun acquires Polymarket Analytics (Casino.org)",
+     "date": "2026-03-09",
+     "quality": "credible-report",
+     "supports": "Polymarket Analytics had 250,000+ users, 2.3M traders tracked and about 120M positions indexed. It was acquired for undisclosed terms."
+    },
+    {
+     "url": "https://www.oddpool.com/pricing",
+     "title": "Oddpool pricing",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Tiers are $0, $30 and $100 per month plus enterprise. The page states \"no longer accepting new subscriptions\"."
+    },
+    {
+     "url": "https://www.convexly.app/blog/polymarket-whale-audit",
+     "title": "Convexly whale-audit withdrawal notice",
+     "date": "published 2026-04-11, withdrawn 2026-08-09",
+     "quality": "self-reported",
+     "supports": "The audit was withdrawn because truncated fill histories made the per-wallet statistics unsupportable."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog: Data API v2",
+     "date": "2026-09-04",
+     "quality": "hard-data",
+     "supports": "Polymarket now serves cumulative wallet PnL, profile stats and windowed volume natively, which is platform encroachment on basic analytics."
+    },
+    {
+     "url": "https://predictfolio.com",
+     "title": "PredictFolio",
+     "date": "fetched 2026-09-20",
+     "quality": "marketing",
+     "supports": "A free competitor (ClearCode B.V.) that anchors the price at $0."
+    }
+   ],
+   "failure_modes": "Free competitors and native Data API v2 features remove the basic value. There is reputational and legal exposure in labelling identifiable wallets as \"insiders\". Retail willingness to pay is about $30-100/month. Many Show HN launches in 2026 got 1-5 points.",
+   "cheap_validation": "Publish one provably correct, reconciled metric that others get wrong (for example true realised PnL including redemptions) and measure inbound API requests.",
+   "flags": "Defamation and privacy risk when attributing behaviour to identifiable people."
+  },
+  {
+   "name": "Historical tick / order-book dataset resale",
+   "one_line": "Record the book that Polymarket does not archive and sell Parquet or API access to quants and academics at $99-249/month or on enterprise licences.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Run collectors on the CLOB websocket and chain, store L2 snapshots, trades and on-chain fills, and sell downloads or an API with personal and commercial licence tiers. Buyers are backtesting traders, funds and universities. The defensible part is depth history that cannot be rebuilt after the fact, because the public API returns only live books.",
+   "edge_source": "Having recorded earliest and cleanest. History is non-reproducible.",
+   "why_might_beat_market": "Only for depth history and niche joins (perps, Predict.fun, a synchronised Binance feed). Trades are fully reconstructible on-chain and are now free.",
+   "evidence": [
+    {
+     "url": "https://telonex.io",
+     "title": "Telonex",
+     "date": "fetched 2026-09-20",
+     "quality": "marketing",
+     "supports": "$99/month single exchange, $199/month Pro, enterprise custom. It claims 100B+ data points since November 2022 and Polymarket Perps data since June 2026."
+    },
+    {
+     "url": "https://www.polymarketdata.co",
+     "title": "PolymarketData",
+     "date": "fetched 2026-09-20",
+     "quality": "marketing",
+     "supports": "19B+ rows, 1-minute L2 from August 2025 onward, S3 exports. It cites users at LSE, Cornell, Yale, BU and Bocconi."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.04217",
+     "title": "Polymarket-v1 Database (arXiv, id from the arXiv API listing)",
+     "date": "2026-06-02",
+     "quality": "paper",
+     "supports": "A free archive of 1.20B trades with ground-truth aggressor side for 2022-2026. It commoditises the trade tape."
+    },
+    {
+     "url": "https://kacho.io/polymarket-5min-crypto-dataset",
+     "title": "Free 5-minute crypto markets dataset",
+     "date": "2026-06",
+     "quality": "self-reported",
+     "supports": "A CC0 dataset of 26.8M per-second book observations on Hugging Face and Kaggle."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.26245",
+     "title": "OpenMarket: synchronized Polymarket-Binance dataset (arXiv API listing)",
+     "date": "2026-07-28",
+     "quality": "paper",
+     "supports": "A free 727M-row millisecond dataset."
+    }
+   ],
+   "failure_modes": "Free academic dumps undercut you. Polymarket itself may ship history (price history moved to the data host in v2). Licence and ToS status for redistribution is unclear (the ToS body could not be fetched, so this is UNVERIFIED). The market is small.",
+   "cheap_validation": "You already collect books for market making. List a sample on a landing page with Stripe at $99 and see whether 10 buyers appear in 30 days.",
+   "flags": "Redistribution rights under Polymarket's ToS are UNVERIFIED."
+  },
+  {
+   "name": "Unified cross-venue API / developer infrastructure (hosted)",
+   "one_line": "Normalise Polymarket, Kalshi and others behind one API, WebSocket or MCP and sell usage tiers. Acquisition by a venue or aggregator is a demonstrated exit.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "Match equivalent contracts across venues, expose unified REST and WebSocket endpoints with arbitrage, +EV and smart-money channels, and offer hosted signing and custody for write access. Pricing clusters at $49/month and $249/month plus enterprise. Dome (YC F25) was bought by Polymarket. Polynode, which billed itself as the fastest Polymarket data API, was bought by agg.market. OSS replacements filled the gap immediately.",
+   "edge_source": "Contract-matching quality and latency, and being the default SDK that bots are built on.",
+   "why_might_beat_market": "Two acquisitions in 6 months show that strategic buyers exist. Cross-venue matching is hard and you already have it for arbitrage.",
+   "evidence": [
+    {
+     "url": "https://github.com/pmxt-dev/pmxt",
+     "title": "pmxt README",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "It states that Polymarket acquired DomeAPI and offers a drop-in replacement. 2.2k stars. It has a hosted API and sponsors."
+    },
+    {
+     "url": "https://prediction.com/api/docs",
+     "title": "Prediction.com (formerly Prediction Hunt) API docs",
+     "date": "fetched 2026-09-20",
+     "quality": "marketing",
+     "supports": "8 venues, 23 endpoints, 7 WebSockets, an MCP server. Tiers are Free, $49 Dev, $249 Pro and Enterprise. The Discord has 4K+ members."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=agg.market+polynode+acquires+polymarket+data+API&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"agg.market Acquires Polynode, the Fastest Polymarket Data API\" (TradingView)",
+     "date": "2026-07-22",
+     "quality": "credible-report",
+     "supports": "A second infrastructure acquisition (headline only)."
+    }
+   ],
+   "failure_modes": "OSS (pmxt, dr-manhattan) drives the price to zero. Venues change APIs often: CLOB V2 wiped V1 and the order response changed in July 2026. Hosted signing means custody liability.",
+   "cheap_validation": "Expose your internal cross-venue matcher as a free read-only endpoint and count the distinct API keys making more than 1k calls per day after a month.",
+   "flags": "A hosted custody and signing offering raises licensing questions."
+  },
+  {
+   "name": "Official referral programmes (Predictions 10%/5%, Perps 20%)",
+   "one_line": "Earn a share of the net trading fees of users you bring: 10% direct and 5% indirect for 30 days on predictions, and 20% uncapped on Perps.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "After $10k of lifetime volume you earn 10% of your direct referrals' net fees and 5% of second-level referrals' net fees. Payment is daily in pUSD. It lasts until the referral reaches Platinum tier or 30 days pass. Perps pays 20% of referred traders' fees weekly with no per-referral cap. Invite quotas grow from 10 to 25, then to 100, 250 and 500 as combined eligible volume reaches $100k, $500k and $1M. Any tool, newsletter or community becomes a funnel.",
+   "edge_source": "Audience plus timing. The 30-day window rewards onboarding users just before heavy-use periods such as elections, the NFL season and the World Cup.",
+   "why_might_beat_market": "Polymarket now charges fees almost everywhere. DefiLlama shows about $76M of fees in 30 days against about $16M retained, so roughly $60M per month flows back out through rebates, referrals and rewards.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/referral-program.md",
+     "title": "Referral Program (Polymarket docs)",
+     "date": "effective 2026-05-28",
+     "quality": "hard-data",
+     "supports": "The 10% direct / 5% indirect share of net fees, the $10k volume threshold, the 30-day or Platinum cutoff, daily pUSD payment, bans on self-referral and linked accounts, clawback, and the omnibus exclusion."
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/referral-program.md",
+     "title": "Perps Referral Program",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "20% of referred traders' fees, paid weekly, with invite tiers of 10 / 25 / 100 / 250 / 500."
+    },
+    {
+     "url": "https://api.llama.fi/summary/fees/polymarket?dataType=dailyFees",
+     "title": "DefiLlama fees summary for Polymarket",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "total30d fees about $76.4M and all-time about $378.6M. The revenue endpoint shows total30d about $16.3M. The methodology lists referral rewards and 3.25% holding rewards as supply-side. Per-day dates were rendered inconsistently, so treat the totals as approximate."
+    }
+   ],
+   "failure_modes": "The 30-day cap kills annuity value. \"Net fees\" are calculated after the referred user's own rebate tier. Heavy users hit Platinum quickly and drop out. Self-referral and Sybil clawbacks apply.",
+   "cheap_validation": "Put referral links in everything you already publish and measure 30-day revenue per referred user.",
+   "flags": "Self-referral, linked accounts and inauthentic trading are explicitly prohibited, with clawback. Sybil farming of this programme violates the ToS."
+  },
+  {
+   "name": "Polymarket US affiliate / promo-code media",
+   "one_line": "Sportsbook-style CPA affiliate deals for the CFTC-regulated US app. Mainstream sports and news sites already run \"$50 bonus\" promo-code pages.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Polymarket US runs a Referral Incentive Program for approved affiliates (affiliate@polymarket.com), alongside a consumer Refer-A-Friend. Publishers run SEO promo-code pages and are paid per funded account. The terms are private. It follows the US sportsbook affiliate playbook and is dominated by existing betting-affiliate networks.",
+   "edge_source": "SEO and audience in US sports. Approval by Polymarket US is required.",
+   "why_might_beat_market": "It probably does not for a solo technical team. Incumbent affiliate publishers hold the search results. It is only viable with a niche audience, for example a quantitative sports-modelling community.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.us/incentives/referral.md",
+     "title": "Polymarket US Referral Incentive Program",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "The programme \"rewards approved affiliates for referring new Participants\". Payout terms are not public."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+copy+trading+OR+%22signal+group%22+OR+newsletter+OR+course+paid+subscribers&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: promo-code pages from New York Post, Sports Illustrated, Goal.com, AL.com, GamingToday, VegasInsider and DeFi Rate",
+     "date": "2025-11 to 2026-09",
+     "quality": "marketing",
+     "supports": "\"Polymarket Promo Code ... $50 Trading Bonus\" pages at major publishers are evidence of an active CPA programme (headlines only)."
+    }
+   ],
+   "failure_modes": "CPA rates are undisclosed (UNVERIFIED). State-level legal fights (NJ, NY, CT, Baltimore) could shrink the addressable states. It is an SEO arms race.",
+   "cheap_validation": "Email the affiliate address and ask for terms. Decide from the CPA figure.",
+   "flags": "State gambling-advertising rules may apply. Undisclosed paid promotion is an FTC issue."
+  },
+  {
+   "name": "Paid creator / affiliated news-account deals",
+   "one_line": "Get paid by Polymarket (or Kalshi) to post odds content. It is lucrative for large accounts and is now the centre of a deception scandal.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Large X, TikTok and Instagram accounts carry affiliate badges or \"paid partnership\" labels and post market odds as news. A marketing contractor amplified creator videos. Payment structures are opaque: direct payments, affiliate links or both. The Tow Center found that affiliated accounts collectively generated more than 3x the impressions of Polymarket's own account.",
+   "edge_source": "Audience size and nothing else.",
+   "why_might_beat_market": "It is not relevant to a technical team without an audience. It is included because it is a real and sizeable money flow in the ecosystem.",
+   "evidence": [
+    {
+     "url": "https://www.cjr.org/tow_center/polymarket-affiliates-are-spreading-misinformation-on-x.php",
+     "title": "Polymarket affiliates are spreading misinformation on X (CJR Tow Center)",
+     "date": "2026-03-25",
+     "quality": "credible-report",
+     "supports": "At least 11 affiliated X accounts. @NewsWire_US has over 200M impressions per month. There are dozens of paid partnerships, including Piers Morgan and Laura Loomer."
+    },
+    {
+     "url": "https://techcrunch.com/2026/06/21/polymarket-reportedly-paid-creators-to-post-deceptive-videos-about-fake-bets/",
+     "title": "Polymarket reportedly paid creators to post deceptive videos about fake bets (TechCrunch on a WSJ report)",
+     "date": "2026-06-21",
+     "quality": "credible-report",
+     "supports": "The WSJ analysed about 1,100 videos. Creators were paid and used fake site copies with fabricated wins. Polymarket promised an audit."
+    }
+   ],
+   "failure_modes": "Deals are being audited. There is reputational contagion, FTC disclosure exposure, and platform policy bans.",
+   "cheap_validation": "Not recommended.",
+   "flags": "ETHICAL AND LEGAL: undisclosed paid promotion, fabricated winnings, and misinformation. It is detected through journalist analysis of videos and bios. The outcome was a company audit and lawmaker scrutiny."
+  },
+  {
+   "name": "No-code strategy builder / hosted bot platform (subscription)",
+   "one_line": "Let non-programmers describe a strategy, backtest it and deploy it to Polymarket or Kalshi from cloud sandboxes for $19-199/month.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "The user writes a strategy in plain English. The platform compiles it to executable logic, backtests it on stored history, and runs it continuously with the user's credentials. Revenue is tiered subscriptions keyed to deploy quotas. Open-source alternatives such as OctoBot Prediction Market provide a free floor.",
+   "edge_source": "Tooling convenience, plus your existing execution stack and historical data.",
+   "why_might_beat_market": "You already own the hard parts (execution, fee and reward accounting, data). Packaging them is incremental work.",
+   "evidence": [
+    {
+     "url": "https://www.turbinefi.com",
+     "title": "TurbineFi",
+     "date": "fetched 2026-09-20",
+     "quality": "marketing",
+     "supports": "$19, $99 and $199 per month tiers by weekly deploys. It supports Kalshi and Polymarket and is \"Powered by Avalanche & OrangeDAO\"."
+    },
+    {
+     "url": "https://github.com/Drakkar-Software/OctoBot-Prediction-Market",
+     "title": "OctoBot-Prediction-Market",
+     "date": "updated 2026-09-19",
+     "quality": "hard-data",
+     "supports": "A free OSS copy and arbitrage bot with 114 stars, which sets a price floor."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07355",
+     "title": "Prediction Arena (arXiv API listing)",
+     "date": "2026-03-28",
+     "quality": "paper",
+     "supports": "LLM agents trading live lost 1.1% on average on Polymarket and 16-31% on Kalshi over 57 days, so customers' strategies will mostly lose."
+    }
+   ],
+   "failure_modes": "Customers lose money and churn. Executing with users' keys creates support load and liability. No traction numbers were found for any player (UNVERIFIED).",
+   "cheap_validation": "Offer your backtester as a paid beta to 20 users from quant Discords.",
+   "flags": "Hosting automated trading for others may constitute advisory or CTA activity in some jurisdictions."
+  },
+  {
+   "name": "Low-latency event / news feed sold to prediction-market traders",
+   "one_line": "Resell speed: structured, machine-readable alerts for the specific sources that resolve markets, sold per seat to bots and desks.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "Identify the resolution sources behind high-volume recurring markets: official social accounts, court dockets, weather stations, esports match APIs and government data releases. Build the fastest parsed feed with market-ID mapping and sell WebSocket access. Betmoar already bundles X and Truth Social news tagged to markets with text-to-speech alerts. At the top end, Trump Media sells \"fastest\" access to Truth Social posts to trading firms.",
+   "edge_source": "Latency and mapping from raw event to the affected market and outcome. You already build this for your own news-driven agent.",
+   "why_might_beat_market": "The Trump Media headlines put willingness to pay for speed at up to $100k/month from 10+ firms. PM-specific mapping is a niche no generic vendor covers.",
+   "adjacent_grounding": "Trump Media fast-access feed coverage: BBC 2026-08-11 headline \"More than 10 firms pay up to $100,000 a month for fast-access data feed\", Reuters 2026-07-16, NPR 2026-08-01 (all headline-only via https://news.google.com/rss/search?q=truth+social+faster+access+posts+sale+traders+price+per+month&hl=en-US&gl=US&ceid=US:en ). Media groups sued over the sale (Deadline, 2026-08-12, headline).",
+   "evidence": [
+    {
+     "url": "https://news.google.com/rss/search?q=truth+social+faster+access+posts+sale+traders+price+per+month&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: Trump Media fast-access feed coverage (BBC, CNN, Reuters, NPR, France 24)",
+     "date": "2026-07-16 to 2026-08-14",
+     "quality": "credible-report",
+     "supports": "$100,000/month contracts, 10+ firms paying, and legal concerns raised (headlines only)."
+    },
+    {
+     "url": "https://betmoar.fun",
+     "title": "Betmoar",
+     "date": "fetched 2026-09-20",
+     "quality": "marketing",
+     "supports": "The top builder bundles real-time X and Truth Social news tagged to markets with TTS alerts, which shows news latency is a core pro feature."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.06005",
+     "title": "Price Dislocations, News Citations, and Epistemic Leverage on Polymarket (arXiv API listing)",
+     "date": "2026-09-05",
+     "quality": "paper",
+     "supports": "Links 173.7M trades to news coverage and quantifies the news-price coupling."
+    }
+   ],
+   "failure_modes": "Selling the feed erodes your own trading edge. Source ToS issues (the X API, scraping). Taker delays and fees cap what customers can earn, though the crypto taker delay was cut to 50 ms in August 2026.",
+   "cheap_validation": "Offer your existing internal feed for one market family (for example weather stations or esports results) to 5 known bot operators at $500/month.",
+   "flags": "Scraping and API-ToS compliance. Selling privileged early access to an official's posts is already drawing lawsuits."
+  },
+  {
+   "name": "Forecast / probability data products for funds, corporates and media",
+   "one_line": "Package cleaned, calibrated, event-mapped probabilities (not raw prices) as a feed or research product. Demand is real, but ICE and the venues own distribution.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "Build derived series: bias-corrected probabilities (favourite-longshot bias, category calibration), cross-venue consensus, and event-to-ticker exposure maps. Deliver them through an API or a report. Buyers are macro and event-driven funds, corporate strategy teams and newsrooms. ICE has been distributing Polymarket-derived data to institutions since its 2025 investment. Hedge funds are reported to be consuming PM data.",
+   "edge_source": "Modelling on top of public prices: calibration corrections and mapping to tradable assets. Raw data carries no moat.",
+   "why_might_beat_market": "Research shows systematic, correctable biases. Longshots lose 19.3c per dollar ungrouped. Political markets are persistently underconfident. A niche vendor can add value that ICE's raw feed does not.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket (arXiv API listing)",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "Across 588M trades, longshots lose 19.3c per dollar ungrouped and gain 4.1c when grouped by parent event."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+hedge+fund+prediction+markets+fund+launch&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"ICE Adds Prediction, Private Market Data\" (Traders Magazine, 2026-03-19); \"How hedge funds are tapping prediction markets and their data for an edge\" (Business Insider, 2026-01-25); \"A niche academic team at quant hedge fund AQR is researching prediction markets\" (2026-08-19)",
+     "date": "2026-01 to 2026-08",
+     "quality": "credible-report",
+     "supports": "Institutional demand for PM data and ICE distribution (headlines only)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.14199",
+     "title": "PolyBench (arXiv API listing)",
+     "date": "2026-04-03",
+     "quality": "paper",
+     "supports": "Only 2 of 7 LLMs achieved positive returns on live PM data, so selling LLM forecasts as alpha is weakly supported."
+    },
+    {
+     "url": "https://techcrunch.com/2025/10/10/kalshi-hits-5b-valuation-days-after-rival-polymarket-gets-2b-nyse-backing-at-8b/",
+     "title": "TechCrunch on the ICE investment",
+     "date": "2025-10-10",
+     "quality": "credible-report",
+     "supports": "ICE invested up to $2B in Polymarket at an $8B pre-money valuation."
+    }
+   ],
+   "failure_modes": "Data-licence terms for commercial redistribution of Polymarket prices are UNVERIFIED. ICE, Bloomberg and the venues bundle the data for free. Enterprise sales are slow. Forecast accuracy claims are easy to attack: PMs underperform simple baselines on disease forecasting (arXiv 2605.11220).",
+   "cheap_validation": "Publish a free weekly calibrated-odds note for one vertical (the Fed, elections or the AI industry) and see whether 3 funds ask for an API.",
+   "flags": "Investment-research regulation applies if it is marketed as advice."
+  },
+  {
+   "name": "OTC / block / structured event-hedge intermediary",
+   "one_line": "Arrange large event-risk trades off the public book, such as hedges for funds or corporates exposed to a bill, ruling or tariff. It is a balance-sheet business that has started at the top end.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "A desk sources size from market makers through RFQ and blocks, then wraps it for an institution that wants exposure to or a hedge against a discrete event. Galaxy launched such a desk with a $10M trade for Arca on the CLARITY Act. Talos offers RFQ blocks on Kalshi. Polymarket US exposes institutional RFQ, FIX and cross-order APIs. A small team's realistic role is broker-tech or quote sourcing. It cannot act as principal.",
+   "edge_source": "Relationships and the ability to find size without moving a thin book.",
+   "why_might_beat_market": "Public books are thin relative to institutional size. The epistemic-leverage paper estimates about $0.7-1.0M moves prominent markets, so an off-book intermediary has real value.",
+   "evidence": [
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+hedge+fund+prediction+markets+fund+launch&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"Galaxy enters institutional prediction markets with $10 million Arca trade\" (CoinDesk, 2026-06-02); \"Galaxy Launches Institutional OTC Prediction Markets Trading\" (galaxy.com); \"Clear Street Signs Up to Kalshi\" (Bloomberg, 2026-05-01)",
+     "date": "2026-05 to 2026-06",
+     "quality": "credible-report",
+     "supports": "The first institutional OTC desk and its trade size (headlines only)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.06005",
+     "title": "Price Dislocations, News Citations, and Epistemic Leverage on Polymarket",
+     "date": "2026-09-05",
+     "quality": "paper",
+     "supports": "About $0.7-1.0M moves prominent markets, which bounds on-book capacity."
+    },
+    {
+     "url": "https://docs.polymarket.us/llms.txt",
+     "title": "Polymarket US docs index",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Institutional RFQ, Insert Order Cross, FIX and drop-copy APIs exist on the regulated venue."
+    }
+   ],
+   "failure_modes": "It requires capital, licences (swap, IB or FCM) and counterparties. Corporate hedging demand is unproven: no corporate end-user case was found this session (UNVERIFIED). Basis risk between contract wording and the client's real exposure, as in the Strategy BTC-sale dispute.",
+   "cheap_validation": "Interview 5 crypto funds about the last event they wanted to hedge and could not.",
+   "flags": "Arranging swaps or blocks for others is a regulated activity in the US and EU."
+  },
+  {
+   "name": "Managed fund, vault or copy-vault with performance fee",
+   "one_line": "Pool outside capital into your strategies (market making, arbitrage, sniping) through an on-chain vault or a fund vehicle and charge management and performance fees.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "Wrap proven strategies in a vault or LP structure, and report NAV from on-chain positions. Examples on the market: a DeFi vault marketed as using Polymarket data (Ember and Bluefin), a commodities hedge fund opening a PM unit, a lending and leverage protocol for PM positions raising $2.5M, and a prediction-market ETF holding 15% in Kalshi and Polymarket private shares. No audited track record of a Polymarket-native vault was found.",
+   "edge_source": "Your existing strategy PnL. The business leverages it with other people's capital.",
+   "why_might_beat_market": "The strategies in your suite are capacity-constrained (rewards, arbitrage, sniping), so fee income on external capital only works if capacity exists. The SSRN study finds the top 1% capture 76.5% of profits, mostly through liquidity provision. That is the pitch.",
+   "evidence": [
+    {
+     "url": "https://hn.algolia.com/api/v1/items/48221877",
+     "title": "HN discussion quoting the SSRN abstract \"Who wins and who loses in prediction markets? Evidence from Polymarket\" (SSRN 6443103)",
+     "date": "2026-05-21",
+     "quality": "paper",
+     "supports": "The top 1% capture 76.5% of profits across 588M trades and $67B. Winners provide liquidity with limit orders. Monthly persistence is weak. SSRN itself returned 403; the figures come from the quoted abstract."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+hedge+fund+prediction+markets+fund+launch&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: Ember/Bluefin vault (2026-01-19); Moreton Capital prediction-markets unit (Financial News, 2026-06-10); Gondor raises $2.5M for PM lending (DeFi Rate, 2025-12-09); Tema prediction-markets ETF (2026-09-09)",
+     "date": "2025-12 to 2026-09",
+     "quality": "credible-report",
+     "supports": "Fund, vault and ETF wrappers are appearing (headlines only)."
+    },
+    {
+     "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6443103",
+     "title": "Who wins and who loses in prediction markets? Evidence from Polymarket (SSRN)",
+     "date": "2026-05",
+     "quality": "paper",
+     "supports": "The primary source for the concentration finding. The URL appeared in the HN listing and direct fetch returned 403."
+    }
+   ],
+   "failure_modes": "Strategy capacity. Weak performance persistence. Omnibus-wallet penalties (no taker rebates or referral). Smart-contract and key risk. Investors cannot verify off-chain hedges.",
+   "cheap_validation": "Compute the realistic capacity of each strategy from your own fills before taking outside money.",
+   "flags": "LEGAL: pooling third-party money to trade event contracts is likely CPO, CTA, AIF or securities activity. An unregistered vault offered to the public is high-risk."
+  },
+  {
+   "name": "Custom bot development, bot-selling and clone scripts (GitHub lead-gen)",
+   "one_line": "Sell bots, custom builds or white-label \"Polymarket clone\" scripts. It is a busy grey market driven by keyword-stuffed GitHub repos and Telegram handles.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Sellers publish keyword-stuffed repos (\"polymarket copy trading bot\" repeated dozens of times, with high fork counts) and route buyers to Telegram for paid versions or custom work. Freelancers advertise Polymarket bot and copy-platform experience. Agencies sell clone scripts to would-be venue operators. A legitimate variant is contract engineering for funds and builders entering the space.",
+   "edge_source": "Search visibility. For the legitimate variant, a demonstrable production track record.",
+   "why_might_beat_market": "The legitimate consulting variant monetises expertise you already have at day rates with no market risk. The bot-selling variant is a lemons market.",
+   "evidence": [
+    {
+     "url": "https://github.com/emmanuelwestra/Polymarket-Trading-Bot",
+     "title": "Polymarket-Trading-Bot repo (from GitHub search results)",
+     "date": "updated 2026-09-20",
+     "quality": "marketing",
+     "supports": "The repo description ends \"Contact @... on Telegram for custom bots\". 52 forks against 23 stars."
+    },
+    {
+     "url": "https://github.com/dexorynlabs/polymarket-copy-trading-bot",
+     "title": "Keyword-stuffed copy-bot repo (from GitHub search results)",
+     "date": "created 2026-03-16",
+     "quality": "marketing",
+     "supports": "A typical SEO-stuffed description. GitHub search returned 232 repos for \"polymarket copy trading bot\"."
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/search?query=polymarket%20copy%20trading&hitsPerPage=40&numericFilters=created_at_i%3E1735689600",
+     "title": "HN \"Who wants to be hired\" (July 2026), via the Algolia API",
+     "date": "2026-07-09",
+     "quality": "self-reported",
+     "supports": "A freelancer advertises Polymarket bots and copy-trading platforms as a speciality."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+copy+trading+OR+%22signal+group%22+OR+newsletter+OR+course+paid+subscribers&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"Polymarket Clone Script: The Future of Prediction Market Platforms\" (openPR, 2026-02-11)",
+     "date": "2026-02-11",
+     "quality": "marketing",
+     "supports": "Clone-script vendors exist (headline only)."
+    }
+   ],
+   "failure_modes": "A race to the bottom against free OSS. Buyers expect guaranteed profit. Reputational association with scam repos.",
+   "cheap_validation": "Offer 2 fixed-scope integration gigs to funded builders (see the tooling-startup candidate) and gauge rates.",
+   "flags": "GREY: many such repos ask users to paste private keys. Whether specific repos are malicious is UNVERIFIED here. Never run them. Selling \"profitable bots\" invites consumer-protection claims."
+  },
+  {
+   "name": "Education, newsletter and research content monetised through referrals, affiliates and tooling",
+   "one_line": "Write the credible, numbers-first content the space lacks and monetise through referral links, builder-coded tools, sponsorships and consulting leads, not subscriptions.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "Publish real-PnL post-mortems, datasets and microstructure notes. Capture email subscribers. Route readers into referral links (10%/5% for 30 days, 20% on perps) and your own builder-coded tools. A few independent trade publications track the industry. One, The Event Horizon, launched a prediction-market startups database. No verified paid-subscriber numbers for any Polymarket-focused newsletter or course were found this session.",
+   "edge_source": "Credibility from real numbers, in a field saturated with affiliate SEO and fabricated-win content.",
+   "why_might_beat_market": "Honest numbers stand out. A solo author's arbitrage post-mortem and free dataset reached the HN front-page range, while most Show HN tool launches got 1-5 points.",
+   "evidence": [
+    {
+     "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+     "title": "I ran an arbitrage bot on Polymarket. Here are the real numbers",
+     "date": "2026-06",
+     "quality": "self-reported",
+     "supports": "Full PnL disclosure: $4,973 net on $95.8k volume across 3,858 bets, with monthly decay. It has an email capture and no product for sale."
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/search?query=polymarket&tags=show_hn&hitsPerPage=100",
+     "title": "HN Show HN listing for \"polymarket\" (Algolia API)",
+     "date": "2025-09 to 2026-07",
+     "quality": "hard-data",
+     "supports": "About 40 tool launches, mostly 1-5 points, which is a measure of how crowded and low-attention the tooling category is."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+copy+trading+OR+%22signal+group%22+OR+newsletter+OR+course+paid+subscribers&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"Introducing The Prediction Market Startups Database\" (The Event Horizon, 2026-04-14)",
+     "date": "2026-04-14",
+     "quality": "credible-report",
+     "supports": "Independent industry newsletters and databases exist (headline only)."
+    },
+    {
+     "url": "https://www.pewresearch.org/short-reads/2026/07/22/what-we-know-about-the-typical-polymarket-user/",
+     "title": "What we know about the typical Polymarket user (Pew)",
+     "date": "2026-07-22",
+     "quality": "hard-data",
+     "supports": "The median user placed 46 trades across 10 active days between May 7 and June 19, 2026 (n of about 12,000 accounts). The mass audience is low-intensity."
+    }
+   ],
+   "failure_modes": "The referral window is only 30 days. Paid-subscription demand is UNVERIFIED. Publishing your edge erodes it. Platform scandals taint the whole content category.",
+   "cheap_validation": "Publish 4 data-backed posts from your own suite's logs with referral links and measure signups and attributed fees.",
+   "flags": "Disclose referral relationships. Avoid implied profit guarantees."
+  }
+ ]
+}

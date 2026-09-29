@@ -1,0 +1,168 @@
+{
+ "slug": "speaker-twin-mention-montecarlo",
+ "name": "Speaker-twin Monte Carlo for mention markets (scripted speakers, maker expression)",
+ "category": "Speculative-novel",
+ "maturity": "Emerging",
+ "seed_category": "new",
+ "one_line": "Generate hundreds of synthetic transcripts per event and count strike-word hits under the exact resolution rules. Blend with base rates and the market price, and express the result only as skewed maker quotes.",
+ "scope": "Cover the pipeline: a per-speaker, per-venue corpus; 200-500 simulated speeches or earnings calls, including Q&A from analyst twins; strict rule parsing for plurals, compounds and who counts as the speaker; a hierarchical Beta-Binomial base rate; and a market-prior blend. The evidence says the twin alone loses. On 856 Kalshi earnings-call contracts the LLM scored Brier 0.1470 against 0.1402 for the market, and the blend reached 0.1392. One public live system lost $16.40 over 1,115 bets. The documented profit came from a structural NO-side maker ladder (self-reported), not from LLM probabilities. Restrict use to templated speakers, because Trump-class improvisers are not simulable. Cover the cross-venue rule divergence, where Polymarket counts anyone on the broadcast and Kalshi only named speakers. Cover the live ASR leg, capacity of about $1k per word, and the taker fee of 0.04 x p(1-p) against zero for makers. Validate with 300+ word-contracts, forward-only, keeping separate arms for base rate only and for the blend.",
+ "sub_variants": [
+  "Earnings-call twin with analyst-question twins",
+  "Central-bank presser word lists",
+  "NO-side laddered maker overlay",
+  "Cross-venue rule-difference leg and live ASR stale-quote lifting"
+ ],
+ "merged_from": [
+  "Speaker digital-twin Monte Carlo for mention markets (scripted speakers only)",
+  "Speaker-twin mention model with market-prior blending and NO-side maker overlay"
+ ],
+ "flags": "Script-holding insiders are an active enforcement area: one CFTC settlement involved a teleprompter operator. The CFTC is reviewing mention markets, and Kalshi pulled sports mentions on 2026-08-14. Polymarket lists mention markets on its global venue only. Never publish synthetic speeches of real people. Never influence speakers or audiences.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2602.21229v2",
+   "note": "856 Kalshi earnings-call contracts: market 0.1402, LLM 0.1470, 70/30 blend 0.1392."
+  },
+  {
+   "url": "https://github.com/JonathanBeck1/prediction-market-mispricing",
+   "note": "Self-reported live record: lost $16.40 over 1,115 bets. LLM model Brier 0.352 vs market 0.238."
+  },
+  {
+   "url": "https://mcinerney.ai/writings/how-i-botted-6k-prediction-markets-as-i-slept/",
+   "note": "Self-reported: $5,515.94 net on $342.5k cost from a NO-side maker ladder. LLM probabilities underperformed."
+  },
+  {
+   "url": "https://defirate.com/prediction-markets/mention-markets/",
+   "note": "Venue rule differences (an 11-point gap on 'Mahomes'), manipulation incidents, resolution failures."
+  },
+  {
+   "url": "https://defirate.com/news/kalshi-pulls-sports-mention-markets-cftc-probe/",
+   "note": "CFTC is probing mention-market manipulability. Polymarket mentions are global-venue only (2026-08-14)."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=earnings%20call&limit_per_type=15&events_status=active",
+   "note": "Scripted-speaker capacity: Costco $4.1k volume, BlackBerry $0.85k."
+  }
+ ],
+ "n": "54",
+ "band": "speculative",
+ "file": "54-speaker-twin-mention-montecarlo.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Speaker digital-twin Monte Carlo for mention markets (scripted speakers only)",
+   "one_line": "Generate hundreds of synthetic speeches or earnings calls, count phrase hits under the exact rules, and blend with base rates. Restrict this to scripted speakers, because improvisers have already beaten this approach.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "1. For each mention event, assemble the speaker's last N transcripts, the current news agenda and the venue format.\n2. Generate 300-500 synthetic transcripts. For earnings calls, generate prepared remarks plus analyst-twin Q&A built from each covering analyst's past questions.\n3. Apply the exact resolution rule to each transcript: plurals, compounds, \"N+ times\".\n4. Combine the simulated hit rate with a hierarchical Beta-Binomial base rate per speaker and phrase.\n5. Trade only where the sim and the base rate agree with each other and disagree with the market by more than the fee plus spread.\n6. Rest maker orders. The Mentions taker feeRate is 0.04.",
+   "edge_source": "Conditional context (what is on the agenda this week) that pure base rates miss. Strict rule-parsing that casual traders get wrong.",
+   "why_might_beat_market": "It probably does not beat the market for political speakers. The only public live record I found is a Kalshi mention-mispricing system:\n- It lost $16.40 over 1,115 resolved bets.\n- Its LLM-assisted legacy model had Brier 0.352 against the market mid's 0.238.\n- Its Trump markets had about a 33% win rate.\nAaru independently reported it could not simulate Trump.\n\nThe remaining niche is templated speakers, where prior transcripts are highly predictive: earnings calls and central-bank pressers. Those markets are tiny: Costco $4.1k volume, BlackBerry $0.85k.\n\nLarger mention markets exist: Trump at UNGA $25k volume and $15k liquidity, NFL announcers $12k volume and $27k liquidity. Those are exactly the improvisational ones.",
+   "adjacent_grounding": "- Persona and role-play fidelity research: DPRF (arXiv 2510.14205), Test-Time-Matching (arXiv 2507.16799).\n- Existing practitioner on Kalshi: JonathanBeck1/prediction-market-mispricing. Beta-Binomial base rates plus LLM analysis. Reports 12,490 resolved outcomes, 337 transcripts, and a live negative P&L.",
+   "evidence": [
+    {
+     "url": "https://github.com/JonathanBeck1/prediction-market-mispricing",
+     "title": "Kalshi speaker-mention mispricing detector (open-sourced with live P&L)",
+     "date": "2026-04-23 (pushed 2026-09-08)",
+     "quality": "self-reported",
+     "supports": "Lost $16.40 across 1,115 resolved bets with a 47% win rate. Legacy LLM model Brier 0.352 against market mid 0.238. Trump markets about 33% win rate. Sports BUY_NO was the only positive slice, about +$20 over 578 bets. LLM cost about $50 per month."
+    },
+    {
+     "url": "https://fortune.com/2026/06/17/aaru-cofounder-ned-koh-ai-startup-sales-pitch-do-not-trust-us/",
+     "title": "Fortune on Aaru",
+     "date": "2026-06-17",
+     "quality": "credible-report",
+     "supports": "A $1B simulation company could not accurately predict the behaviour of Trump or Powell from decades of statements."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=say%20during&limit_per_type=20&events_status=active",
+     "title": "Polymarket Gamma API: mention markets",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Trump UNGA mentions have $25k volume and $15k liquidity. NFL announcer mentions have $12k and $27k, across 15 markets."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=earnings%20call&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: earnings-call mention markets",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Costco has 16 markets, $4.1k volume and $2.2k liquidity. BlackBerry has 14 markets, $0.85k volume and $1.4k liquidity."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-03-30 entry",
+     "quality": "hard-data",
+     "supports": "Mentions is a distinct fee-bearing category. Its feeRate is 0.04 per the fee docs."
+    }
+   ],
+   "failure_modes": "- Improvisational speakers are not simulable.\n- LLM speeches are more on-message and more repetitive than the real speaker, which inflates counts of agenda words and misses ad-libs.\n- Resolution-rule mismatches between training and live data. The Kalshi repo's MLB failure is an example.\n- Sparse-data priors over-fire.\n- Tiny capacity in the scripted niche.\n- A live transcript-latency race at resolution.",
+   "cheap_validation": "- Collect resolved Polymarket or Kalshi mention markets for scripted speakers only, n of at least 300, after the model cutoff.\n- Compare four Brier scores: sim only, base rate only, the blend, and the market mid at T-1h.\n- Pass: blend Brier lower than the market's, AND positive paper P&L after the 0.04 fee coefficient.\n- If base rate only equals the blend, the twin adds nothing and should be dropped.",
+   "flags": "- Synthetic speeches of real people must never be published. That would be impersonation.\n- Keep the output internal as count statistics only."
+  },
+  {
+   "name": "Speaker-twin mention model with market-prior blending and NO-side maker overlay",
+   "one_line": "Simulate the named speaker's next transcript hundreds of times, turn word frequencies into mention probabilities, blend 30/70 with the market price and express it as skewed maker quotes rather than taker bets.",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "mechanism": "1) Build a per-speaker corpus split by venue type (rally, UNGA, presser, earnings call) and compute per-word base rates conditional on event type, length and the last 7 days of agenda. 2) A 'speechwriter twin' (LLM conditioned on that corpus plus current news, prepared-remarks hints and the exact rule text: plurals, compounds, who counts as a speaker) generates 200+ synthetic transcripts; P(mention) = share of simulations containing the strike word. 3) Blend with the market as prior (Kim et al. used alpha=0.7 market / 0.3 model) and only act where the blend disagrees with the price in the 20-85c band. 4) Post laddered maker quotes (Mentions maker fee = 0, 25% rebate pool; taker would pay 0.04 x p(1-p) = 1c/share at 50c), skewed to NO where the documented YES overpricing persists; flatten hours before the event because script leaks are the fat tail. 5) Optional live leg: streaming ASR on the broadcast to lift stale quotes after the word is spoken, and a cross-venue leg exploiting rule differences (Polymarket counts anyone on broadcast, Kalshi only named speakers: 'Mahomes' 79.5% vs 68.5% at Super Bowl LX).",
+   "edge_source": "Retail entertainment flow with a YES bias; tedious per-speaker base rates and rule-text nuances that most traders do not compute; rule divergence between venues.",
+   "why_might_beat_market": "Mention prices are set by casual flow and the NO side has been systematically underpriced (McInerney: 2,717 settled Kalshi markets, NO won more often than implied). A per-speaker generative model plus strict rule parsing is a genuine information-processing advantage on hundreds of tiny contracts nobody models individually. Honest limit: on 856 Kalshi earnings-call contracts the LLM alone was WORSE than the market (Brier 0.1470 vs 0.1402) and the blend beat it by only 0.001; McInerney's LLM probabilities also underperformed and his profit was structural. On Polymarket capacity is ~$1k per word (UNGA event: $25k volume, 23 words), so this is a rebate-plus-bias harvest, not a big directional book.",
+   "adjacent_grounding": "Mention-market forecasting with market-conditioned prompting (Kim et al., LinqAlpha/MIT/Kalshi, arXiv 2602.21229: 856 contracts, 50 companies, Apr-Dec 2025, GPT-5.1; MixMCP Brier 0.1392 vs market 0.1402; MCP best when market is 50-60%). LLMs impersonating politicians judged 'more authentic' than the real answers (Herbold et al., arXiv 2407.12855 [pre-2025, possibly stale]); ChatGPT vs French presidents' speeches shows systematic lexical drift - overuse of nouns, underuse of verbs/pronouns (Labbe, arXiv 2411.18382 [pre-2025]) - i.e. exactly the word-frequency dimension matters. Individual-level twins are weak: r=0.20 (Peng et al., arXiv 2509.19088); Aaru's founder says Trump/Powell cannot be simulated (Fortune 2026-06-17).",
+   "failure_modes": "Insiders hold the script (White House teleprompter operator, ~$100k profit, $172k CFTC settlement per ABC headline); subjects troll the market (Coinbase CEO read out the words, ~$84k of trades affected); audience members shout strike words; resolution failures (Sanders rally resolved all-NO because approved media did not cover it); CFTC is reviewing the whole category and Kalshi pulled sports mentions on 2026-08-14; LLM simulations are under-dispersed and over-predict mentions; tiny depth; edge decays as liquidity improves (McInerney).",
+   "cheap_validation": "Forward-only paper trade for 8-10 weeks on every Polymarket + Kalshi political/earnings mention event (target >=300 word-contracts, >=15 events, all after model cutoffs). Log model P, blend P, market mid at T-24h and T-1h, and simulated maker fills at posted prices. Pass: blend Brier beats market mid by >=0.005 with bootstrap 95% CI excluding 0, OR NO-side realised frequency exceeds implied by >=3 points in the 20-85c band net of zero maker fee; fail otherwise. Cost: ~$0.15-$2 of LLM spend per contract at retail forecasting prices; pilot with $10 lots.",
+   "flags": "Insider-trading exposure is the live enforcement area (CFTC cases on mention markets); never trade with script access or tips. Category under CFTC manipulation review; Polymarket lists mentions on the global venue only, not the US app (DeFi Rate 2026-08-14). Do not influence speakers or audiences.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2602.21229v2",
+     "title": "Forecasting Future Language: Context Design for Mention Markets (Kim et al.)",
+     "date": "2026-02-04, v2 2026-02-27",
+     "quality": "paper",
+     "supports": "856 Kalshi earnings-call mention contracts; market Brier 0.1402, MCP 0.1470, MixMCP 0.1392; alpha=0.7; Kalshi co-affiliation"
+    },
+    {
+     "url": "https://mcinerney.ai/writings/how-i-botted-6k-prediction-markets-as-i-slept/",
+     "title": "How I botted $6k on prediction markets as I slept (D. McInerney)",
+     "date": "2026-05 (per evidence pack; page undated)",
+     "quality": "self-reported",
+     "supports": "NO-only laddered maker bot on Kalshi mentions: $5,515.94 net on $342,506 cost, 15,277 fills, 2,717 markets; LLM probability estimates underperformed; leak risk; edge decays with liquidity"
+    },
+    {
+     "url": "https://defirate.com/prediction-markets/mention-markets/",
+     "title": "Mention and Speech Markets: Odds, Sites and How They Resolve",
+     "date": "updated ~2026-09 ('3 weeks ago')",
+     "quality": "credible-report",
+     "supports": "Kalshi vs Polymarket rule differences, 11-point Mahomes gap, $47M NFL-season mention volume, manipulation incidents, Sanders-rally resolution failure; NB its 'no Polymarket fees' line is stale"
+    },
+    {
+     "url": "https://defirate.com/news/kalshi-pulls-sports-mention-markets-cftc-probe/",
+     "title": "Kalshi Pulls Sports Mention Markets Amid Reported CFTC Probe",
+     "date": "2026-08-14",
+     "quality": "credible-report",
+     "supports": "CFTC examining whether mention markets are 'particularly susceptible to manipulation'; Polymarket lists mentions globally but not on US app; Perez investigation"
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "title": "Polymarket fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Mentions feeRate 0.04, makers pay 0, 25% maker rebate"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=what%20will%20say&limit_per_type=20&events_status=active",
+     "title": "Gamma API: active 'What will X say' events",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Trump UNGA mention event $25,151 volume, $16,933 liquidity, 23 markets; UFC announcer event $5,377 volume"
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=%22mention+markets%22+polymarket+OR+kalshi&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News RSS listing (headline only): 'Ex-White House teleprompter operator to pay $172,000 to settle CFTC probe' (ABC News 2026-08-28); 'Trump Speech Generated $11.97M in Volume, Kalshi' (DeFi Rate 2026-02-25); 'Feds probe mention markets' (NPR 2026-08-13)",
+     "date": "2026-02 to 2026-08",
+     "quality": "credible-report",
+     "supports": "insider case size, Kalshi SOTU mention volume, regulatory probe (articles not fetched)"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "speaker-twin-mention-montecarlo: the 'Emerging' maturity rests on the NO-side laddered maker overlay. That overlay is a structural and behavioural maker strategy (YES overpricing in mention markets), and its only profit record is self-reported. The twin itself has negative evidence: Brier 0.1470 against 0.1402 for the market, and a public live record of -$16.40. Label the twin 'Experimental' and route the NO-ladder to the behavioural-bias or LP band."
+ ]
+}

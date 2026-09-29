@@ -1,0 +1,164 @@
+{
+ "slug": "llm-forecasting-agents",
+ "name": "LLM forecasting agents (direct retrieval-and-reason forecasters trading the gap)",
+ "category": "Directional trading",
+ "maturity": "Emerging",
+ "one_line": "An LLM pipeline retrieves news and data, produces a calibrated probability per market and trades the gap to the Polymarket price under deterministic risk limits.",
+ "scope": "The baseline every speculative multi-agent idea must beat. Cover: state of the art vs market price (ForecastBench, Metaculus AI tournaments, Prophet Arena, live Kalshi / Polymarket LLM trading arenas: mostly negative after costs), open-source Polymarket agents and commercial 'AI quant' products, viral PnL claims and why they are unverified, where LLMs plausibly have edge (long-tail illiquid markets, breadth, rules reading, multilingual sources, speed of text digestion), design choices that matter (retrieval, ensembling, market-price anchoring, extremising, fine-tuning / RL on resolved questions), traps (backtest leakage, knowledge-cutoff contamination, Brier vs PnL, fees and spread), cost per forecast, and a deterministic sizing / risk layer. Primary source: evidence pack E7. Mine S1-discovery-candidates.json for merged_from names. Boundary: simulation / debate / internal-market / self-improving variants live in the speculative band (files 50+): reference, do not repeat.",
+ "key_evidence": [],
+ "sub_variants": [],
+ "merged_from": [
+  "traders: LLM-agent forecasting / 'AI quant' bots",
+  "academic: LLM/ML forecaster with proper-scoring-rule sizing",
+  "onchain-bots: Model-ensemble news/social probability bots"
+ ],
+ "seed": "4 statistical models (AI variant)",
+ "n": "21",
+ "band": "established",
+ "file": "21-llm-forecasting-agents.md",
+ "critic_notes": [],
+ "raw_discovery_candidates": [
+  {
+   "name": "LLM-agent forecasting / 'AI quant' bots",
+   "one_line": "Autonomous agents that research markets and trade on their own probability estimates - heavily hyped, thinly evidenced.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "Typical build: agents pull news/polls/forecasts, an LLM (or ensemble of personas) outputs a probability, and the bot trades when it differs from price. Viral claims ('4 agents on a $400 laptop, $150 -> $38,700, 91% win'; 'Claude bot turned $1 into $3.3M') are unverified, and the latter account (sovereign2013) is, per the same article, a rapid sports-arbitrage bot - its $3.59M on $402M volume is market-making-like, not LLM forecasting. A practitioner with audited numbers calls X bot posts 'absolute LARPs'. Benchmarks: only two models achieved positive returns on 38,666 markets; ten LLM agents have the forecasting power of ~1.4 independent ones (error correlation 0.70); detecting a 2% edge needs ~350 resolved predictions.",
+   "edge_source": "Hoped-for: cheaper breadth of research than humans. Demonstrated: mainly as coding assistant and analyst-assist, not as autonomous alpha.",
+   "why_might_beat_market": "Possibly in the long tail of low-attention markets where any structured base-rate work beats vibes; unproven.",
+   "failure_modes": "Correlated model errors, stale-knowledge leakage in backtests, execution costs, a reviewer's 'AI ensemble bot' lost 43.3%; scams use the 'Claude bot' narrative as bait.",
+   "cheap_validation": "Pre-register 350+ small forward predictions in fee-free geopolitics/long-tail markets and compare Brier and PnL vs market mid before allocating capital.",
+   "flags": "The 'AI bot' narrative is the main lure of drainer scams.",
+   "adjacent_grounding": "LLM forecasting benchmarks on live Polymarket data (arXiv 2604.14199 PolyBench; 2606.26583 monoculture; 2605.00420 Foresight Arena) - all listed at https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+   "evidence": [
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv 2604.14199 PolyBench; 2606.26583 Preference Optimization Drives Monoculture; 2605.00420 Foresight Arena",
+     "date": "2026-04 to 2026-06",
+     "quality": "paper",
+     "supports": "Only two models positive over 36,165 predictions; rho=0.70 -> ~1.4 effective forecasters; ~350 predictions needed to detect a 2% edge at 80% power"
+    },
+    {
+     "url": "https://finbold.com/claude-ai-powered-trading-bot-turns-1-into-3-3-million-on-polymarket/",
+     "title": "Finbold: Claude AI powered trading bot turns $1 into $3.3M (sovereign2013)",
+     "date": "2026-04-03",
+     "quality": "marketing",
+     "supports": "The viral 'AI bot' account is described as rapid sports arbitrage; no verification of any LLM role"
+    },
+    {
+     "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+     "title": "kacho.io real numbers post",
+     "date": "2026-06-06",
+     "quality": "self-reported",
+     "supports": "'All \"I built a Polymarket trading bot\" posts I've read on X are absolute LARPs'; AI used to write the bot, not to predict"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rpul61,1s31toy",
+     "title": "Reddit r/PillarLab 1rpul61 seven-bot review",
+     "date": "2026-03-10",
+     "quality": "marketing",
+     "supports": "AI ensemble bot -43.3%, copy bot -23%, MM bot -52.5%, a GitHub bot was a wallet drainer"
+    }
+   ]
+  },
+  {
+   "name": "LLM/ML forecaster with proper-scoring-rule sizing and a deterministic risk layer",
+   "one_line": "Forecast with an LLM or fine-tuned model, but size with the proper-betting rule or quarter-Kelly after a selection filter - naive edge-proportional/Kelly sizing turns a slightly-better forecaster into a loser.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Generate probabilities p, compare with market q, and stake s = grad G(p) - grad G(q) (for Brier: 2(p-q)) rather than Kelly, which assumes p is truth. Alternatively filter candidates first (edge threshold, time-normalised return, per-event caps, drawdown halts enforced outside the prompt) and then apply quarter-Kelly. Expected profit decomposes into score gap + Bregman divergence - liquidity loss, so the agent only trades where forecast skill beats book cost. Small, many, short-dated bets are needed for statistical power.",
+   "edge_source": "Marginal forecasting skill in markets where the crowd is thin or slow, converted efficiently into PnL.",
+   "why_might_beat_market": "Evidence says the belief-to-trade layer, not the forecaster, separates winners from losers among otherwise identical agents.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2607.06166v2",
+     "title": "When do prophets profit in prediction markets? (Gu, Kagan, Sun, Wu, Xu), arXiv",
+     "date": "2026-07-07",
+     "quality": "self-reported",
+     "supports": "Live Kalshi deployment Apr-May 2026: $200 -> $360.67 in 26 days (+80.33%, Sharpe 3.35), 129 markets, 236 orders, win rate 50.9%, fees $26.31, Gemini 3 forecaster; nearly all gain from predictive accuracy; Kelly shown to lose when the forecast is not the truth."
+    },
+    {
+     "url": "https://arxiv.org/html/2607.03015v1",
+     "title": "Beyond Forecasting: The Belief-to-Trade Layer in Prediction-Market Agents (Wang et al.), arXiv",
+     "date": "2026-07-03",
+     "quality": "paper",
+     "supports": "Same forecasts, 5 policies on 44-58 archived Polymarket trades: flat stake -10.7%, edge-proportional -55.5%, edge-filter -9.3%, risk module flat -4.7%, risk module + quarter-Kelly +15.9% (bootstrap CI +3.8%..+30.0%). Tiny sample."
+    },
+    {
+     "url": "https://arxiv.org/html/2604.07355v1",
+     "title": "Prediction Arena: Benchmarking AI Models on Real-World Prediction Markets (Zhang et al.), arXiv",
+     "date": "2026-03-28",
+     "quality": "hard-data",
+     "supports": "Real money, $10k per model, 57 days: Kalshi returns -16.0% to -30.8% for six frontier models; Polymarket -0.09% to -2.68%; research token volume uncorrelated with performance; one model made 664 trades at 28.8% settlement accuracy."
+    },
+    {
+     "url": "https://arxiv.org/html/2604.14199v1",
+     "title": "PolyBench (Cheng et al.), arXiv",
+     "date": "2026-04-03",
+     "quality": "paper",
+     "supports": "38,666 markets, 7 models: only 2 profitable (+17.6%, +6.2%), five lost 9-25%; the best model's alpha disappeared above ~$500 allocations due to book slippage; rigid 0.8-0.9 confidence regardless of domain."
+    },
+    {
+     "url": "https://arxiv.org/html/2505.17989v4",
+     "title": "Outcome-based Reinforcement Learning to Predict the Future (Turtel et al.), arXiv",
+     "date": "2025-05-23",
+     "quality": "paper",
+     "supports": "14B RL-tuned model: Brier 0.190 vs o1 0.202 but market 0.151; simulated one-share bets on 1,265 questions earn ~10% ROI (~20% on 40-60% markets) with a 1c cost - simulation, authors disclaim real-world inference."
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&start=0&max_results=100&sortBy=submittedDate&sortOrder=descending",
+     "title": "arXiv listing: Foresight Arena (2605.00420); Preference Optimization Drives Monoculture in LLM Prediction Markets (2606.26583)",
+     "date": "2026-05-01",
+     "quality": "paper",
+     "supports": "Detecting a 2% edge at 80% power needs ~350 predictions, 1% needs ~4x more; DPO-tuned LLM agents' errors correlate at rho=0.70, so 10 agents ~ 1.4 independent forecasters - ensembles of similar LLMs add little."
+    }
+   ],
+   "failure_modes": "Market Brier still beats the best models; capacity ~hundreds of dollars per market; LLM herd correlation means crowded identical bets; benchmark contamination; weather category was a consistent loser.",
+   "cheap_validation": "Pre-register 400 small bets with frozen prompts; evaluate score gap vs market, then PnL under proper-betting vs quarter-Kelly vs flat; stop if score gap <= 0 after 200.",
+   "adjacent_grounding": "Proper scoring rules / Bregman-divergence market makers (Hanson, Abernethy-Chen-Vaughan) reused as a bettor's sizing rule.",
+   "flags": ""
+  },
+  {
+   "name": "Model-ensemble news/social probability bots (LLM or ML forecasters)",
+   "one_line": "Estimate probabilities from news and social data and trade divergences from the market.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "An ensemble of models ingests news and social feeds, outputs probabilities per market and trades when the gap to price exceeds a threshold, retraining continuously. One widely reported wallet is said to have made $2.2M in two months this way. Controlled evaluations point the other way: frontier LLMs given real money lost on both venues, and only a minority of models are profitable in live benchmarks.",
+   "edge_source": "Faster or broader information aggregation than human traders.",
+   "why_might_beat_market": "Evidence is weak. The positive case is a single secondary report; every controlled test found in this session is negative or marginal. Treat headlines like '$1 into $3.3M' as marketing.",
+   "evidence": [
+    {
+     "url": "https://finance.yahoo.com/news/arbitrage-bots-dominate-polymarket-millions-100000888.html",
+     "title": "Arbitrage Bots Dominate Polymarket (BeInCrypto via Yahoo)",
+     "date": "2026-01-06",
+     "quality": "credible-report",
+     "supports": "Bot profiled by Igor Mikerin: ensemble probability models on news and social data, '$2.2 million in just two months'. Secondary report, unverified."
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&start=40&max_results=70",
+     "title": "arXiv listing: Prediction Arena (2604.07355), PolyBench (2604.14199), LiveTradeBench (2511.03628)",
+     "date": "2026-03-28",
+     "quality": "paper",
+     "supports": "Six frontier models with $10,000 each over 57 days on Kalshi and Polymarket returned -30.8% to -1.1%; only 2 of 7 LLMs had positive returns in PolyBench; benchmark scores do not predict live trading success."
+    },
+    {
+     "url": "https://uruguabot.com/blog/we-lost-270-building-a-polymarket-bot.html",
+     "title": "We lost $270 building a Polymarket trading bot",
+     "date": "2026-08-13",
+     "quality": "self-reported",
+     "supports": "ML gate 57% in training, 48-50% live; simulated +0.8% to +11.9% ROI versus real -27%; slippage and stop-loss overshoot dominate."
+    },
+    {
+     "url": "https://finbold.com/claude-ai-powered-trading-bot-turns-1-into-3-3-million-on-polymarket/",
+     "title": "Claude AI powered trading bot turns $1 into $3.3M on Polymarket (Finbold) - HN listing, not opened",
+     "date": "2026-04-05",
+     "quality": "marketing",
+     "supports": "Example of the hype genre; no verification."
+    }
+   ],
+   "failure_modes": "Correlated model errors (DPO-tuned agents collapse to ~1.4 independent forecasters per arXiv 2606.26583 listing); training-data leakage in backtests; taker fees; simulation-reality gap.",
+   "cheap_validation": "Forward-test only: commit forecasts on 350+ markets before resolution (the sample size one paper says is needed to detect a 2% edge) before risking capital.",
+   "flags": ""
+  }
+ ]
+}

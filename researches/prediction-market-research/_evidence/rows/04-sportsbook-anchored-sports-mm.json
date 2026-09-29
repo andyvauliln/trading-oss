@@ -1,0 +1,58 @@
+{
+  "n": "04",
+  "slug": "sportsbook-anchored-sports-mm",
+  "file": "04-sportsbook-anchored-sports-mm.md",
+  "band": "established",
+  "name": "Sportsbook-anchored sports and esports market making (devigged fair value, pair lock, outside hedge)",
+  "one_line": "Rest tiered maker bids around devigged sharp-book prices on sports and long-tail esports; lock pairs under $1 or hedge residuals; freshness of odds decides PnL.",
+  "category": "Market-making",
+  "maturity": "Established (large operator, pre-fee, self-reported); decayed for the small esports pair-lock bot",
+  "requires_ai": "no; optional name mapping across books",
+  "edge": "External sharp anchor vs thin Polymarket books; retail sports takers",
+  "capital": "$1k-$10k long-tail esports; $10k+ major leagues ($300k for the pro)",
+  "build_time": "3-6 weeks per sport family",
+  "opportunity_size": "sports ~40% of volume; NFL pre-game already one price across 3 venues; long tail small",
+  "expected_results": "esports bot +$4,973 on $95.8k over 4 months then ~$0; pro +$60-65k good month, -$100k bad 10 days (pre-fee)",
+  "competition": "desks and US MM programmes in majors; 1c-overbidding bots in the long tail",
+  "flag": "none on Polymarket; grey odds scraping and multi-wallet; insider lineup info prohibited",
+  "validate": "3-week paper log of devigged anchor vs book; pass fill rate >5% and positive settlement markout",
+  "top_risk": "Stale odds and injury news fill you on the wrong side",
+  "evidence_grade": "C",
+  "solo_fit": 3,
+  "solo_fit_reason": "Cheap data and a clear external anchor make it testable in weeks, but the documented small bot decayed within four months and major-league pre-game lines are already arbitraged; viable only in niches with fresh feeds.",
+  "compounds_with": [
+    "maker-reward-pool-farming",
+    "combos-rfq-market-making",
+    "cross-venue-leadlag-signals",
+    "combinatorial-logical-arbitrage",
+    "sports-inplay-feed-latency-taking",
+    "inplay-behavioural-fades"
+  ],
+  "speed_class": "latency-sensitive pre-game (odds freshness); latency-critical in play",
+  "results_1k": "test: -$50 to +$150/month (guess)",
+  "results_5k": "-$100 to +$800/month (guess)",
+  "results_10k": "-$200 to +$1,000/month (guess)",
+  "min_capital": "~$2k: odds feed and VPS are fixed costs",
+  "capacity_ceiling": "~$10k-30k in long-tail esports before own bids set price",
+  "services": [
+    "The Odds API or Pinnacle push feed",
+    "Polymarket CLOB REST+WS",
+    "Gamma sports metadata",
+    "Polymarket sports WS",
+    "Kalshi / Polymarket US public data",
+    "sportsbook/exchange accounts (hedge)",
+    "injury news",
+    "VPS"
+  ],
+  "monthly_running_cost": "minimum ~$40; comfortable ~$250-400",
+  "changes_made": [
+    "Live 24 Sep: NFL/CFB game markets zero-fee (no rebate), other sports 0.05/15%; three-venue NFL prices within a tick.",
+    "Pinnacle public API closed 2025-07-23 (vendor source).",
+    "Small esports sub-variant labelled decayed per critic note."
+  ],
+  "open_doubts": [
+    "Pro operator's economics are pre-fee and self-reported.",
+    "Shin devig and 10.9 pp CoD figures read via the brief from the kacho post.",
+    "Auto-cancel at game start rests on a possibly stale official repo."
+  ]
+}

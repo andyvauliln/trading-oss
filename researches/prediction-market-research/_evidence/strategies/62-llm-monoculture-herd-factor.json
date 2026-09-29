@@ -1,0 +1,271 @@
+{
+ "slug": "llm-monoculture-herd-factor",
+ "name": "LLM-monoculture factor: model the bot herd, then front-run or fade it",
+ "category": "Speculative-novel",
+ "maturity": "Purely theoretical",
+ "seed_category": "new",
+ "one_line": "Run a deliberately vanilla 'sentinel' consensus of default frontier-model bots to sense where homogeneous LLM traders lean. Learn its bias surface and its post-listing price impact. Provide liquidity against news-free drift toward it.",
+ "scope": "Cover the Vanilla Consensus Index or shadow herd: 3-5 default-prompt frontier models with generic search. Cover the bias map built from resolved markets: acquiescence (YES bias), English-news bias, escalation bias, overconfidence. Cover the on-chain footprint tests: drift toward the sentinel without news, a 15-45 minute action cadence, synchronized small takers. Cover the two trades, quoting ahead of predicted flow and fading herd pushes with time stops. Cover the zero-capital use as a no-edge and crowding detector for the team's own agents. Evidence on homogeneity: rho 0.70, identical top picks in 92% of World Cup matches. Evidence on losses: Prediction Arena -16% to -31% on Kalshi, PolyBench 5 of 7 models losing. The decisive unknown: the LLM share of Polymarket volume is unmeasured. The '30% of wallets' figure is a vendor claim. Naively fading LLMs is also unprofitable. Include reflexivity and the need to re-learn after each model release. Validate by pure logging over 12 weeks: regress next-period returns on sentinel-minus-price, and track markouts from herd-matched wallets. Boundary: human trader-cohort simulation is in crowd-price-path-simulation.",
+ "sub_variants": [
+  "Sentinel bias-fade in mapped bias cells",
+  "Front-run predicted LLM flow at listing",
+  "VCI agreement as a negative feature in the deference gate (crowding gauge)"
+ ],
+ "merged_from": [
+  "Fade the silicon herd: vanilla-LLM consensus index",
+  "Monoculture-residual trader: model the LLM herd, then front-run or fade it",
+  "Monoculture harvesting: model the LLM-bot herd and be its counterparty",
+  "Fade-the-bots: an LLM-monoculture factor"
+ ],
+ "flags": "Counter-trading bots is legal market activity. Poisoning sources the bots read, or moving prices to trigger their rules, would be manipulation and a ToS risk.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2606.26583",
+   "note": "Preference-tuned agents: rho=0.70, N_eff ~1.4, flat from N=5 to 40."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.17765",
+   "note": "Four frontier agents made the identical top pick in 92% of 104 matches. None beat the market. Fading was also unprofitable."
+  },
+  {
+   "url": "https://arxiv.org/abs/2604.07355",
+   "note": "Real capital over 57 days: Kalshi -16% to -30.8%, Polymarket -1.1%. Agents act every 15-45 minutes."
+  },
+  {
+   "url": "https://arxiv.org/abs/2604.14199",
+   "note": "PolyBench: 5 of 7 LLMs lose despite uniformly high stated confidence."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.04373",
+   "note": "Correlated LLM trader behaviour rises with capability and becomes a liability under shared misinformation."
+  },
+  {
+   "url": "https://arxiv.org/abs/2402.19379",
+   "note": "[pre-2025] LLM crowd acquiescence: mean forecasts above 50% on balanced questions."
+  },
+  {
+   "url": "https://www.coindesk.com/tech/2026/03/15/ai-agents-are-quietly-rewriting-prediction-market-trading",
+   "note": "Polystrat: 4,200+ trades and ~37% of agents profitable (vendor figures). The '30% of wallets' claim is unverified."
+  },
+  {
+   "url": "https://github.com/Polymarket/agents",
+   "note": "Official bot template: 3.8k stars, archived 2026-05-11. Near-identical scaffolds circulate widely."
+  }
+ ],
+ "n": "62",
+ "band": "speculative",
+ "file": "62-llm-monoculture-herd-factor.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Fade the silicon herd: use a vanilla-LLM consensus index as a model of the bot crowd and trade against its known biases",
+   "one_line": "As off-the-shelf LLM bots multiply on Polymarket, their correlated errors become a priced factor. Your own 'dumb' zero-shot crowd is a cheap sensor of where that herd leans. Fade moves toward it that arrive without news.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical (the monoculture is measured in labs and benchmarks; the bot cohort's volume share and price impact are unverified; nobody was found trading this)",
+   "mechanism": "1) Maintain a Vanilla Consensus Index (VCI): several frontier models with a generic prompt and the generic web search a hobby bot would use.\n2) Characterise the VCI's systematic biases on resolved markets: acquiescence (YES bias), source-language bias, hedging toward 50%, status-quo handling.\n3) Monitor live markets for price drift toward the VCI that coincides with no new information. The news-value measure from the vintage-crowd idea can serve here. Drift with many small same-sized orders at regular intervals is the signature of bot cycles (Prediction Arena agents act every 15-45 minutes).\n4) When drift toward the VCI pushes the price away from the debiased blended fair value by more than fee plus spread, provide liquidity against it. Use maker entries and a time stop.\n5) Treat VCI agreement as a negative feature in the selective-deference gate: if your sophisticated crowd merely agrees with the VCI, you have no edge over the bots.",
+   "edge_source": "A growing, homogeneous and miscalibrated participant class. Correlated mistakes do not diversify away, unlike human noise.",
+   "why_might_beat_market": "Theory and lab evidence agree that LLM traders are highly correlated.\n- rho = 0.70 for same-model agents; r about 0.77 across frontier models.\n- The correlation rises with capability (Lo et al.).\n- In aggregate, real-money LLM agents lose (Prediction Arena, PolyBench), so someone is on the other side.\n- Documented directional bias: acquiescence, with mean LLM forecasts significantly above 50% on balanced questions.\n\nHonest limit: whether LLM bots are yet large enough to move Polymarket prices is unverified. If they are under 1% of flow, no tradeable footprint exists, and the idea reduces to using the VCI as a 'no-edge detector'. That is still useful.",
+   "adjacent_grounding": "Financial-stability and algorithmic-monoculture research:\n- Ross, So, De Simone, Pozniak & Lo (https://arxiv.org/abs/2609.04373, 2026-09-03): the capability paradox and a non-diversifiable risk floor from correlated LLM traders.\n- Begin et al. (https://arxiv.org/abs/2606.26583).\n- Schoenegger et al., 'Wisdom of the Silicon Crowd' (https://arxiv.org/abs/2402.19379, 2024) [pre-2025]: the acquiescence effect.\n- Pal et al., LLM confidences do not align with actions in prediction-market settings (arXiv 2511.13240, 2025-11-17).\n- Supply of bots: Polymarket/agents with 3.8k stars (archived 2026-05-11) and dozens of multi-agent Polymarket repos from a GitHub search on 2026-09-20.",
+   "failure_modes": "- The bot cohort is too small to matter (unverified).\n- Bots may be right on average in toss-up or early markets, which is where TimeSeek finds LLM skill.\n- The acquiescence bias was measured in 2024 models and may be fixed in 2026 models.\n- Bot traffic is hard to attribute on-chain, so signatures give false positives.\n- Crowded 'fade retail' trades.\n- Time-stop losses when the 'no news' assumption is wrong because of insider flow.",
+   "cheap_validation": "(a) Bias audit. Run the VCI on 400 post-cutoff balanced questions. Test mean p against the base rate and the calibration slope. A significant YES bias or compression is required.\n\n(b) Footprint test. On at least 500 market-weeks, regress the next-7-day return on (price - VCI) and on recent drift toward the VCI without news. Pass is a significantly negative coefficient on the drift-toward-VCI term (t > 2) out-of-sample.\n\n(c) If (b) fails, keep the VCI only as a gate feature.",
+   "flags": "Counter-trading identifiable bot wallets is legal market activity. Do not manipulate prices to trigger their rules, which would be manipulation or a ToS risk.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.04373",
+     "title": "Why Better Models Can Create Riskier Systems (arXiv)",
+     "date": "2026-09-03",
+     "quality": "paper",
+     "supports": "Frontier LLM traders exhibit significantly correlated behaviour that increases with capability. This creates a non-diversifiable risk floor and becomes a liability under shared misinformation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2402.19379",
+     "title": "Wisdom of the Silicon Crowd (arXiv) [pre-2025, possibly stale]",
+     "date": "2024-02-29",
+     "quality": "paper",
+     "supports": "A 12-LLM crowd matches a 925-person human crowd on 31 questions. It shows an acquiescence effect: mean predictions significantly above 50% despite balanced resolutions."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07355",
+     "title": "Prediction Arena (arXiv)",
+     "date": "2026-03-28",
+     "quality": "paper",
+     "supports": "Real-money LLM agents trade every 15-45 minutes. Cohort returns were -16% to -30.8% on Kalshi and -1.1% on Polymarket. There is a loser cohort to trade against, and its action cadence is known."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.14199",
+     "title": "PolyBench (arXiv)",
+     "date": "2026-04-03",
+     "quality": "paper",
+     "supports": "36,165 predictions on 38,666 Polymarket markets. Only 2 of 7 LLMs had positive returns despite uniformly high stated confidence."
+    },
+    {
+     "url": "https://github.com/Polymarket/agents",
+     "title": "Polymarket/agents (GitHub)",
+     "date": "archived 2026-05-11",
+     "quality": "hard-data",
+     "supports": "The official LLM trading-agent framework has 3.8k stars and 827 forks, which indicates how widely near-identical bot templates circulate. It is now archived."
+    }
+   ]
+  },
+  {
+   "name": "Monoculture-residual trader: model the LLM herd, then front-run or fade it",
+   "one_line": "Run a cheap sentinel population of default-prompt frontier models as a proxy for what retail LLM bots believe, continuously learn its systematic error surface and its price impact after listing, and trade the predictable part of both.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "(1) For every new market compute 'sentinel consensus' from 3-5 vanilla frontier models with default prompts and web search - deliberately not your best agents. (2) From resolved markets learn the sentinel's bias surface by category, template and base-rate regime. (3) From order-flow data learn when price drifts toward sentinel consensus in the hours after listing or news, i.e. where LLM-driven flow is material. (4) Trade A: quote ahead of predicted LLM flow at listing and unwind into it. Trade B: where the sentinel has a learned bias, fade moves toward its consensus. (5) Re-learn after every major model release, because the herd's beliefs shift with it.",
+   "edge_source": "A new behavioural factor: correlated error of homogeneous LLM traders, analogous to retail longshot bias but refreshed with each model release and largely unmeasured.",
+   "why_might_beat_market": "Frontier agents gave the identical top pick in 92% of 104 matches; preference-tuned agents show error correlation 0.70; shared prompts generate correlated behaviours that affect market stability in LLM-trader simulations; a practitioner found LLMs systematically overestimate that a word will be said relative to market prices; one vendor alone reported 4,200+ agent trades on Polymarket in its first month with only about 37% of agents profitable, i.e. roughly two thirds of that flow lost. If LLM flow is material, its common error is predictable. Honest limit: no on-chain study isolates LLM-driven wallets or their price impact; the claim that 30%+ of wallets use agents is a vendor-sourced statistic I could not verify; makers may already price this; the effect may be smaller than fees.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: nothing found. Adjacent field: LLM agents in simulated order-book markets (Lopez-Lira 2504.10789); monoculture in LLM prediction markets (2606.26583); bandit-learning traders producing pseudo-collusive pricing (2411.05032 [pre-2025, possibly stale]); behavioural-profile extraction from 100 Polymarket wallets, which found prompt-level injection does not transmit diversity (Nous 2606.13038); order-flow skill detection on Polymarket (2605.02287).",
+   "failure_modes": "Cannot label which wallets are LLM bots; herd beliefs change with each model release, so the bias surface has few observations per regime; fading a herd that is right; effect swamped by informed flow in headline markets; crowding if other operators run the same sentinel.",
+   "cheap_validation": "Event study on own recordings, >= 500 newly listed markets: regress (price at t0+24h minus price at t0) on (sentinel consensus minus price at t0) controlling for news arrivals, and separately test whether the learned sentinel bias predicts final outcomes. Pass: drift coefficient significantly > 0 (evidence of LLM flow) OR the bias-fade rule earns positive net paper return over >= 300 markets with event-clustered CI above zero. Fail: neither effect distinguishable from zero.",
+   "flags": "Front-running predicted flow is ordinary market making here, but avoid any tactic that depends on manipulating what LLM bots read (poisoned sources) - ethical and likely ToS/legal issue.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.17765",
+     "title": "FIFA World Cup 2026 as a Contamination-Free Benchmark for LLM Forecasting Agents",
+     "date": "2026-07-20",
+     "quality": "paper",
+     "supports": "92% identical top picks across four frontier agents; none beats bookmaker"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "Error correlation 0.70 caused by preference optimisation"
+    },
+    {
+     "url": "https://arxiv.org/abs/2504.10789",
+     "title": "Can Large Language Models Trade? Testing Financial Theories with LLM Agents in Market Simulations",
+     "date": "2025-04-15",
+     "quality": "paper",
+     "supports": "Standardised prompts generate correlated behaviours affecting market stability"
+    },
+    {
+     "url": "https://www.coindesk.com/tech/2026/03/15/ai-agents-are-quietly-rewriting-prediction-market-trading",
+     "title": "AI agents are quietly rewriting prediction market trading",
+     "date": "2026-03-15",
+     "quality": "credible-report",
+     "supports": "Olas Polystrat: 4,200+ Polymarket trades in about a month, 'over 37%' of agents with positive PnL; LayerHub '30% of wallets' claim (vendor-sourced, unverified)"
+    },
+    {
+     "url": "https://mcinerney.ai/writings/how-i-botted-6k-prediction-markets-as-i-slept/",
+     "title": "How I botted $6k on prediction markets as I slept",
+     "date": "2026-05",
+     "quality": "self-reported",
+     "supports": "LLMs systematically overestimated word-occurrence probabilities versus market pricing"
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.13038v1",
+     "title": "Nous: An Attempt to Extract and Inject the Cognition Behind Prediction-Market Behavior",
+     "date": "2026-06-11",
+     "quality": "paper",
+     "supports": "Prompt-level persona injection from 100 Polymarket wallets does not measurably transmit diversity (seen in arXiv listing)"
+    }
+   ]
+  },
+  {
+   "name": "Monoculture harvesting: model the LLM-bot herd and be its counterparty",
+   "one_line": "Run a 'shadow herd' of default frontier-model agents on every liquid market to predict what the growing population of LLM trading bots will want to buy, then sell it to them at a premium or fade their synchronized pushes.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "1) Hourly, run 3-4 frontier models with the common open-source agent scaffolds (web search + quarter/half-Kelly sizing, as in the popular repos) over liquid markets to get the herd's consensus probability and implied trade direction. 2) Detect herd activity on-chain: clusters of small synchronized taker orders across many markets, bursts after model releases or viral news, wallets whose trade direction matches the shadow herd. 3) Where the herd's view diverges from price AND a known LLM bias applies (overconfidence, English-headline recency, consensus bias, poor market timing), place maker orders on the side the herd will lift, a tick or two rich; after a herd-driven push with no new information, fade with a time stop. 4) Track the herd's realised PnL as the strategy's health metric: it only works while the herd loses. 5) Use cross-model disagreement as the abstain signal.",
+   "edge_source": "Counterparty modelling of a new, homogeneous and measurably unprofitable participant class.",
+   "why_might_beat_market": "The herd is predictable and, so far, loses: Begin et al. - DPO-tuned agents have pairwise error correlation 0.70, ten agents ~ 1.4 independent forecasters, flat from N=5 to 40. WC2026-Agents - four frontier models issue the identical top pick in 92% of matches, none beats the market's Brier score, betting ROI -18% to +10%. Prediction Arena (real capital, 57 days) - Kalshi returns -16.0% to -30.8%, Polymarket average -1.1%. PolyBench - 5 of 7 models lose 'despite uniformly high stated confidence'. RetailAgent (listing only) reports persistent negative market timing in LLM agents. Ross, So, Lo et al. - correlation rises with capability and becomes harmful under common misinformation. Honest limit: I found NO data on what share of Polymarket volume is LLM-driven; GitHub shows only ~41 repos matching 'polymarket LLM trading agent'. Capacity today may be negligible; this is a bet on growth, and if bots improve the edge inverts.",
+   "adjacent_grounding": "Crowded-trade / factor-crowding literature and 'quant quake' dynamics (unverified this session); multi-agent LLM research on homogeneity: https://arxiv.org/abs/2606.26583, https://arxiv.org/abs/2609.04373, https://arxiv.org/abs/2607.17765, https://arxiv.org/abs/2606.13038; live LLM trading benchmarks: https://arxiv.org/abs/2604.07355, https://arxiv.org/abs/2604.14199; PolySwarm 50-persona framework (https://arxiv.org/abs/2604.03888).",
+   "failure_modes": "Herd share of flow too small to matter; bots use private prompts/tools so the shadow herd mispredicts them; models update frequently; you end up simply running an LLM forecaster in reverse, which WC2026 shows is also unprofitable ('fading the market is unprofitable for all four' - and fading LLMs naively may be too); API cost of hourly runs across hundreds of markets.",
+   "cheap_validation": "Two-step. (a) Identification: pick 200 liquid markets; every hour record shadow-herd direction; test whether next-hour signed taker flow from small wallets correlates with it (pass: correlation >=0.05, t>3) and whether a wallet cluster matches the herd >=70% of the time. (b) Economics: paper-trade maker orders on the herd's buy side for 4 weeks; pass if fills from herd-matched wallets show positive 1h markout for you >=0.5c per share. If (a) fails, shelve the idea and revisit in 6 months.",
+   "flags": "None legal; note reflexivity - publishing the shadow-herd signal would destroy it.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets (Begin et al.)",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "rho=0.70; N_eff ~1.4; 10-agent market 67.6% vs single agent 70.2%; cross-model diversity rho 0.68 -> 0.40."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.17765",
+     "title": "FIFA World Cup 2026 as a Contamination-Free Benchmark for LLM Forecasting Agents (Ding, Guo, Xu)",
+     "date": "2026-07-20",
+     "quality": "paper",
+     "supports": "Identical top pick in 92% of 104 matches; none beats market Brier; ROI -18% to +10%; fading the market unprofitable."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07355",
+     "title": "Prediction Arena (Zhang et al.)",
+     "date": "2026-03-28",
+     "quality": "hard-data",
+     "supports": "Real-capital live trading: Kalshi -16.0% to -30.8%; Polymarket avg -1.1%; research volume uncorrelated with outcomes."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.14199",
+     "title": "PolyBench (Cheng, Liu, Long)",
+     "date": "2026-04-03",
+     "quality": "paper",
+     "supports": "36,165 predictions; 5 of 7 LLMs lose money with high stated confidence."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.04373",
+     "title": "Why Better Models Can Create Riskier Systems (Ross, So, De Simone, Pozniak, Lo)",
+     "date": "2026-09-03",
+     "quality": "paper",
+     "supports": "Correlated LLM agent behaviour increases with capability; harmful under common misinformation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.03888",
+     "title": "PolySwarm (Barot, Borkhatariya)",
+     "date": "2026-04-04",
+     "quality": "paper",
+     "supports": "Representative published LLM-swarm trading architecture (50 personas, quarter-Kelly) - a template for what the herd runs."
+    }
+   ]
+  },
+  {
+   "name": "Fade-the-bots: an LLM-monoculture factor",
+   "one_line": "Run the same default frontier-LLM pipeline everyone else runs, treat its output as a measure of correlated bot demand, and lean against it where that consensus carries a known bias.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "1) Maintain a 'consensus bot' - 3-4 frontier models with vanilla search prompts, no market price shown - and compute its probability for every new long-tail market daily. 2) Build a bias map from resolved markets: where consensus-bot error is systematic (acquiescence/YES bias, English-news bias on non-English events, escalation bias in geopolitics, over-confidence on Kalshi-style questions). 3) Signal = market has moved toward the consensus-bot value since listing without news AND the question sits in a mapped bias cell. 4) Express as maker quotes skewed against the bot side, small and diversified across many markets; stop when the bot share in that category is unknown or falling. 5) Secondary use: a crowding gauge for the team's own LLM strategies - if your forecaster agrees with the consensus bot, your edge is already in the price.",
+   "edge_source": "Correlated errors of homogeneous LLM traders: ten DPO-tuned agents behave like ~1.4 independent forecasters; four frontier agents made the identical top pick in 92% of World Cup matches.",
+   "why_might_beat_market": "If a meaningful share of long-tail flow comes from near-identical models, their shared error becomes a priced factor with no natural arbitrageur, exactly like crowded quant factors. Honest limits: nobody has measured bot share of VOLUME (the '30% of wallets use AI agents' figure is a vendor-analytics claim via CoinDesk, unverified); subsidised agents such as Polystrat trade tiny size; the same studies show most such bots lose money, which means the market already beats them without your help; and the bias map needs hundreds of resolved markets per cell.",
+   "adjacent_grounding": "Begin et al., 'Preference Optimization Drives Monoculture in LLM Prediction Markets' (arXiv 2606.26583): rho=0.70, N_eff ~1.4 flat from N=5 to 40, 10-agent market 67.6% vs single agent 70.2%, cross-family mixing cuts rho 0.68 -> 0.40. WC2026 agents (arXiv 2607.17765): identical top pick in 92% of 104 matches; none beat the market Brier; ROI -18% to +10%; flat stake on the favourite out-earned all four. English-news bias wrong 64-72% of the time on Ukraine territorial markets (arXiv 2607.20441). Lopez-Lira-style LLM trader markets show prompt-induced correlated behaviour (evidence pack E8, not re-fetched). Equity analogue: crowded-factor unwinds (quant quake 2007).",
+   "failure_modes": "Bot flow too small to move prices (no factor to fade); bots improve faster than the bias map updates; you end up fading informed humans who happen to agree with the bots; the consensus bot costs $0.5-$2 per market-day to maintain across thousands of markets; no ground truth on who is a bot.",
+   "cheap_validation": "Pure logging test, no trading: for 12 weeks compute consensus-bot P for every new market at listing+1h, then regress subsequent 7-day price change and final outcome on (bot P - listing price). Hypothesis A (bots move prices): price drifts toward bot P. Hypothesis B (fade works): conditional on drift toward bot P with no news, outcome residual is negative in mapped bias cells. Pass: A holds with t>3 AND B yields >=2 points of calibration gap over >=350 resolved markets. If A fails, shelve the idea and keep the crowding gauge only.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "rho=0.70, N_eff~1.4, ensemble worse than single agent, cross-family diversity remedy"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.17765",
+     "title": "WC2026 agents: four frontier LLM forecasting agents over 104 World Cup matches",
+     "date": "2026-07-20",
+     "quality": "paper",
+     "supports": "92% identical top picks; none beat market Brier; ROI -18% to +10%"
+    },
+    {
+     "url": "https://www.coindesk.com/tech/2026/03/15/ai-agents-are-quietly-rewriting-prediction-market-trading",
+     "title": "AI agents are quietly rewriting prediction market trading (CoinDesk)",
+     "date": "2026-03-15",
+     "quality": "self-reported",
+     "supports": "'more than 30% of wallets' claim attributed to LayerHub (unverified); Polystrat 4,200+ trades, 37% of agents profitable; 'off-the-shelf models ... no better than a coin-flip'"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.20441",
+     "title": "Belief Propagation in LLM World Models: Measuring Strategic Information Bias with Prediction Markets",
+     "date": "2026-05-12",
+     "quality": "paper",
+     "supports": "a mapped, directional LLM bias (English-news context) that is identical across four architectures"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "RENAME llm-monoculture-herd-factor to 'predictable-herd factor' and add three sub-variants. (a) Copy-cascade harvesting: follower flow is labelled on-chain by builder code (PolyCop and Polygun fills; median copy delay 5.6 min, p90 9.6; E6 pack). A leader fill therefore predicts follower takers minutes later. Note the collapse to about $28.5M a month of copy-bot volume in Aug 2026 (E6 pack), which makes capacity small. (b) Machine-context audit (see missing: platform-ai-context-audit). (c) Poisoned-source sentinel. Trading ahead of your own followers is prohibited. Providing liquidity to strangers' public copy flow is not.",
+  "llm-monoculture-herd-factor is borderline. The decisive input, the LLM share of Polymarket volume, is unmeasured, and the '30% of wallets' figure is a vendor claim. The one direct test of fading LLM consensus, on 104 World Cup matches, was unprofitable. It deserves a file only because the validation is pure logging at zero capital. If the 12-week log shows no news-free drift toward the sentinel, delete the file and do not iterate on it."
+ ]
+}

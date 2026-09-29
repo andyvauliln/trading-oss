@@ -1,0 +1,246 @@
+{
+ "slug": "sponsor-and-inform-niche-models",
+ "name": "Sponsor-and-inform: subsidise depth in niches where simple statistical models beat the market, then be the informed maker",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "new",
+ "one_line": "Find market families where a computed baseline demonstrably beats Polymarket prices, such as disease counts or thresholds with an options-implied reference. Pitch a market or pick a thin existing one. Pay for liquidity rewards so a book forms, and quote the bracket ladder from the model.",
+ "scope": "Cover the inversion of the usual constraint, which is edge without depth. Domain discovery runs through a reference-class and base-rate pipeline: reference classes with computed base rates, not remembered ones; a red-team challenge on class membership; and a Fermi cross-check. Evidence for such niches: FluSight and simple baselines dominate Polymarket and Kalshi flu and measles markets, to the point that the optimal blend puts zero weight on the markets, and those markets price impossible outcomes. BTC threshold contracts sit 5.6 points from option-implied values. Counter-evidence: prompt-only 'superforecaster' tricks do almost nothing, and more capable models make worse tail forecasts. Mechanics: users cannot create markets and must suggest them via X. Anyone can sponsor rewards from $0.1 a day, with one sponsorship per market. In the Telonex case about $70k of sponsorship doubled the number of makers and multiplied top-of-book depth 23.5x. Economics to test: reward farmers dilute the subsidy, other makers copy your quotes, and adverse selection applies. The account is mark-out plus recaptured rewards plus rebates against sponsorship spend. Validate with 8 weeks of public model scoring, then a 14-day sponsorship at $20 a day.",
+ "sub_variants": [
+  "Existing thin market with a dominant public baseline (measles, flu brackets)",
+  "Pitching a new market with a legible resolution source",
+  "Options-implied density vs BTC threshold ladders",
+  "Reference-class tournament with a Fermi cross-check as the model source"
+ ],
+ "merged_from": [
+  "Sponsor-and-inform: get a market listed where your model beats the crowd, buy its depth, then be the informed maker",
+  "Reference-class tournament with data-backed Fermi decomposition for structured markets",
+  "platform-surface: Sponsor-to-trade and market origination",
+  "services: Market proposal, sponsorship and brand-partnership brokerage"
+ ],
+ "flags": "Whether the ToS conduct code allows trading a market you lobbied for and sponsored is unverified. Check the wash and self-trade rules. Never misstate anything when pitching a market. Avoid death and disaster markets for reputational reasons. CDC backfills can break bracket settlement.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2605.11220",
+   "note": "The FluSight ensemble dominates Polymarket and Kalshi disease markets. The optimal blend puts zero weight on the markets."
+  },
+  {
+   "url": "https://help.polymarket.com/en/articles/13755867-sponsor-market-rewards",
+   "note": "Anyone can sponsor rewards from $0.1 a day. One sponsorship per market. Refund from the next 00:00 UTC."
+  },
+  {
+   "url": "https://help.polymarket.com/en/articles/13364541-how-are-markets-created",
+   "note": "Users cannot create markets. They suggest a title, resolution source and demand evidence via X."
+  },
+  {
+   "url": "https://telonex.io/research/sponsored-liquidity-rewards-jesus-market",
+   "note": "~$70k of sponsorship: makers 302 to 639, top-of-book depth 23.5x, all within a day."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=measles&limit_per_type=10&events_status=active",
+   "note": "Measles 2026: $7.98M volume but only $20.1k resting liquidity across 16 brackets."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.19517",
+   "note": "Polymarket BTC thresholds sit a mean 5.6 points from option-implied values (t=6.46). Half-life ~4h. May be a premium rather than a mispricing."
+  },
+  {
+   "url": "https://arxiv.org/abs/2506.01578",
+   "note": "38 forecasting prompts give negligible gains. Bayesian-reasoning prompts hurt. The edge must come from data pipelines."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.17503",
+   "note": "What gets listed is driven by settlement legibility, not importance."
+  }
+ ],
+ "extra_scope": "Also absorb the two market-origination candidates dropped from the established band (sponsor-to-trade / market origination for a private model; market proposal, sponsorship and brand-partnership brokerage). Note that markets are created only by Polymarket's team, so origination runs through proposals and sponsorship.",
+ "n": "68",
+ "band": "speculative",
+ "file": "68-sponsor-and-inform-niche-models.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Sponsor-and-inform: get a market listed where your model beats the crowd, buy its depth, then be the informed maker",
+   "one_line": "Pitch Polymarket a market in a domain where simple models demonstrably beat prediction-market prices, sponsor liquidity rewards so a real book forms, and earn spread plus model edge as the best-informed quoter.",
+   "category": "Market-making",
+   "maturity": "Experimental",
+   "mechanism": "1) Pick a domain with (a) a public, mechanical resolution source and (b) published evidence that a statistical baseline beats the market: weekly flu hospitalisations and monthly measles counts are the documented case (CDC FluSight ensemble so dominant that the optimal blend puts zero weight on the markets). 2) Users cannot create markets, so submit title + resolution source + demand evidence to the markets team via X, as the help page prescribes; alternatively target existing listings (Measles 2026: $7.98M volume but only $20k resting liquidity). 3) Sponsor rewards (min $0.1/day, one sponsorship per market, cancellable with refund from next 00:00 UTC): in the Telonex case ~$70k of sponsorship doubled active makers within a day (302 -> 639) and multiplied top-of-book depth 23.5x. 4) Quote the bracket ladder from your model's predictive distribution; incoming retail/taker flow trades against your fair value; you also collect a share of your own sponsored rewards plus 25% maker rebates. 5) Scale sponsorship up or down with realised flow; pull it before resolution windows.",
+   "edge_source": "Model advantage in niches where traders place probability mass on impossible outcomes; control over where liquidity appears; zero maker fee.",
+   "why_might_beat_market": "It inverts the usual problem (edge exists but no depth) by paying for depth where you are the informed party - the classic 'subsidised market' logic with you on the informed side. Evidence that such niches exist is hard: Dudley & Magdaleno show Polymarket/Kalshi disease markets lose to simple baselines and even price decreasing cumulative counts. Honest limits: sponsorship attracts competing makers who dilute your reward share within hours and may copy your quotes; you pay for depth that other informed traders can also hit; Polymarket may decline the listing; if your model is merely as good as the market (LoL paper: logistic model statistically indistinguishable from Polymarket on 928 maps) you just burn the subsidy.",
+   "adjacent_grounding": "Hanson's subsidised market makers (LMSR: sponsor pays b ln n for information - evidence pack E8, not re-fetched). Dudley & Magdaleno, 'Prediction Markets Underperform Simple Baselines For Infectious Disease Forecasting' (arXiv 2605.11220). Adegbenro, 'What Prediction Markets Can See' (arXiv 2606.17503): listings are driven by settlement legibility, not importance - so a well-specified resolution source is what gets a market made. Telonex sponsored-rewards case study (2026-02-22). Chen, 'Prediction-Market Seed Capital Recovery from Noise-Dominant Flow' (arXiv 2609.14038, listing only) on recovering prefunded liquidity. Guan, LoL paired-comparison model vs Polymarket (arXiv 2609.08060, listing only) as the cautionary example.",
+   "failure_modes": "Reward farmers absorb the subsidy without adding informative depth; adverse selection from a better modeller; resolution-source revisions (CDC backfills) break bracket settlement; listing refused or worded differently from your model target; optics of trading a market you lobbied for and subsidised.",
+   "cheap_validation": "Step 1 (no money): for 8 weeks publish your model's bracket probabilities for the existing measles and flu markets and score log-loss versus market mid; pass if the model wins on >=75% of weeks (the paper says it should). Step 2: sponsor one existing thin market at $20/day for 14 days while quoting $200 of depth per side; metrics: sponsor-$ per $ of taker flow attracted, own share of rewards recaptured, mark-out of fills at +1h and at resolution. Pass: mark-out PnL + rewards recaptured + rebates > sponsorship spent. Fail: reward share <20% and non-positive mark-outs.",
+   "flags": "Disclose nothing false when pitching a market. Trading a market you sponsor is not prohibited by the help page fetched, but check the ToS conduct code (wash/self-trade rules) - unverified. Avoid markets on deaths/disasters for reputational reasons.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2605.11220",
+     "title": "Prediction Markets Underperform Simple Baselines For Infectious Disease Forecasting",
+     "date": "2026-05-11",
+     "quality": "paper",
+     "supports": "FluSight ensemble dominates Polymarket/Kalshi; optimal combination puts zero weight on markets; markets price impossible outcomes"
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13364541-how-are-markets-created",
+     "title": "How are markets created? (Polymarket Help)",
+     "date": "updated 2026-04-19",
+     "quality": "hard-data",
+     "supports": "users cannot create markets; suggest with title, resolution source and evidence of demand via X"
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13755867-sponsor-market-rewards",
+     "title": "Sponsor market rewards (Polymarket Help)",
+     "date": "updated 2026-03-12",
+     "quality": "hard-data",
+     "supports": "anyone can sponsor from $0.1/day; daily pro-rata payout at 00:00 UTC; one sponsorship per market; refund only from next UTC day"
+    },
+    {
+     "url": "https://telonex.io/research/sponsored-liquidity-rewards-jesus-market",
+     "title": "Sponsored liquidity rewards: the 'Jesus' market case (Telonex)",
+     "date": "2026-02-22 (event 2026-02-17)",
+     "quality": "hard-data",
+     "supports": "~$70k sponsorship: makers 302 -> 639, top-of-book depth 23.5x, HHI 0.164 -> 0.041, $100k order fillable 4% -> 100% of the time; break occurred in seconds"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=measles&limit_per_type=10&events_status=active",
+     "title": "Gamma API: active measles events",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "'Measles cases in U.S. in 2026?' $7.98M volume, $20.1k liquidity, 16 brackets"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.17503",
+     "title": "What Prediction Markets Can See: Market Formation, Settlement Legibility...",
+     "date": "2026-06-13",
+     "quality": "paper",
+     "supports": "6,047 contracts: what gets listed is what can be settled legibly, not what matters"
+    }
+   ]
+  },
+  {
+   "name": "Reference-class tournament with data-backed Fermi decomposition for structured markets",
+   "one_line": "Agents compete to propose reference classes with computed (not remembered) base rates, a red team attacks class membership, and a Fermi tree is cross-checked against the direct estimate, aimed at quantitative niche markets where Polymarket already loses to simple statistical baselines.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Classifier routes a market to 'structured' if an external statistical baseline or countable history exists (epidemiology brackets, BTC thresholds vs options, CPI/NFP brackets, mention counts, weather). (2) Proposer agents each submit a reference class plus code that computes its base rate from data; challenger agent attacks similarity and selection effects; judge weights classes and outputs a prior. (3) Fermi agent decomposes into sub-quantities with distributions, Monte-Carlo recombines, and the gap between Fermi and direct estimate is a research trigger. (4) When an established baseline exists (FluSight ensemble, option-implied density, climatology) it replaces the LLM estimate. (5) Trade brackets where baseline mass differs from price, especially impossible/near-impossible outcomes carrying price.",
+   "edge_source": "Domain-statistics failure: retail traders price narrative, not base rates or distributions; thin niche markets attract no specialists.",
+   "why_might_beat_market": "Hard evidence of market weakness: Polymarket flu-hospitalisation and measles markets (2025-26) were dominated by the FluSight ensemble / simple baselines and put probability on impossible outcomes; Polymarket BTC threshold contracts sit 5.6 pts (mean, t=6.46) from Binance option-implied values, widest at low probability and long maturity; decomposition improved Brier in automated question pipelines (0.141 -> 0.132 as summarised from arXiv 2601.22444; verify). Honest limits: prompt-level 'superforecaster' tricks do almost nothing (38 prompts, negligible gains; base-rate reference slightly positive; Bayesian-reasoning prompt strongly negative), so the edge has to come from real data pipelines; more capable LLMs make WORSE upper-tail forecasts on superlinear-growth series.",
+   "adjacent_grounding": "Superforecasting practice tested on LLMs: Schoenegger, Jones, Tetlock prompt study https://arxiv.org/abs/2506.01578 ; automated question generation with decomposition https://arxiv.org/abs/2601.22444 ; inverse scaling on tail-risk forecasts https://arxiv.org/abs/2605.22672 ; prediction markets vs epidemiological baselines https://arxiv.org/abs/2605.11220 ; Polymarket vs option prices https://arxiv.org/abs/2606.19517 ; merger-arb LLM beating market-implied probabilities (Brier 0.151, 24% below market) https://arxiv.org/abs/2607.09921 as proof that specialised pipelines can beat prices in niches. No Polymarket implementation of an automated reference-class tournament found.",
+   "failure_modes": "Reference-class hacking (judge picks the class that flatters its prior); sparse or non-stationary history; bracket markets illiquid; option-implied gap may be a risk premium/funding cost not a mispricing (half-life ~4 h, mean reverting); fees 0.05-0.07 in these categories.",
+   "cheap_validation": "Pick three recurring families (weekly flu brackets, BTC thresholds vs option-implied, monthly CPI brackets). Backtest baseline vs market price at T-7d and T-1d on all 2025-26 instances. PASS: baseline Brier (or RPS for brackets) < market with p<0.05 and simulated net return > 0 after category feeRate and spread; FAIL families are dropped. Cost: data engineering only, no LLM spend needed for the baseline arm.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2605.11220",
+     "title": "Prediction Markets Underperform Simple Baselines For Infectious Disease Forecasting",
+     "date": "2026-05-11",
+     "quality": "paper",
+     "supports": "Polymarket flu/measles markets beaten by FluSight ensemble and simple statistical baselines; probability mass on impossible outcomes; low volume."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.19517",
+     "title": "Do Prediction Markets Match Option Prices? Bitcoin Threshold Evidence from Binance and Polymarket",
+     "date": "2026-06-17",
+     "quality": "hard-data",
+     "supports": "Mean 5.6 pt gap over 214 hourly observations (t=6.46), AR(1) half-life ~4 h, largest at low probabilities and long maturities."
+    },
+    {
+     "url": "https://arxiv.org/abs/2506.01578",
+     "title": "Prompt Engineering Large Language Models' Forecasting Capabilities",
+     "date": "2025-06-02",
+     "quality": "paper",
+     "supports": "38 prompts across four LLMs: negligible gains; base-rate references slightly helpful; Bayesian-reasoning encouragement strongly negative."
+    },
+    {
+     "url": "https://arxiv.org/abs/2601.22444",
+     "title": "Automating Forecasting Question Generation and Resolution for AI Evaluation",
+     "date": "2026-01-30",
+     "quality": "paper",
+     "supports": "Question decomposition strategy improved Brier scores in a 1,499-question automated pipeline (0.141 -> 0.132 per arXiv listing summary; verify)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.22672",
+     "title": "Is Capability a Liability? More Capable Language Models Make Worse Forecasts When It Matters Most",
+     "date": "2026-05-21",
+     "quality": "paper",
+     "supports": "Inverse scaling on superlinear-growth/tail-risk series (COVID, measles, housing, hyperinflation): failure concentrates in the upper tail."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.09921",
+     "title": "Global Merger-Arbitrage Forecasting with Language Models",
+     "date": "2026-07-10",
+     "quality": "paper",
+     "supports": "Specialised LLM pipeline reaches class-balanced Brier 0.151, 24% below calibrated market-implied probabilities on 400+ deals."
+    }
+   ]
+  },
+  {
+   "name": "Sponsor-to-trade and market origination for a private edge",
+   "one_line": "Get a market listed where you hold a data edge, then pay a small sponsored-liquidity budget to attract tight two-sided quotes and take that liquidity with informed orders.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "Markets are created by Polymarket's markets team with community input; users suggest via X with a title, a resolution source and evidence of demand, and there is no fee share for suggesters. A team with a proprietary signal in a niche (weather, tech releases, 'mentions', local politics) proposes markets that resolve on its data domain. Once listed, it sponsors rewards (from $0.1/day, no platform fee, cancellable from next midnight) so reward-farming LPs post size within the max spread. The team then executes its informed position against that subsidised depth; total cost is the sponsorship plus taker fees, which can be far below the market impact of building the same position in an unsponsored book. The same tool works for cheaper exits from large existing positions.",
+   "edge_source": "Converts an information edge that is untradeable for lack of a market or depth into a tradeable one; the counterparty is reward-farming liquidity that prices the subsidy, not the information.",
+   "why_might_beat_market": "Reward farmers quote on score formulas and rarely model niche fundamentals; the sponsor chooses when and where they appear.",
+   "failure_modes": "Polymarket may not list the market or may write rules that break the mapping to your data; LPs learn and avoid markets you sponsor; position sizes in niche markets stay small; if you are effectively the resolution data source this becomes a manipulation/insider problem.",
+   "cheap_validation": "Suggest three markets in one niche, measure listing rate and time-to-list; sponsor $20/day on an existing thin market and measure added qualifying depth per sponsored dollar.",
+   "flags": "Trading on material non-public information or on outcomes you can influence is prohibited and, since 2026, actively prosecuted (several US and Israeli insider cases). Keep the edge to superior public-data modelling.",
+   "adjacent_grounding": "No adjacent paper was fetched this session (search budget exhausted) - unverified. The analogue is issuer-paid designated-market-maker and liquidity-mining schemes on equity/crypto venues, where the payer benefits from depth; treat as hypothesis only.",
+   "evidence": [
+    {
+     "url": "https://help.polymarket.com/en/articles/13364541-how-are-markets-created",
+     "title": "How Are Markets Created?",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Markets team creates markets; users suggest via X with title, resolution source, demand evidence; no compensation mentioned."
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13755867-sponsor-market-rewards",
+     "title": "Sponsor Market Rewards",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Anyone can sponsor, minimum $0.1/day, no fee, cancellable, pro-rata distribution to LPs."
+    }
+   ]
+  },
+  {
+   "name": "Market proposal, sponsorship and brand-partnership brokerage",
+   "one_line": "Get paid by brands, leagues or media to get markets listed and promoted. On Polymarket this is controlled by the company, so for outsiders it is close to theoretical.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "Markets on Polymarket are created only by its markets team. Outsiders can only propose: a title, a resolution source and evidence of demand, usually by tagging @polymarket on X. Commercial partnerships (MLB, Golden Globes, X, publishers) are negotiated directly by Polymarket. An intermediary could design well-specified markets for a sponsor and lobby for listing, and perhaps arrange liquidity. No third party earning money this way was found.",
+   "edge_source": "Rule-drafting skill, meaning unambiguous resolution criteria. Relationships with the markets team.",
+   "why_might_beat_market": "Ambiguous rules are a documented pain point: the $60M Strategy BTC-sale dispute, and the Venezuela \"invade\" market. A specialist in dispute-proof market specification could be valuable to venues, though more plausibly as an employee or contractor than as a business.",
+   "adjacent_grounding": "Permissionless creation exists on adjacent venues, for example the headline \"Hyperliquid Opens Prediction Markets to Any Builder With a $30 Million Stake\" (Tech Times, 2026-07-20), and on Kalshi and Limitless. Publisher partnerships are covered by ADWEEK (2026-01-14, headline). Both come from the Google News feeds already cited.",
+   "evidence": [
+    {
+     "url": "https://help.polymarket.com/en/articles/13364541-how-are-markets-created",
+     "title": "How Are Markets Created? (Polymarket Help Center)",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "\"Markets are created by the markets team with input from users and the community\". Users propose through X."
+    },
+    {
+     "url": "https://techcrunch.com/tag/polymarket/",
+     "title": "TechCrunch Polymarket tag: \"Polymarket continues its partnership spree with a Major League Baseball deal\"",
+     "date": "2026-03-19",
+     "quality": "credible-report",
+     "supports": "Partnerships are struck first-party (headline from the tag listing)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.06005",
+     "title": "Price Dislocations, News Citations, and Epistemic Leverage on Polymarket",
+     "date": "2026-09-05",
+     "quality": "paper",
+     "supports": "About $0.7-1.0M can move prominent, news-cited markets. It is relevant as a risk: paying to move odds for PR."
+    }
+   ],
+   "failure_modes": "There is no permissionless creation and no sponsored-rewards mechanism in the current docs (the liquidity-rewards page lists only Polymarket-funded programmes). Polymarket captures all partnership economics.",
+   "cheap_validation": "Submit 10 well-specified market proposals and track the acceptance rate. Ask the markets team whether paid specification work exists.",
+   "flags": "ETHICAL: paying to move a market's odds so that media cite them is manipulation. It is described here only as a known risk and is not a recommended service."
+  }
+ ],
+ "critic_notes": [
+  "CONSOLIDATE the duplicate reference-class material. adversarial-debate-price-residual has a 'Reference-class proposer/challenger debate for the prior' variant, and sponsor-and-inform-niche-models has 'Reference-class tournament with a Fermi cross-check'. Put both in one place, ideally the proposed outside-view-procedural-clock-engine.",
+  "sponsor-and-inform-niche-models: the sub-variant 'Options-implied density vs BTC threshold ladders' is an established cross-venue quant trade. The E5 pack measures a 5.6-point gap with a roughly 4-hour half-life, which may be a premium. It is not speculative and has nothing to do with sponsoring liquidity. Move it to the cross-venue or quant band.",
+  "sponsor-and-inform-niche-models: the mechanism is real, since the list cites the FluSight ensemble beating disease markets so clearly that the optimal blend puts zero weight on them, against only $20.1k resting liquidity on measles. But the economics are likely negative for a small team. The one documented sponsorship cost about $70k and doubled the competing makers within a day. Farmers dilute the subsidy, other makers copy model-driven quotes, and whether the ToS allows trading a market you lobbied for and sponsored is unverified. Keep it only as a $20-a-day, 14-day experiment on an existing thin market. Drop the 'pitch a new market' branch until the ToS question is answered."
+ ]
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "visual-check",
+  "status": "fail",
+  "visualReview": "pending",
+  "artifact": {
+    "path": "/home/superuser/trading/trading-oss/researches/trding-agents-arhiteches/diagrams/09-graded-autonomy.html",
+    "sha256": "d9572b674db91b4813e12c56d2b13eb7ca1e56ac6166160c2efdce777f35ba3c",
+    "bytes": 718593
+  },
+  "state": {
+    "detail": "read",
+    "motion": "still"
+  },
+  "chrome": {
+    "status": "available",
+    "executable": "/home/superuser/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+  },
+  "diagnostics": [
+    {
+      "code": "viewer/visual-check-runtime",
+      "severity": "error",
+      "message": "visual-check could not complete its Chrome inspection.",
+      "subject": {
+        "artifact": "/home/superuser/trading/trading-oss/researches/trding-agents-arhiteches/diagrams/09-graded-autonomy.html"
+      },
+      "evidence": {
+        "reason": "Chrome DevTools write pipe failed: write EPIPE [EPIPE]\nChrome process: still running."
+      },
+      "supportedFixes": [
+        "resolve the reported Chrome inspection error, then rerun visual-check"
+      ]
+    }
+  ],
+  "containment": {
+    "status": "fail",
+    "viewports": []
+  },
+  "readability": {
+    "status": "fail",
+    "minimumProjectedNodeTextPx": 6,
+    "viewports": []
+  },
+  "viewerChrome": {
+    "status": "fail",
+    "viewports": []
+  },
+  "captures": {
+    "status": "fail",
+    "screenshots": [],
+    "contactSheet": null
+  },
+  "sidecars": {
+    "receipt": "09-graded-autonomy.visual-check.json",
+    "contactSheet": "09-graded-autonomy.visual-check.html"
+  },
+  "error": "Chrome DevTools write pipe failed: write EPIPE [EPIPE]\nChrome process: still running."
+}

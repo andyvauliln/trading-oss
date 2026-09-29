@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "FinAgent: Multimodal, Tool-Augmented Trading Agent",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1380,
+      800
+    ],
+    "views": [
+      {
+        "id": "fusion",
+        "label": "Multimodal perception",
+        "focus": [
+          "numeric",
+          "textual",
+          "visual",
+          "intel"
+        ],
+        "note": "Numbers, text and rendered charts enter one intelligence module instead of three parallel pipelines."
+      },
+      {
+        "id": "reflection",
+        "label": "Dual-level reflection",
+        "focus": [
+          "intel",
+          "memory",
+          "lowref",
+          "highref"
+        ],
+        "note": "One layer explains the market, the other critiques the agent's own past trades."
+      },
+      {
+        "id": "decide",
+        "label": "Tools and decision",
+        "focus": [
+          "tools",
+          "decision",
+          "order",
+          "pnl",
+          "memory"
+        ],
+        "note": "Classic indicator strategies enter as callable priors the decision module may cite or override."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "numeric",
+      "type": "external",
+      "label": "Price & Volume",
+      "sublabel": "OHLCV, indicators",
+      "pos": [
+        40,
+        80
+      ],
+      "size": [
+        170,
+        78
+      ],
+      "tag": "numerical"
+    },
+    {
+      "id": "textual",
+      "type": "external",
+      "label": "News & Filings",
+      "sublabel": "articles, reports",
+      "pos": [
+        40,
+        190
+      ],
+      "size": [
+        170,
+        78
+      ],
+      "tag": "textual"
+    },
+    {
+      "id": "visual",
+      "type": "external",
+      "label": "K-line Charts",
+      "sublabel": "rendered images",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        170,
+        78
+      ],
+      "tag": "visual"
+    },
+    {
+      "id": "intel",
+      "type": "backend",
+      "label": "Market Intelligence",
+      "sublabel": "fuse · summarize · sentiment",
+      "pos": [
+        260,
+        150
+      ],
+      "size": [
+        205,
+        150
+      ]
+    },
+    {
+      "id": "memory",
+      "type": "database",
+      "label": "Vector Memory",
+      "sublabel": "diversified retrieval",
+      "pos": [
+        260,
+        480
+      ],
+      "size": [
+        205,
+        130
+      ],
+      "tag": "queries split per task"
+    },
+    {
+      "id": "lowref",
+      "type": "backend",
+      "label": "Low-Level Reflection",
+      "sublabel": "observation vs price move",
+      "pos": [
+        600,
+        80
+      ],
+      "size": [
+        210,
+        115
+      ]
+    },
+    {
+      "id": "highref",
+      "type": "backend",
+      "label": "High-Level Reflection",
+      "sublabel": "critique past trades",
+      "pos": [
+        600,
+        240
+      ],
+      "size": [
+        210,
+        115
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "external",
+      "label": "Tool Augmentation",
+      "sublabel": "MACD · KDJ · expert rules",
+      "pos": [
+        600,
+        480
+      ],
+      "size": [
+        210,
+        130
+      ]
+    },
+    {
+      "id": "decision",
+      "type": "backend",
+      "label": "Decision Module",
+      "sublabel": "action + reasoning trace",
+      "pos": [
+        930,
+        170
+      ],
+      "size": [
+        205,
+        150
+      ],
+      "tag": "auditable"
+    },
+    {
+      "id": "order",
+      "type": "external",
+      "label": "Order / Position",
+      "sublabel": "long · short · flat",
+      "pos": [
+        1200,
+        170
+      ],
+      "size": [
+        150,
+        150
+      ]
+    },
+    {
+      "id": "pnl",
+      "type": "database",
+      "label": "Realized Return",
+      "sublabel": "per-step P&L",
+      "pos": [
+        930,
+        480
+      ],
+      "size": [
+        205,
+        130
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "numeric-intel",
+      "from": "numeric",
+      "to": "intel"
+    },
+    {
+      "id": "textual-intel",
+      "from": "textual",
+      "to": "intel"
+    },
+    {
+      "id": "visual-intel",
+      "from": "visual",
+      "to": "intel"
+    },
+    {
+      "id": "intel-lowref",
+      "from": "intel",
+      "to": "lowref",
+      "label": "market summary",
+      "variant": "emphasis"
+    },
+    {
+      "id": "intel-memory",
+      "from": "intel",
+      "to": "memory",
+      "label": "store insight",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 105
+    },
+    {
+      "id": "memory-highref",
+      "from": "memory",
+      "to": "highref",
+      "label": "past decisions"
+    },
+    {
+      "id": "lowref-decision",
+      "from": "lowref",
+      "to": "decision",
+      "label": "why price moved",
+      "variant": "emphasis"
+    },
+    {
+      "id": "highref-decision",
+      "from": "highref",
+      "to": "decision",
+      "label": "what to fix"
+    },
+    {
+      "id": "tools-decision",
+      "from": "tools",
+      "to": "decision",
+      "label": "expert signals",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "via": [
+        [
+          705,
+          400
+        ],
+        [
+          1032.5,
+          400
+        ]
+      ],
+      "labelAt": [
+        868,
+        386
+      ]
+    },
+    {
+      "id": "decision-order",
+      "from": "decision",
+      "to": "order",
+      "label": "action"
+    },
+    {
+      "id": "order-pnl",
+      "from": "order",
+      "to": "pnl",
+      "label": "fill + return",
+      "fromSide": "bottom",
+      "toSide": "right",
+      "via": [
+        [
+          1275,
+          545
+        ]
+      ]
+    },
+    {
+      "id": "pnl-memory",
+      "from": "pnl",
+      "to": "memory",
+      "label": "outcome feedback",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          1032.5,
+          700
+        ],
+        [
+          362.5,
+          700
+        ]
+      ],
+      "labelAt": [
+        700,
+        686
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Information fusion, not role split",
+      "items": [
+        "Trading is framed as fusing numeric, textual and visual evidence",
+        "Chart images are a first-class input, not a re-rendering of the numbers",
+        "One intelligence module owns perception for the whole agent"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Two reflections, two questions",
+      "items": [
+        "Low-level reflection asks why the market moved after an observation",
+        "High-level reflection asks why the agent's own trade worked or failed",
+        "Retrieval is split per task so trading queries do not pull reflection noise"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Tools as priors",
+      "items": [
+        "Classic indicator strategies enter as callable guidance, not hard rules",
+        "Expert knowledge constrains the model instead of replacing its reasoning",
+        "Every action ships with the reasoning trace that produced it"
+      ]
+    }
+  ]
+}

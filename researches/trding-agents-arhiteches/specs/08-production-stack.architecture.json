@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Production Trading Agent: Seven-Layer Reference Stack",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1320,
+      840
+    ],
+    "views": [
+      {
+        "id": "data-path",
+        "label": "Deterministic before probabilistic",
+        "focus": [
+          "feeds",
+          "l1",
+          "l2",
+          "l3"
+        ],
+        "note": "Cheap arithmetic filters candidates and scores confidence before any model is invoked."
+      },
+      {
+        "id": "control",
+        "label": "Fail-closed control plane",
+        "focus": [
+          "l4",
+          "l5",
+          "l6",
+          "operator"
+        ],
+        "note": "The model proposes; a rules engine and a named human hold the authority to release or halt."
+      },
+      {
+        "id": "evidence",
+        "label": "Evidence and audit",
+        "focus": [
+          "l4",
+          "l5",
+          "l6",
+          "l7"
+        ],
+        "note": "Every order must be reconstructable: inputs, reasoning, guardrail results and approvals."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "feeds",
+      "type": "external",
+      "label": "Market & Alt Data",
+      "sublabel": "vendors, exchanges, filings",
+      "pos": [
+        60,
+        90
+      ],
+      "size": [
+        180,
+        90
+      ]
+    },
+    {
+      "id": "l1",
+      "type": "cloud",
+      "label": "L1 · Ingestion",
+      "sublabel": "normalize + timestamp",
+      "pos": [
+        335,
+        90
+      ],
+      "size": [
+        230,
+        90
+      ],
+      "tag": "survivorship audit"
+    },
+    {
+      "id": "l2",
+      "type": "backend",
+      "label": "L2 · Deterministic Signals",
+      "sublabel": "indicators, regime, confidence",
+      "pos": [
+        660,
+        90
+      ],
+      "size": [
+        230,
+        90
+      ],
+      "tag": "no inference yet"
+    },
+    {
+      "id": "l3",
+      "type": "database",
+      "label": "L3 · Context & State",
+      "sublabel": "positions, regime, history",
+      "pos": [
+        985,
+        90
+      ],
+      "size": [
+        230,
+        90
+      ]
+    },
+    {
+      "id": "l4",
+      "type": "backend",
+      "label": "L4 · Reasoning & Orchestration",
+      "sublabel": "analyst · bull · bear · risk",
+      "pos": [
+        60,
+        320
+      ],
+      "size": [
+        230,
+        100
+      ]
+    },
+    {
+      "id": "l5",
+      "type": "security",
+      "label": "L5 · Policy Enforcement",
+      "sublabel": "limits, caps, EAC rules",
+      "pos": [
+        385,
+        320
+      ],
+      "size": [
+        230,
+        100
+      ],
+      "tag": "no model reads policy"
+    },
+    {
+      "id": "l6",
+      "type": "security",
+      "label": "L6 · Execution Gateway",
+      "sublabel": "routing + kill switch",
+      "pos": [
+        710,
+        320
+      ],
+      "size": [
+        230,
+        100
+      ]
+    },
+    {
+      "id": "venue",
+      "type": "external",
+      "label": "Broker / Exchange",
+      "sublabel": "FIX · REST",
+      "pos": [
+        1035,
+        320
+      ],
+      "size": [
+        180,
+        100
+      ]
+    },
+    {
+      "id": "operator",
+      "type": "external",
+      "label": "Named Operator",
+      "sublabel": "approve · halt · escalate",
+      "pos": [
+        385,
+        520
+      ],
+      "size": [
+        230,
+        100
+      ],
+      "tag": "per time zone"
+    },
+    {
+      "id": "l7",
+      "type": "database",
+      "label": "L7 · Evidence Ledger",
+      "sublabel": "reasoning · guardrails · approvals · fills",
+      "pos": [
+        710,
+        700
+      ],
+      "size": [
+        505,
+        90
+      ],
+      "tag": "reconstruct any order, with the contract version in force"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "security-group",
+      "label": "Fail-closed control plane",
+      "wraps": [
+        "l5",
+        "l6"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "ingest",
+      "from": "feeds",
+      "to": "l1"
+    },
+    {
+      "id": "pit",
+      "from": "l1",
+      "to": "l2",
+      "label": "point-in-time rows"
+    },
+    {
+      "id": "candidates",
+      "from": "l2",
+      "to": "l3",
+      "label": "scored candidates"
+    },
+    {
+      "id": "context",
+      "from": "l3",
+      "to": "l4",
+      "label": "portfolio + regime",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          1100,
+          235
+        ],
+        [
+          25,
+          235
+        ],
+        [
+          25,
+          370
+        ]
+      ],
+      "labelAt": [
+        560,
+        221
+      ]
+    },
+    {
+      "id": "proposal",
+      "from": "l4",
+      "to": "l5",
+      "label": "proposed order",
+      "variant": "emphasis"
+    },
+    {
+      "id": "approved",
+      "from": "l5",
+      "to": "l6",
+      "label": "approved envelope",
+      "variant": "emphasis"
+    },
+    {
+      "id": "route",
+      "from": "l6",
+      "to": "venue",
+      "label": "routed order"
+    },
+    {
+      "id": "positions",
+      "from": "venue",
+      "to": "l3",
+      "label": "fills + positions",
+      "fromSide": "right",
+      "toSide": "right",
+      "via": [
+        [
+          1275,
+          370
+        ],
+        [
+          1275,
+          135
+        ]
+      ],
+      "labelAt": [
+        1240,
+        255
+      ]
+    },
+    {
+      "id": "escalate",
+      "from": "l5",
+      "to": "operator",
+      "label": "escalation",
+      "variant": "security",
+      "labelAt": [
+        440,
+        450
+      ]
+    },
+    {
+      "id": "release",
+      "from": "operator",
+      "to": "l5",
+      "label": "approve / halt",
+      "variant": "security",
+      "labelAt": [
+        577,
+        490
+      ]
+    },
+    {
+      "id": "trace",
+      "from": "l4",
+      "to": "l7",
+      "label": "reasoning trace",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          175,
+          745
+        ]
+      ],
+      "labelAt": [
+        430,
+        731
+      ]
+    },
+    {
+      "id": "fills-record",
+      "from": "l6",
+      "to": "l7",
+      "label": "order + guardrail record",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "via": [
+        [
+          825,
+          660
+        ],
+        [
+          962.5,
+          660
+        ]
+      ],
+      "labelAt": [
+        893,
+        646
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Cheap math before expensive inference",
+      "items": [
+        "Deterministic indicators and regime filters run before the model is called",
+        "Confidence scoring narrows the candidate set and cuts inference spend",
+        "Point-in-time correctness is enforced at ingestion, not at review time"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Authority is a contract, not a prompt",
+      "items": [
+        "An execution authority contract sets instruments, size, drawdown and escalation",
+        "A rules engine evaluates it deterministically after the proposal, before the order",
+        "Kill switches are tested and every order links to the contract version in force"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Autonomy is earned",
+      "items": [
+        "Most desks should ship at approval-workflow autonomy and earn more",
+        "Escalation triggers on notional, low confidence, stale data or agent disagreement",
+        "The evidence ledger is what makes higher autonomy defensible to a reviewer"
+      ]
+    }
+  ]
+}

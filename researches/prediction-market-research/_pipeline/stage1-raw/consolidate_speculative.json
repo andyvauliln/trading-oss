@@ -1,0 +1,1219 @@
+{
+ "strategies": [
+  {
+   "slug": "agent-society-simulation-forecasting",
+   "name": "Agent-society and wargame simulation forecasting for geopolitics ladders",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "seed_category": "agent-society simulation forecasting",
+   "one_line": "Run many multi-agent world or crisis rollouts, shrink the biased outcome frequencies toward base rates, and use the branch and tripwire playbooks to reprice fee-free geopolitics date ladders coherently.",
+   "scope": "Cover MiroFish/OASIS-class society simulators and red-cell/blue-cell/umpire wargame Monte Carlo as forecasters of Polymarket events. Set out the evidence that raw simulation output is biased: escalation, farcical harmony, role collapse, prompt-language sensitivity. Test whether base-rate shrinkage leaves any skill or does all the work. Give the defensible uses: branch enumeration, a consistent hazard rate across a date ladder, and tripwire monitoring for faster repricing. Include the commoditised bridge repos, none of which has a backtest, the fee-free geopolitics category and live ladder liquidity. Give cost per prediction. Give the blind test on 60+ resolved 'by date' markets comparing raw sim, shrunk sim, base rate only and market mid. Boundaries: named-member committee twins are in decision-body-member-twins. Cross-event dependence trading is in dependence-pricing-combos-joint. Source-language bias is in cross-lingual-source-silo-tilt.",
+   "sub_variants": [
+    "MiroFish/OASIS swarm bridge with base-rate shrinkage",
+    "Red-cell / blue-cell / umpire wargame Monte Carlo (50-200 rollouts)",
+    "Tripwire extraction plus OSINT monitoring for ladder repricing",
+    "Sim used only as scenario generator for conditional playbooks"
+   ],
+   "merged_from": [
+    "Bias-corrected crisis wargame ensemble for fee-free geopolitics ladders",
+    "Strategic-actor wargame Monte Carlo for fee-free geopolitics and committee markets"
+   ],
+   "flags": "Trading war and violence outcomes carries ethical and reputational risk. Some jurisdictions and the US venue restrict these contracts. Geopolitics markets face heightened insider-trading scrutiny. Models may refuse military content.",
+   "key_evidence": [
+    {
+     "url": "https://github.com/666ghj/MiroFish",
+     "note": "74k-star swarm engine. Its README has no accuracy validation. The tooling is commoditised."
+    },
+    {
+     "url": "https://github.com/nativ3ai/hermes-geopolitical-market-sim",
+     "note": "Existing MiroFish-to-Polymarket bridge with 48-60 agents. No backtests or PnL."
+    },
+    {
+     "url": "https://github.com/zzvimercm-git/mirofish-calibration",
+     "note": "A single LLM matched or beat a mini-swarm on n=5. Rho flipped sign between runs."
+    },
+    {
+     "url": "https://arxiv.org/abs/2403.03407",
+     "note": "[pre-2025] 214 experts vs LLMs: farcical harmony, more aggression, no sensitivity to player traits."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.16189",
+     "note": "Position paper naming five failure modes of LLM wargaming (2026-07)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.02128",
+     "note": "Six LLMs diverge from humans over rounds. Normative-cooperative framing (2026-03)."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "note": "Official docs: Geopolitics taker feeRate is 0. Other categories are 0.04-0.07."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=ceasefire&limit_per_type=15&events_status=active",
+     "note": "US-Iran ceasefire ladder: $1.45M volume, $377k liquidity (2026-09-20)."
+    }
+   ]
+  },
+  {
+   "slug": "simulated-stakeholder-polling",
+   "name": "Simulated stakeholder polling: synthetic electorates and twin panels",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "simulated stakeholder polling",
+   "one_line": "Build a trace- or interview-grounded synthetic population, poststratify it, and nowcast vote shares or poll and approval prints in thin or under-polled markets where no professional poll exists.",
+   "scope": "Cover silicon sampling as a poll substitute in three forms. (a) PoSSUM-style social-trace agents with MrP for thin regional, foreign and primary election markets. (b) A standing interview-grounded twin panel re-polled daily for approval-rating and UMich sentiment brackets. (c) A weekly poll-print nowcast that supplies only the delta on a carry-forward baseline. State the negative evidence plainly: simulated respondents retrieve country-level and item-mean priors, LLMs explain 3.05% of respondent-specific variance, and the documented biases are progressive skew, third-party collapse and mode collapse. Explain why only real grounding data and a debiasing layer can help. Quantify capacity: print markets hold $50 to $10k, and liquid US races are already priced off professional aggregates. Include the hybrid tier where one commissioned real micro-poll calibrates or overrides the synthetic one, with value-of-information arithmetic and the Theo precedent. Give forward-only pre-registered validation. Boundary: simulations of small elite electorates are in elite-selection-bargaining-simulators.",
+   "sub_variants": [
+    "PoSSUM-style trace-grounded MrP for under-polled races",
+    "Interview-grounded (Twin-2K-500 / Park) standing panel for approval and UMich brackets",
+    "Weekly poll-print delta nowcast over a carry-forward baseline",
+    "Hybrid: commissioned real micro-poll as calibration or escalation tier",
+    "Fake-poll detector as the defensive twin"
+   ],
+   "merged_from": [
+    "Synthetic-electorate MrP for thin and foreign election markets",
+    "Interview-grounded standing twin panel for poll-number and survey-index markets",
+    "Synthetic electorate (silicon sampling) for poll-print, approval and low-coverage race markets",
+    "Buy the information: commissioned micro-polls and synthetic MrP (synthetic tier plus real-poll calibration)"
+   ],
+   "flags": "Scraping social platforms may breach their ToS. Inferring the political views of real users raises GDPR and ethics issues. Twin panels need human-subjects consent. Never publish synthetic numbers as real polling. Fabricated polls aimed at markets are a live 2026 scandal, and publishing one is fraud or manipulation. Election contracts are restricted in several jurisdictions.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2503.05529",
+     "note": "PoSSUM (2025-03): 1,054 X users, called 50 of 51 states, P(R)=0.65. This was a prospective test."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.18395",
+     "note": "Dynamo-K: called 3 of 3 Korean winners. Bias mitigation cut MAE 5.2x. Names three failure modes."
+    },
+    {
+     "url": "http://arxiv.org/abs/2609.16395v1",
+     "note": "Counter-evidence: silicon samples answer with country-level assumptions. Individual-level recovery is negligible."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.29455",
+     "note": "Counter-evidence: LLMs explain 3.05% of respondent variance vs 53.6% human test-retest."
+    },
+    {
+     "url": "https://arxiv.org/abs/2411.10109",
+     "note": "[pre-2025] Interview-grounded agents reach 83-86% of test-retest vs 74% for demographics only."
+    },
+    {
+     "url": "https://arxiv.org/abs/2409.09045",
+     "note": "[pre-2025] Negative: LLM predictions of future EU voting 'largely fail'."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=consumer%20sentiment&limit_per_type=15&events_status=active",
+     "note": "UMich bracket market: $10.8k volume, $3.7k liquidity. This sets the capacity ceiling."
+    },
+    {
+     "url": "https://fortune.com/2026/06/17/aaru-cofounder-ned-koh-ai-startup-sales-pitch-do-not-trust-us/",
+     "note": "Aaru claims its NYC primary call was within 2,000 votes (self-reported). Aaru admits it cannot simulate individuals."
+    }
+   ]
+  },
+  {
+   "slug": "decision-body-member-twins",
+   "name": "Named-member twins of small decision bodies (central banks, legislatures, courts) for second-order markets",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "simulated stakeholder polling",
+   "one_line": "Give each named voter one agent grounded in their speeches and votes. Simulate the vote conditional on the headline decision and trade the dissent-count, vote-split, wording and pivotal-member markets that have no institutional anchor.",
+   "scope": "Cover per-member simulation of bodies with public individual records. For FOMC, ECB and BoE, cover dissent-count ladders, statement wording and presser word lists, conditional on the decision the futures already price. For legislatures, cover whip counts on the 5-10 pivotal members, with agenda timing modelled separately by a base-rate model. For courts, cover vote splits and opinion authorship after oral argument. Present the evidence honestly. FedSight's 93.75% has no futures baseline and no leakage control. Roll-call accuracy is mostly trivial party-line prediction. The classical SCOTUS model reaches 70.2%. Aaru could not simulate Powell. Address the under-prediction of dissent from 'farcical harmony', turnover, and statistical power: 8 meetings a year against the ~350-prediction bar, which forces pooling across bodies. Give the live liquidity gap of $8.07M on the decision vs $4.3k on dissents. Give forward-only validation and a mode-collapse kill check. Boundaries: secret-ballot electorates and coalition talks are in elite-selection-bargaining-simulators. UMA voter simulation is in synthetic-uma-dispute-jury.",
+   "sub_variants": [
+    "FOMC / ECB dissent-count and statement-wording twin",
+    "Simulated-reader disagreement as a post-meeting volatility signal",
+    "Legislative pivotal-member whip count multiplied by a base-rate agenda model",
+    "Per-justice twins for vote split and authorship side markets"
+   ],
+   "merged_from": [
+    "FOMC committee digital twin for dissent-count and second-order Fed markets",
+    "Committee simulacra: member-level role-play of small decision bodies",
+    "Committee-in-silico for central banks, traded on the side markets not the rate decision",
+    "Legislative whip-count twin",
+    "Synthetic benches: per-member twins of courts, legislatures and the UMA voter set (courts and legislature part)"
+   ],
+   "flags": "Blackout-period leaks and non-public court information are MNPI. Trading on them is insider trading. Presser mention markets carry script-leak risk.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2512.15728",
+     "note": "FedSight: 93.75% on 2023-24 meetings. No comparison to futures-implied odds. No leakage control."
+    },
+    {
+     "url": "https://arxiv.org/abs/2511.02469",
+     "note": "Hawk/dove latent-belief debate agents beat LLM baselines on FOMC decisions. No market comparison."
+    },
+    {
+     "url": "https://arxiv.org/abs/2508.13635",
+     "note": "Simulated ECB-presser readers: disagreement correlates ~0.5 with OIS volatility over 293 events."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Fed%20decision&limit_per_type=10&events_status=active",
+     "note": "Decision market $8.07M volume vs dissent market $4.3k volume, $15.2k liquidity."
+    },
+    {
+     "url": "https://arxiv.org/abs/2506.11798",
+     "note": "EP roll-call persona simulation: weighted F1 ~0.793. Documents left-lean bias."
+    },
+    {
+     "url": "https://arxiv.org/abs/2505.00006",
+     "note": "Per-congressperson language models predict roll calls and party-line crossing."
+    },
+    {
+     "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0174698",
+     "note": "[pre-2025] Classical SCOTUS model: 70.2% case accuracy, 71.9% vote accuracy."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "note": "Power: ~350 resolved predictions to detect a 0.02 edge. Per-meeting validation is underpowered."
+    }
+   ]
+  },
+  {
+   "slug": "elite-selection-bargaining-simulators",
+   "name": "Closed-electorate selection and coalition-bargaining simulators (structure first, role-play second)",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "simulated stakeholder polling",
+   "one_line": "Combine network and veto-player structure, a deterministic bargaining solver and agent straw polls. Use them to flag structurally dead longshots in selection markets and to price rule-aware coalition ladders.",
+   "scope": "Cover secret or elite selection events: UN Secretary-General, Nobel committee, conclave, TIME Person of the Year. Also cover government-formation ladders. The thesis to examine is that structure worked where naive LLM elicitation failed: the Bocconi conclave network study ranked Prevost central while pundits and AI models missed him. Cover multiplex-network priors, successive straw polls with veto ballots, and coalition talks grounded in party manifestos and mapped through the market's exact rule, for example a party counts only if it holds a cabinet minister. Cover the Bueno-de-Mesquita-style hybrid where LLMs elicit only position, salience and clout and a transparent solver plays the dynamics. Tie selection to the favourite-longshot evidence: purchases below 10c lose 19.3c per dollar, but the sign flips when contracts are grouped by event. Give name-masked retro-tests and a forward test of a flagged-longshot short basket against an unselected one. Boundary: bodies whose members vote publicly are in decision-body-member-twins.",
+   "sub_variants": [
+    "Network-centrality prior plus veto-dead flag for longshot selling",
+    "Manifesto-grounded coalition negotiation mapped to the contract rule",
+    "LLM-elicited actor table plus deterministic bargaining solver (BDM hybrid)"
+   ],
+   "merged_from": [
+    "Closed-electorate selection simulator (UN Secretary-General, Nobel committee, conclave-class votes)",
+    "Coalition-formation negotiation simulator",
+    "LLM-elicited stakeholder bargaining solver (Bueno de Mesquita-style hybrid)"
+   ],
+   "flags": "Short-longshot books carry tail risk, so hard-cap exposure per event. These are n=1 events where insider leaks dominate late pricing.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2505.17635",
+     "note": "A pre-conclave network analysis found Prevost uniquely central. Pundits, bookmakers and AI models missed him."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "note": "588M trades: sub-10c purchases lose 19.3c/$ per contract, but gain 4.1c when grouped by parent event."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Nobel%20Peace%20Prize&limit_per_type=10&events_status=active",
+     "note": "Nobel Peace 2026: $24.3M volume, $1.86M liquidity, 24 candidates."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Secretary-General&limit_per_type=15&events_status=active",
+     "note": "UNSG: $200k volume, $78k liquidity, 26 candidate markets."
+    },
+    {
+     "url": "http://arxiv.org/abs/2607.15095v2",
+     "note": "Digital Pantheon: manifesto-anchored party agents simulate real coalition talks with auditable provenance."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=coalition&limit_per_type=15&events_status=active",
+     "note": "Swedish coalition ladder: 16 outcomes, $17.7k volume, $223k liquidity. The rule is one cabinet minister."
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Bruce_Bueno_de_Mesquita",
+     "note": "Tertiary source on the expected-utility model. The 90% CIA accuracy claim is disputed."
+    },
+    {
+     "url": "http://arxiv.org/abs/2502.16339v1",
+     "note": "LLM plus game-theoretic rationalizability predicts coalition outcomes in Diplomacy."
+    }
+   ]
+  },
+  {
+   "slug": "critic-pool-panel-twins",
+   "name": "Critic-pool and awards-voter twins for mechanically aggregated scores",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "new",
+   "one_line": "Treat the Tomatometer, or an awards ballot, as a sum of verdicts by an enumerable panel with public track records. Model each member, convolve into a bracket distribution before the embargo lifts, then Bayes-update on the early reviews.",
+   "scope": "Cover a per-critic fresh/rotten propensity model: a statistical core plus an optional LLM persona built from each critic's review corpus. Cover roster and filing-time simulation against the resolution snapshot. Cover the Poisson-binomial bracket distribution, the selection bias in the first 20-40 reviews, and the post-embargo Beta-Binomial update. Extend to Oscars side categories using guild-bloc archetypes and preferential counting. State the evidence honestly. Synthetic panels do well on aggregates at 90% of test-retest. LLM taste simulation is 'super-omnivorous', so it predicts fresh too often. Individual twins correlate r=0.20 with their humans. Humans already trade Rotten Tomatoes scores statistically on Kalshi. Once ~30-50 reviews are in, the twin adds nothing. Capacity: Polymarket RT ladders hold $2.7k-$31.6k. Validate leak-free by backtesting the pure statistical model on 100 films first. Add the LLM layer only if it improves bracket log-loss at embargo plus 6 hours. Boundary: spoken-word twins are in speaker-twin-mention-montecarlo.",
+   "sub_variants": [
+    "Pure per-critic logistic model (no LLM, leak-free backtest)",
+    "LLM critic persona layer for pre-embargo pricing",
+    "Guild and bloc voter archetypes for Oscars side categories"
+   ],
+   "merged_from": [
+    "Critic and awards-voter taste twins (Rotten Tomatoes score ladders, Oscars)",
+    "Critic-pool simulator for Rotten Tomatoes brackets and awards"
+   ],
+   "flags": "Scraping Rotten Tomatoes or review sites may breach their ToS. Never solicit, pay or pressure critics; that would be manipulation, and the statistic is reported to be riggable. Trading on Kalshi needs US eligibility.",
+   "key_evidence": [
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Rotten%20Tomatoes&limit_per_type=15&events_status=active",
+     "note": "Five live RT ladders. Volume $2.7k-$31.6k. Mid-strike prices 0.35-0.58."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=Oscars&limit_per_type=15&events_status=active",
+     "note": "Oscars 2027 Best Actor: $137k volume, $197k liquidity, six months out."
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.30085v2",
+     "note": "Counter-evidence: 554,940 synthetic respondents show a super-omnivorous taste bias."
+    },
+    {
+     "url": "https://arxiv.org/abs/2510.08338",
+     "note": "Synthetic consumer panels reach 90% of human test-retest reliability on aggregates."
+    },
+    {
+     "url": "https://arxiv.org/abs/2509.19088",
+     "note": "Digital twins correlate r=0.20 with their humans. Stereotyped and under-individuated."
+    },
+    {
+     "url": "http://arxiv.org/abs/2510.14205v3",
+     "note": "DPRF: iterative persona refinement improves role-play alignment, including on movie reviews."
+    }
+   ]
+  },
+  {
+   "slug": "speaker-twin-mention-montecarlo",
+   "name": "Speaker-twin Monte Carlo for mention markets (scripted speakers, maker expression)",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "seed_category": "new",
+   "one_line": "Generate hundreds of synthetic transcripts per event and count strike-word hits under the exact resolution rules. Blend with base rates and the market price, and express the result only as skewed maker quotes.",
+   "scope": "Cover the pipeline: a per-speaker, per-venue corpus; 200-500 simulated speeches or earnings calls, including Q&A from analyst twins; strict rule parsing for plurals, compounds and who counts as the speaker; a hierarchical Beta-Binomial base rate; and a market-prior blend. The evidence says the twin alone loses. On 856 Kalshi earnings-call contracts the LLM scored Brier 0.1470 against 0.1402 for the market, and the blend reached 0.1392. One public live system lost $16.40 over 1,115 bets. The documented profit came from a structural NO-side maker ladder (self-reported), not from LLM probabilities. Restrict use to templated speakers, because Trump-class improvisers are not simulable. Cover the cross-venue rule divergence, where Polymarket counts anyone on the broadcast and Kalshi only named speakers. Cover the live ASR leg, capacity of about $1k per word, and the taker fee of 0.04 x p(1-p) against zero for makers. Validate with 300+ word-contracts, forward-only, keeping separate arms for base rate only and for the blend.",
+   "sub_variants": [
+    "Earnings-call twin with analyst-question twins",
+    "Central-bank presser word lists",
+    "NO-side laddered maker overlay",
+    "Cross-venue rule-difference leg and live ASR stale-quote lifting"
+   ],
+   "merged_from": [
+    "Speaker digital-twin Monte Carlo for mention markets (scripted speakers only)",
+    "Speaker-twin mention model with market-prior blending and NO-side maker overlay"
+   ],
+   "flags": "Script-holding insiders are an active enforcement area: one CFTC settlement involved a teleprompter operator. The CFTC is reviewing mention markets, and Kalshi pulled sports mentions on 2026-08-14. Polymarket lists mention markets on its global venue only. Never publish synthetic speeches of real people. Never influence speakers or audiences.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2602.21229v2",
+     "note": "856 Kalshi earnings-call contracts: market 0.1402, LLM 0.1470, 70/30 blend 0.1392."
+    },
+    {
+     "url": "https://github.com/JonathanBeck1/prediction-market-mispricing",
+     "note": "Self-reported live record: lost $16.40 over 1,115 bets. LLM model Brier 0.352 vs market 0.238."
+    },
+    {
+     "url": "https://mcinerney.ai/writings/how-i-botted-6k-prediction-markets-as-i-slept/",
+     "note": "Self-reported: $5,515.94 net on $342.5k cost from a NO-side maker ladder. LLM probabilities underperformed."
+    },
+    {
+     "url": "https://defirate.com/prediction-markets/mention-markets/",
+     "note": "Venue rule differences (an 11-point gap on 'Mahomes'), manipulation incidents, resolution failures."
+    },
+    {
+     "url": "https://defirate.com/news/kalshi-pulls-sports-mention-markets-cftc-probe/",
+     "note": "CFTC is probing mention-market manipulability. Polymarket mentions are global-venue only (2026-08-14)."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=earnings%20call&limit_per_type=15&events_status=active",
+     "note": "Scripted-speaker capacity: Costco $4.1k volume, BlackBerry $0.85k."
+    }
+   ]
+  },
+  {
+   "slug": "internal-agent-prediction-market",
+   "name": "Synthetic crowd with an internal market: LMSR wealth dynamics, wagering and meta-prediction",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "synthetic crowd / internal prediction market",
+   "one_line": "Have heterogeneous agents (different model families and different evidence shards) trade or wager internally so that money-weighted credibility self-calibrates. Add second-order questions that separate 'the market knows something' from 'the market is wrong'. Trade only the gated divergence from Polymarket.",
+   "scope": "Cover three mechanism-design aggregators for an in-house agent crowd. (a) An internal LMSR whose agent bankrolls compound on resolved markets, which makes wealth updates a form of Bayesian model averaging. (b) WALLA-style incentive-compatible wagering, where aggregate stake sets position size. (c) Meta-prediction: each agent reports its own probability, its predicted peer mean and its predicted market price. This enables peer-prediction weighting, a surprisingly-popular correction and a 'knowledgeable dissent' filter. The file's centre is the monoculture constraint: rho = 0.70, ten agents behave like about 1.4 independent forecasters, a 10-agent market scored below a single agent, and persona prompts do not decorrelate. The file must state the obligation to beat a plain logistic aggregator or be dropped. Include N_eff health metrics and kill rules, cost, and a replay on 400+ post-cutoff markets with ablations. Boundaries: evidence-partition design is in information-partitioned-delphi-panel. Blending and gating against the price is in market-anchored-selective-deference. Conversational debate is in adversarial-debate-price-residual.",
+   "sub_variants": [
+    "Cross-model LMSR with bankroll compounding and N_eff kill switch",
+    "WALLA wagering: aggregate stake as position size",
+    "Peer-prediction weighting and surprisingly-popular correction",
+    "Knowledgeable-dissent filter (agents predict the market price but disagree with it)"
+   ],
+   "merged_from": [
+    "Cross-model internal LMSR with wealth dynamics",
+    "Information-partitioned internal prediction market (agents trade instead of talk)",
+    "Internal wagering market: position size from sub-agents' stakes",
+    "Meta-prediction crowd: surprisingly-popular and peer-prediction weighting, plus a 'knowledgeable dissent' filter"
+   ],
+   "flags": "No specific flags. The international venue's geo-restrictions apply to automated trading.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "note": "LLM LMSR: rho=0.70, N_eff ~1.4, a 10-agent market scored 67.6% vs 70.2% for one agent. Cross-model mixing cuts rho to 0.40. Dataset is TruthfulQA, not forecasting."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.04389",
+     "note": "WALLA: incentive-compatible wagering that matches centralised aggregation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2512.05998",
+     "note": "Largest wagers were over 99% correct vs ~74% for minimal bets. Single author, maths and logic tasks."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "note": "A logistic aggregator over 15 LLMs beats the mean by 23% Brier. The learned signal is model disagreement. The market is still ~2x better."
+    },
+    {
+     "url": "https://arxiv.org/abs/1106.4509",
+     "note": "[pre-2025] Market equilibria implement product-of-experts and mixture-of-experts ensembles."
+    },
+    {
+     "url": "https://arxiv.org/abs/1910.03779",
+     "note": "[pre-2025] Peer-prediction weighting improved Brier on 14 human forecast datasets without ground truth."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.06801",
+     "note": "Peer prediction inside LLM debate recovers the truth when the initial majority is wrong."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.13038",
+     "note": "Wallet-profile persona injection did not reduce error correlation (r ~0.77)."
+    }
+   ]
+  },
+  {
+   "slug": "adversarial-debate-price-residual",
+   "name": "Multi-agent adversarial debate applied as a residual on the market price",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "seed_category": "multi-agent adversarial debate forecasting",
+   "one_line": "Cross-family bull and bear advocates, plus a price-blind judge, produce a probability that is only ever applied as a logit-space correction to the Polymarket price. An independent-ensemble control arm can switch the debate off.",
+   "scope": "Cover debate architectures for forecasting. Sides are assigned across model vendors. Every claim must cite evidence. The judge is blind to price and identity. The market mix is fitted per category. Sizing uses proper betting, not Kelly. Present the mixed evidence. Deliberation helped only for diverse model families: -0.020 log loss at p=0.017. Deliberative consensus scored about 76% against 83.43% for independent aggregation. Conformity and sycophancy are common, persuasion can override truth, and token cost is 2.1-3.4x. Cover two variants. In the veto-only variant a red-team agent never generates trades and only halves or vetoes candidates from a statistical signal, for example recalibrating political favourites; the recalibration alpha itself belongs to the behavioural-bias band. In the rationale-quality variant the judge weights agents by Explanation Quality Markers and a Martingale entrenchment score. Include existing Polymarket attempts such as PolySwarm, none of which reports PnL. Validate with a Hindcast-style four-arm backtest on 400+ markets, then 350 forward forecasts. Boundary: market mechanisms between agents are in internal-agent-prediction-market.",
+   "sub_variants": [
+    "Bull/bear advocates plus blind judge, mixed with the market",
+    "Veto-only pre-mortem red team on a statistical signal",
+    "EQM and Martingale-score weighted judge",
+    "Reference-class proposer/challenger debate for the prior"
+   ],
+   "merged_from": [
+    "Cross-family advocate debate used as a residual on the market price",
+    "Market-price recalibration strategy with a veto-only pre-mortem agent",
+    "Rationale-quality judge (Explanation Quality Markers + Martingale score) over agents and human commentary"
+   ],
+   "flags": "The international venue excludes US persons. Scraping comments is subject to site ToS. Treat scraped text as untrusted input, because prompt-injection amplification in multi-agent debate is documented.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2512.22625",
+     "note": "Deliberation helps only diverse models with shared information: -0.020 log loss, p=0.017, 202 questions."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "note": "Counter-evidence: debate ~76% vs independent vote 83.43%. Error correlations 0.53-0.69."
+    },
+    {
+     "url": "https://arxiv.org/abs/2511.07678",
+     "note": "AIA loses to the market alone (0.1258 vs 0.1106). A 0.33/0.67 blend scores 0.106."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.06166",
+     "note": "Proper betting robustly converts accuracy into profit and Kelly can lose on the same forecasts. The live run was $200 over 26 days."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.03888",
+     "note": "PolySwarm: a 50-persona Polymarket swarm. No live PnL reported."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.30987",
+     "note": "Explanation Quality Markers on 55k forecast-rationale pairs predict accuracy."
+    },
+    {
+     "url": "https://arxiv.org/abs/2504.00374",
+     "note": "In multi-agent debate, persuasion overrides truth and the judge stays confident."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.07048",
+     "note": "LLM as pure risk filter: win rate 51.4% to 54.5%, average loss roughly halved."
+    }
+   ]
+  },
+  {
+   "slug": "information-partitioned-delphi-panel",
+   "name": "Information-partitioned Delphi panel (designed evidence asymmetry)",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "synthetic crowd / internal prediction market",
+   "one_line": "Give each agent a disjoint private slice of the evidence plus a shared public core, and allow only rationale exchange. Diversity then comes from information, not persona adjectives. Use the output as a filter and sizing input.",
+   "scope": "Cover the InfoDelphi design. Documents are routed by BM25 relevance into a public core and private shards. Partitions may be stakeholder or source lenses: legal filings, trade press, local press, on-chain flow. There are one or two rationale rounds. Aggregation is logit-space with confidence weights. Partitioning is kept orthogonal to model family. The key result is a Brier improvement from 0.216 to 0.178 on 375 Polymarket-derived questions. The gain vanishes when all evidence is shared, and the design was never benchmarked against the market price. Present the counter-evidence: debate can re-herd, and learned aggregation still loses to the market on clean questions. Conclude that this is a disagreement and uncertainty signal for other strategies, not standalone alpha. Include the OSINT sensor-swarm variant, where one agent per physical or bureaucratic feed holds private context. Validate by replication with a rho=1.0 ablation and an 8-week forward shadow run. Boundary: the language or allegiance silo whose signal is the difference between silos is in cross-lingual-source-silo-tilt.",
+   "sub_variants": [
+    "BM25 public/private shard routing, 3-5 agents, 2 rounds",
+    "Stakeholder-lens partitions with a learned linear aggregator",
+    "OSINT sensor swarm: one agent per feed, red-team spoof screen"
+   ],
+   "merged_from": [
+    "Information-partitioned stakeholder Delphi as the aggregation core",
+    "Information-partitioned Delphi panel (designed evidence asymmetry)",
+    "OSINT sensor swarm with partitioned evidence"
+   ],
+   "flags": "OSINT variant: use public data only. Anything from officials or contractors is MNPI. Spoofed or planted signals are a risk. Data-feed ToS apply.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.01661",
+     "note": "Brier gain of 12-18% from partitioned evidence. The gains vanish without asymmetry. About $12 of API cost."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "note": "Debate can degrade accuracy, so keep the independent aggregate as a fallback."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.06801",
+     "note": "Plain debate cannot beat majority voting when errors are correlated."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.03310",
+     "note": "Five coordination configurations on 100 Polymarket markets. Differences do not survive Bonferroni at n=100."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.25958",
+     "note": "PolyGnosis 2.0: a Polymarket plus GDELT OSINT harness. Structural partitioning is mandatory. Consensus bias persists."
+    },
+    {
+     "url": "http://arxiv.org/abs/2604.14199v1",
+     "note": "PolyBench: only 2 of 7 LLMs were profitable. This is the base rate for ungated LLM trading."
+    }
+   ]
+  },
+  {
+   "slug": "cross-lingual-source-silo-tilt",
+   "name": "Cross-lingual source-silo tilt on non-Anglophone and geopolitics markets",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "new",
+   "one_line": "Hold the model fixed and forecast twice, once from English-only context and once from local-language primary sources. Apply the difference as a tilt to the market price, mainly in fee-free geopolitics markets.",
+   "scope": "Cover agents restricted to one information ecosystem each: English wire, local official and military-analytical sources, adversary media, OSINT. Cover per-silo bias calibration on resolved markets. Define the signal as local minus English, not either forecast alone. Add the latency leg on local primary publications. The anchor result is that English news context was wrong 64-72% of the time on Ukraine territorial-capture pushes across four models, that the bias lives in the sources, and that Ukrainian sources reduce it. The file must state the gap: the paper uses the market as its reference, so nobody has shown that Polymarket PRICES share the bias. Cover the fact that arbiter maps and media, not ground truth, settle these markets (the ISW edit). Cover local-source propaganda, local traders already being present, insider flow, and single-theatre overfit. Validate with a Hindcast-style replay on 300+ non-Anglosphere markets that tests price plus lambda times tilt. Boundary: generic evidence partitioning is in information-partitioned-delphi-panel.",
+   "sub_variants": [
+    "Two-pipeline tilt (local minus English) as a price adjustment",
+    "K-silo bias-corrected reliability-weighted crowd",
+    "Local primary-source speed leg for resolution-relevant publications"
+   ],
+   "merged_from": [
+    "Source-siloed geopolitics crowd (language- and allegiance-partitioned agents) in the fee-free category",
+    "Source-ecosystem arbitrage: local-language primary-source reading vs an English-headline crowd",
+    "Cross-lingual source arbitrage on non-Anglophone markets"
+   ],
+   "flags": "War and casualty markets carry reputational risk and, in some countries, legal risk. Check sanctions rules for Russia-related markets. Never contact or pressure resolution sources. Insider-trading enforcement attention on geopolitics markets is rising.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.20441",
+     "note": "111 Ukraine markets, ~93k predictions. English context was wrong 64-72% of the time. The bias comes from the sources. The market price was the reference."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.14051",
+     "note": "Hindcast: a leak-closed replay. Retrieval hurts where the archive held only speculation."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "note": "Geopolitics feeRate is 0, so small tilts are tradable."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=parliamentary%20election&limit_per_type=20&events_status=active",
+     "note": "Russian parliamentary election: $48.1M volume, $5.37M liquidity. Non-English markets have depth."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.17503",
+     "note": "Coverage of Africa and Latin America is driven by settlement legibility and is selective."
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "note": "The ISW map was edited and then reverted around a market deadline. The arbiter settles the market, not the territory."
+    }
+   ]
+  },
+  {
+   "slug": "market-anchored-selective-deference",
+   "name": "Market-anchored stacking and selective deference (edge map, abstention gates, day-zero quoting)",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "seed_category": "self-improving / recursive forecasting agents",
+   "one_line": "Treat the question 'should we disagree with the price here?' as the prediction problem. Make the market mid an expert in an online stacker and route by lifecycle and price cell. Monetise the residual as maker skew, especially in the first hours of new and toss-up markets.",
+   "scope": "Cover the fail-safe blend layer. Use Hedge or BOA online aggregation with the price in the expert pool, so the weight on agents falls to zero when they carry no information. Keep per-cell weights with a published prior of about 0.33 AI and 0.67 market. Build a hierarchical-Bayes sleeping-experts edge map over category, lifecycle stage, price band and liquidity, net of the fee formula. Add Thompson-sampling routing, abstention, and conformal or unanimity act-abstain gates. Cover the opening-quote business: detect listings, take the prior from the panel, sibling-market bounds and other venues, quote wide and two-sided, then taper as volume arrives. Key numbers: Brier skill vs the market of +0.167 at open+1 against -0.829 at close-1, and +0.301 on toss-ups. No two-model ensemble beats the market overall. The blend gains about 0.005 Brier. Purchases at 90c or above earn 0.83c per dollar. Give the fee arithmetic, the adverse selection faced by new-market quoters, event-clustered validation on 400+ markets, and markout tests. Boundary: how the agents are produced is in the other forecasting files.",
+   "sub_variants": [
+    "Hedge/BOA stacker with the price as an expert",
+    "Sleeping-experts edge map plus Thompson routing",
+    "Conformal / unanimity act-abstain gate in the favourite zone",
+    "Day-zero opening quotes from panel prior, sibling bounds and cross-venue anchor"
+   ],
+   "merged_from": [
+    "Market-anchored online stacker (Hedge/BOA with the Polymarket price as one of the experts)",
+    "Sleeping-experts edge map",
+    "Selective-deference divergence engine (new-market and toss-up specialist, expressed as maker skew)",
+    "Disagreement-gated selective trading (conformal act / abstain)",
+    "Panel-priced market opening: debate forecaster as the first informed quote",
+    "Day-zero pricing of brand-new markets (LLM prior + graph inheritance + cross-venue anchor)"
+   ],
+   "flags": "Check the liquidity-reward quoting rules before skewing quotes. The programme rules were not re-verified this session.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2604.04220",
+     "note": "TimeSeek, 150 Kalshi markets: BSS +0.167 at open+1 and -0.829 at close-1. Toss-ups +0.301. Ensembles never beat the market overall."
+    },
+    {
+     "url": "https://arxiv.org/html/2511.07678",
+     "note": "1,610 liquid questions: market 0.1106, AIA 0.1258, blend 0.106. AI weight 0.33, CI 0.12-0.47."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.21229",
+     "note": "MixMCP market-conditioned blend beats both the market and the LLM on mention markets."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07667",
+     "note": "Conformal layer intercepts 81.9% of wrong-consensus cases at alpha=0.05."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12101",
+     "note": "Outcome-estimated competence gating beats verbal confidence. The gate mostly defers to markets."
+    },
+    {
+     "url": "https://markets.futuresearch.ai",
+     "note": "Self-reported book: Kalshi real money +5.9% (26W/12L), Polymarket paper -19.6%."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+     "note": "Quadratic spread scoring and per-minute sampling. The reward maths relevant to opening quotes."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "note": "Alpha score against the market. ~350 predictions for a 0.02 edge, ~1,400 for 0.01."
+    }
+   ]
+  },
+  {
+   "slug": "recursive-self-improving-forecaster",
+   "name": "Recursive self-improving forecaster: outcome-RL on market-relative profit plus governed experience memory",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "seed_category": "self-improving / recursive forecasting agents",
+   "one_line": "A single forecaster improves itself from its own resolved-market log. It is fine-tuned weekly with RLVR, rewarded by fee-adjusted proper-betting payoff against the logged price, and it keeps a curated and decaying lesson memory. It is deployed only in high-repetition market families and only as one expert in the stacker.",
+   "scope": "Cover the two self-improvement loops that act on one agent. (1) Continual outcome-RL on a 7-32B open model. Build the training asset: question, rules, frozen news snapshot, executable bid/ask and outcome. Make the reward market-relative proper-betting profit, not raw Brier. Use state-conditioned empirical-frequency rewards for fast templated families. Enforce a time-truncation harness. Use median sampling at inference. Counter forgetting under weekly updates. (2) Verbal RL: post-mortem lessons held in an Experience Bank and a Meta-Guideline Bank, each with utility weights, decay and retirement, routed through a per-family harness tree. Present the promising results: a 14B model matching o1 with >10% simulated ROI, and Live-Evo's +20.8% Brier. Present the three negative 2026 results: dense updates peak and then decline, memory fails on low-repetition streams, and curation decides whether experience helps or hurts. Discuss label-rate limits and GPU cost for a small team. Validate with a memory on/off A/B across templated families and the weight earned in the stacker. Boundary: population-level evolution is in evolutionary-agent-strategy-factory.",
+   "sub_variants": [
+    "RLVR with proper-betting reward against the logged executable price",
+    "State-conditioned reward for weather, sports and crypto-band families",
+    "Governed Experience Bank plus Meta-Guideline Bank",
+    "Per-family harness tree with sparse promotion"
+   ],
+   "merged_from": [
+    "Continual outcome-RL forecaster rewarded by market-relative proper-betting profit",
+    "Governed experience memory (verbal RL with insight curation) for templated market families"
+   ],
+   "flags": "None beyond ordinary trading. There is no audited live PnL for any RL-tuned or memory-evolving Polymarket agent.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2505.17989",
+     "note": "A 14B RLVR model on Polymarket questions matches o1. >10% ROI in a simulation with idealised fills."
+    },
+    {
+     "url": "http://arxiv.org/abs/2601.06336v2",
+     "note": "Future-as-Label: Qwen3-32B +27% Brier, calibration error halved."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.00164",
+     "note": "A 7B model reaches betting-market calibration on NFL. Single-outcome reward fails. State-conditioned reward works."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.02369",
+     "note": "Live-Evo: +20.8% Brier, +12.9% market return over 10 weeks on Prophet Arena."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.06960",
+     "note": "Negative: memory systems do not beat the no-experience pipeline on low-repetition streams with delayed rewards."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.17591",
+     "note": "The same experience degrades below zero-shot or dramatically improves, depending on curation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.01770",
+     "note": "Dense harness updates peak early and then decline. A harness tree with routing sustains the gains."
+    },
+    {
+     "url": "https://github.com/PredictionMarketTrader/openthomas",
+     "note": "Self-reported replay: -$0.038 per contract to break-even after bias learning, blend and a timing fix."
+    }
+   ]
+  },
+  {
+   "slug": "evolutionary-agent-strategy-factory",
+   "name": "Evolutionary agent population and autoresearch strategy factory",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "self-improving / recursive forecasting agents",
+   "one_line": "Evolve a quality-diversity archive of agents whose fitness is marginal contribution to the market-anchored blend. Run a leakage-guarded autoresearch loop that proposes structural strategies. Breed new agents by recombining modules that carry positive PnL attribution.",
+   "scope": "Cover population-level self-improvement. A MAP-Elites archive over model family, information diet and niche, with Numerai-MMC-style leave-one-out fitness, so that selection buys orthogonality and not another copy of the consensus. GEPA-style reflective prompt mutation. A keep-or-revert autoresearch loop over the full trade archive, restricted to point-in-time tool registries, with thresholds deflated by trial count and an untouched event-clustered holdout. Compositional breeding of typed modules (signal, sizing, execution) using an attribution ledger. An ecological co-evolution gym that replays the team's own L2 books against reactive rival archetypes, including fee and tick perturbations taken from the changelog. Include the hard negatives: honest evaluation rejected every LLM-discovered equity strategy, a leaky Sharpe-35 oracle passed DSR and PBO, 70% of mutations were reverted, and greedy search is a strong default. Include the hobby systems elastifund and atlas-gic, and the builder-fee commercial layer. Validation: planted-edge recovery, sim-to-live rank agreement, top-k chosen by marginal contribution vs top-k chosen by own Brier. Boundary: promotion statistics are in evaluation-promotion-allocation-metalayer.",
+   "sub_variants": [
+    "QD archive with marginal-contribution (MMC-style) fitness",
+    "Autoresearch structural-strategy loop with tool-registry leakage guard",
+    "Compositional module breeding with attribution ledger",
+    "Co-evolution gym against simulated rival bots",
+    "Builder-code monetisation of proven agents"
+   ],
+   "merged_from": [
+    "Quality-diversity agent population with marginal-contribution (MMC-style) fitness",
+    "Autoresearch strategy factory with structural leakage guards and search-aware deflation",
+    "Agent OS as the strategy: compositional breeding of verified strategy modules (plus builder-code monetisation)",
+    "Ecological co-evolution gym: evolve agents against a simulated population of rival bots"
+   ],
+   "flags": "Auto-generated trading code must never reach live keys without human review. Offering agents to third parties for builder fees may trigger adviser or CTA-type regulation. Geo-restrictions apply.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2608.27734",
+     "note": "Honest evaluation rejects every LLM-discovered strategy. A leaky Sharpe-35 oracle survives DSR and PBO."
+    },
+    {
+     "url": "https://arxiv.org/abs/2505.22954",
+     "note": "Darwin Godel Machine: archive-based self-modification. SWE-bench 20% to 50%."
+    },
+    {
+     "url": "https://arxiv.org/abs/2507.19457",
+     "note": "GEPA reflective prompt evolution: 35x fewer rollouts than GRPO."
+    },
+    {
+     "url": "https://docs.numer.ai/",
+     "note": "The Numerai staked Meta Model and MMC scoring. The template for the fitness function."
+    },
+    {
+     "url": "https://github.com/CrunchyJohnHaven/elastifund",
+     "note": "Self-reported self-improving OS live on Polymarket and Kalshi. 10 strategies rejected. Tiny PnL."
+    },
+    {
+     "url": "https://github.com/chrisworsey55/atlas-gic",
+     "note": "Self-reported: 54 prompt mutations, 16 kept. Fitness is a 5-day Sharpe."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.00948",
+     "note": "FinEvo: strategy outcomes depend on the competitor ecology."
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.16852v1",
+     "note": "Ghost fills: 24.3% of filled orders reverted at peak hours. This limits simulator realism."
+    }
+   ]
+  },
+  {
+   "slug": "evaluation-promotion-allocation-metalayer",
+   "name": "Meta-layer: leak-free evaluation, anytime-valid promotion, label-free fitness, capital allocation and changelog-reactive re-optimisation",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "seed_category": "self-improving / recursive forecasting agents",
+   "one_line": "Build the selection-risk machinery every speculative agent needs. Cutoff-staggered time-machine backtests. E-process promotion gates under online FDR control. Consistency-arbitrage as instant fitness. Bandit or internal-futarchy capital allocation. A watcher that re-tunes the whole book within hours of a Polymarket rule change.",
+   "scope": "Cover five components. (1) A vintage panel with frozen web snapshots as the only trustworthy backtest. Contamination collapsed a 35.8% model gap to 8.9%, and prompted ignorance fails. Include the speculative news-value-gap signal. (2) Test-martingale promotion from replay to paper to $1-5 live to scaled. Bet at event-cluster level, because gates fired falsely 135 of 135 times on dependent streams. (3) The arbitrage-consistency violation score as a label-free inner-loop fitness, which correlates with Brier. Guard against the Goodhart drift toward 0.5. (4) Capital allocation across strategy bots using non-stationary Thompson sampling against an internal decision market. Expect the bandit to win. (5) Changelog-reactive re-optimisation. Diff the docs and fee tables, patch the simulator, re-backtest, reallocate. Use the six verified 2026 rule changes for a retro event study of competitor adaptation lag. State that none of this is alpha by itself. It prevents paying for fake alpha. Give simulation-based validation with synthetic edges of 0, 0.01, 0.02 and 0.04.",
+   "sub_variants": [
+    "Cutoff-staggered time machine with frozen snapshots (plus the news-value-gap signal)",
+    "E-process promotion ladder with online FDR control",
+    "Consistency-arbitrage label-free fitness",
+    "Thompson bandit vs internal futarchy for capital allocation",
+    "Changelog watcher to simulator patch to same-day reallocation"
+   ],
+   "merged_from": [
+    "Anytime-valid promotion ladder with bandit capital allocation",
+    "Consistency-arbitrage as a label-free fitness function",
+    "Vintage crowd: cutoff-staggered agents, a leakage-proof time machine and a news-value-gap signal",
+    "Internal futarchy: a decision market among agents that allocates capital across your own strategy bots",
+    "Changelog-reactive re-optimisation (rule-change alpha)"
+   ],
+   "flags": "Respect archive-source ToS and copyright when snapshotting the web. No trading-conduct flags.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2608.30502",
+     "note": "Anytime-valid gating fired 135 of 135 times on real dependent streams vs 1 of 60 on synthetic ones."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "note": "~350 resolved predictions for a 0.02 edge at 80% power. ~4x that for 0.01."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.23808",
+     "note": "A composite robustness score over 359,062 backtests: Spearman 0.013 with forward performance."
+    },
+    {
+     "url": "https://arxiv.org/abs/2412.18544",
+     "note": "[pre-2025] Arbitrage-based consistency violations correlate with Brier. Forcing coherence did not improve accuracy."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.14051",
+     "note": "Hindcast: frozen-snapshot replay of Polymarket markets closes both the retrieval leak and the training leak."
+    },
+    {
+     "url": "https://arxiv.org/abs/2601.13717",
+     "note": "Prompted 'simulated ignorance' leaves a 52% gap vs true ignorance."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.03762",
+     "note": "OracleProto: cutoff-aligned admission plus masking brings leakage down to ~1%."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "note": "Verified 2026 regime changes: CLOB V2/pUSD, sports fee 0.03 to 0.05, TWAP resolution, taker delay, Data API v2."
+    }
+   ]
+  },
+  {
+   "slug": "llm-monoculture-herd-factor",
+   "name": "LLM-monoculture factor: model the bot herd, then front-run or fade it",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "seed_category": "new",
+   "one_line": "Run a deliberately vanilla 'sentinel' consensus of default frontier-model bots to sense where homogeneous LLM traders lean. Learn its bias surface and its post-listing price impact. Provide liquidity against news-free drift toward it.",
+   "scope": "Cover the Vanilla Consensus Index or shadow herd: 3-5 default-prompt frontier models with generic search. Cover the bias map built from resolved markets: acquiescence (YES bias), English-news bias, escalation bias, overconfidence. Cover the on-chain footprint tests: drift toward the sentinel without news, a 15-45 minute action cadence, synchronized small takers. Cover the two trades, quoting ahead of predicted flow and fading herd pushes with time stops. Cover the zero-capital use as a no-edge and crowding detector for the team's own agents. Evidence on homogeneity: rho 0.70, identical top picks in 92% of World Cup matches. Evidence on losses: Prediction Arena -16% to -31% on Kalshi, PolyBench 5 of 7 models losing. The decisive unknown: the LLM share of Polymarket volume is unmeasured. The '30% of wallets' figure is a vendor claim. Naively fading LLMs is also unprofitable. Include reflexivity and the need to re-learn after each model release. Validate by pure logging over 12 weeks: regress next-period returns on sentinel-minus-price, and track markouts from herd-matched wallets. Boundary: human trader-cohort simulation is in crowd-price-path-simulation.",
+   "sub_variants": [
+    "Sentinel bias-fade in mapped bias cells",
+    "Front-run predicted LLM flow at listing",
+    "VCI agreement as a negative feature in the deference gate (crowding gauge)"
+   ],
+   "merged_from": [
+    "Fade the silicon herd: vanilla-LLM consensus index",
+    "Monoculture-residual trader: model the LLM herd, then front-run or fade it",
+    "Monoculture harvesting: model the LLM-bot herd and be its counterparty",
+    "Fade-the-bots: an LLM-monoculture factor"
+   ],
+   "flags": "Counter-trading bots is legal market activity. Poisoning sources the bots read, or moving prices to trigger their rules, would be manipulation and a ToS risk.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "note": "Preference-tuned agents: rho=0.70, N_eff ~1.4, flat from N=5 to 40."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.17765",
+     "note": "Four frontier agents made the identical top pick in 92% of 104 matches. None beat the market. Fading was also unprofitable."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07355",
+     "note": "Real capital over 57 days: Kalshi -16% to -30.8%, Polymarket -1.1%. Agents act every 15-45 minutes."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.14199",
+     "note": "PolyBench: 5 of 7 LLMs lose despite uniformly high stated confidence."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.04373",
+     "note": "Correlated LLM trader behaviour rises with capability and becomes a liability under shared misinformation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2402.19379",
+     "note": "[pre-2025] LLM crowd acquiescence: mean forecasts above 50% on balanced questions."
+    },
+    {
+     "url": "https://www.coindesk.com/tech/2026/03/15/ai-agents-are-quietly-rewriting-prediction-market-trading",
+     "note": "Polystrat: 4,200+ trades and ~37% of agents profitable (vendor figures). The '30% of wallets' claim is unverified."
+    },
+    {
+     "url": "https://github.com/Polymarket/agents",
+     "note": "Official bot template: 3.8k stars, archived 2026-05-11. Near-identical scaffolds circulate widely."
+    }
+   ]
+  },
+  {
+   "slug": "crowd-price-path-simulation",
+   "name": "Trade the crowd, not the outcome: trader-population simulation and price-path forecasting",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "agent-society simulation forecasting",
+   "one_line": "Model who trades a market and how they under- or over-react. Use wallet-calibrated archetypes, LLM cohort reads of news, or a supervised belief-dynamics model. Trade the expected drift or reversal over hours to days, flat on the outcome.",
+   "scope": "Cover price-path strategies with a fast-label feedback loop. A wallet-archetype agent-based replica of the order book: longshot buyers, momentum chasers, makers. Its behavioural core should be fitted statistically, because prompt personas fail. An LLM cohort debate on scheduled catalysts. Social-World-Model supervised baselines. A proxy-resolved p_7d target, in the manner of Numinous scoring. Under-reaction drift against a computable benchmark, where price adjusts 0.64-for-one. Fading dislocations of 5 points or more in low-prominence markets. Evidence that crowd bias is persistent and identifiable: sub-10c purchases lose 19.3c per dollar, the top decile of longshot buyers makes 26.6% of next month's low-price purchases, and 8 of 14 wallet parameters are stable. Evidence on persistence: field-experiment price shocks were still visible after 60 days. Strong negatives: StakeBench shows no LLM beats naive odds projection, only ~10% of Polymarket moves are attributable to news, feed-inferred trade direction is 59% accurate so on-chain fills are required, and fees bite on round trips. Staged validation: event study first, then a supervised baseline, and the simulator only if it adds accuracy.",
+   "sub_variants": [
+    "Wallet-archetype ABM with statistical behaviour and an LLM news reader",
+    "LLM cohort debate on catalyst reaction",
+    "Supervised SWM-style next-move model",
+    "Proxy-resolved 7-day-price internal scoring",
+    "Benchmark-gap under-reaction drift (0.64-for-one)",
+    "Dislocation fade in low-prominence markets"
+   ],
+   "merged_from": [
+    "Simulated trader ecology: model the Polymarket crowd, not the event",
+    "Trader-population simulator: behaviour-cloned Polymarket wallet archetypes",
+    "Forecast the crowd: adversarial trader-cohort simulation for price-path trades",
+    "Trade the crowd, not the outcome: agent-population simulation of the price path",
+    "Proxy-resolved internal market: forecast the Polymarket price 7 days ahead",
+    "Reflexive drift trading: model how the Polymarket crowd updates"
+   ],
+   "flags": "Strictly passive. Seeding headlines, spoofing, or creating dislocations to attract news citations is market manipulation. Scraping comments may breach ToS. Do not de-anonymise wallets.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "note": "588M trades: persistent, identifiable longshot flow. Absent in Sports."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.11482",
+     "note": "SWM-bench: an LLM belief-dynamics model beats time-series models on Kalshi. No PnL test. ~10% of Polymarket moves are news-attributed."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.26074",
+     "note": "StakeBench negative: no LLM beats the naive baseline on collective odds projection."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.07811",
+     "note": "Only ~0.64 of a benchmark move is priced contemporaneously. The rest drifts in. Worse in illiquid books."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.06005",
+     "note": "44,976 dislocations of 5 points or more from one-sided flow. It costs $0.7-1.0M to move a prominent market 5 points."
+    },
+    {
+     "url": "https://arxiv.org/abs/2503.03312",
+     "note": "A field experiment on 817 markets: price shocks were still visible after 60 days."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.04217",
+     "note": "Polymarket-v1 archive: 1.20B trades with ground-truth aggressor side. The tick rule is only ~50% accurate."
+    },
+    {
+     "url": "https://raw.githubusercontent.com/numinouslabs/numinous/main/docs/scoring-system.md",
+     "note": "A live network scores agents on the Polymarket price 7 days later. The proxy target is already in production."
+    }
+   ]
+  },
+  {
+   "slug": "rules-ambiguity-hazard-layer",
+   "name": "Ex-ante rules layer: rule-lawyer scanner, ambiguity wargame, dispute-hazard haircut and rule-diff versioning",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "new",
+   "one_line": "Compile every market's rules into a typed resolution spec. Have adversarial agents enumerate scenarios where headline truth and contract outcome diverge. Price the dispute and flip hazard like a credit spread, and archive rule diffs and clarifications. All of this happens before any dispute exists.",
+   "scope": "Cover everything that reads rules text before resolution. (a) The spec compiler and the two-pass gap between a headline reader and a rules-aware reader, trading only divergences that have a named scenario. (b) A role-played panel: literalist proposer, spirit-of-the-market disputer, precedent-grounded voter. It produces a basis-risk score and a playbook. (c) A tabular hazard model of P(dispute), P(flip | dispute) and lock-up time, used to haircut 95-99c sniping and widen quotes. About 1% of proposals are disputed. 23.9% of disputed contracts revise. In markets above $6.8M, flagged questions are disputed 16.2% of the time against 8.1%. (d) Semantic versioning of rule text and on-chain 'Additional context' posts. (e) Cross-venue spec-diff for rule-basis pricing; equivalent markets sit 2-4% apart. The key limit: LLMs cannot predict disputes from rule text alone (accuracy 0.40-0.57), so use LLM-extracted features inside a tabular model. Validate with Du's 2,221 disputed contracts plus matched controls, and with a time-split AUC. Boundary: trading after a dispute opens is in synthetic-uma-dispute-jury.",
+   "sub_variants": [
+    "Headline-vs-rules divergence scanner",
+    "Adversarial ambiguity wargame and playbook export to the sniping stack",
+    "Dispute-hazard credit-spread haircut",
+    "Rule-diff and clarification event trading",
+    "Cross-venue spec-diff rule-basis pricing"
+   ],
+   "merged_from": [
+    "Resolution-ambiguity wargame (simulated proposers, disputers and UMA voters)",
+    "Resolution red team ('rules lawyer') and dispute-phase judge (ex-ante part)",
+    "Rule-lawyer scanner: headline-vs-rules mispricing across the whole book",
+    "Dispute-hazard pricing: a credit-spread model for near-resolved markets",
+    "Rule-diff and clarification event trading (semantic versioning of every contract)",
+    "Cross-venue 'same event' matching with explicit rule-basis risk pricing"
+   ],
+   "flags": "Do not propose or dispute on UMA to move your own positions. Do not combine this with voting power. Both have manipulation optics. The managed-proposer status is unverified. Cross-venue legs raise KYC and geofencing constraints.",
+   "key_evidence": [
+    {
+     "url": "https://github.com/rodridu/polywether",
+     "note": "Self-reported companion to Du 2026: 305,766 contracts. 'Consensus of credible reporting' language gives a 3.5x dispute lift. Revised contracts score Brier 0.318 vs 0.032."
+    },
+    {
+     "url": "https://github.com/let-the-dreamers-rise/brier",
+     "note": "Self-reported: in markets above $6.8M, flagged questions are disputed 16.2% vs 8.1%. No effect below that. 72.5% of open markets settle on human judgement."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.15674",
+     "note": "$972M of volume in disputed events. LLMs cannot predict disputes ex ante (accuracy 0.40-0.57)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.15368",
+     "note": "On-chain: 159,447 proposals, 1,604 disputes. Rule versioning is a distinct adjudication state."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "note": "UMA OO flow: $750 pUSD bond, 2h challenge, on-chain 'Additional context' clarifications."
+    },
+    {
+     "url": "https://arxiv.org/abs/2601.01706",
+     "note": "~6% of events are cross-listed. Equivalent markets sit 2-4% apart from structural frictions."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.16642",
+     "note": "No historical rule versions are recoverable from public Kalshi endpoints. Rule-history data is scarce."
+    },
+    {
+     "url": "https://github.com/xzycd/recuse",
+     "note": "Self-reported: the Zelenskyy-suit market had 5 dispute rounds on $242.2M. Lock-ups of 13-16 months. Documents Gamma API traps."
+    }
+   ]
+  },
+  {
+   "slug": "synthetic-uma-dispute-jury",
+   "name": "Synthetic UMA jury: in-dispute adjudication trading with a unanimity gate",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "simulated stakeholder polling",
+   "one_line": "When a proposal is disputed, several web-enabled model families independently predict how UMA voters will rule. Trade only the unanimous high-confidence subset, where the price still carries a panic or lock-up discount.",
+   "scope": "Cover the post-dispute window only. Subscribe to oracle lifecycle events; Data API v2 now exposes resolution lifecycle reads. Assemble the dossier: rules, clarifications, UMA evidence threads, dated news. Collect independent votes with no debate, since debate lowers accuracy. Gate on unanimity plus confidence. Size by lock-up time: 24-48h of debate plus ~48h of voting, longer with resets. Core numbers: LLMs agree with the final UMA ruling 89.58% of the time against a naive 'proposal stands' baseline of about 76%. The unanimous subset is 97.87% accurate on 47% of questions. Inter-model error correlation is 0.53-0.69. The key unknown is that nobody has measured price levels during dispute windows. Humans already specialise here; one wallet cluster won 26 of 34 contested markets. Discuss token-weighted whale voting, the fat-tailed ~10% misses, leakage in backtests of famous disputes, and oracle-surface changes. Validate by replaying 2026 disputes that fall after model cutoffs. Boundary: ex-ante hazard and rules reading are in rules-ambiguity-hazard-layer.",
+   "sub_variants": [
+    "Independent multi-family vote with unanimity gate",
+    "Precedent-grounded voter persona panel",
+    "Jury disagreement score exported as an LP risk flag"
+   ],
+   "merged_from": [
+    "Synthetic UMA jury: independent multi-model vote with a unanimity gate",
+    "In-dispute adjudication trading: LLM ensemble as a UMA-voter simulator",
+    "Resolution red team and dispute-phase judge (dispute-phase part)",
+    "Synthetic benches: UMA voter-set twin"
+   ],
+   "flags": "Do not post dispute bonds, vote with UMA tokens, or lobby voters on markets where you hold positions without legal review. That approaches settlement manipulation.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2604.15674",
+     "note": "259 disputed-and-resolved events: 89.58% LLM agreement with the final UMA ruling, with temporal controls."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "note": "Independent vote 83.43% vs debate ~76%. Unanimous high-confidence subset 97.87% on 47% of questions."
+    },
+    {
+     "url": "https://github.com/rodridu/polywether",
+     "note": "Self-reported: 23.9% of disputed contracts revise, so the naive baseline is ~76%. Revision rates differ by settlement path."
+    },
+    {
+     "url": "https://github.com/xzycd/recuse",
+     "note": "Self-reported: repeat human winners of contested markets (26 of 34, +$645K). More than 1,150 disputes in 2026."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.15373",
+     "note": "108,638 conditions tracked through finality and redemption. Timing data for dispute-window trades."
+    },
+    {
+     "url": "https://docs.polymarket.com/developers/resolution/UMA",
+     "note": "Official flow: $750 pUSD bond, 2h challenge, second dispute goes to a DVM vote."
+    },
+    {
+     "url": "http://arxiv.org/abs/2609.06769v2",
+     "note": "LLMs track human legal judgments but are more homogeneous and lean toward institutions. A bias to correct."
+    }
+   ]
+  },
+  {
+   "slug": "dependence-pricing-combos-joint",
+   "name": "LLM- and simulation-derived dependence pricing: Polymarket Combos RFQ and cross-event joint distributions",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "seed_category": "agent-society simulation forecasting",
+   "one_line": "Estimate cross-event dependence from precomputed conditional debates or coherent world simulations. Keep the market's marginals. Quote or pick off 2-50-leg Combo RFQs, and trade listed combos against their legs where joint probability differs from the independence product.",
+   "scope": "Cover the dependence-only thesis. Simulation levels are biased, but dependence estimates partly cancel those biases, and hedged packages of combo against legs isolate the correlation view. Methods: offline pairwise conditional debates that produce log-odds ratios, a pairwise exponential-family or copula pricer fast enough for the 400 ms quote window, and 1,000+ world runs for linked clusters with a cheap first version that uses direct conditional elicitation. Cover the Combos mechanics from the docs: 2-50 YES legs, 10 s acceptance, last look needing about $2,500 of notional plus contact with Polymarket, a pause above 15% rejections, and 15 request creates per minute. Cover quoter mode and requester mode. The Kalshi evidence is that parlays are overpriced by about 3% per leg, and Kalshi mints 1.09M combinatorial objects a day. Limits: there is no ground truth for conditionals, relation accuracy is 62.8%, adverse selection, generative exaggeration that overstates correlations, capital lock-up, and sports desks that already price same-game correlation. Validate with an RFQ logging phase and 50 resolved linked pairs scored against independence. Boundary: logical-constraint coherence is in semantic-market-graph-relative-value.",
+   "sub_variants": [
+    "Combos RFQ quoter with a precomputed pairwise pricer",
+    "Requester mode picking off independence-priced linked legs",
+    "Sim-dependence plus market-marginals hedged packages on listed combo events",
+    "Implied conditionals from quotes as a data feed"
+   ],
+   "merged_from": [
+    "Joint-distribution scenario engine for cross-event relative value",
+    "Conditional-tree joint pricer for Polymarket Combos (RFQ maker and quote picker)",
+    "LLM-derived dependence pricing for Polymarket Combos (RFQ parlays)"
+   ],
+   "flags": "Combos market making requires onboarding and contact with Polymarket. EOA wallets are unsupported. Check jurisdiction and entity availability. The Combo fee schedule is unverified. Systematically picking off makers may get your flow restricted.",
+   "key_evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/combos/overview.md",
+     "note": "RFQ flow: 400 ms quote window, 10 s acceptance, optional 1 s last look."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+     "note": "Last look needs ~$2,500 combo notional plus contact. Above 15% rejections causes a pause."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/requesters.md",
+     "note": "2-50 compatible legs, YES only, 15 creates per rolling minute."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.14430",
+     "note": "Kalshi parlays: overpricing ratio 0.991 at 2 legs rising to 1.223 at 10 legs, ~3% per leg, N=12,639."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.22596",
+     "note": "ParlayMarket: a pairwise exponential-family belief state with O(M^2) statistics, tested on Kalshi combos."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.17610",
+     "note": "Kalshi mints ~1.087M combinatorial objects per day. 35% carry volume or open interest."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=shutdown&limit_per_type=15&events_status=active",
+     "note": "A live cross-event combo (shutdown and House winner): $342k volume, $58k liquidity."
+    },
+    {
+     "url": "http://arxiv.org/abs/2507.00657v1",
+     "note": "Counter-evidence: LLM agents exaggerate polarization, so they likely overstate correlations."
+    }
+   ]
+  },
+  {
+   "slug": "semantic-market-graph-relative-value",
+   "name": "Semantic market graph: coherent fair value, LLM-filtered lead-lag and precomputed catalyst playbooks",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "seed_category": "multi-agent adversarial debate forecasting",
+   "one_line": "Build an adversarially verified graph of logical and causal links between live markets. Project prices onto the coherent polytope to get soft relative-value signals. Trade followers when semantically justified leaders move, and pre-write conditional orders for second-order markets before scheduled catalysts.",
+   "scope": "Cover three uses of one graph. (1) Typed constraints: implication, exclusion, date nesting, threshold ladders. A red team tests each against the literal rules. An LP/IP projection yields soft residuals, and a debate decides which leg is wrong. Be frank that hard combinatorial arbitrage is tiny: about $95k realised against $39.5M of rebalancing, and 13 valid pairs out of 1,576 flagged. (2) Granger and temporal-graph leader-follower pairs, kept only if an LLM can justify a transmission mechanism. On Kalshi this raised the win rate from 51.4% to 54.5% and roughly halved the average loss. A separate backtest returned a 14.12% net ROI, but 76% of the PnL came from five trades. (3) Debate-built conditional playbooks that fire into stale second-order books after a catalyst. Precomputing removes the LLM's latency handicap. The defensive twin is catalyst-aware quote pulling. Cover fee drag at mid prices, rule-mismatch false edges, the tendency of LLMs to rationalise any pair, and capacity. Validate with edge-precision audits, residual IC, a lag event study and a walk-forward test. Boundary: joint-probability pricing is in dependence-pricing-combos-joint.",
+   "sub_variants": [
+    "Coherent-polytope fair value with a debate over the wrong leg",
+    "LLM-filtered Granger lead-lag trading",
+    "Precomputed catalyst playbooks for second-order markets",
+    "Catalyst-aware maker: jump-intensity calendar and persistence classifier"
+   ],
+   "merged_from": [
+    "Soft-coherence cluster engine: debate decides which leg is wrong",
+    "Live logical constraint graph as a fair-value engine",
+    "Soft-dependency propagation: LLM-filtered lead-lag trading",
+    "Causal lead-lag graph across markets with an LLM as semantic risk filter",
+    "Precomputed conditional playbooks for catalyst propagation",
+    "Catalyst-aware maker: LLM jump-intensity forecasts and news triage for quote skewing"
+   ],
+   "flags": "No conduct flags beyond the standard rules. Data feeds used for branch detection must be licensed. Headline spoofing is an adversarial risk for the maker variant.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2508.03474",
+     "note": "LLM dependency detection: 46,360 pairs, 1,576 flagged, 13 valid. Combinatorial arb ~$95k of $39.6M total."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "note": "NegRisk arbitrage totals $1.12M. Violations persist on the unsupported YES side."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00864",
+     "note": "NBA: 290 combinatorial episodes, median 101 bps, 76.9% capped at ~14.8 shares."
+    },
+    {
+     "url": "https://arxiv.org/html/2512.02436",
+     "note": "Agentic relation discovery on Kalshi: 62.8% relation accuracy. 14.12% net ROI over 46 trades, with five trades making 76.4% of PnL."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.07048",
+     "note": "An LLM filter on Granger pairs: win rate 51.4% to 54.5%, average loss $649 to $347 (Kalshi backtest)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.15448",
+     "note": "EventConnector temporal event graphs: RMSE down 6.87% on Polymarket and Kalshi price prediction."
+    },
+    {
+     "url": "https://arxiv.org/abs/2510.17638",
+     "note": "Prophet Arena: LLMs aggregate information more slowly than markets near resolution. This motivates precomputation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.03152",
+     "note": "Three 2024 political shocks: one reversal, one persistence, one volume spike without a price change. Persistence labels matter."
+    }
+   ]
+  },
+  {
+   "slug": "external-forecaster-sourcing",
+   "name": "External forecaster sourcing: meta-aggregate public AI-forecast exhaust, mine Numinous SN6, run a staked tournament",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "seed_category": "synthetic crowd / internal prediction market",
+   "one_line": "Buy or borrow the thing an in-house LLM pool cannot produce, which is independently built forecasters. Learn an aggregator over public benchmark forecasts. Optionally earn emissions as a miner scored against the Polymarket price. Later run a Numerai-style commit-reveal tournament scored by marginal contribution.",
+   "scope": "Cover three tiers of outside signal. (1) Ingest the Prophet Arena, Numinous and Metaculus-bot per-event forecasts. Map the events to Polymarket. Fit a regularised logistic aggregator with disagreement features, then blend it with the market and gate it. (2) Run an agent as a Bittensor SN6 miner. It is scored as S = (pred-target)^2 - (price-target)^2 against the 7-day-later Polymarket price. The rules require 85% coverage and a 240 s runtime, and roughly the top 20 earn. (3) A commit-reveal tournament on thin early-life markets, prize-only at first. Contributors are scored by MMC-style contribution to the blend, so copying the price earns nothing. The thesis: monoculture caps in-house diversity, and independently engineered systems decorrelate. Limits: top Prophet Arena agents only tie the Kalshi baseline. Public signals are contestable. Adverse selection means anyone with real edge trades it directly. Timestamps go stale. Emissions are paid in a volatile token. The 7-day target rewards predicting the crowd. Validate with an 8-week ingestion sprint (alpha CI at n of 350 or more) and a pilot that measures the stacker weight earned and rho against the in-house pool.",
+   "sub_variants": [
+    "Learned aggregator over public AI-forecast leaderboards",
+    "Numinous SN6 miner as a second revenue line",
+    "Prize-only then staked commit-reveal tournament with MMC scoring"
+   ],
+   "merged_from": [
+    "Harvest the public AI-forecast exhaust: meta-aggregate third-party synthetic crowds, and optionally mine one",
+    "Staked open forecaster tournament feeding a meta-model that trades (the Numerai pattern on Polymarket)"
+   ],
+   "flags": "Staking on forecasts can count as gambling or securities activity depending on jurisdiction. Run prize-only until counsel signs off. Token emissions carry crypto price, tax and regulatory exposure. Check Prophet Arena and Numinous ToS before scraping. Contributors may front-run a published market list.",
+   "key_evidence": [
+    {
+     "url": "https://raw.githubusercontent.com/numinouslabs/numinous/main/docs/scoring-system.md",
+     "note": "SN6 scoring against the Polymarket price with a 7-day price target. 85% coverage. Top ~20 earn."
+    },
+    {
+     "url": "https://github.com/numinouslabs/numinous",
+     "note": "Self-reported: sandboxed agents (240 s) must beat the market price to score. No published accuracy."
+    },
+    {
+     "url": "https://www.prophetarena.co/leaderboard/forecast",
+     "note": "2026-09-20: top agents 0.8022 vs Kalshi baseline 0.7998. Roughly parity. Metric definition unverified."
+    },
+    {
+     "url": "https://www.metaculus.com/notebooks/38673/q1-ai-benchmarking-results/",
+     "note": "Q1 2025: the bot team scored -17.7 vs professional forecasters (p=0.001, 96 questions)."
+    },
+    {
+     "url": "https://docs.numer.ai/",
+     "note": "The institutional pattern: staked predictions form the Meta Model. MMC scoring, payouts and burns."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "note": "Foresight Arena: a commit-reveal benchmark on Polymarket markets on Polygon. Defines the Alpha score."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "note": "A learned linear aggregator over diverse models beats every member. Disagreement is the signal."
+    }
+   ]
+  },
+  {
+   "slug": "sponsor-and-inform-niche-models",
+   "name": "Sponsor-and-inform: subsidise depth in niches where simple statistical models beat the market, then be the informed maker",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "seed_category": "new",
+   "one_line": "Find market families where a computed baseline demonstrably beats Polymarket prices, such as disease counts or thresholds with an options-implied reference. Pitch a market or pick a thin existing one. Pay for liquidity rewards so a book forms, and quote the bracket ladder from the model.",
+   "scope": "Cover the inversion of the usual constraint, which is edge without depth. Domain discovery runs through a reference-class and base-rate pipeline: reference classes with computed base rates, not remembered ones; a red-team challenge on class membership; and a Fermi cross-check. Evidence for such niches: FluSight and simple baselines dominate Polymarket and Kalshi flu and measles markets, to the point that the optimal blend puts zero weight on the markets, and those markets price impossible outcomes. BTC threshold contracts sit 5.6 points from option-implied values. Counter-evidence: prompt-only 'superforecaster' tricks do almost nothing, and more capable models make worse tail forecasts. Mechanics: users cannot create markets and must suggest them via X. Anyone can sponsor rewards from $0.1 a day, with one sponsorship per market. In the Telonex case about $70k of sponsorship doubled the number of makers and multiplied top-of-book depth 23.5x. Economics to test: reward farmers dilute the subsidy, other makers copy your quotes, and adverse selection applies. The account is mark-out plus recaptured rewards plus rebates against sponsorship spend. Validate with 8 weeks of public model scoring, then a 14-day sponsorship at $20 a day.",
+   "sub_variants": [
+    "Existing thin market with a dominant public baseline (measles, flu brackets)",
+    "Pitching a new market with a legible resolution source",
+    "Options-implied density vs BTC threshold ladders",
+    "Reference-class tournament with a Fermi cross-check as the model source"
+   ],
+   "merged_from": [
+    "Sponsor-and-inform: get a market listed where your model beats the crowd, buy its depth, then be the informed maker",
+    "Reference-class tournament with data-backed Fermi decomposition for structured markets"
+   ],
+   "flags": "Whether the ToS conduct code allows trading a market you lobbied for and sponsored is unverified. Check the wash and self-trade rules. Never misstate anything when pitching a market. Avoid death and disaster markets for reputational reasons. CDC backfills can break bracket settlement.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2605.11220",
+     "note": "The FluSight ensemble dominates Polymarket and Kalshi disease markets. The optimal blend puts zero weight on the markets."
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13755867-sponsor-market-rewards",
+     "note": "Anyone can sponsor rewards from $0.1 a day. One sponsorship per market. Refund from the next 00:00 UTC."
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13364541-how-are-markets-created",
+     "note": "Users cannot create markets. They suggest a title, resolution source and demand evidence via X."
+    },
+    {
+     "url": "https://telonex.io/research/sponsored-liquidity-rewards-jesus-market",
+     "note": "~$70k of sponsorship: makers 302 to 639, top-of-book depth 23.5x, all within a day."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=measles&limit_per_type=10&events_status=active",
+     "note": "Measles 2026: $7.98M volume but only $20.1k resting liquidity across 16 brackets."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.19517",
+     "note": "Polymarket BTC thresholds sit a mean 5.6 points from option-implied values (t=6.46). Half-life ~4h. May be a premium rather than a mispricing."
+    },
+    {
+     "url": "https://arxiv.org/abs/2506.01578",
+     "note": "38 forecasting prompts give negligible gains. Bayesian-reasoning prompts hurt. The edge must come from data pipelines."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.17503",
+     "note": "What gets listed is driven by settlement legibility, not importance."
+    }
+   ]
+  }
+ ],
+ "dropped": [
+  {
+   "name": "Wallet-intent modelling: semantic counterparty classification for toxicity-aware quoting",
+   "reason": "This is a market-making and copy-trading enhancement. It does not give a way to beat the price, and the reader's existing LP and copy-trading builds already cover it. It belongs in the microstructure/LP band. The wallet-archetype data work it needs is referenced inside crowd-price-path-simulation."
+  },
+  {
+   "name": "Insider-footprint early warning with an LLM market-susceptibility prior",
+   "reason": "Not speculative. Open-source detectors and several 2026 papers already exist, so the core is a proven pattern. Its supported use is defensive, and it carries serious legal flags about trading alongside suspected MNPI. It belongs in the informed-flow/copy-trading band."
+  },
+  {
+   "name": "Event-hedge desk and hedged baskets on Polymarket rails",
+   "reason": "This is a service business with the highest regulatory risk in the set. It is not a forecasting or pricing strategy, so it is out of scope here. Route it to the services/business band."
+  },
+  {
+   "name": "Forecast feed plus leak-free replay data as a product",
+   "reason": "This is a data and service business, not a trading strategy. Its leak-free corpus component is covered as infrastructure in evaluation-promotion-allocation-metalayer."
+  },
+  {
+   "name": "Count-process engine for cadence markets (Elon Musk weekly posts and similar)",
+   "reason": "It is an established quantitative practice: Hawkes and point-process models, with known specialist traders since 2025. It is neither speculative nor an agent-simulation idea. It belongs in the quantitative directional band, and it has real capacity at $1.155M volume and $347k liquidity per week."
+  },
+  {
+   "name": "Buy the information: commissioned real polls (stand-alone)",
+   "reason": "A privately commissioned real poll is an established information purchase with the Theo precedent, not a speculative simulation. It is kept only as the calibration and escalation tier inside simulated-stakeholder-polling. The stand-alone treatment belongs in the information-edge band."
+  },
+  {
+   "name": "Human-judge centaur with agent red-team briefs",
+   "reason": "The discovery lens itself excluded it because it is not a standalone agent, and its evidence is secondary and unaudited. It is too vague for a file."
+  }
+ ],
+ "notes": "This band consolidates 6 lenses and about 80 candidates into 22 entries. I made no web calls in this consolidation step. Whether two candidates were duplicates was settled from the candidate texts and the evidence they share. Every URL is copied from the discovery input. Several lenses marked some URLs as 'listing only' or 'headline only', so file authors must re-fetch before relying on the numbers.\n\nSeed coverage:\n- agent-society simulation: agent-society-simulation-forecasting, plus crowd-price-path-simulation and dependence-pricing-combos-joint as society-sim derivatives.\n- synthetic crowd / internal prediction market: internal-agent-prediction-market, plus information-partitioned-delphi-panel and external-forecaster-sourcing.\n- adversarial debate: adversarial-debate-price-residual. The debate-over-legs variant sits inside semantic-market-graph-relative-value.\n- self-improving / recursive: recursive-self-improving-forecaster, evolutionary-agent-strategy-factory, evaluation-promotion-allocation-metalayer, market-anchored-selective-deference.\n- simulated stakeholder polling: simulated-stakeholder-polling, plus decision-body-member-twins, elite-selection-bargaining-simulators and synthetic-uma-dispute-jury.\n\nFindings that recur across lenses and that every file should restate:\n1. LLM panels lose to liquid prices standalone but add information as a ~0.33-weight blend. Skill sits early in a market's life and on toss-ups.\n2. Monoculture is the binding constraint: rho ~0.7, and ten agents behave like ~1.4 independent forecasters. Only model-family diversity and evidence diversity decorrelate agents. Persona prompts do not.\n3. Deliberation often hurts, so always run an independent-aggregation control arm.\n4. Backtests inside a model's training window are void. Validate forward-only or with frozen snapshots.\n5. Detecting a 0.02 edge takes ~350 independent resolved predictions. Count clustered events as one.\n6. Fee arithmetic (taker fee = feeRate x p(1-p), makers pay 0, Geopolitics is fee-free) pushes almost every idea toward maker expression or the fee-free category.\n7. Most markets where simulation has a structural argument are tiny: side markets hold $50 to tens of thousands of dollars. The liquid exceptions are Nobel, UNSG, TIME POTY, geopolitics ladders and non-English elections.\n\nBuild order the lenses suggest: evaluation-promotion-allocation-metalayer and market-anchored-selective-deference are infrastructure for everything else. rules-ambiguity-hazard-layer and synthetic-uma-dispute-jury fit the owner's existing sniping stack best and are text-only with on-chain ground truth. llm-monoculture-herd-factor, crowd-price-path-simulation and dependence-pricing-combos-joint are the most novel and have the weakest support.\n\nThree entries bundle several strategies and will need sub-sectioned files: rules-ambiguity-hazard-layer, semantic-market-graph-relative-value and evaluation-promotion-allocation-metalayer. If the owner prefers more files to fewer, the natural splits are rule-diff versioning, catalyst playbooks and changelog-reactive re-optimisation."
+}

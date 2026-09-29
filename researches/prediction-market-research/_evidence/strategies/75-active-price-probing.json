@@ -1,0 +1,30 @@
+{
+ "slug": "active-price-probing",
+ "name": "Active price probing: measure order-book resilience with small real trades and use it as the deference signal",
+ "category": "Speculative-novel",
+ "maturity": "Purely theoretical",
+ "one_line": "Spend a few dollars of genuine taker flow to learn whether a price is defended by informed liquidity or is soft and stale, and let the measured resilience set how much weight the stacker gives the market.",
+ "scope": "Design: randomised small marketable orders of $5-20 in both directions, held and not cancelled. Measure refill time, reversion half-life, and which maker addresses refill, taken from on-chain fills because feed direction is only about 59% accurate (E1 pack). The output is a per-market resilience score. It feeds the act-abstain gate in market-anchored-selective-deference and the LP quote width. Evidence comes from a field experiment with 5-point shocks on 817 markets. 75% of the shock remained after one week and 56% after 60 days. One-week reversion was 47% where an external estimate existed and 23% where it did not. It was 33% against 17% for above- and below-median trader counts, and 49% for above-median volume. Softness is therefore predictable, and soft prices carry the least information. The file must state that the venue was Manifold (play-money Mana, with a Sweepcash follow-up) and that no Polymarket replication exists. Validation: 100 thin markets with a randomised probe against a no-probe control. Test whether resilience predicts the later agent-versus-market Brier gap and the LP markout. The budget is a few hundred dollars of fees and spread.",
+ "why_it_matters": "This is the only idea in the band where the agent creates information by interacting with the market, not by reading about the event. It answers the list's central question, 'should we disagree with the price here?', with a measurement and not a model. It is cheap, fast, and reuses the owner's execution stack. It also corrects a weakness in the list, which cites the 60-day persistence result as if it described Polymarket.",
+ "flags": "Probes must be genuine risk-transferring trades. Orders placed with intent to cancel are spoofing. Self-fills breach the ToS clause on 'no change in beneficial ownership', which has no intent element (E9 pack). Never size or time probes to move thin books, trigger news citations or set off others' rules. Get a legal review before systematic use. Taker fees apply.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2503.03312",
+   "note": "2025-03, Rasooly and Rozzi, 'How manipulable are prediction markets?': 817 Manifold markets, 5-point shocks. 75% of the shock remains at one week and 56% at 60 days. Resilience rises with external estimates, trader count and volume. Play-money venue."
+  },
+  {
+   "url": "https://arxiv.org/abs/2503.03312",
+   "note": "The abstract page for the same paper. Effects were 'visible even 60 days after'."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "75",
+ "band": "speculative",
+ "file": "75-active-price-probing.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band."
+ ]
+}

@@ -1,0 +1,581 @@
+{
+ "slug": "market-anchored-selective-deference",
+ "name": "Market-anchored stacking and selective deference (edge map, abstention gates, day-zero quoting)",
+ "category": "Speculative-novel",
+ "maturity": "Emerging",
+ "seed_category": "self-improving / recursive forecasting agents",
+ "one_line": "Treat the question 'should we disagree with the price here?' as the prediction problem. Make the market mid an expert in an online stacker and route by lifecycle and price cell. Monetise the residual as maker skew, especially in the first hours of new and toss-up markets.",
+ "scope": "Cover the fail-safe blend layer. Use Hedge or BOA online aggregation with the price in the expert pool, so the weight on agents falls to zero when they carry no information. Keep per-cell weights with a published prior of about 0.33 AI and 0.67 market. Build a hierarchical-Bayes sleeping-experts edge map over category, lifecycle stage, price band and liquidity, net of the fee formula. Add Thompson-sampling routing, abstention, and conformal or unanimity act-abstain gates. Cover the opening-quote business: detect listings, take the prior from the panel, sibling-market bounds and other venues, quote wide and two-sided, then taper as volume arrives. Key numbers: Brier skill vs the market of +0.167 at open+1 against -0.829 at close-1, and +0.301 on toss-ups. No two-model ensemble beats the market overall. The blend gains about 0.005 Brier. Purchases at 90c or above earn 0.83c per dollar. Give the fee arithmetic, the adverse selection faced by new-market quoters, event-clustered validation on 400+ markets, and markout tests. Boundary: how the agents are produced is in the other forecasting files.",
+ "sub_variants": [
+  "Hedge/BOA stacker with the price as an expert",
+  "Sleeping-experts edge map plus Thompson routing",
+  "Conformal / unanimity act-abstain gate in the favourite zone",
+  "Day-zero opening quotes from panel prior, sibling bounds and cross-venue anchor"
+ ],
+ "merged_from": [
+  "Market-anchored online stacker (Hedge/BOA with the Polymarket price as one of the experts)",
+  "Sleeping-experts edge map",
+  "Selective-deference divergence engine (new-market and toss-up specialist, expressed as maker skew)",
+  "Disagreement-gated selective trading (conformal act / abstain)",
+  "Panel-priced market opening: debate forecaster as the first informed quote",
+  "Day-zero pricing of brand-new markets (LLM prior + graph inheritance + cross-venue anchor)",
+  "Harvest the public AI-forecast exhaust: meta-aggregate third-party synthetic crowds, and optionally mine one",
+  "Staked open forecaster tournament feeding a meta-model that trades (the Numerai pattern on Polymarket)"
+ ],
+ "flags": "Check the liquidity-reward quoting rules before skewing quotes. The programme rules were not re-verified this session.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2604.04220",
+   "note": "TimeSeek, 150 Kalshi markets: BSS +0.167 at open+1 and -0.829 at close-1. Toss-ups +0.301. Ensembles never beat the market overall."
+  },
+  {
+   "url": "https://arxiv.org/html/2511.07678",
+   "note": "1,610 liquid questions: market 0.1106, AIA 0.1258, blend 0.106. AI weight 0.33, CI 0.12-0.47."
+  },
+  {
+   "url": "https://arxiv.org/abs/2602.21229",
+   "note": "MixMCP market-conditioned blend beats both the market and the LLM on mention markets."
+  },
+  {
+   "url": "https://arxiv.org/abs/2604.07667",
+   "note": "Conformal layer intercepts 81.9% of wrong-consensus cases at alpha=0.05."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.12101",
+   "note": "Outcome-estimated competence gating beats verbal confidence. The gate mostly defers to markets."
+  },
+  {
+   "url": "https://markets.futuresearch.ai",
+   "note": "Self-reported book: Kalshi real money +5.9% (26W/12L), Polymarket paper -19.6%."
+  },
+  {
+   "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+   "note": "Quadratic spread scoring and per-minute sampling. The reward maths relevant to opening quotes."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.00420",
+   "note": "Alpha score against the market. ~350 predictions for a 0.02 edge, ~1,400 for 0.01."
+  },
+  {
+   "url": "https://raw.githubusercontent.com/numinouslabs/numinous/main/docs/scoring-system.md",
+   "note": "SN6 scoring against the Polymarket price with a 7-day price target. 85% coverage. Top ~20 earn."
+  },
+  {
+   "url": "https://github.com/numinouslabs/numinous",
+   "note": "Self-reported: sandboxed agents (240 s) must beat the market price to score. No published accuracy."
+  },
+  {
+   "url": "https://www.prophetarena.co/leaderboard/forecast",
+   "note": "2026-09-20: top agents 0.8022 vs Kalshi baseline 0.7998. Roughly parity. Metric definition unverified."
+  },
+  {
+   "url": "https://www.metaculus.com/notebooks/38673/q1-ai-benchmarking-results/",
+   "note": "Q1 2025: the bot team scored -17.7 vs professional forecasters (p=0.001, 96 questions)."
+  },
+  {
+   "url": "https://docs.numer.ai/",
+   "note": "The institutional pattern: staked predictions form the Meta Model. MMC scoring, payouts and burns."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.00420",
+   "note": "Foresight Arena: a commit-reveal benchmark on Polymarket markets on Polygon. Defines the Alpha score."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.18269",
+   "note": "A learned linear aggregator over diverse models beats every member. Disagreement is the signal."
+  }
+ ],
+ "absorbed": [
+  {
+   "slug": "external-forecaster-sourcing",
+   "name": "External forecaster sourcing: meta-aggregate public AI-forecast exhaust, mine Numinous SN6, run a staked tournament",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "seed_category": "synthetic crowd / internal prediction market",
+   "one_line": "Buy or borrow the thing an in-house LLM pool cannot produce, which is independently built forecasters. Learn an aggregator over public benchmark forecasts. Optionally earn emissions as a miner scored against the Polymarket price. Later run a Numerai-style commit-reveal tournament scored by marginal contribution.",
+   "scope": "Cover three tiers of outside signal. (1) Ingest the Prophet Arena, Numinous and Metaculus-bot per-event forecasts. Map the events to Polymarket. Fit a regularised logistic aggregator with disagreement features, then blend it with the market and gate it. (2) Run an agent as a Bittensor SN6 miner. It is scored as S = (pred-target)^2 - (price-target)^2 against the 7-day-later Polymarket price. The rules require 85% coverage and a 240 s runtime, and roughly the top 20 earn. (3) A commit-reveal tournament on thin early-life markets, prize-only at first. Contributors are scored by MMC-style contribution to the blend, so copying the price earns nothing. The thesis: monoculture caps in-house diversity, and independently engineered systems decorrelate. Limits: top Prophet Arena agents only tie the Kalshi baseline. Public signals are contestable. Adverse selection means anyone with real edge trades it directly. Timestamps go stale. Emissions are paid in a volatile token. The 7-day target rewards predicting the crowd. Validate with an 8-week ingestion sprint (alpha CI at n of 350 or more) and a pilot that measures the stacker weight earned and rho against the in-house pool.",
+   "sub_variants": [
+    "Learned aggregator over public AI-forecast leaderboards",
+    "Numinous SN6 miner as a second revenue line",
+    "Prize-only then staked commit-reveal tournament with MMC scoring"
+   ],
+   "merged_from": [
+    "Harvest the public AI-forecast exhaust: meta-aggregate third-party synthetic crowds, and optionally mine one",
+    "Staked open forecaster tournament feeding a meta-model that trades (the Numerai pattern on Polymarket)"
+   ],
+   "flags": "Staking on forecasts can count as gambling or securities activity depending on jurisdiction. Run prize-only until counsel signs off. Token emissions carry crypto price, tax and regulatory exposure. Check Prophet Arena and Numinous ToS before scraping. Contributors may front-run a published market list.",
+   "key_evidence": [
+    {
+     "url": "https://raw.githubusercontent.com/numinouslabs/numinous/main/docs/scoring-system.md",
+     "note": "SN6 scoring against the Polymarket price with a 7-day price target. 85% coverage. Top ~20 earn."
+    },
+    {
+     "url": "https://github.com/numinouslabs/numinous",
+     "note": "Self-reported: sandboxed agents (240 s) must beat the market price to score. No published accuracy."
+    },
+    {
+     "url": "https://www.prophetarena.co/leaderboard/forecast",
+     "note": "2026-09-20: top agents 0.8022 vs Kalshi baseline 0.7998. Roughly parity. Metric definition unverified."
+    },
+    {
+     "url": "https://www.metaculus.com/notebooks/38673/q1-ai-benchmarking-results/",
+     "note": "Q1 2025: the bot team scored -17.7 vs professional forecasters (p=0.001, 96 questions)."
+    },
+    {
+     "url": "https://docs.numer.ai/",
+     "note": "The institutional pattern: staked predictions form the Meta Model. MMC scoring, payouts and burns."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "note": "Foresight Arena: a commit-reveal benchmark on Polymarket markets on Polygon. Defines the Alpha score."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "note": "A learned linear aggregator over diverse models beats every member. Disagreement is the signal."
+    }
+   ]
+  }
+ ],
+ "extra_scope": "ABSORBED per critic: external-forecaster sourcing is 'a task, not a file': cover it here as a sub-variant (an 8-week test of adding public benchmark forecasters, or a subsidised play-money mirror market, as one more expert inside the stacker; token-mining and staked tournaments are out of scope). Also: the day-zero opening-quote sub-variant is an LP business: cross-reference file genesis-window-new-listing-liquidity instead of covering it here. The absorbed entry is under 'absorbed'.",
+ "n": "58",
+ "band": "speculative",
+ "file": "58-market-anchored-selective-deference.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Market-anchored online stacker (Hedge/BOA with the Polymarket price as one of the experts)",
+   "one_line": "Online expert-advice aggregation over a pool of forecaster agents in which the market mid is itself an expert; trade only the learned residual between blend and price, sized linearly, and fail safe to 'no trade' when the pool has no edge.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "(1) At fixed checkpoints (listing+1h, 25/50/75% of market life) log every agent's probability, the executable bid/ask and context features (fee category, days to resolution, spread, depth). (2) On resolution update expert weights with an exponential-weights / Bernstein Online Aggregation rule on log-loss, keeping separate weight vectors per context cell; the price is always in the pool, so the regret bound makes the blend asymptotically no worse than the price. (3) Blend = weighted log-odds pool; signal = blend minus price; size with the proper-betting rule s = grad G(p) - grad G(q) (for Brier: linear in the disagreement), capped by visible depth. (4) Express the signal as quote skew inside the existing LP bot whenever |edge| < taker fee + half spread (politics at p=0.5: 1.0c/share), and as a taker order only above that. (5) If agents carry no information the weight on the price goes to 1 and trading stops by construction.",
+   "edge_source": "Aggregation failure: the price under-uses systematically available public-text analysis early in a market's life; an LLM forecaster that loses to the price standalone still carries orthogonal information worth roughly a third of the blend weight.",
+   "why_might_beat_market": "Bridgewater AIA on 1,610 liquid-market questions: market Brier 0.1106, AIA 0.1258, simplex blend 0.106 with weights 0.67 market / 0.33 AIA (CI 0.12-0.47). MixMCP (Kalshi Research co-author) beats both the market and the LLM on earnings-call mention markets. Douven: a logistic-regression stacker over 15 LLMs beats every member and every classical pooling rule, and the useful signal is model disagreement. Honest limit: the gain is about 0.005 Brier, the weight CI is wide, and after fees it is monetisable almost only as maker skew, in fee-free geopolitics markets, or at listing time; late in market life every model is far below the price (Close-1 BSS -0.83 to -0.96).",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: offline market+LLM blends on Polymarket/Kalshi data (AIA, Kim et al., Douven); FutureSearch runs a public book from forecasts (self-reported: Kalshi real +5.9%, Polymarket paper -19.6%); no public live online-learning deployment found. Adjacent field where online aggregation is production practice: electricity load/price and weather forecasting (Bernstein Online Aggregation: Ziel arXiv 2107.06268, Berrisch & Ziel 2102.00968, Wintenberger 2102.00729; AdaWeather 2606.02663 log-regret mixing of probabilistic weather forecasts; MELO 2605.06541 cuts RMSE 34.7% under non-stationarity), portfolio construction from many ML models (Remlinger et al. 2111.15365: higher Sharpe, lower shortfall), and defensive forecasting (Perdomo & Recht 2506.11848).",
+   "failure_modes": "Slow, clustered labels make weights lag regimes (one election night = hundreds of markets = one effective observation); weights fitted on contaminated backtests (frontier-vs-small gap collapses 35.8% to 8.9% on post-cutoff questions); agents that read the price make the blend circular; monoculture means a ten-agent pool adds about 1.4 forecasters; learning-rate mis-tuning; adverse selection on skewed maker quotes.",
+   "cheap_validation": "Forward-only paper run, 8 weeks, >= 400 resolved markets spanning >= 100 independent events, checkpoint at listing+1h, executable prices logged. Metric: paired Brier difference (blend - price) with event-clustered bootstrap, plus simulated maker-skew PnL net of adverse selection. Pass: blend beats price by >= 0.003 with 90% CI excluding zero AND net skew PnL > 0. Fail: cumulative weight on non-price experts < 0.10 after 400 resolutions.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2511.07678",
+     "title": "AIA Forecaster: Technical Report (Bridgewater AIA Labs)",
+     "date": "2025-11-10",
+     "quality": "paper",
+     "supports": "Market 0.1106 vs AIA 0.1258 vs blend 0.106 on 1,610 liquid-market questions; blend weights 0.67/0.33; search on/off 0.1002 vs 0.3609; Platt scaling 0.1140 to 0.1076"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.21229",
+     "title": "Forecasting Future Language: Context Design for Mention Markets",
+     "date": "2026-02-04",
+     "quality": "paper",
+     "supports": "Market-conditioned prompting; MixMCP outperforms both market probability and LLM alone on mention markets"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "title": "Wisdom of LLM Crowds: Aggregation and Contamination (Douven)",
+     "date": "2026-07-22",
+     "quality": "paper",
+     "supports": "Logistic stacker over 15 LLMs on 254 market questions beats all members; disagreement is the signal; contamination gap 35.8% to 8.9%"
+    },
+    {
+     "url": "https://arxiv.org/html/2607.06166v1",
+     "title": "When do prophets profit in prediction markets?",
+     "date": "2026-07-07",
+     "quality": "paper",
+     "supports": "Proper betting rule; live Kalshi $200 to $360.67 in 26 days, 236 fills, Sharpe 3.35; same forecasts under Kelly: -99.9% / -42.7%"
+    },
+    {
+     "url": "https://arxiv.org/html/2604.04220",
+     "title": "TimeSeek: Temporal Reliability of Agentic Forecasters",
+     "date": "2026-04-05",
+     "quality": "paper",
+     "supports": "Claude BSS +0.167 at Open+1 falling to -0.829 at Close-1; best two-model ensemble still negative overall"
+    },
+    {
+     "url": "https://markets.futuresearch.ai",
+     "title": "FutureSearch public trading book",
+     "date": "to 2026-08-11",
+     "quality": "self-reported",
+     "supports": "Kalshi real +5.9% (26W/12L), Kalshi paper +49.8%, Polymarket paper -19.6%"
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "title": "Polymarket docs: Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "fee = C x feeRate x p(1-p); category rates; makers never charged"
+    }
+   ]
+  },
+  {
+   "name": "Sleeping-experts edge map: a meta-agent that learns which market cells each sub-agent has net edge in",
+   "one_line": "Hierarchical-Bayes skill map over (category x lifecycle stage x price band x liquidity x resolution source) cells with contextual Thompson routing and abstention; the map is both a trading filter and the Agent OS's build roadmap.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "(1) Pre-register a grid of <= 40 cells: fee category, stage of market life, price band, liquidity tier, resolution-source type. (2) Treat each sub-agent as a 'specialist' that is awake only in cells it volunteers for; estimate its market-relative score per cell from resolved history with partial pooling across neighbouring cells so thin cells shrink to the parent. (3) Subtract the cell's cost (fee formula at that price + half spread) so the map is of net edge. (4) A contextual Thompson sampler routes each new market to the agent with the highest posterior net edge, or abstains when P(net edge > 0) is below a threshold, while reserving a small exploration budget. (5) Cells where nobody has edge but the market is demonstrably weak become the specification for the next agent to build.",
+   "edge_source": "Skill heterogeneity across market types is far larger than average skill; a uniform agent averages positive and negative cells to roughly zero, a router harvests only the positive ones.",
+   "why_might_beat_market": "Measured heterogeneity: Claude +0.167 BSS at Open+1 vs -0.829 at Close-1 and +0.301 on toss-ups vs -0.692 on strong-consensus markets (TimeSeek); longshot bias robust in crypto and politics but absent in sports, and flipping sign when contracts are grouped by parent event (588M trades); Polymarket/Kalshi infectious-disease markets lose to CDC FluSight and simple baselines, with the optimal combination putting zero weight on the market; identical frontier models lost 16-31% on Kalshi (weather-heavy) and about 1% on Polymarket. Honest limit: positive cells are usually thin, so capacity is small, and with 40 cells x N agents most 'discoveries' will be noise.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: weak, hobby level only - openthomas applies per-category Platt scaling after >= 30 settled markets and states 'Brier skill > 0 in a bucket is the only license to size up there'. Adjacent field: prediction with specialised/sleeping experts in electricity forecasting (V'yugin & Trunov, Pattern Recognition 2022: smooth specialist aggregation with overlapping domains of competence); co-evolving routers for LLM agents (CERA-MoA 2609.18779); selective prediction / calibrated abstention in finance (FinAbstain 2607.24875; RLSR 2607.03528 trains on area under the risk-coverage curve); solve-time routing over a harness tree on prediction-market streams (Adaptive Auto-Harness 2606.01770).",
+   "failure_modes": "Garden of forking paths across cells; non-stationary cells (sports taker fee went 0.03 to 0.05 on 2026-07-10, changing net edge overnight); few independent events per cell; router chases noise then mean-reverts; abstention threshold tuned in-sample.",
+   "cheap_validation": "Reuse the forward log from the stacker. Fit the map on weeks 1-6, test on weeks 7-12 with the grid frozen in advance. Metric: net-of-cost market-relative score on routed markets vs all markets. Pass: routed subset has positive BSS vs price with event-clustered 90% CI above zero and >= 3 cells replicate sign out of sample. Fail: Spearman rank correlation of cell skill between halves < 0.2.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2604.04220",
+     "title": "TimeSeek",
+     "date": "2026-04-05",
+     "quality": "paper",
+     "supports": "BSS by lifecycle checkpoint and by market difficulty; search helps only at 4-7 queries (+0.109) and hurts at 1-3 (-0.811)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "hard-data",
+     "supports": "588M trades, 2.48M accounts: <10c purchases lose 19.3c per dollar, >=90c earn 0.83c; grouped by parent event longshots gain 4.1c; robust in crypto/politics, absent in sports"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.11220",
+     "title": "Prediction Markets Underperform Simple Baselines For Infectious Disease Forecasting",
+     "date": "2026-05-11",
+     "quality": "paper",
+     "supports": "A market family where simple statistical models beat Polymarket/Kalshi; optimal combination puts zero weight on markets; probability mass on impossible outcomes"
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07355",
+     "title": "Prediction Arena",
+     "date": "2026-03-28",
+     "quality": "hard-data",
+     "supports": "Real money: Kalshi -16.0% to -30.8%, Polymarket average -1.1%; platform/market mix drives outcomes"
+    },
+    {
+     "url": "https://arxiv.org/abs/2109.14309",
+     "title": "Online Aggregation of Probability Forecasts with Confidence",
+     "date": "2021-09-29 [pre-2025, possibly stale]",
+     "quality": "paper",
+     "supports": "Specialised-experts aggregation with overlapping competence domains and regret bounds"
+    },
+    {
+     "url": "https://github.com/PredictionMarketTrader/openthomas",
+     "title": "openthomas README",
+     "date": "created 2026-07-03, seen 2026-09-20",
+     "quality": "self-reported",
+     "supports": "Per-category calibration and bucket-level skill gating on Kalshi/Polymarket weather markets"
+    }
+   ]
+  },
+  {
+   "name": "Selective-deference divergence engine (new-market and toss-up specialist, expressed as maker skew)",
+   "one_line": "Treat 'should we disagree with the market here?' as the real prediction problem. Gate by lifecycle stage and price uncertainty, shrink the crowd forecast toward the market, and monetise through skewed maker quotes instead of taker bets.",
+   "category": "Market-making",
+   "maturity": "Emerging (hobby bots already gate on edge and disagreement thresholds, and the PolySwarm design blends 70/30; nobody publishes verified PnL. The lifecycle gate plus maker expression is, as far as I found, untried)",
+   "mechanism": "1) A meta-model, or a second-order internal market where agents stake on the sign of the Alpha score, predicts whether the synthetic crowd will beat the Polymarket price on this market. Features: fraction of lifetime elapsed, |p-0.5|, category, crowd dispersion, volume.\n2) Only act in buckets with historically positive alpha. Published evidence points to the first 25% or less of market life and to prices within 10 points of 50%.\n3) Fair value = w_bucket*p_crowd + (1-w_bucket)*p_mkt, with w fitted per bucket (published prior about 0.33).\n4) Feed fair value to the existing LP agent. Skew bid and ask around it and earn spread plus maker rebates (15-25% of taker fees) while leaning inventory toward the crowd view. Cross the spread only when the residual edge exceeds feeRate*p*(1-p) + spread.\n5) As resolution nears, w decays to 0 and the agent reverts to pure LP, arb or sniping logic.",
+   "edge_source": "Where LLM crowds have measured skill against the market: just after listing and on high-uncertainty questions, before human information aggregation has happened. A second effect is less adverse selection for the LP book.",
+   "why_might_beat_market": "TimeSeek, Claude Opus 4.5 with search on 150 Kalshi markets:\n- BSS against the market is +0.167 at open+1, +0.059 at 25% of life, -0.136 at 50%, -0.165 at 75% and -0.829 at close-1.\n- BSS is +0.301 on toss-ups, with 7 of 10 models positive, and -0.69 to -1.68 on strong-consensus markets.\n\nNewly listed Polymarket markets have thin books and wide spreads. A maker with a better prior is paid both spread and information edge. Honest limit: the same paper finds that no two-model ensemble beats the market overall. Pooled across all markets this loses. It works only as a selective policy.",
+   "adjacent_grounding": "Forecasting tournaments and benchmarks:\n- TimeSeek (https://arxiv.org/abs/2604.04220, 2026-04-05) explicitly recommends 'selective-deference policies'.\n- Prophet Arena (https://arxiv.org/abs/2510.17638, 2025-10-20) finds LLMs aggregate information more slowly than markets as resolution nears.\n- AIA Forecaster blend weights (https://arxiv.org/abs/2511.07678).\n- Foresight Arena Alpha score and power analysis (https://arxiv.org/abs/2605.00420, 2026-05-01).\n- PolySwarm design: 0.70 swarm / 0.30 market blend, EV >= 5% and swarm sd < 30% triggers, quarter-Kelly (https://arxiv.org/abs/2604.03888, 2026-04-04). It reports no results.",
+   "failure_modes": "- TimeSeek is on Kalshi. Transfer to Polymarket's new-market microstructure is unproven.\n- New markets have tiny capacity, and the first informed human trader picks off skewed quotes.\n- The meta-gate overfits on few buckets.\n- Web search hurt in 12% of model-checkpoint pairs.\n- LLM stated confidence does not match its actions (arXiv 2511.13240).\n- Reward-programme and quote-uptime requirements can conflict with aggressive skew.",
+   "cheap_validation": "Step 1: a historical fit of w per bucket (lifecycle quartile x |p-0.5| band x category) on at least 1,000 post-cutoff market snapshots. Pass if at least one bucket has a w lower CI bound > 0.1 at n >= 350.\n\nStep 2: 8 weeks of paper maker quoting on newly listed markets. Log 1h and 24h markouts of skewed against unskewed quotes. Pass if markout improves by >= 0.5c per share and simulated PnL after fees and rebates is > 0. Fail if the alpha is concentrated in fewer than 10 markets.",
+   "flags": "If the LP agent also farms liquidity rewards, check the reward-programme quoting rules before skewing (programme rules not re-verified this session).",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2604.04220",
+     "title": "TimeSeek: Temporal Reliability of Agentic Forecasters (arXiv)",
+     "date": "2026-04-05",
+     "quality": "paper",
+     "supports": "BSS against the market is +0.167 at open+1 and falls to -0.829 at close-1. Toss-ups +0.301. Strong-consensus -0.69 to -1.68. A two-model ensemble cuts the loss 40% but never beats the market overall."
+    },
+    {
+     "url": "https://arxiv.org/abs/2511.07678",
+     "title": "AIA Forecaster: Technical Report (arXiv)",
+     "date": "2025-11-10",
+     "quality": "paper",
+     "supports": "An AI+market ensemble (0.33/0.67) beats the market alone: 0.106 against 0.1106 Brier, n=1,610."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "title": "Polymarket docs - Fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Taker fee = C x feeRate x p x (1-p), with feeRate from 0.04 (politics, finance, tech, mentions) to 0.07 (crypto) and 0 for geopolitics. Makers never pay and receive 15-25% rebates."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "title": "Foresight Arena: An On-Chain Benchmark for Evaluating AI Forecasting Agents (arXiv)",
+     "date": "2026-05-01",
+     "quality": "paper",
+     "supports": "Alpha score isolates edge over market consensus. About 350 resolved predictions are needed for alpha=0.02 at 80% power, and 4x that for 0.01."
+    },
+    {
+     "url": "https://github.com/roninazure/blackglasslab",
+     "title": "Swarm Edge / blackglasslab (GitHub)",
+     "date": "2026-09-14",
+     "quality": "self-reported",
+     "supports": "Hobby operator/skeptic/arbiter committee that trades only when edge >= 5%, disagreement <= 45% and resolution is more than 24h away. Paper trading only, with no PnL reported."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07355",
+     "title": "Prediction Arena: Benchmarking AI Models on Real-World Prediction Markets (arXiv)",
+     "date": "2026-03-28",
+     "quality": "paper",
+     "supports": "Real-money ungated LLM agents lost -16% to -30.8% on Kalshi and -1.1% on Polymarket over 57 days. This is the base rate for non-selective LLM trading."
+    }
+   ]
+  },
+  {
+   "name": "Disagreement-gated selective trading (conformal act / abstain)",
+   "one_line": "Treat panel disagreement, not the panel probability, as the product: trade only the conformally certified subset where heterogeneous forecasters are unanimous and the price still leaves room, abstain everywhere else.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Run K forecasters from different model families independently, no deliberation. (2) Nonconformity score = dispersion of logits + judge-assessed evidence sufficiency + outcome-estimated competence of the panel in this category (not verbal confidence). (3) On resolved Polymarket markets calibrate a conformal threshold so that the 'act' subset has directional hit rate >= target (e.g. 92%) with marginal coverage guarantee; re-calibrate monthly. (4) Act = buy the unanimous side only if price <= target_hit_rate - fee - buffer; everything else is abstain or escalated to a human. (5) Report coverage (share of markets acted on) alongside return; size flat, many small tickets.",
+   "edge_source": "Selection: the wrong-consensus cases are disproportionately the ones where independent models disagree, so abstaining on them removes most losses; exploits markets that are 'asleep' at 0.75-0.92 on effectively decided questions outside the last minutes that resolution-sniping bots cover.",
+   "why_might_beat_market": "Kota: auto-resolving only unanimous high-confidence questions gives 97.87% accuracy on 47% of the dataset vs 83.43% overall; Douven: symbolic regression on the learned aggregator recovers a pure model-disagreement signal as the simplest useful feature; Conformal Social Choice intercepts 81.9% of wrong-consensus cases at alpha=0.05; competence-gated pooling shows outcome-estimated competence gives better abstention than verbal confidence. Honest limits: those accuracies are for resolution/MMLU tasks, not live forecasting; error correlation 0.53-0.69 makes unanimity weaker evidence than it looks; in the favorite zone Polymarket buyers at >=90c earned only 0.83c per dollar, so one tail loss wipes ~100 wins.",
+   "adjacent_grounding": "Selective prediction / conformal prediction in multi-agent LLM systems: https://arxiv.org/abs/2604.07667 ; hybrid AI-human oracle routing https://arxiv.org/abs/2605.30802 ; competence-gated pooling on 2,357 questions (Brier 0.0771 -> 0.0732, defers largely to markets on ForecastBench market subsets) https://arxiv.org/abs/2609.12101 ; LLM ensemble disagreement signal https://arxiv.org/abs/2607.18269 . No Polymarket/Kalshi trading implementation found on arXiv or GitHub.",
+   "failure_modes": "Shared blind spots make unanimity spurious; exchangeability assumption of conformal prediction breaks under regime/news shifts; tiny coverage -> capital idle; negative skew (many 3-8c wins, rare -90c loss); resolution-rule traps (pair with the rules red-team idea).",
+   "cheap_validation": "Backtest with leakage control on >=1,000 resolved markets sampled at T-7d and T-1d: fit threshold on first 60%, test on last 40%. PASS: test-set hit rate within 2 pts of target, coverage >=10%, and simulated ROI after fees > 0 with event-clustered bootstrap CI excluding 0; FAIL if realised hit rate minus average purchase price < 1.5 pts. Then $300 live pilot with $5 tickets for 200 trades.",
+   "flags": "None beyond venue eligibility.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "title": "Design and Evaluation of Multi-Agent AI Oracle Systems for Prediction Market Resolution",
+     "date": "2026-05-29",
+     "quality": "paper",
+     "supports": "Unanimous high-confidence subset: 97.87% accuracy on 47% of 1,189 questions; disagreement flags the rest."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07667",
+     "title": "From Debate to Decision: Conformal Social Choice for Safe Multi-Agent Deliberation",
+     "date": "2026-04-09",
+     "quality": "paper",
+     "supports": "Post-hoc conformal layer: 81.9% of wrong-consensus cases intercepted at alpha=0.05; 90.0-96.8% accuracy on acted cases."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12101",
+     "title": "Competence-Gated Pooling of Language Models and Priors for Event Forecasting",
+     "date": "2026-09-10",
+     "quality": "paper",
+     "supports": "Outcome-estimated competence supports better abstention than verbal confidence; gate mostly defers to markets where markets exist."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "hard-data",
+     "supports": "588M trades: purchases >=90c earn 0.83c per dollar, <10c lose 19.3c per dollar -> thin margin in the favorite zone."
+    },
+    {
+     "url": "https://arxiv.org/abs/2512.16030",
+     "title": "KalshiBench",
+     "date": "2025-12-17",
+     "quality": "paper",
+     "supports": "Systematic overconfidence of all frontier models (ECE 0.120-0.395): verbal confidence cannot be the gate."
+    }
+   ]
+  },
+  {
+   "name": "Panel-priced market opening: debate forecaster as the first informed quote",
+   "one_line": "Deploy the forecasting panel only in the one regime where LLMs measurably match or beat prices - the first hours or days of a new, uncertain market - by posting two-sided maker quotes around the panel probability and withdrawing as the crowd arrives.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Poll market-creation endpoints (keyset pagination) and rules text; reject markets with rule-risk flags. (2) Within minutes run independent forecasters + judge; quote width proportional to panel dispersion and rule risk. (3) Post two-sided resting orders (maker fee 0, eligible for liquidity-reward scoring S=((v-s)/v)^2 and category maker rebates). (4) Update with sequential Bayesian updating on news; track fills' mark-outs; (5) taper size as cumulative volume/age grows and hand the market to the ordinary LP bot.",
+   "edge_source": "Price discovery vacuum: at listing nobody has aggregated information yet, so an instant, reasonably calibrated prior is worth the most and adverse selection from the crowd is lowest relative to later phases.",
+   "why_might_beat_market": "TimeSeek: models have positive Brier skill vs Kalshi prices only early (Claude +0.167, GPT-5.2 +0.085 at open+1) and on toss-up markets (+0.301/+0.217), turning sharply negative near close and on consensus markets; Halawi [pre-2025]: system matches crowd when crowd is 0.3-0.7 (0.238 vs 0.240). Honest limits: evidence is Kalshi, not Polymarket; early flow on thin books can be insiders (information-leakage literature) who pick you off; rewards on new markets vary by market.",
+   "adjacent_grounding": "Temporal reliability of agentic forecasters https://arxiv.org/abs/2604.04220 ; approaching human-level forecasting https://arxiv.org/abs/2402.18563 [pre-2025]; sequential Bayesian linguistic belief updating (top of ForecastBench) https://arxiv.org/abs/2604.18576 ; informed-trading detection on Polymarket https://arxiv.org/abs/2605.00493 . Not found as a documented Polymarket strategy (LP bots exist; forecast-anchored opening quotes not found).",
+   "failure_modes": "Adverse selection by informed/insider flow; stale quotes during news; rule ambiguity at listing; inventory stuck in dead markets; rewards too small to matter; panel overconfidence -> too-tight quotes.",
+   "cheap_validation": "Paper-quote 200 newly listed markets: record hypothetical fills (trade-through rule), mark-outs at +24 h and +7 d, and compare panel opening probability with first-day VWAP on Brier after resolution. PASS: 7-day mark-out >= 0 after assumed rewards, and panel Brier <= first-day VWAP Brier; FAIL if mark-out < -1c per share.",
+   "flags": "None; standard market-making terms.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2604.04220",
+     "title": "TimeSeek: Temporal Reliability of Agentic Forecasters",
+     "date": "2026-04-05",
+     "quality": "paper",
+     "supports": "LLM skill vs market is positive early in market life and on high-uncertainty markets, strongly negative near resolution and on consensus markets."
+    },
+    {
+     "url": "https://arxiv.org/abs/2402.18563",
+     "title": "Approaching Human-Level Forecasting with Language Models",
+     "date": "2024-02-28",
+     "quality": "paper",
+     "supports": "[pre-2025, possibly stale] 914 test questions: system Brier 0.179 vs crowd 0.149; on Polymarket 0.172 vs 0.127; parity when crowd is 0.3-0.7; combined 0.146."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+     "title": "Polymarket docs - Liquidity Rewards",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Quadratic spread scoring, two-sided boost, per-market min size/max spread, daily payout."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-09-04 latest entry",
+     "quality": "hard-data",
+     "supports": "Keyset pagination endpoints for market discovery (Apr 10 2026), fee/rebate timeline, CLOB V2 and pUSD migration."
+    }
+   ]
+  },
+  {
+   "name": "Day-zero pricing of brand-new markets (LLM prior + graph inheritance + cross-venue anchor)",
+   "one_line": "Be the first competent two-sided quote on new listings: price from reference classes, sibling-market constraints and other venues within minutes of creation, when LLMs are most competitive and the book is emptiest.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) Poll Gamma keyset endpoints for new events/markets and parse rules immediately (spec compiler from the rule-lawyer idea). 2) Compute a prior from three sources: LLM reference-class forecast with retrieval, inherited bounds from the constraint graph (a new 'by October' market is bounded by existing 'by September' and 'by December'), and any matched contract on Kalshi/others. 3) Shade for known biases: political markets compress toward 50% (underconfidence), sub-10c longshots are overbought. 4) Post wide two-sided quotes sized small, tightening as independent flow confirms; take obvious mispriced opening orders. 5) Hand the market to the normal maker once depth arrives.",
+   "edge_source": "Attention/latency at listing: opening prices are set by whoever shows up first; structural information (siblings, other venues) is ignored in the first hours.",
+   "why_might_beat_market": "TimeSeek (10 frontier models x 150 Kalshi markets x 5 checkpoints) finds LLM forecasters are MOST competitive early in a market's life and on high-uncertainty markets, and much less competitive near resolution - exactly the listing window. Le (353M trades) shows calibration depends on domain and time, with persistent political underconfidence replicated on Polymarket. Scale makes human coverage impossible: datasets count 770k markets Oct 2020-Mar 2026 (Jia et al., listing only). Honest limit: simple two-model ensembles still did not beat the market overall in TimeSeek; the first informed trader in a new market is often the person who knows why it was listed (adverse selection), and size is tiny - this is a rewards-plus-spread business, not a directional one.",
+   "adjacent_grounding": "IPO / new-listing price discovery and sportsbook opening-line origination (unverified this session); LLM forecasting benchmarks: TimeSeek (https://arxiv.org/abs/2604.04220), Turtel et al. RLVR 14B forecaster with >10% simulated Polymarket ROI (https://arxiv.org/abs/2505.17989), Foresight-32B (Lightning Rod blog, HN listing only). The 'brier' quoter on Rain found most long-tail markets have a single participant whose opening guess is the price (https://github.com/let-the-dreamers-rise/brier).",
+   "failure_modes": "Adverse selection from creators/insiders; LLM overconfidence (PolyBench: 5 of 7 models lose despite uniformly high stated confidence); stale retrieval; rules misparse on novel templates; many new markets never attract flow so inventory sits for months; liquidity-reward parameters differ per market and may be zero at listing.",
+   "cheap_validation": "Passive logging for 4 weeks: for every new market record LLM prior at t0+10 min (as-of retrieval), first-hour mid, 24h and 7d VWAP. Metric: among markets where |prior - first-hour mid| >= 5 points, fraction where the 24h VWAP moved toward the prior - pass >=60% with n>=200, and simulated maker+taker PnL after fees >= 2c per share traded. Fail if the hit rate is <55% or concentrated in one category.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2604.04220",
+     "title": "TimeSeek: Temporal Reliability of Agentic Forecasters (Mostafa, Shastri, Lee)",
+     "date": "2026-04-05",
+     "quality": "paper",
+     "supports": "15,000 forecasts; models most competitive early and on high-uncertainty markets; web search helps on average but hurts in 12% of model-checkpoint pairs; ensembles do not beat market overall."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.19520",
+     "title": "Decomposing Crowd Wisdom (Le)",
+     "date": "2026-02-23 (v2 2026-08-04)",
+     "quality": "paper",
+     "supports": "353M trades, 429k contracts; persistent political underconfidence (compression toward 50%) replicated on Polymarket; calibration conditional on domain/time/size."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "Favorite-Longshot Bias on Polymarket (Cardozo, Rivero-Wildemauwe)",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "Longshot overpricing magnitude for shading opening quotes."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.14199",
+     "title": "PolyBench (Cheng, Liu, Long)",
+     "date": "2026-04-03",
+     "quality": "paper",
+     "supports": "38,666 markets; only 2 of 7 LLMs profitable under order-book execution simulation - caution on directional use."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Polymarket Predictions changelog",
+     "date": "2026-04-10 / 2026-05-14",
+     "quality": "hard-data",
+     "supports": "Keyset pagination endpoints for markets/events, max 100 per page - the listing-detection surface."
+    }
+   ]
+  },
+  {
+   "name": "Harvest the public AI-forecast exhaust: meta-aggregate third-party synthetic crowds, and optionally mine one",
+   "one_line": "Other people already pay for large synthetic crowds whose outputs are partly public: Numinous/Bittensor SN6 miners scored against Polymarket price, Prophet Arena model forecasts, and Metaculus bot tournaments. Learn an aggregator over them rather than paying for inference. Optionally run a miner to earn emissions for beating the Polymarket price.",
+   "category": "Information edge",
+   "maturity": "Emerging (Numinous SN6 is live and explicitly scores agents against the Polymarket price; Prophet Arena is live on Kalshi events; I found nobody documented trading a meta-aggregate of them)",
+   "mechanism": "1) Ingest per-event probabilities from public sources: the Prophet Arena leaderboard and event pages (frontier agents on Kalshi events), Numinous products (API, leaderboard, 'Eversight') and Metaculus AI-benchmark bots.\n2) Map events to Polymarket markets, reusing the cross-venue matching from the arbitrage agent.\n3) Fit a regularised logistic aggregator with disagreement features. Douven found model disagreement to be the key learned signal. Refit monthly on resolved events.\n4) Blend with the market and gate as in the divergence-engine idea, then trade.\n5) Optional second revenue line: deploy your own agent as an SN6 miner. Forecasts are scored as S = (pred - target)^2 - (market_price - target)^2, where the target is the Polymarket price 7 days later or the outcome if the market resolves first. Roughly the top 20 earn. The requirements are 85% coverage and a 240-second runtime, and first earnings come around day 10. The same research stack earns emissions whether or not you trade.",
+   "edge_source": "Free-riding on inference and engineering that others pay for, together with decorrelation across independently built systems. A third-party system is closer to a truly independent forecaster than another agent of your own.",
+   "why_might_beat_market": "Independently engineered agents (different scaffolds, data and models) have lower error correlation than any crowd a single team builds. Numinous miners are already selected for beating the Polymarket price, not for raw Brier, which is exactly the target you need. Prophet Arena's top agents now sit at about parity with the Kalshi market baseline on its leaderboard: 0.8022, 0.8018 and 0.8003 against 0.7998 for the market (fetched 2026-09-20; metric definition unverified, appears higher-is-better). Parity-level forecasters combined with a learned aggregator plausibly give a small positive blend alpha. Honest limit: these signals are public, so the alpha is contestable. Numinous' best signals are sold or paywalled, not free. The differences at the top of the Prophet Arena leaderboard are within error bars.",
+   "adjacent_grounding": "Forecasting tournaments and crowdsourced quantitative signals:\n- Numinous repo and scoring doc (https://github.com/numinouslabs/numinous).\n- Prophet Arena paper (https://arxiv.org/abs/2510.17638, 2025-10-20): 'market-competitive returns' but slower aggregation near resolution.\n- Metaculus Q1 2025 AI benchmark (https://www.metaculus.com/notebooks/38673/q1-ai-benchmarking-results/, 2025-06-21, updated 2025-10-13): the bot team scored -17.7 against professionals (p=0.001), and the winning bot was ManticAI.\n- Douven's learned aggregation (https://arxiv.org/abs/2607.18269).\n- Foresight Arena on-chain commit-reveal benchmark on Polymarket markets (https://arxiv.org/abs/2605.00420). Live results are 'to be reported', so it is not yet a usable data source.",
+   "failure_modes": "- Event-mapping errors across venues (Kalshi and Polymarket resolution rules differ).\n- Data-access terms and API paywalls.\n- Stale timestamps. A forecast made at listing is worthless near close (the TimeSeek decay).\n- Survivorship in leaderboards.\n- Numinous's 7-day-price target rewards predicting the crowd, not the truth.\n- Emissions are paid in a volatile token.\n- The 'Brier' column on Prophet Arena is ambiguous.",
+   "cheap_validation": "8-week data-collection sprint. Scrape and ingest the public per-event forecasts with timestamps and match them to Polymarket markets. Evaluate the simple mean and the logistic aggregator against the market mid at forecast time.\n\nPass: aggregated alpha > 0 with a CI excluding 0 at n >= 350, and the aggregator beats the best single public agent.\n\nMiner side-test: run one agent for 30 days. Pass if it sustains a top-20 rank. The stopping rule is API cost above emissions value.",
+   "flags": "Check the ToS of Prophet Arena and Numinous before scraping or redistributing. Mining rewards are token emissions, which carry crypto price, tax and regulatory exposure. The Numinous miner rules restrict the allowed API services.",
+   "evidence": [
+    {
+     "url": "https://raw.githubusercontent.com/numinouslabs/numinous/main/docs/scoring-system.md",
+     "title": "Numinous (Bittensor Subnet 6) scoring-system doc",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "S = (prediction - target)^2 - (market_price - target)^2 with Polymarket as the price reference. The target is the market price 7 days later, or the outcome if resolved earlier. 85% coverage over 14 days is required. Roughly the top 20 earn. About day 10 to first earnings."
+    },
+    {
+     "url": "https://github.com/numinouslabs/numinous",
+     "title": "numinouslabs/numinous (GitHub)",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "self-reported",
+     "supports": "The subnet 'aggregates AI agents into superhuman LLM forecasters'. Agents run sandboxed (240s, 2MB) and must beat the market price to score. No accuracy claims are published."
+    },
+    {
+     "url": "https://www.prophetarena.co/leaderboard/forecast",
+     "title": "Prophet Arena live leaderboard",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Top agentic frontier models score 0.8022, 0.8018 and 0.8003 against a Kalshi Markets baseline of 0.7998 in the 'Brier' column (higher-is-better transform, definition unverified). ECE 0.02-0.04. This is roughly market parity."
+    },
+    {
+     "url": "https://arxiv.org/abs/2510.17638",
+     "title": "LLM-as-a-Prophet: Understanding Predictive Intelligence with Prophet Arena (arXiv)",
+     "date": "2025-10-20",
+     "quality": "paper",
+     "supports": "LLMs show low calibration error and market-competitive returns, but inaccurate event recall and slower information aggregation than markets near resolution."
+    },
+    {
+     "url": "https://www.metaculus.com/notebooks/38673/q1-ai-benchmarking-results/",
+     "title": "Metaculus Q1 2025 AI Benchmarking Results",
+     "date": "2025-06-21",
+     "quality": "hard-data",
+     "supports": "The bot team scored -17.7 head-to-head against professional forecasters (95% CI -28.3 to -7.0, 96 questions). Bots are aggregated by median. The winner used o3-mini plus data sources."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "title": "Wisdom of LLM Crowds (arXiv)",
+     "date": "2026-05-26",
+     "quality": "paper",
+     "supports": "A learned linear aggregator over diverse model outputs beats all individual models. The key recovered feature is a model-disagreement signal."
+    }
+   ]
+  },
+  {
+   "name": "Staked open forecaster tournament feeding a meta-model that trades (the Numerai pattern on Polymarket)",
+   "one_line": "Buy the one thing an in-house LLM population cannot produce - independent information - by running a commit-reveal tournament on a curated list of early-life markets, scoring contributors by marginal contribution to your market-anchored blend, and trading the stake-weighted meta-model's residual.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Publish weekly a list of target markets: recently listed, priced 30-70%, thin. (2) Outside forecasters - humans with domain knowledge, other teams' bots - commit hashed probabilities, reveal after the window. (3) Score each by contribution to the meta-model's market-relative proper score (an MMC analogue), so copying the price earns nothing; pay or burn stakes accordingly (start with prizes only). (4) The stake-weighted meta-model enters the stacker as one expert. (5) The fund trades the residual, preferably as maker skew, and publishes aggregate results to recruit better contributors.",
+   "edge_source": "Externally sourced informational diversity, with skin in the game as the quality filter.",
+   "why_might_beat_market": "The measured bottleneck of LLM pools is correlated error (ten agents = about 1.4 forecasters), and the only measured remedies are different model families and different information. Numerai shows the institutional pattern works at scale in equities: only staked predictions enter the Meta Model, and contributors are paid on contribution to it. Commit-reveal forecasting on Polymarket markets already exists as an on-chain benchmark with an 'Alpha score' against market consensus. Honest limit: a forecaster with real edge can trade Polymarket directly, so the tournament is adversely selected toward people whose edge is too small or too capital-constrained to trade - which may still be valuable to a maker blend, but needs scale and months of data before MMC is more than noise.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: Foresight Arena (permissionless commit-reveal benchmark on Polymarket markets on Polygon; no capital attached). Decentralised forecasting subnets that reportedly trade prediction markets could not be verified this session (unverified). Adjacent field: Numerai tournament (staking, Meta Model, MMC, burns); wagering-based aggregation with incentive compatibility (WALLA 2607.04389); hybrid human-AI forecasting on Polymarket where only users who reason with the model match the market (2607.02467, seen in listing).",
+   "failure_modes": "Sybil and price-copying submissions; collusion; contributors front-running the fund on the published market list; tiny n per contributor; regulatory exposure of staking; operational overhead for a small team.",
+   "cheap_validation": "Free, prize-based 8-week pilot with 20-50 invited forecasters on 100 markets. Metric: weight the crowd aggregate earns in the stacker and its error correlation with the in-house LLM pool. Pass: weight >= 0.15 with CI above zero AND pairwise rho with the LLM pool <= 0.4. Fail: weight indistinguishable from zero.",
+   "flags": "Staking on forecasts can be gambling or securities activity depending on jurisdiction; token mechanics add further exposure; KYC/AML; Polymarket ToS. Run prize-only until counsel signs off.",
+   "evidence": [
+    {
+     "url": "https://docs.numer.ai/",
+     "title": "Numerai tournament docs",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Staked predictions form the Meta Model that the hedge fund trades; MMC scoring; payouts and burns"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "title": "Foresight Arena",
+     "date": "2026-05-01",
+     "quality": "paper",
+     "supports": "Commit-reveal forecasts on binary Polymarket markets enforced by Solidity contracts on Polygon; Alpha score vs market consensus; power analysis"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "Why in-house LLM populations cannot supply diversity"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.04389",
+     "title": "Decentralized Aggregation of LLM Predictions via Wagering Mechanisms",
+     "date": "2026-07-05",
+     "quality": "paper",
+     "supports": "Incentive-compatible wager-weighted aggregation across parties with private information"
+    },
+    {
+     "url": "http://arxiv.org/abs/2607.02467v1",
+     "title": "Human Capital, Not Model Benchmarks, Predicts Hybrid Intelligence in Forecasting",
+     "date": "2026-07-02",
+     "quality": "paper",
+     "supports": "Pilot with Polymarket as benchmark: collaborative traits, not model quality, drive human+AI forecasting value (seen in arXiv listing)"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "SPLIT day-zero opening quoting out of market-anchored-selective-deference. It is an LP business with its own economics and the strongest evidence in the band. TimeSeek BSS is +0.167 at open+1 (the list's own citation). The E1 pack's IMDEA study (160k contracts) gives first-trade median spreads of politics 8c, geopolitics 10c, crypto 19c and economy 21c, compressing mostly within the first hour. About 300k new markets are listed per month. I fetched that PDF today but could not parse it, so the numbers stand as quoted in the E1 pack. The stacker and edge map are infrastructure, while opening quotes are a strategy the owner's LP suite can ship. Add the cost of skewing: one-sided quotes score 1/3 inside [0.10, 0.90] and zero in the tails under liquidity rewards (E2 pack).",
+  "ADD sub-variant to external-forecaster-sourcing: subsidised play-money mirror markets, for example on Manifold, to harvest an independent human-plus-bot signal. The cost is near zero and it uses the same measurement, the stacker weight earned. The Manifold experiment shows those markets are soft (56% of a shock remains at 60 days), so treat the mirror as a weak expert, never as an anchor.",
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band.",
+  "external-forecaster-sourcing: tier 2, Numinous SN6 mining, earns token emissions for predicting the 7-day-later Polymarket price. It is a second revenue line in a volatile token, not Polymarket PnL. Route it to the services or other-revenue band. The seed label 'synthetic crowd / internal prediction market' is a stretch, because it is an external crowd.",
+  "market-anchored-selective-deference: the seed_category 'self-improving / recursive forecasting agents' is cosmetic. The entry is an aggregation and gating layer with nothing recursive in it. The day-zero quoting sub-variant is an LP strategy (see the split suggestion).",
+  "external-forecaster-sourcing: for tier 1, the top public agents only tie the Kalshi baseline (0.8022 against 0.7998), and anyone with real edge trades it directly. Tier 2 is token mining. Tier 3, a staked commit-reveal tournament, is legally heavy and adversely selected for a solo team. What survives is an 8-week ingestion test of one more expert inside the stacker. That is a task, not a file."
+ ]
+}

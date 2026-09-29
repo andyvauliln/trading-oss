@@ -1,0 +1,175 @@
+{
+ "slug": "short-crypto-maker-side",
+ "name": "Short-duration crypto up/down: maker / supply side (split-sell, merge, rebates, toxicity filter)",
+ "category": "Market-making",
+ "maturity": "Established",
+ "seed_category": "liquidity provision / market making - short-duration crypto markets",
+ "one_line": "Be the resting liquidity in 5m/15m/1h/4h up/down markets: mint pairs, sell both legs, merge leftovers, collect 20% rebate share and programme rewards while dodging toxic windows.",
+ "scope": "Cover the supply side only: split $1 into Up+Down, rest asks summing >$1, instant merge recycling, spot-driven digital fair value against the 60 s Chainlink TWAP settle, cancel logic inside the 50 ms taker delay, toxicity rules (last ~50 s near-the-money, >=5 bp Binance moves), per-market pro-rata rebate maths, alt-coin books as less contested, and why retail bleed (25% profitable in 5-minute contracts) funds it. Quantify orphan-leg adverse selection and one-tick spreads. Boundary: the taker/latency side is short-crypto-latency-taker; settlement-window manipulation history is oracle-input-manipulation (only its defensive implications here); generic reward scoring is maker-reward-pool-farming; TWAP end-window pricing is speculative band.",
+ "sub_variants": [
+  "split-sell + merge inventory recycling",
+  "spot-model two-sided quoting with toxicity filter",
+  "alt-coin / new-listing books",
+  "tiny-clip high-frequency farming bots"
+ ],
+ "merged_from": [
+  "traders: Short-dated crypto up/down: supply-side split-sell + merge + maker rebates",
+  "academic: Liquidity provision in ultra-short crypto contracts with a toxicity filter",
+  "onchain-bots: Maker-side quoting in short-dated crypto markets"
+ ],
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?ids=1uoqskg",
+   "note": "Roxas-M33: 4,604 windows, every taker price band negative; whales profit via split/merge and maker zero fee (self-reported)"
+  },
+  {
+   "url": "https://doi.org/10.2139/ssrn.7461319",
+   "note": "Lei & Rossi: profitable wallets 60% monthly vs 25% five-minute; $100 lasts 1.6 days (abstract)"
+  },
+  {
+   "url": "https://arxiv.org/html/2607.26245v1",
+   "note": "Median 347 ms quote response to Binance moves; 91.9% one-tick spreads"
+  },
+  {
+   "url": "https://arxiv.org/html/2606.31675v1",
+   "note": "Manipulative flow concentrated in final 50 s of near-the-money cycles: when to pull quotes"
+  },
+  {
+   "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+   "note": "Crypto rebate pool 20% of taker fees, pro-rata per market"
+  },
+  {
+   "url": "https://docs.polymarket.com/changelog",
+   "note": "Taker delay 250 ms to 50 ms (2026-08-17); TWAP resolution 2026-08-07/14"
+  }
+ ],
+ "parent_slug": "short-crypto-maker-side",
+ "deepen": true,
+ "seed": "1 market making",
+ "n": "03",
+ "band": "established",
+ "file": "03-short-crypto-maker-side.md",
+ "critic_notes": [],
+ "raw_discovery_candidates": [
+  {
+   "name": "Short-dated crypto up/down: supply-side split-sell + merge + maker rebates",
+   "one_line": "Mint Up+Down pairs for $1, sell both as a maker for >$1 combined, merge leftovers, collect rebates and LR; never predict direction.",
+   "category": "Market-making",
+   "maturity": "Established",
+   "mechanism": "SPLIT $1 pUSD into 1 Up + 1 Down, rest asks on both (e.g. 0.52 + 0.50 = $1.02 collected), MERGE unsold pairs back to $1 instantly, and repeat across every 5m/15m/1h window and asset. Makers pay zero fee while takers pay up to 1.75 per 100 shares at 50c (crypto feeRate 0.07); makers share a 20% rebate pool per market plus programme rewards ($1M Crypto TWAP LR through Aug 2026). Individual legs often show total losses; they are inventory cost. A 7-month retail study found every taker price band negative (e.g. buying at 0.65-0.70 won 62.6% vs 69.1% break-even) and concluded the money is made on the supply side.",
+   "edge_source": "Taker flow from retail gamblers + fee asymmetry + rebates; merge gives instant inventory recycling.",
+   "why_might_beat_market": "Structural: the fee/rebate schedule pays makers, and retail demand for 5-minute bets is large and price-insensitive.",
+   "failure_modes": "Adverse selection: the first leg fills exactly when it is becoming less likely, leaving a naked second leg unless flattened in milliseconds; 50 ms taker delay (since 2026-08-17) shortens makers' reaction window; rebate share is pro-rata so scale players dominate; TWAP settlement changed end-of-window dynamics; regime shifts.",
+   "cheap_validation": "Paper-run split-sell on BTC 15m with real websocket book; count paired vs single-leg fills and the PnL of orphan legs; compare against the rebate/LR actually payable at that share.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1uoqskg",
+     "title": "Reddit r/PredictionsMarkets 1uoqskg 'How efficient are Polymarket's 5-min crypto markets? ... 1.7M candles + 4,600 resolved windows' by Roxas-M33",
+     "date": "2026-07-06",
+     "quality": "self-reported",
+     "supports": "All taker strategies negative by price band (n=4,604); whales (SirMartingale et al.) profit via split/merge, maker zero fee, rewards; wallet $5 -> $445 in five days; $143K/month wallet shows pages of losing legs"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1tgbkd0,1sccina",
+     "title": "Reddit r/PolymarketProtestClub 1sccina 'Polymarket Bot makes $8 bets over 55k+ times resulting in $1m+ profit'",
+     "date": "2026-04-04",
+     "quality": "credible-report",
+     "supports": "Observed bot farming crypto up/down with tiny clips at very high frequency"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+     "title": "Polymarket docs: maker rebates",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Crypto rebate pool 20% of taker fees, pro-rata by fee-equivalent per market, daily pUSD, $1 minimum"
+    },
+    {
+     "url": "https://dev.to/lkto1m/february-2026-changed-polymarket-forever-heres-what-happened-to-my-bots-numbers-2fi5",
+     "title": "dev.to lkto1m: February 2026 changed Polymarket forever",
+     "date": "2026-06-25",
+     "quality": "self-reported",
+     "supports": "Maker-side bot on 5m/15m markets: EV/trade $0.028-0.031, 78 trades/day, unaffected by taker fees (note: its '500ms delay' claim conflicts with the changelog)"
+    }
+   ]
+  },
+  {
+   "name": "Liquidity provision in ultra-short crypto contracts with a toxicity filter (the other side of the retail bleed)",
+   "one_line": "Be the resting liquidity in 5-/15-minute up/down markets where retail loses fastest, while pulling quotes in the windows that manipulation and latency studies identify as toxic.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "Quote both sides of recurring 5-min/15-min/1h crypto contracts, collecting the 20% rebate pool share plus the spread from a flow that is 75% unprofitable. Fair value comes from a spot-driven digital-option model; quotes are cancelled or widened when (a) the cycle is near-the-money inside the last ~50 seconds, (b) a >=5 bp Binance move has occurred within your reaction time. Inventory self-liquidates every few minutes, so capital turns thousands of times per month.",
+   "edge_source": "Contract design manufactures uninformed high-frequency gambling flow; skilled wallets are documented to choose the maker role precisely in high-volume short-duration markets.",
+   "why_might_beat_market": "Capital efficiency (no lock-up) and a structurally losing counterparty base; the residual risks are now measurable thanks to public ms-level datasets.",
+   "evidence": [
+    {
+     "url": "https://doi.org/10.2139/ssrn.7461319",
+     "title": "Manufacturing Speculation: Contract Design and Trader Performance in Prediction Markets (Lei, Rossi), SSRN via Crossref abstract",
+     "date": "2026",
+     "quality": "paper",
+     "supports": "Feb-2024..Mar-2026 Polymarket: share of profitable wallets falls from 60% in monthly contracts to 25% in five-minute contracts; $100 is depleted in 404 days in monthly vs 1.6 days in five-minute contracts."
+    },
+    {
+     "url": "https://arxiv.org/html/2606.31675v1",
+     "title": "Settlement Manipulation in Prediction Markets (Dai, Jia, Yu), arXiv",
+     "date": "2026-06-30",
+     "quality": "paper",
+     "supports": "Near-the-money cycles are ~6% of cycles; essentially all signed manipulative spot flow falls in the final 50 seconds; retail (not passive MMs) bore 93% of losses."
+    },
+    {
+     "url": "https://arxiv.org/html/2607.26245v1",
+     "title": "OpenMarket: A Synchronized Polymarket-Binance Dataset (Young), arXiv",
+     "date": "2026-07-28",
+     "quality": "hard-data",
+     "supports": "727M rows, Feb-12..May-15-2026: median Polymarket quote response to >=5 bp Binance moves 347 ms; 91.9% of top-of-book spreads are one tick."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-08-17",
+     "quality": "hard-data",
+     "supports": "Crypto taker delay cut from 250 ms to 50 ms (2026-08-17) - the maker's protection window shrank 5x; 5-min markets moved to 60 s Chainlink TWAP (2026-08-14); crypto taker fee rate 0.07 with 20% rebate."
+    }
+   ],
+   "failure_modes": "One-tick spreads mean the spread itself is tiny - PnL is rebate + selection; the 50 ms taker delay makes you pickable by colocated takers; TWAP settlement changed the end-of-cycle dynamics after the cited studies; ghost-fill counterparties.",
+   "cheap_validation": "Use the public 1-second L2 crypto up/down datasets (Zenodo 22084115, listed in OpenAlex) plus OpenMarket to simulate quote-and-cancel rules; measure markout at 100 ms / 1 s / settlement by seconds-to-expiry bucket before risking capital.",
+   "flags": ""
+  },
+  {
+   "name": "Maker-side quoting in short-dated crypto markets (rebate + reward capture)",
+   "one_line": "Be the maker the latency takers pay: quote 5m/15m/4h up/down books off a spot-driven fair value and collect spread, 20% fee rebates and targeted reward pools.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "Fair value is a digital-option price from live spot, time-to-expiry and short-horizon vol, now against a 60 s TWAP settle. The bot posts post-only two-sided quotes, cancels inside the 50 ms taker delay when spot jumps, and merges YES+NO inventory back to pUSD. Income is spread plus a pro-rata share of 20% of all taker fees in that market (per-market competition) plus episodic liquidity rewards. In August 2026 Polymarket added $1M of rewards to TWAP-affected markets ($550k on 5-min, $350k on 15-min, $100k on 4-hour).",
+   "edge_source": "Structural: the fee regime moved the edge from takers to makers; taker delay protects quotes; reward pools are paid per market so thin alt-coin books (SOL/XRP/HYPE/BNB/DOGE) are less contested.",
+   "why_might_beat_market": "Top-of-book is already one tick wide in BTC, but rebates are shared only among makers in the same market, and new short-dated listings start with few makers.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/developers/market-makers/maker-rebates-program",
+     "title": "Maker Rebates Program (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Crypto feeRate 0.07, 20% rebated to makers, fee-curve weighted, per-market pools, paid daily in pUSD."
+    },
+    {
+     "url": "https://docs.polymarket.com/developers/market-makers/liquidity-rewards",
+     "title": "Liquidity Rewards (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "August crypto TWAP program $1M: 5-min $550k (BTC $300k; SOL/ETH/HYPE/XRP $50k each; BNB/DOGE $25k each), 15-min $350k, 4-hour $100k; quadratic spread scoring sampled every minute."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.26245",
+     "title": "OpenMarket dataset paper",
+     "date": "2026-07-28",
+     "quality": "paper",
+     "supports": "Stylized fact: one-tick top-of-book spreads in BTC 15-min markets, i.e. makers are already tight."
+    }
+   ],
+   "failure_modes": "Adverse selection from faster takers in the final seconds; settlement-window manipulation historically overturned 'near-certain' sides; reward programs are episodic ('ended'); rebate share shrinks as makers arrive.",
+   "cheap_validation": "Paper-quote one alt-coin 15-min market for a week using the public WS feed; compute would-be fills, markouts at +1 s/+10 s and the rebate share implied by observed taker volume.",
+   "flags": ""
+  }
+ ]
+}

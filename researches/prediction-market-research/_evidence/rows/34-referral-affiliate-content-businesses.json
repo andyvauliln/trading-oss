@@ -1,0 +1,63 @@
+{
+ "n": "34",
+ "slug": "referral-affiliate-content-businesses",
+ "file": "34-referral-affiliate-content-businesses.md",
+ "band": "established",
+ "name": "Referral, affiliate, creator and content businesses",
+ "one_line": "Earn from other people's trading through the venue's referral programmes, private creator / affiliate deals and numbers-first content; prediction referral payouts fell 96% on 8 July 2026 and now total ~$3.9k/day venue-wide; the fringe is fraud.",
+ "category": "Service & data business [audience and distribution only]",
+ "maturity": "Established as a practice, decayed as an income for newcomers: $11.33M of referral paid to 9,448 wallets Mar-Sep 2026 ($10.9M by 7 July), then -96% from the 8 July run; creator deals real but private; no newsletter / course / signal revenue disclosed; scam fringe established (criminal)",
+ "requires_ai": "optional: drafting posts from own logs; adds no edge",
+ "edge": "audience ownership; paid from the venue's acquisition budget, cut at will",
+ "capital": "<$1k (content is time; $10k lifetime trading volume needed to earn prediction referral)",
+ "build_time": "1-2 weeks for the stack; months to build an audience (guess 6-18)",
+ "opportunity_size": "Prediction referral ~$116k/month venue-wide to 1,146 wallets (was ~$148k/day to 7 July); Perps referral ceiling ~$137k/month; shrinking",
+ "expected_results": "Median current referrer $20/month, 20 of 1,146 earn >= $1k; guess $0-60/month without an audience",
+ "competition": "venue's own 91k-subscriber newsletter, badged X accounts, sports affiliates, Kalshi's 364 creators",
+ "flag": "grey for disclosed links (FTC, CTA, states); prohibited: self-referral, fake PnL, drainers, malware",
+ "validate": "4-week pilot: four data posts with disclosed links; pass >= $100 referral income or 500 engaged subscribers",
+ "top_risk": "programme terms cut without notice (-96% in one day, 8 July 2026)",
+ "evidence_grade": "B",
+ "solo_fit": 2,
+ "solo_fit_reason": "Cheap to add referral links to existing tools and write-ups, but income needs an audience a solo technical team rarely has; the current median referrer earns $20 a month and paid acquisition does not pay back at ~$1 of referral value per typical referee.",
+ "compounds_with": [
+  "builder-code-routing-business",
+  "data-analytics-api-products",
+  "taker-rebates-fee-tier-overlay",
+  "screened-copy-trading",
+  "perps-lp-rewards-basis"
+ ],
+ "speed_class": "speed-insensitive (audience and calendar timing in days)",
+ "results_1k": "workable as a side channel; -$20 to +$60/month (guess)",
+ "results_5k": "not if spent on ads: -$820 to -$500/month (derived)",
+ "results_10k": "only with an existing audience: $0 to +$3,350/month (guess)",
+ "min_capital": "~$0 plus $10k lifetime trading volume to qualify",
+ "capacity_ceiling": "venue-wide pools: ~$116k/month prediction, <= ~$137k/month Perps referral",
+ "services": [
+  "Polymarket referral dashboard",
+  "Perps referral code and exchange-stats API",
+  "Polygon RPC (Tenderly / Alchemy)",
+  "Data API v2 user-stats",
+  "Substack or static site",
+  "Polymarket US / Kalshi referral (US persons)"
+ ],
+ "monthly_running_cost": "minimum $0-$20; comfortable $50-$150 (ads excluded)",
+ "changes_made": [
+  "Written 2026-09-29 with live checks: referral, Perps referral, Perps fee, prediction fee and Polymarket US incentive docs; Kalshi referral FAQ; CJR Tow Center and TechCrunch/WSJ; FTC Endorsement Guides FAQ; Pew typical-user study; four security-vendor reports (StepSecurity, Panther x2, SafeDep); CreatorDB for Polymarket and Kalshi; Substack subscriber counts; Show HN counts; Perps exchange-stats (30-day volume $2.91B, fees $685k).",
+  "Own on-chain census of every transfer from the two referral distributors (blocks 82.0M-94.65M, 176,357 transfers): $11.33M to 9,449 wallets since 25 Mar 2026 after excluding a $1.04M USDC.e-to-pUSD migration transfer and a $597k one-off to a non-trading address; daily payouts rose to $120-187k in late June / early July, then fell 96% at the 8 July run (cause unverified, not in the changelog) and run $2.1-6.6k/day in September.",
+  "Established that Data API v2 /v2/user-stats exposes all_time_pnl.referral_income, which matches on-chain totals to the cent for large historical earners but has added nothing since the 11 September run; sponsored_income is not the same field.",
+  "Classified the top 50 all-time referral earners: 18 with < $100k own volume (distribution accounts, $1.89M) vs 19 with >= $1M own volume ($2.56M); identities not established.",
+  "Restricted the brief's shared sub-variant list to audience and distribution businesses; product sub-variants (analytics, datasets, APIs, feeds, forecasts, no-code, bot development, vaults, OTC) are left to files 33 and 84; the scam fringe is written at survey level only.",
+  "Confirmed HANDOFF's $25 Polymarket US refer-a-friend credit (amended notice 2026-08-26), not E2's $50.",
+  "Cite-check + skeptic pass 2026-09-29 (34 numbered sources re-fetched or re-queried, 0 removed; Pew read via a Wayback snapshot because the live page returns 403; census re-run from the saved logs, six user-stats wallets and the Perps exchange-stats query re-run): pre-collapse 30 runs corrected from $5.05M / 80 wallets >= $10k to $4.46M / 79 (the writer had counted the retiring distributor's $597k balance sweep); the sweep and a $100 and $1 test transfer re-described as operator transfers, total $11,326,633 to 9,448 wallets; distributor identification stated (plain wallets, DefiLlama label, referral_income match to the cent, daily-run timing); Pew's '$600 spent, net loss under $2' is the average trader, not the median; Kalshi referral credits must be used within 7 days (official FAQ) and carry a lifetime cap, not the directory's 30 days; CreatorDB's 30-day post counts dropped because the pages state two different values; Perps referral has no stated end date rather than 'no end date'; $5k row costs and net corrected (-$820 to -$500); $10k row now splits referral ($20-$1,000) from sponsorship; 8 July recipients fell 2,040 -> 578; unsourced Modash removed; marketing-to-restricted-users line reworded as an inference."
+ ],
+ "open_doubts": [
+  "Why prediction referral payouts collapsed on the 8 July run (recipients 2,040 -> 578, amount -96%) rather than on the 28 May terms change is unverified; neither the predictions changelog nor the referral page mentions it.",
+  "The two distributor addresses are identified by DefiLlama's label, run timing and the Data API referral_income match, not by any Polymarket document.",
+  "Perps referral payouts sit on an internal ledger and cannot be observed; the $137k/month figure is a ceiling (20% of gross positive fees), not a payout.",
+  "Creator, badge and US affiliate (CPA) rates are private on both venues; CreatorDB counts are vendor data covering YouTube only and its 30-day counts are internally inconsistent.",
+  "No paid-subscriber or revenue figure exists for any Polymarket-focused newsletter, course or signal group.",
+  "Whether fee-free volume counts toward the $10k lifetime-volume bar is not stated in the docs.",
+  "The large low-volume referral earners (one with no Data API record at all) could be communities, apps or referral farms; public data cannot tell them apart."
+ ]
+}

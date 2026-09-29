@@ -1,0 +1,326 @@
+{
+ "slug": "evaluation-promotion-allocation-metalayer",
+ "name": "Meta-layer: leak-free evaluation, anytime-valid promotion, label-free fitness, capital allocation and changelog-reactive re-optimisation",
+ "category": "Speculative-novel",
+ "maturity": "Purely theoretical",
+ "seed_category": "self-improving / recursive forecasting agents",
+ "one_line": "Build the selection-risk machinery every speculative agent needs. Cutoff-staggered time-machine backtests. E-process promotion gates under online FDR control. Consistency-arbitrage as instant fitness. Bandit or internal-futarchy capital allocation. A watcher that re-tunes the whole book within hours of a Polymarket rule change.",
+ "scope": "Cover five components. (1) A vintage panel with frozen web snapshots as the only trustworthy backtest. Contamination collapsed a 35.8% model gap to 8.9%, and prompted ignorance fails. Include the speculative news-value-gap signal. (2) Test-martingale promotion from replay to paper to $1-5 live to scaled. Bet at event-cluster level, because gates fired falsely 135 of 135 times on dependent streams. (3) The arbitrage-consistency violation score as a label-free inner-loop fitness, which correlates with Brier. Guard against the Goodhart drift toward 0.5. (4) Capital allocation across strategy bots using non-stationary Thompson sampling against an internal decision market. Expect the bandit to win. (5) Changelog-reactive re-optimisation. Diff the docs and fee tables, patch the simulator, re-backtest, reallocate. Use the six verified 2026 rule changes for a retro event study of competitor adaptation lag. State that none of this is alpha by itself. It prevents paying for fake alpha. Give simulation-based validation with synthetic edges of 0, 0.01, 0.02 and 0.04.",
+ "sub_variants": [
+  "Cutoff-staggered time machine with frozen snapshots (plus the news-value-gap signal)",
+  "E-process promotion ladder with online FDR control",
+  "Consistency-arbitrage label-free fitness",
+  "Thompson bandit vs internal futarchy for capital allocation",
+  "Changelog watcher to simulator patch to same-day reallocation"
+ ],
+ "merged_from": [
+  "Anytime-valid promotion ladder with bandit capital allocation",
+  "Consistency-arbitrage as a label-free fitness function",
+  "Vintage crowd: cutoff-staggered agents, a leakage-proof time machine and a news-value-gap signal",
+  "Internal futarchy: a decision market among agents that allocates capital across your own strategy bots",
+  "Changelog-reactive re-optimisation (rule-change alpha)"
+ ],
+ "flags": "Respect archive-source ToS and copyright when snapshotting the web. No trading-conduct flags.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2608.30502",
+   "note": "Anytime-valid gating fired 135 of 135 times on real dependent streams vs 1 of 60 on synthetic ones."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.00420",
+   "note": "~350 resolved predictions for a 0.02 edge at 80% power. ~4x that for 0.01."
+  },
+  {
+   "url": "https://arxiv.org/abs/2608.23808",
+   "note": "A composite robustness score over 359,062 backtests: Spearman 0.013 with forward performance."
+  },
+  {
+   "url": "https://arxiv.org/abs/2412.18544",
+   "note": "[pre-2025] Arbitrage-based consistency violations correlate with Brier. Forcing coherence did not improve accuracy."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.14051",
+   "note": "Hindcast: frozen-snapshot replay of Polymarket markets closes both the retrieval leak and the training leak."
+  },
+  {
+   "url": "https://arxiv.org/abs/2601.13717",
+   "note": "Prompted 'simulated ignorance' leaves a 52% gap vs true ignorance."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.03762",
+   "note": "OracleProto: cutoff-aligned admission plus masking brings leakage down to ~1%."
+  },
+  {
+   "url": "https://docs.polymarket.com/changelog/predictions.md",
+   "note": "Verified 2026 regime changes: CLOB V2/pUSD, sports fee 0.03 to 0.05, TWAP resolution, taker delay, Data API v2."
+  }
+ ],
+ "extra_scope": "Critic: by its own text this is shared INFRASTRUCTURE, not alpha. Keep the file (the owner's Agent OS needs exactly this), label it honestly as infrastructure in Category / Maturity, and keep 'changelog-reactive re-optimisation' (competitor-adaptation lag after rule changes) as its only alpha-bearing sub-variant.",
+ "n": "61",
+ "band": "speculative",
+ "file": "61-evaluation-promotion-allocation-metalayer.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Anytime-valid promotion ladder with bandit capital allocation",
+   "one_line": "Treat each candidate agent's market-relative bets as a test martingale; promote replay -> paper -> $1-5 live -> scaled only when its e-process crosses 1/alpha under online FDR control, then allocate live capital by non-stationary Thompson sampling.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "(1) For each agent define the null 'no edge after fees and spread' and run an e-process: start wealth 1, stake a fixed fraction per event cluster according to the agent's signal against the executable price. (2) Promotion between stages requires the e-value to exceed 1/alpha, with an online false-discovery budget shared across the whole population so that spawning 100 variants does not create 5 false winners. (3) Because e-processes are valid under optional stopping, the OS may check daily and stop early. (4) Live agents receive capital from a discounted / flow-corrected Thompson sampler on net PnL per unit risk with an exploration floor; a decaying e-process triggers demotion. (5) Bets are aggregated to the event-cluster level before entering the e-process to respect dependence.",
+   "edge_source": "None against the market directly: it is selection-risk control. It raises the fraction of capital that sits on agents with real edge, which is where evolutionary systems normally bleed.",
+   "why_might_beat_market": "Any population-based system faces multiple testing: about 350 resolved predictions are needed to detect a 0.02 edge at 80% power and about 4x for 0.01. Backtest-side robustness statistics do not predict forward results (MinervaScore, 359,062 backtests: Spearman 0.013, p = 0.40), so forward evidence is the only currency and it must be sequentially valid because an autonomous OS peeks continuously. Honest limit: power is low, so genuinely good agents wait months; this does not create alpha, it prevents paying for fake alpha.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: nothing found; bennyjo/phil has a paper -> $1-cap real ladder without a statistical gate, elastifund has kill-rules. Adjacent field: game-theoretic statistics / safe anytime-valid inference (Ramdas, Grunwald, Vovk, Shafer 2210.01948); e-value evaluation of probabilistic inflation forecasts (2608.23064); adaptive auditing of AI systems reaching conclusions with as few as 20 observations (2605.07002); anytime-valid false-promotion control for LLM policy layers (FABLE 2608.00215); Thompson-sampling portfolios over strategies (1911.05309) and flow-corrected TS for non-stationary bandits tested on portfolio selection (2606.23933).",
+   "failure_modes": "Dependence breaks the guarantee: on real forecast streams an anytime-valid gate fired in 135 of 135 clean runs vs 1 of 60 on exchangeable synthetic data; correlated markets inside one event; optimistic paper fills inflate e-values; alpha-spending starves late variants; non-stationary edge makes a once-valid promotion stale.",
+   "cheap_validation": "Simulation before any code touches money: bootstrap your own resolved-market log preserving event clusters and inject synthetic agents with known edge 0, 0.01, 0.02, 0.04. Metric: false-promotion rate on null agents and median cluster-level bets to promotion. Pass: FPR <= 5% at alpha = 0.05 under clustered dependence and the 0.04 agent promoted within about 200 cluster-level bets. Fail: FPR > 10% (then add null-calibration controls or coarser clustering).",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2210.01948",
+     "title": "Game-theoretic statistics and safe anytime-valid inference",
+     "date": "2022-10-04 [pre-2025, possibly stale]",
+     "quality": "paper",
+     "supports": "Test martingales / e-processes valid at any stopping time"
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.30502",
+     "title": "When the Martingale Never Stops Firing: Anytime-Valid Gating on Real Forecast Streams",
+     "date": "2026-08-31",
+     "quality": "paper",
+     "supports": "135 of 135 false fires on real dependent streams vs 1 of 60 on synthetic: null-calibration required"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "title": "Foresight Arena: An On-Chain Benchmark for Evaluating AI Forecasting Agents",
+     "date": "2026-05-01",
+     "quality": "paper",
+     "supports": "About 350 resolved predictions to detect 0.02 edge at 80% power, about 4x for 0.01 (Monte Carlo)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.23808",
+     "title": "Equity Strategy Backtesting: Luck or Edge? The MinervaScore",
+     "date": "2026-08-24",
+     "quality": "paper",
+     "supports": "DSR+PBO+SPA+MinTRL composite on 359,062 backtests shows no forward relationship (rho 0.013, p 0.40)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.23064",
+     "title": "Sequentially valid inference for probabilistic inflation forecasts",
+     "date": "2026-08-24",
+     "quality": "paper",
+     "supports": "E-value based sequential evaluation of forecast calibration (seen in arXiv listing)"
+    },
+    {
+     "url": "https://github.com/bennyjo/phil",
+     "title": "phil README",
+     "date": "created 2026-07-30, seen 2026-09-20",
+     "quality": "self-reported",
+     "supports": "Paper learning loop with $1-per-bet real leg on Polymarket; no statistical promotion gate"
+    }
+   ]
+  },
+  {
+   "name": "Consistency-arbitrage as a label-free fitness function (self-play without waiting for resolution)",
+   "one_line": "Score every agent variant instantly by the arbitrage profit an adversary could extract from its probabilities across logically related Polymarket markets, use that as the fast inner-loop fitness for evolution and RL, and apply the same checker to the order book.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) For each event family auto-generate the logical lattice Polymarket lists piecemeal: negations, mutually exclusive sets, nested deadlines (by October implies by December), nested thresholds, conditionals across sibling markets. (2) Elicit the agent's probabilities over the lattice and compute the maximum guaranteed profit of an arbitrageur trading against them - zero means coherent. (3) Use this as the inner-loop fitness between slow real resolutions, alongside (never instead of) realised market-relative score. (4) Run the same checker on live prices: violations beyond fees and depth are trades for the existing arb stack; (5) where the book is coherent and the agent is not, shrink the agent toward the price in that family.",
+   "edge_source": "Solves the binding constraint of self-improvement on prediction markets: labels arrive in weeks to months and arrive clustered. Coherence is measurable today.",
+   "why_might_beat_market": "Arbitrage-based consistency violations correlate with eventual Brier score, giving an instant proxy for forecaster quality; an evolutionary loop with a proxy that updates per question rather than per resolution can run orders of magnitude more selection steps. Humans trade sibling markets in isolation, so incoherence across deadlines and thresholds persists in thin books. Honest limit: as a direct trade this is already harvested - one study estimates about $40M of realised arbitrage on Polymarket, and in NBA markets 76.9% of combinatorial opportunities were limited to 14.8 shares - so the value here is the training signal, not the arb.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: book-side combinatorial arbitrage is established (2508.03474; 2605.00864; 2608.00666); using coherence as an agent fitness function - nothing found. Adjacent field: consistency checks for LLM forecasters (Paleka et al. 2412.18544, with a benchmark resolving in 2028), temporal event-relation graphs over Polymarket and Kalshi (EventConnector 2606.15448: 6.87% RMSE reduction), label-free peer-prediction style self-training (seen in sibling evidence, not re-verified).",
+   "failure_modes": "A coherently wrong agent scores perfectly; Goodhart toward 0.5 everywhere (coherent and useless) unless paired with a sharpness term; 'logically nested' markets that are not nested because resolution sources or rule text differ; lattice-generation errors; correlation with Brier may be too weak within a population of similar agents.",
+   "cheap_validation": "On >= 300 resolved event families, compute each of >= 20 agent variants' consistency score at forecast time. Metric: Spearman correlation across variants between consistency violation and realised market-relative Brier. Pass: rho >= 0.4 AND picking the top quartile by consistency improves realised Brier by >= 0.005 over random picks. Fail: rho < 0.2.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2412.18544",
+     "title": "Consistency Checks for Language Model Forecasters",
+     "date": "2024-12-24, rev. 2025-01-10",
+     "quality": "paper",
+     "supports": "Arbitrage-based consistency metric correlates with ground-truth Brier; automated generation of consistency checks"
+    },
+    {
+     "url": "http://arxiv.org/abs/2508.03474v1",
+     "title": "Unravelling the Probabilistic Forest: Arbitrage in Prediction Markets",
+     "date": "2025-08-05",
+     "quality": "hard-data",
+     "supports": "Market-rebalancing and combinatorial arbitrage on Polymarket; about $40M realised profit estimate (seen in arXiv listing)"
+    },
+    {
+     "url": "http://arxiv.org/abs/2605.00864v1",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets",
+     "date": "2026-04-22",
+     "quality": "hard-data",
+     "supports": "Only 7 executable single-market episodes (3.6 s median); 290 combinatorial episodes, 76.9% limited to 14.8 shares"
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.15448v1",
+     "title": "EventConnector: Mining Social Event Relations through Temporal Graphs",
+     "date": "2026-06-13",
+     "quality": "paper",
+     "supports": "Event-relation graphs evaluated on Polymarket and Kalshi (seen in arXiv listing)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00420",
+     "title": "Foresight Arena",
+     "date": "2026-05-01",
+     "quality": "paper",
+     "supports": "Why a fast proxy is needed: ~350 resolved predictions per 0.02 edge"
+    }
+   ]
+  },
+  {
+   "name": "Vintage crowd: cutoff-staggered agents, a leakage-proof time machine and a news-value-gap signal",
+   "one_line": "Use models with different knowledge cutoffs plus frozen retrieval snapshots. This gives (a) the only trustworthy backtest rig for every other idea here, and (b) a live signal: how far the evidence moved a clean prior against how far the market moved over the same window.",
+   "category": "Information edge",
+   "maturity": "Experimental as evaluation infrastructure (several 2026 papers). Purely theoretical as a trading signal (nothing found).",
+   "mechanism": "1) Maintain a panel of models with staggered training cutoffs, and a date-indexed snapshot store of news, Reddit and web content.\n2) For any past date t0, admit only models whose cutoff precedes t0 and only documents from before t0. Add a content-level leakage detector.\n3) Live signal per market:\n   - the closed-book forecast from the oldest-cutoff model is the stale prior;\n   - the retrieval-augmented forecast from the full panel is the posterior;\n   - news value = posterior - prior, in logits.\n4) Compare this with the market's move over the same window. If the panel's news value is large but the market barely moved, flag under-reaction. If the market moved far more than the evidence justifies, flag over-reaction.\n5) Trade the gap with the selective-deference gate from the divergence-engine idea. The oldest-cutoff model also acts as a natural information-partitioned agent in the crowd.",
+   "edge_source": "Two sources. First, avoiding the self-deception that leaked backtests cause; most competing LLM bots are tuned on contaminated backtests. Second, a measure of how much evidence has changed against how much the price has changed.",
+   "why_might_beat_market": "Human traders anchor and under-react to diffuse, low-salience evidence, and over-react to salient headlines. A vintage panel measures evidence change on a common scale. Honest limit: the under/over-reaction signal is my construction and no paper tests it. The documented value of this idea is the backtest hygiene. Hygiene is not alpha, but it prevents shipping negative-alpha agents.",
+   "adjacent_grounding": "LLM forecasting evaluation:\n- Hindcast (https://arxiv.org/abs/2607.14051, 2026-07-15): frozen Reddit snapshots plus Polymarket. Retrieval helps only where the archive held real prior discussion: 'where the archive carried only speculation, retrieval hurts'.\n- OracleProto (https://arxiv.org/abs/2605.03762, 2026-05-05): cutoff-aligned admission, tool-level masking and content leakage detection bring leakage to about 1%.\n- 'Simulated Ignorance Fails' (https://arxiv.org/abs/2601.13717, 2026-01-20): prompting a model to forget leaves a 52% gap against true ignorance, and reasoning models are worse.\n- Agentic Time Machine (https://arxiv.org/abs/2606.21013, 2026-06-19): offline scores correlate strongly with live FutureX scores.\n- Douven (https://arxiv.org/abs/2607.18269): contamination gap 35.8% to 8.9%.\n- Lopez-Lira et al., 'The Memorization Problem' (arXiv 2504.14765, 2025-04-20).\n- AIA measured 1.65% foreknowledge leakage in search results (2511.07678).",
+   "failure_modes": "- Old-cutoff models are weaker, so the prior is noisy.\n- Snapshot stores are expensive to build. Reddit-only archives bias toward topics Reddit discusses.\n- News value in logits depends on model calibration.\n- Newer models keep absorbing the evaluation period, so the clean window shrinks with every model release.\n- The signal may just rediscover momentum or reversal.",
+   "cheap_validation": "(a) Hygiene test. Run the existing agent on 300 resolved markets twice, with naive retrieval and with date-masked retrieval. If Brier differs by more than 5%, the old backtests are contaminated. Expect them to be.\n\n(b) Signal test. On at least 500 market-weeks, regress the 7-day-ahead market change on (news value - market move). Pass if rank IC > 0.05 with t > 2 out-of-sample and the effect survives controls for simple momentum and reversal. Fail otherwise, but keep the rig.",
+   "flags": "Respect the ToS of archive sources when building snapshot stores.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.14051",
+     "title": "Hindcast: Replaying Prediction Markets to Evaluate LLM Forecasters (arXiv)",
+     "date": "2026-07-15",
+     "quality": "paper",
+     "supports": "Closes both the retrieval leak and the training leak by grading as of a past date t0 with frozen Reddit snapshots and Polymarket data. Retrieval hurts where the archive holds only speculation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2601.13717",
+     "title": "Simulated Ignorance Fails (arXiv)",
+     "date": "2026-01-20",
+     "quality": "paper",
+     "supports": "9 models, 477 questions. Prompted ignorance leaves a 52% performance gap against true ignorance. Prompts cannot rewind knowledge."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.03762",
+     "title": "OracleProto (arXiv)",
+     "date": "2026-05-05",
+     "quality": "paper",
+     "supports": "Cutoff-aligned admission, temporal masking and leakage detection reduce residual leakage to about 1%, an order of magnitude below tool-only filtering."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "title": "Wisdom of LLM Crowds (arXiv)",
+     "date": "2026-05-26",
+     "quality": "paper",
+     "supports": "The apparent frontier-vs-small-model gap fell from 35.8% to 8.9% on 94 clean post-cutoff questions. Model rankings were only moderately stable."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.21013",
+     "title": "Agentic Time Machine as an Infrastructure for Future-Event Forecasting (arXiv)",
+     "date": "2026-06-19",
+     "quality": "paper",
+     "supports": "Reconstructed past web state. Offline scores correlate strongly with live FutureX scores. A planner-solver-aggregator multi-agent framework was evaluated on Polymarket."
+    }
+   ]
+  },
+  {
+   "name": "Internal futarchy: a decision market among agents that allocates capital across your own strategy bots",
+   "one_line": "Turn the aggregation machinery inward. Agent-traders bet in an internal conditional market on next week's risk-adjusted PnL of each strategy module (LP, arbitrage, sniping, copy-trading, crowd-divergence), and capital follows the prices.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical for trading-bot capital allocation (nothing found). The building blocks, market-based ensemble weighting and decision markets, are established in theory.",
+   "mechanism": "1) Define weekly contracts: 'strategy k's PnL divided by allocated capital next week will exceed X', per strategy and regime.\n2) Allocator agents each see a different slice of telemetry: fills and markouts, fee and rebate changes from the changelog, reward-programme changes, competitor activity, volatility calendars, and the crowd's disagreement levels. They trade these contracts in an internal LMSR.\n3) Capital for next week is allocated in proportion to a softmax of market-implied expected returns, subject to risk caps. The owner retains a veto.\n4) Contracts settle on realised PnL. Allocator bankrolls update, so allocators who anticipated regime shifts gain weight. A 2026 example of such a shift is the sports fee moving from 0.03 to 0.05 with the rebate cut from 25% to 15% on 2026-07-10.\n5) Pay the unexecuted decision branches on a proxy to keep incentives honest, as in decision-market proxy scoring.",
+   "edge_source": "Meta-level aggregation of heterogeneous operational signals into allocation decisions. The benefit is quicker de-allocation from decaying edges than a solo owner manages manually.",
+   "why_might_beat_market": "This one aims to beat your own static allocation, not the market. Polymarket microstructure changed materially several times in 2026: fee categories on 03-30, pUSD collateral on 04-17, CLOB V2 on 04-28, rate limits on 06-01, the sports fee rise on 07-10 and the oracle change in August. Each change shifts which strategy pays, and a solo operator reacts slowly. Market-based weighting is provably equivalent to Bayesian model averaging under wealth updates. Honest limit: with 5-6 strategies and weekly settlement, the data is tiny. A simple bandit or trailing-Sharpe rule may do just as well, and the LLM allocators add cost and variance.",
+   "adjacent_grounding": "Machine-learning markets and decision markets:\n- Storkey et al., 'Isoelastic Agents and Wealth Updates in Machine Learning Markets' (arXiv 1206.6443, 2012) [pre-2025]: agent markets implement Bayesian model updates and mixture-weight updates and outperform traditional ensembles.\n- Wang & Pfeiffer, 'Proxy Forecasting to Avoid Stochastic Decision Rules in Decision Markets' (arXiv 2303.10857, 2023) [pre-2025].\n- Jha et al., LMSR used to aggregate utility signals for budgeted subset selection (arXiv 2510.02456, 2025-10-02).\n- Lo et al. (https://arxiv.org/abs/2609.04373) on correlated agents: the allocators must be heterogeneous.",
+   "failure_modes": "- Too few independent observations, giving noisy prices.\n- Allocator monoculture.\n- Decision-market incentive problems: unexecuted branches never settle, which creates manipulation-like distortions even among bots.\n- Over-engineering relative to a simple Thompson-sampling bandit.\n- Adds an LLM cost line to every rebalance.",
+   "cheap_validation": "Offline walk-forward on the team's existing per-strategy PnL logs (26 weeks or more). Compare equal-weight, trailing-4-week-Sharpe weighting, a Thompson bandit and the internal decision market, using non-LLM parametric allocators first.\n\nPass: the decision-market allocation improves out-of-sample Sharpe by >= 0.2 over the best simple baseline and cuts drawdown around the documented 2026 regime changes.\n\nFail means ship the bandit, which is the expected outcome.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/1206.6443",
+     "title": "Isoelastic Agents and Wealth Updates in Machine Learning Markets (arXiv) [pre-2025, possibly stale]",
+     "date": "2012-06-27",
+     "quality": "paper",
+     "supports": "Agent markets with wealth updates implement Bayesian model updates and mixture-weight updates and can outperform standard ensemble methods."
+    },
+    {
+     "url": "https://arxiv.org/abs/2303.10857",
+     "title": "Proxy Forecasting to Avoid Stochastic Decision Rules in Decision Markets (arXiv) [pre-2025, possibly stale]",
+     "date": "2023-03-20",
+     "quality": "paper",
+     "supports": "Mechanisms that score predictions on proxies make deterministic decision rules incentive-compatible in decision markets."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket docs - Changelog",
+     "date": "2026 entries (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Frequent 2026 regime changes: fee categories (Mar 30), pUSD collateral (Apr 17), CLOB V2 (Apr 28), order rate limits 200/s (Jun 1), sports fee 0.03 to 0.05 and rebate 25% to 15% (Jul 10), Chainlink TWAP resolution (Aug 7 and 14), Data API v2 (Sep 4)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2510.02456",
+     "title": "Market-Driven Subset Selection for Budgeted Training (arXiv)",
+     "date": "2025-10-02",
+     "quality": "paper",
+     "supports": "A recent non-forecasting use of LMSR to aggregate multiple utility signals into coherent prices for budgeted allocation."
+    }
+   ]
+  },
+  {
+   "name": "Changelog-reactive re-optimisation (rule-change alpha)",
+   "one_line": "A watcher agent turns every Polymarket docs / fee / rewards / resolution-rule change into a simulator patch, re-backtests the whole strategy population under the new mechanics within hours, and lets the bandit reallocate before slower operators re-tune their hard-coded constants.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "(1) Diff-monitor docs.polymarket.com (changelog, fee table, maker-rebate and liquidity-reward pages, llms.txt index) and resolution-rule announcements. (2) An LLM translates each diff into a typed patch for the backtest/simulator: fee formula, rebate share, tick size, taker delay, resolution window, API limits. (3) Re-run the population's backtests and the edge map under patched mechanics; flag strategies whose net edge changes sign. (4) The capital bandit reallocates and the LP bot re-prices quote widths the same day. (5) Log the realised adaptation window of the market (spread, depth, reward-per-dollar) after each change to learn how long the opportunity lasts.",
+   "edge_source": "Slow adaptation of competitors whose bots hard-code venue constants; temporary under-quoting or mispricing while they catch up.",
+   "why_might_beat_market": "The venue changes often and materially. Verified 2026 entries: CLOB V2 with pUSD collateral (04-28); World Cup markets to 0.25c ticks (07-02); sports taker fee 0.03 to 0.05 and maker rebate 25% to 15% (07-10) - at p = 0.5 taker cost went from 0.75c to 1.25c per share, a 67% rise that flips marginal taker strategies negative and raises the value of maker-side expression; 5-minute crypto markets moved to a 60-second Chainlink TWAP (08-14), which changes both sniping logic and settlement-manipulation economics; crypto taker delay 250 ms to 50 ms (08-17); Data API v2 with wallet-PnL endpoints (09-04), which cheapens wallet-skill features for copy-trading. Most public bot templates (hundreds of forks each) embed such constants. Honest limit: no study measures adaptation lag on Polymarket; professional makers may adapt in minutes; with one or two events a month the idea cannot be validated statistically, only case by case.",
+   "adjacent_grounding": "Who does it on Polymarket/Kalshi: nothing found. Adjacent field: alpha-decay-aware factor mining (AlphaAgent 2502.16789), non-stationary online aggregation (MELO 2605.06541: -34.7% RMSE by hedging memory horizons), distribution-shift handling in auto-harness systems (2606.01770), fee-aware backtesting on prediction markets (PredictionMarketBench 2602.00133), settlement manipulation on spot-settled Bitcoin contracts with evidence from Polymarket's five-minute market (2606.31675).",
+   "failure_modes": "Changes shipped with little notice or documented after the fact; incorrect simulator patch; too few events for statistics; opportunity window shorter than your redeploy time; over-reacting to cosmetic doc edits.",
+   "cheap_validation": "Retro event study on the six verified 2026 changes using own book recordings. Metrics: spread, depth and maker reward per dollar quoted in affected categories for 72h after vs 14 days before; replay PnL of a re-tuned vs un-tuned version of one in-house bot. Pass: measurable widening / under-quoting window >= 6h in >= 4 of 6 events AND re-tuned bot beats un-tuned by more than the re-tuning cost. Fail: adaptation window < 1h.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Polymarket predictions changelog",
+     "date": "entries 2026-04-28 to 2026-09-04",
+     "quality": "hard-data",
+     "supports": "All six rule changes and their dates"
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "title": "Polymarket docs: Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Current fee formula and per-category rates used for the cost arithmetic"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+     "title": "Polymarket docs: Maker Rebates Program",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Rebate pool shares 15/20/25%, daily pUSD, pro rata to filled maker fee-equivalent per market"
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.31675v1",
+     "title": "Settlement Manipulation in Prediction Markets",
+     "date": "2026-06-30",
+     "quality": "paper",
+     "supports": "Why the TWAP resolution change matters: spot-settled Bitcoin contracts and large reversals on Polymarket's five-minute market (seen in arXiv listing)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.00133",
+     "title": "PredictionMarketBench",
+     "date": "2026-01-28",
+     "quality": "paper",
+     "supports": "Fee modelling decides which strategies survive in replay"
+    },
+    {
+     "url": "http://arxiv.org/abs/2502.16789v2",
+     "title": "AlphaAgent: LLM-Driven Alpha Mining with Regularized Exploration to Counteract Alpha Decay",
+     "date": "2025-02-24",
+     "quality": "paper",
+     "supports": "Alpha decay as a first-class design constraint for automated strategy discovery (seen in arXiv listing)"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "SPLIT evaluation-promotion-allocation-metalayer. Its only alpha-bearing component is changelog-reactive re-optimisation, a competitor-adaptation-lag event study on the 2026 rule changes. Give that its own entry or route it to the microstructure band. Turn the rest (time machine, e-process ladder, consistency fitness, bandit allocation) into a shared infrastructure appendix that every file references. It should not count toward the 14-22 strategies.",
+  "evaluation-promotion-allocation-metalayer: it is filed as a Speculative-novel strategy but says itself that none of it is alpha, so it fails the band's criterion (a). 'Purely theoretical' is also wrong for most components. Frozen-snapshot replay (Hindcast, OracleProto) and anytime-valid gating exist as published, tested methods, and the changelog watcher is ordinary engineering. Reclassify it as shared infrastructure. Only changelog-reactive re-optimisation is a strategy.",
+  "evaluation-promotion-allocation-metalayer: by its own text it has no mechanism for beating the price. It is necessary as infrastructure but is not a strategy file. Make it an appendix and keep only changelog-reactive re-optimisation as an entry."
+ ]
+}

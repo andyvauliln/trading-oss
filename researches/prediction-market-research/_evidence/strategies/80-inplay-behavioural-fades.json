@@ -1,0 +1,165 @@
+{
+ "slug": "inplay-behavioural-fades",
+ "name": "In-play behavioural fades and state-model trading (underreaction drift, panic fade, insurance demand)",
+ "category": "Directional trading",
+ "maturity": "Experimental",
+ "one_line": "Trade documented in-play behavioural patterns in live sports markets: underreaction drift after scoring events, overreaction panic fades, late-game 'insurance demand', and win-probability state models against the live price.",
+ "scope": "Non-AI experimental. Cover each pattern with its evidence (Kalshi papers, Betfair simulations, a marketing-grade +39% claim: say which is which), why executable taker PnL was negative in the papers and whether a maker-skew implementation could survive, Polymarket live-sports order delay and the sports taker fee (0.05 since 2026-07-10: check evidence pack E1), data needs (licensed live feed), and validation by replaying recorded in-play books. Boundary: feed-latency taking is sports-inplay-feed-latency-taking; model-driven holding is sports-model-driven-taking.",
+ "key_evidence": [],
+ "sub_variants": [],
+ "merged_from": [
+  "academic: In-play underreaction drift",
+  "adjacent-transfer: In-play state-model trading",
+  "adjacent-transfer: Final-minutes 'insurance demand'",
+  "traders: In-play panic-fade ladder"
+ ],
+ "n": "80",
+ "band": "speculative",
+ "file": "80-inplay-behavioural-fades.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "In-play underreaction drift captured through maker skew (sports)",
+   "one_line": "Live sports prices move only ~0.64 for one against a game-state win-probability model and drift the rest over 5-15 minutes; unprofitable as a taker, so embed it in quote placement.",
+   "category": "Market-making",
+   "maturity": "Experimental",
+   "mechanism": "Maintain a live win-probability model from score, clock and pre-game close; compute the updating gap (model change minus market change). Instead of crossing the spread, skew resting quotes toward the model - bid more aggressively on the under-reacted side and pull the stale side. Underreaction is largest in clutch time (coefficient 0.509) and when spreads are wide and volume low, which is where a maker's quote is most likely to be the marginal price.",
+   "edge_source": "Slow manual updating by retail during live play; illiquidity amplifies it.",
+   "why_might_beat_market": "The literature shows the drift is real but smaller than the bid-ask cost, so only a participant who earns rather than pays the spread (plus 15% sports rebate pool) can keep it.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2606.07811v1",
+     "title": "When Do Markets Fully Process Public Information? Evidence from Real-Time Prediction Markets (Angelini, De Angelis), arXiv",
+     "date": "2026-06-05",
+     "quality": "paper",
+     "supports": "Kalshi NBA, 1,438 games, 409,512 one-minute obs: contemporaneous adjustment 0.63-0.64 for one; a 10 bp gap predicts 1.95 bp (5 min) and 2.36 bp (15 min) drift, 4.59-4.84 bp net of later news; midpoint strategy +0.39..0.87 bp but executable (buy ask/sell bid) -0.78..-1.20 bp; clutch-time coefficient 0.509 vs 0.700."
+    },
+    {
+     "url": "https://zenodo.org/doi/10.5281/zenodo.21793818",
+     "title": "Excess Movement in High-Frequency Prediction-Market Quotes: The Entry-Delay Frontier - replication package (Pavlov), Zenodo",
+     "date": "2026-08-04",
+     "quality": "hard-data",
+     "supports": "7,118 Polymarket MLB/NBA contracts, Oct-2024..Jul-2026: variance ratio 1.53 at 1-minute sampling, 1.05 at 60 minutes; against 1,153,546 transactions every taker policy is negative (best -0.327 points); 39% of signals had no transaction at all and showed midpoint reversion 5.234 points vs 1.069 where a print existed - midpoint backtests are phantom."
+    },
+    {
+     "url": "https://arxiv.org/html/2607.14430v1",
+     "title": "Prices, Probabilities, and Parlays: Systematic Bias in Sports Prediction Markets (Moshrefi), arXiv",
+     "date": "2026-07-15",
+     "quality": "paper",
+     "supports": "23M Kalshi moneyline trades: calibration is at reference values 30-240 min before expiry but departs sharply in the final 10 minutes (gamma 1.27-1.31; NHL a=4.56, MLB 2.05, NBA 1.62)."
+    }
+   ],
+   "failure_modes": "Model error in live win probability; being the stale quote when real news (injury) hits; sports taker fee/ rebate changes (0.05 / 15% since 2026-07-10).",
+   "cheap_validation": "Log your quotes' markouts conditioned on the sign of the updating gap for 200 games; the skew should raise 5-minute markout without reducing fill rate.",
+   "adjacent_grounding": "Betfair in-play efficiency literature (goal/score underreaction) - same phenomenon, now measured on Kalshi/Polymarket CLOBs.",
+   "flags": ""
+  },
+  {
+   "name": "In-play state-model trading (xG or win-probability models) as a maker",
+   "one_line": "A Betfair-style in-play model, calibrated to the pre-match market and updated with event data. Use it to quote, not to snipe.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Anchor team strength to the pre-game market price, because the market is the best prior. Update a hazard or state model in play with richer covariates than the crowd uses: post-shot xG, possession, draft and objectives in esports. Quote around the model price and take only when the divergence exceeds fees. Sports taker fees are 0.05 x p x (1-p) per share, which is about 1.25c at 50c. Volatility in sports contracts is jump-like and peaks near 50/50 and near the end, so inventory limits need to be state-dependent.",
+   "edge_source": "The model processes information better between scoring events. The crowd over- or under-reacts to momentum.",
+   "why_might_beat_market": "On Betfair a simple market-calibrated model nearly matches the exchange's accuracy and still shows positive simulated ROI. Polymarket's in-play books are younger and thinner than Betfair's.",
+   "adjacent_grounding": "Betfair Exchange in-play football: a Weibull accelerated-failure-time model calibrated to kickoff prices plus post-shot xG (https://arxiv.org/abs/2605.16066). Betfair pre-live horse-racing depth models (https://arxiv.org/abs/2510.16008).",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2605.16066",
+     "title": "A market-calibrated accelerated failure time model for in-play football forecasting",
+     "date": "2026-05-15",
+     "quality": "paper",
+     "supports": "17,458 simulated in-play bets over 140 EPL matches. Model accuracy was 70.2% against Betfair's 70.6%. ROI was 4.5% and Sharpe 5.94. This is a simulation, not live trading."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.08060",
+     "title": "Pre-game paired-comparison modeling of professional League of Legends map outcomes",
+     "date": "2026-09-07",
+     "quality": "paper",
+     "supports": "NEGATIVE result. On 928 matched maps a well-built pre-game model is statistically indistinguishable from Polymarket. The market has a modest edge on Worlds and decider maps. Pre-game esports prices are already efficient."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.08199",
+     "title": "Volatility in Prediction Markets: A Structural Approach",
+     "date": "2026-07-09",
+     "quality": "paper",
+     "supports": "On a Kalshi panel, volatility is highest near 50/50 and rises near resolution. Sports contracts are jump-like. Structural models beat GARCH."
+    },
+    {
+     "url": "https://github.com/OriginalGoku/poly",
+     "title": "OriginalGoku/poly, live-event overreaction data collection (CS2 and others)",
+     "date": "2026-03-24",
+     "quality": "self-reported",
+     "supports": "A practitioner is testing the 'emotional overshoot' hypothesis. 114+ match databases are collected. No edge has been quantified yet."
+    }
+   ],
+   "failure_modes": "The simulated ROI ignores queue position and latency. Feed-latency bots pick off model quotes. Pre-game prices are already efficient, per the LoL result. Fees eat small divergences.",
+   "cheap_validation": "Replay recorded books for 50+ matches with a model built only from public play-by-play. Require positive PnL after assuming you are filled only when the next trade goes through your price.",
+   "flags": ""
+  },
+  {
+   "name": "Final-minutes 'insurance demand' fade in live sports",
+   "one_line": "In the last roughly 10 minutes before settlement, sports prices stop being calibrated. Be the counterparty to holders who are insuring or dumping positions.",
+   "category": "Market-making",
+   "maturity": "Experimental",
+   "mechanism": "Kalshi sports moneylines are well calibrated mid-life. In the final ten minutes the calibration curve becomes step-like, consistent with holders of losing positions paying up for insurance. A maker who prices from a game-state model can sell that insurance or buy the dumped side at better-than-fair prices. This takes the other side of the Betfair 'greening up' flow. The task is to confirm the same distortion on Polymarket's deeper books and size it after the 0.05 sports fee if taking.",
+   "edge_source": "Behavioural, non-informational order flow (hedging, cash-out) concentrated at a predictable time.",
+   "why_might_beat_market": "The flow is predictable in time and direction and is not driven by news. Makers earning the spread on it face less adverse selection than at scoring moments.",
+   "adjacent_grounding": "Betfair 'greening up' and cash-out flow, and sportsbook cash-out margins. The paper evidence is on Kalshi: https://arxiv.org/abs/2607.14430",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.14430",
+     "title": "Prices, Probabilities, and Parlays: Systematic Bias in Sports Prediction Markets",
+     "date": "2026-07-15",
+     "quality": "paper",
+     "supports": "23M Kalshi moneyline trades. Calibration is perfect mid-life. In the final 10 minutes the curve is step-like, with Prelec curvature above 1, 'consistent with insurance-demand behavior by traders holding losing positions'."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00864",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets",
+     "date": "2026-04-22",
+     "quality": "paper",
+     "supports": "On Polymarket, inefficiencies are 'overwhelmingly concentrated in the final minutes of live play'. This confirms that end-of-game is where mispricing concentrates."
+    }
+   ],
+   "failure_modes": "The Kalshi result may not transfer to Polymarket. End-game states are high-gamma, so one possession can flip the result. Depth is thin. The paper is descriptive and reports no PnL.",
+   "cheap_validation": "Use the Polymarket trade archive (the Jon-Becker dataset or the Data API). Bucket sports trades by minutes to resolution and compute realised returns by price bucket for the last 10 minutes against mid-game.",
+   "flags": ""
+  },
+  {
+   "name": "In-play panic-fade ladder (overreaction mean reversion)",
+   "one_line": "After a sudden in-game price shock, place laddered bids at historically calibrated shock depths and sell 4-6c higher when spreads normalise.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Detect a >=15% (>=8c) drop within 2 minutes, classify it by market tier, favourite status, depth, match time and goal state, look up the historical P50/P75/P90/P95 shock depth for that bucket, and ladder four bids (10/20/30/40% of allocation) at those depths; exit by limit order a few cents above as panic liquidity refills. The author reports +39% on Kalshi World Cup markets (self-reported, affiliate link). The sports MM describes the cousin trade: fading prices pushed by tout-service pumps. In 5-minute crypto markets, 58% of eventual winners first dipped -10%, which is why stops lose and patient bids win.",
+   "edge_source": "Transient liquidity vacuum and retail overreaction after salient events.",
+   "why_might_beat_market": "Makers pull quotes during shocks (their stated defence), leaving a gap for a bidder with pre-computed depth statistics.",
+   "failure_modes": "Shocks that are information (red card, injury) not panic; catching knives without the goal-state filter; fees at mid prices; tiny samples per bucket; author credibility low.",
+   "cheap_validation": "From recorded in-play books, label shocks and compute forward 5-minute mid reversion by bucket; require positive expectancy after 0.05 fee before any live test.",
+   "flags": "Source post carries a referral link and its author promotes a copy-trade bot flagged elsewhere as a drainer.",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rjbmjs,1sgpbqh,1u3rn8s",
+     "title": "Reddit r/PredictionsMarkets 1u3rn8s 'I built a +39% Kalshi trading bot to exploit World Cup market panics' by ill_intents",
+     "date": "2026-06-12",
+     "quality": "marketing",
+     "supports": "Shock definition, 5-dimension buckets, percentile ladder 10/20/30/40%, exit 4-6c above; +39% claim unverified"
+    },
+    {
+     "url": "https://news.polymarket.com/p/meet-your-market-maker",
+     "title": "The Oracle: sports MM interview",
+     "date": "2025-10-11",
+     "quality": "self-reported",
+     "supports": "Detects tout-driven flow in his fills and gets 'pretty good prices on the fade'; pulls quotes during shocks"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1uoqskg",
+     "title": "Reddit 1uoqskg 5-minute market autopsy",
+     "date": "2026-07-06",
+     "quality": "self-reported",
+     "supports": "58% of eventual winners dipped -10% before recovering; stops cut winners"
+    }
+   ]
+  }
+ ],
+ "critic_notes": []
+}

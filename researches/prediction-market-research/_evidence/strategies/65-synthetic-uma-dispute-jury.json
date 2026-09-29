@@ -1,0 +1,160 @@
+{
+ "slug": "synthetic-uma-dispute-jury",
+ "name": "Synthetic UMA jury: in-dispute adjudication trading with a unanimity gate",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "simulated stakeholder polling",
+ "one_line": "When a proposal is disputed, several web-enabled model families independently predict how UMA voters will rule. Trade only the unanimous high-confidence subset, where the price still carries a panic or lock-up discount.",
+ "scope": "Cover the post-dispute window only. Subscribe to oracle lifecycle events; Data API v2 now exposes resolution lifecycle reads. Assemble the dossier: rules, clarifications, UMA evidence threads, dated news. Collect independent votes with no debate, since debate lowers accuracy. Gate on unanimity plus confidence. Size by lock-up time: 24-48h of debate plus ~48h of voting, longer with resets. Core numbers: LLMs agree with the final UMA ruling 89.58% of the time against a naive 'proposal stands' baseline of about 76%. The unanimous subset is 97.87% accurate on 47% of questions. Inter-model error correlation is 0.53-0.69. The key unknown is that nobody has measured price levels during dispute windows. Humans already specialise here; one wallet cluster won 26 of 34 contested markets. Discuss token-weighted whale voting, the fat-tailed ~10% misses, leakage in backtests of famous disputes, and oracle-surface changes. Validate by replaying 2026 disputes that fall after model cutoffs. Boundary: ex-ante hazard and rules reading are in rules-ambiguity-hazard-layer.",
+ "sub_variants": [
+  "Independent multi-family vote with unanimity gate",
+  "Precedent-grounded voter persona panel",
+  "Jury disagreement score exported as an LP risk flag"
+ ],
+ "merged_from": [
+  "Synthetic UMA jury: independent multi-model vote with a unanimity gate",
+  "In-dispute adjudication trading: LLM ensemble as a UMA-voter simulator",
+  "Resolution red team and dispute-phase judge (dispute-phase part)",
+  "Synthetic benches: UMA voter-set twin"
+ ],
+ "flags": "Do not post dispute bonds, vote with UMA tokens, or lobby voters on markets where you hold positions without legal review. That approaches settlement manipulation.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2604.15674",
+   "note": "259 disputed-and-resolved events: 89.58% LLM agreement with the final UMA ruling, with temporal controls."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.30802",
+   "note": "Independent vote 83.43% vs debate ~76%. Unanimous high-confidence subset 97.87% on 47% of questions."
+  },
+  {
+   "url": "https://github.com/rodridu/polywether",
+   "note": "Self-reported: 23.9% of disputed contracts revise, so the naive baseline is ~76%. Revision rates differ by settlement path."
+  },
+  {
+   "url": "https://github.com/xzycd/recuse",
+   "note": "Self-reported: repeat human winners of contested markets (26 of 34, +$645K). More than 1,150 disputes in 2026."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.15373",
+   "note": "108,638 conditions tracked through finality and redemption. Timing data for dispute-window trades."
+  },
+  {
+   "url": "https://docs.polymarket.com/developers/resolution/UMA",
+   "note": "Official flow: $750 pUSD bond, 2h challenge, second dispute goes to a DVM vote."
+  },
+  {
+   "url": "http://arxiv.org/abs/2609.06769v2",
+   "note": "LLMs track human legal judgments but are more homogeneous and lean toward institutions. A bias to correct."
+  }
+ ],
+ "n": "65",
+ "band": "speculative",
+ "file": "65-synthetic-uma-dispute-jury.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Synthetic UMA jury: independent multi-model vote with a unanimity gate for disputed and ambiguous resolutions",
+   "one_line": "Once a Polymarket resolution is disputed, a panel of web-enabled models voting independently (no debate) predicts UMA's final ruling with high agreement. Trade only the unanimous, high-confidence subset where the price has not converged.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental (two 2026 academic evaluations on real UMA/Polymarket and Kalshi resolution data; use by traders is unverified)",
+   "mechanism": "1) Subscribe to the UMA oracle lifecycle events (proposal, dispute, vote) for Polymarket questions.\n2) On dispute, give K heterogeneous web-enabled models the market rules, the clarifications and date-filtered evidence. Each votes independently with a confidence. Do not run deliberation, because debate lowers accuracy.\n3) Gate: act only if the vote is unanimous and all confidences are high. Otherwise abstain or flag for the owner's manual review.\n4) Compare the jury verdict with the current price. If the winning side trades below (1 - required discount), buy and hold through the vote, or sell the other side. Size by the dispute-window duration and oracle risk.\n5) Feed the jury's disagreement score back into the LP agent as a 'resolution-ambiguity' risk flag to widen quotes.",
+   "edge_source": "Aggregating several independent rule-readers is cheaper and faster than the human dispute process. The edge is the residual uncertainty discount in disputed markets, not information about the underlying event.",
+   "why_might_beat_market": "During disputes capital is locked and many holders sell at a discount out of oracle fear, while the eventual ruling is predictable.\n- Web-enabled LLMs reach 89.58% agreement with UMA's final resolutions (Wen et al.). About $972M of volume has touched disputed events.\n- Kota: unanimous high-confidence questions are 97.87% accurate on 47% of the dataset.\n\nHonest limits: the same paper finds LLMs cannot predict which markets will be disputed in advance, so this is strictly a post-dispute trade. The 10% of non-agreement cases are fat-tailed total losses. UMA whale-voting and governance risk cannot be modelled from text. The reader's resolution-sniping agent may already cover part of this.",
+   "adjacent_grounding": "LLM-as-judge and oracle research:\n- Wen, Zhou & Huang (https://arxiv.org/abs/2604.15674, 2026-04-17).\n- Kota (https://arxiv.org/abs/2605.30802, 2026-05-29): independent confidence-weighted voting 83.43% against about 76% for deliberation. Error correlations 0.529-0.689.\n- Nechepurenko, 'Resolution Is Not Settlement' Parts I-II (arXiv 2609.15368 and https://arxiv.org/abs/2609.15373, 2026-09-14): 504,332 oracle lifecycle events across 185,550 questions, median request-to-proposal 176-744s, median redemption 182-200s.\n- EigenAI verifiable LLM judging (arXiv 2602.00182).",
+   "failure_modes": "- Correlated misreading of ambiguous rules across models (the same monoculture problem).\n- UMA outcomes driven by token-holder incentives rather than text.\n- Polymarket clarifications issued mid-dispute.\n- Low frequency: few disputes with a meaningful price discount.\n- Exit liquidity during disputes is poor.\n- Oracle changes. The changelog shows Chainlink TWAP replacing earlier resolution for crypto up/down markets in August 2026, so the oracle surface is moving.",
+   "cheap_validation": "Backtest on all disputed Polymarket questions from 2025-2026, using lifecycle datasets such as Nechepurenko's. Record the price at dispute start and the final ruling.\n\nPass:\n- unanimous-jury subset accuracy >= 95% with n >= 100;\n- mean entry discount >= 3c;\n- simulated PnL positive after assigning a full loss to misses.\n\nFail if the unanimous subset is under 30% of disputes (too rare to bother) or if the misses cluster in high-value markets.",
+   "flags": "Do not participate in UMA voting on markets where you hold positions without understanding the conflict-of-interest optics. Avoid any coordination that resembles oracle manipulation.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2604.15674",
+     "title": "Can LLMs Help Decentralized Dispute Arbitration? A Case Study of UMA-Resolved Markets on Polymarket (arXiv)",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "LLMs cannot predict which events will be disputed. Once a dispute starts, web-enabled LLMs reach 89.58% agreement with UMA's final resolutions. $972,370,804.71 of volume is tied to disputed events."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "title": "Design and Evaluation of Multi-Agent AI Oracle Systems for Prediction Market Resolution (arXiv)",
+     "date": "2026-05-29",
+     "quality": "paper",
+     "supports": "Independent confidence-weighted voting scores 83.43% and deliberation about 76%. The unanimous high-confidence subset is 97.87% accurate on 47% of 1,189 questions. Inter-agent disagreement flags the rest for humans."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.15373",
+     "title": "Resolution Is Not Settlement, Part II: Protocol Finality and Observed Redemption on Polymarket (arXiv)",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "108,638 conditions were tracked through resolution and redemption. Median redemption times are 182-200 seconds. This gives the timing data needed for dispute-window trades."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket docs - Changelog",
+     "date": "2026 entries (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Oracle surface is changing. Chainlink TWAP resolution for crypto up/down markets launched 2026-08-07, and the window was revised on 2026-08-14."
+    }
+   ]
+  },
+  {
+   "name": "In-dispute adjudication trading: LLM ensemble as a UMA-voter simulator",
+   "one_line": "When a proposal is disputed, run an independent multi-model ensemble with a unanimity gate to predict the final UMA outcome and trade the panic/uncertainty discount in the dispute window.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) Subscribe to oracle lifecycle events (proposal, dispute, reset, DVM request) on-chain or via the Data API v2 resolution-lifecycle reads added 2026-09-04. 2) On dispute, assemble the dossier: rules, clarifications, proposer/disputer history, UMA Discord evidence threads, dated news. 3) Query 3-5 different model families independently (no debate), each predicting how UMA voters will rule - explicitly the vote, not 'the truth'. 4) Trade only if unanimous and high-confidence and the market price implies a probability at least X points away; size by lock-up (debate 24-48h + vote ~48h, longer with resets). 5) Log every case to recalibrate against the naive baseline 'first proposal stands'.",
+   "edge_source": "Textual adjudication under time pressure: holders facing an unhedgeable binary on locked capital sell at a discount; few participants read the full evidence record.",
+   "why_might_beat_market": "Wen et al.: web-enabled LLMs agree with UMA's final resolution in 89.58% of 259 disputed-and-resolved events (majority of 3 runs, information restricted to pre-decision). Du's panel implies the naive 'proposal stands' baseline is ~76% (23.9% revise), so the LLM carries real information IF dispute-window prices sit near the naive rate. Kota shows unanimity gating lifts accuracy to 97.87% on the 47% of questions where models agree, while deliberative debate degrades accuracy to ~76% - so use independent voting. Counter-evidence that humans already do this: recuse's 'regulars' list shows wallets winning 26 of 34 contested markets (+$645K). I found no data on actual price levels during dispute windows - that is the key unknown.",
+   "adjacent_grounding": "LLM-as-judge and AI-oracle research: https://arxiv.org/abs/2605.30802 (multi-agent oracle on 1,189 KalshiBench questions; inter-model error correlation 0.529-0.689), https://arxiv.org/abs/2604.15674. Legal-outcome prediction literature generally. No at-scale trading use found on arXiv/GitHub/HN; monitoring tools exist (https://github.com/sacha9214/polymarket-resolution-radar, recuse watch).",
+   "failure_modes": "UMA votes are token-weighted and can be influenced by large holders - the model must predict voters, not facts; ~10% disagreement cases are exactly the contentious high-stakes ones; models share errors (correlation 0.53-0.69); temporal leakage in any backtest (famous disputes are in training data); thin books during disputes; multi-round resets extend lock-up; agreement measured on resolved disputes only (survivorship).",
+   "cheap_validation": "Replay: for all 2026 disputes after the newest model's cutoff (recuse reports >1,150 disputed markets in 2026), reconstruct the price in the first hour after the dispute event and run the gated ensemble with retrieval frozen at that timestamp. Metrics: gated-subset accuracy >=95%; net ROI per trade after fees and a 10% annual capital charge >0 with t-stat >2 over >=150 trades; and LLM must beat the 'proposal stands' baseline by >=8 points on the same set. Then small-stakes pilot ($50-200 per case).",
+   "flags": "Do not combine with posting dispute bonds or lobbying UMA voters on positions you hold without legal advice - that edges toward manipulation of settlement.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2604.15674",
+     "title": "Can LLMs Help Decentralized Dispute Arbitration? (Wen et al.)",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "259 disputed-and-resolved events from 558; five LLMs; 89.58% agreement with UMA final; temporal controls."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "title": "Design and Evaluation of Multi-Agent AI Oracle Systems for Prediction Market Resolution (Kota)",
+     "date": "2026-05-29",
+     "quality": "paper",
+     "supports": "Independent aggregation 83.43%; debate degrades to ~76%; unanimous+high-confidence 97.87% on 47% of questions."
+    },
+    {
+     "url": "https://github.com/rodridu/polywether",
+     "title": "Settlement Risk Monitor (Du 2026)",
+     "date": "2026-05",
+     "quality": "self-reported",
+     "supports": "23.9% of disputed contracts revise -> naive baseline ~76%."
+    },
+    {
+     "url": "https://github.com/xzycd/recuse",
+     "title": "recuse",
+     "date": "2026-08",
+     "quality": "self-reported",
+     "supports": "Repeat winners of contested markets (e.g. 26 of 34, +$645K) - humans already specialise here; winners invisible to balance trackers."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Polymarket Predictions changelog",
+     "date": "2026-09-04",
+     "quality": "hard-data",
+     "supports": "Data API v2 adds resolution lifecycle reads."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Polymarket docs - Resolution",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Dispute timings and bond economics."
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "ADD sub-variant to synthetic-uma-dispute-jury: a position-free dispute-bounty mode. A winning disputer receives half the $750 bond, or +$375. With the list's roughly 76% 'proposal stands' base rate, indiscriminate disputing loses. Only the unanimous subset at 97.87% is positive (derived). The whole pie is small, a few hundred successful disputes a year at $375 each (derived from E3-pack dispute counts). Bond treatment after the first-round reset is unverified. Keep this mode strictly separate from any trading position.",
+  "simulated-stakeholder-polling / decision-body-member-twins / elite-selection-bargaining-simulators / synthetic-uma-dispute-jury all carry the seed label 'simulated stakeholder polling'. Only the first is polling. The other three are institutional twins. This is harmless for coverage, since the seed has its own entry. The owner should not read it as four takes on one idea, though. Only one of them tests polling simulation."
+ ]
+}

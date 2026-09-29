@@ -1,0 +1,347 @@
+{
+ "slug": "rules-ambiguity-hazard-layer",
+ "name": "Ex-ante rules layer: rule-lawyer scanner, ambiguity wargame, dispute-hazard haircut and rule-diff versioning",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "new",
+ "one_line": "Compile every market's rules into a typed resolution spec. Have adversarial agents enumerate scenarios where headline truth and contract outcome diverge. Price the dispute and flip hazard like a credit spread, and archive rule diffs and clarifications. All of this happens before any dispute exists.",
+ "scope": "Cover everything that reads rules text before resolution. (a) The spec compiler and the two-pass gap between a headline reader and a rules-aware reader, trading only divergences that have a named scenario. (b) A role-played panel: literalist proposer, spirit-of-the-market disputer, precedent-grounded voter. It produces a basis-risk score and a playbook. (c) A tabular hazard model of P(dispute), P(flip | dispute) and lock-up time, used to haircut 95-99c sniping and widen quotes. About 1% of proposals are disputed. 23.9% of disputed contracts revise. In markets above $6.8M, flagged questions are disputed 16.2% of the time against 8.1%. (d) Semantic versioning of rule text and on-chain 'Additional context' posts. (e) Cross-venue spec-diff for rule-basis pricing; equivalent markets sit 2-4% apart. The key limit: LLMs cannot predict disputes from rule text alone (accuracy 0.40-0.57), so use LLM-extracted features inside a tabular model. Validate with Du's 2,221 disputed contracts plus matched controls, and with a time-split AUC. Boundary: trading after a dispute opens is in synthetic-uma-dispute-jury.",
+ "sub_variants": [
+  "Headline-vs-rules divergence scanner",
+  "Adversarial ambiguity wargame and playbook export to the sniping stack",
+  "Dispute-hazard credit-spread haircut",
+  "Rule-diff and clarification event trading",
+  "Cross-venue spec-diff rule-basis pricing"
+ ],
+ "merged_from": [
+  "Resolution-ambiguity wargame (simulated proposers, disputers and UMA voters)",
+  "Resolution red team ('rules lawyer') and dispute-phase judge (ex-ante part)",
+  "Rule-lawyer scanner: headline-vs-rules mispricing across the whole book",
+  "Dispute-hazard pricing: a credit-spread model for near-resolved markets",
+  "Rule-diff and clarification event trading (semantic versioning of every contract)",
+  "Cross-venue 'same event' matching with explicit rule-basis risk pricing"
+ ],
+ "flags": "Do not propose or dispute on UMA to move your own positions. Do not combine this with voting power. Both have manipulation optics. The managed-proposer status is unverified. Cross-venue legs raise KYC and geofencing constraints.",
+ "key_evidence": [
+  {
+   "url": "https://github.com/rodridu/polywether",
+   "note": "Self-reported companion to Du 2026: 305,766 contracts. 'Consensus of credible reporting' language gives a 3.5x dispute lift. Revised contracts score Brier 0.318 vs 0.032."
+  },
+  {
+   "url": "https://github.com/let-the-dreamers-rise/brier",
+   "note": "Self-reported: in markets above $6.8M, flagged questions are disputed 16.2% vs 8.1%. No effect below that. 72.5% of open markets settle on human judgement."
+  },
+  {
+   "url": "https://arxiv.org/abs/2604.15674",
+   "note": "$972M of volume in disputed events. LLMs cannot predict disputes ex ante (accuracy 0.40-0.57)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.15368",
+   "note": "On-chain: 159,447 proposals, 1,604 disputes. Rule versioning is a distinct adjudication state."
+  },
+  {
+   "url": "https://docs.polymarket.com/concepts/resolution.md",
+   "note": "UMA OO flow: $750 pUSD bond, 2h challenge, on-chain 'Additional context' clarifications."
+  },
+  {
+   "url": "https://arxiv.org/abs/2601.01706",
+   "note": "~6% of events are cross-listed. Equivalent markets sit 2-4% apart from structural frictions."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.16642",
+   "note": "No historical rule versions are recoverable from public Kalshi endpoints. Rule-history data is scarce."
+  },
+  {
+   "url": "https://github.com/xzycd/recuse",
+   "note": "Self-reported: the Zelenskyy-suit market had 5 dispute rounds on $242.2M. Lock-ups of 13-16 months. Documents Gamma API traps."
+  }
+ ],
+ "n": "64",
+ "band": "speculative",
+ "file": "64-rules-ambiguity-hazard-layer.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Resolution-ambiguity wargame (simulated proposers, disputers and UMA voters)",
+   "one_line": "At listing time, adversarial agents search a market's rules for scenarios where the headline truth and the resolved outcome diverge, and price that basis risk before anyone else looks.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "1. For every new market, parse the rules, the resolution source and the clarification history.\n2. Run a role-played panel:\n   - a literalist proposer\n   - a \"spirit of the market\" disputer\n   - a UMA voter grounded in past DVM vote precedents\n   - a Polymarket clarifications desk\n3. The panel generates edge scenarios (source outage, partial fulfilment, timing at the boundary, definitional gaps). For each, estimate P(scenario) and P(resolution outcome | scenario).\n4. Output a resolution-basis-risk score and a playbook per market.\n5. Pre-resolution: avoid or fade prices that ignore the basis risk. Buy the cheap side where ambiguity is asymmetric.\n6. At resolution: hand the precomputed dispute playbook to the existing sniping stack for the 2-hour challenge window.",
+   "edge_source": "A systematic reading of the rules text at scale, plus a model of how the oracle's actual voter population has decided similar ambiguities.",
+   "why_might_beat_market": "Market prices mostly encode P(event) and ignore P(resolved outcome differs from event). Almost nobody reads the rules on the long tail.\n\nKota 2026 shows AI systems resolve 47% of questions at 97.87% accuracy and the rest much worse. Ambiguity is concentrated in that other half, and it is identifiable ex ante.\n\nThe oracle flow is unchanged in the docs: $750 pUSD bond, 2h challenge window, DVM vote after a second dispute. Precedent modelling therefore remains valid.\n\nThis is the idea in this lens most synergistic with the reader's existing resolution-sniping build. It is text-only, cheap, and has on-chain ground truth.\n\nCaveat: dispute events are rare, so realised P&L is lumpy.",
+   "adjacent_grounding": "- Multi-agent AI oracles: Kota, KalshiBench with 1,189 questions (https://arxiv.org/abs/2605.30802).\n- LLM legal-judgment modelling: Ordinary, Reasonable Chatbots (arXiv 2609.06769) finds LLMs track human legal judgments but are more homogeneous and favour institutions.\n- Agent-based court simulation: Blind Judgement (arXiv 2301.05327) [pre-2025, possibly stale].\n- Polymarket UMA resolution docs.\n\nI found no repo or paper simulating UMA voter behaviour for trading.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/developers/resolution/UMA",
+     "title": "Polymarket docs: UMA resolution",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Current flow: UMA Optimistic Oracle, $750 pUSD bond, 2h challenge, a second dispute escalates to a DVM token-holder vote of about 48h after a 24-48h debate."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "title": "Design and Evaluation of Multi-Agent AI Oracle Systems for Prediction Market Resolution",
+     "date": "2026-05-29",
+     "quality": "paper",
+     "supports": "83.43% overall resolution accuracy. 97.87% on the 47% of questions routed as easy. Many questions resist correction by any multi-agent architecture, so the ambiguity is concentrated and detectable."
+    },
+    {
+     "url": "http://arxiv.org/abs/2609.06769v2",
+     "title": "Ordinary, Reasonable Chatbots: Do AI Models Track Human Legal Judgments?",
+     "date": "2026-09-06",
+     "quality": "paper",
+     "supports": "26 LLMs track human judgments but are more homogeneous and lean toward government and corporations. This is a bias to correct when simulating voters."
+    },
+    {
+     "url": "http://arxiv.org/abs/2301.05327v1",
+     "title": "Blind Judgement: Agent-Based Supreme Court Modelling With GPT",
+     "date": "2023-01-12",
+     "quality": "paper",
+     "supports": "An early multi-agent judge simulation with better-than-random accuracy on 96 cases. [pre-2025, possibly stale]"
+    }
+   ],
+   "failure_modes": "- Few disputes means slow learning.\n- Polymarket clarifications can pre-empt ambiguity unpredictably.\n- UMA whale voting is concentrated and sometimes strategic, not precedent-driven.\n- LLM voters are too literal or too institution-friendly.\n- Documented past disputes are in the training data.",
+   "cheap_validation": "- Collect all historically disputed Polymarket markets from on-chain UMA logs, plus matched undisputed controls.\n- Test 1: score dispute risk using only the rules text and information available at listing. Metric: AUC for predicting a dispute. Pass: AUC of at least 0.70.\n- Test 2: accuracy of the predicted DVM outcome on disputes after the model cutoff. Pass: at least 75% AND better than \"the proposer always wins\".\n- The build is days of work, with zero capital at risk.",
+   "flags": "- Do not combine with UMA voting power or coordinated disputing. Trading while influencing resolution is a conflict of interest and potential manipulation.\n- Use the output only for passive pricing and legitimate evidence-based disputes."
+  },
+  {
+   "name": "Resolution red team ('rules lawyer') and dispute-phase judge",
+   "one_line": "Adversarial agents hunt for scenarios where the headline event and the contract outcome diverge, and a precedent-trained panel prices the final UMA outcome once a dispute opens, trading the dislocation that ordinary forecasters ignore.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) For each market one agent argues 'headline YES implies contract YES', the opponent must build concrete divergence scenarios from the literal rules, resolution source, cut-off times, clarifications and negRisk 'Other'/placeholder semantics; judge outputs P(contract outcome | event) and a rule-risk score. (2) Wedge trades: when price tracks the event but the contract is narrower/wider, trade the difference. (3) Dispute phase: on a disputed proposal (2-hour challenge, second round, then DVM vote, 4-6 days) the panel, conditioned on a corpus of past UMA disputes and outcomes, predicts the final resolution; buy the predicted side if price < panel confidence minus a large tail buffer. (4) Export the rule-risk score as a blacklist/size-cap feed for every other bot in the suite.",
+   "edge_source": "Traders price the event, not the contract; dispute periods create forced sellers and capital lock-up aversion; few participants read oracle precedent systematically.",
+   "why_might_beat_market": "$972M of Polymarket volume involved disputed events; once a dispute exists web-enabled LLMs agree with UMA's final resolution 89.58% of the time; on-chain, 1,604 disputes vs 159,447 proposals (~1%) - rare but large and recurring. Honest limits: the same paper finds LLMs CANNOT reliably predict in advance which events will be disputed, so the ex-ante P(dispute) product is weak; 89.58% agreement implies ~10% catastrophic misses on near-binary payoffs, so only prices below roughly 0.80-0.85 are +EV; token-holder votes are not pure rule-following.",
+   "adjacent_grounding": "LLM dispute arbitration on UMA-resolved Polymarket markets https://arxiv.org/abs/2604.15674 ; multi-agent AI oracle designs https://arxiv.org/abs/2605.30802 ; on-chain reconstruction of oracle adjudication states https://arxiv.org/abs/2609.15368 ; decidability clocks on Kalshi https://arxiv.org/abs/2609.16642 ; legal-judgment consistency checks https://arxiv.org/abs/2306.09983 [pre-2025]. No trading implementation found.",
+   "failure_modes": "Oracle governance changes (docs still describe UMA OO; verify adapter version per market); whale voters; clarifications issued mid-market; long capital lock; correlated losses across a cluster of similarly worded markets; LLM over-literal reading vs 'spirit of the market' precedent.",
+   "cheap_validation": "Assemble all historical disputed markets (Wen et al. dataset; oracle lifecycle data in https://arxiv.org/abs/2604.20421 ). Time-split: predict the final outcome using only information available at dispute time and record the market price then. PASS: >=100 disputes, accuracy >= price-implied accuracy + 5 pts, simulated buy-predicted-side ROI > 0 after a 4-6 day capital charge. Separately audit 100 live markets for rule-risk and check after resolution whether flagged markets had more clarifications/disputes (PASS: lift >= 2x).",
+   "flags": "Trading around disputes is permitted; do NOT combine with proposing/disputing or UMA voting in the same markets without legal review (manipulation optics). Avoid any attempt to influence voters.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2604.15674",
+     "title": "Can LLMs Help Decentralized Dispute Arbitration? A Case Study of UMA-Resolved Markets on Polymarket",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "$972.37M volume in disputed events; LLMs cannot predict which events get disputed; 89.58% agreement with UMA final resolution once disputes occur."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.15368",
+     "title": "Resolution Is Not Settlement, Part I: Oracle Adjudication and Semantic Governance on Polymarket",
+     "date": "2026-09-14",
+     "quality": "hard-data",
+     "supports": "185,550 adapter-question instances: 184,148 requests, 159,447 proposals, 1,604 disputes, 159,133 settlements; request age is not semantic resolution age."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution",
+     "title": "Polymarket docs - Resolution",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "UMA Optimistic Oracle flow: ~$750 pUSD bond, 2-hour challenge period, second dispute escalates to DVM vote, disputed resolution takes 4-6 days."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/negative-risk.md",
+     "title": "Polymarket docs - Negative Risk Markets",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Placeholder outcomes and shifting definition of 'Other' - a concrete rule-risk source for the red team."
+    }
+   ]
+  },
+  {
+   "name": "Rule-lawyer scanner: headline-vs-rules mispricing across the whole book",
+   "one_line": "LLM compiles every market's rules into a typed resolution spec, contrasts it with what a title-only reader would believe, and trades the enumerated divergence scenarios.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) Pull every open market (question, rules/description, resolutionSource, on-chain 'Additional context') through the Gamma keyset endpoints (100 per page) nightly and on listing. 2) An LLM compiles each into a typed resolution spec: trigger predicate, authoritative source, deadline with timezone, carve-outs, fallback clause, who decides under ambiguity. 3) A rules-blind pass estimates what a headline reader would price from the title alone; a rules-aware pass enumerates world-states where title-outcome differs from spec-outcome ('announced' vs 'in effect', official-source publication lag past the deadline, 'consensus of credible reporting', tie/cancellation handling) and assigns each a probability. 4) Rank by (P_rules - market price) x executable depth, but only when the gap is explained by a named divergence scenario rather than a different forecast; take the rules side, sized down by the dispute-hazard model (separate idea). 5) LLM supplies recall over thousands of markets; a human confirms the top handful per day.",
+   "edge_source": "Attention and reading cost: most flow trades the title, while the payoff is defined by the rules plus a token-holder vote. A survey in the 'brier' repo found 72.5% of 1,192 open markets (89.9% of $427M liquidity with no fetchable resolution source) settle on human judgement such as 'a consensus of credible reporting'.",
+   "why_might_beat_market": "Exploits an aggregation failure that is textual, not informational: the crowd is forecasting the event, not the contract. Where settlement and crowd expectation diverged the price was badly wrong: revised disputed contracts have mean Brier 0.318 vs 0.032 for confirmed ones and are ~21% of disputed contracts but 30-75% of pooled Brier loss (Du 2026). The Zelenskyy-suit market ($242.2M, five dispute rounds, 52.1M tokens wiped) shows the scale. Honest limit: in the largest markets professionals already read rules; the realistic edge is mid/long tail and the first hours after listing, and UMA voters can rule on 'spirit', so the literal reading can lose.",
+   "adjacent_grounding": "LLM document-reading for event-driven finance: 'Global Merger-Arbitrage Forecasting with Language Models' (arXiv 2607.09921, listing only) reports 24% improvement over market from reading deal documents. LLM oracle/adjudication research: Kota, multi-agent AI oracles, 83.43% accuracy and 97.87% on the unanimous 47% (https://arxiv.org/abs/2605.30802); Wen et al. 89.58% agreement with UMA (https://arxiv.org/abs/2604.15674). Settlement-text empirics: Du (Kellogg) dashboard https://github.com/rodridu/polywether. Rule-lint tooling exists (polywether 'Rule Check', brier grader) but I found no documented at-scale trading program on arXiv/GitHub/HN.",
+   "failure_modes": "UMA vote, not text, is final; LLM over-literalism and hallucinated carve-outs; ex-ante dispute prediction from rule text alone is weak (accuracy 0.40-0.57 on a balanced 1,098 sample, Wen et al.); lexical ambiguity flags showed no effect below $6.8M volume (brier); capital locked for months in multi-round disputes (recuse shows 13-16 month pending examples); backtest leakage because models know famous outcomes; Du explicitly excludes his own 'candidate mismatch' coding (94 rows) from main results pending validation - the core label is hard to get right.",
+   "cheap_validation": "Backtest on Du's 2,221 disputed contracts plus 2,221 matched undisputed ones. For each, take the CLOB price 24h before first proposal; run the two-pass LLM with retrieval frozen before that timestamp (Hindcast-style) and preferably a model whose cutoff predates resolution. Metric: on the subset where the LLM flags a divergence of >=15 points, Brier(LLM rules-aware) vs Brier(market) and simulated net ROI with the fee formula. Pass: >=100 flagged contracts, net ROI >5% with bootstrap 95% CI above zero. Fail: flagged set <1% of markets or CI spans zero. Then 4 weeks of paper trading on new listings.",
+   "flags": "None beyond normal API use. Do not propose/dispute on UMA to move your own positions without legal review.",
+   "evidence": [
+    {
+     "url": "https://github.com/rodridu/polywether",
+     "title": "Settlement Risk Monitor - companion to Du, 'How Prediction Markets Resolve: Evidence from Polymarket' (working paper 2026)",
+     "date": "2026-05",
+     "quality": "self-reported",
+     "supports": "305,766 resolved contracts; multi-source/'consensus of credible reporting' language 1.36% vs 0.39% dispute rate (lift 3.5); 2,221 disputed, 23.9% revised; revised mean Brier 0.318 vs 0.032. Paper itself not fetched."
+    },
+    {
+     "url": "https://github.com/let-the-dreamers-rise/brier",
+     "title": "brier - quoting risk policy measured against 3,464 settled markets",
+     "date": "2026-09",
+     "quality": "self-reported",
+     "supports": "Above $6.8M volume flagged questions disputed 16.2% vs 8.1% (z=3.33); VAGUE_PREDICATE lift 2.92x; no effect below $6.8M; 72.5% of open markets settle on human judgement."
+    },
+    {
+     "url": "https://github.com/xzycd/recuse",
+     "title": "recuse - reads Polymarket settlement records",
+     "date": "2026-08",
+     "quality": "self-reported",
+     "supports": "Zelenskyy suit market: 5 dispute rounds, $242.2M traded, 52.1M losing tokens; 'more than 1,150 disputed markets in 2026'."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.15674",
+     "title": "Can LLMs Help Decentralized Dispute Arbitration? (Wen, Zhou, Huang)",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "$972M volume in disputed events; LLMs cannot predict disputes from rules alone; 89.58% agreement with UMA once disputed."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Polymarket docs - Resolution",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "UMA OO flow, $750 bond, 2h challenge, on-chain 'Additional context' clarifications that cannot change question intent."
+    }
+   ]
+  },
+  {
+   "name": "Dispute-hazard pricing: a credit-spread model for near-resolved markets",
+   "one_line": "Treat every 95-99c 'sure thing' as a bond with default risk: model P(dispute), P(flip | dispute) and lock-up duration from rule text, category, volume and settlement path, and haircut resolution-sniping and quoting accordingly.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) From the on-chain oracle record (requests, proposals, disputes, resets, settlements) plus rule text, build a labelled panel of every resolved market. 2) Features: LLM-extracted spec attributes (named source present? fallback? discretionary language? compound condition?), category, volume, holder concentration, proposer identity, time from event to proposal, prior clarifications. 3) Fit three models: hazard of dispute, probability the final payoff differs from the first proposal, and time-to-finality. 4) Convert into a required yield: min acceptable price discount = P(flip) x loss + capital cost x expected lock-up. 5) Use it to gate the existing resolution-sniping agent and to widen/pull maker quotes in high-hazard markets; buy the 'wrongly feared' ones where the crowd discount exceeds modelled hazard.",
+   "edge_source": "Structural + textual: snipers price the tail as riskless; hazard is concentrated in identifiable text/volume strata.",
+   "why_might_beat_market": "Base rates are low but wildly heterogeneous. On-chain: 1,604 disputes vs 159,447 proposals (~1.0%). Du: 2,221 disputed, 23.9% revise; non-voided automatic re-request path revises 37.4% vs 14.1% for DVM-voided path; 'consensus of credible reporting' language 3.5x dispute lift, explicit cancellation language 0.28x. brier: in >$6.8M markets flagged questions disputed 16.2% vs 8.1%. Back-of-envelope (my arithmetic, mixing two sources): unconditional flip risk ~0.17%, but ~3.9% in the flagged high-volume stratum - larger than the 1-3c yield snipers collect there. Honest limit: LLM-only ex-ante dispute prediction failed (Wen et al.), so the model must be tabular with LLM-extracted features, and the signal vanishes in small markets.",
+   "adjacent_grounding": "Credit-risk hazard modelling and survival analysis; legal-tech contract-ambiguity classification; Du's settlement-path taxonomy (https://github.com/rodridu/polywether); Nechepurenko's event-sourced oracle state reconstruction (https://arxiv.org/abs/2609.15368); ForesightFlow per-category exponential hazards for deadline markets, half-life 2.9 days for military-geopolitics (https://arxiv.org/abs/2605.02286). Only open-source user of this as a quoting policy that I found: brier (read-only quoter on another venue).",
+   "failure_modes": "Rare events: ~1,600-2,200 positives total, fewer per category, so overfitting and unstable lifts (brier publicly retracted an early 2.03x result caused by volume-ordered sampling); regime change when Polymarket edits templates or oracle routes; disputes are driven by real-world evidence ambiguity, not text; metadata linkage only 56% exact in the on-chain panel.",
+   "cheap_validation": "Time-split backtest: train to 2025-12, test on 2026 resolutions. Metrics: AUC for dispute >=0.70 within the >$1M volume stratum, and calibration of P(flip) within +-30% relative in deciles. Economic test: re-run the existing sniping agent's historical fills with and without the haircut gate - pass if the gate removes >=50% of realised flip losses while dropping <=15% of profitable trades.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.15368",
+     "title": "Resolution Is Not Settlement, Part I (Nechepurenko)",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "185,550 adapter questions; 159,447 proposals; 1,604 disputes; median request-to-proposal 182 s legacy vs 176,388-744,151 s on modern routes."
+    },
+    {
+     "url": "https://github.com/rodridu/polywether",
+     "title": "Settlement Risk Monitor (Du 2026 companion)",
+     "date": "2026-05",
+     "quality": "self-reported",
+     "supports": "Text lifts on dispute incidence; Path C 14.1% vs Path D 37.4% revision; 23.9% of disputed revise."
+    },
+    {
+     "url": "https://github.com/let-the-dreamers-rise/brier",
+     "title": "brier",
+     "date": "2026-09",
+     "quality": "self-reported",
+     "supports": "Stratified dispute lifts; explicit retraction of a pooled/mis-sampled estimate - a cautionary template."
+    },
+    {
+     "url": "https://arxiv.org/html/2604.15674",
+     "title": "Wen et al. - dispute prediction results",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "Balanced 1,098-sample test: best accuracy 0.5701 (Claude Sonnet 4.5), F1 0.44 - text-only LLM prediction of disputes is near chance."
+    },
+    {
+     "url": "https://github.com/xzycd/recuse",
+     "title": "recuse",
+     "date": "2026-08",
+     "quality": "self-reported",
+     "supports": "Examples of 13-16 month unresolved multi-round disputes (lock-up duration risk)."
+    }
+   ]
+  },
+  {
+   "name": "Rule-diff and clarification event trading (semantic versioning of every contract)",
+   "one_line": "Archive and diff every market's rule text and on-chain 'Additional context' posts, have an LLM quantify how each change shifts the payoff, and trade before the crowd re-reads the rules.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "1) Snapshot rules/description/resolutionSource for all open markets every few minutes and subscribe to the on-chain bulletin-board contract that carries Polymarket's 'Additional context' updates. 2) On any diff, an LLM classifies it (cosmetic, source change, deadline/timezone clarification, scope narrowing/widening, edge-case ruling) and re-runs the resolution-spec compiler to get the change in fair probability given current world state. 3) If |delta| exceeds a threshold and the order book has not moved, take liquidity immediately; otherwise adjust maker quotes. 4) Clarifications issued mid-dispute feed the in-dispute adjudication model, since voters are told to consider them. 5) The archive itself becomes a proprietary dataset (historical rule versions are otherwise hard to recover).",
+   "edge_source": "Textual + latency: rule changes are public but unannounced to most holders; nobody re-reads rules on a position they already hold.",
+   "why_might_beat_market": "The docs confirm Polymarket may publish clarifications on-chain that 'proposers and voters should consider', which can be decisive for payoff while being invisible in price feeds. Nechepurenko's oracle study treats 'rule versioning' as a distinct adjudication state, and his Kalshi study could recover NO historical rule versions from public endpoints - implying almost nobody holds this data. The recuse tool flags 'rewritten' lifecycles as news for the same reason. Honest limits: I found no measurement of how often clarifications move prices or how fast; frequency may be low (a handful of material events per week, unverified), so this is a cheap add-on to the rule-lawyer scanner rather than a standalone business.",
+   "adjacent_grounding": "Event-driven trading on contract amendments / 8-K filings and legal-text diffing in NLP (unverified this session); on-venue primitives verified in docs: https://docs.polymarket.com/concepts/resolution.md; oracle state reconstruction: https://arxiv.org/abs/2609.15368; decidability observability on Kalshi: https://arxiv.org/abs/2609.16642. No existing implementation found on GitHub/HN.",
+   "failure_modes": "Low event frequency; most diffs cosmetic; LLM misjudges direction of an ambiguous clarification; Polymarket insiders and large holders who lobbied for the clarification are ahead of you; Gamma API silently ignores unknown filters and returns default pages (documented trap in recuse README) so naive scrapers produce false diffs.",
+   "cheap_validation": "Run the archiver for 6 weeks without trading. Count material diffs/clarifications; for each, measure price change from t+1 min to t+60 min and t+24h in the LLM-predicted direction. Pass: >=20 material events, >=65% directional hit rate, mean capturable move >=3 points net of fees at displayed depth. Fail: fewer than 10 material events in 6 weeks - then keep the archive only as a feature for the dispute models.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Polymarket docs - Resolution",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "'Additional context' updates published on-chain via a bulletin-board contract; cannot change fundamental intent but should inform proposers and voters."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.15368",
+     "title": "Resolution Is Not Settlement, Part I (Nechepurenko)",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "Rule versioning, request creation, proposal, dispute, reset, finality are distinct states with balance-sheet consequences; 1,477 successor request generations."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.16642",
+     "title": "From Public Evidence to Contractual Outcome: First and Stable Decidability on Kalshi (Nechepurenko)",
+     "date": "2026-09-15",
+     "quality": "paper",
+     "supports": "No historical rule versions recoverable from public endpoints across ~152,694 tickers - rule-history data is scarce."
+    },
+    {
+     "url": "https://github.com/xzycd/recuse",
+     "title": "recuse",
+     "date": "2026-08",
+     "quality": "self-reported",
+     "supports": "Treats rewritten resolution lifecycles as events; documents Gamma API traps (ignored filters, takerOnly default, 20,000-trade paging cap)."
+    }
+   ]
+  },
+  {
+   "name": "Cross-venue 'same event' matching with explicit rule-basis risk pricing",
+   "one_line": "Go beyond embedding+LLM matching: diff the two venues' resolution specs, enumerate divergence scenarios, price the basis, and trade either the haircut-adjusted spread or the basis itself.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "1) Match Polymarket, Kalshi and other venue contracts with embeddings then LLM verification (commodity step). 2) For each matched pair compile both resolution specs and produce a structured diff: source, deadline/timezone, carve-outs (death, resignation, acting roles), tie/void handling, settlement authority (UMA vote vs exchange ruling). 3) LLM enumerates the world-states in which the two contracts pay differently and assigns probabilities, giving a basis distribution and a grade (identical / hedgeable / directional). 4) Trade the pair only when spread > fees on both venues + basis haircut + capital cost to the later settlement; hold to resolution, no convergence needed. 5) Where the divergence state is itself likely and the crowd prices the two as identical, buy the cheap divergence exposure deliberately (long one venue's carve-out).",
+   "edge_source": "Textual + structural: event identity is not standardised across venues, so capital treats near-equivalents as either identical (wrong) or untouchable (also wrong).",
+   "why_might_beat_market": "Gebele & Matthes show ~6% of 100k+ events are concurrently listed and equivalent markets sit 2-4% apart on an execution-aware basis, 'driven by structural frictions rather than informational disagreement'. Matching is already commoditised (six+ open-source repos), so the remaining edge is in pricing what others refuse to touch: pairs graded 'almost identical'. Honest limits: 2-4% gross minus Kalshi fee (0.07 x P x (1-P)) and Polymarket fee leaves little at mid prices; capital is locked on two venues; a single mis-graded pair (e.g. a death carve-out) can erase months of carry. I could not fetch the press coverage of the March 2026 Khamenei market divergence (Business Insider blocked) - treat that example as unverified.",
+   "adjacent_grounding": "Entity resolution / ontology alignment in NLP; Gebele & Matthes' semantic alignment framework with human-validated dataset (https://arxiv.org/abs/2601.01706). Practitioners: https://github.com/rohanthomas1202/truthlayer (FAISS + Claude verification, 17 framing patterns, settlement-risk indicator, roadmap '5-level equivalence grading + hedgeability'), https://github.com/SkleKng/Prediction-Arbitrage, https://github.com/ya-prgm/polymarket-kalshi-arbitrage-bot, Show HN 'LLM-Powered Arbitrage Finder for Kalshi and Polymarket' (https://arb.carolinacloud.io, listing only, 2025-11-20).",
+   "failure_modes": "False matches (the repos themselves say false positives are worse than misses); rule text changes after matching; differing settlement times doubling capital cost; Kalshi position limits and fees; Polymarket US vs international entity access; LLM probability for rare divergence states is uncalibrated and has no ground truth frequency.",
+   "cheap_validation": "Use the Gebele-Matthes aligned dataset (or rebuild for 2026) and find every historical pair that settled DIFFERENTLY. Metric 1: recall of the LLM spec-diff at flagging those pairs ex-ante as non-identical - pass >=90% recall with <=20% of all pairs flagged. Metric 2: paper-trade 8 weeks; net annualised return on locked capital after both venues' fees - pass >=15% with zero divergent-settlement losses on pairs graded 'identical'.",
+   "flags": "Venue ToS/geofencing: Kalshi is US-regulated, international Polymarket restricts US persons; running both legs may require separate entities. Check before building.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2601.01706",
+     "title": "Semantic Non-Fungibility and Violations of the Law of One Price in Prediction Markets (Gebele, Matthes)",
+     "date": "2026-01-05",
+     "quality": "paper",
+     "supports": "100k+ events, ten venues, ~6% concurrently listed, persistent 2-4% execution-aware deviations."
+    },
+    {
+     "url": "https://github.com/rohanthomas1202/truthlayer",
+     "title": "EdgeTerminal / TruthLayer - cross-market arbitrage scanner",
+     "date": "2026-08",
+     "quality": "self-reported",
+     "supports": "Multi-tier matcher with Claude verification, settlement-risk indicator, planned equivalence grading + hedgeability; evidence that matching is commoditising and rule-risk grading is the frontier."
+    },
+    {
+     "url": "https://github.com/SkleKng/Prediction-Arbitrage",
+     "title": "Prediction-Arbitrage (UTD FinTech research project)",
+     "date": "2026-08",
+     "quality": "self-reported",
+     "supports": "NLP matching + LLM match verification + paper trading exists in the open."
+    },
+    {
+     "url": "https://arxiv.org/html/2512.02436",
+     "title": "Capponi et al. - fee model used for Kalshi",
+     "date": "2026-08-08",
+     "quality": "paper",
+     "supports": "Kalshi fee approximation 0.07 x N x P x (1-P) used in net-of-fee evaluation."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Polymarket docs - Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Polymarket-side cost of each leg."
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "ADD sub-variants to rules-ambiguity-hazard-layer. (a) A clarifier twin for Polymarket's Markets Team: the E3 pack counts 1,549 creator-authoritative clarifications, 83.34% of them after request creation but before the first proposal, and clarifications decided the Venezuela-invasion and Strategy-BTC markets. No agent in the list models the clarifier. (b) A shadow-proposer feed: UMA's Optimistic Truth Bot (launched March 2025, Perplexity plus GPT-4 with an Overseer) shadows human proposers and posts recommendations on X. When its output disagrees with a live proposal, that is a free dispute early-warning feature. Its 2026 status and accuracy are unverified. Sources: https://blog.uma.xyz/articles/inside-umas-optimistic-truth-bot (2025-07-30) and https://blog.uma.xyz/articles/managed-proposers-update (2025-11-08: whitelist 37 to 177, wrong proposals down 59%, disputes down 68%, self-reported by UMA). (c) If newsroom-framing-twins is not given a file, fold it in here.",
+  "rules-ambiguity-hazard-layer: components (c), the dispute-hazard haircut for 95-99c sniping, and (e), the cross-venue spec-diff, are risk controls for the owner's existing sniping and cross-venue suites. The E3 pack shows rule readers already won the Iran ceasefire-extension market, where YES sat at 0.1-0.3c. They are not speculative. Only (a) the scanner, (b) the ambiguity wargame and (d) rule-diff versioning fit this band."
+ ]
+}

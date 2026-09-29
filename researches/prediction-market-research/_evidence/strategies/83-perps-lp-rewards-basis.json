@@ -1,0 +1,241 @@
+{
+ "slug": "perps-lp-rewards-basis",
+ "name": "Polymarket Perps: liquidity-reward market making, funding / basis arbitrage and referral",
+ "category": "Market-making",
+ "maturity": "Experimental",
+ "seed_category": "new (venue launched 2026-09-03)",
+ "one_line": "Quote the least-contested perps because the $75k/day pool is split evenly per market, hedge elsewhere, and run hourly-funding basis against Hyperliquid/CEXs.",
+ "scope": "Cover venue facts (launch 2026-09-03, 10 to 67 instruments, up to 20x crypto/~10x RWAs, pUSD margin, US/Canada blocked, 20 ms taker delay, fee tiers 4/1.25 bps to 2/-0.5 bps), reward scoring (maker_share^0.35 x active_liquidity^0.65 x uptime, 20 bps band with tier weights, $100k cap, 1% eligibility floor, 25% cap, even split), where reward per qualifying dollar is highest (single-name equities, commodities), hedge venues and weekend/session gaps, funding formula (hourly, +/-4% cap, 5 s premium sampling), OI reward floor raised to $5M, insurance fund/ADL, 20% perps referral, and the honest absence of any third-party PnL evidence yet. Boundary: perps as a hedge leg for threshold markets is options-implied-relative-value; prediction-market reward pools are maker-reward-pool-farming.",
+ "sub_variants": [
+  "thin-instrument reward quoting with external hedge",
+  "cross-venue funding / basis carry",
+  "open-interest reward positioning (>= $5M)",
+  "event-driven directional perps trading"
+ ],
+ "merged_from": [
+  "traders: Polymarket Perps: maker-incentive farming and event-driven positioning",
+  "onchain-bots: Polymarket Perps liquidity provision and rewards",
+  "adjacent-transfer: Polymarket Perps: rewards-subsidised market making and funding/basis arbitrage",
+  "platform-surface: Perps liquidity rewards",
+  "platform-surface: Perps funding / basis arbitrage and open-interest rewards"
+ ],
+ "flags": "Not available to US/Canada persons; single-name equity perps are unregistered securities-based swaps in many jurisdictions.",
+ "key_evidence": [
+  {
+   "url": "https://docs.polymarket.com/perps/liquidity-rewards.md",
+   "note": "$75,000/day even split, scoring exponents, band weights, 1% floor, 25% cap"
+  },
+  {
+   "url": "https://docs.polymarket.com/perps/learn-about-trading/funding.md",
+   "note": "Hourly funding formula, 4%/h cap, continuous through closed reference markets"
+  },
+  {
+   "url": "https://docs.polymarket.com/perps/learn-about-trading/fees.md",
+   "note": "Fee tiers 4.0/1.25 bps down to 2.0/-0.5 bps"
+  },
+  {
+   "url": "https://news.polymarket.com/p/inside-polymarket-perps",
+   "note": "Launch date, top-traded names, event-driven early leaders, cross-margin not yet live"
+  },
+  {
+   "url": "https://docs.polymarket.com/changelog/perps.md",
+   "note": "20 ms taker delay, OI reward floor $1M to $5M, Hyperliquid-sourced indices"
+  },
+  {
+   "url": "https://docs.polymarket.com/perps/referral-program.md",
+   "note": "20% of referred traders' perps fees, weekly, uncapped"
+  }
+ ],
+ "moved_from_band": "established",
+ "extra_scope": "Moved here by the critic: the venue launched 2026-09-03, there is no third-party PnL, US / Canada are blocked and evidence pack E1 scoped perps out. Keep it short and honest; the main risk is restating docs.",
+ "n": "83",
+ "band": "speculative",
+ "file": "83-perps-lp-rewards-basis.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Polymarket Perps: maker-incentive farming and event-driven positioning (new venue)",
+   "one_line": "Market-make or trade the perps venue launched 2026-09-03: $75k/day maker rewards, maker rebate at top tier, 20% referral, shared pUSD margin with prediction positions.",
+   "category": "Market-making",
+   "maturity": "Experimental",
+   "mechanism": "Perps on crypto, equities, indices and commodities run on a CLOB with funding; liquidity rewards of $75,000/day are split evenly across markets and scored as maker_share^0.35 x active_liquidity^0.65 x uptime, counting only two-sided quotes within 20 bps (full weight inside 5 bps, $100k notional cap per tier/side), with a 1% share-of-7-day-maker-volume eligibility floor and a 25% cap. Fees: taker 4 -> 2 bps, maker 1.25 bps -> -0.5 bps rebate by 30-day volume. Early leaders are 'event driven' (FOMC, earnings); one apparent MM firm trades dozens of times a day. Even split across markets means less-traded listings (e.g. single-name semis) carry the same pool as BTC.",
+   "edge_source": "Launch-phase incentives and thin competition; cross-margin lets a prediction-market book hedge delta in-venue.",
+   "why_might_beat_market": "Even-split pools reward whoever quotes neglected markets; early programmes on new venues are typically over-paid relative to risk.",
+   "failure_modes": "20 bps band on volatile underlyings = toxic flow from CEX-latency arbs; eligibility floor excludes small makers; incentives will be cut; new-venue operational and oracle/mark-price risk; no public PnL evidence yet.",
+   "cheap_validation": "Record perps books vs Binance/NYSE references for two weeks; estimate adverse selection inside 5 bps and the reward per $ of qualifying liquidity in the least competitive markets.",
+   "flags": "Leverage product availability varies by jurisdiction.",
+   "adjacent_grounding": "Only venue documentation exists so far; no independent study of this programme was found in this session.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/perps/liquidity-rewards.md",
+     "title": "Polymarket docs: Perps liquidity rewards",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "$75k/day, even split, scoring exponents, 20 bps band with tier weights, $100k cap, 1% eligibility, 25% cap"
+    },
+    {
+     "url": "https://news.polymarket.com/p/inside-polymarket-perps",
+     "title": "The Oracle: Inside Polymarket Perps (Perps lead interview)",
+     "date": "2026-09-09",
+     "quality": "credible-report",
+     "supports": "Launch 2026-09-03, leverage, fee tiers (taker 0.04% -> 0.02%, maker 0.0125% -> -0.005%), trader2121 up ~$500k, event-driven styles, apparent MM firm"
+    }
+   ]
+  },
+  {
+   "name": "Polymarket Perps liquidity provision and rewards",
+   "one_line": "Make markets on the new perps venue where $75k a day is split evenly across markets regardless of their size.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "Perps launched 2026-09-03 with 10 underlyings and grew to 67 within hours (crypto, gold, silver, WTI, S&P 500, Nasdaq 100, single stocks; up to 20x, funding capped at 4% per hour; US and Canada barred). Rewards are $75,000 per day split evenly across active markets, scored as maker_score^0.35 x active_liquidity_score^0.65 x uptime, with a 1% share of trailing seven-day maker volume to qualify and maker share capped at 25%. Even splitting means an obscure single-stock perp carries the same pool (about $1.1k/day at 67 markets) as BTC. Quotes can be hedged on deeper venues.",
+   "edge_source": "Launch-phase subsidy with an even per-market split; small markets are under-competed.",
+   "why_might_beat_market": "Weeks old; the 25% cap prevents one firm from taking a whole pool, leaving room for small makers in the long tail. No third-party PnL evidence exists yet.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/perps/liquidity-rewards.md",
+     "title": "Perps Liquidity Rewards (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "$75,000 per day split evenly across active Perps markets; scoring formula; 1% minimum and 25% cap; 12:00-12:00 UTC periods paid in pUSD."
+    },
+    {
+     "url": "https://finance.yahoo.com/markets/crypto/articles/polymarket-launches-crypto-perpetual-futures-203103778.html",
+     "title": "Polymarket Launches Crypto Perpetual Futures With Up to 20x Leverage (Decrypt via Yahoo)",
+     "date": "2026-09-04",
+     "quality": "credible-report",
+     "supports": "Launch 2026-09-03, 10 to 67 markets on day one, leverage caps, funding cap 4%/h, restricted jurisdictions."
+    }
+   ],
+   "failure_modes": "Hedge-venue basis and funding; toxic flow at 20x; programme can be cut at will; per-market pool shrinks as markets are added; jurisdiction limits.",
+   "cheap_validation": "Record top-of-book depth and spreads on the 20 least-traded perps for a week; estimate your achievable score share and the hedge cost on Binance/Hyperliquid.",
+   "flags": "Not available to US/Canada persons."
+  },
+  {
+   "name": "Polymarket Perps: rewards-subsidised market making and cross-venue funding or basis arbitrage",
+   "one_line": "A perps CLOB launched 2026-09-03 with $75k per day in LP rewards, 24/7 equity and commodity perps, and hourly funding. Build an early-venue maker and basis desk against Hyperliquid, Binance or CME.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "Quote two-sided within 20 bps of mid. The weights are 1.0 inside 5 bps, 0.25 from 5-10 bps and 0.10 from 10-20 bps, with a $100k cap per tier per side. The score is maker_share^0.35 x active_liquidity^0.65 x uptime. Sides are combined by harmonic mean. Eligibility needs at least 1% of 7-day maker volume. The pool is $75k per day, split evenly across markets, so thin markets pay the most per dollar quoted. Hedge the delta on a deeper venue. Separately, run the funding basis. Funding is hourly: a premium index sampled every 5 s on a $1,000 impact notional, a 0.01% per 8h interest leg, scale 1.0 for crypto and 0.5 for others, and a cap of +/-4% per hour. It runs through weekends while equity underlyings are closed and index feeds switch to overnight or weekend sources. Fees run from 4 bps taker and 1.25 bps maker down to 2 bps and -0.5 bps.",
+   "edge_source": "New-venue subsidy, an immature maker set, and structural funding and weekend-gap dislocations. Rewards are split evenly per market whatever the volume.",
+   "why_might_beat_market": "The venue is 17 days old as of 2026-09-20. Beta accounts got top fee tiers. The top-traded names include unusual Asian semiconductors (SK Hynix, Samsung, Micron) that few crypto market makers hedge well.",
+   "adjacent_grounding": "Hyperliquid, dYdX and CEX liquidity-mining and funding arbitrage. Weekend-CFD pricing by retail brokers.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/perps/liquidity-rewards.md",
+     "title": "Perps Liquidity Rewards, Polymarket docs",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "$75,000 per day split evenly across active markets. The scoring formula, the 20 bps band and tier weights, the $100k cap per tier, the 1% maker-share eligibility rule, entity aggregation, and the exclusion of self-trades."
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/learn-about-trading/funding.md",
+     "title": "Perps Funding, Polymarket docs",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "The hourly funding formula, the +/-4% per hour cap, the 5 s premium sampling on $1,000 impact notional, direct long-to-short payment, and funding that runs continuously even when the reference market is closed."
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/faq.md",
+     "title": "Perps FAQ, Polymarket docs",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "No order placement from the US, Canada or sanctioned regions. Up to 20x on crypto, the S&P 500, oil, gold and silver, and about 10x on RWAs. 24/7 matching. Isolated margin by default with opt-in cross margin. The insurance fund takes over below two-thirds of maintenance margin."
+    },
+    {
+     "url": "https://news.polymarket.com/p/inside-polymarket-perps",
+     "title": "INSIDE POLYMARKET PERPS (The Oracle)",
+     "date": "2026-09-09",
+     "quality": "credible-report",
+     "supports": "Launched 2026-09-03. The top-traded names are BTC, ETH, SK Hynix, Samsung and Micron. Cross-margin with prediction markets is a stated future goal and is not live."
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/learn-about-trading/fees.md",
+     "title": "Perps Fees, Polymarket docs",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Tiered fees from 4.0 bps taker and 1.25 bps maker down to 2.0 bps and -0.5 bps at $1B or more of 30-day volume."
+    }
+   ],
+   "failure_modes": "The 1% maker-share gate and the 0-5 bps weighting favour professional market makers. Rewards will decay. Hedge-venue basis and weekend gap risk on equities. Insurance-fund and ADL risk on a young venue. Liquidations are handled internally, so there is no liquidation-bot opportunity for third parties, though that is not explicitly documented.",
+   "cheap_validation": "Pull /v1/info/instruments and the books for a week. Compute the reward per dollar of qualifying liquidity per market and the hedge cost on Hyperliquid or Binance. Quote first in the thinnest eligible market.",
+   "flags": "The US and Canada are geo-blocked. Perps on single-name equities are unregistered securities-based swaps in many jurisdictions."
+  },
+  {
+   "name": "Perps liquidity rewards: $75,000 per day split evenly across markets",
+   "one_line": "Quote Polymarket Perps in the least-contested instruments, because the daily $75k pool is divided equally per active market regardless of its volume.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "Polymarket Perps (pUSD-margined perpetuals on indices, commodities, crypto and equities; not available from the US or Canada) pays $75,000 per day, distributed evenly across active markets, with each market's pool shared by score: raw_score = maker_score^0.35 x active_liquidity_score^0.65 x uptime. Maker score is trailing 7-day maker share capped at 25%; active liquidity is deep, balanced resting size within 20 bps of mid; uptime is the share of snapshots with qualifying two-sided quotes. An account (or rewards entity) must hold at least 1% of trailing 7-day maker volume to qualify; self and intra-entity trades do not count. Periods run 12:00-12:00 UTC and pay daily in pUSD. Base fees are 4 bps taker / 1.25 bps maker, with a 20 ms taker delay, a dead-man's-switch auto-cancel and an MM gateway allowing 16 concurrent websocket posts. Hedge on Hyperliquid or a CEX.",
+   "edge_source": "Equal per-market split means reward per unit of competing liquidity is highest in obscure instruments (single equities, commodities) where large crypto MMs are less active; the 0.65 exponent favours posted depth over traded volume.",
+   "why_might_beat_market": "A new venue with a fixed daily budget and, per its changelog, still-changing thresholds; a small team can reach 1% maker share in a thin instrument.",
+   "failure_modes": "The 1% maker-share floor and pay-to-play maker fee until very high tiers; non-crypto instruments have session gaps and index-source risk (changelog notes a correction for Hyperliquid-sourced indices); hedging venues for equity/commodity perps are limited; budget can be cut.",
+   "cheap_validation": "Pull /v1/info/instruments and exchange-stats per instrument, compute $75k / N markets against each market's 7-day maker volume to find where 1% share is cheapest, then paper-quote one instrument for a week.",
+   "flags": "Geo-restricted: no order placement from US, Canada and sanctioned regions; builders must verify user location.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/perps/liquidity-rewards.md",
+     "title": "Perps Liquidity Rewards",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "$75,000 per day split evenly across active markets, score formula with 0.35/0.65 exponents and uptime, 25% maker-share cap, 1% eligibility floor, 20 bps band, 12:00 UTC periods."
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/learn-about-trading/fees.md",
+     "title": "Perps Fees",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Tier table from 4.0/1.25 bps down to 2.0/-0.5 bps at $1B 30-day volume."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/perps.md",
+     "title": "Perps changelog",
+     "date": "2026-06-08 to 2026-09-17",
+     "quality": "hard-data",
+     "supports": "20 ms taker delay, auto-cancel switch, MM gateway concurrency, OI reward floor raised to $5M, Hyperliquid-sourced index correction."
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/faq.md",
+     "title": "Perps FAQ",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Order placement not permitted from the United States, Canada and sanctioned regions."
+    }
+   ]
+  },
+  {
+   "name": "Perps funding / basis arbitrage and open-interest rewards against Hyperliquid and CEXs",
+   "one_line": "Hold delta-neutral positions between Polymarket Perps and an external perp venue to collect funding differentials on a young book, with an open-interest reward on top for accounts above $5M gross OI.",
+   "category": "Arbitrage",
+   "maturity": "Experimental",
+   "mechanism": "Polymarket Perps funding is charged hourly: F_8h = scale x (mean premium + clamp(0.01% - mean premium, +/-0.05%)), hourly rate = F_8h/8 clamped at +/-4%, scale 1.0 for crypto and 0.5 for non-crypto, premium sampled every 5 s on a 1,000-notional impact price. A new venue with retail-heavy directional flow tends to show persistent premium, so shorting rich Polymarket perps against a long on Hyperliquid/Binance (or the reverse) harvests the funding spread; some Polymarket indices are themselves Hyperliquid-sourced, which reduces basis noise. The changelog shows a separate open-interest reward whose eligibility floor was raised from $1M to $5M combined daily average gross OI in September 2026, which delta-neutral carry positions would count toward (terms otherwise undocumented). Base taker fee is 4 bps; liquidation uses an insurance fund then ADL.",
+   "edge_source": "Immature funding market plus venue incentives for holding OI; cross-venue margin and operational capability are the barrier.",
+   "why_might_beat_market": "Funding convergence across established venues took years; first months of a venue are typically the richest.",
+   "failure_modes": "OI reward floor of $5M is out of reach for small teams; ADL can close the hedge leg's counterpart without notice; pUSD/Polygon funding loop versus external venue collateral; referral and fee tiers favour incumbents; programme details undocumented.",
+   "cheap_validation": "Log hourly funding for every Polymarket perp versus Hyperliquid for a month from public market-data endpoints and compute net carry after 4 bps entry/exit and financing.",
+   "flags": "Not available from US/Canada.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/perps/learn-about-trading/funding.md",
+     "title": "Perps Funding",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Funding formula, hourly charge, 4% per hour cap, scale factors, 5-second premium sampling."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/perps.md",
+     "title": "Perps changelog",
+     "date": "2026-09-04 and 2026-09-14 entries",
+     "quality": "hard-data",
+     "supports": "Open interest reward eligibility threshold raised from $1M to $5M combined daily average gross OI; Hyperliquid-sourced index instruments."
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/learn-about-trading/liquidation-mechanics.md",
+     "title": "Liquidation Mechanics",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Insurance-fund backstop then auto-deleveraging against opposite-side traders; no third-party liquidator role."
+    }
+   ]
+  }
+ ],
+ "critic_notes": []
+}

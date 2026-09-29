@@ -1,0 +1,290 @@
+{
+ "slug": "uma-side-operations",
+ "name": "UMA-side operations: whitelisted proposing, dispute bounties, staking and DVM voting",
+ "category": "Incentive farming",
+ "maturity": "Established",
+ "seed_category": "staking",
+ "one_line": "Earn from the oracle layer itself: per-request proposer rewards, half-bond dispute wins and UMA staking emissions; small money, valuable information.",
+ "scope": "Cover three operations with their real economics: (1) proposing under ManagedOptimisticOracleV2 whitelists (37 to 177 addresses, >=5 proposals at >95% accuracy over six months, rewards $0.6-$10 against $250-$25,000 bonds, one lost dispute erases ~300 wins, Chainlink-resolved crypto pays nothing); (2) permissionless disputing (half the proposer bond, 4-6 day lock, disputes -68% after whitelisting, all-time upper bound ~$0.6M derived); (3) staking and commit-reveal voting (emission figures conflict between docs: 0.18 vs 0.155 UMA/s; 0.1% slash, 7-day cooldown, APY unverified, UMA price risk, whale Schelling dynamics). Emphasise the information value as a feed for other agents and the docs inconsistency on permissionless proposing. Boundary: trading on disputes is rules-dispute-trading.",
+ "sub_variants": [
+  "whitelisted proposer bot",
+  "too-early / wrong-proposal dispute bounty hunting",
+  "UMA staking with automated majority voting"
+ ],
+ "merged_from": [
+  "platform-surface: Whitelisted UMA proposer operation",
+  "services: UMA whitelisted proposer operation",
+  "platform-surface: UMA dispute bounty hunting",
+  "services: UMA disputer-for-bond operation",
+  "platform-surface: UMA staking and DVM voting yield",
+  "services: UMA staking and voting operation"
+ ],
+ "flags": "Proposing, disputing or voting on markets where you hold positions is the central conflict-of-interest criticism; disputing correct proposals to delay settlement is treated as manipulation and is fully visible on-chain.",
+ "key_evidence": [
+  {
+   "url": "https://blog.uma.xyz/articles/managed-proposers-update",
+   "note": "Whitelist growth 37/156/177, eligibility rule, incorrect proposals -59%, disputes -68% (self-reported by UMA)"
+  },
+  {
+   "url": "https://docs.uma.xyz/using-uma/default-proposer-whitelist.md",
+   "note": "Criteria and monthly refresh; contract address on Polygon"
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/markets?limit=40&active=true&closed=false&order=volume24hr&ascending=false",
+   "note": "Live umaBond/umaReward pairs: 250/0.8, 500/5, 25,000/10"
+  },
+  {
+   "url": "https://help.polymarket.com/en/articles/13364551-how-are-markets-disputed",
+   "note": "Equal challenge bond, vote timeline, who receives half of whose bond"
+  },
+  {
+   "url": "https://docs.uma.xyz/using-uma/voting-walkthrough",
+   "note": "Emissions 0.18 UMA/s, 0.1% missed-vote slash, 7-day cooldown"
+  },
+  {
+   "url": "https://docs.uma.xyz/using-uma/voting-walkthrough/dvm-2.0-faq.md",
+   "note": "[pre-2025, possibly stale] ~28-32% APY, 0.155 UMA/s: conflicts with walkthrough figure"
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.15368",
+   "note": "184,148 requests, 159,447 proposals, 1,604 disputes: scale of the bond economy"
+  }
+ ],
+ "parent_slug": "uma-side-operations",
+ "seed": "staking / UMA",
+ "extra_scope": "Critic: formally Established but economically negligible (reward of a few dollars against three- and four-figure bonds). Say so plainly with numbers; its real value may be the information feed. Include UMA staking / voting yield since the owner's suite covers staking.",
+ "n": "16",
+ "band": "established",
+ "file": "16-uma-side-operations.md",
+ "critic_notes": [
+  "MOVE oracle-governance material (conflicted voting, whale Schelling dynamics, weekend proposals timed against clarifications) out of the flags of rules-dispute-trading and uma-side-operations into its own flagged entry (proposed above), or rename oracle-input-manipulation to cover both inputs and adjudicators. At present it falls between three boundaries.",
+  "uma-side-operations: 'Established' is formally right (177 whitelisted proposers, daily proposals) but economically it is negligible and risky (reward $2-5 against $500-750 bonds; one lost bond erases 150-375 wins; E6: the only delegation pool shows 0 UMA delegated; UMA capitalisation ~$35M with oracle-replacement risk). Category 'Incentive farming' oversells it; 'oracle-layer information feed' is more accurate.",
+  "uma-side-operations: not a business at any scale a trading team would care about (E3: 'being a proposer or disputer is not a business'; best observed economics are cents to a few dollars per request against three- and four-figure bonds). Its value is the information feed, which could be a section inside rules-dispute-trading; keep a file only because it answers the 'staking' seed."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Whitelisted UMA proposer operation",
+   "one_line": "Earn the per-market proposer reward ($0.6-$10 observed) by being one of the ~177 whitelisted addresses that propose resolutions, racing to be first and never being wrong.",
+   "category": "Incentive farming",
+   "maturity": "Established",
+   "mechanism": "Each Polymarket market carries a UMA reward and bond readable from Gamma: observed today $0.6 reward / $250 bond (BTC monthly strike), $0.8 / $250 (NFL game), $5 / $500 (neg-risk politics), $10 / $25,000 (2028 nominee). The first accepted proposal earns the reward after an undisputed 2-hour liveness. Since September 2025 Polymarket uses UMA's ManagedOptimisticOracleV2 with per-market proposer whitelists: 37 addresses at launch, 156 in October, 177 in November 2025; eligibility is at least 5 proposals at 95%+ accuracy over a rolling 6 months, snapshotted on the 2nd of each month, and newcomers must build that record on non-whitelisted OOv2 requests. UMA reports whitelisted proposers made 96% of proposals at 99.7% accuracy versus 85.8% for others. The operation is a low-latency results feed plus a rules engine, run at volume across hundreds of sports and recurring markets per day.",
+   "edge_source": "Closed shop plus speed: only whitelisted addresses compete, and the first correct proposal takes the whole reward.",
+   "why_might_beat_market": "For a team already running a resolution-sniping data pipeline, the same feed can propose; marginal cost is bond capital locked for 2 hours.",
+   "failure_modes": "Reward-to-bond ratio is tiny: $0.8 against $250 means one lost dispute erases about 300 wins, so accuracy must exceed 99.7%; 'too early' proposals are the classic way to lose a bond; whitelist entry is slow and revocable; crypto up/down markets resolve automatically by Chainlink and pay nothing.",
+   "cheap_validation": "Index on-chain ProposePrice events for Polymarket adapters for one month: proposals per day, reward sum, share won by the top five proposers and their latency after event end; that bounds attainable income before seeking whitelist status.",
+   "flags": "Proposing on markets where you hold a position is a conflict of interest that UMA voters and Polymarket watch for; a wrong proposal costs the full bond.",
+   "evidence": [
+    {
+     "url": "https://blog.uma.xyz/articles/managed-proposers-update",
+     "title": "Managed Proposers Update",
+     "date": "2025-11-08",
+     "quality": "self-reported",
+     "supports": "MOOV2 per-market whitelists, 37 -> 156 -> 177 addresses, eligibility rule (5 proposals, 95% accuracy, 6-month window, monthly snapshot), incorrect proposals -59%, disputes -68%."
+    },
+    {
+     "url": "https://blog.uma.xyz/articles/managed-proposers",
+     "title": "Improving Oracle Efficiency with Managed Proposers",
+     "date": "2025-08-12",
+     "quality": "self-reported",
+     "supports": "Whitelisted addresses made 96% of proposals at 99.7% accuracy vs 85.8% for others; disputes stay permissionless."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/markets?limit=40&active=true&closed=false&order=volume24hr&ascending=false",
+     "title": "Gamma API top markets",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Live umaBond / umaReward pairs: 250/0.8 (NFL), 500/5 (neg-risk politics), 25,000/10 (2028 nominee)."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Resolution",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "2-hour challenge period, bond 'typically $750', bond distribution table; note the page still says anyone can propose, which conflicts with the UMA whitelist posts."
+    }
+   ]
+  },
+  {
+   "name": "UMA whitelisted proposer operation",
+   "one_line": "Run a bot that proposes resolutions for Polymarket requests and earns the per-request reward. It is now gated behind a track-record whitelist and is economically small.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Polymarket's adapter requests a price from UMA's ManagedOptimisticOracleV2. A proposer posts the outcome with a bond (typically $750 pUSD). If undisputed for 2 hours, the proposer receives the bond back plus the request's reward. MOOV2 enforces proposer whitelists, and non-whitelisted senders revert. Risk Labs' default whitelist requires at least 5 Polymarket or Predict.fun proposals and over 95% accuracy across the prior 6 months. It is refreshed on the 2nd of each month, and low performers are removed automatically.",
+   "edge_source": "Reliability and rule-reading accuracy at scale. There is a capacity moat through whitelist incumbency.",
+   "why_might_beat_market": "It mostly does not as a profit centre. There have been 159,447 proposals all-time at a small per-request reward (amount UNVERIFIED). The strategic value is the information: seeing proposals and disputes first feeds your resolution-sniping agent.",
+   "evidence": [
+    {
+     "url": "https://docs.uma.xyz/using-uma/default-proposer-whitelist.md",
+     "title": "Default Proposer Whitelist (UMA docs)",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Criteria are at least 5 proposals and over 95% accuracy across 6 months, with a monthly refresh. It applies to contract 0x9f35885ce8f67a942d7b2f4fbf937987da08c463 on Polygon."
+    },
+    {
+     "url": "https://docs.uma.xyz/using-uma/proposing-programmatically.md",
+     "title": "Proposing Programmatically",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Non-whitelisted proposals revert with \"Proposer not whitelisted\". Bots check getProposerWhitelistWithEnforcementStatus."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Resolution (Polymarket docs)",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "A bond of typically $750 pUSD, a 2-hour challenge period, 4-6 days if disputed, and half of the loser's bond goes to the winner."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.15368",
+     "title": "Resolution Is Not Settlement, Part I (Nechepurenko)",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "184,148 requests, 159,447 proposals, 1,604 disputes and 159,133 settlements, as of Polygon block 79,721,080."
+    }
+   ],
+   "failure_modes": "Whitelist bootstrapping needs eligible non-whitelisted requests. One wrong proposal costs $750 and threatens the 95% bar. Ambiguous rules turn \"correct\" proposals into losses, as in the Strategy BTC-sale dispute of June 2026. Polymarket also resolves crypto markets through Chainlink TWAP, bypassing UMA.",
+   "cheap_validation": "Read the MOOV2 contract on Polygonscan to see the whitelist size and the reward per request. Backtest the last 1,000 requests to see which you could have proposed correctly and quickly.",
+   "flags": "A conflict of interest arises if you also trade the markets you propose. It is not prohibited on-chain, but it is reputationally sensitive."
+  },
+  {
+   "name": "UMA dispute bounty hunting",
+   "one_line": "Monitor every proposal during its 2-hour liveness and dispute the wrong or premature ones to win half the proposer's bond ($125 to $12,500 per dispute at observed bond sizes).",
+   "category": "Incentive farming",
+   "maturity": "Experimental",
+   "mechanism": "Disputes remain fully permissionless after the proposer whitelist. A disputer posts a bond equal to the proposer's; if the DVM sides with the disputer, or rules Too Early or 50/50, the disputer gets the bond back plus half of the proposer's bond (the other half goes to UMA). With observed bonds of $250, $500, $750 and $25,000 the prize is $125 to $12,500, against a locked bond for the 4-6 day dispute path (first dispute triggers a fresh proposal round, a second goes to a 48-hour commit-reveal vote after a 24-48 hour debate). The bot needs the same results feed and rules parser as a proposer plus a classifier for 'too early' proposals, which resolve in the disputer's favour.",
+   "edge_source": "Most participants watch prices, not the oracle queue; the payoff is fixed and independent of market depth.",
+   "why_might_beat_market": "No whitelist needed, and one correct dispute on a $25,000-bond flagship market equals thousands of proposer rewards.",
+   "failure_modes": "Opportunity set is shrinking: UMA reports incorrect proposals down 59% and disputes down 68% after whitelisting; whitelisted proposers run at 99.7% accuracy; losing a vote costs the full bond; DVM outcomes on ambiguous rules are hard to predict and capital is locked for days.",
+   "cheap_validation": "Backfill 12 months of DisputePrice events on Polymarket adapters: count disputes won by disputers per month, bond sizes, and how many were 'too early' cases detectable by a timestamp rule.",
+   "flags": "Abusive variant seen in the wild and treated as manipulation: disputing a correct proposal to delay settlement 4-6 days or to spook holders into selling. It costs the bond, every dispute and address is public on-chain, and the UMA community discusses motives openly in its Discord evidence channels.",
+   "evidence": [
+    {
+     "url": "https://help.polymarket.com/en/articles/13364551-how-are-markets-disputed",
+     "title": "How Are Markets Disputed?",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Equal challenge bond (usually $750), 24-48h debate, about 48h vote, four outcomes and who receives half of whose bond."
+    },
+    {
+     "url": "https://blog.uma.xyz/articles/managed-proposers-update",
+     "title": "Managed Proposers Update",
+     "date": "2025-11-08",
+     "quality": "self-reported",
+     "supports": "Disputes still permissionless; incorrect proposals -59% and disputes -68% since whitelist enforcement."
+    },
+    {
+     "url": "https://blog.uma.xyz/articles/fact-vs-fiction",
+     "title": "Fact vs. Fiction: The Critic's Guide to UMA",
+     "date": "2025-09-09",
+     "quality": "self-reported",
+     "supports": "99.8% of markets resolve without contention; disputes often reach >90% voter consensus; about 23M UMA vote per round."
+    }
+   ]
+  },
+  {
+   "name": "UMA disputer-for-bond operation",
+   "one_line": "Monitor every proposal and dispute the wrong ones to win half the proposer's bond. About 1% of proposals get disputed, so the bond income is tiny and the information is the real asset.",
+   "category": "Information edge",
+   "maturity": "Experimental",
+   "mechanism": "A watcher checks each proposal against the market rules and real-world data within the 2-hour window and posts a matching counter-bond when the proposal is wrong or premature. The first dispute resets to a new proposal round. A second dispute escalates to a UMA token-holder vote lasting about 48 hours. A correct disputer gets the bond back plus half the proposer's bond (about $375 on a $750 bond). LLM pipelines are a plausible adjudicator once a dispute exists.",
+   "edge_source": "Faster and more accurate rule reading than the proposer. Knowledge of UMA voter precedent.",
+   "why_might_beat_market": "Bond income does not. Even if every one of the 1,604 all-time disputes had been a win at $375, that is about $0.6M in total (my arithmetic, upper bound). The payoff comes from pairing dispute knowledge with positions, which belongs to another lens.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.15368",
+     "title": "Resolution Is Not Settlement, Part I",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "1,604 disputes against 159,447 proposals, about 1.0%."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.15674",
+     "title": "Can LLMs Help Decentralized Dispute Arbitration? (Wen, Zhou, Huang)",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "Web-enabled LLMs agree with UMA's final resolution 89.58% of the time after a dispute. They cannot predict which events will be disputed. Disputed events carried $972M of volume."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "title": "Resolution (Polymarket docs)",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Dispute mechanics and the bond split."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=UMA+polymarket+oracle+voters+disputes+2026&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"Nine Wallets Hold Decisive Power Over Polymarket Dispute Outcomes\" (CryptoRank, 2026-05-26); \"$60M Polymarket Dispute Over Strategy's May Bitcoin Sale\" (The Defiant, 2026-06-01)",
+     "date": "2026-05 to 2026-06",
+     "quality": "credible-report",
+     "supports": "Vote outcomes are concentrated in a few whales and can diverge from the \"obvious\" reading (headlines only)."
+    }
+   ],
+   "failure_modes": "Whale voters decide, and being right on the facts does not mean winning the vote. Roughly 10% LLM disagreement means a $750 loss each time. Capital is locked for 4-6 days. Rule clarifications can change mid-dispute.",
+   "cheap_validation": "Shadow-run: score every proposal for 60 days without bonding. Count the disputes you would have filed and their eventual outcomes.",
+   "flags": "Disputing markets where you hold a position is a conflict of interest that the press already scrutinises."
+  },
+  {
+   "name": "UMA staking and DVM voting yield",
+   "one_line": "Stake UMA and vote in every commit-reveal round to collect a pro-rata share of 0.18 UMA per second of emissions plus slashing redistributed from absent or wrong voters.",
+   "category": "Incentive farming",
+   "maturity": "Established",
+   "mechanism": "UMA's DVM 2.0 emits 0.18 UMA per second (about 5.7M UMA per year) to stakers pro rata; each missed or incorrect vote slashes 0.1% of stake, redistributed to correct voters; rounds are 24h commit plus 24h reveal; unstaking has a 7-day cooldown with no rewards; governance votes are not slashed. UMA reports about 23M UMA (roughly 25% of supply) voting per round and a 65% threshold to settle. Derived, unverified: if staked supply is 23-35M UMA the emission yield is roughly 16-25% a year in UMA terms before slashing effects. An automated voter that follows the evidence channels and never misses a round earns the base yield plus a small transfer from lazy stakers; Polymarket disputes are the main source of votes.",
+   "edge_source": "Protocol inflation paid for a service (reliable, correct voting); diligence edge over passive stakers.",
+   "why_might_beat_market": "It is one of the few Polymarket-adjacent income streams uncorrelated with market outcomes, and the voter seat gives early, structured visibility of every disputed market.",
+   "failure_modes": "Return is denominated in UMA, whose price risk dominates; voting with the losing side costs 0.1% per vote; oracle-governance changes (whitelists, possible future oracle migration by Polymarket) can reduce vote volume and token relevance.",
+   "cheap_validation": "Read the live APY on the voter dapp and the staked balance on-chain, then backtest a 'vote with final majority' bot over the last 12 months of rounds for participation-adjusted yield.",
+   "flags": "Voting on markets where you or affiliates hold positions is the central criticism of UMA-resolved markets; large-holder influence on contested votes has been alleged repeatedly. Keep voting and trading entities separate or abstain.",
+   "evidence": [
+    {
+     "url": "https://docs.uma.xyz/using-uma/voting-walkthrough",
+     "title": "UMA Voting Walkthrough",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Emissions 0.18 UMA/second, missed-vote penalty 0.1% of staked balance, 7-day withdraw cooldown, commit/reveal timing."
+    },
+    {
+     "url": "https://blog.uma.xyz/articles/fact-vs-fiction",
+     "title": "Fact vs. Fiction: The Critic's Guide to UMA",
+     "date": "2025-09-09",
+     "quality": "self-reported",
+     "supports": "About 23M UMA participate per vote (about 25% of supply), 65% settlement threshold, top active voter 2.07M UMA, slashing 0.1%."
+    }
+   ]
+  },
+  {
+   "name": "UMA staking and voting operation",
+   "one_line": "Stake UMA and vote with the majority on every DVM round for emissions plus redistributed slashes. You carry UMA price risk and governance-capture optics.",
+   "category": "Incentive farming",
+   "maturity": "Established",
+   "mechanism": "Stake UMA in DVM 2.0 and commit and reveal votes in 48-hour rounds. Emissions of 0.155 UMA per second are shared pro rata. Missed or wrong votes are slashed 0.1% of stake per vote and redistributed to correct voters. Unstaking has a 7-day cooldown. Risk Labs runs a gas-rebate programme. Polymarket disputes make up most of the vote flow, so an automated evidence pipeline keeps you with the majority.",
+   "edge_source": "Operational diligence (never missing a vote) and a good evidence pipeline. It is a yield operation and carries no pricing edge.",
+   "why_might_beat_market": "The docs cite about 28-32% APY in UMA terms [pre-2025, possibly stale]. It is attractive only if you hedge or accept UMA price exposure. The current APY is UNVERIFIED.",
+   "evidence": [
+    {
+     "url": "https://docs.uma.xyz/using-uma/voting-walkthrough/dvm-2.0-faq.md",
+     "title": "DVM 2.0 FAQ (UMA docs)",
+     "date": "undated [pre-2025, possibly stale]",
+     "quality": "hard-data",
+     "supports": "About 28-32% expected APY, emissions of 0.155 UMA per second, a 7-day unstake cooldown, and gas rebates."
+    },
+    {
+     "url": "https://docs.uma.xyz/using-uma/voting-walkthrough/dvm-2.0.md",
+     "title": "DVM 2.0",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "0.1% slash per missed or incorrect vote, a GAT of 5M UMA, a SPAT of 65% of stake, and 48-hour rounds."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=UMA+polymarket+oracle+voters+disputes+2026&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"Nine crypto whales dominate polymarket disputes worth billions\" (Moneyweb, 2026-05-31); \"Polymarket's Arbitration Model Faces Conflict-of-Interest Questions\" (2026-05-18)",
+     "date": "2026-05",
+     "quality": "credible-report",
+     "supports": "Voting power is concentrated and conflicts of interest have been reported (headlines only)."
+    }
+   ],
+   "failure_modes": "UMA token drawdown swamps the yield. Polymarket is moving resolution categories off UMA (crypto now uses Chainlink TWAP, and there is a Polymarket lawsuit over an oracle outcome). The Schelling-point dynamic means you must vote with the whales, not with the truth.",
+   "cheap_validation": "Check the current staked supply and emissions on-chain to compute the live APR. Run with a small stake for 2 months to measure the vote workload.",
+   "flags": "Voting while holding positions in the disputed market is the central conflict-of-interest criticism of UMA, and the press is covering it."
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+  "n": "12",
+  "slug": "short-crypto-latency-taker",
+  "file": "12-short-crypto-latency-taker.md",
+  "band": "established",
+  "name": "Short-duration crypto up/down: spot-lead / oracle-aware latency taking",
+  "one_line": "Lift stale 5m/15m/1h up/down asks after a Binance or Chainlink move before makers cancel; real 347 ms lag, but 2026 fees, a 150 ms non-cancellable delay, TWAP settlement and co-located makers leave every public measurement negative for a non-HFT taker.",
+  "category": "Directional trading [latency taking]",
+  "maturity": "Established historically, decayed: no evidence of current profitability for a non-co-located taker; OpenMarket -0.116/trade, pre-registered null, poster-child wallet was a maker and is inactive since March 2026",
+  "requires_ai": "no; ML on microstructure features already failed to beat the mid",
+  "edge": "Speed against makers slower than 150 ms plus your path; fee and rebates favour makers",
+  "capital": "<$1k-$10k; latency-limited, stale size at the touch ~$1-3k per event",
+  "build_time": "2-3 weeks taker bot; 4-6 weeks measurement harness (build that first)",
+  "opportunity_size": "BTC 5m ~$10.6M/day, 15m ~$3.3M/day (28 Sep); down ~80% from spring; takers as a class lose",
+  "expected_results": "public data: -0.116 units/trade, no edge after costs, every ask band negative; guess -0.5 to -1.5c/share for a Dublin taker",
+  "competition": "most contested niche: bots 55-62% of volume, co-located makers, rebate-tiered whales",
+  "flag": "none for speed on public feeds; prohibited to push spot into the TWAP window",
+  "validate": "replay OpenMarket archive at CLOB ask 150 ms after >=5 bp moves net of 0.07 fee; measure own path; pass >+0.5c/share, t>2, >=200 events",
+  "top_risk": "Fee 1.75c at mid exceeds the stale quote; makers cancel inside the delay",
+  "evidence_grade": "B",
+  "solo_fit": 1,
+  "solo_fit_reason": "Two independent null results, a fee designed against it, a non-cancellable delay and co-located competition; the only sensible solo use is a one-week replay to confirm the null and reuse the feeds for the maker side (file 03).",
+  "compounds_with": [
+    "short-crypto-maker-side",
+    "settlement-window-and-regime-edges",
+    "taker-rebates-fee-tier-overlay",
+    "cross-venue-leadlag-signals",
+    "derivatives-implied-relative-value"
+  ],
+  "speed_class": "latency-critical: 347 ms median maker response minus a fixed 150 ms pending delay",
+  "results_1k": "workable but negative: -$160 to -$5/month (guess)",
+  "results_5k": "-$400 to +$230/month (guess)",
+  "results_10k": "-$700 to +$400/month (guess)",
+  "min_capital": "~$2k so the VPS does not dominate; capital does not fix expectancy",
+  "capacity_ceiling": "stale size at the touch: ~$1-3k per event, ~$5-10k deployed solo",
+  "services": [
+    "Polymarket CLOB REST+WS",
+    "Gamma API",
+    "PolyBolt WS (Chainlink TWAP)",
+    "Binance WS/REST (451 from restricted IPs)",
+    "OpenMarket archive (Hugging Face)",
+    "Telonex (optional)",
+    "eu-west-1 VPS / eu-west-2 co-location"
+  ],
+  "monthly_running_cost": "minimum ~$65-100; comfortable ~$200-400; co-location unpriced",
+  "changes_made": [
+    "Maturity relabelled 'Established historically, decayed' and category changed from Arbitrage to Directional trading [latency taking], per the critic note.",
+    "Added live 28 Sep checks: Gamma 5m/15m market fields and TWAP resolution text, CLOB book depth, 24 h volumes by horizon, Binance 1-second realised volatility, and derived probability-per-basis-point arithmetic.",
+    "Added the 150 ms delay (4 Sep 2026), PolyBolt TWAP channel and the 18-day 50 ms window; documented the paired-buy reconstruction of the poster-child wallet and its inactivity since March.",
+    "Added taker-rebate tier break-even arithmetic and the Roxas 5,826-entry 'zero fillable lag' and per-band tables.",
+    "Cite-check pass (2026-09-28, 31 sources re-fetched, 4 API queries re-run): 'Polymarket priced it out on purpose' reattributed to trade-press framing; the 'why the TWAP exists' causal claim softened to what the Genfinity article reports; the '821 accounts' figure kept with its $8.2M context; removed an unsourced '$385k' marketing claim; HN quote no longer described as a '20-year stat-arb trader' (not in the comment); 'never saw a stale quote at 250 ms' softened to 'rarely'; tier break-even corrected 0.512 -> 0.514 at Gold; $1k net range corrected to -$160 to -$5; subreddit for the Roxas study corrected to r/PredictionsMarkets; dev.to 150 ms post dated 2026-09-10; QuantVPS latency claim described accurately; 2609.20017 title added; Gamma volumes reproduced within 6% and the 4-hour figure downgraded to an order of magnitude; Binance vol re-sampled (0.57 vs 0.65 bp) and the derivation labelled sample-dependent."
+  ],
+  "open_doubts": [
+    "OpenMarket covers BTC 15-minute markets before the TWAP and 150 ms regimes; no public post-September-2026 measurement exists.",
+    "Whether a co-located taker at Obsidian rebate (0.88c fee at mid) clears the edge is untested in public; the maker side may still be the only winner.",
+    "The one-day BTC 5-minute PnL split (makers +$45.3K, retail -$66.7K) is a single unspecified day.",
+    "The 5 bp -> +17 pp / +34 pp fair-value arithmetic rests on a 1,000-second realised-vol sample (0.57-0.65 bp) and assumes the book is genuinely stale at the pre-move price.",
+    "Chainlink Data Streams direct-access terms and the PolyBolt crypto price vendor were not verified (429 / not named); the 4-hour up/down volume was not reproduced exactly."
+  ]
+}

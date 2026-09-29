@@ -1,0 +1,52 @@
+{
+  "n": "09",
+  "slug": "rebalancing-arbitrage-yesno-negrisk",
+  "file": "09-rebalancing-arbitrage-yesno-negrisk.md",
+  "band": "established",
+  "name": "Same-platform rebalancing arbitrage: YES+NO sets and NegRisk converter / baskets",
+  "one_line": "Enforce YES+NO=1 and neg-risk sum/convert identities after fees; executable profit collapsed to $0.08 per conversion and ten addresses own it.",
+  "category": "Arbitrage",
+  "maturity": "Established but effectively closed to newcomers; YES-basket side is carry",
+  "requires_ai": "no",
+  "edge": "Transient incoherence plus protocol primitives",
+  "capital": "<$1k-$10k; seconds for executable variants, months for carry",
+  "build_time": "1-3 weeks",
+  "opportunity_size": "$1.12M executable all-time to Dec 2025; live books coherent within spreads",
+  "expected_results": "median $0.08 per conversion; solo near zero; carry 5-10%/yr tiny size",
+  "competition": "ten addresses hold 75%",
+  "flag": "none",
+  "validate": "7-day depth-aware scan net of per-leg fees; pass >=20 episodes/week >=50 bps",
+  "top_risk": "Per-leg fees and orphan legs",
+  "evidence_grade": "A",
+  "solo_fit": 1,
+  "solo_fit_reason": "Measured to be tiny, concentrated and fee-gated; worth running only as a feature inside a maker book.",
+  "compounds_with": [
+    "event-market-making-spread-carry",
+    "short-crypto-maker-side",
+    "combinatorial-logical-arbitrage",
+    "near-certain-bond-carry",
+    "unnamed-outcome-unpacking"
+  ],
+  "speed_class": "latency-critical for executable variants; speed-insensitive for YES-basket carry",
+  "results_1k": "-$20 to +$15/month (guess)",
+  "results_5k": "-$30 to +$60/month (guess)",
+  "results_10k": "-$30 to +$100/month (guess)",
+  "min_capital": "~$500: depth binds, not capital",
+  "capacity_ceiling": "~$2k-5k for executable variants",
+  "services": [
+    "CLOB REST+WS",
+    "Gamma (negRisk, augmented flags)",
+    "Builder relayer + V2 Neg Risk Adapter",
+    "Polygon RPC",
+    "polymarket-coherence study",
+    "VPS"
+  ],
+  "monthly_running_cost": "minimum ~$10-20; comfortable ~$70-100",
+  "changes_made": [
+    "Live scan 24 Sep: 236 neg-risk events, median ask-sum 1.054, bid-sum 0.967; Fed December NO-side example negative after fees; Maduro YES-basket carry example."
+  ],
+  "open_doubts": [
+    "Adapter conversion feeRate value unverified.",
+    "Live scan used top of book, not depth."
+  ]
+}

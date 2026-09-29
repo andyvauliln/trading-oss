@@ -1,0 +1,296 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Agentic Alpha Discovery Loop",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "happy-path",
+        "label": "Hypothesis to live alpha",
+        "focus": [
+          "seed",
+          "generator",
+          "synth",
+          "guard",
+          "backtest",
+          "gate",
+          "book"
+        ],
+        "note": "The path a surviving factor takes from a research mandate to the traded book."
+      },
+      {
+        "id": "leakage",
+        "label": "Where candidates die",
+        "focus": [
+          "guard",
+          "leak",
+          "synth",
+          "gate"
+        ],
+        "note": "Most rejections are not weak alpha but look-ahead bias and crowding."
+      },
+      {
+        "id": "evolution",
+        "label": "What makes it evolutionary",
+        "focus": [
+          "backtest",
+          "memory",
+          "generator"
+        ],
+        "note": "Failed trials are the training signal for the next generation of hypotheses."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "ideas",
+      "label": "Hypothesis & Generation"
+    },
+    {
+      "id": "build",
+      "label": "Construction"
+    },
+    {
+      "id": "valid",
+      "label": "Validation"
+    },
+    {
+      "id": "fail",
+      "label": "Rejection",
+      "variant": "exception"
+    },
+    {
+      "id": "port",
+      "label": "Memory & Book"
+    }
+  ],
+  "phases": [
+    {
+      "id": "propose",
+      "label": "Propose",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "construct",
+      "label": "Construct + guard",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "prove",
+      "label": "Prove + promote",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "seed",
+    "generator",
+    "synth",
+    "guard",
+    "backtest",
+    "gate"
+  ],
+  "semanticChecks": {
+    "allowedRoots": [
+      "seed"
+    ],
+    "allowedTerminals": [
+      "book"
+    ],
+    "requiredPaths": [
+      {
+        "from": "seed",
+        "to": "book"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "seed",
+      "lane": "ideas",
+      "col": 0,
+      "type": "external",
+      "label": "Research Mandate",
+      "sublabel": "universe, horizon, limits",
+      "width": 142
+    },
+    {
+      "id": "generator",
+      "lane": "ideas",
+      "col": 1,
+      "type": "backend",
+      "label": "Alpha Generator",
+      "sublabel": "propose hypotheses",
+      "tag": "anti-crowding prior",
+      "width": 142
+    },
+    {
+      "id": "synth",
+      "lane": "build",
+      "col": 2,
+      "type": "backend",
+      "label": "Factor Synthesis",
+      "sublabel": "executable expression",
+      "width": 142
+    },
+    {
+      "id": "guard",
+      "lane": "build",
+      "col": 3,
+      "type": "security",
+      "label": "Point-in-Time Guard",
+      "sublabel": "look-ahead, survivorship",
+      "width": 142
+    },
+    {
+      "id": "backtest",
+      "lane": "valid",
+      "col": 4,
+      "type": "backend",
+      "label": "Backtest Engine",
+      "sublabel": "IC, IR, turnover, costs",
+      "width": 142
+    },
+    {
+      "id": "gate",
+      "lane": "valid",
+      "col": 5,
+      "type": "security",
+      "label": "Acceptance Gate",
+      "sublabel": "orthogonal to live book",
+      "width": 142
+    },
+    {
+      "id": "leak",
+      "lane": "fail",
+      "col": 3,
+      "type": "security",
+      "label": "Leak Detected",
+      "sublabel": "future data touched",
+      "width": 142
+    },
+    {
+      "id": "memory",
+      "lane": "port",
+      "col": 4,
+      "type": "database",
+      "label": "Experiment Memory",
+      "sublabel": "winning + failed trials",
+      "width": 142
+    },
+    {
+      "id": "book",
+      "lane": "port",
+      "col": 5,
+      "type": "database",
+      "label": "Live Alpha Book",
+      "sublabel": "combined signal",
+      "width": 142
+    }
+  ],
+  "edges": [
+    {
+      "id": "mandate",
+      "from": "seed",
+      "to": "generator"
+    },
+    {
+      "id": "candidate",
+      "from": "generator",
+      "to": "synth",
+      "label": "candidate hypothesis",
+      "variant": "emphasis"
+    },
+    {
+      "id": "to-guard",
+      "from": "synth",
+      "to": "guard"
+    },
+    {
+      "id": "pit-panel",
+      "from": "guard",
+      "to": "backtest",
+      "label": "PIT-safe panel",
+      "variant": "emphasis"
+    },
+    {
+      "id": "metrics",
+      "from": "backtest",
+      "to": "gate",
+      "label": "IC / IR / turnover"
+    },
+    {
+      "id": "accepted",
+      "from": "gate",
+      "to": "book",
+      "label": "accepted alpha",
+      "variant": "emphasis"
+    },
+    {
+      "id": "leak-found",
+      "from": "guard",
+      "to": "leak",
+      "label": "look-ahead found",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "rebuild",
+      "from": "leak",
+      "to": "synth",
+      "label": "rebuild with lag",
+      "role": "return",
+      "variant": "dashed"
+    },
+    {
+      "id": "trial-record",
+      "from": "backtest",
+      "to": "memory",
+      "label": "trial record",
+      "variant": "dashed",
+      "role": "async"
+    },
+    {
+      "id": "prior-trials",
+      "from": "memory",
+      "to": "generator",
+      "label": "prior trials + failures",
+      "variant": "dashed",
+      "role": "return"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The loop, not the model",
+      "items": [
+        "Hypothesis, executable factor, backtest, critique, repeat",
+        "The LLM proposes; deterministic code decides what survives",
+        "Search budget and rejected branches are part of the artifact"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Discipline before performance",
+      "items": [
+        "Point-in-time data and survivorship handling gate the backtest",
+        "Transaction costs and turnover are evaluated, not assumed away",
+        "A new factor must be orthogonal to what the book already trades"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Why it is evolutionary",
+      "items": [
+        "Experiment memory turns failed trials into generation-time context",
+        "Explicit regularization pushes back against factor crowding and decay",
+        "Each generation inherits the search process, not just the winners"
+      ]
+    }
+  ]
+}

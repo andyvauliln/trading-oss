@@ -1,0 +1,202 @@
+{
+ "slug": "flow-fading-and-leadlag-statarb",
+ "name": "Flow-dislocation fading, counter-trading bad wallets and cross-market lead-lag stat-arb",
+ "category": "Arbitrage",
+ "maturity": "Experimental",
+ "one_line": "Provide liquidity against price dislocations caused by uninformed flow, fade the systematically worst wallets, and trade lead-lag relations between related contracts or between Polymarket and external assets.",
+ "scope": "Non-AI (or LLM-filtered) experimental stat-arb family. Cover: fading flow-driven dislocations (evidence is play-money or absent on Polymarket), counter-trading the worst wallets (premise supported, strategy untested), Granger + LLM-filtered lead-lag across related contracts (Kalshi backtest without costs), cross-market stat-arb, and prediction-market signals as alpha or hedge for external markets (small out-of-sample gains). For each: mechanism, why it may not survive fees and spread, and one cheap leakage-free backtest on public trade history. Boundary: cross-VENUE lead-lag quoting is cross-venue-leadlag-signals; logical constraints are combinatorial-logical-arbitrage and semantic-market-graph-relative-value.",
+ "key_evidence": [],
+ "sub_variants": [],
+ "merged_from": [
+  "academic: Fading flow-driven price dislocations",
+  "traders: Counter-trading the worst wallets",
+  "academic: Granger + LLM-filtered lead-lag",
+  "adjacent-transfer: Cross-market lead-lag and stat-arb",
+  "academic: Prediction-market signals as alpha or hedge"
+ ],
+ "extra_scope": "Critic: also absorb the two statistical sub-variants removed from crowd-price-path-simulation: benchmark-gap under-reaction drift (0.64-for-one) and dislocation fade in low-prominence markets, plus the hour-of-day 'sleeping crowd' variant. FACT CHECK from the critic: the 817-market shock experiment ran on Manifold (play money), not Polymarket.",
+ "n": "81",
+ "band": "speculative",
+ "file": "81-flow-fading-and-leadlag-statarb.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Fading flow-driven price dislocations (liquidity provision into whale shocks)",
+   "one_line": "Large one-directional bursts move prices 5+ points without news tens of thousands of times a year; some reverse within hours, but experimental evidence says reversion is slow and partial, so selection is everything.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Detect a dislocation: >=5 pt move driven by top-decile same-direction buying pressure with no matching news and no confirming move on Kalshi/other venues or in linked outcome markets. Provide liquidity against it with resting orders and scale in; exit on cross-venue reconvergence. Use the shock taxonomy from the 2024 election: moves where the transitory impact component exceeds the permanent one (debate night: +4c at 30 min, +2c at 3 h) revert; moves with real information (assassination attempt: +5c to +10c) do not.",
+   "edge_source": "Temporary price pressure from capital-heavy, price-insensitive traders in markets where $5k-$57k moves the price 5 points.",
+   "why_might_beat_market": "Counterparties have a profit incentive to correct distorted prints, and cross-venue or linked-market prices provide an external anchor most traders do not use.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2609.06005v1",
+     "title": "Price Dislocations, News Citations, and Epistemic Leverage on Polymarket (Ibrahim, Zaki), arXiv",
+     "date": "2026-09-05",
+     "quality": "hard-data",
+     "supports": "44,976 dislocations across 9,590 markets in 2024-2025; median cost of a 5-pt move $5,171 (least prominent quintile) to $56,927 (most prominent). The paper does not test reversion."
+    },
+    {
+     "url": "https://arxiv.org/html/2503.03312v1",
+     "title": "How manipulable are prediction markets? (Rasooly, Rozzi), arXiv",
+     "date": "2025-03-05",
+     "quality": "paper",
+     "supports": "Field experiment, 817 Manifold markets, random 5-pt shocks: only 27% reverted after 1 week, 31% after 30 days, 44% after 60 days; faster reversion with more traders/volume (33% vs 17%) and when a Metaculus duplicate exists (47% vs 23%). Play-money venue."
+    },
+    {
+     "url": "https://arxiv.org/html/2603.03152v4",
+     "title": "Political Shocks and Price Discovery in Prediction Markets (Tsang, Yang), arXiv",
+     "date": "2026-03-03",
+     "quality": "hard-data",
+     "supports": "Debate shock largely reversed within 3 h while the assassination-attempt move persisted and grew; at Biden's withdrawal 66% of Trump YES sold to buyers was newly minted and five wallets were 87% of reducing flow with almost no price change - volume is not information."
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6670638",
+     "title": "The Polymarket Paradox (Abid), SSRN via Crossref abstract",
+     "date": "2026-04-28",
+     "quality": "paper",
+     "supports": "The French whale's concentrated bets held Trump odds 10-15 pts above competitor platforms - and he won $85M: fading a whale is not the same as being right."
+    }
+   ],
+   "failure_modes": "The whale may be informed (see insider candidates); slow reversion ties up capital; play-money evidence may not transfer; no Polymarket reversion study exists yet.",
+   "cheap_validation": "Replicate the dislocation detector on public trades and measure 1h/24h/7d mid reversion conditional on (a) cross-venue confirmation and (b) news presence; this is the missing empirical piece and cheap to run.",
+   "flags": ""
+  },
+  {
+   "name": "Counter-trading the worst wallets",
+   "one_line": "Screen for high-volume wallets with persistently terrible results and automatically take the other side of their new positions.",
+   "category": "Information edge",
+   "maturity": "Experimental",
+   "mechanism": "Instead of copying winners (whose edge is speed, hedged multi-wallet books or size), find wallets with sub-30% win rates and heavy activity, mirror them inversely with small fixed clips ($25), only between 30c and 70c, max 1c slippage, 20% take-profit and a $75 per-market cap. The author reports $500 -> ~$915 in 30 days. Hard data supports the premise that losers are systematic: ~80% of wallets are net negative, losers predominantly take liquidity with market orders, and some accounts lose millions steadily (suntori -$8.1M on $730M volume).",
+   "edge_source": "Persistent negative skill (biased retail/taker flow) is easier to find and slower to decay than positive skill.",
+   "why_might_beat_market": "Latency matters less: a loser's entry usually pushes price the wrong way, so the fade gets an equal or better price.",
+   "failure_modes": "Losers quit (wallet churn), low win rate may just be longshot buying with positive skew, tiny capacity, sample sizes; source is an affiliate marketer.",
+   "cheap_validation": "From public trade history, label wallets by trailing 90-day markout, then test out-of-sample whether fading their next 30 days of 30-70c entries is profitable net of fees.",
+   "flags": "Source credibility low (promotes Kreo copy bot).",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1te0lnl",
+     "title": "Reddit r/PredictionsMarkets 1te0lnl 'I stopped copytrading whales and started Counter-Trading the worst wallets (30-Day Results)'",
+     "date": "2026-05-15",
+     "quality": "marketing",
+     "supports": "$500 -> ~$915 in 30 days; parameter set; why whales are uncopyable (front-running, multi-wallet hedging)"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1v8pfjb",
+     "title": "Reddit r/ai_trading 1v8pfjb 'Claude Code + database of 1.3B Polymarket trades'",
+     "date": "2026-07-28",
+     "quality": "self-reported",
+     "supports": "~1 in 5 wallets net positive; 2.4% ever cleared $1,000; top 0.1% took 71.5% of ~$1B profit"
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=VOL&limit=25",
+     "title": "All-time leaderboard by volume",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Persistent large losers exist: suntori -$8.15M/$730M, 0x4924... -$3.38M/$507M, GoalLineGhost -$1.45M/$406M"
+    }
+   ]
+  },
+  {
+   "name": "Granger + LLM-filtered lead-lag trading across related contracts",
+   "one_line": "Find leader-follower pairs among economically linked contracts statistically, let an LLM veto pairs with no plausible causal mechanism, and trade the follower after the leader moves.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Rolling 60-day Granger tests (lags 1-5 days) rank candidate pairs; an LLM re-ranks the top 100 by economic plausibility and keeps 20. When the leader moves, take a position in the follower for a fixed holding period (1-21 days tested). The LLM's value is loss control: average loss falls ~46% while win rate rises only ~3 pts; gains are larger after big leader moves (10+ pt moves: win rate 53.8% -> 71.4%).",
+   "edge_source": "Slow cross-market propagation of macro information among thinly followed contracts; spurious statistical pairs filtered semantically.",
+   "why_might_beat_market": "Cross-contract information diffusion is unexploited because related contracts sit in different events/categories with different trader bases.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2602.07048v2",
+     "title": "LLM as a Risk Manager: LLM Semantic Filtering for Lead-Lag Trading in Prediction Markets (Kim et al.), arXiv",
+     "date": "2026-02-04",
+     "quality": "paper",
+     "supports": "Kalshi Economics, 554 events, Oct-2021..Nov-2025, 18 test windows: hybrid vs statistical - win rate 54.5% vs 51.4%, avg loss -$347 vs -$649, total PnL $12,500 vs $4,100 at $100/contract; post-LLM-cutoff subsample PnL $7,200 vs $3,800; NO transaction costs or slippage modelled."
+    },
+    {
+     "url": "https://api.openalex.org/works?search=kalshi%20prediction%20market&per-page=100&sort=cited_by_count:desc&select=display_name,publication_date,doi,cited_by_count&filter=from_publication_date:2024-06-01",
+     "title": "OpenAlex listing: Directed Information Flow in Macro Prediction Markets: Separating Genuine Coupling from Common-Driver Artifacts (Zenodo 20530081)",
+     "date": "2026-06-03",
+     "quality": "paper",
+     "supports": "Title-level lead only: warns that apparent lead-lag in macro contracts can be common-driver artefact (content unverified)."
+    }
+   ],
+   "failure_modes": "No costs in the backtest; daily-frequency signals on illiquid contracts; only one category on one venue; common-driver artefacts; small number of test periods.",
+   "cheap_validation": "Replicate on Polymarket economics/finance/politics events with executable prices and the current fee curve; require positive PnL after costs on a post-model-cutoff window.",
+   "adjacent_grounding": "Lead-lag / Granger pair selection in equities and crypto; LLM-as-prior for causal plausibility.",
+   "flags": ""
+  },
+  {
+   "name": "Cross-market lead-lag and stat-arb between related event contracts, and event contracts as signals for external assets",
+   "one_line": "Granger-style leader and follower pairs inside prediction markets, filtered by an LLM for economic plausibility. Also use event-contract repricing, such as Fed odds, as a signal for crypto-volatility trades elsewhere.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Build a graph of related contracts, such as Fed path, CPI, recession and the BTC ladders. Estimate lead-lag on probability changes. Keep only pairs an LLM judges to have a plausible transmission mechanism. Trade the follower when the leader moves. In reverse, use Polymarket or Kalshi macro repricing to trade Deribit volatility or Polymarket's own crypto ladders and perps, since macro contract moves predict crypto volatility.",
+   "edge_source": "Slow information diffusion across thin, siloed books. Most participants watch one market.",
+   "why_might_beat_market": "It needs breadth and semantic mapping, not speed, which suits an LLM-agent shop. The effect sizes are small, so it only pays with maker execution.",
+   "adjacent_grounding": "Equity lead-lag and pairs stat-arb, and cross-asset macro signal trading.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2602.07048",
+     "title": "LLM as a Risk Manager: LLM Semantic Filtering for Lead-Lag Trading in Prediction Markets",
+     "date": "2026-02-04",
+     "quality": "paper",
+     "supports": "Kalshi Economics: win rate rose from 51.4% to 54.5%, and the average losing trade fell from $649 to $347 with the LLM filter. This is a backtest."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.01431",
+     "title": "Do Prediction Markets Forecast Cryptocurrency Volatility? Evidence from Kalshi Macro Contracts",
+     "date": "2026-04-01",
+     "quality": "paper",
+     "supports": "Fed repricing on KXFED predicts BTC volatility (t=3.63), and the recession-risk signal gains out of sample."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.15448",
+     "title": "EventConnector: Mining Social Event Relations through Temporal Graphs",
+     "date": "2026-06-13",
+     "quality": "paper",
+     "supports": "A temporal event graph capturing lead-lag cuts RMSE by 6.87% on Polymarket and Kalshi forecasting benchmarks."
+    }
+   ],
+   "failure_modes": "A 54% win rate is inside fee and spread noise for takers. Statistical links break at regime changes. Follower books are thin.",
+   "cheap_validation": "A walk-forward test on Polymarket data with maker-only fills and current fee rates. Require a positive result over at least 3 disjoint quarters.",
+   "flags": ""
+  },
+  {
+   "name": "Prediction-market signals as alpha or hedge for external markets (crypto volatility, sovereign spreads)",
+   "one_line": "Make the money off-platform: repricing in Kalshi/Polymarket macro contracts forecasts crypto volatility beyond Fed funds futures and DVOL, and event contracts can hedge spot crypto exposure.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "Compute daily absolute repricing of Fed-decision, CPI and recession contracts; use it as a predictor in a volatility model for BTC/ETH/SOL and trade options or vol-targeted perps accordingly. Conversely, hold threshold contracts as cheap digital options to shape the payoff of a spot book. Recession-risk signals were the most stable out-of-sample (MSFE ratio 0.979); the Fed channel is regime dependent.",
+   "edge_source": "Prediction markets aggregate event probabilities not spanned by listed derivatives; few vol desks ingest them.",
+   "why_might_beat_market": "Capacity is in deep external markets, so the thinness of Polymarket books stops being the constraint.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2604.01431",
+     "title": "Do Prediction Markets Forecast Cryptocurrency Volatility? Evidence from Kalshi Macro Contracts (Mohanty, Krishnamachari), arXiv",
+     "date": "2026-04-01",
+     "quality": "paper",
+     "supports": "Jan-2023..Mar-2026, 10 Kalshi series x 6 coins: Fed repricing predicts BTC volatility (t=3.63, p<0.001, regime dependent); CPI repricing predicts ETH/SOL/ADA/LINK volatility (t -2.1 to -3.4); survives multiple-testing correction and orthogonalisation against Fed funds futures, Treasury yields and Deribit DVOL."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.14267",
+     "title": "Public Opinion as an Option: Leveraging Prediction Markets to Hedge Exposure to Spot Crypto Volatility (Bhaskara, Jerfy), arXiv",
+     "date": "2026-09-13",
+     "quality": "paper",
+     "supports": "Dynamic Kalshi/BTC hedge outperforms simpler portfolios in three regime case studies (three contracts only; fees noted as eroding)."
+    },
+    {
+     "url": "https://api.openalex.org/works?search=polymarket&per-page=100&sort=cited_by_count:desc&select=display_name,publication_date,doi,cited_by_count&filter=from_publication_date:2024-06-01",
+     "title": "OpenAlex listing: Political Uncertainty and Credit Risk: The Role of Event Markets in Forecasting Ukraine's Sovereign Spreads (Scottish J. of Political Economy); Kalshi and the Rise of Macro Markets (NBER w34702)",
+     "date": "2026-04-09",
+     "quality": "paper",
+     "supports": "Title/abstract-level: event-market prices used to forecast sovereign spreads; NBER paper finds Kalshi macro distributions a useful high-frequency benchmark."
+    }
+   ],
+   "failure_modes": "Small out-of-sample gains; regime dependence; signal decays once adopted; requires a derivatives stack.",
+   "cheap_validation": "Add the repricing series to an existing HAR-RV model for BTC; check out-of-sample MSFE and a simple straddle timing rule over the last 12 months.",
+   "adjacent_grounding": "Macro-announcement and implied-probability literature (Fed funds futures as volatility predictors), applied to event-contract data.",
+   "flags": ""
+  }
+ ],
+ "critic_notes": []
+}

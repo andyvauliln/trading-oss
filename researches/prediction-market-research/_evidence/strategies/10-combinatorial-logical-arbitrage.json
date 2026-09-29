@@ -1,0 +1,165 @@
+{
+ "slug": "combinatorial-logical-arbitrage",
+ "name": "Combinatorial / logical arbitrage: dependent markets, same-game market types, strike and date ladders",
+ "category": "Arbitrage",
+ "maturity": "Emerging",
+ "seed_category": "same-platform arbitrage - combinatorial-logical",
+ "one_line": "Trade violations of logical constraints between separate markets (A implies B, moneyline vs spread vs total, monotone ladders, nested deadlines); frequent but retail-sized.",
+ "scope": "Cover dependency detection (implication lattices, LLM/expert validation of dependence, O(2^(n+m)) reduction), the three documented arenas: cross-market political/event dependencies (~$95k realised in the IMDEA sample), same-game moneyline x spread x totals (290 NBA episodes, median 101 bps, ~15 shares, 16 s, mostly final minutes), and threshold/date ladders that are not wired as neg-risk (monotonicity, butterfly, calendar checks; impossible cumulative prices in flu/measles ladders). Net everything of current per-leg fees (sports 0.05) and compare maker-first leg entry. Boundary: sums inside one neg-risk event belong to rebalancing-arbitrage-yesno-negrisk; cross-venue structures to cross-venue-arbitrage-leadlag; pricing ladders off option surfaces to options-implied-relative-value; parlay RFQ pricing to combos-rfq-market-making.",
+ "sub_variants": [
+  "cross-event logical implication pairs",
+  "same-game moneyline/spread/total consistency",
+  "strike-ladder monotonicity and butterfly checks",
+  "nested-deadline calendar checks"
+ ],
+ "merged_from": [
+  "onchain-bots: Combinatorial arbitrage across logically dependent markets",
+  "academic: Cross-market-type combinatorial arbitrage inside one sports event",
+  "adjacent-transfer: In-play cross-market consistency arbitrage",
+  "adjacent-transfer: Ladder and calendar no-arbitrage enforcement on threshold markets"
+ ],
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2605.00864v1",
+   "note": "173 NBA games: 290 combinatorial episodes, median 101 bps, avg 14.8 shares, capped profit $559.59; NBA was fee-free in sample"
+  },
+  {
+   "url": "https://arxiv.org/abs/2508.03474",
+   "note": "Defines combinatorial arbitrage and dependency-search heuristic; ~$95k realised"
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.11220",
+   "note": "Polymarket disease ladders priced impossible (decreasing cumulative) outcomes"
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.30040",
+   "note": "Method turning adjacent threshold contracts into a PMF; exposes negative masses"
+  },
+  {
+   "url": "https://arxiv.org/abs/2608.00666",
+   "note": "Violations persist where the protocol offers no conversion primitive"
+  }
+ ],
+ "parent_slug": "combinatorial-logical-arbitrage",
+ "seed": "3 same-platform arbitrage",
+ "n": "10",
+ "band": "established",
+ "file": "10-combinatorial-logical-arbitrage.md",
+ "critic_notes": [],
+ "raw_discovery_candidates": [
+  {
+   "name": "Combinatorial arbitrage across logically dependent markets",
+   "one_line": "Trade violations of logical constraints between different markets (A implies B, spreads vs moneyline vs totals).",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "mechanism": "A dependency graph links markets whose outcomes constrain each other (e.g. state results vs national result, game winner vs spread/total lines). The bot prices the joint payoff and buys a portfolio that pays at least $1 in every state for less than $1. In NBA markets the opportunities cluster in the final minutes of live play. Realized size is small because the cheap leg is always the thin one.",
+   "edge_source": "Cross-market attention gaps; in-play repricing of derivative lines lags the main line.",
+   "why_might_beat_market": "Frequency is real (290 episodes in 173 games) and median return is 101 bps, but capacity is retail-scale; it fits a small agent better than a fund, which is why funds leave it.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2508.03474v1",
+     "title": "Unravelling the Probabilistic Forest (IMDEA)",
+     "date": "2025-08-05",
+     "quality": "paper",
+     "supports": "Combinatorial arbitrage realized only ~$95k across the measured dependent pairs (largest pair $60,237) versus $39.6M for within-market types."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00864",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets",
+     "date": "2026-04-22",
+     "quality": "paper",
+     "supports": "290 combinatorial episodes, concentrated in final minutes; median return 101 bps; 76.9% constrained to average executable size 14.8 shares; theoretical 'middle' never realized."
+    }
+   ],
+   "failure_modes": "Dependency mis-specification (resolution wording differs between 'equivalent' markets); depth of ~15 shares; taker fees on 3+ legs exceed 101 bps at mid prices.",
+   "cheap_validation": "Reproduce the NBA paper's scan on one week of NFL/NBA books with current fees included; count episodes still positive after 0.05*p*(1-p) per leg.",
+   "flags": ""
+  },
+  {
+   "name": "Cross-market-type combinatorial arbitrage inside one sports event (moneyline x spread x totals)",
+   "one_line": "Exploit logical implication between different market types on the same game (e.g. team covers -5.5 implies team wins) rather than only YES/NO or negRisk sums.",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "mechanism": "Build the implication lattice between moneyline, spread and totals contracts per game, scan L2 books for state prices that violate it, and take both legs. Opportunities are mostly in-game (279 of 290) and last a median 16 s; a 'middle' outcome can pay both legs. The heuristic reduction in the Saguillo paper (timeliness + topical similarity + LLM/expert validation of dependency) generalises this to non-sports dependent markets.",
+   "edge_source": "Market types are quoted by different makers with different models and update speeds during live play; dependency detection is O(2^(n+m)) naive, so few participants scan it.",
+   "why_might_beat_market": "Low competition relative to negRisk conversion, but size-capped: it is a small-ticket, high-frequency strategy.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2605.00864v1",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets (Cheng, Yang, Zou), arXiv",
+     "date": "2026-04-22",
+     "quality": "hard-data",
+     "supports": "173 games, 75.1M LOB snapshots (Feb-4..Mar-4-2026): 290 executable moneyline+spread episodes, median yield 101 bps, median duration 16 s, 76.9% constrained to avg 14.8 shares; capped ($100) aggregate profit $559.59, uncapped theoretical $2,032.75; single-market: only 7 executable episodes, median 3.6 s, 81% of candidates were post-game and non-executable; zero 'middle' jackpots realised. NBA was fee-free in the sample."
+    },
+    {
+     "url": "https://arxiv.org/abs/2508.03474",
+     "title": "Unravelling the Probabilistic Forest (Saguillo et al.), arXiv",
+     "date": "2025-08-05",
+     "quality": "paper",
+     "supports": "Defines combinatorial (cross-market) arbitrage and a heuristic reduction making dependency search tractable; part of the ~$40M extracted estimate."
+    }
+   ],
+   "failure_modes": "Depth: ~15 shares per opportunity; sports now carry a 0.05 taker fee rate (since 2026-07-10) which erases a 101 bps median edge near p=0.5 (fee ~1.25 c/share, derived); in-game spreads median 1,031 bps.",
+   "cheap_validation": "Record one week of books for one league, recompute episodes net of the current fee curve and with maker-first leg entry; count opportunities above $5 net.",
+   "flags": ""
+  },
+  {
+   "name": "In-play cross-market consistency arbitrage (moneyline, spread and total in the same game)",
+   "one_line": "Combinatorial mispricings between a game's linked markets appear mostly in the last minutes. They are real, but retail-sized.",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "mechanism": "Reconstruct all books for one game and search for baskets whose payoffs dominate, for example moneyline against an alternate spread, or totals ladders. Execute multi-leg FOK orders. On 173 NBA games, single-market arbitrage was almost non-existent. Combinatorial episodes were more frequent but tiny.",
+   "edge_source": "Different makers quote different markets of the same game and resynchronise slowly during fast end-game states.",
+   "why_might_beat_market": "It is too small for professional shops: a median 101 bps on about 15 shares. A solo bot that is already connected for other reasons can harvest it at zero marginal cost.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2605.00864",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets",
+     "date": "2026-04-22",
+     "quality": "paper",
+     "supports": "75M order-book snapshots over 173 games. There were 7 executable single-market episodes with a median 3.6 s duration, and 290 combinatorial episodes with a median return of 101 bps. 76.9% were limited to an average of 14.8 shares. The 'middle' jackpot was never realised."
+    }
+   ],
+   "failure_modes": "Leg risk under the taker delay. Fees of 0.05 x p x (1-p) per taker leg can exceed 101 bps. The size is trivial.",
+   "cheap_validation": "Re-run the paper's scan on your own recorded books with current fees. Count the episodes that stay positive after fees.",
+   "flags": ""
+  },
+  {
+   "name": "Ladder and calendar no-arbitrage enforcement on threshold markets (butterflies and monotonicity)",
+   "one_line": "Treat each strike or date ladder as an options chain and trade violations of monotonicity and convexity. Examples are crypto price ladders, CPI and Fed ladders, 'by date' calendars and cumulative-count markets.",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "mechanism": "For ordered thresholds, P(above K1) must be at least P(above K2) when K1 is below K2. For nested deadlines, P(by March) cannot exceed P(by June). The implied bucket masses must be non-negative. Scan the books for executable violations at bid and ask, and trade the dominated pair. This is an options-market-maker discipline. Many of these ladders are not wired as neg-risk events, so the platform's converter does not enforce consistency.",
+   "edge_source": "Separate books quoted by different participants. Retail piles into single strikes. No native conversion primitive exists across separate markets.",
+   "why_might_beat_market": "Academic audits still find logically impossible price sets in low-attention ladders. Executable-arbitrage capture concentrates where the protocol lacks a conversion primitive.",
+   "adjacent_grounding": "Butterfly and calendar arbitrage checks on option surfaces.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2605.11220",
+     "title": "Prediction Markets Underperform Simple Baselines For Infectious Disease Forecasting",
+     "date": "2026-05-11",
+     "quality": "paper",
+     "supports": "Polymarket flu and measles ladders 'placed probability mass on impossible outcomes, including decreasing values in cumulative forecasts'. These are live monotonicity violations."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "title": "Executable Arbitrage and Market Efficiency in Prediction Markets",
+     "date": "2026-08-01",
+     "quality": "paper",
+     "supports": "$1.12M of realised arbitrage in neg-risk markets: $1.086M through the converter and $32k through settlement baskets. Violations persist on the side the protocol does not expose as an executable primitive."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.30040",
+     "title": "The Shape of Macroeconomic Beliefs",
+     "date": "2026-06-29",
+     "quality": "paper",
+     "supports": "A method for turning adjacent threshold contracts into a probability mass function for CPI. The same construction exposes negative masses."
+    }
+   ],
+   "failure_modes": "Violations often sit inside the bid-ask spread. The ladders are thin. Capital is locked until resolution. Taker fees apply on each leg. 'Hits' and 'closes above' semantics differ between markets.",
+   "cheap_validation": "A nightly scan of all events with numeric ladders, counting executable violations of at least 1c after fees, with depth.",
+   "flags": ""
+  }
+ ]
+}

@@ -1,0 +1,232 @@
+{
+ "slug": "statistical-mispricing-models",
+ "name": "Statistical / quantitative mispricing models (polls, Elo, base rates, nowcasts, recalibration)",
+ "category": "Directional trading",
+ "maturity": "Emerging",
+ "one_line": "Systematic probability models built from public data (poll aggregates, Elo / ratings, base rates, macro nowcasts, scientific ensembles, domain recalibration curves) traded against the Polymarket price when the gap exceeds costs.",
+ "scope": "This is the owner's seed category 4; the consolidator pushed its candidates out of this band, so rebuild it from the raw candidates. Cover: election / polling models vs market (2024 and 2025-2026 evidence), Elo / ratings models outside sports, base-rate and reference-class models, macro nowcasting for economic-data ladders (CPI, jobs, Fed) incl. Kalshi papers, public-baseline scientific models in niche count markets (flu, hurricanes, disease counts), domain x horizon x trade-size recalibration (e.g. political underconfidence slope ~1.45) and favourite-longshot tilts as a systematic overlay, forecast-to-bet conversion (Kelly / proper betting with fees). Be honest about evidence: most is calibration description or Kalshi backtests without costs, little verified Polymarket PnL. Mine S1-discovery-candidates.json for the candidates named in merged_from. Boundary: sports models are sports-model-driven-taking; weather is weather-markets; count / mention markets are recurring-count-mention-counter-markets; LLM forecasters are llm-forecasting-agents.",
+ "key_evidence": [],
+ "sub_variants": [],
+ "merged_from": [
+  "academic: Public-baseline statistical models",
+  "adjacent-transfer: Scientific-ensemble edge in niche count markets",
+  "adjacent-transfer: Macro nowcasting for economic-data ladders",
+  "academic: Domain x horizon x trade-size recalibration model",
+  "adjacent-transfer: Domain calibration tilts",
+  "adjacent-transfer: Forecast-to-bet conversion layer"
+ ],
+ "seed": "4 statistical / quantitative models",
+ "n": "20",
+ "band": "established",
+ "file": "20-statistical-mispricing-models.md",
+ "critic_notes": [],
+ "raw_discovery_candidates": [
+  {
+   "name": "Public-baseline statistical models in categories where the crowd loses to simple statistics",
+   "one_line": "Target categories where papers show the market is beaten by free public baselines (infectious-disease counts, some macro releases) and avoid ones where a good model merely ties the market (esports, liquid sports).",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Build or ingest established public forecasts (CDC FluSight ensemble, simple time-series baselines for measles counts, nowcasts for macro prints) and convert them to bucket probabilities for the corresponding range markets. Trade only where forecast-combination tests put zero weight on the market. Use the negative results as a filter: a careful paired-comparison model for League of Legends only matched Polymarket's log-loss, and LLMs lost money on weather.",
+   "edge_source": "Thin, hobbyist-dominated niche markets ignoring domain-standard quantitative forecasts.",
+   "why_might_beat_market": "The inefficiency is documented against published baselines, and these markets attract little professional capital.",
+   "evidence": [
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&start=0&max_results=100&sortBy=submittedDate&sortOrder=descending",
+     "title": "arXiv listing: Prediction Markets Underperform Simple Baselines For Infectious Disease Forecasting (Dudley, Magdaleno), arXiv 2605.11220",
+     "date": "2026-05-11",
+     "quality": "paper",
+     "supports": "Polymarket/Kalshi disease markets were outperformed by simple statistical baselines for measles and dominated by the FluSight ensemble for influenza; optimal forecast combinations put zero weight on the market (abstract-level)."
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&start=0&max_results=100&sortBy=submittedDate&sortOrder=descending",
+     "title": "arXiv listing: Pre-game paired-comparison modeling of professional League of Legends map outcomes (Guan, Tung), arXiv 2609.08060",
+     "date": "2026-09-07",
+     "quality": "paper",
+     "supports": "Negative control: walk-forward model log-loss 0.2207-0.2215 was statistically indistinguishable from Polymarket's on 928 matched maps - no edge in esports moneylines."
+    },
+    {
+     "url": "https://arxiv.org/html/2604.07355v1",
+     "title": "Prediction Arena (Zhang et al.), arXiv",
+     "date": "2026-03-28",
+     "quality": "hard-data",
+     "supports": "Negative control: LLM agents' weather settlement win rates were 15.8-53.3% and weather drove most Kalshi losses."
+    },
+    {
+     "url": "https://arxiv.org/html/2602.19520v2",
+     "title": "Decomposing Crowd Wisdom (Le), arXiv",
+     "date": "2026-02-23",
+     "quality": "paper",
+     "supports": "Weather markets are overconfident within 48 h of resolution (slopes 0.69-0.97) - a calibrated ensemble forecast should sell extremes there."
+    }
+   ],
+   "failure_modes": "Tiny liquidity and capacity; resolution-source quirks (which CDC table, which revision); evidence is abstract-level for the key paper; weather currently has a 0.05 fee rate.",
+   "cheap_validation": "For every live disease/macro range market, log baseline-implied bucket probabilities vs prices for two months; compute hypothetical maker-entry PnL.",
+   "flags": ""
+  },
+  {
+   "name": "Scientific-ensemble edge in niche count markets (flu hospitalisations, measles cases)",
+   "one_line": "Public expert ensembles such as CDC FluSight strictly dominate Polymarket prices in epidemiology markets. Pipe the ensemble quantiles into the ladders.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Download the weekly FluSight ensemble quantiles, or fit a simple statistical baseline for measles. Convert them to threshold probabilities, and trade or quote the ladder where the market disagrees or is internally inconsistent. The paper finds the optimal forecast combination puts ZERO weight on the market. That is rare, clean evidence that the public model beats the price.",
+   "edge_source": "The participant base has no domain expertise, while a free professional forecast exists. The books are illiquid and logically inconsistent.",
+   "why_might_beat_market": "It is too small for anyone serious, with roughly $8k average volume in health markets per Asterisk. A small bot can take what little there is, and the same pattern of public expert ensemble against market generalises to other niche science and stat-count markets.",
+   "adjacent_grounding": "Forecast-hub ensembles (FluSight and the COVID-19 Forecast Hub) and weather-style ensemble post-processing.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2605.11220",
+     "title": "Prediction Markets Underperform Simple Baselines For Infectious Disease Forecasting",
+     "date": "2026-05-11",
+     "quality": "paper",
+     "supports": "2025-26 Polymarket flu and measles markets. They are competitive only with weak individual FluSight models and dominated by the ensemble. The best combination puts zero weight on markets. Measles markets lose to statistical baselines. Impossible cumulative outcomes were priced."
+    },
+    {
+     "url": "https://asteriskmag.com/issues/14/are-prediction-markets-good-for-anything",
+     "title": "Looking at the data behind prediction markets",
+     "date": "2026-04",
+     "quality": "credible-report",
+     "supports": "Health markets attracted about $8,000 of average volume. Capacity is tiny."
+    }
+   ],
+   "failure_modes": "Capacity of tens to hundreds of dollars per market. Data-revision and resolution-definition risk. Ethical criticism of health markets (NPR, August 2026).",
+   "cheap_validation": "One season of paper trading the ensemble against the mid, with logged depth, to size realistic dollars per week.",
+   "flags": "Reputational: betting on disease and clinical outcomes was publicly criticised in 2026."
+  },
+  {
+   "name": "Macro nowcasting for economic-data ladders (CPI, jobs, GDP, Fed)",
+   "one_line": "Run a bank-style nowcast against Polymarket's Economics ladders. Markets are decent on the mean, so the edge is in tails, stale ladders between data releases, and maker rebates.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Maintain a release-calendar-driven nowcast distribution from component data such as gasoline, used cars and rents, plus regional Fed nowcasts and the consensus. Map it onto each threshold ladder. Quote as a maker (25% rebate in Economics) and take only on large divergences (0.05 rate). Kalshi evidence shows the market mean is about as good as the consensus. The distribution, and especially the upper tail after prior surprises, carries extra information. Expect Polymarket to be weaker than Kalshi in this vertical, and use Kalshi as a reference price.",
+   "edge_source": "Better distributional modelling than retail. Faster incorporation of intermediate data releases. Cross-venue reference prices.",
+   "why_might_beat_market": "LLM agents with web search already match regional-Fed and Bloomberg-consensus nowcast accuracy, so a solo team can run hourly nowcasts across 16 indicators at low cost. The vertical gets less attention than sports and crypto.",
+   "adjacent_grounding": "Quant-macro nowcasting (GDPNow, the Cleveland Fed inflation nowcast) and economic-derivatives auctions.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.30040",
+     "title": "The Shape of Macroeconomic Beliefs",
+     "date": "2026-06-29",
+     "quality": "paper",
+     "supports": "Kalshi CPI ladders yield distributions from 30 days to 1 hour before release. The mean is informative. A +0.1 pp lagged surprise raises P(month-on-month above 0.3%) by about 4.7 pp even after controlling for consensus. Upper-tail probabilities predict high-inflation prints when the mean matches the Reuters consensus."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.30110",
+     "title": "Can LLMs Take the Pulse of the Economy? (LiveMacroEval)",
+     "date": "2026-08-31",
+     "quality": "paper",
+     "supports": "Four LLM agents produced hourly nowcasts of 16 US indicators for six months. Accuracy was 'broadly comparable' to regional Fed nowcasts and the Bloomberg consensus, with wide per-indicator variance. It includes a simulated Polymarket-style betting score."
+    },
+    {
+     "url": "https://asteriskmag.com/issues/14/are-prediction-markets-good-for-anything",
+     "title": "Looking at the data behind prediction markets (Dan Schwarz, Asterisk)",
+     "date": "2026-04",
+     "quality": "credible-report",
+     "supports": "Of the 'interpreting news' markets ($1.25B), 85% of volume is on US interest rates. Fed markets are liquid and other macro ladders are thin."
+    },
+    {
+     "url": "https://docs.polymarket.com/polymarket-learn/trading/fees",
+     "title": "Polymarket fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Economics: taker rate 0.05 and maker rebate 25%."
+    }
+   ],
+   "failure_modes": "The market mean already matches the consensus, so you need a genuinely better distribution. Releases are one-shot events with few bets per year, so convergence is slow. There is a risk of leaks or insiders around the data. Non-Fed ladders have low depth.",
+   "cheap_validation": "Score your distribution against Polymarket and Kalshi mids at T-24h and T-1h for the next 6 CPI and NFP releases, using log score per bucket, before risking capital.",
+   "flags": ""
+  },
+  {
+   "name": "Domain x horizon x trade-size recalibration model, net of the settlement discount",
+   "one_line": "Prices are systematically compressed toward 50% in politics and at long horizons (slope 1.45-1.83); recalibrate, then subtract the time-value component before betting.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Fit logistic recalibration slopes per category x time-to-resolution x trade-size cell on resolved contracts; map live prices to recalibrated probabilities (a 0.70 political price one week out maps to ~0.83 on Kalshi's slope). Subtract the venue discount factor D(tau) from the settlement-discount curve, since 48-88% of the near-certainty horizon gradient is pure capital lock-up. Bet only where the residual edge is positive; large political trades are better calibrated signals than small ones on Kalshi (slope gap +0.53).",
+   "edge_source": "Horizon compression and domain-specific under-confidence beyond what time value explains.",
+   "why_might_beat_market": "Combines two 2026 papers that individually mislead: calibration studies overstate the edge by ignoring lock-up; discount studies show exactly how much to remove.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2602.19520v2",
+     "title": "Decomposing Crowd Wisdom: Domain-Specific Calibration Dynamics in Prediction Markets (Le), arXiv",
+     "date": "2026-02-23",
+     "quality": "paper",
+     "supports": "353M trades, 429k contracts to Dec-2025: Kalshi politics slopes 1.34 (0-1h) to 1.83 (2d-1mo); Polymarket politics mean slope 1.45, sports 1.06, crypto 1.06; ECE politics 0.117 vs sports 0.008 and crypto 0.007; weather overconfident within 48h (0.69-0.97); Kalshi politics large-vs-single trade slope gap +0.53 [0.29,0.75]; Polymarket scale effect not robust to market clustering; event-clustered SEs ~50x naive; Polymarket timestamps ~3h noisy."
+    },
+    {
+     "url": "https://arxiv.org/html/2605.31431v1",
+     "title": "When Certainty Is Not Worth It (Gebele, Matthes), arXiv",
+     "date": "2026-05-29",
+     "quality": "hard-data",
+     "supports": "Settlement-discount adjustment reduces the horizon calibration gradient by 47.8-87.6%; calibration-gap MSE improves 20% beyond 180 days."
+    }
+   ],
+   "failure_modes": "Few independent political events (clustered errors are huge); leave-one-domain validation is poor; the effect is an in-sample description of 2021-2025 elections; correlated positions across child markets.",
+   "cheap_validation": "Out-of-sample test on 2026 resolved political markets only: Brier of raw price vs recalibrated vs recalibrated-minus-discount, event-clustered bootstrap.",
+   "flags": ""
+  },
+  {
+   "name": "Domain calibration tilts (political favourites underpriced; category-specific recalibration)",
+   "one_line": "Apply a per-domain recalibration map to prices, for example stretching political prices away from 50%, and bet the difference systematically.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Estimate logistic recalibration slopes by domain, time to resolution and trade size from historical trades. Trade when the recalibrated probability differs from the price by more than costs. The most robust pattern across venues is political-market underconfidence: favourites win more often than priced. Combine this with the sports end-of-game distortion and the low-price favorite-longshot tilt as a portfolio of small statistical tilts, executed with maker orders.",
+   "edge_source": "Persistent behavioural and structural miscalibration that varies by domain.",
+   "why_might_beat_market": "The slopes explain 87% of calibration variance in sample and 71.5% out of sample on Kalshi, so the pattern is stable. It is a many-small-bets strategy that fits a bot. No trading PnL is published.",
+   "adjacent_grounding": "Horse-racing and football calibration-curve betting, and ratings-recalibration systems at sportsbooks.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2602.19520",
+     "title": "Decomposing Crowd Wisdom",
+     "date": "2026-02-23 (rev. 2026-08-04)",
+     "quality": "paper",
+     "supports": "429k contracts on Kalshi and Polymarket. Recalibration slopes explain 87.3% of variance in sample and 71.5% out of sample on Kalshi. Political underconfidence replicates across exchanges. The large-trade effect is not robust on Polymarket."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias ... Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "The bias is robust in Crypto and Politics and absent in Sports. Its magnitude depends on how contracts are grouped."
+    }
+   ],
+   "failure_modes": "A calibration slope is not the same as tradable PnL after spread and lockup. Political samples are dominated by a few correlated election nights. Geopolitics markets are fee-free but also thin and insider-heavy.",
+   "cheap_validation": "An out-of-sample, event-clustered backtest on 2026 data only, with maker-fill assumptions.",
+   "flags": ""
+  },
+  {
+   "name": "Forecast-to-bet conversion layer: 'proper betting' and fractional Kelly with capital recycling",
+   "one_line": "Most accurate forecasters still lose on order-book venues. A sizing rule tied to a proper scoring rule, plus poker and DFS-style bankroll discipline, is a separable component that can be built.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Take any forecast p, from an LLM, a model or an expert, and the price q. Size with the 'proper betting' rule associated with a strictly proper scoring rule, not ad-hoc thresholds. Cap it with fractional Kelly across simultaneous, correlated, capital-locked positions. Public bots use 0.15 Kelly with 5% caps. Prefer resting orders so that capital recycles across many markets. The paper shows this is essentially the only strategy that robustly converts an accuracy edge into profit on a CLOB with enough liquidity.",
+   "edge_source": "Not information. It is the elimination of the execution and sizing leak that makes informed forecasters lose.",
+   "why_might_beat_market": "It plugs directly into the reader's existing agents as a shared module and improves every directional strategy. The live result exists but covers a single month.",
+   "adjacent_grounding": "Kelly and risk-of-ruin bankroll management in poker and DFS, and scoring-rule market makers (LMSR).",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.06166",
+     "title": "When do prophets profit in prediction markets?",
+     "date": "2026-07-07",
+     "quality": "paper",
+     "supports": "A formal equivalence between accuracy under a proper score and profit through 'proper betting'. Across thousands of AI forecasts it is the only strategy that reliably converts accuracy into profit. A month-long live Kalshi deployment returned +80.33% ROI with Sharpe 3.35. That is one month, so treat it as a proof of concept."
+    },
+    {
+     "url": "https://news.ycombinator.com/item?id=48221877",
+     "title": "HN thread on SSRN 6443103",
+     "date": "2026-05-21",
+     "quality": "paper",
+     "supports": "Winners use limit orders and losers use market orders. Limit-order providers recycle capital across markets while directional bettors lock it up. Monthly performance is weakly persistent."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07355",
+     "title": "Prediction Arena: Benchmarking AI Models on Real-World Prediction Markets",
+     "date": "2026-03-28",
+     "quality": "paper",
+     "supports": "57 days live: LLM agents lost 16-30.8% on Kalshi and averaged about -1.1% on Polymarket. The best single run was +6.02%. Forecasting without an execution layer loses."
+    }
+   ],
+   "failure_modes": "It needs a genuine accuracy edge to amplify. The liquidity assumption fails in thin books. A one-month live sample is small. Correlation across event clusters breaks naive Kelly.",
+   "cheap_validation": "Re-run your existing agents' historical signals through proper-betting sizing against your current sizing, on recorded books.",
+   "flags": ""
+  }
+ ]
+}

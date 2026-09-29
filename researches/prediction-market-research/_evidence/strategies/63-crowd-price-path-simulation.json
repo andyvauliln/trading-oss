@@ -1,0 +1,383 @@
+{
+ "slug": "crowd-price-path-simulation",
+ "name": "Trade the crowd, not the outcome: trader-population simulation and price-path forecasting",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "seed_category": "agent-society simulation forecasting",
+ "one_line": "Model who trades a market and how they under- or over-react. Use wallet-calibrated archetypes, LLM cohort reads of news, or a supervised belief-dynamics model. Trade the expected drift or reversal over hours to days, flat on the outcome.",
+ "scope": "Cover price-path strategies with a fast-label feedback loop. A wallet-archetype agent-based replica of the order book: longshot buyers, momentum chasers, makers. Its behavioural core should be fitted statistically, because prompt personas fail. An LLM cohort debate on scheduled catalysts. Social-World-Model supervised baselines. A proxy-resolved p_7d target, in the manner of Numinous scoring. Under-reaction drift against a computable benchmark, where price adjusts 0.64-for-one. Fading dislocations of 5 points or more in low-prominence markets. Evidence that crowd bias is persistent and identifiable: sub-10c purchases lose 19.3c per dollar, the top decile of longshot buyers makes 26.6% of next month's low-price purchases, and 8 of 14 wallet parameters are stable. Evidence on persistence: field-experiment price shocks were still visible after 60 days. Strong negatives: StakeBench shows no LLM beats naive odds projection, only ~10% of Polymarket moves are attributable to news, feed-inferred trade direction is 59% accurate so on-chain fills are required, and fees bite on round trips. Staged validation: event study first, then a supervised baseline, and the simulator only if it adds accuracy.",
+ "sub_variants": [
+  "Wallet-archetype ABM with statistical behaviour and an LLM news reader",
+  "LLM cohort debate on catalyst reaction",
+  "Supervised SWM-style next-move model",
+  "Proxy-resolved 7-day-price internal scoring",
+  "Benchmark-gap under-reaction drift (0.64-for-one)",
+  "Dislocation fade in low-prominence markets"
+ ],
+ "merged_from": [
+  "Simulated trader ecology: model the Polymarket crowd, not the event",
+  "Trader-population simulator: behaviour-cloned Polymarket wallet archetypes",
+  "Forecast the crowd: adversarial trader-cohort simulation for price-path trades",
+  "Trade the crowd, not the outcome: agent-population simulation of the price path",
+  "Proxy-resolved internal market: forecast the Polymarket price 7 days ahead",
+  "Reflexive drift trading: model how the Polymarket crowd updates"
+ ],
+ "flags": "Strictly passive. Seeding headlines, spoofing, or creating dislocations to attract news citations is market manipulation. Scraping comments may breach ToS. Do not de-anonymise wallets.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2609.12878",
+   "note": "588M trades: persistent, identifiable longshot flow. Absent in Sports."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.11482",
+   "note": "SWM-bench: an LLM belief-dynamics model beats time-series models on Kalshi. No PnL test. ~10% of Polymarket moves are news-attributed."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.26074",
+   "note": "StakeBench negative: no LLM beats the naive baseline on collective odds projection."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.07811",
+   "note": "Only ~0.64 of a benchmark move is priced contemporaneously. The rest drifts in. Worse in illiquid books."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.06005",
+   "note": "44,976 dislocations of 5 points or more from one-sided flow. It costs $0.7-1.0M to move a prominent market 5 points."
+  },
+  {
+   "url": "https://arxiv.org/abs/2503.03312",
+   "note": "A field experiment on 817 markets: price shocks were still visible after 60 days."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.04217",
+   "note": "Polymarket-v1 archive: 1.20B trades with ground-truth aggressor side. The tick rule is only ~50% accurate."
+  },
+  {
+   "url": "https://raw.githubusercontent.com/numinouslabs/numinous/main/docs/scoring-system.md",
+   "note": "A live network scores agents on the Polymarket price 7 days later. The proxy target is already in production."
+  }
+ ],
+ "n": "63",
+ "band": "speculative",
+ "file": "63-crowd-price-path-simulation.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Simulated trader ecology: model the Polymarket crowd, not the event",
+   "one_line": "Agent archetypes calibrated on wallet-level history forecast how the crowd will misprice a scheduled catalyst. Place resting orders at the predicted overshoot.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1. Cluster wallets from public trade data into archetypes: longshot buyers, favorite chasers, news-reactive bots, market makers, whales.\n2. Build LLM agents per archetype. Their budgets, attention and biases are fitted to the observed behaviour of each cluster.\n3. Before a scheduled catalyst (a debate, a data release, a court date), feed the agents candidate headlines. Simulate order flow against a replica book.\n4. Estimate the overshoot magnitude and decay per headline type, and which longshots will attract retail flow.\n5. Pre-place maker orders at the overshoot levels, or sell into the predicted longshot demand.\n6. Unwind on the simulated decay schedule.",
+   "edge_source": "Behavioural regularities of the participant population. LLM agents extend these to novel headlines, where a purely statistical model has no precedent.",
+   "why_might_beat_market": "This side-steps the strongest negative finding, that LLMs forecast events worse than markets. It forecasts the traders instead.\n\nHard evidence that the crowd is biased:\n- Across 588M Polymarket trades, purchases under 10c lose 19.3c per dollar.\n- The top decile of longshot-buying accounts drives 26.6% of the next month's low-price purchases.\n- The bias is robust in Politics and Crypto and absent in Sports.\n\nCaveats:\n- A plain statistical fade or favorite-longshot model may capture nearly all of this at zero LLM cost.\n- Dubach 2026 warns that trade direction inferred from public feeds matches on-chain records only 59% of the time. Wallet-level calibration needs on-chain data.",
+   "adjacent_grounding": "LLM agent-based market simulation:\n- TwinMarket (arXiv 2502.01506).\n- Maresca, LLM traders in simulated prediction markets (https://arxiv.org/abs/2602.21091).\n\nMicrostructure evidence:\n- Dubach (arXiv 2604.24366).\n- Cardozo and Rivero-Wildemauwe (https://arxiv.org/abs/2609.12878).\n\nData: Jon-Becker/prediction-market-analysis, a 36GB Polymarket and Kalshi dataset.\n\nPartial precedent: PolFish uses \"200 built-in market-participant archetypes\", but as forecasters of the event. They are not calibrated models of the crowd.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "Quantifies exploitable crowd bias and its concentration in identifiable account deciles. Category dependence: Politics and Crypto yes, Sports no."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.21091",
+     "title": "Can Interest-Bearing Positions Solve the Long-Horizon Problem in Prediction Markets? (Maresca)",
+     "date": "2026-02-24",
+     "quality": "paper",
+     "supports": "Agent-based prediction-market simulation with LLM traders is feasible. Measured a 0.72pp pricing bias, with participation rising from 17% to 62% of wealth under interest."
+    },
+    {
+     "url": "http://arxiv.org/abs/2502.01506v5",
+     "title": "TwinMarket: A Scalable Behavioral and Social Simulation for Financial Markets",
+     "date": "2025-02-03",
+     "quality": "paper",
+     "supports": "LLM agents with behavioural profiles reproduce emergent group phenomena such as bubbles in simulated markets."
+    },
+    {
+     "url": "http://arxiv.org/abs/2604.24366v2",
+     "title": "The Anatomy of a Decentralized Prediction Market: Microstructure Evidence from the Polymarket Order Book",
+     "date": "2026-04-27",
+     "quality": "paper",
+     "supports": "Covers 30B order-book events over 52 days and finds a longshot spread premium. Public-feed trade direction matches on-chain records only 59% of the time, which is a calibration-data caveat."
+    },
+    {
+     "url": "https://github.com/Jon-Becker/prediction-market-analysis",
+     "title": "prediction-market-analysis dataset",
+     "date": "2025-11-22 (pushed 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "A 36GB public Polymarket and Kalshi trade dataset usable for archetype calibration. Its README lists papers including \"Who Profits from Prediction Markets? Execution, not Information\". I saw that title in the README only. I did not fetch the paper."
+    },
+    {
+     "url": "https://github.com/RabiaAqel/PolFish",
+     "title": "PolFish",
+     "date": "2026-03-25",
+     "quality": "self-reported",
+     "supports": "Uses 200 market-participant archetypes in MiroFish debates for Polymarket paper trading. Reports $0.00-$0.54 per prediction and no accuracy results."
+    }
+   ],
+   "failure_modes": "- LLM traders are more rational and more homogeneous than real retail.\n- The archetype mix shifts with fee changes and the US venue rollout.\n- Simulated books ignore real market-maker bots.\n- Overshoots are increasingly competed away by latency bots.\n- The wallet data has direction-inference errors.",
+   "cheap_validation": "- Run an event study on 200 scheduled catalysts.\n- Test A: does the simulated overshoot rank-correlate with realised 1h-to-24h reversion? Pass: Spearman of at least 0.2.\n- Test B: does a sim-selected fade beat a fade-everything baseline after spread and fees? Pass: positive incremental paper P&L with a bootstrap 90% CI above 0.\n- If the statistical baseline matches the sim, ship the baseline and drop the agents.",
+   "flags": "This is strictly passive positioning. Seeding headlines or spoofing to trigger the simulated crowd would be market manipulation."
+  },
+  {
+   "name": "Trader-population simulator: behaviour-cloned Polymarket wallet archetypes to forecast the price path, not the outcome",
+   "one_line": "Build an agent-based replica of who actually trades a market (longshot buyers, contrarians, momentum wallets, makers) from on-chain histories. Use it to predict overshoot and reversal around scheduled news, and to set LP spreads.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical (the components exist separately: wallet-profile extraction, LLM experimental asset markets, full trade archives. Nobody was found combining them to predict Polymarket price paths.)",
+   "mechanism": "1) From the complete trade archive, cluster wallets active in the target market into behavioural archetypes. Parameters include contrarian score, belief-update inertia, loss response, longshot preference, size and time-of-day.\n2) Instantiate agents per archetype in proportion to their historical share of flow. Because prompt-level personas fail, use fitted parametric policies or small fine-tuned models for behaviour. Use an LLM only to read the news item and emit each archetype's belief shock.\n3) Simulate the CLOB response to a scheduled event under each outcome branch (debate, data print, court ruling) to get a distribution of price paths: initial jump, overshoot, and decay half-life.\n4) Trade plan: pre-place maker orders at the simulated overshoot levels to fade retail over-reaction. In branches where the simulation predicts one-sided informed flow, widen or withdraw quotes ahead of the event.\n5) Recalibrate archetype shares per category each week.",
+   "edge_source": "Predictable behavioural composition of order flow, such as the persistence of longshot buyers and the disposition effect, rather than better outcome forecasting.",
+   "why_might_beat_market": "The population is measurably persistent.\n- In Nous, 8 of 14 wallet parameters are temporally stable, and the contrarian score has a split-half ICC of about 0.9.\n- The top longshot-buying decile supplies 26.6% of next-month low-price purchases (Cardozo & Rivero-Wildemauwe).\n- Purchases below 10c lose 19.3c per dollar.\n- LLM agent markets reproduce classic experimental bubbles and the disposition effect (Ouyang & Sui).\n\nIf flow composition is predictable, short-horizon over-reaction is too. Honest limit: StakeBench shows current LLMs are poor at anticipating traders' next actions. Ten of 15 models collapse to one or two action labels. So the behavioural core must be statistical, not an LLM. Predictable reversal may already be harvested by existing market makers.",
+   "adjacent_grounding": "Agent-based computational economics and experimental finance with LLM agents:\n- Ouyang & Sui, 'Dissecting AI Trading: Behavioral Finance and Market Bubbles' (https://arxiv.org/abs/2604.18373, 2026-04-20): LLM auction-market agents show the disposition effect and extrapolative beliefs. Dynamics match Smith et al. (1988). Prompt interventions change bubble size.\n- Maresca, LLM-trader agent-based simulation of prediction markets in a 2x2 design (https://arxiv.org/abs/2602.21091, 2026-02-24).\n- Nous wallet profiles (https://arxiv.org/abs/2606.13038).\n- StakeBench (https://arxiv.org/abs/2605.26074, 2026-05-25).\n- Polymarket-v1 Database: 1.20B trades, 1.30M markets, ground-truth aggressor side (https://arxiv.org/abs/2606.04217, 2026-06-02).\n- Favorite-longshot persistence (https://arxiv.org/abs/2609.12878, 2026-09-11).",
+   "failure_modes": "- Reflexivity: once traded on, the pattern decays.\n- Archetype shares shift abruptly when a whale or a new bot cohort enters.\n- Simulation fidelity cannot be validated except by its predictions.\n- The Nous profile-to-profit correlations 'do not survive behavioural-confound controls'.\n- Classic trade-direction inference fails on Polymarket (about 59% against about 80% on Nasdaq, per Dubach 2604.24366). On-chain aggressor labels are required.\n- Heavy engineering for a solo team.",
+   "cheap_validation": "Start with no LLM at all. Take 200 scheduled-news events from the archive. Fit archetype shares on data before each event and predict the sign of the 24h post-jump drift.\n\nPass: directional hit rate > 55% at n >= 200. It must also beat the naive rule 'fade any >= 5-point one-sided dislocation' (universe: the 44,976 dislocations in Ibrahim & Zaki) in simulated maker PnL after fees.\n\nOnly then add LLM news-reading. Fail means the flow composition adds nothing beyond a naive fade.",
+   "flags": "Wallet-level behavioural profiling uses public on-chain data. Avoid de-anonymising individuals.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.13038",
+     "title": "Nous (arXiv)",
+     "date": "2026-06-11",
+     "quality": "paper",
+     "supports": "Across 100 Polymarket wallets, 8 of 14 behavioural parameters are temporally stable (contrarian score ICC about 0.9). Wallets are identifiable from their profiles (17-22% top-1 against 1% chance). Prompt injection of profiles fails, and the author recommends fine-tuning or activation steering."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.18373",
+     "title": "Dissecting AI Trading: Behavioral Finance and Market Bubbles (arXiv)",
+     "date": "2026-04-20",
+     "quality": "paper",
+     "supports": "LLM agents in experimental asset markets reproduce the disposition effect, extrapolation and Smith-et-al-style bubble dynamics. Excess demand predicts future prices."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket (arXiv)",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "588M trades and 2.48M accounts. Purchases under 10c lose 19.3c per dollar. The top longshot-tendency decile makes 26.6% of next-month low-price purchases, which is persistent and predictable flow."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.26074",
+     "title": "StakeBench (arXiv)",
+     "date": "2026-05-25",
+     "quality": "paper",
+     "supports": "560,876 comments linked to verified positions. 10 of 15 LLMs collapse to one or two labels when anticipating traders' future actions. No model consistently beat the baselines on odds projection."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.04217",
+     "title": "Polymarket-v1 Database (arXiv; dataset on Hugging Face)",
+     "date": "2026-06-02",
+     "quality": "hard-data",
+     "supports": "Complete on-chain archive for 2022-11-21 to 2026-04-28: 1.20B trades, 1.30M markets, 100% ground-truth aggressor direction. The tick rule is only 49.83% accurate."
+    }
+   ]
+  },
+  {
+   "name": "Forecast the crowd: adversarial trader-cohort simulation for price-path trades",
+   "one_line": "Agents role-play the cohorts that actually move a Polymarket book and debate how price will react to scheduled information over the next few days; the bot trades expected drift and exits before resolution, gaining a feedback loop measured in days instead of months.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) For markets with an upcoming information event, cohort agents (partisan retail, news-reactive momentum, quant arbitrageur, whale hedger) each state how they would trade on each branch; an opposing analyst argues the move is already priced. (2) Judge outputs a distribution for price at t+N days. (3) Enter via maker orders when expected drift exceeds round-trip cost; exit on time or target, never hold to resolution. (4) Label = realised price at t+N, so hundreds of labels per month are available to recalibrate the judge and cohort weights (pre-resolution signals). (5) Use large one-sided dislocations as a special case: debate whether flow is informed or attention-seeking before fading or following.",
+   "edge_source": "Predictable belief dynamics (under/over-reaction to scheduled news, attention cycles, media citation feedback) rather than event knowledge; fast ground truth enables real calibration.",
+   "why_might_beat_market": "Social World Model work shows LLMs can predict post-event belief/price evolution better than time-series foundation models (SOTA on Kalshi, competitive on Polymarket, 12k data points); Milkyway shows pre-resolution signals carry learnable information; Polymarket has 44,976 documented >5-pt dislocations from concentrated one-sided trading and moving a prominent market 5 pts costs ~$0.7-1.0M, so flow-driven moves are common. Honest limits: StakeBench found no LLM beat a naive baseline at projecting collective odds and only 0.506-0.599 accuracy at reading position side from comments; prices are close to martingales; two fees if taking both ways.",
+   "adjacent_grounding": "Computational social science / belief dynamics: Social World Models https://arxiv.org/abs/2606.11482 ; pre-resolution signals https://arxiv.org/abs/2604.15719 ; price dislocations and epistemic leverage https://arxiv.org/abs/2609.06005 ; StakeBench (negative result) https://arxiv.org/abs/2605.26074 ; news priced-in dynamics in equities https://arxiv.org/abs/2608.14014 ; structural volatility model for prediction-market prices https://arxiv.org/abs/2607.08199 . No Polymarket trading implementation found.",
+   "failure_modes": "Near-martingale prices leave little drift; regime-dependence; role-play agents share one model's worldview (monoculture); overfitting to abundant but noisy short-horizon labels; manipulation-driven moves misread as information.",
+   "cheap_validation": "Backtest on 100 scheduled events: predict sign and size of the 3-day price change; PASS: directional accuracy >= 55% on moves with |delta| > 3c (n >= 200) and simulated net PnL > 0 with maker-entry/taker-exit costs; FAIL if accuracy is within noise of 50% or profit disappears after costs.",
+   "flags": "Scraping comments/social data may breach site ToS; do not trade to create dislocations (manipulation).",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.11482",
+     "title": "Building Social World Models with Large Language Models",
+     "date": "2026-06-09",
+     "quality": "paper",
+     "supports": "SWM-bench (12k+ points from Kalshi/Polymarket): LLM social-belief model beats time-series foundation models at predicting belief evolution after events."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.26074",
+     "title": "StakeBench: Evaluating Language Understanding Grounded in Market Commitment",
+     "date": "2026-05-25",
+     "quality": "paper",
+     "supports": "Counter-evidence: 15 LLMs on 560,876 comments / 2,261 markets; no model consistently beats naive baseline for collective-odds projection."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.06005",
+     "title": "Price Dislocations, News Citations, and Epistemic Leverage on Polymarket",
+     "date": "2026-09-05",
+     "quality": "hard-data",
+     "supports": "173.7M trades: 44,976 dislocations >5 pts from concentrated one-sided trading; citation rate +33% after dislocation; $0.7-1.0M per five-point move."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.15719",
+     "title": "Harnessing Pre-Resolution Signals for Future Prediction Agents",
+     "date": "2026-04-17",
+     "quality": "paper",
+     "supports": "Learning from evolving evidence and repeated forecasts before resolution improves agents on FutureX/FutureWorld."
+    }
+   ]
+  },
+  {
+   "name": "Trade the crowd, not the outcome: agent-population simulation of the price path",
+   "one_line": "Simulate how Polymarket's actual trader mix will react to a scheduled or just-broken event, predict overshoot/reversal over the next hours-days, and trade the path while flat on the outcome.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) Calibrate a trader population from on-chain data: shares of longshot gamblers, partisans, momentum chasers, makers, arb bots, with empirically fitted reaction functions (not pure LLM personas). 2) For a catalyst (debate, verdict, data print, viral headline) an LLM generates the information each persona type would actually see (English headlines, X chatter, Polymarket comments) and the belief update each would make. 3) Run many simulated continuous-double-auction paths to get a distribution of 1h/24h price changes conditional on event type, plus a cheaper supervised baseline (SWM-style next-day move classifier and a 'will this move be cited in news?' classifier). 4) Trade only when simulation and baseline agree on overshoot or under-reaction: fade with limit orders into the spike, or pre-position for attention inflow; exit on time, not on outcome. 5) Score every prediction against the martingale baseline.",
+   "edge_source": "Behavioural: systematic over/under-reaction of a retail-heavy crowd, and reflexive attention flows (price move -> news citation -> more flow).",
+   "why_might_beat_market": "Prices are not quickly corrected in thin markets: Rasooly & Rozzi randomly shocked 817 markets and effects were visible 60 days later. Tsang & Yang document a full reversal after the 2024 debate. Ibrahim & Zaki: 44,976 dislocations (>=5 points on concentrated one-sided flow); citation rate rises ~33% afterwards; it costs only ~$0.7-1.0M to move a prominent market 5 points and get cited. Yu et al.'s Social World Model reaches 0.845 three-way directional accuracy on Kalshi's news-attributed subset vs 0.42-0.53 for time-series models. Honest assessment: this probably does NOT work generically - SWM has no PnL test, covers ~10% of Polymarket moves, and StakeBench finds no LLM beats the naive odds-direction baseline on collective odds projection. The plausible niche is scheduled, high-attention catalysts in retail-heavy markets.",
+   "adjacent_grounding": "Agent-based computational economics and LLM market simulations: Lopez-Lira, 'Can Large Language Models Trade?' (https://arxiv.org/abs/2504.10789); Smart et al., ABM of whale manipulation with herding (https://arxiv.org/abs/2601.20452); Persona-Trained Monte Carlo (proposed, not implemented: https://arxiv.org/abs/2606.29556); OASIS-based MiroFish swarm engine, 74k GitHub stars but zero quantitative validation in its README (https://github.com/666ghj/MiroFish); truthlayer has a toy MiroShark 'crowd-reaction simulation' button for arbs. Social World Models (https://arxiv.org/abs/2606.11482).",
+   "failure_modes": "Homogeneous agents: ten LLM agents behave like ~1.4 independent ones (Begin et al.); prompt-level persona injection does not create real diversity (Qian); LLM user simulators show 'behavioural compression' - over-predict hold, under-predict sells (He et al.); no ground truth for persona mix; compute cost per event; path predictions are dominated by the martingale baseline most of the time; being flat on outcome is impossible if a second shock lands.",
+   "cheap_validation": "Do NOT build the simulator first. Step 1: event study on 2025-2026 data - for the top-500 dislocations in liquid markets, measure 1h/24h continuation vs reversal by LLM-labelled event type (information vs attention). Pass to step 2 only if some label shows |mean 24h reversal| >= 2 points with t>3. Step 2: supervised baseline vs martingale on held-out 2026 H2: directional accuracy >=60% on flagged events and positive PnL after fees in paper trading over >=100 events. Only then test whether an agent simulation adds >=3 points of accuracy over the supervised baseline.",
+   "flags": "Never generate the dislocation yourself - moving a price to trigger news citations and trading the reaction is manipulation.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2606.11482",
+     "title": "Building Social World Models with Large Language Models (Yu, Zhao, Lin, You)",
+     "date": "2026-06-09",
+     "quality": "paper",
+     "supports": "SWM-bench 12k+ points from Kalshi/Polymarket; next-day move prediction; 0.845 directional accuracy on Kalshi attributed subset; no trading evaluation; weak on Polymarket."
+    },
+    {
+     "url": "https://arxiv.org/abs/2503.03312",
+     "title": "How manipulable are prediction markets? (Rasooly, Rozzi)",
+     "date": "2025-03-05",
+     "quality": "paper",
+     "supports": "817-market field experiment; price shocks persist 60 days, fade partially; thin markets most manipulable."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.06005",
+     "title": "Price Dislocations, News Citations, and Epistemic Leverage on Polymarket (Ibrahim, Zaki)",
+     "date": "2026-09-05",
+     "quality": "paper",
+     "supports": "173.7M trades; 44,976 dislocations; ~33% higher citation rate after; $0.7-1.0M to move 5 points and get cited."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.26074",
+     "title": "StakeBench (Pei et al.)",
+     "date": "2026-05-25",
+     "quality": "paper",
+     "supports": "No model consistently beats naive odds-direction baseline; 10 of 15 models collapse to 1-2 action labels."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.26583",
+     "title": "Preference Optimization Drives Monoculture in LLM Prediction Markets (Begin et al.)",
+     "date": "2026-06-25",
+     "quality": "paper",
+     "supports": "rho=0.70, N_eff ~1.4, flat from N=5 to 40; cross-model diversity reduces rho to 0.40."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.15727",
+     "title": "Are LLMs Good Financial User Simulators? (He et al.)",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "120-person paper-trading study; behavioural compression in simulated traders."
+    },
+    {
+     "url": "https://github.com/666ghj/MiroFish",
+     "title": "MiroFish swarm intelligence engine",
+     "date": "2026-09",
+     "quality": "marketing",
+     "supports": "Popular (74.1k stars) multi-agent 'predict anything' engine on OASIS; README contains no backtests or Brier scores."
+    }
+   ]
+  },
+  {
+   "name": "Proxy-resolved internal market: forecast the Polymarket price 7 days ahead instead of the outcome (drift trading with fast capital turnover)",
+   "one_line": "Score and select agents on the future price as a self-resolving proxy target. This gives weekly feedback, makes long-dated markets trainable, and produces a drift signal that does not lock capital until resolution.",
+   "category": "Directional trading",
+   "maturity": "Emerging as a scoring rule (Numinous SN6 uses exactly this 7-day-price target against Polymarket). Purely theoretical as a disclosed trading strategy.",
+   "mechanism": "1) Each agent forecasts p_7d, the Polymarket mid seven days ahead (or the outcome if resolution comes first), in addition to the terminal probability.\n2) The internal market settles weekly on the realised price. Agents' bankrolls and weights update 10-50x faster than outcome-based scoring allows, especially for markets dated months out.\n3) Signal: expected drift = aggregated p_7d - current mid. Enter with maker orders in the drift direction when |drift| exceeds a threshold. Exit at day 7 or on reaching the target. Do not hold to resolution.\n4) Combine with the terminal-probability crowd. The best candidates are trades where the drift and terminal views agree.\n5) For long-horizon markets, use the final, best-informed agent as the reference, as in the self-resolving-market design, to bootstrap when even the 7-day price is noisy.",
+   "edge_source": "Slow information diffusion and predictable flow. Prices should be martingales, so any predictability comes from under-reaction, longshot demand and the capital cost of long horizons.",
+   "why_might_beat_market": "Documented non-martingale structure exists.\n- Longshot purchases lose 19.3c per dollar (flow-weighted) on Polymarket.\n- Long-horizon contracts carry opportunity-cost bias. Maresca's LLM-trader simulation puts it at 0.72pp, smaller than theory suggested, so the idea is weak there.\n- LLM skill is concentrated early in market life, which is where the price still has far to travel.\n\nWeekly settlement lets a small team reach the 350-1,400-sample power bar in weeks instead of quarters. Honest limit: predicting the crowd is a beauty contest. Agents may learn momentum, which is tradeable by anyone. After maker/taker costs, weekly drift in liquid markets is probably near zero. Expect any alpha to sit in mid-liquidity markets only.",
+   "adjacent_grounding": "Mechanism design for unverifiable outcomes:\n- Srinivasan, Karger & Chen, 'Self-Resolving Prediction Markets for Unverifiable Outcomes' (https://arxiv.org/abs/2306.04305, 2023, rev. 2025-02) [pre-2025 origin]: pay agents against a better-informed final reference agent. Truthful reporting is a perfect Bayesian equilibrium.\n- Osipov & Osipov, self-resolving play-money markets (arXiv 2204.13424; 2601.14047).\n- Wang & Pfeiffer, proxy forecasting (arXiv 2303.10857, 2023) [pre-2025].\n- Numinous scoring rule (GitHub doc).\n- Maresca (https://arxiv.org/abs/2602.21091, 2026-02-24).\n- Favorite-longshot evidence (https://arxiv.org/abs/2609.12878).",
+   "failure_modes": "- Keynesian beauty-contest dynamics: agents learn to predict the herd, which can detach from the truth.\n- Momentum crowding.\n- 7-day price noise swamps the signal in thin markets.\n- Two-sided transaction costs every week (taker feeRate x p(1-p) per side if not filled as maker).\n- Regime breaks around scheduled events.\n- The proxy target can be gamed if your own trading moves the price you are scored on.",
+   "cheap_validation": "Use price histories from the trade archives; no LLM is needed for the baseline. Build the martingale benchmark, then test whether the agents' p_7d beats 'price today' as a predictor of the price in 7 days, using the Numinous score S.\n\nPass:\n- mean S < 0 with a CI excluding 0;\n- rank IC > 0.05 on >= 1,000 market-weeks;\n- it beats a 1-week momentum baseline;\n- simulated maker-entry PnL is positive after fees.\n\nFail if the skill disappears once markets with top-decile liquidity are removed and none remains elsewhere, or if it exists only in markets under $5k depth.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://raw.githubusercontent.com/numinouslabs/numinous/main/docs/scoring-system.md",
+     "title": "Numinous scoring-system doc",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "A live network scores AI agents on beating the Polymarket price as a predictor of the market price 7 days later (or the outcome if resolved). A proxy-resolved target already exists in production."
+    },
+    {
+     "url": "https://arxiv.org/abs/2306.04305",
+     "title": "Self-Resolving Prediction Markets for Unverifiable Outcomes (arXiv)",
+     "date": "2023-06-07 (rev. 2025-02-18)",
+     "quality": "paper",
+     "supports": "An incentive-compatible market that pays agents by cross-entropy to a better-informed final reference agent. It aggregates information without observing the outcome."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.21091",
+     "title": "Can Interest-Bearing Positions Solve the Long-Horizon Problem in Prediction Markets? (arXiv)",
+     "date": "2026-02-24",
+     "quality": "paper",
+     "supports": "An LLM-trader agent-based simulation. The long-horizon pricing bias is only 0.72pp, and paying interest removes about 83% of the horizon effect. So horizon mispricing is smaller than commonly assumed."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket (arXiv)",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "Systematic non-martingale structure: purchases under 10c lose 19.3c per dollar and purchases at or above 90c earn 0.83c. The size depends on how contracts are grouped, and the bias is absent in sports."
+    }
+   ]
+  },
+  {
+   "name": "Reflexive drift trading: model how the Polymarket crowd updates, not what will happen",
+   "one_line": "Predict the next price move from the gap between a fast benchmark probability and the crowd's partial (about 0.64-for-one) reaction, with wallet-level behaviour models telling you who is still to trade.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "1) For event families with a computable benchmark (in-play sports state models, vote-count models on election night, poll-average models, data releases) compute a minute-by-minute benchmark probability. 2) Measure the under-reaction gap = benchmark change minus price change; Angelini & De Angelis find only ~0.64 of the benchmark move shows up contemporaneously and the rest drifts in over the following minutes, more in illiquid books and for less salient signals. 3) Enter in the direction of the residual gap, exit on convergence or after a fixed horizon; never hold to resolution (this is a path trade). 4) Add a slower layer: a 'social world model' of belief dynamics (SWM-bench) and wallet-level behaviour predictors (BehaviorBench: 2,000 wallets, 1.49M trade instances) to forecast which cohorts have not yet reacted; comment-stance models (StakeBench) as a weak feature. 5) Inverse leg: after one-sided flow dislocates a price >=5 points with no benchmark change, fade it - but only in low-prominence markets where news coverage will not validate the move.",
+   "edge_source": "Documented gradual price discovery driven by attention and trading frictions; heterogeneity in who reacts when.",
+   "why_might_beat_market": "It does not require being smarter than the market about the outcome, only faster than the median participant at applying public information, and the drift is documented with out-of-sample benchmarks. It also turns the owner's existing LP inventory problem into a signal: skew quotes toward the predicted drift. Honest limits: the abstract does not name the venue or give a net-of-cost profit; taker fees (up to 1.25-1.75c/share at 50c) and the 50ms-250ms taker delay eat minute-scale edges, so this likely only works as maker skew or in fee-free geopolitics; LLMs predict trader actions barely above chance (StakeBench directed accuracy 0.506-0.599) and profile injection gave no gains (Nous).",
+   "adjacent_grounding": "Angelini & De Angelis, 'When Do Markets Fully Process Public Information?' (arXiv 2606.07811): 0.64-for-one contemporaneous adjustment, predictable drift, worse in low liquidity. Yu et al., 'Building Social World Models with LLMs' (arXiv 2606.11482, ICML 2026): SWM-bench of 12k belief-transition points from Kalshi/Polymarket; beats time-series foundation models on Kalshi, 'competitive' on Polymarket. BehaviorBench (arXiv 2606.02798, Salesforce): 2,000 wallets, 141,445 belief and 1,485,972 trade instances; personalisation helps belief more than trade prediction. Ibrahim & Zaki (arXiv 2609.06005): 44,976 >=5-point dislocations from one-sided flow; citation rate +33% afterwards; ~$0.7-1.0M to move a market 5 points and get covered. Smart et al. ABM (arXiv 2601.20452): whales shift price in proportion to capital share; persistence rises with herding and slow learning. Classic analogue: post-earnings-announcement drift and Keynesian beauty-contest models.",
+   "failure_modes": "Benchmark model wrong (you are trading your own error); fees and latency; drift already harvested by in-play sports desks (Jump, SIG et al. are on the venue); regime change when professional liquidity enters; fading a dislocation that was informed (insider flow moves price 7-12x more per dollar per evidence pack E4, not re-fetched); belief-dynamics models overfit 12k points.",
+   "cheap_validation": "Replay test on own recorded order books (the team already logs books): pick one family with an unambiguous public benchmark (e.g. election-night count models or NBA win-probability), compute gap series, simulate maker-skew and taker entries with real fees and queue assumptions. Metric: net PnL per $ traded and hit rate of drift direction over >=500 signal events. Pass: drift direction hit rate >=56% and positive net PnL as maker after adverse-selection haircut; fail if only profitable at mid. Then 4 weeks live with $20 clips.",
+   "flags": "Fading or riding dislocations is fine; creating them to get news coverage is manipulation (ToS conduct code, per evidence pack E9, not re-fetched).",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.07811",
+     "title": "When Do Markets Fully Process Public Information? Evidence from Real-Time Prediction Markets",
+     "date": "2026-06-05",
+     "quality": "paper",
+     "supports": "0.64-for-one contemporaneous adjustment, subsequent drift, liquidity and salience dependence"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.11482",
+     "title": "Building Social World Models with Large Language Models",
+     "date": "2026-06-09 (ICML 2026)",
+     "quality": "paper",
+     "supports": "belief-dynamics model trained on 12k Kalshi/Polymarket points beats time-series foundation models"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.02798",
+     "title": "BehaviorBench: Modeling Real-World User Decisions from Behavioral Traces",
+     "date": "2026-06-01",
+     "quality": "paper",
+     "supports": "2,000 prediction-market wallets; belief more predictable than trades"
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.06005",
+     "title": "Price Dislocations, News Citations, and Epistemic Leverage on Polymarket",
+     "date": "2026-09-05",
+     "quality": "paper",
+     "supports": "173.7M trades, 44,976 dislocations, +33% citation rate, $0.7-1.0M per 5-point move"
+    },
+    {
+     "url": "https://arxiv.org/abs/2601.20452",
+     "title": "Manipulation in Prediction Markets: An Agent-based Modeling Experiment",
+     "date": "2026-01-28",
+     "quality": "paper",
+     "supports": "distortion size ~ whale capital share; persistence ~ herding and slow learning"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.26074",
+     "title": "StakeBench: Evaluating Language Understanding Grounded in Market Commitment",
+     "date": "2026-05-25",
+     "quality": "paper",
+     "supports": "560,876 comments linked to positions; LLM directed accuracy only 0.506-0.599 (arXiv listing abstract)"
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "SPLIT crowd-price-path-simulation. Move 'benchmark-gap under-reaction drift (0.64-for-one)' and 'dislocation fade in low-prominence markets' to the behavioural or microstructure band. They are statistical event-study trades with hard evidence, not agent simulations. Keep the wallet-archetype ABM, the cohort debate, the SWM model and the proxy-resolved 7-day target. Add an hour-of-day 'sleeping crowd' variant: under-reaction by time zone, which needs only logging.",
+  "crowd-price-path-simulation: two of its six sub-variants, under-reaction drift and dislocation fade, are statistical trades with hard on-chain evidence. They belong to the behavioural or microstructure band. FACT CHECK: the '817 markets, shocks visible after 60 days' field experiment ran on Manifold, which is play-money Mana with a small Sweepcash follow-up, not on Polymarket (arXiv 2503.03312 HTML, fetched today). The entry presents it as persistence evidence without naming the venue. The same paper shows reversion is much faster in higher-volume markets and where an external estimate exists."
+ ]
+}

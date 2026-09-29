@@ -1,0 +1,409 @@
+{
+ "slug": "semantic-market-graph-relative-value",
+ "name": "Semantic market graph: coherent fair value, LLM-filtered lead-lag and precomputed catalyst playbooks",
+ "category": "Speculative-novel",
+ "maturity": "Emerging",
+ "seed_category": "multi-agent adversarial debate forecasting",
+ "one_line": "Build an adversarially verified graph of logical and causal links between live markets. Project prices onto the coherent polytope to get soft relative-value signals. Trade followers when semantically justified leaders move, and pre-write conditional orders for second-order markets before scheduled catalysts.",
+ "scope": "Cover three uses of one graph. (1) Typed constraints: implication, exclusion, date nesting, threshold ladders. A red team tests each against the literal rules. An LP/IP projection yields soft residuals, and a debate decides which leg is wrong. Be frank that hard combinatorial arbitrage is tiny: about $95k realised against $39.5M of rebalancing, and 13 valid pairs out of 1,576 flagged. (2) Granger and temporal-graph leader-follower pairs, kept only if an LLM can justify a transmission mechanism. On Kalshi this raised the win rate from 51.4% to 54.5% and roughly halved the average loss. A separate backtest returned a 14.12% net ROI, but 76% of the PnL came from five trades. (3) Debate-built conditional playbooks that fire into stale second-order books after a catalyst. Precomputing removes the LLM's latency handicap. The defensive twin is catalyst-aware quote pulling. Cover fee drag at mid prices, rule-mismatch false edges, the tendency of LLMs to rationalise any pair, and capacity. Validate with edge-precision audits, residual IC, a lag event study and a walk-forward test. Boundary: joint-probability pricing is in dependence-pricing-combos-joint.",
+ "sub_variants": [
+  "Coherent-polytope fair value with a debate over the wrong leg",
+  "LLM-filtered Granger lead-lag trading",
+  "Precomputed catalyst playbooks for second-order markets",
+  "Catalyst-aware maker: jump-intensity calendar and persistence classifier"
+ ],
+ "merged_from": [
+  "Soft-coherence cluster engine: debate decides which leg is wrong",
+  "Live logical constraint graph as a fair-value engine",
+  "Soft-dependency propagation: LLM-filtered lead-lag trading",
+  "Causal lead-lag graph across markets with an LLM as semantic risk filter",
+  "Precomputed conditional playbooks for catalyst propagation",
+  "Catalyst-aware maker: LLM jump-intensity forecasts and news triage for quote skewing"
+ ],
+ "flags": "No conduct flags beyond the standard rules. Data feeds used for branch detection must be licensed. Headline spoofing is an adversarial risk for the maker variant.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2508.03474",
+   "note": "LLM dependency detection: 46,360 pairs, 1,576 flagged, 13 valid. Combinatorial arb ~$95k of $39.6M total."
+  },
+  {
+   "url": "https://arxiv.org/abs/2608.00666",
+   "note": "NegRisk arbitrage totals $1.12M. Violations persist on the unsupported YES side."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.00864",
+   "note": "NBA: 290 combinatorial episodes, median 101 bps, 76.9% capped at ~14.8 shares."
+  },
+  {
+   "url": "https://arxiv.org/html/2512.02436",
+   "note": "Agentic relation discovery on Kalshi: 62.8% relation accuracy. 14.12% net ROI over 46 trades, with five trades making 76.4% of PnL."
+  },
+  {
+   "url": "https://arxiv.org/abs/2602.07048",
+   "note": "An LLM filter on Granger pairs: win rate 51.4% to 54.5%, average loss $649 to $347 (Kalshi backtest)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.15448",
+   "note": "EventConnector temporal event graphs: RMSE down 6.87% on Polymarket and Kalshi price prediction."
+  },
+  {
+   "url": "https://arxiv.org/abs/2510.17638",
+   "note": "Prophet Arena: LLMs aggregate information more slowly than markets near resolution. This motivates precomputation."
+  },
+  {
+   "url": "https://arxiv.org/abs/2603.03152",
+   "note": "Three 2024 political shocks: one reversal, one persistence, one volume spike without a price change. Persistence labels matter."
+  }
+ ],
+ "n": "67",
+ "band": "speculative",
+ "file": "67-semantic-market-graph-relative-value.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Soft-coherence cluster engine: debate decides which leg is wrong",
+   "one_line": "An LLM-built, adversarially verified constraint graph over related markets surfaces soft (inside-spread or statistical) incoherence that pure arb bots ignore, and a debate over liquidity, staleness and independent forecasts picks the mispriced leg to trade and the liquid leg to hedge.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "(1) Generate typed constraints between open markets: negation, implication (A=>B so P(A)<=P(B)), date nesting ('by Oct' <= 'by Dec'), partitions, AND/OR bounds, cross-venue duplicates, conditional links. (2) A red-team agent must try to construct a scenario, under the literal resolution rules, in which the constraint fails; only surviving constraints enter the graph. (3) Compute depth-aware executable violation with the arbitrage metric; hard violations go to the existing arb bot. (4) For soft violations (within spread, or implied P(B|A) implausible) a judge weighs per-leg evidence: last-trade age, depth, recent one-sided flow, independent panel forecast, and chooses the leg to fade; hedge with the liquid leg so the position is a relative-value bet. (5) Exit on convergence, not resolution.",
+   "edge_source": "Aggregation failure across markets: each book aggregates its own traders, nobody enforces joint coherence except where the protocol makes it executable; attention/staleness in the illiquid leg.",
+   "why_might_beat_market": "Realised evidence that incoherence exists: ~$40M extracted from rebalancing + combinatorial arb (Saguillo); $1.12M in negRisk with 97% via the converter and violations persisting on the unsupported YES side (Gebele); 290 combinatorial episodes in NBA markets, median 101 bps, 76.9% too shallow; ~6% of events cross-listed with persistent 2-4% deviations. Pure arbs are contested; the soft set needs a view, which is where a debate adds something. Honest limit: Paleka et al.'s ArbitrageForecaster made forecasts consistent but produced 'no reliable improvements on ground truth' - coherence alone never tells you which leg is wrong, so the edge must come from microstructure features plus forecast, and may be small. Conditional-consistency was the check most correlated with Brier (R=0.92), so conditional links are the most diagnostic.",
+   "adjacent_grounding": "Consistency checks for LM forecasters (10 check types, arbitrage metric) https://arxiv.org/abs/2412.18544 [Dec 2024, pre-2025] and https://arxiv.org/abs/2306.09983 [pre-2025]; arbitrage-free combinatorial pricing via Frank-Wolfe + IP https://arxiv.org/abs/1606.02825 [pre-2025]; LLM semantic filter for lead-lag pairs with realised PnL on Kalshi https://arxiv.org/abs/2602.07048 ; event-relation graphs https://arxiv.org/abs/2606.15448 . On Polymarket the hard-arb version is exploited on-chain (https://arxiv.org/abs/2508.03474 , https://arxiv.org/abs/2608.00666 , https://arxiv.org/abs/2605.00864 ); no implementation of the soft/debate version found.",
+   "failure_modes": "Hallucinated constraints (resolution sources, time zones, 'Other'/placeholder redefinition in augmented negRisk make look-alike markets non-fungible); O(2^(n+m)) comparison blow-up needs heuristics; shallow depth; capital lock-up if convergence only at resolution; both legs wrong in the same direction; Goodharting on consistency.",
+   "cheap_validation": "Replay on public trade archives (Polymarket-v1 database https://arxiv.org/abs/2606.04217 ; lifecycle dataset suite https://arxiv.org/abs/2604.20421 ): build constraint graph as of each month, collect >=200 soft-violation episodes, record which leg the judge flags. PASS: flagged leg moves toward coherence in >=60% of episodes within the holding window AND simulated net PnL > 0 after fee formula, spread and a depth cap of $500/leg; constraint false-positive rate from human audit of 100 sampled constraints <=5%.",
+   "flags": "None; ordinary relative-value trading. Cross-venue legs add KYC/jurisdiction constraints.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2508.03474",
+     "title": "Unravelling the Probabilistic Forest: Arbitrage in Prediction Markets",
+     "date": "2025-08-05",
+     "quality": "hard-data",
+     "supports": "On-chain estimate of ~$40M realised arbitrage profit on Polymarket across single-market rebalancing and cross-market combinatorial arbitrage."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "title": "Executable Arbitrage and Market Efficiency in Prediction Markets",
+     "date": "2026-08-01",
+     "quality": "hard-data",
+     "supports": "$1.12M negRisk arbitrage, $1.086M converter-enabled vs $32k basket; violations concentrate where the protocol offers no executable path."
+    },
+    {
+     "url": "https://arxiv.org/abs/2412.18544",
+     "title": "Consistency Checks for Language Model Forecasters",
+     "date": "2024-12-24",
+     "quality": "paper",
+     "supports": "[pre-2025] Arbitrage-based consistency metric; Cond check correlates R=0.92 with Brier; ArbitrageForecaster improved consistency but not ground-truth accuracy."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00864",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets",
+     "date": "2026-04-22",
+     "quality": "hard-data",
+     "supports": "75M order-book snapshots: 290 combinatorial arbitrage episodes, median 101 bps, 76.9% constrained by shallow depth."
+    },
+    {
+     "url": "https://arxiv.org/abs/2601.01706",
+     "title": "Semantic Non-Fungibility and Violations of the Law of One Price in Prediction Markets",
+     "date": "2026-01-05",
+     "quality": "paper",
+     "supports": "100k+ events across ten venues: ~6% cross-listed, persistent execution-aware deviations of 2-4%; event identity is the hard part."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.07048",
+     "title": "LLM as a Risk Manager: LLM Semantic Filtering for Lead-Lag Trading in Prediction Markets",
+     "date": "2026-02-04",
+     "quality": "paper",
+     "supports": "LLM plausibility filter on Granger pairs (Kalshi economics): win rate 51.4% -> 54.5%, average losing trade 649 -> 347 USD."
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/negative-risk.md",
+     "title": "Polymarket docs - Negative Risk Markets",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "NO->YES conversion mechanics; augmented negRisk placeholders and the changing definition of 'Other'."
+    }
+   ]
+  },
+  {
+   "name": "Live logical constraint graph as a fair-value engine (implication, exclusion, time nesting, threshold ladders)",
+   "one_line": "LLM proposes typed logical edges between all live markets, a solver projects prices onto the coherent polytope, and the residuals drive relative-value trades and maker quotes rather than only riskless arb.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "1) Embed all live questions, cluster by topic and time, and have an LLM propose typed edges only inside clusters: A implies B, A and B mutually exclusive, 'by March' implies 'by June', threshold ladders (BTC>120k implies BTC>110k), partition sums, cross-event identities. 2) Every proposed edge passes a second-model check and a rules-level check (both specs must share source and deadline) because most false arbs are rule mismatches; humans audit a sample. 3) An LP/IP over executable bid/ask depth finds (a) strict arbitrage baskets and (b) the minimum-distance coherent price vector. 4) Strict violations are taken with FOK multi-leg orders; soft residuals (market price minus coherent projection) become a relative-value signal and a skew input for the maker book. 5) NegRisk conversion is used where available since only the NO-to-YES direction is executable pre-settlement.",
+   "edge_source": "Combinatorial: O(2^(n+m)) comparisons make it impossible for humans to keep thousands of markets mutually coherent; new listings and low-liquidity hours break coherence most.",
+   "why_might_beat_market": "Coherence is a free lunch the crowd does not enforce across event pages. But be honest about size: Saguillo et al. found realised combinatorial arb of only ~$95k against $39.5M of intra-market rebalancing, and only 13 of 1,576 LLM-flagged dependent pairs survived formal verification; in NBA markets combinatorial episodes yield a median 101 bps but 76.9% are capped at ~14.8 shares. The defensible value is second-order: a coherent fair value for quoting hundreds of thin related markets, time-nesting/ladder violations at listing, and the unsupported YES side of NegRisk where violations persist longer (Gebele et al.).",
+   "adjacent_grounding": "Forecasting-consistency research: Paleka et al., 'Consistency Checks for Language Model Forecasters' define an arbitrage-based consistency metric that correlates with future Brier scores (https://arxiv.org/abs/2412.18544) [pre-2025, possibly stale]. Combinatorial market-making theory: Kroer et al. 2016 integer-programming arbitrage-free pricing (arXiv 1606.02825, listing only) [pre-2025]. On-venue: Saguillo et al. used DeepSeek-R1-Distill-Qwen-32B + Linq-Embed-Mistral (https://arxiv.org/html/2508.03474); Capponi/Gliozzo/Zhu agentic relation discovery, 62.8% of relations consistent with settlements vs 40.6% for an NLI baseline (https://arxiv.org/abs/2512.02436); hobby repo https://github.com/leodid68/poly-arbitrage. So: Emerging, but nobody appears to run the fair-value-projection version at scale.",
+   "failure_modes": "LLM edge precision: 81.45% single-market success and <1% of flagged pairs valid in Saguillo; one false 'implies' edge creates a directional bet disguised as arb; rule/source mismatches between 'same' events; leg risk and shallow depth; taker fees on every leg (up to 1.75c/share at mid prices) eat 1% edges; capital lock until the later-resolving leg; competition from existing rebalancing bots on the obvious partitions.",
+   "cheap_validation": "Snapshot all live books every 60 s for 3 weeks (no trading). Build the graph once per day. Metrics: (i) edge precision on a human audit of 200 random edges - pass >=98% for 'implies/exclusive', (ii) executable strict-arb dollars per day after fees at displayed depth - pass >= $150/day sustained or drop the arb leg, (iii) for the soft signal: does the residual predict the next-24h price change of the outlier market (rank IC) - pass IC >= 0.05 with t>3 across >=2,000 market-days.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2508.03474",
+     "title": "Unravelling the Probabilistic Forest: Arbitrage in Prediction Markets (Saguillo et al.)",
+     "date": "2025-08-05",
+     "quality": "paper",
+     "supports": "LLM-based dependency detection; 46,360 pairs -> 1,576 dependent -> 13 valid; $39.6M total extracted of which combinatorial ~$95k."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.00864",
+     "title": "Arbitrage Analysis in Polymarket NBA Markets (Cheng, Yang, Zou)",
+     "date": "2026-04-22",
+     "quality": "paper",
+     "supports": "75M LOB snapshots, 7 single-market episodes (median 3.6 s), 290 combinatorial episodes, median 101 bps, 76.9% limited to ~14.8 shares."
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "title": "Executable Arbitrage and Market Efficiency in Prediction Markets (Gebele, Mutzel, Matthes)",
+     "date": "2026-08-01",
+     "quality": "paper",
+     "supports": "$1.12M NegRisk arbitrage ($1.086M converter-enabled); violations concentrate on the unsupported YES side."
+    },
+    {
+     "url": "https://arxiv.org/html/2512.02436",
+     "title": "Agentic AI for Clustering, Relationship Discovery, and Semantic Trading in Prediction Markets (Capponi, Gliozzo, Zhu)",
+     "date": "2025-12-02 (v2 2026-08-08)",
+     "quality": "paper",
+     "supports": "14,773 Kalshi tickers, 439,332 candidate pairs, Gemini 3.1 Pro; relation accuracy 62.8%; signed-graph frustration 0.324%."
+    },
+    {
+     "url": "https://arxiv.org/abs/2412.18544",
+     "title": "Consistency Checks for Language Model Forecasters (Paleka et al.)",
+     "date": "2024-12-24",
+     "quality": "paper",
+     "supports": "Arbitrage-based consistency metric; automated generation of logically related question tuples."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Polymarket docs - Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Fee formula and per-category feeRate; geopolitics fee-free."
+    }
+   ]
+  },
+  {
+   "name": "Granger + LLM-filtered lead-lag trading across related contracts",
+   "one_line": "Find leader-follower pairs among economically linked contracts statistically, let an LLM veto pairs with no plausible causal mechanism, and trade the follower after the leader moves.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Rolling 60-day Granger tests (lags 1-5 days) rank candidate pairs; an LLM re-ranks the top 100 by economic plausibility and keeps 20. When the leader moves, take a position in the follower for a fixed holding period (1-21 days tested). The LLM's value is loss control: average loss falls ~46% while win rate rises only ~3 pts; gains are larger after big leader moves (10+ pt moves: win rate 53.8% -> 71.4%).",
+   "edge_source": "Slow cross-market propagation of macro information among thinly followed contracts; spurious statistical pairs filtered semantically.",
+   "why_might_beat_market": "Cross-contract information diffusion is unexploited because related contracts sit in different events/categories with different trader bases.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2602.07048v2",
+     "title": "LLM as a Risk Manager: LLM Semantic Filtering for Lead-Lag Trading in Prediction Markets (Kim et al.), arXiv",
+     "date": "2026-02-04",
+     "quality": "paper",
+     "supports": "Kalshi Economics, 554 events, Oct-2021..Nov-2025, 18 test windows: hybrid vs statistical - win rate 54.5% vs 51.4%, avg loss -$347 vs -$649, total PnL $12,500 vs $4,100 at $100/contract; post-LLM-cutoff subsample PnL $7,200 vs $3,800; NO transaction costs or slippage modelled."
+    },
+    {
+     "url": "https://api.openalex.org/works?search=kalshi%20prediction%20market&per-page=100&sort=cited_by_count:desc&select=display_name,publication_date,doi,cited_by_count&filter=from_publication_date:2024-06-01",
+     "title": "OpenAlex listing: Directed Information Flow in Macro Prediction Markets: Separating Genuine Coupling from Common-Driver Artifacts (Zenodo 20530081)",
+     "date": "2026-06-03",
+     "quality": "paper",
+     "supports": "Title-level lead only: warns that apparent lead-lag in macro contracts can be common-driver artefact (content unverified)."
+    }
+   ],
+   "failure_modes": "No costs in the backtest; daily-frequency signals on illiquid contracts; only one category on one venue; common-driver artefacts; small number of test periods.",
+   "cheap_validation": "Replicate on Polymarket economics/finance/politics events with executable prices and the current fee curve; require positive PnL after costs on a post-model-cutoff window.",
+   "adjacent_grounding": "Lead-lag / Granger pair selection in equities and crypto; LLM-as-prior for causal plausibility.",
+   "flags": ""
+  },
+  {
+   "name": "Soft-dependency propagation: LLM-filtered lead-lag trading between semantically linked markets",
+   "one_line": "Find statistical leader-follower pairs, keep only those with a plausible causal transmission story according to an LLM, and trade the follower when the leader moves.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "1) Daily, run Granger/temporal-graph discovery over price series to propose leader-follower candidates across all markets. 2) An LLM reads both contracts' descriptions and re-ranks by whether the direction admits an economic/political transmission mechanism and whether the sign is right; rejects spurious pairs. 3) When a leader moves more than k sigma on real volume and the follower has not, buy/sell the follower at the touch with a time stop; size by pair strength. 4) Feed confirmed pairs back into the constraint graph as soft edges and into the maker as cross-market skew. 5) Re-estimate weekly; retire pairs whose hit rate decays.",
+   "edge_source": "Combinatorial + textual: thousands of thin markets are repriced by different, inattentive crowds; links are obvious in language but invisible in any single order book.",
+   "why_might_beat_market": "Two independent academic backtests show positive net results, both on Kalshi: Kim et al. raise win rate 51.4% -> 54.5% and cut average losing trade $649 -> $347 by LLM filtering; Capponi et al. report 14.12% net ROI in two months. EventConnector shows graph-retrieved related markets reduce forecast RMSE 6.87% on Polymarket and Kalshi. Honest limits: Capponi's result is 46 trades with 76.4% of PnL from five trades and a -33.56% max drawdown; none of this is demonstrated live on Polymarket, where taker fees at mid prices (1-1.75c/share) are comparable to the per-trade edge.",
+   "adjacent_grounding": "Lead-lag and news-propagation strategies in equities (customer-supplier momentum, unverified this session); causal discovery with LLM priors. Papers: https://arxiv.org/abs/2602.07048, https://arxiv.org/abs/2512.02436, https://arxiv.org/abs/2606.15448.",
+   "failure_modes": "Tiny samples and autocorrelated trades; LLM 'plausible story' bias (it can rationalise any pair); followers are illiquid so the edge is unfillable; fee drag; pair decay once leaders and followers are arbitraged by the same bots; consensus bias across LLM configurations (PolyGnosis 2.0).",
+   "cheap_validation": "Walk-forward on Polymarket 2026 data with on-chain trade prices: discovery on months 1-3, trade months 4-6 at displayed depth with the actual fee formula. Pass: >=300 trades, net Sharpe >1.5, no single trade >5% of PnL, and LLM-filtered set beats unfiltered Granger set by >=2 points of win rate. Fail if net PnL <= 0 after fees or concentrated in <10 trades.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2602.07048",
+     "title": "LLM as a Risk Manager: LLM Semantic Filtering for Lead-Lag Trading in Prediction Markets (Kim et al.)",
+     "date": "2026-02-04",
+     "quality": "paper",
+     "supports": "Kalshi Economics; win rate 51.4% -> 54.5%; average loss $649 -> $347; gains from filtering fragile links."
+    },
+    {
+     "url": "https://arxiv.org/html/2512.02436",
+     "title": "Capponi, Gliozzo, Zhu - semantic trading",
+     "date": "2026-08-08",
+     "quality": "paper",
+     "supports": "14.12% net ROI, 46 trades, 60.87% win rate, Sharpe 4.46, max drawdown -33.56%, five trades = 76.4% of PnL."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.15448",
+     "title": "EventConnector: Mining Social Event Relations through Temporal Graphs (Lei et al.)",
+     "date": "2026-06-13",
+     "quality": "paper",
+     "supports": "Temporal event graph + Granger fusion best on 17/18 cells; RMSE -6.87% avg on Polymarket/Kalshi benchmarks."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.25958",
+     "title": "PolyGnosis 2.0 (Wang, Xu, Xian)",
+     "date": "2026-05-25",
+     "quality": "paper",
+     "supports": "Pervasive 'consensus bias' across agent configurations; unconstrained reflection induces logical drift - needs deterministic validation."
+    }
+   ]
+  },
+  {
+   "name": "Causal lead-lag graph across markets with an LLM as semantic risk filter",
+   "one_line": "Find statistical leader-follower pairs among related markets, keep only those an LLM can justify with an economic transmission mechanism, and trade the follower when the leader moves.",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "mechanism": "1) Build a temporal event graph over all live markets (EventConnector-style retrieval of related events; cuts price-forecast RMSE 6.87% on Polymarket/Kalshi benchmarks). 2) Run rolling Granger tests on logit prices to get candidate leader -> follower pairs. 3) LLM reads both rule texts and answers: is there a plausible causal or logical channel, which sign, what lag? Discard pairs it cannot justify - in the Kalshi Economics study this raised win rate 51.4% -> 54.5% and nearly halved the average losing trade ($649 -> $347). 4) When a leader jumps, quote/take the follower before it adjusts, sized linearly in the implied gap. 5) Extend to coherence checks: sets of markets whose prices violate conjunction/conditional bounds under the LLM-built scenario tree flag relative-value trades (Paleka-style consistency violations), including cross-venue pairs with different rule text.",
+   "edge_source": "Slow cross-market information transmission among hundreds of thinly-watched related contracts; semantic understanding of rule text that pure statistics lacks.",
+   "why_might_beat_market": "Hard arbitrage (negative-risk, NBA combos) is measured and nearly gone: $1.12M total in neg-risk markets, NBA combinatorial episodes capped at 14.8 shares. Soft, causal relative value is not mechanically arbitraged because it needs judgement about mechanisms - that is where an LLM is cheap and scalable. Honest limits: 54.5% win rate is thin after taker fees (use maker entries or fee-free categories); the study is a Kalshi backtest with Kalshi co-authors, not live PnL; Granger pairs are regime-fragile; correlation of positions makes effective N small.",
+   "adjacent_grounding": "Kim et al., 'LLM as a Risk Manager: LLM Semantic Filtering for Lead-Lag Trading in Prediction Markets' (arXiv 2602.07048, Kalshi Economics). Lei et al., EventConnector (arXiv 2606.15448, listing only). Paleka et al., 'Consistency Checks for Language Model Forecasters' (arXiv 2412.18544): arbitrage-style violation metrics correlate with Brier [pre-2025]. Gebele, 'Executable Arbitrage and Market Efficiency' (arXiv 2608.00666, listing only): $1.12M neg-risk arbitrage. Cheng, NBA arbitrage (arXiv 2605.00864, listing only): 290 episodes, median 101 bps, 14.8 shares. Moshrefi, parlays overpriced vs leg products on Kalshi, growing with leg count (arXiv 2607.14430, listing only) - a related incoherence. Equity analogue: lead-lag/customer-supplier momentum.",
+   "failure_modes": "Spurious Granger causality; LLM rationalises any pair (confirmation machine) - needs a blind 'would you expect a link?' prompt before seeing statistics; rule-text differences make apparently linked markets legitimately diverge; simultaneous moves leave no lag to trade; fees.",
+   "cheap_validation": "Use the team's existing book logs: 6-month walk-forward on all market pairs within the same event cluster. Compare three arms - Granger only, Granger + LLM filter, LLM-proposed pairs only - on net PnL with real fees, maker and taker variants. Pass: LLM-filtered arm has higher Sharpe than Granger-only, positive net PnL as maker, and average loser reduced >=25% (the paper's effect was ~47%). Note the LLM only reads rule text, not outcomes, so leakage risk is low but test on post-cutoff pairs anyway.",
+   "flags": "None beyond standard conduct rules.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2602.07048",
+     "title": "LLM as a Risk Manager: LLM Semantic Filtering for Lead-Lag Trading in Prediction Markets",
+     "date": "2026-02-04, rev. 2026-02-27",
+     "quality": "paper",
+     "supports": "Granger + LLM mechanism filter on Kalshi Economics: win rate 51.4% -> 54.5%, avg losing trade $649 -> $347"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.15448",
+     "title": "EventConnector: Mining Social Event Relations through Temporal Graphs",
+     "date": "2026-06-13",
+     "quality": "paper",
+     "supports": "temporal event graphs improve 17/18 model-dataset cells on Polymarket/Kalshi, RMSE -6.87% avg (arXiv listing abstract)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2412.18544",
+     "title": "Consistency Checks for Language Model Forecasters",
+     "date": "2024-12-24 [pre-2025]",
+     "quality": "paper",
+     "supports": "arbitrage-based consistency metrics correlate with ground-truth Brier"
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "title": "Executable Arbitrage and Market Efficiency in Prediction Markets",
+     "date": "2026-08-01",
+     "quality": "paper",
+     "supports": "hard arbitrage in neg-risk markets totals only $1.12M (arXiv listing abstract) - why soft relative value is the remaining ground"
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.14430",
+     "title": "Prices, Probabilities, and Parlays: Systematic Bias in Sports Prediction Markets",
+     "date": "2026-07-15",
+     "quality": "paper",
+     "supports": "23M Kalshi trades: parlays overpriced relative to leg products, increasing with leg count (arXiv listing abstract)"
+    }
+   ]
+  },
+  {
+   "name": "Precomputed conditional playbooks for catalyst propagation",
+   "one_line": "Move the slow LLM reasoning before the event: debate-built trees P(secondary market | catalyst outcome) become ready-to-fire orders that execute in second-order markets the moment the catalyst resolves.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Calendar of scheduled catalysts (FOMC, CPI, court rulings, debates, votes, earnings calls). (2) For each, advocates argue each branch and a judge fixes fair prices of 5-30 linked secondary markets per branch, with confidence; red team lists branches missed ('pre-mortem: the playbook lost money, why?'). (3) Store as parameterised orders with size caps. (4) At the event, a lightweight detector (primary market jump, data feed) selects the branch and fires orders only where the secondary book is still stale by more than fee + buffer. (5) After each event score the tree (sign, magnitude, lag) to recalibrate the judge.",
+   "edge_source": "Latency of cross-market information propagation in thin, second-order markets, plus the fact that conditional reasoning is expensive for humans to do in real time.",
+   "why_might_beat_market": "LLM forecasters lose exactly where speed matters (Prophet Arena: 'slower information aggregation compared to markets when resolution nears'; TimeSeek BSS -0.83 to -0.96 at close-1), so precomputation removes their main handicap. Cross-market lead-lag is real and LLM semantic screening improves it (Kalshi economics: win rate 51.4->54.5%, avg loss 649->347 USD); event-relation graphs cut price-forecast RMSE 6.87%. Honest limit: headline markets reprice in seconds by bots; the edge lives only in neglected secondary markets with small capacity, and LLM conditionals are poorly calibrated.",
+   "adjacent_grounding": "Lead-lag discovery with LLM plausibility filter https://arxiv.org/abs/2602.07048 ; EventConnector temporal event graphs on Polymarket/Kalshi https://arxiv.org/abs/2606.15448 ; Prophet Arena bottleneck analysis https://arxiv.org/abs/2510.17638 ; TimeSeek temporal reliability https://arxiv.org/abs/2604.04220 ; sequential Bayesian updating of linguistic beliefs https://arxiv.org/abs/2604.18576 . Not found as a Polymarket/Kalshi trading system on arXiv/GitHub.",
+   "failure_modes": "Branch detection error (ambiguous outcomes); unanticipated branch; secondary markets too thin; taker fees on both legs; other bots already map the obvious links; crypto taker delay / matching latency changes (changelog) alter execution assumptions.",
+   "cheap_validation": "Event study on 30 past catalysts using public trade archives: measure time for each linked market to reach 80% of its eventual move and the depth available at stale prices. PASS: median lag > 60 s with >= $500 stale depth in >= 30% of linked markets. Then forward paper test on 10 events: tree predicts direction correctly >= 65% of linked markets and simulated net PnL > 0.",
+   "flags": "None; ensure data feeds used for branch detection are licensed.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2510.17638",
+     "title": "LLM-as-a-Prophet: Understanding Predictive Intelligence with Prophet Arena",
+     "date": "2025-10-20",
+     "quality": "paper",
+     "supports": "LLMs show small calibration errors but slower information aggregation than markets near resolution and inaccurate event recall."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.04220",
+     "title": "TimeSeek: Temporal Reliability of Agentic Forecasters",
+     "date": "2026-04-05",
+     "quality": "paper",
+     "supports": "10 models x 150 Kalshi markets: positive BSS early (+0.167) and strongly negative at close-1 (-0.829); 9 of 10 models decline monotonically."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.07048",
+     "title": "LLM as a Risk Manager",
+     "date": "2026-02-04",
+     "quality": "paper",
+     "supports": "Leader-follower relationships between prediction markets are tradable and LLM semantic screening reduces loss size."
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.15448",
+     "title": "EventConnector: Mining Social Event Relations through Temporal Graphs",
+     "date": "2026-06-13",
+     "quality": "paper",
+     "supports": "Temporal event graphs with Granger fusion reduce RMSE 6.87% avg (up to 10.86%) on Polymarket/Kalshi price prediction."
+    }
+   ]
+  },
+  {
+   "name": "Catalyst-aware maker: LLM jump-intensity forecasts and news triage for quote skewing",
+   "one_line": "An LLM builds a per-market catalyst calendar and classifies breaking news as persistent vs reverting, feeding a jump-diffusion quoting model that widens, skews or pulls before humans can.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) Offline, the LLM reads each quoted market's rules and recent news to build a catalyst calendar (hearings, data prints, votes, speeches, scheduled announcements) with expected jump size and direction asymmetry. 2) These set time-varying jump intensity in a logit jump-diffusion quoting kernel; quotes use GTD expiry before scheduled catalysts, as the docs themselves advise. 3) Online, a small distilled classifier (LLM-labelled training data) scores incoming headlines for relevance to each quoted market in tens of milliseconds; a larger model follows within seconds with direction, magnitude and a persistence label. 4) Actions: cancel one side, skew mid, or re-enter early when the shock is labelled 'attention, not information'. 5) Liquidity-reward sampling is per minute over 10,080 samples, so brief pulls cost little reward.",
+   "edge_source": "Textual + latency-tier: not competing with HFT on crypto (50 ms taker delay) but with human-speed repricing in politics/culture/geopolitics, where news-to-price takes seconds to minutes.",
+   "why_might_beat_market": "Maker PnL on Polymarket is dominated by adverse selection around jumps; a model that removes quotes in the few minutes that matter keeps the spread and rewards the rest of the time. Tsang & Yang show shocks differ in kind: the 2024 debate move largely reversed, the assassination-attempt move persisted, Biden's withdrawal produced the heaviest volume with little price change - a persistence classifier is the valuable part. Honest limit: the Social World Model paper could attribute only ~10% of Polymarket moves to news (19% on Kalshi), so most toxic flow is NOT public-news-driven and this system will not see it; insiders and cross-market flow need other defences.",
+   "adjacent_grounding": "Market-making theory for prediction markets: Dalen, logit jump-diffusion kernel and 'market maker's handbook' (https://arxiv.org/abs/2510.15205). LLM features distilled into fast models for market making: Fu et al., Cooperative Market Making (https://arxiv.org/abs/2511.07110). Event-study evidence: Tsang & Yang (https://arxiv.org/abs/2603.03152). Equity news-analytics (RavenPack-style) is the long-standing industry analogue (unverified this session). No Polymarket-specific LLM quoting system found on GitHub/arXiv.",
+   "failure_modes": "Latency and cost of LLM calls; false positives causing lost rewards and queue position; headline spoofing / adversarial fake news to make makers pull; persistence labels have little ground truth; SWM-style models struggle with multi-step economic reasoning; feed-based trade direction is only ~59% accurate so markout measurement must use on-chain fills.",
+   "cheap_validation": "Pure post-hoc: take 60 days of your own (or simulated at-touch) maker fills with on-chain direction; compute 1/5/30-minute markouts; have the LLM produce catalyst windows and news flags using only information available before each timestamp. Pass: flagged windows cover <=10% of clock time but >=40% of total adverse markout loss, and persistence labels separate 30-minute reversal vs continuation with AUC >=0.65. Fail otherwise.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/market-making.md",
+     "title": "Polymarket docs - Market Making",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Official guidance: post-only, batch quotes, 'Use GTD for events' to expire quotes before catalysts, price guards."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.03152",
+     "title": "Political Shocks and Price Discovery in Prediction Markets (Tsang, Yang)",
+     "date": "2026-03-03 (v4 2026-07-18)",
+     "quality": "paper",
+     "supports": "Three 2024 shocks: reversal vs persistence vs volume-without-price-change."
+    },
+    {
+     "url": "https://arxiv.org/html/2606.11482",
+     "title": "Building Social World Models with LLMs (Yu et al.)",
+     "date": "2026-06-09",
+     "quality": "paper",
+     "supports": "Only ~10% of Polymarket moves news-attributed vs 19% on Kalshi; performance degrades on Polymarket."
+    },
+    {
+     "url": "https://arxiv.org/abs/2510.15205",
+     "title": "Toward Black Scholes for Prediction Markets (Dalen)",
+     "date": "2025-10-17 (v2 2026-04-06)",
+     "quality": "paper",
+     "supports": "Logit jump-diffusion, EM separation of jumps from diffusion, belief-volatility surface for quoting."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.24366",
+     "title": "The Anatomy of a Decentralized Prediction Market (Dubach)",
+     "date": "2026-04-27",
+     "quality": "paper",
+     "supports": "30B order-book events; feed trade direction ~59% accurate; effective spread sign flips on 50-67% of markets depending on direction source."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+     "title": "Polymarket docs - Liquidity Rewards",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Per-minute random sampling, 10,080 samples per epoch, quadratic spread scoring, two-sided factor c=3.0."
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "semantic-market-graph-relative-value: the seed_category 'multi-agent adversarial debate forecasting' is a stretch. The core is structural relative value and lead-lag, with debate used only to pick the wrong leg. Coherent-polytope arbitrage is an established practice that the list itself sizes at about $95k realised. Only the LLM-filtered lead-lag and the precomputed playbooks are speculative."
+ ]
+}

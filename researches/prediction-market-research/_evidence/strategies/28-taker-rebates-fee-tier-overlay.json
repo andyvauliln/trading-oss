@@ -1,0 +1,310 @@
+{
+ "slug": "taker-rebates-fee-tier-overlay",
+ "name": "Taker rebates, fee tiers and promo extraction (cost overlay)",
+ "category": "Incentive farming",
+ "maturity": "Established programme; an overlay rather than a standalone strategy",
+ "seed_category": "incentive farming (new since 2026)",
+ "one_line": "Treat fees as a strategy input: consolidate taker flow to climb 3-50% rebate tiers, route by live feeSchedule, and harvest US taker-volume pools and acquisition credits.",
+ "scope": "Cover the Taker Rebate Program (weighted volume = size x (1-price) x category weight, six tiers, level-up bonuses, omnibus exclusion, wV per fee dollar by category, consolidated vs split accounts, re-costing every taker strategy at 0/18/32/50%), fee geometry p(1-p) and its consequences for tail vs mid-price strategies, per-market feeSchedule reading with documented docs-vs-API discrepancies (NFL zero_fees) and fee-free geopolitics routing, Polymarket US taker theta 0.0695, monthly taker rebates and pro-rata Volume Incentive pools (docs example 10% of notional), and one-off promo/deposit credits converted by hedging (bounded per KYC identity). Show the arithmetic proving wash-climbing is negative EV. Boundary: maker-side pools are maker-reward-pool-farming; referral income from others is data-referral-content-businesses; abusive volume is wash-trading-airdrop-farming.",
+ "sub_variants": [
+  "taker-flow consolidation for rebate tiers",
+  "feeSchedule-driven strategy routing (zero-fee markets)",
+  "Polymarket US volume-incentive pool timing",
+  "promo / deposit credit hedged conversion"
+ ],
+ "merged_from": [
+  "traders: Taker-rebate tier economics",
+  "onchain-bots: Fee-tier engineering: Taker Rebate tiers, level-up bonuses and referral rewards",
+  "adjacent-transfer: Taker-rebate tier optimisation and its abusive cousin",
+  "platform-surface: Taker-fee tier consolidation",
+  "platform-surface: Fee-regime routing",
+  "platform-surface: Polymarket US Volume Incentive pools",
+  "platform-surface: US promotional-credit extraction by hedged conversion",
+  "adjacent-transfer: Sign-up promo, bonus and referral extraction"
+ ],
+ "flags": "Wash trading, self-matching, self-referral or linked accounts forfeit rebates with clawback; manufactured volume on the US DCM is wash trading under the CEA; promos are one per KYC identity (extra identities = fraud); US programmes are US-only.",
+ "key_evidence": [
+  {
+   "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+   "note": "Tier table, wV formula, category weights, bonuses, anti-abuse clause, omnibus exclusion"
+  },
+  {
+   "url": "https://docs.polymarket.com/trading/fees.md",
+   "note": "Fee formula and per-category rates; geopolitics fee-free"
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/markets?limit=1&active=true&closed=false&order=volume24hr&ascending=false&offset=1",
+   "note": "Live NFL market with feeType zero_fees contrary to docs table"
+  },
+  {
+   "url": "https://docs.polymarket.us/incentives/volume.md",
+   "note": "Pro-rata taker-notional pools, 3c-97c band, $100,000 NBA Playoffs example"
+  },
+  {
+   "url": "https://docs.polymarket.us/fees.md",
+   "note": "US taker theta 0.0695, maker rebate 0.0125, taker rebates 10/25/50%"
+  },
+  {
+   "url": "https://docs.polymarket.us/incentives/user-programs.md",
+   "note": "$50 deposit credit, deposit-and-trade caps, non-withdrawable credits, reversal right"
+  },
+  {
+   "url": "https://www.covers.com/betting/bonuses/polymarket-promo-code",
+   "note": "Affiliate page describing the US promo (marketing; terms unverified against first-party)"
+  }
+ ],
+ "parent_slug": "fee-tier-taker-incentives",
+ "deepen": true,
+ "seed": "9 incentive farming",
+ "extra_scope": "Critic: taker rebates are the largest subsidy line on the venue; present this as a module that re-costs every taker strategy at each rebate tier, plus the bounded promo / sign-up / referral extraction part (state whether sportsbook bonus conversion with Polymarket US / Kalshi as the lay leg is real: unverified).",
+ "n": "28",
+ "band": "established",
+ "file": "28-taker-rebates-fee-tier-overlay.md",
+ "critic_notes": [
+  "ADD to maker-reward-pool-farming the Polymarket US application-only Market Maker Program and Liquidity Provider stipend (docs.polymarket.us/incentives/market-maker.md exists; terms redacted in CFTC filings per E2). Consider a short cross-reference index for the Polymarket US pieces now spread over five entries (LIP in maker-reward-pool-farming, volume pools and promo credits in fee-tier-taker-incentives, BBO signal in cross-venue, US RFQ in combos, ISV route in builder-code), because eligibility (US-only, KYC, own-name funding, Rule 7.2, kill-switch requirement) is one gating decision for the owner.",
+  "CLARIFY promo conversion in fee-tier-taker-incentives: the merged 'sign-up promo, bonus and referral extraction' candidate should state explicitly whether it covers sportsbook bonus-bet conversion with Polymarket US / Kalshi as the lay leg (the US analogue of Betfair matched betting). I could not verify practitioner evidence this session (search blocked): mark unverified or drop the sub-variant rather than imply coverage.",
+  "fee-tier-taker-incentives: 'Emerging' understates the programme and mislabels the thing. Taker rebates are the largest subsidy line on the venue (E2: ~$255k/day, 8,331 recipients in a week, two wallets ~$160k each), so the programme is Established; but it is a cost / routing overlay for other agents, not a standalone strategy, and wash-climbing is negative EV. Category should say 'overlay'.",
+  "fee-tier-taker-incentives: mostly fee arithmetic from docs. Useful as a shared module that re-costs every taker strategy at 0 / 18 / 32 / 50% rebate, weak as a strategy file; the Polymarket US volume-pool and promo-credit parts are US-resident-only and bounded per KYC identity."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Taker-rebate tier economics (volume tier as a cost edge)",
+   "one_line": "Since 2026-05-28 heavy takers get 3-50% of their fees back; design taker strategies and flow aggregation around reaching Gold/Platinum+ tiers.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "Weighted volume wV = trade size x (1 - entry price) x category weight (crypto 2.3, economics/culture/weather 1.7, politics/finance/mentions/tech 1.3, sports 1.0) over a trailing 30 days sets the tier: $200k -> 18%, $1M -> 32%, $4M -> 44%, $10M+ -> 50%, plus one-off level-up bonuses up to $25k. A taker strategy that is marginal at full fee can be viable at half fee, so consolidating all taker flow of a bot suite in one account matters. Note the arithmetic: self-trading to climb tiers is negative-sum on fees alone (taker gets <=50% back, maker pool returns 15-25% pro-rata), so wash volume only 'pays' if an external incentive (airdrop, LR) is assumed. No practitioner write-up of tier optimisation was found yet.",
+   "edge_source": "Non-linear fee schedule favouring scale; formula rewards buying low-priced shares in high-weight categories.",
+   "why_might_beat_market": "Small bots compete at full fee against Obsidian-tier takers paying half - the reader's suite should treat tier as a shared resource.",
+   "failure_modes": "Programme terms can change; omnibus wallets ineligible; rebates not retroactive; chasing volume degrades selection.",
+   "cheap_validation": "Compute your suite's trailing wV and marginal rebate; re-run each taker strategy's backtest at 0/18/32/50% fee rebate to see which become viable.",
+   "flags": "Wash trading to reach tiers would be manipulation on a regulated venue and a ToS breach.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+     "title": "Polymarket docs: taker rebates",
+     "date": "programme launch 2026-05-28",
+     "quality": "hard-data",
+     "supports": "wV formula, category weights, six tiers 3%-50%, level-up bonuses $10-$25,000, daily pUSD payout, omnibus ineligible"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+     "title": "Polymarket docs: maker rebates",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Maker pool 15-25% pro-rata per market - shows self-trade loop is fee-negative"
+    }
+   ]
+  },
+  {
+   "name": "Fee-tier engineering: Taker Rebate tiers, level-up bonuses and referral rewards",
+   "one_line": "Structure volume so that taker strategies run at up to 50% lower fees, and collect tier bonuses and referral fee share.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "Since 2026-05-28 takers earn daily rebates by 30-day weighted volume: Bronze $2k (3%) up to Obsidian $10M+ (50%), with one-time level-up bonuses of $10 to $25,000. Weighted volume = size x (1 - entry price) x category weight (crypto 2.3, economics/culture/weather 1.7, politics/finance/mentions/tech 1.3, sports 1.0, geopolitics 0), so low-priced crypto trades count most and 99c trades count almost nothing. Referrers earn 10% (direct) and 5% (indirect) of the referee's net fees for 30 days or until Platinum, after the referrer has $10k lifetime volume. For a latency or arb taker the tier decides viability: crypto fee 0.07 becomes an effective 0.035 at Obsidian.",
+   "edge_source": "Programme design: fee drag differs by up to 2x between accounts running the same strategy; concentration of all taker flow in one account beats splitting across agents.",
+   "why_might_beat_market": "Most small bot operators split strategies across wallets and sit at 0-3% rebate; consolidating taker flow, or routing it to reach the next tier before a high-volume event, is pure margin.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+     "title": "Taker Rebate Program (official docs)",
+     "date": "2026-05-28 (effective)",
+     "quality": "hard-data",
+     "supports": "Tier thresholds and rebate %, weighted-volume formula and category weights, level-up bonuses, omnibus wallets ineligible, wash/self-match clause."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/referral-program.md",
+     "title": "Referral Program (official docs)",
+     "date": "2026-05-28 (effective)",
+     "quality": "hard-data",
+     "supports": "10%/5% of net fees, 30 days or until Platinum, $10k lifetime volume to qualify, clawback for self-referrals/linked accounts."
+    },
+    {
+     "url": "https://news.bitcoin.com/igaming/polymarket-us-tests-parlays-as-kalshi-banks-25m-in-fees/",
+     "title": "Polymarket US Tests Parlays as Kalshi Banks $25M in Fees (Bitcoin.com)",
+     "date": "2026-08-18",
+     "quality": "credible-report",
+     "supports": "Polymarket US schedule (effective 2026-07-01): peak $1.50 per 100 contracts, maker rebate 0.0125xCxPx(1-P), taker rebate requires $250k notional in prior month."
+    }
+   ],
+   "failure_modes": "Volume chased for tiers is negative-EV if the underlying trades are not; programme terms change at Polymarket's discretion; self-referral and linked-account farming are explicitly clawed back.",
+   "cheap_validation": "Spreadsheet: for each planned taker agent, monthly weighted volume and fee paid; compute rebate at consolidated vs split accounts.",
+   "flags": "Wash trading, self-matching, self-referral or linked accounts to climb tiers violate ToS (explicit clawback language)."
+  },
+  {
+   "name": "Taker-fee tier consolidation (Taker Rebate Program)",
+   "one_line": "Pool all taker flow of the agent suite into one directly-owned account to climb the 30-day Weighted-Volume tiers (3% to 50% of taker fees back, plus one-time level-up bonuses up to $25,000).",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "Live since 2026-05-28. Weighted Volume = trade size x (1 - entry price) x category weight x bonuses, taker trades only; weights: sports 1.0, politics/finance/mentions/tech 1.3, economics/culture/weather/other 1.7, crypto 2.3, geopolitics 0. Tiers on a rolling 30 days, updated daily at midnight UTC: Bronze $2k wV 3%, Silver $20k 8%, Gold $200k 18%, Platinum $1M 32%, Diamond $4M 44%, Obsidian $10M 50%; level-up bonuses $10/$50/$250/$1,500/$7,500/$25,000 paid once. Because the fee is size x feeRate x (1-p) in notional terms, wV per fee dollar is simply weight/feeRate: about 33 in crypto, 20 in sports, 32.5 in politics, 34 in economics/culture/weather, so Gold needs roughly $6k-$10k of fees per 30 days and Obsidian roughly $300k-$500k. Rebates apply only to trades made after reaching the tier and are paid daily in pUSD.",
+   "edge_source": "Venue-granted scale economy: the same taker strategy has a materially lower break-even inside a high-tier account, so several small agents sharing one account beat the same agents run separately.",
+   "why_might_beat_market": "News/latency and arb agents in crypto pay up to 1.75c per share at 50c; Gold cuts that by 18% and Platinum by 32%, which flips marginal signals positive; most small bots sit at tier 0.",
+   "failure_modes": "Negative finding worth stating: level-up bonuses equal only about 5-17% of the fees needed to first reach each tier, and combined give-backs (taker rebate up to 50% + maker rebate 15-25% + referral 10% of net) stay below 100% of fees, so wash or Sybil farming of this programme is negative EV even before enforcement. Omnibus-wallet integrations are ineligible, which penalises pooled copy-trading products. Geopolitics earns zero wV. Tier decays if volume drops.",
+   "cheap_validation": "Sum last-30-day taker fees across all own wallets by category, convert to wV with weight/feeRate, and read off the tier a consolidated account would hold and the dollar rebate at that tier.",
+   "flags": "Docs reserve the right to remove rebates and tier status for wash trading, self-matching or other inauthentic trading; third-party omnibus wallets not eligible.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+     "title": "Taker Rebate Program",
+     "date": "live 2026-05-28",
+     "quality": "hard-data",
+     "supports": "Tier table, wV formula, category weights, level-up bonuses, daily payout, exclusions, anti-abuse clause, worked examples ($312 wV politics; $57.50 vs $109.25 crypto)."
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/14174498-referral-program",
+     "title": "Referral Program (help centre)",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Referral rewards computed on net fees after the referred user's tier rebate, which is the basis for reading the rebate as a % of taker fees."
+    }
+   ]
+  },
+  {
+   "name": "Fee-regime routing: run taker strategies where feeSchedule.rate is zero",
+   "one_line": "Treat the per-market feeSchedule as a first-class signal and steer news, latency and arbitrage agents to zero-fee markets (all geopolitics; NFL game markets showed zero_fees on 2026-09-20) while steering maker agents to fee-enabled ones.",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "mechanism": "Polymarket's fee is set per market through a feeSchedule object (rate, exponent, takerOnly, rebateRate) and the docs instruct integrators to read it from market data since 2026-03-31. The published table makes geopolitics and world-events markets fee-free with no rebates, while other categories cost takers 1.0-1.75c per share at 50c. The live API can differ from the table: NFL moneylines on 2026-09-20 returned feeType zero_fees with rate 0 although the sports row says 0.05, and a BTC monthly strike market returned crypto_fees_v2 at 0.07 with 20% rebate. A routing layer tags every market with its live fee and rebate, computes strategy break-evens per market, and allocates taker-style agents (resolution sniping, news, cross-venue arb) to zero-fee inventory and maker-style agents to fee-enabled inventory where rebate and the taker wedge help them. Taker-rebate wV is zero in geopolitics, so tier-building flow should go elsewhere.",
+   "edge_source": "Attention to venue configuration that changes by changelog and sometimes silently; a 1-1.75c fee difference is larger than most systematic edges on this venue.",
+   "why_might_beat_market": "Geopolitics is already where informed flow concentrates (46% of US-linked wallet volume versus 36% platform-wide per Allium), which implies taker edge there is fee-free while makers there earn no rebate - a map most bots do not keep current.",
+   "failure_modes": "Zero-fee promotions end without notice; fee-free markets attract the most informed counterparties, so maker agents should avoid them; category labels are assigned by Polymarket and can be surprising.",
+   "cheap_validation": "Snapshot feeSchedule for all active markets daily for two weeks, diff against the docs table, and recompute last quarter's taker PnL per category net of what fees would have been under the live schedule.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Per-category fee table, geopolitics fee-free, makers never charged."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/markets?limit=1&active=true&closed=false&order=volume24hr&ascending=false&offset=1",
+     "title": "Gamma API NFL market",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "feeSchedule rate 0, rebateRate 0, feeType zero_fees on a sports market contrary to the docs table."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Predictions changelog",
+     "date": "2026-03-30 and 2026-03-31 entries",
+     "quality": "hard-data",
+     "supports": "Fee Structure V2 categories; fee calculations should use the feeSchedule object in market data."
+    },
+    {
+     "url": "https://www.coindesk.com/tech/2026/07/03/americans-traded-usd571-million-on-polymarket-politic-bets-despite-u-s-ban",
+     "title": "Americans traded $571 million on Polymarket despite U.S. ban",
+     "date": "2026-07-03",
+     "quality": "credible-report",
+     "supports": "46% of US-linked wallet trading in geopolitics versus 36% platform-wide (Allium)."
+    }
+   ]
+  },
+  {
+   "name": "Polymarket US Volume Incentive pools: get paid for taker flow you need anyway",
+   "one_line": "Route unavoidable spread-crossing flow (hedges, arb legs) into US contracts that carry a pro-rata taker-volume pool, e.g. $100,000 per NBA Playoffs moneyline market for in-game taker notional.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "For designated contracts the exchange posts a fixed pool split pro rata by eligible taker-side notional executed between 3c and 97c inclusive, with a $500 notional minimum and optional time-window Volume Multipliers. The docs' own example: $100,000 pool, $1M total eligible taker volume, your $100k share earns $10,000, i.e. 10% of notional, versus a maximum taker fee of 1.74c per contract at 50c. The programme went live 2026-05-21 with a $100,000 in-game pool on every NBA Playoffs moneyline market. On top, monthly taker volume of $250k/$1M/$10M earns 10/25/50% taker-fee rebates. A desk that already needs to cross the spread on the US book (hedging international, Kalshi or sportsbook exposure) times those executions into pool contracts and windows.",
+   "edge_source": "Subsidy per unit of taker volume can exceed fee plus half-spread when total eligible volume in a pool market is low; most retail takers do not know the pool exists or do not reach the $500 minimum.",
+   "why_might_beat_market": "Pool size is fixed ex ante while eligible volume is uncertain; in less-followed games the realised pool/volume ratio can be several percent of notional, turning marginal cross-venue arbs positive.",
+   "failure_modes": "Pool/volume ratio collapses in marquee games; programme currently documented only for NBA Playoffs (NFL taker pools unverified); payout timing unspecified; trading with yourself or a colluding counterparty to manufacture volume is wash trading on a DCM; eligibility sits under Institutional programmes.",
+   "cheap_validation": "From the public Time & Sales / trade stats for past pool markets compute realised taker notional inside 3c-97c and divide the pool by it; if the ratio exceeds about 2.5% (fee + half spread) on a meaningful share of games, the routing rule is worth building.",
+   "flags": "US-only access. Volume generated without bona fide risk transfer (self-matching, pre-arranged trades) is wash trading under the Commodity Exchange Act; exchanges run self-match prevention and surveillance, and incentives can be withheld or reversed.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.us/incentives/volume.md",
+     "title": "Volume Incentive Program",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Pro-rata taker-notional formula, 3c-97c band, $500 minimum, $100,000 NBA Playoffs moneyline in-game pool, worked 10% example."
+    },
+    {
+     "url": "https://docs.polymarket.us/changelog.md",
+     "title": "Polymarket US changelog v0.0.31",
+     "date": "2026-05-21",
+     "quality": "hard-data",
+     "supports": "Volume incentive programme live; NBA Playoffs moneyline $100,000 in-game reward pool per market."
+    },
+    {
+     "url": "https://docs.polymarket.us/fees.md",
+     "title": "Fee Schedule",
+     "date": "effective 2026-09-17",
+     "quality": "hard-data",
+     "supports": "Taker fee ceiling and monthly taker rebate tiers used in the break-even."
+    }
+   ]
+  },
+  {
+   "name": "US promotional-credit extraction by hedged conversion",
+   "one_line": "Convert non-withdrawable Polymarket US promo credits ($50 for a $10 deposit; deposit-and-trade campaigns capped at $1,000 per campaign / $2,000 total) into cash by hedging the credited position on another venue.",
+   "category": "Incentive farming",
+   "maturity": "Experimental",
+   "mechanism": "Polymarket US credits $50 once per participant after a $10 deposit and runs deposit-plus-trading campaigns (deposit tier bonus $10-$500; trading incentive requires trades priced 10c-90c; caps $1,000 per campaign and $2,000 across the programme). Credits can open positions and pay fees but cannot be withdrawn. The classic matched-betting conversion applies: spend the credit on one side of a liquid game and take the opposite side on the international book, Kalshi or a sportsbook, locking most of the credit's face value regardless of outcome. Yield is a one-off few hundred to about $2,500 per eligible person including the referral cap.",
+   "edge_source": "Customer-acquisition subsidy; no forecasting needed.",
+   "why_might_beat_market": "Risk-free once hedged, but strictly bounded per real KYC'd person, so it is pocket money for a technical team, not a strategy to automate.",
+   "failure_modes": "Credits expire per campaign; hedge venue fees and spread consume 5-10%; incentives can be withheld, cancelled or reversed for suspected abuse.",
+   "cheap_validation": "One team member who is a US resident runs the $50 credit through a hedged NFL moneyline and records net cash retained.",
+   "flags": "One incentive per participant; opening additional accounts under other identities on a KYC'd, CFTC-regulated platform is fraud, not a ToS nuance. US residents only.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.us/incentives/user-programs.md",
+     "title": "User Incentive Programs (US)",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "$50 deposit credit, deposit-and-trading incentive terms, 10c-90c trade requirement, $1,000/$2,000 caps, non-withdrawable credits, right to reverse."
+    },
+    {
+     "url": "https://docs.polymarket.us/incentives/overview.md",
+     "title": "Incentives Overview (US)",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Programme list and status (Deposit open, Refer-A-Friend open, Daily Trading coming soon, Deposit and Trading open)."
+    }
+   ]
+  },
+  {
+   "name": "Sign-up promo, bonus and referral extraction with hedged conversion (matched-betting transfer)",
+   "one_line": "Polymarket US and Kalshi now run sportsbook-style acquisition promos, such as deposit $10 and get $50. They are convertible to cash by hedging the other side on another venue, once per real person.",
+   "category": "Incentive farming",
+   "maturity": "Established",
+   "mechanism": "Claim the bonus. Polymarket US with code COVERS gives a $50 trading bonus on a $10 deposit. Kalshi codes are worth $25-60 after $25 of trades. Deploy the bonus on a near-coin-flip contract and hedge the opposite outcome at the cheapest venue. When the positions settle, the bonus has become withdrawable cash minus the cross-venue spread and fees. Referrals pay $25 per person up to $350 on Polymarket US. International Polymarket pays 10% of a referee's net fees and 5% indirect for 30 days, or until the referee reaches Platinum tier, and needs $10k of lifetime volume to qualify.",
+   "edge_source": "Customer-acquisition subsidy.",
+   "why_might_beat_market": "It is pure subsidy, but capped per KYC identity at tens to low hundreds of dollars. It only scales through multi-accounting, which is fraud under KYC. For this reader it is a rounding error, except as an affiliate or referral business line.",
+   "adjacent_grounding": "UK and US matched betting and sportsbook bonus hunting. Casino advantage play.",
+   "evidence": [
+    {
+     "url": "https://www.covers.com/betting/bonuses/polymarket-promo-code",
+     "title": "Polymarket Promo Code COVERS: Deposit $10, Get $50",
+     "date": "2026-09",
+     "quality": "marketing",
+     "supports": "A Polymarket US (QCX LLC) offer. The bonus must be used as trading collateral before withdrawal. It is 18+ with KYC and excludes Nevada. The referral pays $25 per person up to $350. This is an affiliate page, and I did not verify the terms against Polymarket US's own site."
+    },
+    {
+     "url": "https://www.sportsbookreview.com/bonuses/kalshi-promo-code/",
+     "title": "Kalshi Promo Code SBR35 (search snippet)",
+     "date": "2026-09",
+     "quality": "marketing",
+     "supports": "A $35 bonus after $25 in trades. Covers lists a $60 variant."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/referral-program.md",
+     "title": "Polymarket Referral Program",
+     "date": "effective 2026-05-28",
+     "quality": "hard-data",
+     "supports": "10% direct and 5% indirect of net fees for up to 30 days or until the referee reaches Platinum. Requires $10k lifetime volume. Self-referral, controlled accounts and inauthentic trading are prohibited, and clawback is at Polymarket's discretion."
+    },
+    {
+     "url": "https://about.darkhorseodds.com/guides/kalshi-polymarket-market-rules",
+     "title": "Matched Betting Risks with Polymarket and Kalshi Props",
+     "date": "2026-09-18",
+     "quality": "credible-report",
+     "supports": "A hedge-breaking rule mismatch. If a player does not play, Polymarket grades the prop as No (a loss) and Kalshi settles at the last pre-game price, while sportsbooks void the bet. A 'matched' bet can lose on both sides. This shows the matched-betting community already uses prediction markets as a hedge leg."
+    }
+   ],
+   "failure_modes": "One use per identity. Bonus terms change. Rule mismatches break hedges. Accounts get closed for multi-accounting.",
+   "cheap_validation": "A single-identity trial. Compute the net conversion percentage after spreads.",
+   "flags": "Multi-accounting and self-referral breach ToS and, on KYC venues, amount to identity fraud. Polymarket US and the international site are separate entities with different eligibility. The international site restricts US persons."
+  }
+ ]
+}

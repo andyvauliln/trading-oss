@@ -1,0 +1,1508 @@
+{
+ "strategies": [
+  {
+   "slug": "maker-reward-pool-farming",
+   "name": "Maker-side reward-pool farming (liquidity rewards, sponsored pools, event programmes, Polymarket US LIP)",
+   "category": "Incentive farming",
+   "maturity": "Established",
+   "seed_category": "liquidity provision / market making - reward-optimised quoting",
+   "one_line": "Quote to maximise share of published reward pools, sized on competition share not pool size, across the international CLOB and the Polymarket US snapshot programme.",
+   "scope": "Cover quoting whose primary income is the subsidy: international liquidity-rewards scoring (quadratic score, c=3.0, per-minute sampling, $1 floor), share-of-score ranking from the public book, concentration of dollars in a few live-sports markets versus ~two-thirds of rewarded markets paying <$10/day, time-boxed programmes (March Madness 3.5 s rest rule, August crypto TWAP $1M), user-sponsored pools (native vs total daily rate diff), and the Polymarket US Liquidity Incentive Program (random per-second snapshots, discount factor, target size, /v1/incentives API, cuts of July 2026). Give realised vs simulated numbers and fill-risk economics. Boundary: spread/settlement-carry PnL belongs to event-market-making; short crypto books to short-crypto-maker-side; taker-side rebates and US volume pools to fee-tier-taker-incentives; ghost-quote reward abuse to ghost-fills-bot-hunting.",
+   "sub_variants": [
+    "competition-share ranking on small pools",
+    "live-sports pool concentration (NFL, March Madness)",
+    "sponsored-pool sniping via native vs total rate diff",
+    "Polymarket US LIP snapshot scoring",
+    "2024-era low-volatility farming (defiance_cr)"
+   ],
+   "merged_from": [
+    "traders: Competition-aware reward-pool farming",
+    "onchain-bots: Liquidity-reward farming quote bots",
+    "platform-surface: International event-linked liquidity programmes",
+    "platform-surface: Sponsored-reward pool sniping",
+    "platform-surface: Polymarket US Liquidity Incentive Program"
+   ],
+   "flags": "Flicker/ghost quoting to score without real liquidity is countered by minimum rest times and is a ToS breach; on Polymarket US (CFTC DCM) spoofing/layering to win snapshots is a CEA violation; US programme is US-resident/entity only and listed under institutional programmes (retail eligibility unverified).",
+   "key_evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+     "note": "Official scoring formula, c=3.0, per-minute sampling, daily payout, $1M August crypto TWAP programme"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rdnw2f",
+     "note": "theflowp_ share-of-pool table: $53/day pool 83.5% captured vs $801/day pool paying $0.11/day; simulation, not realised PnL"
+    },
+    {
+     "url": "https://news.polymarket.com/p/automated-market-making-on-polymarket",
+     "note": "defiance_cr: $10k capital, $200 to $700-800/day at peak, stopped after reward cuts (self-reported)"
+    },
+    {
+     "url": "https://clob.polymarket.com/rewards/markets/current",
+     "note": "~1,000 rewarded conditions, native vs total daily rate, skewed to <$10/day"
+    },
+    {
+     "url": "https://polymarket.us/rewards",
+     "note": "US pools: NFL ML live $32,000/game, discount 0.25, target 150,000 contracts"
+    },
+    {
+     "url": "https://docs.polymarket.us/incentives/liquidity.md",
+     "note": "US LIP scoring, random per-second snapshots, payout timing"
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13755867-sponsor-market-rewards",
+     "note": "Anyone can sponsor from $0.1/day, no platform cut, refund rules"
+    }
+   ]
+  },
+  {
+   "slug": "event-market-making-spread-carry",
+   "name": "Event-market making: spread capture vs settlement carry, rebate wedge and taker-delay last look",
+   "category": "Market-making",
+   "maturity": "Established",
+   "seed_category": "liquidity provision / market making - true spread capture",
+   "one_line": "Two-sided quoting across many event markets where on-chain evidence says the rent is mostly settlement carry and selection, helped by the maker rebate, taker-fee wedge and matching delays.",
+   "scope": "Cover the professional inventory business across politics/culture/tech/long-tail markets: who the ~800 bot accounts and institutional entrants (Wintermute etc.) are, PnL decomposition (91.4% of persistent makers' profit at settlement, median effective half-spread ~0, ~32 effective makers), role switching by skilled wallets, merge-based exits, toxicity/regime switching (poly-maker reference design), deterministic maker rebate per fill (0.19-0.35c/share at 50c), the taker-fee wedge, and venue matching delays (sports 1 s, crypto 50 ms) as a maker cancel option. Include the on-chain-vs-feed trade-direction caveat (59%). Boundary: subsidy-first quoting goes to maker-reward-pool-farming; 5m/15m crypto to short-crypto-maker-side; sportsbook-anchored sports quoting to sportsbook-anchored-sports-mm; longshot-side underwriting to longshot-selling-flb; theoretical quoting models (logit HJB, structural volatility) are in the speculative band.",
+   "sub_variants": [
+    "long-tail multi-market quoting with merge exits",
+    "settlement-carry inventory policy (hold, do not flatten)",
+    "rebate-aware quoting inside the taker-fee wedge",
+    "matching-delay / last-look cancel logic",
+    "insider-toxicity quote pulling in fee-free geopolitics"
+   ],
+   "merged_from": [
+    "onchain-bots: Professional two-sided market making across event markets",
+    "academic: Settlement-carry market making (screening rent)",
+    "platform-surface: Rebate-aware maker quoting inside the taker-fee wedge",
+    "adjacent-transfer: Exploiting the asymmetric speed bump",
+    "platform-surface: Matching delays as a maker's free option"
+   ],
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2609.20017v1",
+     "note": "588M trades: 91.4% of persistent makers' profit arrives at settlement; profit concentrated on buys at 0.50-1.00"
+    },
+    {
+     "url": "https://arxiv.org/html/2604.24366v2",
+     "note": "Median effective half-spread ~0, ~32 effective makers, feed trade direction only ~59% accurate"
+    },
+    {
+     "url": "https://www.newser.com/story/388532/polymarkets-biggest-winners-arent-human.html",
+     "note": "Bloomberg via Newser: ~800 bot accounts >$100k each, ~$131M Jan 2025-Apr 2026"
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6396698",
+     "note": "Top-5% skilled wallets earn $121/market as makers, $63 as takers; spread transfer negligible (abstract)"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+     "note": "Per-market rebate pools 20/15/25%, fee-equivalent weighting, daily pUSD"
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+     "note": "Pending marketable orders cannot be cancelled; resting orders can"
+    },
+    {
+     "url": "https://github.com/warproxxx/poly-maker",
+     "note": "Reference architecture and author's warning that MM can lose money (do not run)"
+    }
+   ]
+  },
+  {
+   "slug": "short-crypto-maker-side",
+   "name": "Short-duration crypto up/down: maker / supply side (split-sell, merge, rebates, toxicity filter)",
+   "category": "Market-making",
+   "maturity": "Established",
+   "seed_category": "liquidity provision / market making - short-duration crypto markets",
+   "one_line": "Be the resting liquidity in 5m/15m/1h/4h up/down markets: mint pairs, sell both legs, merge leftovers, collect 20% rebate share and programme rewards while dodging toxic windows.",
+   "scope": "Cover the supply side only: split $1 into Up+Down, rest asks summing >$1, instant merge recycling, spot-driven digital fair value against the 60 s Chainlink TWAP settle, cancel logic inside the 50 ms taker delay, toxicity rules (last ~50 s near-the-money, >=5 bp Binance moves), per-market pro-rata rebate maths, alt-coin books as less contested, and why retail bleed (25% profitable in 5-minute contracts) funds it. Quantify orphan-leg adverse selection and one-tick spreads. Boundary: the taker/latency side is short-crypto-latency-taker; settlement-window manipulation history is oracle-input-manipulation (only its defensive implications here); generic reward scoring is maker-reward-pool-farming; TWAP end-window pricing is speculative band.",
+   "sub_variants": [
+    "split-sell + merge inventory recycling",
+    "spot-model two-sided quoting with toxicity filter",
+    "alt-coin / new-listing books",
+    "tiny-clip high-frequency farming bots"
+   ],
+   "merged_from": [
+    "traders: Short-dated crypto up/down: supply-side split-sell + merge + maker rebates",
+    "academic: Liquidity provision in ultra-short crypto contracts with a toxicity filter",
+    "onchain-bots: Maker-side quoting in short-dated crypto markets"
+   ],
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1uoqskg",
+     "note": "Roxas-M33: 4,604 windows, every taker price band negative; whales profit via split/merge and maker zero fee (self-reported)"
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.7461319",
+     "note": "Lei & Rossi: profitable wallets 60% monthly vs 25% five-minute; $100 lasts 1.6 days (abstract)"
+    },
+    {
+     "url": "https://arxiv.org/html/2607.26245v1",
+     "note": "Median 347 ms quote response to Binance moves; 91.9% one-tick spreads"
+    },
+    {
+     "url": "https://arxiv.org/html/2606.31675v1",
+     "note": "Manipulative flow concentrated in final 50 s of near-the-money cycles: when to pull quotes"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/maker-rebates.md",
+     "note": "Crypto rebate pool 20% of taker fees, pro-rata per market"
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "note": "Taker delay 250 ms to 50 ms (2026-08-17); TWAP resolution 2026-08-07/14"
+    }
+   ]
+  },
+  {
+   "slug": "short-crypto-latency-taker",
+   "name": "Short-duration crypto up/down: spot-lead / oracle-aware latency taking",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "seed_category": "new (latency trading of short-duration crypto markets)",
+   "one_line": "Hit stale up/down quotes after Binance/Chainlink moves; the poster-child strategy of 2025 that public millisecond data now shows negative after fees for non-HFT takers.",
+   "scope": "Cover the taker side: history (0x8dxd-style wallets, fee introduction Jan-Mar 2026, 250 ms then 50 ms delay, TWAP settlement), the measured lag (347 ms median response, 16 ms median lead-lag), the fee at mid prices (up to 1.75c/share) and how taker-rebate tier changes break-even, Binance-vs-Chainlink basis, and the body of null and loss results (OpenMarket -0.116/trade, pre-registered btc-edge study, uruguabot, last-60-second entries -37.81%, paper-vs-live gaps). State clearly what infrastructure would be needed and whether the Aug 2026 delay cut reopens anything. Boundary: maker side is short-crypto-maker-side; spot pushing at expiry is oracle-input-manipulation; buying 95c+ decided windows is near-certain-bond-carry; TWAP partial-average pricing is speculative band.",
+   "sub_variants": [
+    "Binance-lead stale-quote sniping",
+    "Chainlink-feed-aware variant",
+    "late-window momentum entries (documented losers)"
+   ],
+   "merged_from": [
+    "traders: Short-dated crypto: spot-lead / oracle-aware taker",
+    "academic: CEX-to-Polymarket latency arbitrage on crypto up/down contracts",
+    "onchain-bots: Spot-lag latency taking on crypto up/down markets",
+    "adjacent-transfer: Spot-led latency arbitrage on crypto up/down markets"
+   ],
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2607.26245",
+     "note": "OpenMarket: 727M rows; model does not beat the book; -0.116 payoff units per trade after costs"
+    },
+    {
+     "url": "https://github.com/EVERYTHINGAICO/polymarket-btc-edge",
+     "note": "Pre-registered study, 9,225 windows: no taker edge after realistic costs (do not run)"
+    },
+    {
+     "url": "https://finance.yahoo.com/news/arbitrage-bots-dominate-polymarket-millions-100000888.html",
+     "note": "BeInCrypto: $313 to $414k wallet, 98% win rate; secondary report, mechanism unverified"
+    },
+    {
+     "url": "https://uruguabot.com/blog/we-lost-270-building-a-polymarket-bot.html",
+     "note": "Simulated +11% vs live -27%; stop overshoot, ghost positions"
+    },
+    {
+     "url": "https://cointelegraph.com/news/polymarket-quietly-adds-taker-fees-15-minute-crypto-markets",
+     "note": "Fees introduced specifically against HFT bots, proceeds rebated to makers"
+    },
+    {
+     "url": "https://dev.to/lkto1m/why-my-polymarket-bot-watches-chainlink-not-binance-the-oracle-gap-that-changes-every-close-1e96",
+     "note": "0.3-0.8% Binance/Chainlink divergence claim (self-reported; author contradicts changelog elsewhere)"
+    }
+   ]
+  },
+  {
+   "slug": "sportsbook-anchored-sports-mm",
+   "name": "Sportsbook-anchored sports and esports market making (devigged fair value, pair lock, outside hedge)",
+   "category": "Market-making",
+   "maturity": "Established",
+   "seed_category": "liquidity provision / market making - sports (where the money is)",
+   "one_line": "Rest tiered maker bids around a devigged sharp-book price on sports and long-tail esports, lock pairs under $1 or hedge residuals at books.",
+   "scope": "Cover both scales of the same mechanism: the full-time Pinnacle-anchored sports maker (bankroll up to $300k on NFL Sundays, per-game caps, kill switches, tout-flow fade, drawdowns) and the small esports pair-lock bot (kacho: +$4,973 on $95.8k, fill rate 37.4% to 1.0% in four months). Detail devig methods (Shin bias), odds freshness as the real edge, 1c overbidding competition, sport-by-sport ROI, sports fee 0.05 / rebate 15% since 2026-07-10, zero-fee flags on some NFL markets, cancelled-match 50c resolution and DNP-grading rule mismatches as hazards. Boundary: reward-pool economics in maker-reward-pool-farming; in-play latency and model takers in sports-automated-takers; moneyline-spread-total consistency in combinatorial-logical-arbitrage; parlays in combos-rfq-market-making.",
+   "sub_variants": [
+    "sharp-line tiered quoting with sportsbook hedge",
+    "long-tail esports two-leg pair lock",
+    "long-dated futures below sharp fair value with hedge",
+    "tout-pump fade from own fill stream"
+   ],
+   "merged_from": [
+    "traders: Sharp-line-anchored sports market making with sportsbook hedge",
+    "traders: Long-tail esports / minor-sports two-leg lock",
+    "onchain-bots: Sportsbook-anchored maker quoting with pair-lock",
+    "adjacent-transfer: Sharp-line devig quoting"
+   ],
+   "flags": "Scraping sportsbook odds may breach book ToS (use licensed feeds); hedge accounts get limited; jurisdictional access limits.",
+   "key_evidence": [
+    {
+     "url": "https://news.polymarket.com/p/meet-your-market-maker",
+     "note": "Anonymous full-time sports MM: $300k in play, $25k/game cap, -$100k in ~10 days hockey, fast-click risk (self-reported)"
+    },
+    {
+     "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+     "note": "3,858 bets, +$8,293 locked arb, -$3,185 directional, public wallet"
+    },
+    {
+     "url": "https://kacho.io/why-my-polymarket-arbitrage-bot-lost-money",
+     "note": "Fill-rate collapse 37.4% to 1.0%, line-move stats, Shin devig effect"
+    },
+    {
+     "url": "https://github.com/kachence/polymm",
+     "note": "Retired bot code as reference design only (do not run)"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/48221877",
+     "note": "SSRN abstract via HN: top 1% take 76.5%, 81% of top gains in sports, winners use limit orders"
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=VOL&limit=25",
+     "note": "High-volume automated sports accounts earn ~0.1-1.3% of volume; several deeply negative"
+    }
+   ]
+  },
+  {
+   "slug": "sports-automated-takers",
+   "name": "Automated sports and esports takers: in-play data-feed latency and model-driven hold-to-settlement",
+   "category": "Information edge",
+   "maturity": "Established",
+   "seed_category": "new (in-play sports)",
+   "one_line": "Take stale in-play quotes off a faster event feed, or scale into model-mispriced lines and hold to settlement; the two styles behind the largest sports accounts.",
+   "scope": "Cover two taker styles. (1) Feed latency: official/scout/game-API data vs 15-60 s broadcast delay, esports parsing bots (TeemuTeemuTeemu ~$230k), swisstony scale (hard data) vs claimed mechanism (unverified), size limits from resting depth, per-market secondsDelay, taker delay removals (World Cup), copy-failure proof that the edge lives in the first second. (2) Model-driven: KCH123 probe-wait-slam execution, zero sells, sport-specific ROI (NBA +72.9% vs NHL +0.6%), variance and bankroll, CLV-vs-Pinnacle validation. Include fee 0.05 at mid prices and taker-rebate effect. Boundary: maker-side use of the same feeds is sportsbook-anchored-sports-mm / event-market-making; in-play drift, panic-fade and final-minutes ideas are speculative band; copying these wallets is screened-copy-trading.",
+   "sub_variants": [
+    "live score / stadium-feed sniping in football and US sports",
+    "esports game-API parsing bots",
+    "model-driven probe-wait-slam hold-to-settlement",
+    "Kelly-sized live minor-sports betting"
+   ],
+   "merged_from": [
+    "traders: In-play sports latency trading",
+    "onchain-bots: Live-data latency taking in esports and in-play sports",
+    "adjacent-transfer: In-play data-feed latency, or courtsiding by API",
+    "traders: Model-driven sports taker that scales in and holds to settlement"
+   ],
+   "flags": "Courtsiding and out-of-licence use of official data breach venue/data-provider terms; possible surveillance attention on the CFTC-regulated US venue; not prohibited by Polymarket international itself.",
+   "key_evidence": [
+    {
+     "url": "https://data-api.polymarket.com/v1/leaderboard?timePeriod=ALL&orderBy=VOL&limit=25",
+     "note": "swisstony $23.63M PnL on $1.855B volume (1.27%)"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=swisstony&size=30&sort=desc&sort_type=score",
+     "note": "Teardown and failed copy attempt 1 s late ($150 to $138); mechanism claim unverified"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1tgbkd0,1sccina",
+     "note": "KCH123: $743K in 33 days, 10.7K buys / zero sells, NBA vs NHL ROI split"
+    },
+    {
+     "url": "https://kotaku.com/polymarket-betting-dota2-bot-trump-truth-predict-2000656106",
+     "note": "Esports bot ~$230k in five months, $200-$20,000 per bet"
+    },
+    {
+     "url": "https://news.polymarket.com/p/meet-your-market-maker",
+     "note": "Victim-side confirmation: seeing the play first is worth ~40c of EV"
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+     "note": "Sports marketable orders wait out a delay and cannot be cancelled"
+    }
+   ]
+  },
+  {
+   "slug": "rebalancing-arbitrage-yesno-negrisk",
+   "name": "Same-platform rebalancing arbitrage: YES+NO sets and NegRisk converter / baskets",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "seed_category": "same-platform arbitrage - YES+NO / neg-risk rebalancing",
+   "one_line": "Lock the complement identity in one binary (merge/split) and the NO-to-YES conversion identity in neg-risk events; large historically, saturated and fee-gated now.",
+   "scope": "Cover single-condition long/short set arbitrage and neg-risk rebalancing: mechanics of split, merge, convert, redeem via the gasless relayer and V2 adapter; reconcile the ~$40M headline ($10.58M single-condition + $29.02M neg-risk) with the execution-aware $1.12M reconstruction (97% converter-enabled, 81% from partial conversions and inventory recycling, top-10 = 75%, median profit per conversion $0.08, violations lasting seconds). Explain YES-side residual as capital-lockup carry, augmented neg-risk 'Other' pitfalls, per-leg taker fees since 2026-03-30, fee-free geopolitics and maker-legged variants, orphan-leg evidence (60/69 pairs). Boundary: logical dependencies across separate markets go to combinatorial-logical-arbitrage; crypto split-sell as a maker business is short-crypto-maker-side; reverted-fill counterparties are ghost-fills-bot-hunting.",
+   "sub_variants": [
+    "single-market YES+NO long (buy both, merge)",
+    "single-market short (split, sell both)",
+    "NegRisk NO-to-YES conversion with inventory recycling",
+    "YES-basket hold-to-settlement carry",
+    "maker-legged / fee-free-category variants"
+   ],
+   "merged_from": [
+    "traders: NegRisk converter / basket arbitrage",
+    "academic: NegRisk converter arbitrage including partial conversions",
+    "onchain-bots: Single-condition YES+NO rebalancing",
+    "onchain-bots: NegRisk basket rebalancing and NO->YES conversion arbitrage",
+    "platform-surface: Neg-risk convert / split / merge arbitrage under the 2026 fee regime"
+   ],
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2508.03474v1",
+     "note": "On-chain Apr 2024-Apr 2025: single-condition $10.58M, neg-risk $29.02M; top address $2.01M over 4,049 txs"
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "note": "Executable reconstruction: $1.12M total, $1.086M converter, $32k baskets, per-conversion profit collapse"
+    },
+    {
+     "url": "https://zenodo.org/doi/10.5281/zenodo.22739555",
+     "note": "Apparent coherence violations are mostly microstructure artefacts; genuine sub-$1 arb <=2.7% gross"
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/negative-risk.md",
+     "note": "Convert mechanics, augmented events, avoid 'Other'/placeholders"
+    },
+    {
+     "url": "https://finance.yahoo.com/news/polymarket-users-lost-millions-dollars-143016473.html",
+     "note": "DL News: top three wallets $4.2M, typical margins 1-5%"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=polymarket%20arbitrage&size=60&sort=desc&sort_type=score&after=1740000000",
+     "note": "Practitioner posts: 60/69 paired fills with orphans erasing profit; fees-kill-arb sentiment"
+    }
+   ]
+  },
+  {
+   "slug": "combinatorial-logical-arbitrage",
+   "name": "Combinatorial / logical arbitrage: dependent markets, same-game market types, strike and date ladders",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "seed_category": "same-platform arbitrage - combinatorial-logical",
+   "one_line": "Trade violations of logical constraints between separate markets (A implies B, moneyline vs spread vs total, monotone ladders, nested deadlines); frequent but retail-sized.",
+   "scope": "Cover dependency detection (implication lattices, LLM/expert validation of dependence, O(2^(n+m)) reduction), the three documented arenas: cross-market political/event dependencies (~$95k realised in the IMDEA sample), same-game moneyline x spread x totals (290 NBA episodes, median 101 bps, ~15 shares, 16 s, mostly final minutes), and threshold/date ladders that are not wired as neg-risk (monotonicity, butterfly, calendar checks; impossible cumulative prices in flu/measles ladders). Net everything of current per-leg fees (sports 0.05) and compare maker-first leg entry. Boundary: sums inside one neg-risk event belong to rebalancing-arbitrage-yesno-negrisk; cross-venue structures to cross-venue-arbitrage-leadlag; pricing ladders off option surfaces to options-implied-relative-value; parlay RFQ pricing to combos-rfq-market-making.",
+   "sub_variants": [
+    "cross-event logical implication pairs",
+    "same-game moneyline/spread/total consistency",
+    "strike-ladder monotonicity and butterfly checks",
+    "nested-deadline calendar checks"
+   ],
+   "merged_from": [
+    "onchain-bots: Combinatorial arbitrage across logically dependent markets",
+    "academic: Cross-market-type combinatorial arbitrage inside one sports event",
+    "adjacent-transfer: In-play cross-market consistency arbitrage",
+    "adjacent-transfer: Ladder and calendar no-arbitrage enforcement on threshold markets"
+   ],
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2605.00864v1",
+     "note": "173 NBA games: 290 combinatorial episodes, median 101 bps, avg 14.8 shares, capped profit $559.59; NBA was fee-free in sample"
+    },
+    {
+     "url": "https://arxiv.org/abs/2508.03474",
+     "note": "Defines combinatorial arbitrage and dependency-search heuristic; ~$95k realised"
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.11220",
+     "note": "Polymarket disease ladders priced impossible (decreasing cumulative) outcomes"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.30040",
+     "note": "Method turning adjacent threshold contracts into a PMF; exposes negative masses"
+    },
+    {
+     "url": "https://arxiv.org/abs/2608.00666",
+     "note": "Violations persist where the protocol offers no conversion primitive"
+    }
+   ]
+  },
+  {
+   "slug": "cross-venue-arbitrage-leadlag",
+   "name": "Cross-venue arbitrage and lead-lag: Kalshi, long-tail venues, sportsbooks and the Polymarket US book",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "seed_category": "cross-platform arbitrage",
+   "one_line": "Beyond matched-pair arb: LP structures over equivalence and subset relations, and single-venue quoting off the deeper venue's price where locked arb is impractical.",
+   "scope": "Cover (1) locked structures: semantic matching across venues, equivalence vs strict-subset vs negative-risk constructions, LP payoff-floor solver, realised evidence (796 structures in nine days, 0.52% capital-weighted; 2-4% persistent deviations), annualising against the ~4-7% settlement discount, settlement-rule mismatches as the whole risk (2024 election, DNP props, void conventions); (2) lead-lag: Kalshi depth 3-5x on US sports with 2-3 s Polymarket lag, Polymarket leading in 2024 election, large-trade imbalance signals, Wintermute closing gaps; (3) the international-vs-US Polymarket books as unconnected venues and the no-auth US BBO feed as a free signal. Boundary: options venues are options-implied-relative-value; sportsbook lines as fair value for quoting are sportsbook-anchored-sports-mm; promo hedging is fee-tier-taker-incentives.",
+   "sub_variants": [
+    "matched-pair and LP subset/neg-risk structures",
+    "Polymarket-only follower quoting off Kalshi depth",
+    "large-trade-imbalance follower trades",
+    "international vs US order-book gap and BBO signal"
+   ],
+   "merged_from": [
+    "academic: Cross-venue linear-program arbitrage over the joint outcome space",
+    "onchain-bots: Cross-venue lead-lag quoting (Kalshi depth leads Polymarket)",
+    "academic: Cross-venue lead-lag: trade the lagging venue",
+    "platform-surface: International vs US order-book gap"
+   ],
+   "flags": "Multi-venue KYC/geo restrictions; one natural person cannot lawfully hold both Polymarket international and US accounts; VPN access by US persons is a ToS violation detected by IP and on-chain analysis.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2601.01706v1",
+     "note": "102,275 events on 10 venues: 1,501 equivalence classes, 1,645 subset sets; 2-4% execution-adjusted deviations"
+    },
+    {
+     "url": "https://repozitorij.uni-lj.si/IzpisGradiva.php?id=187046&lang=eng",
+     "note": "Thesis: 796 structures, floor $6,148, capital-weighted 0.52%; 306/308 paid at or above floor"
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.5331995",
+     "note": "Polymarket led Kalshi in 2024; large-trade imbalance predicts returns (abstract)"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47500591",
+     "note": "Practitioner: Kalshi 30-50k depth vs 5-10k on Polymarket, 2-3 s repricing lag (self-reported)"
+    },
+    {
+     "url": "https://gateway.polymarket.us/v1/markets/aec-nfl-cin-hou-2026-09-20/bbo",
+     "note": "Public no-auth US BBO endpoint; indicative gap vs international book"
+    },
+    {
+     "url": "https://about.darkhorseodds.com/guides/kalshi-polymarket-market-rules",
+     "note": "DNP prop graded No on Polymarket, last price on Kalshi, void at books: hedge-breaking mismatch"
+    }
+   ]
+  },
+  {
+   "slug": "near-certain-bond-carry",
+   "name": "Near-certain 'bond' harvesting, post-event bonding and settlement-discount carry",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "seed_category": "resolution sniping",
+   "one_line": "Buy decided-but-unresolved or near-certain outcomes at 95-99.9c, recycle capital fast, and price long-dated certainties off an explicit settlement-discount curve.",
+   "scope": "Cover the turnover business (Certainty Harvester pattern: enter 0.95-0.999, sell at 0.99, dump losers at 0.001-0.005; 90% of >=$10k orders above 0.95), post-event bonding economics (median APY 6.22%, top provider $23,616 over 34,994 trades, 182 s median resolution-to-redemption), the settlement-wedge term structure (3-7% annualised, AAVE-correlated, neg-risk compression), near-zero tail fees under p(1-p), the thin gross edge (+0.83c per dollar at >=90c), reversal/dispute/slippage/gas failure data, time-value and liquidity-crunch trades around big events (Neyman), and holding rewards (3.25% on 15 markets, full-set carry) as a yield layer. Boundary: observation-feed sniping of weather is weather-markets; trading disputes themselves is rules-dispute-trading; selling sub-10c longshots across undecided events is longshot-selling-flb; crypto end-of-window entries are documented in short-crypto-latency-taker.",
+   "sub_variants": [
+    "high-turnover 95-99.9c certainty harvesting",
+    "resolved-but-unsettled bonding",
+    "settlement-discount curve screening for long-dated NO",
+    "liquidity-crunch / time-value trades into major events",
+    "holding-rewards full-set carry"
+   ],
+   "merged_from": [
+    "traders: 'Certainty harvesting'",
+    "onchain-bots: Tail-end buying of near-certain outcomes",
+    "academic: Settlement-discount carry",
+    "traders: Liquidity-crunch / time-value trades",
+    "platform-surface: Holding-rewards carry on full sets"
+   ],
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2605.31431v1",
+     "note": "154,298 near-certainty observations: ASW 4.36-6.89%, bonding median APY 6.22%, top provider $23,616"
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "note": "Purchases >=90c earn only +0.83c per dollar; habitual favourite buyers underperform"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1qhgmxq,1qvpz4q",
+     "note": "1,000-wallet taxonomy with Harvester pattern; counter-example -37.81%"
+    },
+    {
+     "url": "https://dev.to/casatrick/my-bot-showed-84-profit-the-chain-said-11-heres-why-2nai",
+     "note": "0.98-entry bot: +$84 paper vs +$11 on-chain (fee claim in post conflicts with docs)"
+    },
+    {
+     "url": "https://arxiv.org/html/2609.15373v1",
+     "note": "Median 182 s from finality to first redemption across 99,283 conditions"
+    },
+    {
+     "url": "http://ericneyman.blog/2025/03/24/will-jesus-christ-return-in-an-election-year/",
+     "note": "Holders forwent ~16% annualised for cash before the 2024 election"
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13364459-holding-rewards",
+     "note": "3.25% annualised on 15 markets, YES and NO both valued at mid"
+    }
+   ]
+  },
+  {
+   "slug": "weather-markets",
+   "name": "Weather markets: ensemble-forecast bucket trading and station-observation sniping",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "seed_category": "information edge / resolution sniping (niche)",
+   "one_line": "Price daily city-temperature ladders from NWP ensembles and station quirks, or snipe the already-determined bucket seconds before the crowd sees the reading.",
+   "scope": "Cover both builds. Forecast: ensemble-to-bucket conversion, bias correction to the exact resolving station, rounding and local-day boundaries, where edge survives (wide 'or higher' tails, intraday nowcasting) versus crowded GFS-counting bots, named profitable accounts (Hans323, Atte ~$33k, HondaCivic) and honest post-mortems (linuzri 31% win rate, break-even HN maker). Sniping: HighTempTation-style 80c-to-99c sweeps with ~1-minute holds, capacity limited to resting asks, feed-source inference unverified. Include fee 0.05 / rebate 25%, maker-taker gap 2.57 pp on Kalshi weather, overconfidence within 48 h, thin depth, and sensor tampering (Paris CDG) as settlement risk. Boundary: generic 95c+ harvesting is near-certain-bond-carry; tampering itself is oracle-input-manipulation.",
+   "sub_variants": [
+    "ensemble forecast bucket pricing",
+    "intraday observation nowcasting",
+    "resolution-time station-feed sniping",
+    "maker quoting of buckets"
+   ],
+   "merged_from": [
+    "traders: Weather markets: forecast-model edge",
+    "traders: Weather markets: observation-latency sniping near resolution",
+    "onchain-bots: Weather-model trading of daily temperature and snowfall markets",
+    "adjacent-transfer: Weather-derivatives-style ensemble forecasting"
+   ],
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://www.claimsjournal.com/news/national/2026/04/15/336839.htm",
+     "note": "Bloomberg via Claims Journal: named weather traders, Jua pooled fund, Windborne interns"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1vfghat,1seqcf5,1uw53zf",
+     "note": "$220 to $58k, 1,752/1,769 wins, ~1 min hold; second wallet $20.2k in 10 days"
+    },
+    {
+     "url": "https://github.com/linuzri/polymarket-bot",
+     "note": "Archived live post-mortem: wide bets +$32.24, exact buckets -$28.51, station and UTC bugs (do not run)"
+    },
+    {
+     "url": "https://jbecker.dev/research/prediction-market-microstructure",
+     "note": "Kalshi weather maker-taker gap 2.57 pp over 4.4M trades"
+    },
+    {
+     "url": "https://arxiv.org/html/2602.19520v2",
+     "note": "Weather markets overconfident within 48 h (slopes 0.69-0.97)"
+    },
+    {
+     "url": "https://www.engadget.com/big-tech/someone-allegedly-used-a-hairdryer-to-rig-polymarket-weather-bets-155312411.html",
+     "note": "Sensor tampering incident, ~$34k: settlement-source risk"
+    }
+   ]
+  },
+  {
+   "slug": "longshot-selling-flb",
+   "name": "Favourite-longshot harvesting: systematic longshot selling / NO buying, conditioned on category",
+   "category": "Directional trading",
+   "maturity": "Emerging",
+   "seed_category": "directional / behavioural-bias harvesting",
+   "one_line": "Be the structural seller of overpriced sub-10-15c YES across many unrelated non-sports events, preferably as a maker, sized for rare correlated blow-ups.",
+   "scope": "Cover the evidence base (Polymarket 588M trades: <10c purchases lose 19.3c per dollar pooled, -6.3% equal-weighted, +4.1% when grouped by parent event; absent in sports; Kalshi takers -1.12% / makers +1.12%, category gaps 0.17-7.32 pp; risk-premium interpretation), maker vs taker implementations, the 'Nothing Ever Happens' always-buy-NO bot and why the naive version is priced in (73% resolve No, average No ~73c), post-hype NO entries, event-level diversification, capital lock at 0% yield, tail/dispute/insider risk concentrated exactly in these positions, and fee-free geopolitics having no rebate. Boundary: decided or near-resolved 95c+ positions are near-certain-bond-carry; tweet-count bucket NOs are detailed in recurring-count-mention-markets; options-hedged threshold shorts are options-implied-relative-value.",
+   "sub_variants": [
+    "maker-side resting YES offers / NO bids at the tail",
+    "always-buy-NO taker bot with filters",
+    "post-news-hype NO entries",
+    "category-conditioned portfolio (exclude sports, finance)"
+   ],
+   "merged_from": [
+    "traders: Systematic longshot selling / 'optimism tax' harvesting",
+    "academic: Favourite-side carry / systematic longshot underwriting",
+    "onchain-bots: Favorite-longshot harvesting",
+    "adjacent-transfer: Favorite-longshot or 'optimism tax' harvest",
+    "adjacent-transfer: 'Nothing ever happens' short-event-volatility carry"
+   ],
+   "flags": "",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/html/2609.12878v1",
+     "note": "Category returns, offer-acceptor vs posted-offer split, sign flip under parent-event weighting"
+    },
+    {
+     "url": "https://www.jbecker.dev/research/prediction-market-microstructure",
+     "note": "Kalshi 72.1M trades: 1c YES EV -41% vs NO +23%; maker-taker gap by category"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47753472",
+     "note": "Always-buy-No bot thread: no returns shown; '1 loss sets you back 10-20 wins'"
+    },
+    {
+     "url": "https://finance.yahoo.com/markets/options/articles/nothing-ever-happens-bot-always-151603375.html",
+     "note": "73.3% resolve No; modelled returns only, wallet undisclosed"
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6468338",
+     "note": "Wang-transform risk loading: part of the bias is a risk premium (abstract)"
+    },
+    {
+     "url": "https://api.crossref.org/works/10.2139/ssrn.7087538",
+     "note": "Counter-evidence: no FLB in Kalshi CPI markets"
+    }
+   ]
+  },
+  {
+   "slug": "recurring-count-mention-markets",
+   "name": "Recurring speech and count markets: tweet-count modelling and mention markets",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "seed_category": "information edge / niche modelling",
+   "one_line": "Model repeating count processes (Elon tweet weeks) and trade 'will X say Y' strikes from base rates early and transcript speed live.",
+   "scope": "Cover tweet-count markets (transition matrix, pacing curve, outlier flag, calibration gaps by bucket, NO on 10-20% buckets 90/97, $46.5M weekly volume, public dashboards eroding the edge, counting-rule disputes) and mention markets (speaker base rates from past transcripts, early thin-book entries, live keyword sniping, 'Axios' 96% win-rate wallet claim, small retail results, one-miss blow-ups, speaker griefing). State plainly that no verified transcript/ASR bot PnL was found and that insiders who see the script are documented counterparties (CFTC teleprompter case). Fees 0.04-0.05, rebate 25%. Boundary: generic longshot selling is longshot-selling-flb; insider conduct is informed-flow-and-insider-trading; rule-wording disputes are rules-dispute-trading.",
+   "sub_variants": [
+    "weekly count-process model with intra-week repricing",
+    "pre-event base-rate mention pricing",
+    "live audio / transcript keyword sniping"
+   ],
+   "merged_from": [
+    "traders: Recurring count-process markets (Elon tweet counts and similar) modelling",
+    "traders: Mention-market trading",
+    "onchain-bots: Mention markets (what a speaker will say)"
+   ],
+   "flags": "Mention markets have high insider exposure (CFTC settlement Aug 2026); outcomes can be manipulated by the speaker.",
+   "key_evidence": [
+    {
+     "url": "https://news.polymarket.com/p/tweet-quant",
+     "note": "86 weeks of data, calibration gaps, pacing and momentum factors, $46.5M weekly volume"
+    },
+    {
+     "url": "https://news.polymarket.com/p/this-tool-finds-polymarket-traders",
+     "note": "Polymarket Analytics founder: 96% win-rate mention wallet, speed trading as a style"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?q=%22mention%20market%22%20OR%20%22mention%20markets%22%20strategy&size=40&sort=desc&sort_type=score&after=1751328000",
+     "note": "Retail results: 14/15 for +$320; early entries 63c/52c to high 80s; CEO troll"
+    },
+    {
+     "url": "https://www.cnn.com/2026/08/28/politics/trump-teleprompter-operator-settles-insider-trading-case",
+     "note": "Snippet only: CFTC action over bets on speech content"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/48007503",
+     "note": "WSJ as quoted: bettor lost $41,000 on one mention bet"
+    }
+   ]
+  },
+  {
+   "slug": "discretionary-research-bets",
+   "name": "Concentrated discretionary research bets and purchased proprietary data (polling forensics, local knowledge, private polls)",
+   "category": "Directional trading",
+   "maturity": "Established",
+   "seed_category": "directional trading / forecasting",
+   "one_line": "Few, large, deeply researched positions where the crowd leans on headlines; at the top end, commissioning private data the market lacks.",
+   "scope": "Cover what interviewed top discretionary traders actually do (poll crosstab forensics, reversing post-event bias, native-language reads, Fed-path trades, waiting after news), the 'Theo' private-polling playbook ($85M, neighbour-effect YouGov polls, 11 accounts), evidence that profit tracks sizing and concentration more than calibration (truncated vendor study, caveat), political underconfidence (slope ~1.45) as supporting context, fat-tailed survivorship, single-event blow-ups, and the realistic automation target: an analyst-assist agent (rule text, base rates, crosstabs) with human sizing. Note the 2026 midterms as the next depth window. Boundary: systematic recalibration models and LLM forecasters are speculative band; rule-text edges are rules-dispute-trading; MNPI is informed-flow-and-insider-trading.",
+   "sub_variants": [
+    "polling and crosstab forensics",
+    "post-event 'reversing stupidity'",
+    "local-language / political-culture reads",
+    "commissioned private polling at scale",
+    "analyst-assist agent with human sizing"
+   ],
+   "merged_from": [
+    "traders: Concentrated discretionary research bets",
+    "adjacent-transfer: Proprietary-data purchase for political markets (the syndicate or private-polling model)"
+   ],
+   "flags": "Multi-account size masking may breach ToS; one interviewee cites family government contacts (MNPI-adjacent); election-market legality varies by jurisdiction.",
+   "key_evidence": [
+    {
+     "url": "https://news.polymarket.com/p/he-made-300k-betting-on-a-narcissistic",
+     "note": "RememberAmalek: Mamdani from 8%, exit-poll fade, fewer bigger bets (self-reported)"
+    },
+    {
+     "url": "https://news.polymarket.com/p/286-to-1m-from-reversing-stupidity",
+     "note": "Semi: $286 to >$1M fading folk wisdom (self-reported)"
+    },
+    {
+     "url": "https://news.polymarket.com/p/this-substack-writer-made-25x-in",
+     "note": "Polish election: market over-weighted name recognition"
+    },
+    {
+     "url": "https://www.thefp.com/p/french-whale-makes-85-million-on-polymarket-trump-win",
+     "note": "[pre-2025, possibly stale] Theo: private YouGov polls, ~$80M staked, ~$85M profit"
+    },
+    {
+     "url": "https://www.convexly.app/blog/polymarket-10k-wallet-study",
+     "note": "Vendor study (truncated data): calibration barely predicts profit; concentration does"
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.19520",
+     "note": "Persistent political underconfidence replicated on Kalshi and Polymarket"
+    }
+   ]
+  },
+  {
+   "slug": "options-implied-relative-value",
+   "name": "Options-implied relative value on crypto, commodity and earnings threshold markets",
+   "category": "Arbitrage",
+   "maturity": "Emerging",
+   "seed_category": "new (options-implied relative value)",
+   "one_line": "Price 'above/hits X by date' and earnings markets off listed option surfaces, sell the persistently rich YES, optionally hedge with verticals or perps.",
+   "scope": "Cover the replication toolkit (vertical/width for terminal, ~2x delta or reflection for one-touch, SVI/SSVI plus Breeden-Litzenberger), measured wedges (BTC +5.6-6.3 pp vs Binance options, +11 pp vs Deribit, half-life ~4 h, 2023 sample; gold +8.9 pp, silver +5.3 pp, 2026), the reality check that much of it is variance-risk plus longshot premium, worked practitioner trades (IBIT call spread vs '$110k by March'), earnings hybrids (TSLA beat rate vs market odds), basis risks (Chainlink/Binance reference vs option index, expiry mismatch), 100% collateral with no cross-margin, fee 0.04-0.07, and Polymarket Perps as a same-collateral delta hedge. Boundary: pure ladder monotonicity checks are combinatorial-logical-arbitrage; unhedged longshot selling is longshot-selling-flb; perps venue economics are perps-lp-rewards-basis.",
+   "sub_variants": [
+    "terminal 'above K' digital vs vertical",
+    "one-touch 'hits K' vs barrier pricing",
+    "commodity threshold markets vs CME options",
+    "earnings markets vs implied move",
+    "perps-hedged variant"
+   ],
+   "merged_from": [
+    "traders: Options-implied pricing of finance / crypto-threshold / earnings markets",
+    "academic: Options-implied vs prediction-market probability convergence",
+    "onchain-bots: Options-implied versus Polymarket crypto threshold stat-arb",
+    "adjacent-transfer: Options-implied relative value"
+   ],
+   "flags": "Deribit/Polymarket access is jurisdiction-dependent.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.19517",
+     "note": "Mean gap 5.6 pp (t=6.46), 11 pp vs Deribit; delta-hedged alpha marginal on 16 trades; 2023 sample [pre-2025 data, possibly stale]"
+    },
+    {
+     "url": "https://zenodo.org/doi/10.5281/zenodo.21232132",
+     "note": "2,671 daily obs: gold +8.9 pp, silver +5.3 pp, half-lives under three days"
+    },
+    {
+     "url": "https://podshopguy.substack.com/p/polymarket-overprices-volatility",
+     "note": "Worked IBIT call-spread vs Polymarket touch trade with basis risks (self-reported)"
+    },
+    {
+     "url": "https://moontowermeta.com/prediction-market-arbitrage-using-option-chains-to-find-mispriced-bets/",
+     "note": "Ex-options MM recipe: vertical/width, one-touch ~2x delta"
+    },
+    {
+     "url": "https://github.com/beshsigma/polymarket-deribit-pricing",
+     "note": "Reality check: apparent mispricing largely evaporates; VRP plus FLB (do not run)"
+    },
+    {
+     "url": "https://news.polymarket.com/p/an-options-degen-looks-at-tsla-earnings",
+     "note": "TSLA beat rate 38% vs 73% market odds; hybrid structures"
+    }
+   ]
+  },
+  {
+   "slug": "rules-dispute-trading",
+   "name": "Rule-ambiguity, clarification and dispute-phase trading (betting on the adjudicator)",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "seed_category": "resolution sniping / oracle-layer information edge",
+   "one_line": "Trade markets whose price ignores the rule text, and the dislocations that follow UMA disputes and Polymarket clarifications, by modelling how the vote will go.",
+   "scope": "Cover rules-lawyering as a daily practice, the lifecycle (proposal, 2 h challenge, reset, DVM vote, 4-6 days; clarifications 83% before first proposal; 1.01% dispute rate; $972M in disputed events), case studies (Strategy BTC-sale 81% to <1%, $345M Iran peace-deal, Venezuela 'invade'), recurring ambiguity types (event vs announcement timing, source conflicts, too-early), UMA voter concentration and conflicts (nine wallets >50%, >300 conflicted disputes), Polymarket overruling precedent, LLM adjudicator agreement ~89.6% (after-the-fact, tradeable mispricing unproven), dispute-category mix, capital lock and sizing. Boundary: earning bonds or voting rewards is uma-side-operations; buying undisputed decided outcomes is near-certain-bond-carry; cross-venue settlement mismatches are cross-venue-arbitrage-leadlag.",
+   "sub_variants": [
+    "pre-resolution rules-text mispricing",
+    "dispute-window dislocation trading",
+    "clarification-event trading",
+    "LLM adjudicator triage"
+   ],
+   "merged_from": [
+    "traders: Resolution-process trading (rules-lawyering, dispute trading, bond economy)",
+    "onchain-bots: Dispute-phase trading (betting on the UMA vote)",
+    "platform-surface: Dispute and clarification dislocation trading",
+    "academic: UMA dispute / adjudication trading with an LLM adjudicator"
+   ],
+   "flags": "Combining positions with UMA voting or proposing is a conflict of interest treated as manipulation; harassing resolution sources is criminal.",
+   "key_evidence": [
+    {
+     "url": "https://docs.polymarket.com/concepts/resolution.md",
+     "note": "Bond, 2 h challenge, two rounds then DVM, 4-6 days, 50/50 outcome; page still says anyone can propose"
+    },
+    {
+     "url": "https://thenextweb.com/news/polymarket-345-million-iran-peace-deal-dispute-uma-whale-voting",
+     "note": "Nine wallets >50% of votes; >300 conflicted disputes; contracts tradable during vote"
+    },
+    {
+     "url": "https://www.coindesk.com/markets/2026/06/02/strategy-sold-bitcoin-in-late-may-and-told-the-market-in-june-here-s-how-polymarket-bettors-are-fighting-over-when-it-counts",
+     "note": "81% Yes during dispute to under 1% after clarification, $79M at stake"
+    },
+    {
+     "url": "https://arxiv.org/html/2604.15674v1",
+     "note": "558 disputed events, $972.4M; LLM agreement 89.58%; cannot predict which get disputed"
+    },
+    {
+     "url": "https://arxiv.org/html/2609.15368v1",
+     "note": "159,447 proposals, 1,604 disputes, 1,478 resets, 1,711 clarifications by route"
+    },
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1u75kwq",
+     "note": "Trader-side account of the Iran dispute (self-reported; whale claim unverified by poster)"
+    }
+   ]
+  },
+  {
+   "slug": "uma-side-operations",
+   "name": "UMA-side operations: whitelisted proposing, dispute bounties, staking and DVM voting",
+   "category": "Incentive farming",
+   "maturity": "Established",
+   "seed_category": "staking",
+   "one_line": "Earn from the oracle layer itself: per-request proposer rewards, half-bond dispute wins and UMA staking emissions; small money, valuable information.",
+   "scope": "Cover three operations with their real economics: (1) proposing under ManagedOptimisticOracleV2 whitelists (37 to 177 addresses, >=5 proposals at >95% accuracy over six months, rewards $0.6-$10 against $250-$25,000 bonds, one lost dispute erases ~300 wins, Chainlink-resolved crypto pays nothing); (2) permissionless disputing (half the proposer bond, 4-6 day lock, disputes -68% after whitelisting, all-time upper bound ~$0.6M derived); (3) staking and commit-reveal voting (emission figures conflict between docs: 0.18 vs 0.155 UMA/s; 0.1% slash, 7-day cooldown, APY unverified, UMA price risk, whale Schelling dynamics). Emphasise the information value as a feed for other agents and the docs inconsistency on permissionless proposing. Boundary: trading on disputes is rules-dispute-trading.",
+   "sub_variants": [
+    "whitelisted proposer bot",
+    "too-early / wrong-proposal dispute bounty hunting",
+    "UMA staking with automated majority voting"
+   ],
+   "merged_from": [
+    "platform-surface: Whitelisted UMA proposer operation",
+    "services: UMA whitelisted proposer operation",
+    "platform-surface: UMA dispute bounty hunting",
+    "services: UMA disputer-for-bond operation",
+    "platform-surface: UMA staking and DVM voting yield",
+    "services: UMA staking and voting operation"
+   ],
+   "flags": "Proposing, disputing or voting on markets where you hold positions is the central conflict-of-interest criticism; disputing correct proposals to delay settlement is treated as manipulation and is fully visible on-chain.",
+   "key_evidence": [
+    {
+     "url": "https://blog.uma.xyz/articles/managed-proposers-update",
+     "note": "Whitelist growth 37/156/177, eligibility rule, incorrect proposals -59%, disputes -68% (self-reported by UMA)"
+    },
+    {
+     "url": "https://docs.uma.xyz/using-uma/default-proposer-whitelist.md",
+     "note": "Criteria and monthly refresh; contract address on Polygon"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/markets?limit=40&active=true&closed=false&order=volume24hr&ascending=false",
+     "note": "Live umaBond/umaReward pairs: 250/0.8, 500/5, 25,000/10"
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13364551-how-are-markets-disputed",
+     "note": "Equal challenge bond, vote timeline, who receives half of whose bond"
+    },
+    {
+     "url": "https://docs.uma.xyz/using-uma/voting-walkthrough",
+     "note": "Emissions 0.18 UMA/s, 0.1% missed-vote slash, 7-day cooldown"
+    },
+    {
+     "url": "https://docs.uma.xyz/using-uma/voting-walkthrough/dvm-2.0-faq.md",
+     "note": "[pre-2025, possibly stale] ~28-32% APY, 0.155 UMA/s: conflicts with walkthrough figure"
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.15368",
+     "note": "184,148 requests, 159,447 proposals, 1,604 disputes: scale of the bond economy"
+    }
+   ]
+  },
+  {
+   "slug": "screened-copy-trading",
+   "name": "Copy trading with forensic and statistical wallet screening",
+   "category": "Information edge",
+   "maturity": "Emerging",
+   "seed_category": "copy trading",
+   "one_line": "Mirror a small set of slow-conviction wallets detected on-chain in 2-3 s, selected by randomisation-null skill tests rather than leaderboard PnL, with exit mirroring.",
+   "scope": "Cover selection (sign-randomisation null: 3.14% skilled, 44% retain status out of sample; Wilson intervals; 6,365 wallets to 72 passed; rolling-accuracy vs PnL ranking; weak monthly persistence), detection (OrderFilled websocket vs REST polling), gate stack and exit engine, measured copy differential (+1.62 pp vs own trades), which leaders are uncopyable (latency edges, maker-earned edges, split/hedged wallets, liquidity sweepers), realised small-bankroll results (+$256.85 on $500) and failures (1 s late copy of swisstony, vendor figure 67% underperform), migration breakage (pUSD, CLOB V2), bait risk from the ghost-fill era. Boundary: following anomalous fresh wallets is informed-flow-and-insider-trading; selling copy bots is builder-code-routing-business; fading bad wallets is speculative band.",
+   "sub_variants": [
+    "on-chain event-level mirror with exit engine",
+    "randomisation-null skill filter",
+    "maker/early-taker-only copying"
+   ],
+   "merged_from": [
+    "traders: On-chain copy-trading with forensic wallet screening",
+    "academic: Copy trading with a statistically validated skill filter"
+   ],
+   "flags": "Many third-party copy bots are custodial or outright drainers; never run researched bot repos.",
+   "key_evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1stfa95,1tfkwia",
+     "note": "5-week build: 2-3 s detection, 6,365 to 72 wallet screen, +$256.85 on $500 (self-reported)"
+    },
+    {
+     "url": "https://api.crossref.org/works/10.2139/ssrn.6670318",
+     "note": "Copy trades beat followers' own trades by 1.62 pp (abstract)"
+    },
+    {
+     "url": "https://arxiv.org/html/2605.02287v2",
+     "note": "Summarises sign-randomisation study: 3.14% skilled, 44% persistence"
+    },
+    {
+     "url": "https://doi.org/10.2139/ssrn.6443103",
+     "note": "Top 1% capture 76.5% of gains but weak monthly persistence (abstract)"
+    },
+    {
+     "url": "https://dev.to/jacobyf/the-polymarket-copy-trading-trap-what-nobody-tells-you-about-following-prediction-market-whales-27b5",
+     "note": "Vendor analysis: 67% of copy traders underperform the copied wallet (marketing)"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47091557",
+     "note": "Practitioner objections: edge gone by the time fills are visible"
+    }
+   ]
+  },
+  {
+   "slug": "informed-flow-and-insider-trading",
+   "name": "Informed flow: MNPI insider trading (illegal) and fresh-wallet detection / fast-follow (grey)",
+   "category": "Information edge",
+   "maturity": "Established",
+   "seed_category": "information edge / anti-Sybil and surveillance (flagged)",
+   "one_line": "Insiders with military, corporate or script knowledge demonstrably trade Polymarket; others detect their on-chain fingerprint to follow, pull quotes or sell alerts.",
+   "scope": "Survey-level for the illegal part, build-level for detection. Cover documented cases and enforcement (Maduro operation soldier ~$410k, Israeli officers, Google Year-in-Search 22/23, OpenAI firing, teleprompter operator), scale estimates (~$143M flagged gains, 210k wallet-market pairs ~70% win; ACDC 556 Orcas, 152 military wallets 97.2%), the fingerprint (fresh wallet, single market family, conviction size at tiny prices, funder clusters), academic screens (lifecycle heuristic t=8.65 on outcome, ILS computable in 0.7% of markets, counter-evidence of zero pre-event leakage), follower economics (copycat bot $200k, being exit liquidity, practitioner failure), use as a maker toxicity trigger in fee-free geopolitics, and the alert-service variant that triggered Polymarket's builder audit. Boundary: PnL-based copying is screened-copy-trading; outcome manipulation is oracle-input-manipulation.",
+   "sub_variants": [
+    "MNPI trading by insiders (prohibited; survey only)",
+    "fresh-wallet / Orca detector with fast-follow",
+    "informed-flow detector as quote-pull trigger",
+    "retail insider-alert products"
+   ],
+   "merged_from": [
+    "academic: Trading on material non-public information",
+    "onchain-bots: Trading on material non-public information",
+    "traders: Insider-cluster / fresh-wallet detection and following",
+    "academic: Informed-flow detection and following",
+    "onchain-bots: Insider-signal ('Orca') detection and fast-follow",
+    "services: Insider / unusual-activity alert service (retail)"
+   ],
+   "flags": "MNPI trading is illegal (DOJ/CFTC prosecutions 2026) and ToS-violating. Knowingly following suspected MNPI flow is a legal grey zone, counsel-worthy on the CFTC-regulated venue. 'Find insiders' marketing triggered a Polymarket builder audit (April 2026); defamation risk when naming wallets.",
+   "key_evidence": [
+    {
+     "url": "https://doi.org/10.2139/ssrn.7259741",
+     "note": "Mitts & Ofir: 210,000+ pairs, ~70% win, ~$143M suspicious gains (abstract)"
+    },
+    {
+     "url": "https://arxiv.org/html/2605.02287v2",
+     "note": "1,950 flagged accounts; imbalance predicts outcome (t=8.65); on-chain PnL matches DOJ figure; following not tested"
+    },
+    {
+     "url": "https://www.al-monitor.com/originals/2026/08/exclusive-more-150-polymarket-wallets-may-have-traded-military-secrets-research",
+     "note": "Reuters/ACDC: 556 Orcas, 152 military wallets, 97.2%, copycat flow sizes"
+    },
+    {
+     "url": "https://mattlsmith.com/posts/real-data-google-polymarket-insider/",
+     "note": "On-chain reconstruction of Google case; fingerprint visible only by market family"
+    },
+    {
+     "url": "https://arxiv.org/html/2605.02286v2",
+     "note": "Counter-evidence: zero 30-min/2-h pre-event leakage in the $269M Iran market"
+    },
+    {
+     "url": "https://unchainedcrypto.com/polymarket-audits-builders-program-startups-over-insider-trading-concerns/",
+     "note": "Polycool/Kreo insider-finder marketing led to platform audit"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/48007503",
+     "note": "Practitioner built an insider detector and 'did not succeed'"
+    }
+   ]
+  },
+  {
+   "slug": "oracle-input-manipulation",
+   "name": "Manipulating what the oracle reads: settlement-window spot pushes, resolution-source tampering, narrative manipulation (prohibited)",
+   "category": "Insider / manipulation-adjacent (flagged)",
+   "maturity": "Established",
+   "seed_category": "insider / manipulation-adjacent practices (flagged; defensive relevance)",
+   "one_line": "Documented, illegal ways money was made by moving the measured outcome rather than predicting it; the file exists to define defences and market-fragility screens.",
+   "scope": "Survey-level only, no how-to. Cover (1) settlement-window manipulation of snapshot-settled 5-minute BTC contracts: 821 accounts, $8.2M, retail bore 93% of non-MM losses, spot flow 3.9x, winners flipped 65% of near-the-money cycles, attenuated at 15 minutes, related Coinbase-constituent divergence evidence, Polymarket's TWAP response (30 s then 60 s) and rewards; (2) resolution-source tampering and coercion: Paris CDG sensor (~$34k, criminal complaint), threats to a Times of Israel journalist, ISW map edit, speakers gaming mention markets; (3) narrative manipulation economics (~$0.7-1.0M per cited 5-point move, whale persistence). Deliver a 'resolution fragility' taxonomy (single sensor, single outlet, participant-controlled, thin reference print) and maker rules for final seconds. Boundary: protocol-level fill exploits are ghost-fills-bot-hunting; insiders are informed-flow-and-insider-trading.",
+   "sub_variants": [
+    "settlement-window spot pushing (mitigated Aug 2026)",
+    "physical sensor tampering",
+    "coercion or editing of resolution sources",
+    "paying to move prominent markets for citations",
+    "defensive fragility screen for all other agents"
+   ],
+   "merged_from": [
+    "traders: Settlement-window manipulation of price-settled contracts",
+    "academic: Settlement-window oracle manipulation",
+    "onchain-bots: Settlement-window spot manipulation",
+    "adjacent-transfer: Settlement-window price manipulation ('banging the close')",
+    "platform-surface: Settlement-window spot manipulation (historical, flagged)",
+    "traders: Resolution-source tampering and coercion",
+    "onchain-bots: Physical tampering with the resolution source",
+    "adjacent-transfer: Settlement-source tampering",
+    "academic: Narrative manipulation and outcome influence"
+   ],
+   "flags": "Illegal: market manipulation (CEA/CFTC, wire fraud), tampering with data systems, criminal threats; ToS bans and referrals to authorities documented. Do not build; defensive use only.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.31675",
+     "note": "Dai, Jia, Yu: settlement-time spot flow spikes and reversals; 821 manipulators, $8.2M"
+    },
+    {
+     "url": "https://www.coindesk.com/business/2026/08/07/how-a-five-second-trick-let-traders-drain-millions-from-polymarket",
+     "note": "Press summary; near-certain side overturned one time in three; TWAP fix and $1M rewards"
+    },
+    {
+     "url": "https://doi.org/10.3390/fintech5030067",
+     "note": "Oracle-constituent exchange deviates 6.7 bp per s.d. of strike proximity in settlement windows (abstract)"
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "note": "Chainlink TWAP resolution 2026-08-07; 60 s window for 5-minute markets 2026-08-14"
+    },
+    {
+     "url": "https://www.engadget.com/big-tech/someone-allegedly-used-a-hairdryer-to-rig-polymarket-weather-bets-155312411.html",
+     "note": "Paris CDG sensor, ~$34,000, Meteo-France complaint, sensor relocated"
+    },
+    {
+     "url": "https://www.timesofisrael.com/gamblers-trying-to-win-a-bet-on-polymarket-are-vowing-to-kill-me-if-i-dont-rewrite-an-iran-missile-story/",
+     "note": ">$14M market, death threats, accounts banned"
+    },
+    {
+     "url": "https://arxiv.org/html/2609.06005v1",
+     "note": "44,976 dislocations; citations +33%; ~$0.7-1.0M per cited move"
+    }
+   ]
+  },
+  {
+   "slug": "ghost-fills-bot-hunting",
+   "name": "Ghost fills and bot hunting: exploiting the off-chain-match / on-chain-settle gap and baiting predictable bots (prohibited)",
+   "category": "Insider / manipulation-adjacent (flagged)",
+   "maturity": "Established",
+   "seed_category": "insider / manipulation-adjacent practices (flagged; threat model for the owner's bots)",
+   "one_line": "Attackers voided their own losing fills before settlement and baited arbitrage, MM and reward-farming bots; at least $1.49M extracted and only partially mitigated.",
+   "scope": "Survey-level description, defence at build level. Cover the atomicity gap and the four vector families at name level only (no how-to), measured scale (1.95M reverted matchOrders, 980,133 attack-attributed, 46,389 addresses, peak 8.5% daily / >24.3% hourly reverts, $13.4k rewards captured, operator gas loss), uses (risk-free prediction in 5-minute crypto, arbitrage-bot hunting with Sybil bait quotes, reward capture without fills), mitigations (CLOB V2 nonce removal 2026-04-28, deposit wallets 2026-05-04, revert rate 8% to 0.3%), second paper and forked deployments, thin-book front-running of market buys and selling into copy-followers. Defensive deliverables: MATCHED vs CONFIRMED handling, balance-delta reconciliation, counterparty revert scoring, hedge delay, contaminated backtest windows (Aug 2025-Apr 2026). Boundary: oracle/settlement-price manipulation is oracle-input-manipulation; wash volume is wash-trading-airdrop-farming.",
+   "sub_variants": [
+    "selective fill reverts (free look-back option)",
+    "bait quotes against arbitrage and copy bots",
+    "reward capture with zero settled fills",
+    "thin-book front-running of market orders",
+    "defensive reconciliation and counterparty scoring"
+   ],
+   "merged_from": [
+    "traders: Ghost fills",
+    "academic: Ghost fills: reverting matched orders to obtain a free option",
+    "onchain-bots: Ghost-fill / settlement-revert exploitation",
+    "adjacent-transfer: Ghost-fill or settlement-revert exploitation",
+    "onchain-bots: Hunting predictable bots"
+   ],
+   "flags": "Exploit and abuse of settlement: ToS breach, likely fraud / computer-misuse liability; spoofing and baiting are market manipulation. Do not build; defensive use only.",
+   "key_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.16852",
+     "note": "Shen et al.: 980,133 selectively reverted fills, >=$1.49M, 35 variants, victims = arb/MM/reward bots"
+    },
+    {
+     "url": "https://arxiv.org/html/2606.16852v1",
+     "note": "Bot-hunting case (ten Sybil wallets, $4,415.37) and reward capture ($13,397.65)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.17902",
+     "note": "Independent measurement; 1.8M reverted txs; three other venues vulnerable"
+    },
+    {
+     "url": "https://docs.polymarket.com/concepts/order-lifecycle.md",
+     "note": "Trade statuses MATCHED, RETRYING, CONFIRMED/FAILED"
+    },
+    {
+     "url": "https://uruguabot.com/blog/we-lost-270-building-a-polymarket-bot.html",
+     "note": "Victim-side ghost positions; fix by balance-delta verification"
+    },
+    {
+     "url": "https://finance.yahoo.com/news/arbitrage-bots-dominate-polymarket-millions-100000888.html",
+     "note": "Report of a bot buying just ahead of market buys in thin books (secondary)"
+    }
+   ]
+  },
+  {
+   "slug": "wash-trading-airdrop-farming",
+   "name": "Wash trading, Sybil clusters and airdrop / volume-status farming, incl. self-attributed builder volume (prohibited to grey)",
+   "category": "Incentive farming (flagged)",
+   "maturity": "Established",
+   "seed_category": "anti-Sybil defenses / airdrop farming (flagged)",
+   "one_line": "Manufactured volume and wallet clusters aimed at a hoped-for POLY token, tiers, leaderboards or builder rewards; large historically, now fee-negative and detectable.",
+   "scope": "Cover measured prevalence (Columbia ~25% of historical volume, ~60% peak Dec 2024, 45% in sports, 14-15% of wallets; per-market self-counterparty median ~1%, p99 10.6%; naive volume overstated 2.45-3.08x), detectors (counterparty-network clustering, self/round-trip matching, common-funder graphs such as 24,539 wallets from one funder), what is and is not confirmed about a token (official help centre: no announced airdrop; vendor timeline of CMO statement and trademark filings is secondhand), the fee arithmetic that makes wash loops negative-sum (taker rebate <=50%, maker pool 15-25%, level-up bonuses 5-17% of fees), hedged 'organic-looking' guides, builder-code self-volume and points schemes promising token pass-through, and the only rational posture: keep genuine flow in one attributable non-omnibus account. Include how the owner's anti-Sybil tooling maps onto these detectors. Boundary: legitimate tier optimisation is fee-tier-taker-incentives.",
+   "sub_variants": [
+    "wallet-cluster wash rings",
+    "delta-neutral cross-venue 'organic' volume farming",
+    "builder-code self-attributed volume for weekly rewards",
+    "third-party points schemes promising airdrop share",
+    "detector build for cleaning volume signals"
+   ],
+   "merged_from": [
+    "traders: POLY airdrop positioning",
+    "academic: Wash trading for volume-linked incentives or airdrop positioning",
+    "onchain-bots: Wash-trading rings for airdrop, points and volume status",
+    "platform-surface: Token / airdrop expectation farming",
+    "platform-surface: Self-attributed builder volume for weekly rewards",
+    "services: Builder-attributed self-volume and airdrop-share farming"
+   ],
+   "flags": "Wash trading and self-matching are ToS violations and illegal on the CFTC-regulated venue; multi-accounting breaches programme terms with clawback; builder codes can be disabled for self-referred or automated non-bona-fide activity. Token/airdrop unconfirmed.",
+   "key_evidence": [
+    {
+     "url": "https://fortune.com/2025/11/07/polymarket-wash-trading-inflated-prediction-markets-columbia-research/",
+     "note": "Columbia: ~25% of volume, ~60% peak, 45% of sports volume, 14% of wallets flagged"
+    },
+    {
+     "url": "https://arxiv.org/html/2604.24366v2",
+     "note": "Per-market wash share: median 0.97%, p90 4.5%, p99 10.6%, max 22.2%"
+    },
+    {
+     "url": "https://arxiv.org/html/2603.03136v3",
+     "note": "Naive OrderFilled volume overstates turnover 2.45x (median 3.08x)"
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13364250-does-polymarket-have-a-token",
+     "note": "Official: no announced airdrop or TGE; all rewards in pUSD"
+    },
+    {
+     "url": "https://dev.to/polytrage/the-poly-airdrop-whats-confirmed-whats-speculation-27aj",
+     "note": "Vendor timeline of token statements and filings (secondhand, marketing)"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "note": "Builder code revocable for self-referred / automated non-bona-fide activity"
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=ALL&limit=50",
+     "note": "Builders with 2-3 users and eight-to-nine-figure volume (cause inferred)"
+    }
+   ]
+  },
+  {
+   "slug": "fee-tier-taker-incentives",
+   "name": "Fee and taker-side incentive engineering: taker-rebate tiers, per-market fee routing, US volume pools and promo credits",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "seed_category": "incentive farming (new since 2026)",
+   "one_line": "Treat fees as a strategy input: consolidate taker flow to climb 3-50% rebate tiers, route by live feeSchedule, and harvest US taker-volume pools and acquisition credits.",
+   "scope": "Cover the Taker Rebate Program (weighted volume = size x (1-price) x category weight, six tiers, level-up bonuses, omnibus exclusion, wV per fee dollar by category, consolidated vs split accounts, re-costing every taker strategy at 0/18/32/50%), fee geometry p(1-p) and its consequences for tail vs mid-price strategies, per-market feeSchedule reading with documented docs-vs-API discrepancies (NFL zero_fees) and fee-free geopolitics routing, Polymarket US taker theta 0.0695, monthly taker rebates and pro-rata Volume Incentive pools (docs example 10% of notional), and one-off promo/deposit credits converted by hedging (bounded per KYC identity). Show the arithmetic proving wash-climbing is negative EV. Boundary: maker-side pools are maker-reward-pool-farming; referral income from others is data-referral-content-businesses; abusive volume is wash-trading-airdrop-farming.",
+   "sub_variants": [
+    "taker-flow consolidation for rebate tiers",
+    "feeSchedule-driven strategy routing (zero-fee markets)",
+    "Polymarket US volume-incentive pool timing",
+    "promo / deposit credit hedged conversion"
+   ],
+   "merged_from": [
+    "traders: Taker-rebate tier economics",
+    "onchain-bots: Fee-tier engineering: Taker Rebate tiers, level-up bonuses and referral rewards",
+    "adjacent-transfer: Taker-rebate tier optimisation and its abusive cousin",
+    "platform-surface: Taker-fee tier consolidation",
+    "platform-surface: Fee-regime routing",
+    "platform-surface: Polymarket US Volume Incentive pools",
+    "platform-surface: US promotional-credit extraction by hedged conversion",
+    "adjacent-transfer: Sign-up promo, bonus and referral extraction"
+   ],
+   "flags": "Wash trading, self-matching, self-referral or linked accounts forfeit rebates with clawback; manufactured volume on the US DCM is wash trading under the CEA; promos are one per KYC identity (extra identities = fraud); US programmes are US-only.",
+   "key_evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+     "note": "Tier table, wV formula, category weights, bonuses, anti-abuse clause, omnibus exclusion"
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "note": "Fee formula and per-category rates; geopolitics fee-free"
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/markets?limit=1&active=true&closed=false&order=volume24hr&ascending=false&offset=1",
+     "note": "Live NFL market with feeType zero_fees contrary to docs table"
+    },
+    {
+     "url": "https://docs.polymarket.us/incentives/volume.md",
+     "note": "Pro-rata taker-notional pools, 3c-97c band, $100,000 NBA Playoffs example"
+    },
+    {
+     "url": "https://docs.polymarket.us/fees.md",
+     "note": "US taker theta 0.0695, maker rebate 0.0125, taker rebates 10/25/50%"
+    },
+    {
+     "url": "https://docs.polymarket.us/incentives/user-programs.md",
+     "note": "$50 deposit credit, deposit-and-trade caps, non-withdrawable credits, reversal right"
+    },
+    {
+     "url": "https://www.covers.com/betting/bonuses/polymarket-promo-code",
+     "note": "Affiliate page describing the US promo (marketing; terms unverified against first-party)"
+    }
+   ]
+  },
+  {
+   "slug": "combos-rfq-market-making",
+   "name": "Combos (parlay) RFQ market making",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "seed_category": "new (2026 product surface)",
+   "one_line": "Quote 2-50 leg sports parlays in 400 ms RFQ auctions (200 ms on the US venue), earn the parlay premium, hedge legs on the CLOB and graduate to Last Look.",
+   "scope": "Cover the RFQ sequence (400 ms quote window, 10 s acceptance, 1 s last look; US: 200 ms / 3 s / 1 s delay), onboarding and Last Look eligibility (~$2,500 notional, 15% rejection cap), collateral vs inventory sourcing, Positions Framework, Collateral Return, leg universe (sports moneyline/spread/total), correlation pricing and same-game blow-up risk, Kalshi evidence that parlays are overpriced ~3% per leg (1.22x at 10 legs) and combos at 36% of contracts, early Polymarket US beta volumes, unpublished combo fees, reported in-house Polymarket desk. Include the listen-only RFQ logging validation. Boundary: requester-side stale-leg picking is speculative band; builder front-ends selling combos are builder-code-routing-business; same-game single-market consistency arb is combinatorial-logical-arbitrage.",
+   "sub_variants": [
+    "independent-leg pricing with markup",
+    "correlated same-game pricing",
+    "CLOB leg hedging",
+    "Polymarket US institutional RFQ"
+   ],
+   "merged_from": [
+    "academic: Parlay / combo underwriting (RFQ responder) against calibrated legs",
+    "onchain-bots: Combo (parlay) RFQ market making",
+    "adjacent-transfer: Combos (parlay) RFQ quoting",
+    "platform-surface: Combos (parlay) RFQ market making"
+   ],
+   "flags": "Maker access and Last Look require approval and a relationship with Polymarket; US venue requires institutional onboarding on a CFTC DCM.",
+   "key_evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+     "note": "400 ms window, Last Look at ~$2,500 notional, 15% rejection cap, collateral vs inventory"
+    },
+    {
+     "url": "https://arxiv.org/html/2607.14430v1",
+     "note": "Kalshi parlays: ~3% per-leg inflation, 1.037 at 7 legs, 1.305 at 11 legs; single legs calibrated"
+    },
+    {
+     "url": "https://news.bitcoin.com/igaming/polymarket-us-tests-parlays-as-kalshi-banks-25m-in-fees/",
+     "note": "US beta volumes; offshore launch 2026-06-10; Kalshi parlay volume growth"
+    },
+    {
+     "url": "https://news.bloomberglaw.com/securities-law/parlay-bets-are-burning-gamblers-as-market-takes-off-on-kalshi",
+     "note": "Combos 36% of contracts; retail buys longshots, sophisticated traders take the other side (partly paywalled)"
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/collateral-return.md",
+     "note": "Early release of pUSD from offsetting combos; quoting is capital intensive"
+    },
+    {
+     "url": "https://docs.polymarket.us/trader-guide/combos.md",
+     "note": "US: 200 ms window, 3 s last look, 1 s execution delay"
+    }
+   ]
+  },
+  {
+   "slug": "perps-lp-rewards-basis",
+   "name": "Polymarket Perps: liquidity-reward market making, funding / basis arbitrage and referral",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "seed_category": "new (venue launched 2026-09-03)",
+   "one_line": "Quote the least-contested perps because the $75k/day pool is split evenly per market, hedge elsewhere, and run hourly-funding basis against Hyperliquid/CEXs.",
+   "scope": "Cover venue facts (launch 2026-09-03, 10 to 67 instruments, up to 20x crypto/~10x RWAs, pUSD margin, US/Canada blocked, 20 ms taker delay, fee tiers 4/1.25 bps to 2/-0.5 bps), reward scoring (maker_share^0.35 x active_liquidity^0.65 x uptime, 20 bps band with tier weights, $100k cap, 1% eligibility floor, 25% cap, even split), where reward per qualifying dollar is highest (single-name equities, commodities), hedge venues and weekend/session gaps, funding formula (hourly, +/-4% cap, 5 s premium sampling), OI reward floor raised to $5M, insurance fund/ADL, 20% perps referral, and the honest absence of any third-party PnL evidence yet. Boundary: perps as a hedge leg for threshold markets is options-implied-relative-value; prediction-market reward pools are maker-reward-pool-farming.",
+   "sub_variants": [
+    "thin-instrument reward quoting with external hedge",
+    "cross-venue funding / basis carry",
+    "open-interest reward positioning (>= $5M)",
+    "event-driven directional perps trading"
+   ],
+   "merged_from": [
+    "traders: Polymarket Perps: maker-incentive farming and event-driven positioning",
+    "onchain-bots: Polymarket Perps liquidity provision and rewards",
+    "adjacent-transfer: Polymarket Perps: rewards-subsidised market making and funding/basis arbitrage",
+    "platform-surface: Perps liquidity rewards",
+    "platform-surface: Perps funding / basis arbitrage and open-interest rewards"
+   ],
+   "flags": "Not available to US/Canada persons; single-name equity perps are unregistered securities-based swaps in many jurisdictions.",
+   "key_evidence": [
+    {
+     "url": "https://docs.polymarket.com/perps/liquidity-rewards.md",
+     "note": "$75,000/day even split, scoring exponents, band weights, 1% floor, 25% cap"
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/learn-about-trading/funding.md",
+     "note": "Hourly funding formula, 4%/h cap, continuous through closed reference markets"
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/learn-about-trading/fees.md",
+     "note": "Fee tiers 4.0/1.25 bps down to 2.0/-0.5 bps"
+    },
+    {
+     "url": "https://news.polymarket.com/p/inside-polymarket-perps",
+     "note": "Launch date, top-traded names, event-driven early leaders, cross-margin not yet live"
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/perps.md",
+     "note": "20 ms taker delay, OI reward floor $1M to $5M, Hyperliquid-sourced indices"
+    },
+    {
+     "url": "https://docs.polymarket.com/perps/referral-program.md",
+     "note": "20% of referred traders' perps fees, weekly, uncapped"
+    }
+   ]
+  },
+  {
+   "slug": "builder-code-routing-business",
+   "name": "Builder-code order-routing businesses: terminals, bots, scanners, extensions, SDKs, white-label, US ISV",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "seed_category": "service and data businesses",
+   "one_line": "Earn a toll on other people's flow by stamping a builderCode (up to 100 bps taker / 50 bps maker, weekly USDC rewards, grants), or vendor fees on Polymarket US.",
+   "scope": "Cover programme mechanics (native V2 builderCode, fee caps and change policy, tiers and relayer limits, weekly rewards and $2.5M+ grants with undisclosed sizes, revocation rights), leaderboard economics (top-50 ~$440M/month, top-3 ~45%, volume per user 10-100x higher for pro tools: betmoar, SpreadCore, traderline vs wallets), segment teardowns: pro terminals, decaying Telegram copy bots (PolyCop $362M all-time vs $7.7M/month; builder audit), sportsbook-arb scanner SaaS with pricing, browser-extension overlays, OSS SDKs with embedded zero-fee codes (NautilusTrader), embedded/white-label distribution, Combos Builder Gateway front-ends, institutional tooling startups and VC funding, and the Polymarket US ISV/IB vendor-fee route with the CFTC no-action relief. Stress omnibus-wallet penalties and platform encroachment. Boundary: own-flow attribution is wash-trading-airdrop-farming; analytics, data and referral income are data-referral-content-businesses.",
+   "sub_variants": [
+    "pro trading terminal",
+    "Telegram / Discord copy-trading bot",
+    "sportsbook-vs-Polymarket scanner SaaS",
+    "browser-extension overlay",
+    "OSS framework with embedded builder code",
+    "white-label / embedded integration",
+    "Combos front-end via Builder Gateway",
+    "Polymarket US ISV / IB vendor fees",
+    "VC-funded institutional tooling and grants"
+   ],
+   "merged_from": [
+    "traders: Builder-code businesses",
+    "onchain-bots: Builder-code order-routing business",
+    "platform-surface: Builder Program business",
+    "services: Builder-code pro terminal / trading front-end",
+    "services: Telegram / Discord copy-trading bot",
+    "services: Sportsbook-vs-Polymarket arbitrage / +EV scanner SaaS",
+    "services: Browser-extension overlay",
+    "services: Open-source trading framework / SDK with embedded builder code",
+    "services: Embedded distribution / white-label integration",
+    "services: Combos (parlay) front-end via the Builder Gateway",
+    "services: Polymarket US ISV or Introducing Broker front-end",
+    "platform-surface: Polymarket US partner route",
+    "services: VC-funded institutional tooling startup",
+    "services: Grants, research funding and bounties"
+   ],
+   "flags": "Non-custodial design strongly advised (custody/hack liability, money-transmission questions); serving geo-blocked users breaches ToS and local law; discretionary/auto-trading features may fall outside CFTC no-action relief; builder fee rights revocable at Polymarket's discretion.",
+   "key_evidence": [
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=MONTH&limit=50",
+     "note": "Routed volume and active users per builder; decay of copy bots vs pro tools"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "note": "100/50 bps caps, additive to platform fees, revocation clause"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/tiers.md",
+     "note": "Unverified/Verified/Partner relayer limits and weekly rewards"
+    },
+    {
+     "url": "https://unchainedcrypto.com/polymarket-audits-builders-program-startups-over-insider-trading-concerns/",
+     "note": "April 2026 audit of builder startups over insider-finder marketing"
+    },
+    {
+     "url": "https://spreadcore.xyz",
+     "note": "Scanner SaaS pricing $160-$799 (marketing)"
+    },
+    {
+     "url": "https://nautilustrader.io/docs/latest/integrations/polymarket/",
+     "note": "Hard-coded zero-fee builder code in an OSS adapter"
+    },
+    {
+     "url": "https://docs.polymarket.us/partners/funding/vendor-fees.md",
+     "note": "US partner vendor-fee lifecycle, no cap enforced"
+    },
+    {
+     "url": "https://cointelegraph.com/news/cftc-expands-regulatory-relief-for-passive-trading-software-providers",
+     "note": "2026-09-17 no-action relief for passive non-custodial software"
+    }
+   ]
+  },
+  {
+   "slug": "data-referral-content-businesses",
+   "name": "Data, analytics, signal, referral, affiliate and content businesses (with the scam fringe)",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "seed_category": "service and data businesses",
+   "one_line": "Non-routing income around Polymarket: wallet analytics, datasets and APIs, news feeds, referral and affiliate programmes, content, bot-selling, plus capital wrappers; heavily commoditised and scam-adjacent.",
+   "scope": "Cover each model with observed pricing and outcomes: wallet-analytics SaaS (freemium, exits by acquisition, Convexly withdrawal as the correctness bar, Data API v2 encroachment), historical book/tick resale ($99-249/month vs free academic dumps), unified cross-venue APIs (Dome and Polynode acquisitions, OSS floor), low-latency resolution-source feeds, calibrated probability products, no-code bot platforms; official referral programmes (10%/5% for 30 days, perps 20%, US $50 x 50), US affiliate CPA, paid creator deals and the deceptive-video scandal, numbers-first content as lead-gen; custom bot development and clone scripts; managed vaults/funds and OTC blocks as capital wrappers (headline-level evidence, heavy regulation). Document the scam fringe (drainer Telegram bots, malicious npm/GitHub repos, fake PnL). Boundary: builder-fee routing is builder-code-routing-business; insider-alert products are informed-flow-and-insider-trading.",
+   "sub_variants": [
+    "wallet-tracking / trader analytics SaaS",
+    "historical order-book dataset resale",
+    "unified cross-venue API / infrastructure",
+    "low-latency event and news feed",
+    "forecast / calibrated probability data products",
+    "no-code strategy builder",
+    "official referral programmes (predictions, perps, US)",
+    "US affiliate CPA and paid creator deals (flagged)",
+    "education / newsletter content",
+    "custom bot development, bot-selling, clone scripts (grey)",
+    "managed vault / fund and OTC intermediary",
+    "scam fringe: drainers, malware repos, fake PnL (criminal)"
+   ],
+   "merged_from": [
+    "traders: Signals, analytics, data and affiliate/creator income",
+    "academic: Research-grade data and surveillance products",
+    "onchain-bots: Selling bots, signals and hype",
+    "platform-surface: Referral and affiliate stack",
+    "services: Wallet-tracking / trader-analytics SaaS",
+    "services: Historical tick / order-book dataset resale",
+    "services: Unified cross-venue API / developer infrastructure",
+    "services: Official referral programmes",
+    "services: Polymarket US affiliate / promo-code media",
+    "services: Paid creator / affiliated news-account deals",
+    "services: No-code strategy builder / hosted bot platform",
+    "services: Low-latency event / news feed",
+    "services: Forecast / probability data products",
+    "services: OTC / block / structured event-hedge intermediary",
+    "services: Managed fund, vault or copy-vault",
+    "services: Custom bot development, bot-selling and clone scripts",
+    "services: Education, newsletter and research content"
+   ],
+   "flags": "Undisclosed paid promotion is an FTC issue; fake-PnL marketing, custodial drainer bots and malware repos are fraud; self-referral is clawed back; pooling outside capital or arranging blocks is regulated (CPO/CTA/AIF, swaps); data redistribution rights under Polymarket ToS unverified; defamation risk when labelling wallets.",
+   "key_evidence": [
+    {
+     "url": "https://www.casino.org/news/polygun-buying-prediction-markets-data-purveyor-polymarket-analytics/",
+     "note": "Analytics site with 250,000+ users acquired by a copy-bot; terms undisclosed"
+    },
+    {
+     "url": "https://www.convexly.app/blog/polymarket-whale-audit",
+     "note": "Vendor withdrew whale audit: 85/100 rows truncated at 2,000 fills"
+    },
+    {
+     "url": "https://telonex.io",
+     "note": "Dataset resale pricing $99/$199/month (marketing)"
+    },
+    {
+     "url": "https://arxiv.org/abs/2606.04217",
+     "note": "Free 1.20B-trade archive with true aggressor side commoditises the tape"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/referral-program.md",
+     "note": "10%/5% of net fees, 30 days or Platinum, $10k volume threshold, clawback"
+    },
+    {
+     "url": "https://www.cjr.org/tow_center/polymarket-affiliates-are-spreading-misinformation-on-x.php",
+     "note": ">=11 affiliate X accounts with >3x official impressions"
+    },
+    {
+     "url": "https://techcrunch.com/2026/06/21/polymarket-reportedly-paid-creators-to-post-deceptive-videos-about-fake-bets/",
+     "note": "Paid creators staged fake wins; audit promised"
+    },
+    {
+     "url": "https://dev.to/__747bb5a1521/the-ai-quant-bot-mirage-inside-the-polymarket-copytrade-scam-network-flooding-crypto-twitter-1856",
+     "note": "Drainer Telegram bots, fake terminals, Polycule hack (secondhand details unverified)"
+    }
+   ]
+  }
+ ],
+ "dropped": [
+  {
+   "name": "academic: Control-theoretic quoting in logit space with a structural volatility forecast",
+   "reason": "belongs to speculative band (simulation/Kalshi-only evidence; no live Polymarket PnL). Referenced as boundary in event-market-making-spread-carry."
+  },
+  {
+   "name": "adjacent-transfer: Belief-volatility-aware quoting (structural volatility model)",
+   "reason": "belongs to speculative band; same idea as the control-theoretic quoting candidate, should be one speculative-band file."
+  },
+  {
+   "name": "academic: In-play underreaction drift captured through maker skew (sports)",
+   "reason": "belongs to speculative band (Kalshi paper; executable taker PnL negative; maker version untested)."
+  },
+  {
+   "name": "adjacent-transfer: In-play state-model trading (xG or win-probability models) as a maker",
+   "reason": "belongs to speculative band (Betfair simulation; negative LoL pre-game result); merge with in-play underreaction drift there."
+  },
+  {
+   "name": "adjacent-transfer: Final-minutes 'insurance demand' fade in live sports",
+   "reason": "belongs to speculative band (descriptive Kalshi result, no PnL, transfer to Polymarket unverified)."
+  },
+  {
+   "name": "traders: In-play panic-fade ladder (overreaction mean reversion)",
+   "reason": "belongs to speculative band (marketing-grade source, unverified +39% on Kalshi)."
+  },
+  {
+   "name": "academic: Fading flow-driven price dislocations (liquidity provision into whale shocks)",
+   "reason": "belongs to speculative band (no Polymarket reversion study; play-money evidence); natural partner of the panic-fade ladder."
+  },
+  {
+   "name": "traders: Counter-trading the worst wallets",
+   "reason": "belongs to speculative band (single affiliate-marketer source; premise supported, strategy untested)."
+  },
+  {
+   "name": "traders: LLM-agent forecasting / 'AI quant' bots",
+   "reason": "belongs to speculative band (viral claims unverified; live benchmarks mostly negative)."
+  },
+  {
+   "name": "academic: LLM/ML forecaster with proper-scoring-rule sizing and a deterministic risk layer",
+   "reason": "belongs to speculative band; merge with the other LLM-forecasting candidates there."
+  },
+  {
+   "name": "onchain-bots: Model-ensemble news/social probability bots (LLM or ML forecasters)",
+   "reason": "belongs to speculative band; duplicate of the LLM-forecasting candidates."
+  },
+  {
+   "name": "adjacent-transfer: Forecast-to-bet conversion layer ('proper betting', fractional Kelly)",
+   "reason": "belongs to speculative band: a sizing module for forecast-driven agents with a one-month live sample, not a standalone strategy; should sit inside the LLM-forecasting file."
+  },
+  {
+   "name": "academic: Domain x horizon x trade-size recalibration model, net of the settlement discount",
+   "reason": "belongs to speculative band (in-sample calibration description, no trading PnL). Political underconfidence cited as context in discretionary-research-bets."
+  },
+  {
+   "name": "adjacent-transfer: Domain calibration tilts",
+   "reason": "belongs to speculative band; duplicate of the recalibration-model candidate."
+  },
+  {
+   "name": "academic: Granger + LLM-filtered lead-lag trading across related contracts",
+   "reason": "belongs to speculative band (Kalshi backtest without costs)."
+  },
+  {
+   "name": "adjacent-transfer: Cross-market lead-lag and stat-arb between related event contracts, and event contracts as signals for external assets",
+   "reason": "belongs to speculative band; merges with Granger+LLM lead-lag and the external-asset signal candidate."
+  },
+  {
+   "name": "academic: Prediction-market signals as alpha or hedge for external markets",
+   "reason": "belongs to speculative band (small out-of-sample gains, off-platform)."
+  },
+  {
+   "name": "academic: Public-baseline statistical models in categories where the crowd loses to simple statistics",
+   "reason": "belongs to speculative band (abstract-level evidence, tiny capacity)."
+  },
+  {
+   "name": "adjacent-transfer: Scientific-ensemble edge in niche count markets (flu, measles)",
+   "reason": "belongs to speculative band; duplicate of the public-baseline candidate. Its ladder-inconsistency evidence is reused in combinatorial-logical-arbitrage."
+  },
+  {
+   "name": "adjacent-transfer: Macro nowcasting for economic-data ladders (CPI, jobs, GDP, Fed)",
+   "reason": "belongs to speculative band: rated Emerging by its lens but evidence is Kalshi papers and an LLM nowcast benchmark with no practitioner or PnL evidence on Polymarket."
+  },
+  {
+   "name": "onchain-bots: Void / cancellation-rule pricing in esports and sports; adjacent-transfer: Void and cancellation-rule optionality",
+   "reason": "belongs to speculative band (single operator dataset). The 50c-refund and DNP-grading hazards are covered as failure modes in sportsbook-anchored-sports-mm and cross-venue-arbitrage-leadlag."
+  },
+  {
+   "name": "platform-surface: Chainlink-TWAP end-window pricing in crypto up/down markets",
+   "reason": "belongs to speculative band (six-week-old regime, no evidence of anyone profiting; unpublished TWAP weighting)."
+  },
+  {
+   "name": "platform-surface: Combo requester-side correlation and stale-leg edge",
+   "reason": "belongs to speculative band (no evidence; adjacent grounding unverified)."
+  },
+  {
+   "name": "platform-surface: Sponsor-to-trade and market origination for a private edge",
+   "reason": "belongs to speculative band (purely theoretical)."
+  },
+  {
+   "name": "platform-surface: Microstructure regime-change events (tick-size switches, engine restarts, fee flips)",
+   "reason": "belongs to speculative band (purely theoretical; no on-chain evidence of exploitation)."
+  },
+  {
+   "name": "services: Market proposal, sponsorship and brand-partnership brokerage",
+   "reason": "belongs to speculative band (purely theoretical; markets are created only by Polymarket's team)."
+  },
+  {
+   "name": "services: Market-integrity surveillance and employee-compliance monitoring (B2B)",
+   "reason": "belongs to speculative band (no vendor revenue evidence; enterprise sales hypothesis). Detector technology itself is covered in informed-flow-and-insider-trading and wash-trading-airdrop-farming."
+  }
+ ],
+ "notes": "Consolidation only; no web calls were made in this step (the session search budget was reported exhausted by every lens, and no candidate pair needed the web to decide sameness). No files written. 27 entries (one above the 16-26 target) because the services lens and the flagged practices each needed their own bounded files; if the owner wants 26, merge combos-rfq-market-making into perps-lp-rewards-basis as 'new 2026 maker surfaces' (not recommended: different builds).\n\nSEED MAPPING CAVEAT: the owner's 11 seed categories were not included verbatim in the task text and are not in the repo (checked docs/prediction-market-research/ and plans/). seed_category values are my inference from the task description (liquidity provision/market making, same-platform arbitrage, cross-platform arbitrage, resolution sniping, copy trading, staking, anti-Sybil/airdrop farming, information edge, directional/forecasting, incentive farming, services/data, insider/manipulation). The orchestrator should re-map against the real list; every inferred seed has at least one entry, and market making and same-platform arbitrage are split as the brief requested.\n\nMERGE DECISIONS WORTH KNOWING: (1) Experimental-rated candidates were kept only as sub-variants when they are the same mechanism as an Established/Emerging entry (sponsored-pool sniping, UMA disputing, perps basis, intl-vs-US book gap, liquidity-crunch trades, holding rewards, academic LLM adjudicator, narrative manipulation, builder self-volume, airdrop positioning); standalone Experimental/theoretical ideas went to 'dropped' for the speculative band, with suggested groupings there (quoting models; in-play maker/fade ideas; LLM forecasting + sizing layer; recalibration; lead-lag; public-baseline models). (2) Macro nowcasting and the forecast-to-bet sizing layer were rated Emerging by their lens but have no Polymarket practitioner evidence, so they are routed to the speculative band. (3) MNPI insider trading and informed-flow following share one flagged file because they rest on the same evidence base; the scope requires the illegal and grey parts to be kept visibly separate. (4) Matching-delay / last-look candidates were folded into event-market-making-spread-carry and cross-referenced from the crypto and sports maker files rather than given their own file. (5) 'category' for the two pure-exploit entries is labelled 'Insider / manipulation-adjacent (flagged)' instead of the lenses' Arbitrage/Directional labels, which were misleading.\n\nEVIDENCE CAVEATS FOR FILE AUTHORS: all URLs are copied from the lens inputs; several are headline/snippet-only or abstract-only as marked by the lenses (CNN teleprompter, SSRN DOIs, Bloomberg Law, Newser/Bloomberg), and pullpush.io URLs are Reddit mirrors. Known conflicts to resolve in the files: UMA emissions 0.18 vs 0.155 UMA/s; Polymarket resolution page says 'anyone can propose' vs UMA whitelist posts; order-lifecycle page says 250 ms while the changelog says 50 ms; docs sports fee 0.05 vs live NFL markets returning zero_fees; pUSD cutover date given as 2026-04-17 by one lens and 2026-04-28 (CLOB V2) by others; leaderboard figures for swisstony differ between lenses ($23.6M vs $18.4M in the repo's E4 pack) depending on endpoint/ordering; the '~$40M arbitrage' vs '$1.12M executable' gap. Repo evidence packs at /home/superuser/trading/githab-project-research/docs/prediction-market-research/_evidence/ (E1-E9) overlap with many entries and should be read by file authors."
+}

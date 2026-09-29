@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "LLM Agent Market Simulation: One Trading Round",
+    "quality_profile": "showcase",
+    "viewBox": [
+      980,
+      740
+    ],
+    "views": [
+      {
+        "id": "observe",
+        "label": "Private observation",
+        "focus": [
+          "market",
+          "agent_a",
+          "agent_b"
+        ],
+        "note": "Each agent sees the public tape plus its own portfolio, never the other agent's reasoning."
+      },
+      {
+        "id": "matching",
+        "label": "Order book and matching",
+        "focus": [
+          "agent_a",
+          "agent_b",
+          "book",
+          "matcher"
+        ],
+        "note": "Decisions become typed limit orders that clear against price-time priority, not an assumed fill."
+      },
+      {
+        "id": "settle",
+        "label": "Settlement and belief update",
+        "focus": [
+          "matcher",
+          "market",
+          "agent_a",
+          "agent_b"
+        ],
+        "note": "Price is an emergent result of the agents' own orders, which is what makes the study a market rather than a backtest."
+      }
+    ],
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "agent_a",
+      "type": "backend",
+      "label": "LLM Trader A",
+      "sublabel": "momentum belief"
+    },
+    {
+      "id": "agent_b",
+      "type": "backend",
+      "label": "LLM Trader B",
+      "sublabel": "value belief"
+    },
+    {
+      "id": "book",
+      "type": "database",
+      "label": "Order Book",
+      "sublabel": "bids / asks"
+    },
+    {
+      "id": "matcher",
+      "type": "backend",
+      "label": "Matching Engine",
+      "sublabel": "price-time priority"
+    },
+    {
+      "id": "market",
+      "type": "cloud",
+      "label": "Market State",
+      "sublabel": "price, dividends"
+    }
+  ],
+  "segments": [
+    {
+      "from": 160,
+      "to": 252,
+      "label": "Observation"
+    },
+    {
+      "from": 264,
+      "to": 432,
+      "label": "Order submission and matching"
+    },
+    {
+      "from": 444,
+      "to": 662,
+      "label": "Settlement and belief update"
+    }
+  ],
+  "messages": [
+    {
+      "id": "state-a",
+      "from": "market",
+      "to": "agent_a",
+      "y": 190,
+      "label": "day-t tape + portfolio",
+      "variant": "default"
+    },
+    {
+      "id": "state-b",
+      "from": "market",
+      "to": "agent_b",
+      "y": 228,
+      "label": "day-t tape + portfolio",
+      "variant": "default"
+    },
+    {
+      "id": "bid",
+      "from": "agent_a",
+      "to": "book",
+      "y": 280,
+      "label": "limit buy 100 @ 51.20",
+      "variant": "emphasis"
+    },
+    {
+      "id": "ask",
+      "from": "agent_b",
+      "to": "book",
+      "y": 320,
+      "label": "limit sell 80 @ 51.00",
+      "variant": "emphasis"
+    },
+    {
+      "id": "crossed",
+      "from": "book",
+      "to": "matcher",
+      "y": 366,
+      "label": "crossed orders",
+      "variant": "default"
+    },
+    {
+      "id": "fills",
+      "from": "matcher",
+      "to": "book",
+      "y": 404,
+      "label": "fills + partial fills",
+      "variant": "return"
+    },
+    {
+      "id": "clearing",
+      "from": "matcher",
+      "to": "market",
+      "y": 452,
+      "label": "clearing price update",
+      "variant": "emphasis"
+    },
+    {
+      "id": "report-a",
+      "from": "market",
+      "to": "agent_a",
+      "y": 502,
+      "label": "fill report + P&L",
+      "variant": "return"
+    },
+    {
+      "id": "report-b",
+      "from": "market",
+      "to": "agent_b",
+      "y": 540,
+      "label": "fill report + P&L",
+      "variant": "return"
+    },
+    {
+      "id": "belief-a",
+      "from": "agent_a",
+      "to": "market",
+      "y": 592,
+      "label": "revised belief, next round",
+      "variant": "dashed"
+    },
+    {
+      "id": "belief-b",
+      "from": "agent_b",
+      "to": "market",
+      "y": 630,
+      "label": "revised belief, next round",
+      "variant": "dashed"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "market",
+      "from": 185,
+      "to": 650,
+      "type": "cloud"
+    },
+    {
+      "participant": "agent_a",
+      "from": 185,
+      "to": 598,
+      "type": "backend"
+    },
+    {
+      "participant": "agent_b",
+      "from": 223,
+      "to": 636,
+      "type": "backend"
+    },
+    {
+      "participant": "book",
+      "from": 275,
+      "to": 410,
+      "type": "database"
+    },
+    {
+      "participant": "matcher",
+      "from": 361,
+      "to": 458,
+      "type": "backend"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Price is produced, not replayed",
+      "items": [
+        "Orders clear against each other, so the agents move the price they observe",
+        "Partial fills and rejections are visible instead of assumed away",
+        "Latency, slippage and microstructure become measurable variables"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Heterogeneity is the experiment",
+      "items": [
+        "Agents carry different beliefs, information sets and endowments",
+        "No shared chat channel: coordination can only happen through the tape",
+        "Behavioural biases show up as path dependence in the price series"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "What it is good for",
+      "items": [
+        "Testing financial theory rather than chasing backtest returns",
+        "Stress-testing a strategy against adaptive counterparties",
+        "Exposing herding and crowding that a single-agent backtest hides"
+      ]
+    }
+  ]
+}

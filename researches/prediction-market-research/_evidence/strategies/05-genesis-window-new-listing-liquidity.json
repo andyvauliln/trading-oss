@@ -1,0 +1,31 @@
+{
+ "slug": "genesis-window-new-listing-liquidity",
+ "name": "New-listing (genesis-window) liquidity provision and initial price discovery",
+ "category": "Market-making",
+ "maturity": "Emerging",
+ "one_line": "Be the first sensible quote in the ~300k markets listed per month: first-minute takers pay a median 12-16c half-spread outside sports versus ~1c a few hours later.",
+ "scope": "Cover quoting in the first minutes to hours of a market's life as its own business. Hard numbers from ~160,000 contracts created Oct 2025-Mar 2026: median effective half-spread paid in the first minute 14.5c monetary policy, 12c economy, 16c geopolitics, 13.5c politics and elections, 12.5c crypto, 14c other, versus 1.5c sports; 3-6.5c at 1-6 min; ~1c by 1-3 h; most compression inside the first hour. Share of that cost the maker keeps (realised / effective, first six minutes, one-hour horizon): sports 1.00 (no rent, price discovery happened at sportsbooks), economy near 1 (scheduled releases, uninformed early takers), but geopolitics 0.25, politics 0.35, elections 0.29, other 0.33, i.e. two thirds of the opening spread there is adverse selection. Build: discovery (Gamma keyset pagination, WS new_market event), a fair-value seed per category (cross-listed Kalshi price, option surface, base rates, an LLM prior where E7 shows LLMs are least bad at Open+1), defensive sizing against informed first takers, placeholder / 'Other' handling in new neg-risk events, timing of reward-config start dates. State that the sample ends one day before Fee Structure V2 and that the authors expect rebates to compress opening spreads: re-measure before building. Boundary: steady-state quoting is event-market-making-spread-carry; pool share is maker-reward-pool-farming; new alt-coin up/down books are short-crypto-maker-side.",
+ "why_it_matters": "It is the one place where the evidence says a long-tail maker is paid a wide spread rather than ~0 (the list's own event-MM entry reports a median effective half-spread of ~0 and 91% of maker profit arriving at settlement). It is capacity-constrained and engineering-heavy (discovery and seeding across 300k listings a month), which is what keeps desks out and suits a solo technical team. The category split tells the owner where not to do it (politics / geopolitics without an information source; sports, where there is no rent).",
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://dspace.networks.imdea.org/bitstream/handle/20.500.12761/2065/Polymarket_Initial_Liquidity-3.pdf?sequence=1",
+   "note": "'Opening Wide, Moving Fast: Polymarket Spread Dynamics' (Lund / IMDEA, 2026, PDF text extracted locally): Table 9 half-spreads by time bucket and category; R/E ratios; fee-free sample ending the day before Fee Structure V2"
+  },
+  {
+   "url": "https://news.polymarket.com/p/automated-market-making-on-polymarket",
+   "note": "URL confirmed in The Oracle 2025 sitemap fetched this session; the '80-200% annualised in new markets' claim comes from evidence pack E4 [34] (PANews, self-reported, 2025-era) and was not re-fetched"
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "seed": "new",
+ "n": "05",
+ "band": "established",
+ "file": "05-genesis-window-new-listing-liquidity.md",
+ "critic_notes": [
+  "COUNT: the five proposed entries would take the band to 32. To stay near the target, send perps-lp-rewards-basis to the speculative band, keep builder-tagged flow as a sub-variant of event-market-making-spread-carry plus screened-copy-trading if no PnL evidence turns up, and fold tech-ai-model-markets' manipulation part into oracle-input-manipulation's fragility taxonomy. news-event-feed-latency-taking, genesis-window-new-listing-liquidity and oracle-governance-capture should be files."
+ ],
+ "cross_band_note": "From the speculative critic: day-zero LLM-priced opening quotes belong here (TimeSeek BSS +0.167 at open+1; IMDEA study of ~160k contracts: first-trade median spreads politics 8c, geopolitics 10c, crypto 19c, economy 21c, compressing mostly within the first hour; ~300k new markets a month). Cover the LLM fair-value variant as a sub-section.",
+ "raw_discovery_candidates": []
+}

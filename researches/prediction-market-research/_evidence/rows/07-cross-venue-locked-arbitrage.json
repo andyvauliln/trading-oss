@@ -1,0 +1,54 @@
+{
+  "n": "07",
+  "slug": "cross-venue-locked-arbitrage",
+  "file": "07-cross-venue-locked-arbitrage.md",
+  "band": "established",
+  "name": "Cross-venue locked arbitrage (Polymarket vs Kalshi / exchanges / sportsbooks)",
+  "one_line": "Buy both sides across venues (or an LP over equivalent and subset contracts) when the set costs under $1 after both fees, and hold to settlement; rules matching is the whole risk.",
+  "category": "Arbitrage",
+  "maturity": "Established activity (crowded, tooled); no documented realised PnL",
+  "requires_ai": "optional: pair shortlisting and rules diffing",
+  "edge": "Segmented capital and semantic non-fungibility",
+  "capital": "$10k+ split across venues, locked to later settlement",
+  "build_time": "3-6 weeks with an arb stack",
+  "opportunity_size": "2-4% deviations on equivalents; logger: ~$680/day modelled floor across 4 venues; liquid pairs inside fee band",
+  "expected_results": "no public PnL; logger 0.52% per structure; guess 3-10%/yr on deployed capital",
+  "competition": "301 repos, pmxt, paid scanners, desks",
+  "flag": "none for lawful venue pairs; prohibited US person on intl venue or one person on both Polymarket books",
+  "validate": "14-day passive logger net of fees; pass >=8% annualised with no floor breach",
+  "top_risk": "Divergent settlement rules turn the hedge into a bet",
+  "evidence_grade": "B",
+  "solo_fit": 2,
+  "solo_fit_reason": "Crowded, capital split across venues with slow recycling, tiny returns on same-rule pairs, legal and tax frictions; the owner already has it, so value is in the rules-diff layer.",
+  "compounds_with": [
+    "cross-venue-leadlag-signals",
+    "sportsbook-anchored-sports-mm",
+    "rebalancing-arbitrage-yesno-negrisk",
+    "near-certain-bond-carry",
+    "rules-ambiguity-hazard-layer"
+  ],
+  "speed_class": "execution-sensitive: leg risk, depth and rules dominate",
+  "results_1k": "not workable: ~0 (funding minimums)",
+  "results_5k": "marginal: $0 to +$120/month (guess)",
+  "results_10k": "$0 to +$300/month (guess)",
+  "min_capital": "~$10k: a float on each venue",
+  "capacity_ceiling": "depth: ~$50k-100k of same-rule pairs",
+  "services": [
+    "Polymarket CLOB+Gamma (intl) or Polymarket US API",
+    "Kalshi API (REST/WS/FIX)",
+    "pmxt (optional)",
+    "paid scanners (optional)",
+    "LLM for rules diff (optional)",
+    "crypto on/off-ramps",
+    "VPS"
+  ],
+  "monthly_running_cost": "minimum ~$10-20; comfortable ~$250-400",
+  "changes_made": [
+    "Live three-venue NFL comparison (within one tick).",
+    "BTC daily markets settle on Binance 1m close at noon ET: index basis vs Kalshi RTI."
+  ],
+  "open_doubts": [
+    "No realised arbitrageur PnL exists.",
+    "Kalshi fee PDF and hosting location unverified."
+  ]
+}

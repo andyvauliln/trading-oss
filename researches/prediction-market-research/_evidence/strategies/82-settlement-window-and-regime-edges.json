@@ -1,0 +1,122 @@
+{
+ "slug": "settlement-window-and-regime-edges",
+ "name": "Settlement-window and microstructure regime edges (TWAP end-window, tick-size switches, void rules)",
+ "category": "Arbitrage",
+ "maturity": "Purely theoretical",
+ "one_line": "Price the mechanical details nobody models: the averaging window of the settlement price feed in short crypto markets, tick-size regime switches near price extremes, and void / cancellation rules in sports and esports.",
+ "scope": "Purely theoretical / single-operator evidence. Cover: Chainlink TWAP end-window pricing in crypto up/down markets (regime only weeks old, weighting unpublished), tick-size and other microstructure regime-change events as predictable liquidity shocks, void / cancellation-rule pricing (50c refunds, DNP grading) in esports and sports. For each: the exact rule text (evidence packs E1 / E3), the hypothesised mispricing, why nobody is known to exploit it, and a cheap on-chain / order-book test. Boundary: generic latency taking is short-crypto-latency-taker.",
+ "key_evidence": [],
+ "sub_variants": [],
+ "merged_from": [
+  "platform-surface: Chainlink-TWAP end-window pricing",
+  "platform-surface: Microstructure regime-change events",
+  "onchain-bots: Void / cancellation-rule pricing"
+ ],
+ "extra_scope": "Critic cross-band note: since 2026-08-07 crypto up/down markets settle on a Chainlink Data Streams TWAP (60 s window), while Kalshi settles on an average of 60 one-second CF Benchmarks prints: near expiry the contract is an ASIAN digital, not a European one; averaging compresses terminal variance. Price that explicitly.",
+ "n": "82",
+ "band": "speculative",
+ "file": "82-settlement-window-and-regime-edges.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Chainlink-TWAP end-window pricing in crypto up/down markets",
+   "one_line": "Since August 2026 short-dated crypto markets settle on a 60-second Chainlink TWAP, so during the final minute a growing share of the settlement value is already realised; price the remaining uncertainty better than the book.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "From 2026-08-07 crypto up/down markets resolve on Chainlink-computed TWAPs, and from 2026-08-14 all 5-minute markets use a 60-second lookback (15-minute and 4-hour also 60 s). Polymarket streams the TWAP on its RTDS websocket and Chainlink Data Streams offers it directly, but Chainlink does not publish sampling boundaries, weighting, rounding or missing-input behaviour. At t seconds into the window the settlement average equals (t/60) x realised mean plus the rest, so P(up) is a function of the realised partial mean, the remaining time and short-horizon volatility; near the end the outcome is close to deterministic while the fee p(1-p) is near zero at extreme prices. The agent replicates the TWAP from tick data, calibrates replication error, and lifts or sells residual mispricing in the last 10-40 seconds, subject to the 50 ms taker delay.",
+   "edge_source": "Oracle design creates path-dependence that naive spot-vs-strike pricing ignores; replication accuracy and latency decide who captures it.",
+   "why_might_beat_market": "The regime is six weeks old; many retail participants and older bots still price off last spot rather than the partial average.",
+   "failure_modes": "Sophisticated makers already quote off the same TWAP; unknown weighting causes replication error exactly when it matters; little size is offered at 97-99c; Polymarket has changed the window twice in one week and can do so again.",
+   "cheap_validation": "Record RTDS TWAP, exchange ticks and the Polymarket book for 1,000 five-minute rounds; measure how often the book price in the final 30 s deviates more than 2c from the partial-average model and what size was available.",
+   "flags": "Strictly the modelling play. The predecessor tactic - moving Binance spot in the final seconds - is manipulation (see next candidate).",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Predictions changelog",
+     "date": "2026-08-07, 2026-08-14, 2026-08-17 entries",
+     "quality": "hard-data",
+     "supports": "TWAP-based resolution introduced, 5-minute markets moved from 30 s to 60 s lookback, crypto taker delay cut to 50 ms."
+    },
+    {
+     "url": "https://docs.polymarket.com/market-data/chainlink-twap.md",
+     "title": "Chainlink TWAP Prices",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "30 s and 60 s windows, RTDS and Chainlink Data Streams endpoints, statement that sampling boundaries and weighting are unpublished."
+    },
+    {
+     "url": "https://www.coindesk.com/business/2026/08/07/how-a-five-second-trick-let-traders-drain-millions-from-polymarket",
+     "title": "How a five-second trick let traders drain millions from Polymarket",
+     "date": "2026-08-07",
+     "quality": "credible-report",
+     "supports": "Why the oracle changed from single Binance snapshots to TWAP; $1M liquidity rewards for affected markets in August."
+    }
+   ]
+  },
+  {
+   "name": "Microstructure regime-change events: tick-size switches, decimalisation, engine restarts, fee flips",
+   "one_line": "Pre-position for announced or signalled venue state changes that reset queue priority or temporarily remove takers: tick_size_change events, 0.25c decimalisation of marquee sports, the 2-minute post-only window after engine restarts, and scheduled fee changes.",
+   "category": "Market-making",
+   "maturity": "Purely theoretical",
+   "mechanism": "The CLOB supports tick sizes of 0.1, 0.01, 0.005, 0.0025, 0.001 and 0.0001 and emits tick_size_change on the market stream; orders off the new grid are rejected, so the first makers to requote on the finer grid own the queue. Polymarket decimalised all World Cup moneyline/spread/total/advance markets to 0.25c on 2026-07-02 and the US venue did the same for Wimbledon and NBA Finals at 0.5c. Matching-engine restarts are announced about 2 days ahead on Telegram/Discord; afterwards the engine accepts only post-only orders and cancels for exactly 2 minutes (others get 503 with retry_after_seconds), so the book re-forms with no takers and the first instant of normal mode is a synchronised sniping moment for any quote left stale. Fee changes are pre-announced in the changelog (sports 0.03 to 0.05 on 2026-07-10), shifting the taker break-even at a known timestamp. An event-driven module handles each case: instant requote on new grid, conservative post-only quotes plus a taker sweep at T+120 s, and spread adjustment at fee-change time.",
+   "edge_source": "Operational readiness; most bots handle these transitions by failing or pausing.",
+   "why_might_beat_market": "Queue position on a 0.1c or 0.25c grid in a rewards-heavy market is worth real money, and resets are rare moments when it is up for grabs.",
+   "failure_modes": "Events are infrequent; gains per event are small and unmeasured; restarts may be unannounced; everyone sophisticated does the same.",
+   "cheap_validation": "Replay book data around the 2026-07-02 decimalisation and one announced restart: measure how long the new best-price queue took to fill and whether stale post-only quotes were hit at the reopening.",
+   "flags": "",
+   "adjacent_grounding": "Analogous to tick-size pilot and opening-auction studies in equities microstructure; no source fetched this session (search budget exhausted) - unverified.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/place-orders.md",
+     "title": "Place Orders",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Supported tick sizes, tick_size_change events, rejection of non-conforming orders, GTD one-minute security threshold, delayed status."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/matching-engine.md",
+     "title": "Matching Engine Restarts",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "About 2 days notice, HTTP 425 during restart, exactly 2 minutes of post-only mode, cancel-only mode, retry_after_seconds."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Predictions changelog",
+     "date": "2026-07-02 and 2026-07-10 entries",
+     "quality": "hard-data",
+     "supports": "World Cup markets decimalised to 0.0025 tick; sports fee and rebate change with effective date."
+    },
+    {
+     "url": "https://docs.polymarket.us/changelog.md",
+     "title": "Polymarket US changelog",
+     "date": "2026-05-31 and 2026-06-29 entries",
+     "quality": "hard-data",
+     "supports": "NBA Finals and Wimbledon moved to 0.5c ticks; partial contracts introduced."
+    }
+   ]
+  },
+  {
+   "name": "Void / cancellation-rule pricing in esports and sports",
+   "one_line": "Price the chance that a match is cancelled and resolves 50/50, which shifts value from favorites to underdogs.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "Cancelled matches on Polymarket pay 50c per share regardless of entry price. A position bought at 80c loses 30c on cancellation while one bought at 20c gains 30c, so fair value is pulled toward 50c by the cancellation probability. In one bot's log, 236 of 2,785 markets (about 8%) were cancelled. An agent that estimates cancellation/forfeit/reschedule risk per league can shade quotes and prefer underdog inventory when that risk is high.",
+   "edge_source": "Rule mechanics that de-vigged sportsbook odds do not contain (books void and refund instead).",
+   "why_might_beat_market": "Sportsbook-anchored quoters import prices that ignore the 50/50 rule; the mispricing is small per trade but systematic in low-tier esports.",
+   "evidence": [
+    {
+     "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+     "title": "I ran an arbitrage bot on Polymarket. Here are the real numbers",
+     "date": "2026-06-09",
+     "quality": "self-reported",
+     "supports": "236 cancelled matches cost -$134.43; 'cancelled match mechanics (50c refund regardless of entry price) created asymmetric losses'."
+    }
+   ],
+   "failure_modes": "Rules differ by market and may change; cancellation rates vary by tournament tier; tiny edge per trade; this is one operator's data.",
+   "cheap_validation": "From resolved esports markets count 50/50 resolutions by league and compare pre-match prices of favorites against de-vigged book odds adjusted for that rate.",
+   "adjacent_grounding": "No academic source found this session; grounding is the single practitioner dataset above.",
+   "flags": ""
+  }
+ ],
+ "critic_notes": []
+}

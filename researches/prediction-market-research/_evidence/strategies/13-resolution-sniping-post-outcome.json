@@ -1,0 +1,256 @@
+{
+ "slug": "resolution-sniping-post-outcome",
+ "name": "Resolution sniping: outcome known, oracle not yet settled",
+ "category": "Arbitrage / Information edge (speed)",
+ "maturity": "Established",
+ "seed_category": "resolution sniping",
+ "one_line": "Buy decided-but-unresolved or near-certain outcomes at 95-99.9c, recycle capital fast, and price long-dated certainties off an explicit settlement-discount curve.",
+ "scope": "Cover ONLY the post-outcome window: the real-world result is known (or knowable from a primary feed) but the market has not settled. Go deep on what a sniping-bot builder underestimates: the measured gap from outcome to proposal to settlement by category, who still sells at 97-99.9c and why, how automatic / non-UMA resolution (Chainlink price feeds, sports data feeds, the US exchange) has shrunk the opportunity set, tick size and fee regime at price extremes, depth actually available, 'resolved-but-unsettled bonding' economics (median APY, top provider PnL, trade counts), dispute / too-early / clarification tail risk by category and how to size it, capital lock during disputes, first-to-know data sources, and competition. Boundary: PRE-outcome high-probability buying and holding-rewards carry are near-certain-bond-carry; trading the dispute itself is rules-dispute-trading; weather station-feed sniping is detailed in weather-markets (cross-reference).",
+ "sub_variants": [
+  "high-turnover 95-99.9c certainty harvesting",
+  "resolved-but-unsettled bonding",
+  "settlement-discount curve screening for long-dated NO",
+  "liquidity-crunch / time-value trades into major events",
+  "holding-rewards full-set carry"
+ ],
+ "merged_from": [
+  "traders: 'Certainty harvesting'",
+  "onchain-bots: Tail-end buying of near-certain outcomes",
+  "academic: Settlement-discount carry",
+  "traders: Liquidity-crunch / time-value trades",
+  "platform-surface: Holding-rewards carry on full sets"
+ ],
+ "flags": "",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/html/2605.31431v1",
+   "note": "154,298 near-certainty observations: ASW 4.36-6.89%, bonding median APY 6.22%, top provider $23,616"
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.12878",
+   "note": "Purchases >=90c earn only +0.83c per dollar; habitual favourite buyers underperform"
+  },
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?ids=1qhgmxq,1qvpz4q",
+   "note": "1,000-wallet taxonomy with Harvester pattern; counter-example -37.81%"
+  },
+  {
+   "url": "https://dev.to/casatrick/my-bot-showed-84-profit-the-chain-said-11-heres-why-2nai",
+   "note": "0.98-entry bot: +$84 paper vs +$11 on-chain (fee claim in post conflicts with docs)"
+  },
+  {
+   "url": "https://arxiv.org/html/2609.15373v1",
+   "note": "Median 182 s from finality to first redemption across 99,283 conditions"
+  },
+  {
+   "url": "http://ericneyman.blog/2025/03/24/will-jesus-christ-return-in-an-election-year/",
+   "note": "Holders forwent ~16% annualised for cash before the 2024 election"
+  },
+  {
+   "url": "https://help.polymarket.com/en/articles/13364459-holding-rewards",
+   "note": "3.25% annualised on 15 markets, YES and NO both valued at mid"
+  }
+ ],
+ "parent_slug": "near-certain-bond-carry",
+ "parent_scope": "Cover the turnover business (Certainty Harvester pattern: enter 0.95-0.999, sell at 0.99, dump losers at 0.001-0.005; 90% of >=$10k orders above 0.95), post-event bonding economics (median APY 6.22%, top provider $23,616 over 34,994 trades, 182 s median resolution-to-redemption), the settlement-wedge term structure (3-7% annualised, AAVE-correlated, neg-risk compression), near-zero tail fees under p(1-p), the thin gross edge (+0.83c per dollar at >=90c), reversal/dispute/slippage/gas failure data, time-value and liquidity-crunch trades around big events (Neyman), and holding rewards (3.25% on 15 markets, full-set carry) as a yield layer. Boundary: observation-feed sniping of weather is weather-markets; trading disputes themselves is rules-dispute-trading; selling sub-10c longshots across undecided events is longshot-selling-flb; crypto end-of-window entries are documented in short-crypto-latency-taker.",
+ "deepen": true,
+ "seed": "8 resolution sniping",
+ "n": "13",
+ "band": "established",
+ "file": "13-resolution-sniping-post-outcome.md",
+ "critic_notes": [
+  "CROSS-REFERENCE the 'staking' seed to holding-rewards carry inside near-certain-bond-carry: it is the closest thing to staking on Polymarket itself (E2: ~$11.6k/day to ~48k wallets at 3.25%, ~$130M eligible value; complete-set eligibility is inferred, unverified). The orchestrator should confirm whether the owner meant UMA staking, holding rewards or both.",
+  "near-certain-bond-carry: category 'Arbitrage' is misleading. It is carry / tail-risk underwriting: break-even flip probability equals the discount (1% at 0.99), dispute rates run 0.2% (NBA) to 4.8% (geopolitics) per E3, gross edge +0.83c per dollar, and taker-side it is net negative in sports after fees (E4). Use 'Carry / risk premium'."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "'Certainty harvesting': high-frequency buying of 95-99.9c outcomes",
+   "one_line": "Buy outcomes that are effectively decided but not yet resolved, many times a day, recycle capital by selling at 99c, dump dead positions at 0.1-0.5c.",
+   "category": "Arbitrage",
+   "maturity": "Established",
+   "mechanism": "A 1,000-wallet pattern study names this the 'Certainty Harvester': entries at $0.95-0.999 shortly before resolution, selling winners at $0.99 to speed capital turnover, and clearing losers at $0.001-0.005; an HN practitioner says the most consistent winner he saw 'was placing 95%+ odds many, many times a day', and Polymarket Analytics' founder lists 'consistent bonding on high-probability outcomes' as a recognised style. Because fees scale with p(1-p), a 0.98 entry in a 0.05-rate category pays ~0.1c per share, so the fee reform barely touched this style. It differs from classic resolution sniping in being breadth- and turnover-driven (hundreds of tiny edges) rather than a single oracle-gap bet.",
+   "edge_source": "Impatient holders and takers who want cash now; operational ability to verify 'decided' across many markets quickly.",
+   "why_might_beat_market": "Capital velocity: median redemption comes 182 s after resolution, and selling at 99c avoids even that wait.",
+   "failure_modes": "Negative skew - one reversal (disputed resolution, late VAR, data revision) erases dozens of wins; naive versions lose: entries at 0.80-0.99 in the last 60 s of 15-minute crypto markets lost 37.81%, and a 0.98-entry bot's +$84 paper profit was +$11 on-chain after slippage (2.8-3.4%), gas on small redemptions and unrealised marks.",
+   "cheap_validation": "Replay all markets that traded >=97c with >1 h to resolution: compute loss frequency and severity by category, and the net yield per capital-day after slippage.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1qhgmxq,1qvpz4q",
+     "title": "Reddit r/PolymarketTrading 1qhgmxq 'I have analyzed 1000 most profitable users' and 1qvpz4q",
+     "date": "2026-01-19 / 2026-02-04",
+     "quality": "self-reported",
+     "supports": "Harvester pattern (0.95-0.999 entries, sell at 0.99, clear losers at 0.001-0.005); taxonomy Harvesters/Sprinters/Grinders/Anchors/Passive; counter-example -37.81%"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/48007503",
+     "title": "HN comment by hx8",
+     "date": "2026-05-04",
+     "quality": "self-reported",
+     "supports": "Most consistent winner observed placed 95%+ odds many times a day"
+    },
+    {
+     "url": "https://dev.to/casatrick/my-bot-showed-84-profit-the-chain-said-11-heres-why-2nai",
+     "title": "dev.to casatrick: My bot showed +$84 profit. The chain said +$11",
+     "date": "2026-07-02",
+     "quality": "self-reported",
+     "supports": "0.98+ entry bot: 91% paper vs 84% live win rate, slippage 2.8-3.4%, gas on small redemptions (its '~2% fee' claim conflicts with the official fee formula)"
+    },
+    {
+     "url": "https://export.arxiv.org/api/query?search_query=all:polymarket&sortBy=submittedDate&sortOrder=descending&max_results=60",
+     "title": "arXiv 2609.15373 Resolution Is Not Settlement, Part II",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "Median time from resolution to redemption 182 seconds across 92,158 redeemed conditions"
+    }
+   ]
+  },
+  {
+   "name": "Tail-end buying of near-certain outcomes (90c+ 'bonding')",
+   "one_line": "Buy outcomes already priced 90-99c shortly before resolution and hold to $1.",
+   "category": "Directional trading",
+   "maturity": "Established",
+   "mechanism": "Bots scan for contracts whose outcome is effectively decided (game nearly over, crypto window about to close, deadline passed) and lift offers at 90-99c, recycling capital many times per day. Fees barely bite at the extremes because of the p*(1-p) curve (about 0.33c per share at 95c in crypto, less elsewhere). Hard data puts the gross edge at under 1% per dollar on average, so the business is turnover, selection and avoiding the rare reversal. Open-source 'late-entry probability capture' bots for BTC 5/15-min markets are this strategy.",
+   "edge_source": "Impatient holders selling certainty at a discount for liquidity; fee curve near zero at extremes; time-to-resolution information.",
+   "why_might_beat_market": "The average is thin but positive and the capital turns fast; selection (skipping manipulable or dispute-prone markets) is where an agent can add value over the blind average.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket (Cardozo, Rivero-Wildemauwe)",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "588M trades, 2.48M accounts: purchases at >=90c earn 0.83c per dollar; habitual favorite-buyers (top decile = 15.1% of high-price purchases) earn less than others."
+    },
+    {
+     "url": "https://www.coindesk.com/business/2026/08/07/how-a-five-second-trick-let-traders-drain-millions-from-polymarket",
+     "title": "CoinDesk on settlement manipulation",
+     "date": "2026-08-07",
+     "quality": "credible-report",
+     "supports": "Tail risk: in manipulated windows a near-certain side was overturned one time in three."
+    },
+    {
+     "url": "https://github.com/casatrick/polymarket-trading-bot",
+     "title": "Polymarket Trading Bot - Late-Entry Probability Capture on BTC 5/15-Min Markets (GitHub, via HN listing)",
+     "date": "2026-06-23",
+     "quality": "marketing",
+     "supports": "Lead only: shows the strategy is packaged and sold/open-sourced; no verified PnL; repo not opened or executed."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees.md",
+     "title": "Fees (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "fee = C x feeRate x p x (1-p): near zero at price extremes."
+    }
+   ],
+   "failure_modes": "One reversal at 97c wipes ~30 wins; disputed/ambiguous resolutions lock capital for 4-6 days; crowded, so offers at 99c+ leave no margin after gas/relayer limits; habitual favorite-buyers underperform.",
+   "cheap_validation": "From the public trade archive compute realized return of all >=95c purchases made within the last N minutes before resolution, by category and time-to-close; keep only buckets with positive return after fees.",
+   "flags": ""
+  },
+  {
+   "name": "Settlement-discount carry: post-event bonding and the near-certainty term structure",
+   "one_line": "Price near-certain claims as zero-coupon bonds with a venue-specific discount curve; supply exit liquidity in the resolved-but-unsettled window and avoid long-dated 'certainties' that only pay ~4-7% annualised.",
+   "category": "Arbitrage",
+   "maturity": "Established (thin margins; top provider earned ~$24k)",
+   "mechanism": "After the real-world outcome is known but before oracle settlement/redemption, holders sell winning shares at 0.995-0.9995 to free capital; a bonding bot buys them and redeems. Generalise it: fit the annualised settlement wedge ASW(tau) on the 0.1-0.5 percentile frontier of near-certain prices and only buy claims whose implied yield exceeds the curve plus a dispute-risk spread. In negRisk events conversion mechanically compresses the discount (average price 1-(1-D)/(n-1)), so large fields are structurally poorer carry. Tail fees are ~0 under the p(1-p) curve.",
+   "edge_source": "Time value of locked collateral (Polymarket collateral earns nothing by default, unlike Kalshi's ~4% APY) plus impatience of winners who want capital back.",
+   "why_might_beat_market": "Hours-long holding periods make annualised returns high on the short end, and the explicit curve tells you when 'free money at 0.97' is actually below the DeFi lending rate.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/html/2605.31431v1",
+     "title": "When Certainty Is Not Worth It: Capital Lock-Up and Settlement Discounting in Prediction Markets (Gebele, Matthes), arXiv",
+     "date": "2026-05-29",
+     "quality": "hard-data",
+     "supports": "154,298 near-certainty observations, 4,273 markets, 19.87M trades to 2025-12-31: mean ASW 4.36% (0.1-pct frontier), 6.89% (0.5-pct), min-frontier 3.06%; long-end hump at 230-260 days; bonding trades median APY 6.22%, mean 29.08%, median holding 1-2 h; top provider earned $23,616 over 34,994 trades (~0.04 c per trade); correlation with AAVE lending rate ~0.365; discount adjustment removes 47.8-87.6% of the near-certainty maturity gradient; Kalshi frontier flatter, consistent with yield-bearing collateral."
+    },
+    {
+     "url": "https://arxiv.org/html/2609.15373v1",
+     "title": "Resolution Is Not Settlement, Part II: Protocol Finality and Observed Redemption on Polymarket (Nechepurenko), arXiv",
+     "date": "2026-09-14",
+     "quality": "hard-data",
+     "supports": "99,283 resolved conditions: median 182 s from protocol finality to first redemption (200 s for positive-payout), 92.8% with observed redemption at snapshot."
+    },
+    {
+     "url": "https://arxiv.org/html/2609.15368v1",
+     "title": "Resolution Is Not Settlement, Part I: Oracle Adjudication and Semantic Governance on Polymarket (Nechepurenko), arXiv",
+     "date": "2026-09-14",
+     "quality": "hard-data",
+     "supports": "159,447 proposals, 1,604 disputes (1.01%), 1,478 resets; request-to-first-proposal median 182 s on legacy route vs 2-9 days on modern routes - the carry window is route-dependent and measurable on-chain."
+    }
+   ],
+   "failure_modes": "1% dispute rate and reset/clarification risk is concentrated exactly in these positions; ~0.04 c per trade means scale and zero operational error are required; short-end annualised numbers are partly a tick-size artefact (0.9995 quotes).",
+   "cheap_validation": "Compute your own ASW frontier from public trades for the last 90 days by oracle route and category; backtest buying only above-curve claims with a haircut for dispute frequency by category (disputes cluster in sports 31.5%, politics 20.4%, crypto 16.7% per arXiv 2604.15674).",
+   "flags": ""
+  },
+  {
+   "name": "Liquidity-crunch / time-value trades",
+   "one_line": "Sell patience: buy positions that impatient or cash-hungry traders dump (long-dated futures, near-certain NOs), or pre-position in absurd YES ahead of predictable cash demand.",
+   "category": "Directional trading",
+   "maturity": "Experimental",
+   "mechanism": "Capital on Polymarket earns 0% and is scarce around big events, so long-dated and near-certain positions trade at discounts. The sports MM reports long-dated team futures 'trading 40% below fair value compared to sharp sportsbooks' because nobody wants months of exposure - buy there and hedge at a book. Neyman documents the mirror image: before the 2024 election NO-holders dumped safe positions for cash, forgoing ~16% annualised, and YES on the 'Jesus returns' market went 0.3% -> 1.5% (5x); YES buyers were betting on that future cash demand. A small example: Maduro-back NO at 11% for a 10.6% return in <11 months.",
+   "edge_source": "Being the unconstrained holder of capital when others are liquidity-constrained; term-structure of 'boring' probabilities.",
+   "why_might_beat_market": "No native leverage/yield on most positions makes time preference a priced factor that a patient, hedged book can harvest.",
+   "failure_modes": "Opportunity cost vs T-bills (~3.6% cited), platform/oracle/collateral (pUSD) risk over long horizons, hedge-leg limits at sportsbooks, rule changes that add yield on positions (unverified whether holding rewards currently apply).",
+   "cheap_validation": "Track a basket of 95c+ long-dated NOs and their implied annualised yields weekly; test whether yields spike into major events (midterms Nov 2026) as predicted.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "http://ericneyman.blog/2025/03/24/will-jesus-christ-return-in-an-election-year/",
+     "title": "Eric Neyman: Will Jesus Christ return in an election year?",
+     "date": "2025-03-24",
+     "quality": "credible-report",
+     "supports": "YES 0.3% -> 1.5% around election day; traders forwent 'a relatively safe 16% annualized return' for cash"
+    },
+    {
+     "url": "https://news.polymarket.com/p/meet-your-market-maker",
+     "title": "The Oracle: sports MM interview",
+     "date": "2025-10-11",
+     "quality": "self-reported",
+     "supports": "Long-dated futures up to 40% below sharp-book fair value because traders hate months-long exposure"
+    },
+    {
+     "url": "https://hn.algolia.com/api/v1/items/47753472",
+     "title": "HN thread: Nothing Ever Happens",
+     "date": "2026-04-13",
+     "quality": "self-reported",
+     "supports": "Commenters on 0% yield of locked capital vs ~3.6% risk-free eroding buy-No edges"
+    }
+   ]
+  },
+  {
+   "name": "Holding-rewards carry on full sets and eligible inventory",
+   "one_line": "Earn the 3.25% annualised holding reward on position value in 15 eligible long-dated markets, including on risk-free YES+NO full sets, as a yield layer under market-making inventory.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "Effective 2026-06-01 Polymarket pays 3.25% annualised (variable, at its discretion, may be capped) on total position value in 15 listed markets: 2028 presidential/nomination markets, 2026 midterms, five 'leader out before 2027' markets, Russia-Ukraine ceasefire before 2027 and five 2026 crypto price markets. Position value is sampled at a random time each hour and counts both YES and NO shares at mid price, so splitting pUSD into a YES+NO full set yields about $1 of reward-bearing value with no market risk and can be merged back at any time (gasless through the relayer). The same full-set inventory can back ask-only quotes on both outcomes, so it simultaneously earns holding reward, liquidity rewards and, in fee-enabled markets such as the 2028 nominee markets (feeRate 0.04), maker rebates. A migration to a new rewards system with 1-click migration is announced for later in 2026.",
+   "edge_source": "Subsidy on capital that would otherwise sit idle on-platform; it also offsets the time-value cost that keeps 95-99c long-dated near-certainties underpriced.",
+   "why_might_beat_market": "It is not alpha on its own (3.25% is at or below cash yields); the value is stacking: inventory that is already required for quoting earns carry, and carry-adjusted fair value for long-dated NO positions differs from what non-eligible holders compute.",
+   "failure_modes": "Rate already cut (was higher before June 2026) and can be cut or capped again; only 15 markets; smart-contract and platform custody risk on parked capital (two security incidents in May-June 2026); opportunity cost versus off-platform yield.",
+   "cheap_validation": "Split $1,000 into a full set on one eligible market for a week and reconcile daily pUSD credits against 3.25%/365 x $1,000; confirm both legs are counted.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://help.polymarket.com/en/articles/13364459-holding-rewards",
+     "title": "Holding Rewards",
+     "date": "effective 2026-06-01",
+     "quality": "hard-data",
+     "supports": "3.25% annualised, hourly random sampling, YES and NO both valued at mid (worked example $20,400), daily payout, 15 eligible markets, right to cap, new system later this year."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/markets?limit=40&active=true&closed=false&order=volume24hr&ascending=false",
+     "title": "Gamma API top markets",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "2028 Democratic nominee market (Hakeem Jeffries) shows holdingRewardsEnabled true, fee 4%, umaBond 25,000, umaReward 10."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/positions/manage.md",
+     "title": "Manage Positions",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Split 100 pUSD -> 100 YES + 100 NO, merge back, no redemption deadline."
+    }
+   ]
+  }
+ ]
+}

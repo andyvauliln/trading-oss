@@ -1,0 +1,57 @@
+{
+  "n": "03",
+  "slug": "short-crypto-maker-side",
+  "file": "03-short-crypto-maker-side.md",
+  "band": "established",
+  "name": "Short-duration crypto up/down: maker / supply side (split-sell, merge, rebates, toxicity filter)",
+  "one_line": "Rest liquidity in 5m/15m/1h/4h crypto up/down markets, split-sell and merge pairs, collect the 20% rebate and pull quotes in toxic windows; no reward programme is live.",
+  "category": "Market-making",
+  "maturity": "Established for a few automated wallets; contested and thinning for newcomers; rewards ended in August",
+  "requires_ai": "no",
+  "edge": "Retail gambling flow plus fee regime favouring makers; settlement carry",
+  "capital": "$1k-$10k; minutes of lock-up; depth per window caps size",
+  "build_time": "3-5 weeks solo",
+  "opportunity_size": "~$20M/day volume (5M $15.4M, 94% BTC) on 24 Sep; down from spring; rebate only",
+  "expected_results": "class: makers +$45.3K vs retail -$66.7K in one BTC 5m day; solo guess -$20 to +$60/day",
+  "competition": "one-tick books, ~350 ms quote reactions, co-location available",
+  "flag": "none for quoting; prohibited to move Binance in the TWAP window",
+  "validate": "7-day paper quote BTC 5m/15m + OpenMarket replay; pass >0.2% net of filled notional",
+  "top_risk": "Orphan legs and stale quotes near settlement",
+  "evidence_grade": "B",
+  "solo_fit": 2,
+  "solo_fit_reason": "Capital-light and fast-recycling, but latency-critical against co-located makers, parameter churn (four taker-delay regimes since June) and no reward subsidy left; BTC is the only deep book.",
+  "compounds_with": [
+    "short-crypto-latency-taker",
+    "derivatives-implied-relative-value",
+    "settlement-window-and-regime-edges",
+    "rebalancing-arbitrage-yesno-negrisk",
+    "maker-reward-pool-farming"
+  ],
+  "speed_class": "latency-critical: 150 ms taker delay window; 347 ms median quote reaction",
+  "results_1k": "live test: -$100 to +$200/month (guess)",
+  "results_5k": "-$300 to +$900/month (guess)",
+  "results_10k": "-$500 to +$1,800/month (guess)",
+  "min_capital": "~$2k: meaningful BTC 15m size vs fixed costs",
+  "capacity_ceiling": "~$50k-100k: share of BTC window volume (~$50k per 5m window)",
+  "services": [
+    "Polymarket CLOB REST+WS",
+    "PolyBolt WS (Chainlink TWAP, licensed prices)",
+    "Gamma API (5M/15M tags)",
+    "Binance/Coinbase spot WS",
+    "Builder relayer (split/merge)",
+    "VPS eu-west-1 or KYC co-location",
+    "OpenMarket archive",
+    "optional Telonex"
+  ],
+  "monthly_running_cost": "minimum ~$70; comfortable ~$200-300",
+  "changes_made": [
+    "Live check: no reward config on any 5m/15m/1h/4h up/down market (24 Sep 2026).",
+    "Taker delay 150 ms since 2026-09-04 (brief said 50 ms).",
+    "Live 24h volume by asset and horizon added."
+  ],
+  "open_doubts": [
+    "Per-category crypto rebate pool today is unpublished.",
+    "Lei & Rossi SSRN figures via the brief only.",
+    "91.9% one-tick figure from the brief's reading of the OpenMarket HTML."
+  ]
+}

@@ -1,0 +1,583 @@
+{
+ "slug": "builder-code-routing-business",
+ "name": "Builder-code order-routing businesses: terminals, bots, scanners, extensions, SDKs, white-label, US ISV",
+ "category": "Service & data business",
+ "maturity": "Established",
+ "seed_category": "service and data businesses",
+ "one_line": "Earn a toll on other people's flow by stamping a builderCode (up to 100 bps taker / 50 bps maker, weekly USDC rewards, grants), or vendor fees on Polymarket US.",
+ "scope": "Cover programme mechanics (native V2 builderCode, fee caps and change policy, tiers and relayer limits, weekly rewards and $2.5M+ grants with undisclosed sizes, revocation rights), leaderboard economics (top-50 ~$440M/month, top-3 ~45%, volume per user 10-100x higher for pro tools: betmoar, SpreadCore, traderline vs wallets), segment teardowns: pro terminals, decaying Telegram copy bots (PolyCop $362M all-time vs $7.7M/month; builder audit), sportsbook-arb scanner SaaS with pricing, browser-extension overlays, OSS SDKs with embedded zero-fee codes (NautilusTrader), embedded/white-label distribution, Combos Builder Gateway front-ends, institutional tooling startups and VC funding, and the Polymarket US ISV/IB vendor-fee route with the CFTC no-action relief. Stress omnibus-wallet penalties and platform encroachment. Boundary: own-flow attribution is wash-trading-airdrop-farming; analytics, data and referral income are data-referral-content-businesses.",
+ "sub_variants": [
+  "pro trading terminal",
+  "Telegram / Discord copy-trading bot",
+  "sportsbook-vs-Polymarket scanner SaaS",
+  "browser-extension overlay",
+  "OSS framework with embedded builder code",
+  "white-label / embedded integration",
+  "Combos front-end via Builder Gateway",
+  "Polymarket US ISV / IB vendor fees",
+  "VC-funded institutional tooling and grants"
+ ],
+ "merged_from": [
+  "traders: Builder-code businesses",
+  "onchain-bots: Builder-code order-routing business",
+  "platform-surface: Builder Program business",
+  "services: Builder-code pro terminal / trading front-end",
+  "services: Telegram / Discord copy-trading bot",
+  "services: Sportsbook-vs-Polymarket arbitrage / +EV scanner SaaS",
+  "services: Browser-extension overlay",
+  "services: Open-source trading framework / SDK with embedded builder code",
+  "services: Embedded distribution / white-label integration",
+  "services: Combos (parlay) front-end via the Builder Gateway",
+  "services: Polymarket US ISV or Introducing Broker front-end",
+  "platform-surface: Polymarket US partner route",
+  "services: VC-funded institutional tooling startup",
+  "services: Grants, research funding and bounties"
+ ],
+ "flags": "Non-custodial design strongly advised (custody/hack liability, money-transmission questions); serving geo-blocked users breaches ToS and local law; discretionary/auto-trading features may fall outside CFTC no-action relief; builder fee rights revocable at Polymarket's discretion.",
+ "key_evidence": [
+  {
+   "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=MONTH&limit=50",
+   "note": "Routed volume and active users per builder; decay of copy bots vs pro tools"
+  },
+  {
+   "url": "https://docs.polymarket.com/programs/builders/fees.md",
+   "note": "100/50 bps caps, additive to platform fees, revocation clause"
+  },
+  {
+   "url": "https://docs.polymarket.com/programs/builders/tiers.md",
+   "note": "Unverified/Verified/Partner relayer limits and weekly rewards"
+  },
+  {
+   "url": "https://unchainedcrypto.com/polymarket-audits-builders-program-startups-over-insider-trading-concerns/",
+   "note": "April 2026 audit of builder startups over insider-finder marketing"
+  },
+  {
+   "url": "https://spreadcore.xyz",
+   "note": "Scanner SaaS pricing $160-$799 (marketing)"
+  },
+  {
+   "url": "https://nautilustrader.io/docs/latest/integrations/polymarket/",
+   "note": "Hard-coded zero-fee builder code in an OSS adapter"
+  },
+  {
+   "url": "https://docs.polymarket.us/partners/funding/vendor-fees.md",
+   "note": "US partner vendor-fee lifecycle, no cap enforced"
+  },
+  {
+   "url": "https://cointelegraph.com/news/cftc-expands-regulatory-relief-for-passive-trading-software-providers",
+   "note": "2026-09-17 no-action relief for passive non-custodial software"
+  }
+ ],
+ "parent_slug": "builder-code-routing-business",
+ "seed": "service & data business",
+ "n": "32",
+ "band": "established",
+ "file": "32-builder-code-routing-business.md",
+ "critic_notes": [],
+ "raw_discovery_candidates": [
+  {
+   "name": "Builder-code businesses: terminals, Telegram bots, copy-trade front-ends",
+   "one_line": "Route other people's orders through your builder code and charge up to 100 bps taker / 50 bps maker, plus weekly USDC builder rewards.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Register a builder profile, attach the bytes32 builder code to orders placed through your UI/bot, and set a flat fee (1 bp granularity; changes need 3-day notice and 7-day cooldown). Fees stack on top of platform fees and are paid to the builder wallet; Verified builders also get weekly volume-based USDC rewards, grants and 10,000 relayer tx/day. Monthly routed volume (hard data): betmoar $89.6M from 646 users, traderline $53.3M (313), SpreadCore $25.8M (83), MetaMask $25.3M (2,370), polymtrade $19.2M (3,558), PolyCop $7.7M (909). At an assumed 10 bps, $90M/month is ~$90k/month (actual fee rates unverified). A top whale says he uses Betmoar for faster order entry on reward markets.",
+   "edge_source": "Distribution and UX (speed, hotkeys, Telegram, copy-trade) rather than trading alpha; pro users concentrate volume (betmoar ~$139k/user/month).",
+   "why_might_beat_market": "The reader already builds execution, screening and copy-trade infrastructure; exposing it to others monetises it without risk capital.",
+   "failure_modes": "Crowded (25+ builders above $2.5M/month), users are fee-sensitive, custody/security liability (Polycule bot hacked for ~$230k per a dev.to report), platform can change programme, regulatory exposure for serving restricted users.",
+   "cheap_validation": "Ship one narrow pro feature (e.g. reward-share calculator + one-click two-sided quoting) with a builder code at 5-10 bps to 20 users; measure routed volume per user.",
+   "flags": "Non-custodial design strongly advised; serving geo-blocked users via a front-end may breach Polymarket ToS and local law.",
+   "evidence": [
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=MONTH&limit=25",
+     "title": "Polymarket data-api builders leaderboard (month)",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "Routed volume and active users per builder (betmoar $89.6M/646 users, etc.)"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "title": "Polymarket docs: builder fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Max 100 bps taker / 50 bps maker, stacked on platform fees, paid to builder wallet"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/tiers.md",
+     "title": "Polymarket docs: builder tiers",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Unverified 100 relayer tx/day, Verified 10,000/day + weekly USDC rewards and grants, Partner unlimited"
+    },
+    {
+     "url": "https://news.polymarket.com/p/banned-in-macau-to-polymarket-whale",
+     "title": "The Oracle: RetardBoyBilly",
+     "date": "2025-08-01",
+     "quality": "self-reported",
+     "supports": "Whale uses Betmoar interface for faster order placement on reward markets"
+    }
+   ]
+  },
+  {
+   "name": "Builder-code order-routing business (terminals, Telegram bots, copy-trade front ends)",
+   "one_line": "Earn a fee on other people's volume by attaching a builder code to their orders.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "A builder profile yields a code that is attached to routed orders; when they match, a builder fee is collected on notional on top of platform fees, up to 100 bps for takers and 50 bps for makers (one rate change per 7 days, effective after 3 days). All on-chain operations go gasless through the relayer (100, 10,000 or unlimited relay transactions per day by tier) and Verified builders may receive weekly USDC rewards by volume. Products in the wild are whale-alert and copy-trading Telegram bots, trading terminals and AI agents. Revenue scales with users' volume, not with the operator's own trading skill.",
+   "edge_source": "Distribution and UX; Polymarket pays for order flow.",
+   "why_might_beat_market": "It monetises the same analytics the owner is already building (wallet tracking, signals) without taking market risk. Revenue figures for any builder were not verified this session.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "title": "Builder Fees (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Taker up to 100 bps, maker up to 50 bps, flat % of notional, additive to platform fees, payout from indexed OrderFilled events; revocation for non-bona-fide trading."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/tiers.md",
+     "title": "Builder Tiers (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Unverified 100 relay tx/day, Verified 10,000 plus weekly USDC rewards (subject to approval), Partner unlimited."
+    },
+    {
+     "url": "https://www.directionsmag.com/articles/best-polymarket-copy-trading-bots",
+     "title": "Best Polymarket Copy Trading Bots ... 2026 (Directions Magazine) - search result, not opened",
+     "date": "2026-07-07",
+     "quality": "marketing",
+     "supports": "Lead: a market of paid copy-trading bots exists; affiliate-style content."
+    }
+   ],
+   "failure_modes": "Users' fills get worse with an added fee, so churn is high; omnibus wallets are ineligible for taker rebates; custody/KYC liabilities; Polymarket can disable a code.",
+   "cheap_validation": "Check builders.polymarket.com leaderboard volumes (not fetched this session) and multiply by plausible fee rates to size the opportunity before building.",
+   "flags": "Operating a trading front end may trigger licensing obligations in some jurisdictions."
+  },
+  {
+   "name": "Builder Program business: builder fees, weekly rewards, grants, gasless relayer",
+   "one_line": "Ship a trading front end, bot or terminal that stamps a builderCode on user orders and charge up to 100 bps taker / 50 bps maker on notional, plus volume-based weekly USDC rewards and grants.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Since CLOB V2 (2026-04-28) the builder code is a signed field of the order and is attributed on-chain at match. Builders set a flat fee in 1 bp steps up to 100 bps on taker and 50 bps on maker notional, additive to platform fees; fees are computed at match, settled through CTFExchangeV2 and accrued to the builder wallet; a rate can change once per 7 days with 3 days notice and is publicly queryable. Tiers: Unverified (100 relayer tx/day), Verified (10,000/day, leaderboard, Telegram, weekly USDC rewards subject to approval), Partner (unlimited). All tiers get the gasless relayer for wallet deployment, approvals, split/merge/redeem and order execution. The Bridge API accepts X-Builder-Code on deposits and withdrawals (2026-06-25) and Combos can be routed through a Builder Gateway. The official leaderboard shows one-month volumes of $90.0M (Betmoar), $54.6M (Gate), $53.4M (traderline), $26.2M (SpreadCore), $25.4M (MetaMask) and 50+ projects; the site advertises over $2.5M in grants and weekly volume rewards since Nov 2.",
+   "edge_source": "Distribution and tooling rather than prediction skill: fee revenue scales with other people's volume and is indifferent to who wins.",
+   "why_might_beat_market": "A team already building agent infrastructure (copy trading, alerts, execution) can expose it as a product; 10 bps on $20M/month is $20k/month with no market risk, and the relayer removes gas cost from its own arb bots.",
+   "failure_modes": "Most users are fee-sensitive and competing front ends charge 0 bps; builder fees are additive so they worsen users' execution; weekly rewards and grants are discretionary and their size is unpublished; omnibus-wallet integrations lose taker rebates and referral eligibility; geo-compliance duty sits with the builder.",
+   "cheap_validation": "Register an Unverified builder code, route a closed beta of 20 users through it, measure retained monthly volume per user and price sensitivity at 0/10/25 bps before applying for Verified.",
+   "flags": "Builder codes can be disabled for fraudulent, deceptive, misleading, automated, self-referred or other non-bona fide trading activity. Serving restricted jurisdictions (30+ now block Polymarket) exposes the builder, not only the user.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "title": "Builder Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "100 bps taker / 50 bps maker caps, additive to platform fees, formula, accrual flow, rate-change policy, disable clause."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/tiers.md",
+     "title": "Builder Tiers",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Unverified/Verified/Partner relayer limits, weekly USDC rewards subject to approval, application by email."
+    },
+    {
+     "url": "https://builders.polymarket.com/",
+     "title": "Polymarket Builders leaderboard",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "One-month builder volumes (Betmoar $90.02M, Gate $54.62M, traderline $53.38M, SpreadCore $26.19M, MetaMask $25.35M ...); grants and weekly rewards statements are marketing-grade."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Predictions changelog",
+     "date": "2026-04-28, 2026-05-18, 2026-06-25 entries",
+     "quality": "hard-data",
+     "supports": "Native builderCode in V2 order struct; builder leaderboard endpoints; X-Builder-Code on bridge deposit/withdraw."
+    }
+   ]
+  },
+  {
+   "name": "Builder-code pro terminal / trading front-end",
+   "one_line": "Route other traders' orders through your own UI with a builderCode and charge up to 100 bps taker / 50 bps maker on top of platform fees, plus weekly USDC builder rewards and grants.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Create a builder profile (no approval needed for the Unverified tier) and attach your builderCode to every order your users sign. It has been a native order field since CLOB V2 went live on 2026-04-28. You set a flat builder fee; Polymarket's Builders Service indexes the fills and pays your wallet. Fee changes are limited to one per 7 days and take effect after 3 days. Verified tier (apply by email) raises relayer limits from 100 to 10,000 tx/day and adds leaderboard visibility, weekly volume-based USDC rewards and grant eligibility. The winning products are pro tools (Discord/web terminals with news, UMA dashboards, fast order entry), not retail skins.",
+   "edge_source": "Distribution and workflow lock-in with a small number of very heavy traders. It is a toll on flow, not alpha.",
+   "why_might_beat_market": "Volume per active user is 10-100x higher for pro tools than for retail wallets: betmoar ~$139k/user/month, SpreadCore ~$311k, MetaMask ~$10.7k, RedotPay ~$1.6k (my arithmetic). A solo team can win 50 heavy users; it cannot win 50,000 retail users.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/programs/builders/fees.md",
+     "title": "Builder Fees (Polymarket docs)",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Max builder fee is 100 bps taker / 50 bps maker, flat on notional and additive to platform fees. Polymarket may revoke fee rights for self-referred or non-bona fide volume."
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=MONTH&limit=50",
+     "title": "Builder leaderboard, last month (Polymarket Data API)",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "betmoar $89.6M / 646 users; Gate $54.4M / 19; traderline $53.3M / 313; SpreadCore $25.8M / 83; MetaMask $25.3M / 2,370. The top-50 sum is about $440M (my sum)."
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=ALL&limit=50",
+     "title": "Builder leaderboard, all-time",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Top-50 all-time builder volume is $6.97B; betmoar alone is $2.23B with 3,908 users."
+    },
+    {
+     "url": "https://builders.polymarket.com/",
+     "title": "Polymarket Builders page",
+     "date": "undated",
+     "quality": "marketing",
+     "supports": "$2.5M+ in grants and weekly USDC rewards by integration volume. Epochs run Sunday to Saturday and started Nov 2 (2025)."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/builders/tiers.md",
+     "title": "Builder Tiers",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "Tiers are Unverified, Verified and Partner, with 100 / 10,000 / unlimited relayer tx per day."
+    }
+   ],
+   "failure_modes": "Fee stacking: users already pay taker fees of feeRate 0.04-0.07 x p(1-p), so an extra 50-100 bps drives heavy users to the native UI or API. Polymarket can revoke builder fees at its sole discretion. Platform encroachment is a risk (Data API v2, native features). The field is concentrated, with the top 3 builders at about 45% of routed volume. The actual fee rates charged by the leaders are not public (UNVERIFIED).",
+   "cheap_validation": "Attach a 0-bps builder code to your own suite's orders and confirm attribution appears within 24h. Snapshot the leaderboard API daily for 30 days to measure competitor churn and volume per user. Interview 10 traders doing over $100k/month about what they would pay for.",
+   "flags": "You must respect geoblocks and the ToS. Polymarket audits builders; see the April 2026 audit. If you hold user keys you become a custody and hack target."
+  },
+  {
+   "name": "Telegram / Discord copy-trading bot (per-trade fee or subscription)",
+   "one_line": "A bot that mirrors selected wallets for retail users and monetises through builder fees or subscriptions. The category is proven but visibly decaying, and it is under integrity scrutiny.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Users deposit to or connect a wallet inside a Telegram or Discord bot, pick leaderboard wallets to mirror, and the bot places orders with its builderCode. Revenue comes from builder fees, subscriptions and sometimes a token. Wallet discovery (win-rate lists, unusual-size alerts) is the acquisition hook. Consolidation has started: PolyGun bought the analytics site Polymarket Analytics in March 2026 to feed its copy product.",
+   "edge_source": "Retail demand for following winners, plus chat-native distribution. There is no pricing edge; followers get worse fills than leaders.",
+   "why_might_beat_market": "It mostly does not any more. All-time against last-month volumes show collapse: PolyCop $362M / 12,732 users vs $7.7M / 909; Polygun $118M / 9,941 vs $1.1M / 580; Kreo $89M / 8,923 vs $2.5M / 565. The Discord bot betmoar still leads because it serves pros.",
+   "evidence": [
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=ALL&limit=50",
+     "title": "Builder leaderboard, all-time",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "All-time volume and users for PolyCop, Polygun, Kreo, Polycule ($46.6M / 3,106) and PolyBot ($31.1M / 2,580)."
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=MONTH&limit=50",
+     "title": "Builder leaderboard, last month",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "The same bots last month: PolyCop $7.7M, Polygun $1.1M, Kreo $2.5M."
+    },
+    {
+     "url": "https://unchainedcrypto.com/polymarket-audits-builders-program-startups-over-insider-trading-concerns/",
+     "title": "Polymarket Audits Builders Program Startups Over Insider Trading Concerns (Unchained, citing The Information)",
+     "date": "2026-04-15",
+     "quality": "credible-report",
+     "supports": "Polycool and Kreo marketed \"find insiders\" copy tools for subscription fees. The tools drove \"hundreds of millions\" in volume. Polymarket launched an audit of Builders Program startups."
+    },
+    {
+     "url": "https://www.casino.org/news/polygun-buying-prediction-markets-data-purveyor-polymarket-analytics/",
+     "title": "PolyGun Buying Prediction Markets Data Purveyor Polymarket Analytics (Casino.org)",
+     "date": "2026-03-09",
+     "quality": "credible-report",
+     "supports": "PolyGun has 20,000+ Telegram members in under 3 months. It acquired Polymarket Analytics (250,000+ users, 2.3M traders tracked). Terms were undisclosed."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/taker-rebates.md",
+     "title": "Taker Rebate Program",
+     "date": "launched 2026-05-28",
+     "quality": "hard-data",
+     "supports": "Omnibus-wallet integrations are excluded from taker rebates of up to 50%, which is a structural handicap for custodial bots."
+    }
+   ],
+   "failure_modes": "Copy latency and slippage erode follower PnL, which drives churn. Fee stacking is a second cost. Omnibus-wallet users lose rebates. Key custody makes the bot a hack target. \"Insider\" marketing invites de-listing. Leaders can shake off copiers with split or decoy wallets.",
+   "cheap_validation": "Track weekly leaderboard volume for 10 bots over 8 weeks to confirm the decay. Paper-copy 20 top wallets with realistic latency and fees to measure follower PnL before building anything.",
+   "flags": "Marketing copy-trading of suspected insiders triggered a Polymarket audit in April 2026. Operating a custodial bot may raise money-transmission questions. Exact fee levels of the named bots are UNVERIFIED because their sites did not disclose them."
+  },
+  {
+   "name": "Sportsbook-vs-Polymarket arbitrage / +EV scanner SaaS with in-terminal execution",
+   "one_line": "Sell subscription scanners to sports bettors that find Polymarket-vs-sportsbook gaps and execute the Polymarket leg through your builder code.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Stream odds from 9+ sportsbooks and the Polymarket book, compute net-of-fee arbitrage and +EV, alert through Telegram, and let the user fire the Polymarket leg from the terminal with builder attribution. Revenue is a crypto-billed subscription, with optional builder fees and rewards on top. Customers are existing arbitrage and +EV bettors who treat Polymarket as one more sharp, high-limit book.",
+   "edge_source": "A customer base that already pays $100-300/month for betting tools and needs a venue with no limits or bans. Sports is the majority of Polymarket flow.",
+   "why_might_beat_market": "It has the highest observed volume per user of any builder segment. SpreadCore's 83 users routed $25.8M last month. Sibling tools Sharkbetting, Sharktool, NoArb and EVplusAI all sit in the top 50.",
+   "evidence": [
+    {
+     "url": "https://spreadcore.xyz",
+     "title": "SpreadCore landing page",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "marketing",
+     "supports": "Pricing is $160 / 14 days, $299 / 30 days and $799 / 90 days with a 3-day trial. It covers 9+ books, direct Polymarket execution, and a hedge calculator with fee and rebate accounting."
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=MONTH&limit=50",
+     "title": "Builder leaderboard, last month",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "SpreadCore $25.8M / 83 users; Sharkbetting $13.5M / 2; Sharktool $12.4M / 66; NoArb $5.0M / 10; EVplusAI $2.1M / 23."
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "title": "Polymarket (Wikipedia)",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "63% of platform trades are sports-related."
+    },
+    {
+     "url": "https://kacho.io/polymarket-arbitrage-real-numbers",
+     "title": "I ran an arbitrage bot on Polymarket. Here are the real numbers",
+     "date": "2026-06",
+     "quality": "self-reported",
+     "supports": "An esports arbitrage bot made $4,973 net on $95.8k volume from January to March 2026. Monthly profit fell from $2.5k to $390, showing how fast the edge customers chase decays."
+    }
+   ],
+   "failure_modes": "The July 2026 sports fee increase (coefficient 0.03 to 0.05, maker rebate 25% to 15%) shrinks arbitrage. Customers' edge decays, so churn is high. Sportsbook-side account limits are the customers' real bottleneck. Odds-feed licensing costs money. A US bill to ban sports contracts on prediction markets was introduced in March 2026.",
+   "cheap_validation": "Log Polymarket-vs-sharp-book gaps net of fees for 2 weeks using your existing cross-platform arbitrage code. Pre-sell 10 seats in arbitrage-betting Discords.",
+   "flags": "Scraping sportsbook odds often violates the books' terms. Customers may be in restricted jurisdictions."
+  },
+  {
+   "name": "Browser-extension overlay on polymarket.com with builder attribution",
+   "one_line": "A free Chrome extension that injects analytics into the native UI and routes the user's orders with your builder code. No custody and no separate front-end.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "The extension adds panels (holders' PnL, bookmaker odds, news feed, LP-reward calculator, charts) inside polymarket.com and submits orders carrying the builder code. It is free to the user. It monetises through builder rewards and grants, optional builder fees, and points programmes. It does not have to compete with Polymarket's UI; it augments it.",
+   "edge_source": "Zero switching cost for the user. It is an accessory, not a replacement for the native UI.",
+   "why_might_beat_market": "PolyHelper reached $275M all-time routed volume with only 549 users and $15.8M last month with 76 users. That is pro-level volume per user from a very light build.",
+   "evidence": [
+    {
+     "url": "https://polyhelper.io",
+     "title": "Poly Helper landing page",
+     "date": "undated",
+     "quality": "marketing",
+     "supports": "A free extension with 30+ tools. Its points programme promises to share up to 50% of any future \"$POLY\" drop among the top 1,000 users."
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=ALL&limit=50",
+     "title": "Builder leaderboard, all-time",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "PolyHelper.io: $275,062,733 volume, 549 users."
+    }
+   ],
+   "failure_modes": "Polymarket DOM or API changes break the extension. Chrome Web Store policy can remove it. Users must trust it not to be a drainer (a third-party vendor compromise led to a $3M theft in June 2026). Monetisation depends on discretionary rewards and an unconfirmed token.",
+   "cheap_validation": "Ship one killer panel for your own use, publish it, and measure installs and attributed volume over 30 days.",
+   "flags": "The POLY token and airdrop are UNVERIFIED in sources fetched this session. Promising airdrop shares is a securities and marketing risk."
+  },
+  {
+   "name": "Open-source trading framework / SDK with embedded builder code",
+   "one_line": "Ship the adapter that quants use and hard-code your builder code into every order, so you collect attribution, rewards and grants without charging users.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "An OSS trading library's Polymarket adapter signs every order with the project's builder code at a zero fee rate. Users pay nothing. The project earns leaderboard volume, weekly builder rewards, grant eligibility and leverage with Polymarket. The same pattern fits bot templates, MCP servers and agent toolkits.",
+   "edge_source": "Developer distribution. Algo traders are the highest-volume cohort and adopt whatever adapter works.",
+   "why_might_beat_market": "NautilusTrader shows $33.6M all-time across 438 users and $4.36M last month across 153 users with no sales effort. Your existing agent suite could be open-sourced the same way.",
+   "evidence": [
+    {
+     "url": "https://nautilustrader.io/docs/latest/integrations/polymarket/",
+     "title": "NautilusTrader Polymarket integration docs",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "\"Every order signed by the adapter carries the hard-coded Nautilus builder code. Its builder fee rate is fixed at zero and is not configurable.\""
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=MONTH&limit=50",
+     "title": "Builder leaderboard, last month",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "NautilusTrader: $4.36M / 153 users last month; $33.6M / 438 all-time."
+    },
+    {
+     "url": "https://github.com/pmxt-dev/pmxt",
+     "title": "pmxt, \"ccxt for prediction markets\"",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "2.2k stars. It monetises through a hosted API and sponsors, which is a comparable OSS-first model."
+    }
+   ],
+   "failure_modes": "Users can fork out the code. The weekly reward size is undisclosed and discretionary. If you switch fees on, it triggers forks. Polymarket could treat passive attribution as non-bona fide.",
+   "cheap_validation": "Open-source one narrow adapter (for example neg-risk conversion or rewards scoring) with your code embedded and watch attributed volume for 60 days.",
+   "flags": "Disclose the embedded code clearly. Hidden attribution would be a trust problem."
+  },
+  {
+   "name": "Embedded distribution / white-label Polymarket integration for wallets, exchanges and fintechs",
+   "one_line": "Be the integrator that puts Polymarket inside someone else's app (wallet, CEX, card app) and share the builder economics.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Apps with existing users embed Polymarket markets using builder codes and the gasless relayer. A small team without distribution can sell the integration layer (SDK, compliance gating, deposit bridge with the X-Builder-Code header, UI kit) to those apps for a build fee or revenue share. Gate has already productised a white-label builder for businesses.",
+   "edge_source": "Someone else's installed base; you supply speed of integration.",
+   "why_might_beat_market": "User counts are dominated by embedded distribution: MetaMask 38,359 users all-time, Bitget Wallet 31,883, RedotPay 9,020 and Axiom 5,201. No standalone app comes close.",
+   "evidence": [
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=ALL&limit=50",
+     "title": "Builder leaderboard, all-time",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "MetaMask $317M / 38,359 users; Gate $828M / 92 (exchange omnibus); Bitget Wallet $39.6M / 31,883; RedotPay $17.4M / 9,020; Jupiter $138M; Rainbow; SafePal; Phemex; Deepcoin."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+builder+program+OR+%22builder+codes%22+OR+%22builders+program%22&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"Crypto exchange Gate enters prediction market space with white-label builder for businesses\" (Fortune)",
+     "date": "2026-09-03",
+     "quality": "credible-report",
+     "supports": "White-label builder offering exists (headline only, body not fetched)."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-06-25 entry",
+     "quality": "hard-data",
+     "supports": "The Bridge API accepts the X-Builder-Code header, so deposits are attributable to integrators."
+    }
+   ],
+   "failure_modes": "Low volume per user ($1.6k-10k per month). Partners in-source after a proof of concept. Omnibus integrations lose rebates and referral eligibility. Gate and Polymarket's Partner tier compete for the same deals.",
+   "cheap_validation": "Pitch 5 mid-size wallets or regional fintechs with a working demo. A signed LOI is the test.",
+   "flags": "The partner's jurisdictions may be restricted (30+ are). KYC and geoblock liability is shared."
+  },
+  {
+   "name": "Combos (parlay) front-end via the Builder Gateway",
+   "one_line": "Offer a multi-leg parlay builder. The gateway runs an RFQ auction among market makers and you own the user and the builder attribution.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "Approved builders request executable quotes for bundles of 2-50 compatible outcome positions. Makers must respond within a 400 ms window. The best quote is returned with an acceptance deadline, and the builder tracks execution on-chain. It can be integrated custodially (an omnibus Deposit Wallet) or non-custodially. Parlays are the highest-margin retail sports product, and Polymarket has only just exposed them.",
+   "edge_source": "Being early on a new product surface with sportsbook-style UX, plus your knowledge of the leg markets.",
+   "why_might_beat_market": "Parlay hold in sportsbooks is structurally high. Here the RFQ competition sets the price and the builder monetises flow. Very few builders have shipped it yet (my inference from the leaderboard names; UNVERIFIED).",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/combos/builders.md",
+     "title": "Combos for Builders",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "2-50 legs, a quote competition, Builder API key, secret and passphrase, and custodial or non-custodial models."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+     "title": "Combos: Market Makers",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "A 400 ms quote window. Last Look comes after about $2,500 of combo notional. Makers rejecting more than 15% of selected quotes over an hour may be paused."
+    }
+   ],
+   "failure_modes": "Builder approval is required. Builder economics on Combos are not documented (UNVERIFIED). The custodial model forfeits user rebates. Correlated-leg pricing disputes are likely. A US bill targets sports contracts.",
+   "cheap_validation": "Request gateway credentials. Measure quote quality against the sum of legs on 100 sample combos before building any UI.",
+   "flags": "The custodial omnibus model implies custody obligations."
+  },
+  {
+   "name": "Polymarket US partner route: vendor fees as an ISV or Introducing Broker",
+   "one_line": "Integrate as a US partner (ISV/IB) that onboards KYC'd participants and declares a per-order vendor fee in USD, with no platform-enforced cap.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "Polymarket US documents a partner stack for Independent Software Vendors, Introducing Brokers and FCMs: Socure-backed KYC flows, participant and account APIs, funding via Aeropay/Checkout, order entry over REST, gRPC or FIX with drop copy. Partners attach a vendor fee to each order through CreateVendorOrder as a fixed non-negative USD amount computed under their own customer agreement; the exchange records it, accrues it as a receivable against the participant's cash, produces a daily vendor-fee report, and the partner collects by transfer (reason VENDOR_FEES) at most once per day per account. This is the regulated analogue of international builder fees, aimed at front ends, bots-as-a-service and brokers serving US customers. Polymarket's affiliate has also applied for an FCM licence to offer margin, which would widen what partners can sell.",
+   "edge_source": "Regulatory and integration moat: few small teams will complete DCM partner onboarding, so distribution to US retail via tools is less crowded than the builder leaderboard.",
+   "why_might_beat_market": "Uncapped, partner-defined fees on a venue that is spending heavily on US user acquisition (marketing blitz, $50 credits, $32k/game reward pools).",
+   "failure_modes": "Compliance burden (IB registration, KYC liability, reconciliation duties); long onboarding; US state-level actions against prediction markets (Minnesota ban, Nevada/Massachusetts/Kentucky actions); banking fragility (JPMorgan cut ties in August 2026).",
+   "cheap_validation": "Request the partner onboarding pack and term sheet (partner docs list the inputs); the decision hinges on registration requirements and minimums that are not public.",
+   "flags": "Requires US regulatory status appropriate to the role (ISV vs IB vs FCM); state-law risk for event contracts is unsettled in 2026.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.us/partners/funding/vendor-fees.md",
+     "title": "Vendor Fees",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Per-order fixed USD vendor fee declared by partner, no cap enforced, declare-accrue-report-collect lifecycle, once-daily collection."
+    },
+    {
+     "url": "https://docs.polymarket.us/llms.txt",
+     "title": "Polymarket US documentation index",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Partner types (ISV, IB, FCM), KYC, funding, FIX/gRPC/drop-copy and incentives API surface."
+    },
+    {
+     "url": "https://www.coindesk.com/markets/2026/07/10/polymarket-seeks-approval-to-bring-margin-trading-to-u-s-customers",
+     "title": "Polymarket seeks approval to bring margin trading to U.S. customers",
+     "date": "2026-07-10",
+     "quality": "credible-report",
+     "supports": "FCM application by Polymarket's US affiliate; Kalshi obtained margin clearance in March 2026."
+    },
+    {
+     "url": "https://cointelegraph.com/tags/polymarket",
+     "title": "Cointelegraph Polymarket tag page",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "Headlines on JPMorgan cutting banking ties (2026-08-14) and South Korean users referred to prosecutors (2026-09-17) used for regulatory-risk context."
+    }
+   ]
+  },
+  {
+   "name": "VC-funded institutional tooling startup (terminal / execution / risk)",
+   "one_line": "Build Wall-Street-style infrastructure (FIX, RFQ, algos, cross-venue risk) and fund it with venture money. Rounds of $1-9M are closing even when routed volume is tiny.",
+   "category": "Service & data business",
+   "maturity": "Emerging",
+   "mechanism": "Target funds and prop desks entering prediction markets with cross-venue terminals, smart order routing, TWAP, POV and iceberg algos, block RFQ, and reporting. Revenue is SaaS seats or basis points on flow. In practice the near-term money is equity financing. A dedicated $35M VC fund, 5(c) Capital, backed by both venue CEOs, Andreessen and Ribbit's Malka, has made about 20 investments.",
+   "edge_source": "Credibility with institutions and the venue relationships. Timing the institutional on-ramp.",
+   "why_might_beat_market": "Institutional entry is documented: the Galaxy OTC desk, Talos-Kalshi, Clear Street, Moreton Capital's prediction-markets unit, and AQR research. Funded startups still show tiny Polymarket volume (River Markets $636k/month across 11 users; Fireplace $21.5M all-time), so the field is open. The counter-signal is that Paradigm is building its own terminal.",
+   "evidence": [
+    {
+     "url": "https://techcrunch.com/2026/03/23/despite-bitter-rivalry-kalshi-polymarket-ceos-back-35m-predictions-markets-vc-fund/",
+     "title": "Kalshi, Polymarket CEOs back $35M prediction markets VC fund (TechCrunch)",
+     "date": "2026-03-23",
+     "quality": "credible-report",
+     "supports": "5(c) Capital is a $35M fund run by ex-Kalshi GPs. LPs include Mansour, Coplan, Andreessen and Malka. It has about 20 portfolio companies and a focus on infrastructure, market makers and index designers."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+analytics+OR+terminal+OR+%22copy+trading%22+startup+raises+seed+million+2026&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: River Markets $8.5M seed (Fortune, 2026-08-11); Kairos $2.5M from a16z crypto (Fortune, 2026-02-03); Fireplace $1.5M (PR Newswire, 2026-02-17); ParlayX $1.25M pre-seed (2026-09-04); Paradigm building its own terminal (Fortune, 2026-04-01)",
+     "date": "2026-02 to 2026-09",
+     "quality": "credible-report",
+     "supports": "Funding rounds for tooling startups (headlines only)."
+    },
+    {
+     "url": "https://cointelegraph.com/news/talos-brings-institutional-trading-tools-to-kalshi-prediction-markets",
+     "title": "Talos brings institutional trading tools to Kalshi",
+     "date": "2026-07-22",
+     "quality": "credible-report",
+     "supports": "Talos adds iceberg, TWAP and POV algos, multi-leg execution and RFQ for Kalshi. CoinGecko reports Q2 2026 notional at $113.8B, a June record of $52.8B, and a Polymarket share of 30.2% in June."
+    },
+    {
+     "url": "https://data-api.polymarket.com/v1/builders/leaderboard?timePeriod=MONTH&limit=50",
+     "title": "Builder leaderboard, last month",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "River Markets routed $635,702 across 11 users last month, so funded does not yet mean used."
+    }
+   ],
+   "failure_modes": "Incumbents (Talos, Paradigm in-house, venue-native FIX at Polymarket US) crowd the field. Institutions prefer Kalshi and Polymarket US to the offshore CLOB. Long sales cycles. This is not a bootstrap business.",
+   "cheap_validation": "Land 3 design-partner desks using your existing execution stack before raising money.",
+   "flags": "None beyond the usual securities law on fundraising."
+  },
+  {
+   "name": "Grants, research funding and bounties",
+   "one_line": "Non-dilutive money: Polymarket builder grants ($2.5M+ pool), a Polymarket-funded academic institute, venue-aligned VC, and UMA gas rebates.",
+   "category": "Service & data business",
+   "maturity": "Established",
+   "mechanism": "Verified builders compete for grants \"based on product innovation and traction\" and get engineering and marketing support. In July 2026 Polymarket was reported to be launching an institute to fund independent academic research. 5(c) Capital writes early cheques into infrastructure. UMA rebates voter gas. No formal bug-bounty page for Polymarket could be fetched (the guessed Immunefi URL returned 404, UNVERIFIED).",
+   "edge_source": "Shipping something Polymarket wants to showcase. Research credibility.",
+   "why_might_beat_market": "It is cheap to pursue alongside any builder product and compounds with the leaderboard traction you would generate anyway.",
+   "evidence": [
+    {
+     "url": "https://builders.polymarket.com/",
+     "title": "Polymarket Builders",
+     "date": "undated",
+     "quality": "marketing",
+     "supports": "\"$2.5M+ in grants for devs building apps, tools, and experiments\". Grants go to the \"best teams based on product innovation and traction\"."
+    },
+    {
+     "url": "https://news.google.com/rss/search?q=polymarket+hedge+fund+prediction+markets+fund+launch&hl=en-US&gl=US&ceid=US:en",
+     "title": "Google News feed: \"Exclusive: Polymarket launches institute to fund independent academic research on prediction markets\" (Fortune)",
+     "date": "2026-07-29",
+     "quality": "credible-report",
+     "supports": "A research-funding channel (headline only)."
+    },
+    {
+     "url": "https://techcrunch.com/2026/03/23/despite-bitter-rivalry-kalshi-polymarket-ceos-back-35m-predictions-markets-vc-fund/",
+     "title": "5(c) Capital (TechCrunch)",
+     "date": "2026-03-23",
+     "quality": "credible-report",
+     "supports": "A $35M dedicated fund with about 20 cheques written."
+    }
+   ],
+   "failure_modes": "Individual grant sizes and award counts are undisclosed (UNVERIFIED). The process is discretionary and relationship-driven.",
+   "cheap_validation": "Apply for the Verified tier and ask the builder Telegram channel for grant criteria and typical sizes.",
+   "flags": ""
+  }
+ ]
+}

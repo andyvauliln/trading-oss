@@ -1,0 +1,228 @@
+{
+ "slug": "dependence-pricing-combos-joint",
+ "name": "LLM- and simulation-derived dependence pricing: Polymarket Combos RFQ and cross-event joint distributions",
+ "category": "Speculative-novel",
+ "maturity": "Purely theoretical",
+ "seed_category": "agent-society simulation forecasting",
+ "one_line": "Estimate cross-event dependence from precomputed conditional debates or coherent world simulations. Keep the market's marginals. Quote or pick off 2-50-leg Combo RFQs, and trade listed combos against their legs where joint probability differs from the independence product.",
+ "scope": "Cover the dependence-only thesis. Simulation levels are biased, but dependence estimates partly cancel those biases, and hedged packages of combo against legs isolate the correlation view. Methods: offline pairwise conditional debates that produce log-odds ratios, a pairwise exponential-family or copula pricer fast enough for the 400 ms quote window, and 1,000+ world runs for linked clusters with a cheap first version that uses direct conditional elicitation. Cover the Combos mechanics from the docs: 2-50 YES legs, 10 s acceptance, last look needing about $2,500 of notional plus contact with Polymarket, a pause above 15% rejections, and 15 request creates per minute. Cover quoter mode and requester mode. The Kalshi evidence is that parlays are overpriced by about 3% per leg, and Kalshi mints 1.09M combinatorial objects a day. Limits: there is no ground truth for conditionals, relation accuracy is 62.8%, adverse selection, generative exaggeration that overstates correlations, capital lock-up, and sports desks that already price same-game correlation. Validate with an RFQ logging phase and 50 resolved linked pairs scored against independence. Boundary: logical-constraint coherence is in semantic-market-graph-relative-value.",
+ "sub_variants": [
+  "Combos RFQ quoter with a precomputed pairwise pricer",
+  "Requester mode picking off independence-priced linked legs",
+  "Sim-dependence plus market-marginals hedged packages on listed combo events",
+  "Implied conditionals from quotes as a data feed"
+ ],
+ "merged_from": [
+  "Joint-distribution scenario engine for cross-event relative value",
+  "Conditional-tree joint pricer for Polymarket Combos (RFQ maker and quote picker)",
+  "LLM-derived dependence pricing for Polymarket Combos (RFQ parlays)"
+ ],
+ "flags": "Combos market making requires onboarding and contact with Polymarket. EOA wallets are unsupported. Check jurisdiction and entity availability. The Combo fee schedule is unverified. Systematically picking off makers may get your flow restricted.",
+ "key_evidence": [
+  {
+   "url": "https://docs.polymarket.com/trading/combos/overview.md",
+   "note": "RFQ flow: 400 ms quote window, 10 s acceptance, optional 1 s last look."
+  },
+  {
+   "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+   "note": "Last look needs ~$2,500 combo notional plus contact. Above 15% rejections causes a pause."
+  },
+  {
+   "url": "https://docs.polymarket.com/trading/combos/requesters.md",
+   "note": "2-50 compatible legs, YES only, 15 creates per rolling minute."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.14430",
+   "note": "Kalshi parlays: overpricing ratio 0.991 at 2 legs rising to 1.223 at 10 legs, ~3% per leg, N=12,639."
+  },
+  {
+   "url": "https://arxiv.org/abs/2603.22596",
+   "note": "ParlayMarket: a pairwise exponential-family belief state with O(M^2) statistics, tested on Kalshi combos."
+  },
+  {
+   "url": "https://arxiv.org/abs/2609.17610",
+   "note": "Kalshi mints ~1.087M combinatorial objects per day. 35% carry volume or open interest."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=shutdown&limit_per_type=15&events_status=active",
+   "note": "A live cross-event combo (shutdown and House winner): $342k volume, $58k liquidity."
+  },
+  {
+   "url": "http://arxiv.org/abs/2507.00657v1",
+   "note": "Counter-evidence: LLM agents exaggerate polarization, so they likely overstate correlations."
+  }
+ ],
+ "n": "66",
+ "band": "speculative",
+ "file": "66-dependence-pricing-combos-joint.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Joint-distribution scenario engine for cross-event relative value",
+   "one_line": "Each coherent simulated world run resolves dozens of linked markets at once. Trade the dependence structure (combos against marginals, cross-event conditionals), not the sim's biased levels.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "1. Define a linked cluster, for example macro path to approval to midterm control to shutdown dynamics to Fed reaction.\n2. Run 1,000+ forward world simulations. Stakeholder agents act inside one consistent timeline per run. Each run yields a joint outcome vector across all cluster markets.\n3. Estimate conditional probabilities and rank correlations. Discard the marginal levels and replace them with market-implied marginals.\n4. Price combination and conditional contracts from market marginals plus the sim dependence.\n5. Compare with the listed combo prices and with the implicit independence in separately traded markets.\n6. Trade hedged packages, such as combo against legs, as a maker. Each package's P&L then depends on the correlation view only.",
+   "edge_source": "No single market aggregates cross-event dependence. Humans price marginals one at a time. Simulation is one of the few tools that outputs a full joint distribution.",
+   "why_might_beat_market": "Sim levels are biased (escalation, progressive lean, exaggeration). Those biases partly cancel in dependence estimates, and the hedged package is neutral to level error.\n\nCombo markets already exist. \"Another US government shutdown and House winner 2026\" has 5 markets, $342k volume and $58k liquidity.\n\nCardozo and Rivero-Wildemauwe 2026 show mispricing depends on how contracts are grouped. Longshot purchases lose 6.3c per dollar per contract but gain 4.1c when grouped by parent event. Cross-contract structure is priced inconsistently.\n\nCaveats:\n- Negative-risk conversion already enforces coherence within an event, so only cross-event relations remain.\n- Generative exaggeration means sims likely overstate narrative correlations.\n- Combos are thin.\n- Capital is locked until the last leg resolves.",
+   "adjacent_grounding": "- Forecast-consistency and arbitrage metrics: Paleka et al., Consistency Checks for Language Model Forecasters (arXiv 2412.18544) [pre-2025, possibly stale]. Arbitrage-based consistency correlates with Brier.\n- Simulated-world forecasting: ForecastBench-Sim (arXiv 2606.18686).\n- Large-scale social simulators that can host multi-issue worlds: AgentSociety (arXiv 2502.08691), OASIS (arXiv 2411.11581) [pre-2025, possibly stale], SocioVerse (arXiv 2504.10157), YuLan-OneSim (arXiv 2505.07581).\n\nI found no evidence of anyone trading sim-derived dependence on prediction markets.",
+   "evidence": [
+    {
+     "url": "http://arxiv.org/abs/2412.18544v2",
+     "title": "Consistency Checks for Language Model Forecasters (Paleka et al.)",
+     "date": "2024-12-24",
+     "quality": "paper",
+     "supports": "An arbitrage-style logical-consistency metric across related questions correlates with ground-truth Brier. Cross-question coherence is a measurable, tradable property. [pre-2025, possibly stale]"
+    },
+    {
+     "url": "http://arxiv.org/abs/2606.18686v1",
+     "title": "ForecastBench-Sim: A Simulated-World Forecasting Benchmark",
+     "date": "2026-06-17",
+     "quality": "paper",
+     "supports": "Simulated worlds can generate resolvable joint forecasting questions at arbitrary horizons. This is a test-bed for dependence estimation."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "paper",
+     "supports": "The sign of the bias flips with grouping: -6.3c per individual contract against +4.1c when grouped by parent event. Cross-contract structure is priced inconsistently."
+    },
+    {
+     "url": "https://gamma-api.polymarket.com/public-search?q=shutdown&limit_per_type=15&events_status=active",
+     "title": "Polymarket Gamma API: shutdown and House-winner combo event",
+     "date": "2026-09-20",
+     "quality": "hard-data",
+     "supports": "A live cross-event combination market with 5 outcomes, $342k volume and $58k liquidity. Its legs are separately traded."
+    },
+    {
+     "url": "http://arxiv.org/abs/2507.00657v1",
+     "title": "Generative Exaggeration in LLM Social Agents",
+     "date": "2025-07-01",
+     "quality": "paper",
+     "supports": "Counter-evidence. LLM agents amplify polarization and narrative intensity, so they likely overstate correlations."
+    }
+   ],
+   "failure_modes": "- Overstated narrative correlations.\n- Compounding error over long simulated timelines.\n- Very high token cost for 1,000+ multi-agent world runs.\n- Illiquid combos and wide spreads.\n- Capital lock-up.\n- Few resolved linked pairs for validation.",
+   "cheap_validation": "Cheap first version: use direct LLM conditional elicitation plus small sims, not full societies.\n- Take 50 pairs of linked markets that resolved after the model cutoff.\n- Compare the log score of three versions of P(A and B): sim-implied, independence of the market marginals, and any listed combo price.\n- Pass: beats independence in at least 65% of pairs AND is not worse than listed combos on average.\n- Then paper trade 10 hedged packages. Require positive P&L after spread and fees.",
+   "flags": ""
+  },
+  {
+   "name": "Conditional-tree joint pricer for Polymarket Combos (RFQ maker and quote picker)",
+   "one_line": "Use offline conditional debates to fill a pairwise dependency model over Combo-enabled markets, then quote (or pick off) 2-50-leg Combo RFQs where the joint probability differs from the naive product of legs.",
+   "category": "Speculative-novel",
+   "maturity": "Purely theoretical",
+   "mechanism": "(1) For every pair of Combo-enabled markets run an offline conditional-forecast debate ('given A resolves YES, what is P(B)?') and store pairwise log-odds-ratio with uncertainty; refresh daily or on news. (2) Fit a pairwise exponential-family joint model (O(M^2) statistics, as in ParlayMarket/APMM). (3) Maker side: on each RFQ price the YES combo from the cached model inside the 400 ms window, add markup rising with leg count, hedge legs on the CLOB. (4) Requester side: within the 15-creates/min limit request quotes on leg sets with logical or strong positive dependence (A implies B, same-driver politics x macro legs) and buy when the returned quote is near the independence product. (5) Track implied conditionals P(B|A)=P(A and B)/P(A) from quotes as a new data feed for the coherence engine.",
+   "edge_source": "Correlation mispricing in a brand-new product with few quoters; LLM conditional reasoning for non-sports cross-domain dependence where no historical joint data exists.",
+   "why_might_beat_market": "Kalshi evidence: parlays show ~no overpricing at 2-4 legs but 3.7% at 7 legs, 22.3% at 10 legs, ~3% multiplicative inflation per leg (N=12,639 parlay trades) - makers are paid for long parlays; Kalshi instantiates ~1.087M multivariate objects/day with 35% showing volume, so demand is real. Polymarket Combos is new and documented only in docs; quoter competition on non-sports legs is plausibly thin (unverified). Honest limits: sports combos are priced by professional desks with real models; a 400 ms window means the LLM can only precompute; conditional probabilities from LLMs have no resolving ground truth and are their weakest calibrated output; requesters who understand correlation better than you adversely select your quotes; Last Look needs ~$2,500 combo volume plus a contact at Polymarket and >15% rejections pauses you.",
+   "adjacent_grounding": "Combinatorial prediction-market design: ParlayMarket https://arxiv.org/abs/2603.22596 and APMM https://arxiv.org/abs/2607.18299 (validated on historical Kalshi combos); parlay bias measurement https://arxiv.org/abs/2607.14430 ; Kalshi on-demand combinatorial markets https://arxiv.org/abs/2609.17610 ; conditional-consistency checks for LM forecasters https://arxiv.org/abs/2412.18544 [pre-2025]. Searched arXiv + GitHub: nothing found using LLM-derived dependence to quote Polymarket Combos.",
+   "failure_modes": "No ground truth for conditionals; adverse selection; hedge slippage across up to 50 legs; leg-compatibility rules undocumented; inventory of illiquid derived position IDs; model latency; rule changes in a young product.",
+   "cheap_validation": "Phase 0 (no capital): for two weeks send minimum-size RFQs on a fixed panel of leg sets, log best quote vs product-of-legs vs model price; PASS if median quote deviates from your model by more than fee+hedge cost on >=20% of dependent-leg sets. Phase 1: backtest joint model on >=500 resolved 2-4-leg historical combos (Kalshi data as used in ParlayMarket); PASS if model log-loss < independence-product log-loss with p<0.05. Only then apply for maker access.",
+   "flags": "Combo market making requires onboarding/communication with Polymarket; EOA wallets unsupported; builder attribution blocked for Combos. Deliberately picking off makers is legal but may get flow restricted.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/combos/overview.md",
+     "title": "Polymarket docs - Combos Overview",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Combos are multi-leg YES/NO positions traded via RFQ: makers quote within 400 ms, user accepts within 10 s, optional 1 s Last Look."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/requesters.md",
+     "title": "Polymarket docs - Combos Requesters",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "2-50 unique mutually compatible legs, side must currently be YES, 15 create requests per rolling minute, EOA unsupported."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+     "title": "Polymarket docs - Combos Market Makers",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Quoting rules, Last Look access (~$2,500 combo notional + line of communication), >15% rejection rate leads to pause."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.14430",
+     "title": "Prices, Probabilities, and Parlays: Systematic Bias in Sports Prediction Markets",
+     "date": "2026-07-15",
+     "quality": "hard-data",
+     "supports": "Kalshi parlays: median overpricing ratio 0.991 (2 legs) to 1.223 (10 legs), ~3% per leg, N=12,639."
+    },
+    {
+     "url": "https://arxiv.org/abs/2603.22596",
+     "title": "ParlayMarket: Automated Market Making for Parlay-style Joint Contracts",
+     "date": "2026-03-23",
+     "quality": "paper",
+     "supports": "Pairwise exponential-family belief state compresses 2^M outcomes to O(M^2) statistics with quadratic loss bound; tested on Kalshi combos."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.17610",
+     "title": "On-Demand Combinatorial Event Markets on Kalshi",
+     "date": "2026-09-14",
+     "quality": "hard-data",
+     "supports": "7.6M multivariate market objects in 7 days (1.087M/day), 35.38% with volume or open interest: demand for joint contracts exists."
+    }
+   ]
+  },
+  {
+   "name": "LLM-derived dependence pricing for Polymarket Combos (RFQ parlays)",
+   "one_line": "Precompute a semantic correlation/implication graph across all combinable legs so you can quote (or request) 2-50-leg Combos inside the 400 ms window with correct joint probabilities while others assume independence or add a blind markup.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "1) Offline and continuously, an LLM labels every pair of liquid legs with a dependence type and rough strength: logical implication/exclusion, shared causal driver (same election wave, same macro print, same team injury), or independent; historical co-movement calibrates magnitudes. 2) Store as a sparse correlation structure feeding a fast copula/Bayes-net pricer that returns joint probabilities in well under 400 ms. 3) Quoter mode: connect to the Combos RFQ gateway, price each request = joint fair value +/- inventory and adverse-selection margin that scales with how 'cherry-picked' the leg set looks (requesters choosing positively linked legs). 4) Requester mode: ask for Combos whose legs are logically linked (A implies B so P(A and B)=P(A)) and hit quotes priced near product-of-legs; hedge legs on the CLOB where possible. 5) Use Collateral Return and split/merge to recycle pUSD.",
+   "edge_source": "Combinatorial + textual: joint probabilities across different events are not observable in any order book; they must be inferred from meaning.",
+   "why_might_beat_market": "On Kalshi, Moshrefi (23M moneyline trades) finds cross-game parlays systematically overpriced vs the product of contemporaneous leg prices, with the markup growing in leg count - retail pays for convenience, so a correct pricer earns the markup while avoiding the correlated picks. Kalshi's RFQ-style combinatorial layer minted 7.6M market objects in a week, showing demand scale. Polymarket's Combos are documented with 2-50 legs, a 400 ms quote window and few published constraints; I found no open-source quoter or paper on it, suggesting an immature quoting field. Honest limits: incumbent sports market makers already price same-game correlation well; the unpriced territory is cross-domain legs (politics x macro x crypto), where flow may be thin. Combo fee schedule and launch date were not stated in the pages I fetched (unverified).",
+   "adjacent_grounding": "Sportsbook same-game-parlay correlation pricing (industry practice, unverified this session); combinatorial prediction-market theory: APMM (https://arxiv.org/abs/2607.18299) and ParlayMarket (arXiv 2603.22596, listing only) validated on Kalshi order flow - informed trading concentrates in low-leg parlays; Kalshi MVE census (https://arxiv.org/abs/2609.17610); LLM relation discovery accuracy 62.8% (Capponi et al.).",
+   "failure_modes": "LLM correlation magnitudes are guesses with no direct ground truth; 62.8% relation accuracy is far too low to price without statistical calibration; adverse selection by sharp requesters; last look is restricted (needs ~$2,500 combo notional and Polymarket contact; >15% rejections per hour triggers a pause); capital locked across legs that resolve at different times; 15 create requests per minute caps requester-mode scanning.",
+   "cheap_validation": "Phase 1 (no capital): connect to the RFQ WebSocket as a passive quoter-observer if permitted, or sample as a requester within the 15/min limit; log best quotes vs product-of-leg mids vs your joint fair value for 2 weeks. Metrics: median markup of winning quotes over product-of-legs (expect >0); fraction of requests with LLM-flagged positive dependence. Pass: winning quotes on independent-leg combos carry >=3% markup over fair (room to undercut profitably) OR >=5% of quotes on linked-leg combos are below your joint fair value by more than fees. Phase 2: $2-5k pilot as quoter with no-last-look risk limits.",
+   "flags": "Requires onboarding with Polymarket for last look; check Combos availability by jurisdiction/entity.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/trading/combos/overview.md",
+     "title": "Polymarket docs - How Combos Work",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "RFQ flow: 400 ms quote window, 10 s acceptance, 1 s last look, competitive best-quote selection."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/market-makers.md",
+     "title": "Polymarket docs - Combos Market Makers",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Gateway endpoints, last-look eligibility (~$2,500 notional), 15% rejection threshold, pUSD collateral, collateral return."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/combos/requesters.md",
+     "title": "Polymarket docs - Combos Requesters",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "2-50 unique mutually compatible legs; 15 create requests per rolling minute per maker_address."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.14430",
+     "title": "Prices, Probabilities, and Parlays: Systematic Bias in Sports Prediction Markets (Moshrefi)",
+     "date": "2026-07-15",
+     "quality": "paper",
+     "supports": "Parlays overpriced vs product of legs, growing with leg count, even when legs are well calibrated; calibration breaks in final 10 minutes."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18299",
+     "title": "APMM: Automated Parlay Market Maker (Moshrefi, Rana, Viswanath)",
+     "date": "2026-07-13 (v2 2026-08-26)",
+     "quality": "paper",
+     "supports": "Hierarchical parlay pricing; belief updates dominated by low-leg changes on Kalshi flow; loss bounds O(M^2)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.17610",
+     "title": "On-Demand Combinatorial Event Markets on Kalshi (Nechepurenko)",
+     "date": "2026-09-14",
+     "quality": "paper",
+     "supports": "7,611,594 combinatorial market objects in 7 days (~1.087M/day); 35.38% with positive volume or OI; ~720 effective primitives."
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "COVERAGE NOTE. The band has no sports entry, and that is defensible. The E4 pack finds no favourite-longshot bias in sports, about 1% margins for the winners, and four frontier agents that failed to beat the market on 104 World Cup matches. The only sports-adjacent speculative surface is same-game dependence, which is already inside dependence-pricing-combos-joint. 'Will X beat earnings' markets exist but are too small for a Finance entry: nine live markets at $0.6k-$4.4k volume and $0.2k-$1.5k liquidity (Gamma API, fetched today).",
+  "dependence-pricing-combos-joint: caveats to add. docs.polymarket.com does carry Combos pages, including collateral return in pUSD (llms.txt, fetched today). But the overview page states nothing on venue availability, eligibility or fees, and the E1 pack dates the launch to Polymarket US on 2026-08-21. The E4 pack also reports that Polymarket is building an in-house desk for RFQ parlays, so the RFQ counterparty may be the house as well as Jump-class firms. Both belong in the entry's flags."
+ ]
+}

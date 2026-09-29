@@ -1,0 +1,59 @@
+{
+  "n": "02",
+  "slug": "event-market-making-spread-carry",
+  "file": "02-event-market-making-spread-carry.md",
+  "band": "established",
+  "name": "Event-market making: spread capture vs settlement carry, rebate wedge and taker-delay last look",
+  "one_line": "Two-sided quoting across long-tail event markets where makers earn mostly by what they hold at settlement and where they quote, plus a deterministic rebate; spread capture is ~0 in liquid markets.",
+  "category": "Market-making",
+  "maturity": "Established as a class (limit-order makers are the documented winners); unproven for a new solo entrant",
+  "requires_ai": "optional: jump-risk and rule-change tagging, never quoting",
+  "edge": "Screening rent from tail-demand takers, fee wedge, 15-25% rebate",
+  "capital": "$10k+ to run; $1k-$10k to validate; carry locks capital to resolution",
+  "build_time": "4-6 weeks on an LP stack; 2-3 months from scratch",
+  "opportunity_size": "~800 bots cleared ~$131M in 16 months; maker rebates ~$187k/day; liquid spreads saturated, long tail stable",
+  "expected_results": "no public data for a solo maker; guess -$50 to +$100/day net on $20-50k",
+  "competition": "desks in liquid markets; ~32 effective makers per long-tail market",
+  "flag": "none (one identity); grey multi-wallet; spoofing/wash prohibited",
+  "validate": "Decompose own or paper fills into spread/rebate/rewards/settlement by price band; carry only positive bands",
+  "top_risk": "Informed jumps and insider flow against held inventory",
+  "evidence_grade": "B",
+  "solo_fit": 3,
+  "solo_fit_reason": "Reuses LP infrastructure and the class is profitable, but the rent comes from a settlement-carry policy that needs months of measured fills; one-day evidence, institutional competition and fat left tails make it a slow build.",
+  "compounds_with": [
+    "maker-reward-pool-farming",
+    "genesis-window-new-listing-liquidity",
+    "cross-venue-leadlag-signals",
+    "longshot-selling-flb",
+    "logit-space-belief-vol-quoting",
+    "taker-rebates-fee-tier-overlay"
+  ],
+  "speed_class": "execution-sensitive: selection and carry policy beat speed; news cancels decide losses",
+  "results_1k": "not workable: -$60 to +$30/month (guess)",
+  "results_5k": "marginal: -$150 to +$250/month (guess)",
+  "results_10k": "pilot: -$200 to +$600/month (guess)",
+  "min_capital": "~$5k: queue relevance and fixed costs",
+  "capacity_ceiling": "~$100k-250k solo before quoting liquid markets against desks",
+  "services": [
+    "Polymarket CLOB REST+WS",
+    "Gamma API",
+    "On-chain OrderFilled (RPC/indexer)",
+    "/builder/trades",
+    "Builder relayer",
+    "Kalshi / Polymarket US public data (anchors)",
+    "news/calendar feed",
+    "VPS eu-west-1",
+    "optional Telonex L2"
+  ],
+  "monthly_running_cost": "minimum ~$70; comfortable ~$250-350",
+  "changes_made": [
+    "Corrected the brief: the 91.4% settlement-profit figure is from a one-day BTC 5-minute sample (738,393 trades), not the full 588M-trade record.",
+    "Added live 24 Sep spread and fee-schedule data; NFL/CFB zero-fee (no rebate).",
+    "Crypto taker delay updated to 150 ms (2026-09-04)."
+  ],
+  "open_doubts": [
+    "No small-maker net PnL anywhere; settlement-carry evidence is one day of BTC 5-minute data plus the authors' platform-wide claim.",
+    "SSRN 6396698 maker vs taker per-market figures read only via the brief (403).",
+    "Kalshi maker -10% is snippet-only."
+  ]
+}

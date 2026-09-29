@@ -1,0 +1,227 @@
+{
+ "slug": "adversarial-debate-price-residual",
+ "name": "Multi-agent adversarial debate applied as a residual on the market price",
+ "category": "Speculative-novel",
+ "maturity": "Emerging",
+ "seed_category": "multi-agent adversarial debate forecasting",
+ "one_line": "Cross-family bull and bear advocates, plus a price-blind judge, produce a probability that is only ever applied as a logit-space correction to the Polymarket price. An independent-ensemble control arm can switch the debate off.",
+ "scope": "Cover debate architectures for forecasting. Sides are assigned across model vendors. Every claim must cite evidence. The judge is blind to price and identity. The market mix is fitted per category. Sizing uses proper betting, not Kelly. Present the mixed evidence. Deliberation helped only for diverse model families: -0.020 log loss at p=0.017. Deliberative consensus scored about 76% against 83.43% for independent aggregation. Conformity and sycophancy are common, persuasion can override truth, and token cost is 2.1-3.4x. Cover two variants. In the veto-only variant a red-team agent never generates trades and only halves or vetoes candidates from a statistical signal, for example recalibrating political favourites; the recalibration alpha itself belongs to the behavioural-bias band. In the rationale-quality variant the judge weights agents by Explanation Quality Markers and a Martingale entrenchment score. Include existing Polymarket attempts such as PolySwarm, none of which reports PnL. Validate with a Hindcast-style four-arm backtest on 400+ markets, then 350 forward forecasts. Boundary: market mechanisms between agents are in internal-agent-prediction-market.",
+ "sub_variants": [
+  "Bull/bear advocates plus blind judge, mixed with the market",
+  "Veto-only pre-mortem red team on a statistical signal",
+  "EQM and Martingale-score weighted judge",
+  "Reference-class proposer/challenger debate for the prior"
+ ],
+ "merged_from": [
+  "Cross-family advocate debate used as a residual on the market price",
+  "Market-price recalibration strategy with a veto-only pre-mortem agent",
+  "Rationale-quality judge (Explanation Quality Markers + Martingale score) over agents and human commentary"
+ ],
+ "flags": "The international venue excludes US persons. Scraping comments is subject to site ToS. Treat scraped text as untrusted input, because prompt-injection amplification in multi-agent debate is documented.",
+ "key_evidence": [
+  {
+   "url": "https://arxiv.org/abs/2512.22625",
+   "note": "Deliberation helps only diverse models with shared information: -0.020 log loss, p=0.017, 202 questions."
+  },
+  {
+   "url": "https://arxiv.org/abs/2605.30802",
+   "note": "Counter-evidence: debate ~76% vs independent vote 83.43%. Error correlations 0.53-0.69."
+  },
+  {
+   "url": "https://arxiv.org/abs/2511.07678",
+   "note": "AIA loses to the market alone (0.1258 vs 0.1106). A 0.33/0.67 blend scores 0.106."
+  },
+  {
+   "url": "https://arxiv.org/abs/2607.06166",
+   "note": "Proper betting robustly converts accuracy into profit and Kelly can lose on the same forecasts. The live run was $200 over 26 days."
+  },
+  {
+   "url": "https://arxiv.org/abs/2604.03888",
+   "note": "PolySwarm: a 50-persona Polymarket swarm. No live PnL reported."
+  },
+  {
+   "url": "https://arxiv.org/abs/2606.30987",
+   "note": "Explanation Quality Markers on 55k forecast-rationale pairs predict accuracy."
+  },
+  {
+   "url": "https://arxiv.org/abs/2504.00374",
+   "note": "In multi-agent debate, persuasion overrides truth and the judge stays confident."
+  },
+  {
+   "url": "https://arxiv.org/abs/2602.07048",
+   "note": "LLM as pure risk filter: win rate 51.4% to 54.5%, average loss roughly halved."
+  }
+ ],
+ "n": "56",
+ "band": "speculative",
+ "file": "56-adversarial-debate-price-residual.md",
+ "raw_discovery_candidates": [
+  {
+   "name": "Cross-family advocate debate used as a residual on the market price",
+   "one_line": "Bull/bear advocates from different model vendors plus a price-blind judge produce a probability that is only ever applied as a logit-space correction to the Polymarket price and sized with 'proper betting', with an independent-ensemble control arm that can switch the debate off.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "(1) Universe: non-crypto markets priced 0.15-0.85, horizon days-weeks, adequate depth. (2) Build one date-stamped evidence pack; advocate YES and advocate NO come from different model families and are assigned sides regardless of belief, 2 rounds, every claim must cite an evidence item; a third-family judge, blind to market price and advocate identity, outputs p_judge; in parallel N independent no-debate forecasts are kept as control. (3) Final p = sigmoid(w*logit(q_market) + (1-w)*logit(p_panel)), w fitted per category on resolved markets (market-conditioned mixing). (4) Trade only if |p-q| > feeRate*p*(1-p) (politics 0.04 -> 1c/share at 50c; geopolitics 0) + half-spread + error buffer; prefer resting maker orders (maker fee 0); size with proper-betting rule s = gradG(p) - gradG(q) instead of naive Kelly. (5) Log every forecast with the market price at the same timestamp for Murphy-decomposed Brier vs market.",
+   "edge_source": "Information that is additive to price (slow-digest primary documents, cross-lingual sources, long-context synthesis) plus diversity of model-family errors; aggregation failure exploited = thin attention on mid-liquidity non-headline markets.",
+   "why_might_beat_market": "Hard evidence says an LLM panel alone does NOT beat a liquid market (Douven: LLMs 'substantially less accurate' even contamination-controlled; AIA underperforms market consensus) but DOES add information when mixed with it (AIA+consensus beats consensus; Halawi combined Brier 0.146 vs crowd 0.149 [pre-2025]; MixMCP beats both inputs). Deliberation gave -0.020 log loss (~4%, p=0.017) only for diverse models with shared info, zero for homogeneous. Honest limit: in Kota's test deliberation degraded accuracy to ~76% vs 83.43% for independent aggregation because confidently wrong models flipped correct ones; expect the debate arm to justify itself only on a subset (toss-ups, early lifecycle) and the realistic edge to be 1-3 points.",
+   "adjacent_grounding": "Forecasting tournaments / multi-agent LLM research: Schneider & Schramm 'Wisdom of Deliberating AI Crowds' (202 Metaculus Q2-2025 questions) https://arxiv.org/abs/2512.22625 ; AIA Forecaster (supervisor agent reconciles forecasts, superforecaster parity on ForecastBench) https://arxiv.org/abs/2511.07678 ; Khan et al. debate with persuasive LLMs (76%/88% judge accuracy) https://arxiv.org/abs/2402.06782 [pre-2025] ; Du et al. multi-agent debate https://arxiv.org/abs/2305.14325 [pre-2025] ; TradingAgents bull/bear researcher debate in equities https://arxiv.org/abs/2412.20138 and https://github.com/TauricResearch/TradingAgents ; FOMC hawk/dove debate https://arxiv.org/abs/2511.02469 . Already on Polymarket: PolySwarm paper (50 personas, no PnL) https://arxiv.org/abs/2604.03888 ; GitHub https://github.com/defidaddydavid/polyswarm (3 stars, no results), https://github.com/macd2/PitchProphetAi (paper trading), https://github.com/whoisk4rthik/Prediction-Market-Trading-Bot .",
+   "failure_modes": "Harmful conformity (29% of flips; 57-77% correct-to-wrong across replications, 2606.00820); persuasion overriding truth (CW-POR 2504.00374); monoculture rho~0.7 -> N_eff 1.4; persona prompts do not decorrelate; systematic overconfidence (KalshiBench ECE 0.120 best, 0.395 for reasoning-heavy model); backtest leakage via retrieval and training cutoff; 2.1-3.4x token cost; LLMs slower than markets near resolution (Prophet Arena); fee + spread eats a 1-2 pt edge if taking.",
+   "cheap_validation": "Hindcast-style backtest: >=400 Polymarket markets resolved after ALL models' cutoffs, retrieval hard-filtered to before per-market t0, score against outcome AND market price at t0. Arms: single model, independent ensemble, debate+judge, each also mixed with price. Metrics: Brier/log-loss delta vs market, simulated PnL after fee formula and half-spread. PASS: price-mix beats market by >=0.003 Brier with bootstrap 95% CI excluding 0 AND debate arm >= independent arm; otherwise drop debate and keep ensemble. Then 8-week paper trade / $500 pilot until >=350 resolved forecasts (power for 0.02 edge); PASS: net PnL > 0 after fees and calibration slope 0.9-1.1.",
+   "flags": "Polymarket international venue is not open to US persons; API automation is permitted. No ethical flags beyond ordinary trading.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2512.22625",
+     "title": "The Wisdom of Deliberating AI Crowds",
+     "date": "2025-12-27",
+     "quality": "paper",
+     "supports": "Deliberation helps only diverse models with shared information: log loss -0.020 (~4%, p=0.017) on 202 Metaculus questions; no benefit for homogeneous groups; extra context did not help."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.30802",
+     "title": "Design and Evaluation of Multi-Agent AI Oracle Systems for Prediction Market Resolution",
+     "date": "2026-05-29",
+     "quality": "paper",
+     "supports": "Counter-evidence: deliberative consensus ~76% vs independent confidence-weighted aggregation 83.43% on 1,189 KalshiBench questions; error correlations 0.529-0.689."
+    },
+    {
+     "url": "https://arxiv.org/abs/2511.07678",
+     "title": "AIA Forecaster: Technical Report",
+     "date": "2025-11-10",
+     "quality": "paper",
+     "supports": "Agentic forecaster underperforms liquid-market consensus alone but ensemble with consensus beats consensus: additive information."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.18269",
+     "title": "Wisdom of LLM Crowds: Aggregation and Contamination in Language Model Ensembles",
+     "date": "2026-05-26",
+     "quality": "paper",
+     "supports": "15 LLMs, 254 market questions: learned linear aggregators beat all individuals; contamination collapses capability gap 35.8% -> 8.9%; LLMs remain substantially less accurate than the market."
+    },
+    {
+     "url": "https://arxiv.org/abs/2607.06166",
+     "title": "When do prophets profit in prediction markets?",
+     "date": "2026-07-07",
+     "quality": "paper",
+     "supports": "Proper-betting rule is the only strategy robustly converting accuracy into profit on CLOBs; naive Kelly and highest-margin betting can lose despite better accuracy; live Kalshi run +80.33% ROI, Sharpe 3.35 but only $200 over 26 days, 236 orders (self-reported)."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.03888",
+     "title": "PolySwarm: A Multi-Agent LLM Framework for Prediction Market Trading and Latency Arbitrage",
+     "date": "2026-04-04",
+     "quality": "paper",
+     "supports": "Shows the idea is already being attempted on Polymarket (50-persona swarm, quarter-Kelly) but reports no live PnL."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.07355",
+     "title": "Prediction Arena: Benchmarking AI Models on Real-World Prediction Markets",
+     "date": "2026-03-28",
+     "quality": "hard-data",
+     "supports": "Real capital: six frontier models, $10k each, 57 days: Kalshi -16.0% to -30.8%, Polymarket average -1.1%."
+    },
+    {
+     "url": "https://docs.polymarket.com/trading/fees",
+     "title": "Polymarket docs - Fees",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Fee formula and category rates; makers pay zero; geopolitics fee-free."
+    }
+   ]
+  },
+  {
+   "name": "Market-price recalibration strategy with a veto-only pre-mortem agent",
+   "one_line": "The alpha is the market's own documented miscalibration (political prices compressed toward 50%, longshot overpricing); the adversarial agent never generates trades, it only runs a pre-mortem on each candidate and may veto or halve it.",
+   "category": "Speculative-novel",
+   "maturity": "Emerging",
+   "mechanism": "(1) Fit a hierarchical domain x horizon x price-bucket x trade-size recalibration map on resolved Polymarket markets with shrinkage toward the global slope. (2) Candidates = contracts where recalibrated probability minus price exceeds fee + spread (typically political favorites at 60-85c weeks out; avoid sub-10c longshots as buyer). (3) For each candidate the red-team agent is told 'this position lost; write the most plausible story and find current evidence for it'; a judge scores evidence strength; outcomes: pass, half size, veto. (4) Enter with maker orders, hold to resolution, equal-risk sizing across many events, cluster caps per parent event.",
+   "edge_source": "Behavioural mispricing (favorite-longshot bias, compression of political prices, lottery demand) documented on hundreds of millions of trades; LLM used as risk manager, the role where it has measured value.",
+   "why_might_beat_market": "Le (353M trades, 429k contracts): Polymarket political calibration slope averages 1.45 vs ~1.06 for sports/crypto; 'a 70-cent political contract one week before resolution maps to approximately 83%' (Kalshi-fitted); large trades are MORE compressed (slope 1.74 vs 1.19). Cardozo (588M trades): buys below 10c lose 19.3c per dollar, buys at >=90c earn 0.83c. LLM-as-risk-manager precedent: filter raised win rate 51.4->54.5% and cut average loss 649->347 USD. Honest limits: Le estimates roughly half of slope variation is estimation noise; Cardozo shows the sign of longshot returns flips with parent-event grouping (+4.1c) so naive fades are fragile; the bias is now published and will be competed; political fee 0.04 and capital lock-up reduce net edge; the veto may simply add noise.",
+   "adjacent_grounding": "Domain-specific calibration dynamics https://arxiv.org/abs/2602.19520 ; favorite-longshot bias on Polymarket https://arxiv.org/abs/2609.12878 ; order-book longshot spread premium https://arxiv.org/abs/2604.24366 ; LLM semantic risk filter https://arxiv.org/abs/2602.07048 ; hierarchical Platt scaling for LLM forecasts https://arxiv.org/abs/2604.18576 . FLB harvesting is known practice (hence Emerging); a pre-mortem veto layer on top was not found.",
+   "failure_modes": "Election-cycle regime dependence (few independent parent events -> tiny effective N); crowded trade; black-swan favorites losing in clusters; recalibration map overfit; veto agent biased toward dramatic narratives.",
+   "cheap_validation": "Walk-forward on the public Polymarket trade archive ( https://arxiv.org/abs/2606.04217 ): fit map on data to end-2025, test on 2026. PASS: net ROI > 0 after fees with parent-event-clustered bootstrap CI excluding 0 and >=150 independent parent events. A/B the veto on the test period: PASS if it cuts average loss or max drawdown by >=20% while giving up <10% of ROI; otherwise ship without the agent.",
+   "flags": "None.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2602.19520",
+     "title": "Decomposing Crowd Wisdom: Domain-Specific Calibration Dynamics in Prediction Markets",
+     "date": "2026-02-23",
+     "quality": "hard-data",
+     "supports": "Persistent underconfidence in political markets (Polymarket mean slope 1.45); 70c political contract a week out ~83%; large trades more compressed; about half of slope variation is noise."
+    },
+    {
+     "url": "https://arxiv.org/abs/2609.12878",
+     "title": "The Favorite-Longshot Bias in Prediction Markets: Evidence from Polymarket",
+     "date": "2026-09-11",
+     "quality": "hard-data",
+     "supports": "588M trades, 2.48M accounts: <10c purchases lose 19.3c/$, >=90c earn 0.83c/$; result sensitive to contract grouping."
+    },
+    {
+     "url": "https://arxiv.org/abs/2604.24366",
+     "title": "The Anatomy of a Decentralized Prediction Market: Microstructure Evidence from the Polymarket Order Book",
+     "date": "2026-05-14",
+     "quality": "hard-data",
+     "supports": "30B order-book events over 600 markets documenting a longshot spread premium and depth profiles."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.07048",
+     "title": "LLM as a Risk Manager",
+     "date": "2026-02-04",
+     "quality": "paper",
+     "supports": "LLM used purely as a filter on a statistical signal improved win rate and halved average loss."
+    }
+   ]
+  },
+  {
+   "name": "Rationale-quality judge (Explanation Quality Markers + Martingale score) over agents and human commentary",
+   "one_line": "Replace persuasion-based judging with measured reasoning-quality markers and a belief-entrenchment score, weight agents by them, and use the same scorer on public trader rationales mainly as a negative screen against confident low-quality consensus.",
+   "category": "Speculative-novel",
+   "maturity": "Experimental",
+   "mechanism": "(1) Score every rationale (own advocates, Polymarket comments linked to positions, public analyst threads) on a marker set modelled on the 60 Explanation Quality Markers and on argumentative coherence (does the stated reasoning support the stated number?). (2) Compute a Martingale score per agent/session: if current belief predicts the direction of its next update the process is entrenched. (3) Judge weight = f(EQM, coherence, entrenchment, historical Brier), explicitly excluding rhetorical confidence and length. (4) Signal A: EQM-weighted aggregate inside the debate forecaster. (5) Signal B: when price is extreme and the supporting commentary is one-sided and low-quality, take small contrarian positions or cut size on the consensus side.",
+   "edge_source": "Judges (human and LLM) are swayed by fluent persuasion; validated text markers of judgment quality are an orthogonal, cheap feature.",
+   "why_might_beat_market": "Karvetski et al.: across 55,000+ forecast-rationale pairs EQMs were the strongest forecast-level predictor of accuracy, >90% of significant correlations in the hypothesised direction, and they identify underperformers more reliably than stars while human raters over-reward length; Martingale score predicts ground-truth accuracy without labels; filtering argumentatively incoherent forecasts consistently improves accuracy for humans and LLMs; in MAD, persuasive small models override truthful answers with high confidence. Honest limits: comment text carries little position information (StakeBench 0.506-0.599) and opposing stances are only 8.7% of comments, so Signal B may have almost no support; gains inside an ensemble are likely a few thousandths of Brier.",
+   "adjacent_grounding": "Forecasting tournaments: Measuring Judgment Quality in Natural-Language Explanations https://arxiv.org/abs/2606.30987 ; Martingale Score https://arxiv.org/abs/2512.02914 ; Argumentatively Coherent Judgmental Forecasting https://arxiv.org/abs/2507.23163 and argumentation-enhanced multi-agent forecasting https://arxiv.org/abs/2510.24303 ; persuasion overriding truth https://arxiv.org/abs/2504.00374 ; stance detection on Polymarket comments https://arxiv.org/abs/2605.28745 . Nothing found applying EQMs to prediction-market trading.",
+   "failure_modes": "Marker scorer itself is an LLM (shared bias); agents learn to write marker-rich rationales (Goodhart); sparse/imbalanced commentary; quality of text uncorrelated with mispricing; ToS limits on collecting comments.",
+   "cheap_validation": "Ablation inside the debate backtest: EQM/entrenchment-weighted judge vs equal-weight vs persuasion-judge; PASS: >=0.002 Brier improvement with paired bootstrap CI excluding 0. Signal B on StakeBench-style linked data: PASS if contrarian hit rate exceeds price-implied rate by >=3 pts on >=300 markets; otherwise keep only Signal A.",
+   "flags": "Comment/social scraping subject to site ToS; treat all scraped text as untrusted input (prompt-injection amplification in multi-agent debate is documented up to 9.9x, arXiv 2605.22001).",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2606.30987",
+     "title": "Measuring Judgment Quality in Natural-Language Explanations: Evidence from Forecasting Tournaments",
+     "date": "2026-06-29",
+     "quality": "paper",
+     "supports": "60 LLM-scored Explanation Quality Markers on 55,000+ forecast-rationale pairs are the strongest forecast-level accuracy predictor; better at spotting underperformers; humans over-value length."
+    },
+    {
+     "url": "https://arxiv.org/abs/2512.02914",
+     "title": "Martingale Score: An Unsupervised Metric for Bayesian Rationality in LLM Reasoning",
+     "date": "2025-12-02",
+     "quality": "paper",
+     "supports": "Belief entrenchment is widespread in LLM reasoning and the unsupervised score predicts ground-truth accuracy in forecasting."
+    },
+    {
+     "url": "https://arxiv.org/abs/2507.23163",
+     "title": "Argumentatively Coherent Judgmental Forecasting",
+     "date": "2025-07-30",
+     "quality": "paper",
+     "supports": "Filtering incoherent forecasts improves accuracy consistently for human and LLM forecasters."
+    },
+    {
+     "url": "https://arxiv.org/abs/2504.00374",
+     "title": "When Persuasion Overrides Truth in Multi-Agent LLM Debates (CW-POR)",
+     "date": "2025-04-01",
+     "quality": "paper",
+     "supports": "Persuasive arguments override truthful answers with high judge confidence - motivates a non-persuasion judge."
+    },
+    {
+     "url": "https://arxiv.org/abs/2605.26074",
+     "title": "StakeBench",
+     "date": "2026-05-25",
+     "quality": "paper",
+     "supports": "Limits of commentary as a signal: LLM position-side detection 0.506-0.599."
+    }
+   ]
+  }
+ ],
+ "critic_notes": [
+  "CONSOLIDATE the duplicate reference-class material. adversarial-debate-price-residual has a 'Reference-class proposer/challenger debate for the prior' variant, and sponsor-and-inform-niche-models has 'Reference-class tournament with a Fermi cross-check'. Put both in one place, ideally the proposed outside-view-procedural-clock-engine."
+ ]
+}

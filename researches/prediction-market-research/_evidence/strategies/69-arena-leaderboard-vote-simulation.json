@@ -1,0 +1,54 @@
+{
+ "slug": "arena-leaderboard-vote-simulation",
+ "name": "Arena-score nowcasting: simulate the pairwise-vote mechanism that settles the monthly 'best AI model' markets",
+ "category": "Speculative-novel",
+ "maturity": "Experimental",
+ "one_line": "Run your own judge-model pairwise battles between a new release and the incumbents, fit Bradley-Terry with the leaderboard's own uncertainty, and price where a low-vote Arena score will converge by the monthly snapshot.",
+ "scope": "Cover the recurring 'Which company has the best AI model end of <month>?' family. Rules fetched today: the market resolves on the arena.ai Text Arena Overall board with style control OFF, checked at 12:00 ET on the last day of the month. Rank decides, ties go to Arena score, and AutoEval-marked models are excluded. The file needs two layers. (1) Statistics only: turn the published score, CI and vote count into P(rank flip by snapshot) as votes accumulate. New entrants sit near 5k votes at +/-8-9, while incumbents sit at 40-75k votes at +/-3-4. (2) Simulated votes: a cross-family judge panel battles the new model against incumbents on an Arena-like prompt mix. Length and markdown preference must be reproduced, not removed, because the market uses the no-style-control board. The output is a forecast of the converged score before the leaderboard has enough votes. Add release-calendar OSINT, the lab private-testing selection effect, and vote rigging as a manipulation risk on the resolution source. State plainly that whether specialist traders already do this is unverified. Boundaries: enumerable human panels stay in critic-pool-panel-twins. Release-date markets are out of scope.",
+ "why_it_matters": "This is the one place where an LLM simulation has a validated correlation above 0.9 with the exact statistic that settles a liquid, recurring market. Arena-Hard-Auto reports 98.6% correlation with Arena human-preference rankings for about $20 a run [pre-2025, possibly stale]. Length-controlled AlpacaEval reaches Spearman 0.98 [pre-2025, possibly stale]. The September 2026 event has $3.63M volume and $1.45M liquidity, with Anthropic at 0.9855. The October event already shows $352k volume and $679k liquidity across 21 company markets. Live board, updated 2026-09-13: #1 is at 1508 +/-8 on 5,783 votes, and a Google entrant is at 1495 +/-9 on 5,076 votes. The race sits inside the CI, so the edge is the convergence forecast. Twelve or more resolutions a year give statistical power that the list's one-off events lack. Cheap validation: run a retro on the last 10-15 frontier releases, comparing a judge-BT prediction from release-day API access against the score at 30k votes. Then log daily board snapshots against prices for three monthly cycles.",
+ "flags": "Never submit Arena votes on a market you hold. Vote rigging with a few hundred votes is documented and would be manipulation of the resolution source. Lab staff hold MNPI on releases and private Arena tests. Judge self-preference bias needs a cross-family panel. Tech category taker feeRate is 0.04, so prefer maker expression. The top rank is structurally fragile: one paper reports 92% top-1 swaps on held-out splits.",
+ "key_evidence": [
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=AI%20model%20end%20of%20September&limit_per_type=10",
+   "note": "Polymarket Gamma API, fetched 2026-09-20. September event: $3,625,989 volume, $1,449,397 liquidity, 22 company markets, Anthropic 0.9855."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=best%20AI%20model&limit_per_type=10&events_status=active",
+   "note": "Polymarket Gamma API, fetched 2026-09-20. October event: $351.7k volume, $679k liquidity. Rules: arena.ai Text Arena Overall, no style control, rank then score tie-break, AutoEval excluded."
+  },
+  {
+   "url": "https://arena.ai/leaderboard/text/overall-no-style-control",
+   "note": "Arena leaderboard, updated 2026-09-13, 8.15M total votes. The top 8 span 18 points. A new entrant at about 5k votes has a CI of +/-8-9."
+  },
+  {
+   "url": "https://arxiv.org/abs/2406.11939",
+   "note": "[pre-2025, possibly stale] Li et al., Arena-Hard / BenchBuilder: 98.6% correlation with human preference rankings, $20 per run."
+  },
+  {
+   "url": "http://arxiv.org/abs/2404.04475v2",
+   "note": "[pre-2025, possibly stale] Length-controlled AlpacaEval: Spearman with Chatbot Arena rises from 0.94 to 0.98 (arXiv listing only)."
+  },
+  {
+   "url": "http://arxiv.org/abs/2501.17858v2",
+   "note": "2025-01. Vote rigging: a few hundred manipulated votes move Arena rankings. This is a risk to the resolution source (arXiv listing only)."
+  },
+  {
+   "url": "https://arxiv.org/abs/2504.20879",
+   "note": "2025-04, The Leaderboard Illusion: 27 private Llama-4 variants were tested before release. Data-access asymmetry gives up to 112% relative gains."
+  },
+  {
+   "url": "http://arxiv.org/abs/2606.05169v1",
+   "note": "2026-04. The leaderboard's structural blind spot exceeds the runner-up gap, with 92% top-1 swaps on held-out splits (arXiv listing only)."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "69",
+ "band": "speculative",
+ "file": "69-arena-leaderboard-vote-simulation.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band."
+ ]
+}

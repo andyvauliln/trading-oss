@@ -1,0 +1,56 @@
+{
+  "n": "08",
+  "slug": "cross-venue-leadlag-signals",
+  "file": "08-cross-venue-leadlag-signals.md",
+  "band": "established",
+  "name": "Cross-venue lead-lag: follower quoting and price-discovery signals",
+  "one_line": "Use Kalshi, the US book, sharp books, Binance or options as a fair-value input for Polymarket-only quoting or selective taking; no capital on the leader venue.",
+  "category": "Arbitrage",
+  "maturity": "Emerging: lags measured, profit not; one systematic attempt failed out of sample",
+  "requires_ai": "optional: pair matching and news relevance",
+  "edge": "Deeper or faster venues reprice first; Polymarket makers price only their own book",
+  "capital": "<$1k-$10k on Polymarket only",
+  "build_time": "2-4 weeks",
+  "opportunity_size": "lags 2-3 s sports (self-reported), 347 ms crypto; pre-game NFL already equal across venues",
+  "expected_results": "no public data; maker overlay may cut markout losses 10-30% (guess)",
+  "competition": "institutional makers link books; crypto makers react in ~350 ms",
+  "flag": "none; grey commercial use of Polymarket US data",
+  "validate": "2-week synchronised recording of 30-50 pairs; pass t>2 follower PnL or 15% markout reduction",
+  "top_risk": "Taker delay makes stale-quote picking adverse; leader flips",
+  "evidence_grade": "C",
+  "solo_fit": 4,
+  "solo_fit_reason": "Free data, single-venue capital and direct reuse inside any quoting engine; weak as a standalone taker strategy but cheap to test and compounding with 02/04/05.",
+  "compounds_with": [
+    "event-market-making-spread-carry",
+    "sportsbook-anchored-sports-mm",
+    "genesis-window-new-listing-liquidity",
+    "cross-venue-locked-arbitrage",
+    "derivatives-implied-relative-value",
+    "flow-fading-and-leadlag-statarb"
+  ],
+  "speed_class": "latency-sensitive: seconds (sports) to hundreds of ms (crypto)",
+  "results_1k": "-$50 to +$60/month (guess)",
+  "results_5k": "-$100 to +$300/month (guess)",
+  "results_10k": "-$150 to +$500/month (guess)",
+  "min_capital": "~$1k: signal is free, clips small",
+  "capacity_ceiling": "~$25k-50k: lag persists only in thin Polymarket markets",
+  "services": [
+    "Kalshi public market data",
+    "Polymarket US public gateway BBO",
+    "Polymarket CLOB+Gamma",
+    "odds feed",
+    "Binance WS / PolyBolt",
+    "Deribit public API",
+    "Kalshi historical candles",
+    "VPS eu-west-1"
+  ],
+  "monthly_running_cost": "minimum ~$10-70; comfortable ~$150-300",
+  "changes_made": [
+    "Live: US book half-cent ticks vs intl 1c; three venues equal on NFL pre-game.",
+    "Added OpenMarket null result as the counterweight."
+  ],
+  "open_doubts": [
+    "2024 lead-lag paper read at abstract level.",
+    "Leadership by category in 2026 unmeasured."
+  ]
+}

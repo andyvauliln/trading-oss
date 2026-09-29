@@ -1,0 +1,140 @@
+{
+ "slug": "discretionary-research-bets",
+ "name": "Concentrated discretionary research bets and purchased proprietary data (polling forensics, local knowledge, private polls)",
+ "category": "Directional trading",
+ "maturity": "Established",
+ "seed_category": "directional trading / forecasting",
+ "one_line": "Few, large, deeply researched positions where the crowd leans on headlines; at the top end, commissioning private data the market lacks.",
+ "scope": "Cover what interviewed top discretionary traders actually do (poll crosstab forensics, reversing post-event bias, native-language reads, Fed-path trades, waiting after news), the 'Theo' private-polling playbook ($85M, neighbour-effect YouGov polls, 11 accounts), evidence that profit tracks sizing and concentration more than calibration (truncated vendor study, caveat), political underconfidence (slope ~1.45) as supporting context, fat-tailed survivorship, single-event blow-ups, and the realistic automation target: an analyst-assist agent (rule text, base rates, crosstabs) with human sizing. Note the 2026 midterms as the next depth window. Boundary: systematic recalibration models and LLM forecasters are speculative band; rule-text edges are rules-dispute-trading; MNPI is informed-flow-and-insider-trading.",
+ "sub_variants": [
+  "polling and crosstab forensics",
+  "post-event 'reversing stupidity'",
+  "local-language / political-culture reads",
+  "commissioned private polling at scale",
+  "analyst-assist agent with human sizing"
+ ],
+ "merged_from": [
+  "traders: Concentrated discretionary research bets",
+  "adjacent-transfer: Proprietary-data purchase for political markets (the syndicate or private-polling model)"
+ ],
+ "flags": "Multi-account size masking may breach ToS; one interviewee cites family government contacts (MNPI-adjacent); election-market legality varies by jurisdiction.",
+ "key_evidence": [
+  {
+   "url": "https://news.polymarket.com/p/he-made-300k-betting-on-a-narcissistic",
+   "note": "RememberAmalek: Mamdani from 8%, exit-poll fade, fewer bigger bets (self-reported)"
+  },
+  {
+   "url": "https://news.polymarket.com/p/286-to-1m-from-reversing-stupidity",
+   "note": "Semi: $286 to >$1M fading folk wisdom (self-reported)"
+  },
+  {
+   "url": "https://news.polymarket.com/p/this-substack-writer-made-25x-in",
+   "note": "Polish election: market over-weighted name recognition"
+  },
+  {
+   "url": "https://www.thefp.com/p/french-whale-makes-85-million-on-polymarket-trump-win",
+   "note": "[pre-2025, possibly stale] Theo: private YouGov polls, ~$80M staked, ~$85M profit"
+  },
+  {
+   "url": "https://www.convexly.app/blog/polymarket-10k-wallet-study",
+   "note": "Vendor study (truncated data): calibration barely predicts profit; concentration does"
+  },
+  {
+   "url": "https://arxiv.org/abs/2602.19520",
+   "note": "Persistent political underconfidence replicated on Kalshi and Polymarket"
+  }
+ ],
+ "parent_slug": "discretionary-research-bets",
+ "seed": "11 discretionary / expert trading",
+ "n": "25",
+ "band": "established",
+ "file": "25-discretionary-research-bets.md",
+ "critic_notes": [],
+ "raw_discovery_candidates": [
+  {
+   "name": "Concentrated discretionary research bets (polling forensics, rules reading, local knowledge)",
+   "one_line": "Few, large, deeply researched positions where the crowd leans on headlines, name recognition or recency.",
+   "category": "Directional trading",
+   "maturity": "Established",
+   "mechanism": "Interviewed top traders describe: tearing apart poll crosstabs and sampling (Mamdani bought at 8%, +$300k; betting against a Korean exit poll, ~+$500k); 'reversing stupidity' after salient events ($286 -> >$1M); native-language/political-culture reads (Polish runoff, ~2.5x bankroll; Xi/Taiwan markets); Fed-path trades from Powell signalling; and waiting after news rather than reacting in 5 seconds. A 8,656-wallet study finds profit is explained by sizing and concentration, not calibration: top-100 wallets made a median of 18 positions, the median wallet's largest event drove 66.2% of PnL, and the worst-calibrated quartile earned 8.2x the median PnL of the best (data truncated at 2,000 fills - caveat).",
+   "edge_source": "Depth of research per market and willingness to size; domain or language advantage.",
+   "why_might_beat_market": "World-events/politics categories show the largest maker-taker inefficiency; geopolitics is fee-free.",
+   "failure_modes": "Fat-tailed outcomes (alpha ~1.26) mean survivorship dominates leaderboards; single-event blow-ups (-$25k Biden, Harris loss); resolution disputes; hard to automate - at best an analyst-assist agent.",
+   "cheap_validation": "Agent-assist pilot: for each new political market, auto-assemble base rates, rule text, poll crosstabs; human sizes 10-20 bets/quarter; track CLV vs price one week later.",
+   "flags": "One interviewee cites family government contacts as an information source - potential MNPI territory.",
+   "evidence": [
+    {
+     "url": "https://news.polymarket.com/p/he-made-300k-betting-on-a-narcissistic",
+     "title": "The Oracle: RememberAmalek interview",
+     "date": "2025-06-26",
+     "quality": "self-reported",
+     "supports": "$300k on Mamdani from 8%; ~$500k on S. Korea exit-poll fade; 'fewer, bigger, highly researched bets'; ~$1.4M bankroll"
+    },
+    {
+     "url": "https://news.polymarket.com/p/286-to-1m-from-reversing-stupidity",
+     "title": "The Oracle: Semi interview",
+     "date": "2025-07-17",
+     "quality": "self-reported",
+     "supports": "$286 deposit (June 2024) to >$1M PnL by fading folk wisdom and post-event bias"
+    },
+    {
+     "url": "https://news.polymarket.com/p/banned-in-macau-to-polymarket-whale",
+     "title": "The Oracle: RetardBoyBilly interview",
+     "date": "2025-08-01",
+     "quality": "self-reported",
+     "supports": "Fed funds as recurring win, climate 'hottest year' fades, rejects Kelly, targets 50-100%/yr, uses Betmoar terminal"
+    },
+    {
+     "url": "https://news.polymarket.com/p/this-substack-writer-made-25x-in",
+     "title": "The Oracle: Prophet on the Polish election",
+     "date": "2025-06-24",
+     "quality": "self-reported",
+     "supports": "~2.5x bankroll; market overweighted name recognition (80-20 vs local 50-50)"
+    },
+    {
+     "url": "https://www.convexly.app/blog/polymarket-10k-wallet-study",
+     "title": "Convexly: We scored 10k Polymarket wallets. Calibration barely predicts profit",
+     "date": "2026-04-16",
+     "quality": "marketing",
+     "supports": "Spearman r=+0.148 calibration vs profit; top-100 median 18 positions; 66.2% of PnL from largest event; 83 wallets = ~1/3 of profit (vendor study, truncated data)"
+    }
+   ]
+  },
+  {
+   "name": "Proprietary-data purchase for political markets (the syndicate or private-polling model)",
+   "one_line": "Commission your own polls or data designed around a known bias, then size big. This is the 'Theo' playbook from 2024.",
+   "category": "Information edge",
+   "maturity": "Established",
+   "mechanism": "Identify a systematic error in public information. In 2024 it was the shy-voter effect. Commission a private survey instrument that corrects for it, in that case neighbour-vote questions through YouGov in PA, MI and WI. Then accumulate positions across several accounts to hide the size. The edge is information no one else has, legally obtained. It needs deep markets, which means only national elections and a few other events. Political markets also show underconfidence, with prices compressed toward 50%, so favourites backed by strong private data are doubly attractive.",
+   "edge_source": "Bespoke primary research set against consensus polling. There are no position limits and no bans on winners.",
+   "why_might_beat_market": "A top-tier private poll costs five to six figures against market depth of tens of millions in major elections. Few participants commission research. The 2026 midterms are the next window of depth.",
+   "adjacent_grounding": "Political-betting syndicates on Betfair and spread-betting firms, and hedge-fund alternative data.",
+   "evidence": [
+    {
+     "url": "https://www.thefp.com/p/french-whale-makes-85-million-on-polymarket-trump-win",
+     "title": "How a French Whale Made $85MM Off Election Win on Polymarket [pre-2025, possibly stale]",
+     "date": "2024-11",
+     "quality": "credible-report",
+     "supports": "'Theo' commissioned YouGov neighbour-effect polls in PA, MI and WI. He staked about $80M across 11 accounts and made a profit of about $85M."
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Polymarket",
+     "title": "Polymarket, Wikipedia",
+     "date": "fetched 2026-09-20",
+     "quality": "credible-report",
+     "supports": "Polymarket confirmed on 2024-10-24 that the accounts belonged to one French trader with a financial-services background. He netted about $85M."
+    },
+    {
+     "url": "https://arxiv.org/abs/2602.19520",
+     "title": "Decomposing Crowd Wisdom: Domain-Specific Calibration Dynamics in Prediction Markets",
+     "date": "2026-02-23",
+     "quality": "paper",
+     "supports": "353M trades: 'persistent underconfidence in political markets, where prices compress toward 50%', replicated on both Kalshi and Polymarket."
+    }
+   ],
+   "failure_modes": "A single event with high variance. Spreading across accounts to hide size is itself a grey area. The private signal can be wrong. US-person and election-market legal exposure. I found no verified 2025-26 repeat, which is unverified either way.",
+   "cheap_validation": "A low-cost analogue: buy a small omnibus-poll question for one liquid 2026 primary and compare it with the market before scaling.",
+   "flags": "Using multiple accounts to mask size may breach ToS. Political event contracts have jurisdiction-specific legality. Distinguish this clearly from trading on material non-public government information, which drew several prosecutions in 2026."
+  }
+ ]
+}

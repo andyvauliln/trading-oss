@@ -1,0 +1,54 @@
+{
+  "n": "06",
+  "slug": "combos-rfq-market-making",
+  "file": "06-combos-rfq-market-making.md",
+  "band": "established",
+  "name": "Combos (parlay) RFQ market making",
+  "one_line": "Answer 400 ms RFQs on multi-leg sports parlays, earn the leg-count-dependent parlay premium, hedge legs on the CLOB; capital locked against max payout.",
+  "category": "Market-making",
+  "maturity": "Experimental for an outside maker: product live, no non-Polymarket maker or results public; in-house desk reported",
+  "requires_ai": "no; optional dependence estimation for unusual legs",
+  "edge": "Parlay overpricing grows with legs (Kalshi: ~3.7% at 7, ~22% at 10)",
+  "capital": "$10k+; locked against max payout until last leg",
+  "build_time": "4-8 weeks solo",
+  "opportunity_size": ">=20k combo-able sports legs; US launch ~$31M day two (snippet); Kalshi parlays $13.8B in July",
+  "expected_results": "no public data; guess 1-3% of payout capacity/month with -10% months",
+  "competition": "Polymarket in-house desk, sportsbook operators, Kalshi desks",
+  "flag": "none; Last Look abuse capped at 15% rejects",
+  "validate": "2 weeks listen-only RFQ logging vs product of leg mids; pass >=5% premium on 5+ legs",
+  "top_risk": "Correlated same-game legs and tail payouts",
+  "evidence_grade": "B",
+  "solo_fit": 2,
+  "solo_fit_reason": "Hard 400 ms deadline, capital-heavy per unit of premium, heavy tails and a reported house desk; needs $25k+ payout capacity to diversify.",
+  "compounds_with": [
+    "sportsbook-anchored-sports-mm",
+    "combinatorial-logical-arbitrage",
+    "dependence-pricing-combos-joint",
+    "builder-code-routing-business"
+  ],
+  "speed_class": "latency-sensitive with a hard 400 ms (US 200 ms) deadline",
+  "results_1k": "not workable (payout capacity)",
+  "results_5k": "marginal: -$1,000 to +$100/month, tail-driven (guess)",
+  "results_10k": "pilot: -$1,500 to +$400/month (guess)",
+  "min_capital": "~$25k payout capacity to diversify tails",
+  "capacity_ceiling": "request flow and same-slate correlation above ~$250k",
+  "services": [
+    "Combos RFQ API + RFQ WebSocket",
+    "CLOB REST+WS (legs, hedges)",
+    "odds feed",
+    "historical box scores for correlation",
+    "Kalshi trade data",
+    "Polymarket US institutional RFQ (US)",
+    "VPS eu-west-1"
+  ],
+  "monthly_running_cost": "minimum ~$100; comfortable ~$300",
+  "changes_made": [
+    "Maturity set to Experimental per critic note (no external maker shown).",
+    "Live catalog: >=20,000 sports legs and 131 pending politics/geopolitics legs."
+  ],
+  "open_doubts": [
+    "International combo volume unpublished.",
+    "Combo fees not stated in fetched docs.",
+    "US $31.4M figure is a search snippet."
+  ]
+}

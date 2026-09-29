@@ -1,0 +1,51 @@
+{
+  "n": "10",
+  "slug": "combinatorial-logical-arbitrage",
+  "file": "10-combinatorial-logical-arbitrage.md",
+  "band": "established",
+  "name": "Combinatorial / logical arbitrage: dependent markets, same-game market types, strike and date ladders",
+  "one_line": "Trade violations of logical constraints across separate markets (ladders, nested deadlines, same-game lines, implication pairs); frequent but ~15-share, sub-cent sized.",
+  "category": "Arbitrage",
+  "maturity": "Emerging, retail-sized",
+  "requires_ai": "optional: proposing dependencies across unrelated markets",
+  "edge": "Separate books, no converter across markets, slow resync in play",
+  "capital": "<$1k; lock to resolution",
+  "build_time": "1-3 weeks ladders; 3-5 weeks same-game",
+  "opportunity_size": "NBA: $560 capped per 173 games; live: 3 sub-cent ladder crossings in 884 pairs",
+  "expected_results": "no operator data; guess $10-100/month",
+  "competition": "few specialists; fast sports makers in play",
+  "flag": "none",
+  "validate": "Nightly ladder scan + one NFL weekend replay; pass >=10 episodes/week >=$5 net",
+  "top_risk": "Semantics errors (hit vs close, units) and per-leg fees",
+  "evidence_grade": "A",
+  "solo_fit": 2,
+  "solo_fit_reason": "Cheap and safe but capacity is tens of dollars a month; best as a consistency layer inside a quoting engine.",
+  "compounds_with": [
+    "rebalancing-arbitrage-yesno-negrisk",
+    "sportsbook-anchored-sports-mm",
+    "combos-rfq-market-making",
+    "derivatives-implied-relative-value",
+    "semantic-market-graph-relative-value"
+  ],
+  "speed_class": "latency-sensitive in play (16 s episodes, 1 s delay); speed-insensitive for ladders",
+  "results_1k": "-$15 to +$80/month (guess)",
+  "results_5k": "same as $1k; capital idle",
+  "results_10k": "same as $1k; capital idle",
+  "min_capital": "~$300-500",
+  "capacity_ceiling": "~$1k-2k",
+  "services": [
+    "CLOB REST+WS",
+    "Gamma ladder metadata",
+    "optional LLM",
+    "own book recorder / Telonex",
+    "VPS"
+  ],
+  "monthly_running_cost": "minimum ~$10; comfortable ~$70-100",
+  "changes_made": [
+    "Live ladder scan 24 Sep; NFL/CFB same-game legs fee-free, so NFL in-play episodes are delay-gated not fee-gated."
+  ],
+  "open_doubts": [
+    "Depth at live crossings not checked.",
+    "NBA sample was fee-free."
+  ]
+}

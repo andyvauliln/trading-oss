@@ -1,0 +1,34 @@
+{
+ "slug": "unnamed-outcome-unpacking",
+ "name": "Unpacking the residual: generative candidate enumeration for 'Other' and not-yet-named outcomes in augmented neg-risk events",
+ "category": "Speculative-novel",
+ "maturity": "Purely theoretical",
+ "one_line": "Agents enumerate and price the long tail of candidates who are not yet listed, sum them into a fair value for the residual, and hold it synthetically where support theory says a packed 'Other' is under-weighted.",
+ "scope": "Mechanics from the docs: placeholder slots are named later via the bulletin board. 'Other' narrows as placeholders are assigned. The docs say 'Only trade on named outcomes'. An unnamed winner resolves to 'Other'. The expression must therefore be synthetic. One route is a NO basket on over-priced named longshots via neg-risk conversion. The other is fast YES on newly clarified placeholders in their first hours, which links to day-zero quoting. Generator: an LLM plus structured eligibility sources (shortlists, nomination rules, filing deadlines) enumerates the unnamed field. A hierarchical prior on 'winner not currently named' is built by event type and days-to-resolution. Tie this to the list's own evidence: sub-10c purchases lose 19.3c per dollar per contract but gain 4.1c when grouped by parent event. Named longshots are individually overpriced, and the residual is the mirror image. Limits: capital lock-up, an unverified conversion fee parameter, the shifting 'Other' definition, late insider leaks and thin books. Validation step one is a pure data pull with no LLM. For every resolved augmented neg-risk event, compare how often the winner was unnamed at T-90, T-30 and T-7 with 1 minus the sum of named YES prices at those times.",
+ "why_it_matters": "This is the only proposed entry that maps a documented probability-judgement bias onto a specific Polymarket contract structure. The bias is subadditivity: the parts were judged at 73% against 58% for the packed whole. elite-selection-bargaining-simulators only sells dead longshots. This is the complementary buy side of the same events. It needs no forecasting superiority, only breadth of enumeration, which is what LLMs are good at. Unnamed slots are live today: Top Spotify Album 2026 lists 23 markets with placeholder 'Albums 2-14' at zero liquidity.",
+ "flags": "The docs explicitly warn against trading placeholders and 'Other' directly. The neg-risk conversion feeRate is unverified (E1 pack). NO baskets carry tail risk, so cap exposure per event. Neg-risk markets add a 1-hour resolution delay (E3 pack).",
+ "key_evidence": [
+  {
+   "url": "https://docs.polymarket.com/concepts/negative-risk.md",
+   "note": "Polymarket docs, undated, fetched 2026-09-20. Covers placeholders, 'Other' narrowing as placeholders are assigned, and 'Only trade on named outcomes'. An unnamed winner resolves to 'Other'."
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Subadditivity_effect",
+   "note": "Wikipedia, undated. Tversky and Koehler 1994 support theory: unpacked causes summed to 73% against 58% for the packed category. A residual 'other' category is under-weighted."
+  },
+  {
+   "url": "https://gamma-api.polymarket.com/public-search?q=Spotify&limit_per_type=15&events_status=active",
+   "note": "Top Spotify Album 2026: $69.2k volume, $36.5k liquidity, 23 markets including unnamed placeholder slots. It defaults to 'Other' if no data arrive by 2027-01-31."
+  }
+ ],
+ "sub_variants": [],
+ "merged_from": [],
+ "from_critic": true,
+ "n": "72",
+ "band": "speculative",
+ "file": "72-unnamed-outcome-unpacking.md",
+ "raw_discovery_candidates": [],
+ "critic_notes": [
+  "PACKING PLAN to land at 22 files. Start from 22. Subtract the metalayer (to appendix), the Delphi entry (merged), decision-body twins (merged into elite selection) and external-forecaster-sourcing (tier 1 folded into the stacker, tiers 2-3 routed to the services band). That gives 18. Add the day-zero quoting split, arena-leaderboard-vote-simulation, outside-view-procedural-clock-engine and print-process-twins-numeric-brackets. That gives 22. Fold the rest as sections: unnamed-outcome-unpacking into elite selection as the buy-side twin of dead-longshot selling; active-price-probing into the deference gate; newsroom-framing-twins into the rules layer; synthetic-audience into culture panels; platform-ai-context-audit into the herd factor. Route reward-pool-minority-game to the incentives or LP band and two-book-crowd-differential to the cross-venue band."
+ ]
+}

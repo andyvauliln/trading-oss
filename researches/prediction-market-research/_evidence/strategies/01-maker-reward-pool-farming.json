@@ -1,0 +1,282 @@
+{
+ "slug": "maker-reward-pool-farming",
+ "name": "Maker-side reward-pool farming (liquidity rewards, sponsored pools, event programmes, Polymarket US LIP)",
+ "category": "Incentive farming",
+ "maturity": "Established",
+ "seed_category": "liquidity provision / market making - reward-optimised quoting",
+ "one_line": "Quote to maximise share of published reward pools, sized on competition share not pool size, across the international CLOB and the Polymarket US snapshot programme.",
+ "scope": "Cover quoting whose primary income is the subsidy: international liquidity-rewards scoring (quadratic score, c=3.0, per-minute sampling, $1 floor), share-of-score ranking from the public book, concentration of dollars in a few live-sports markets versus ~two-thirds of rewarded markets paying <$10/day, time-boxed programmes (March Madness 3.5 s rest rule, August crypto TWAP $1M), user-sponsored pools (native vs total daily rate diff), and the Polymarket US Liquidity Incentive Program (random per-second snapshots, discount factor, target size, /v1/incentives API, cuts of July 2026). Give realised vs simulated numbers and fill-risk economics. Boundary: spread/settlement-carry PnL belongs to event-market-making; short crypto books to short-crypto-maker-side; taker-side rebates and US volume pools to fee-tier-taker-incentives; ghost-quote reward abuse to ghost-fills-bot-hunting.",
+ "sub_variants": [
+  "competition-share ranking on small pools",
+  "live-sports pool concentration (NFL, March Madness)",
+  "sponsored-pool sniping via native vs total rate diff",
+  "Polymarket US LIP snapshot scoring",
+  "2024-era low-volatility farming (defiance_cr)"
+ ],
+ "merged_from": [
+  "traders: Competition-aware reward-pool farming",
+  "onchain-bots: Liquidity-reward farming quote bots",
+  "platform-surface: International event-linked liquidity programmes",
+  "platform-surface: Sponsored-reward pool sniping",
+  "platform-surface: Polymarket US Liquidity Incentive Program"
+ ],
+ "flags": "Flicker/ghost quoting to score without real liquidity is countered by minimum rest times and is a ToS breach; on Polymarket US (CFTC DCM) spoofing/layering to win snapshots is a CEA violation; US programme is US-resident/entity only and listed under institutional programmes (retail eligibility unverified).",
+ "key_evidence": [
+  {
+   "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+   "note": "Official scoring formula, c=3.0, per-minute sampling, daily payout, $1M August crypto TWAP programme"
+  },
+  {
+   "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rdnw2f",
+   "note": "theflowp_ share-of-pool table: $53/day pool 83.5% captured vs $801/day pool paying $0.11/day; simulation, not realised PnL"
+  },
+  {
+   "url": "https://news.polymarket.com/p/automated-market-making-on-polymarket",
+   "note": "defiance_cr: $10k capital, $200 to $700-800/day at peak, stopped after reward cuts (self-reported)"
+  },
+  {
+   "url": "https://clob.polymarket.com/rewards/markets/current",
+   "note": "~1,000 rewarded conditions, native vs total daily rate, skewed to <$10/day"
+  },
+  {
+   "url": "https://polymarket.us/rewards",
+   "note": "US pools: NFL ML live $32,000/game, discount 0.25, target 150,000 contracts"
+  },
+  {
+   "url": "https://docs.polymarket.us/incentives/liquidity.md",
+   "note": "US LIP scoring, random per-second snapshots, payout timing"
+  },
+  {
+   "url": "https://help.polymarket.com/en/articles/13755867-sponsor-market-rewards",
+   "note": "Anyone can sponsor from $0.1/day, no platform cut, refund rules"
+  }
+ ],
+ "parent_slug": "maker-reward-pool-farming",
+ "deepen": true,
+ "seed": "1 market making + 9 incentive farming",
+ "n": "01",
+ "band": "established",
+ "file": "01-maker-reward-pool-farming.md",
+ "critic_notes": [
+  "ADD to maker-reward-pool-farming the Polymarket US application-only Market Maker Program and Liquidity Provider stipend (docs.polymarket.us/incentives/market-maker.md exists; terms redacted in CFTC filings per E2). Consider a short cross-reference index for the Polymarket US pieces now spread over five entries (LIP in maker-reward-pool-farming, volume pools and promo credits in fee-tier-taker-incentives, BBO signal in cross-venue, US RFQ in combos, ISV route in builder-code), because eligibility (US-only, KYC, own-name funding, Rule 7.2, kill-switch requirement) is one gating decision for the owner."
+ ],
+ "raw_discovery_candidates": [
+  {
+   "name": "Competition-aware reward-pool farming (quote near mid, avoid fills)",
+   "one_line": "Rank incentivised markets by your achievable SHARE of the reward pool given resting competitor score, quote two-sided near mid, cancel in <100 ms when mid approaches.",
+   "category": "Incentive farming",
+   "maturity": "Established",
+   "mechanism": "Pull all reward markets from the CLOB API, reconstruct every competitor order inside the reward band, and compute the quadratic score S=((v-s)/v)^2 x size to estimate own share; single-sided orders are divided by c=3.0, so both sides are quoted. Capital goes to small-pool/low-competition markets (e.g. a $53/day governor-primary pool where $4k captured 83.5%) rather than headline pools (an $801/day pool with 7.5M competitor score pays $0.11/day). A websocket watcher cancels before being filled; the 2024-era variant (defiance_cr) instead picked low-volatility markets and earned $200 -> $700-800/day on $10k before rewards were cut post-election. Rewards are sampled every minute and paid daily.",
+   "edge_source": "Most farmers chase pool size; share-of-score is observable from the public book and inverts the ranking.",
+   "why_might_beat_market": "Thin sponsored markets are too small for institutional makers; a solo bot with $15-20k can be most of the book.",
+   "failure_modes": "You ARE the liquidity: partial fills leave a directional position in an illiquid book (worst case ~7% on the example); share collapses once other bots arrive; anti-flicker rules (March Madness program required orders to rest >=3.5 s) defeat instant-cancel; programs are changed at will; $1 minimum payout. The author's figures are simulation ($2,000/market), not realised PnL.",
+   "cheap_validation": "Run the share calculator read-only for two weeks across all reward markets, log realised pool share for a $500 test quote in the top 3 markets, and count fills/markouts.",
+   "flags": "Flicker-quoting to score without providing real liquidity is against the spirit of the programme and has been countered with minimum resting times.",
+   "evidence": [
+    {
+     "url": "https://api.pullpush.io/reddit/search/submission/?ids=1rdnw2f",
+     "title": "Reddit r/PredictionsMarkets 1rdnw2f 'I built a bot to farm Polymarket's sponsored rewards (200% APR)' by theflowp_",
+     "date": "2026-02-24",
+     "quality": "self-reported",
+     "supports": "Score formula, 3x two-sided bonus, per-market share table (404% APR on small pool vs 1% on largest), ~$78/day on $16k concentrated, fill-risk analysis"
+    },
+    {
+     "url": "https://news.polymarket.com/p/automated-market-making-on-polymarket",
+     "title": "The Oracle: Automated market making on Polymarket (@defiance_cr)",
+     "date": "2025-05-28",
+     "quality": "self-reported",
+     "supports": "$10k capital, $200/day rising to $700-800/day at peak, low-volatility market selection, stopped after post-election reward cuts; only 1-2 other bots then"
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+     "title": "Polymarket docs: liquidity rewards",
+     "date": "undated (fetched 2026-09-20)",
+     "quality": "hard-data",
+     "supports": "Quadratic scoring, c=3.0 single-sided penalty between 0.10-0.90, per-minute sampling, daily payout, $1 minimum, $1M Crypto TWAP programme through August 2026"
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-03-17 entry",
+     "quality": "hard-data",
+     "supports": "March Madness $2M+ liquidity rewards; orders must remain active >=3.5 seconds; $60k/day during live play"
+    },
+    {
+     "url": "https://github.com/warproxxx/poly-maker",
+     "title": "warproxxx/poly-maker README (1.5k stars)",
+     "date": "undated",
+     "quality": "self-reported",
+     "supports": "Open-source reward+rebate-ranked maker; author warning that MM 'is competitive and can lose money'"
+    }
+   ]
+  },
+  {
+   "name": "Liquidity-reward farming quote bots",
+   "one_line": "Optimise for the reward score (tight, two-sided, in-band, maximum uptime) while minimising fills.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "Rewards are scored each minute with a quadratic function of distance from the adjusted midpoint, require two-sided quotes when the mid is outside 10-90c, and are paid daily with a $1 minimum. Farming bots select markets by reward-per-dollar-of-risk, sit just inside the max spread in quiet regimes, and pull on volatility. Event programs are large: March Madness carried $2M+ ($60k/day in-play per the changelog summary) and August 2026 $1M on short crypto. The 3.5-second minimum resting rule and documented cancel-before-settlement abuse show that flicker-quoting was common enough to need rules.",
+   "edge_source": "Subsidy paid per market irrespective of realised spread PnL; low-volatility long-dated markets where fills are rare.",
+   "why_might_beat_market": "Reward pools are fixed per market while maker count varies; an agent that ranks all incentivised markets by pool/competition finds uncrowded ones. Profitability of legit farming was not independently verified this session.",
+   "evidence": [
+    {
+     "url": "https://docs.polymarket.com/developers/market-makers/liquidity-rewards",
+     "title": "Liquidity Rewards (official docs)",
+     "date": "undated, read 2026-09-20",
+     "quality": "hard-data",
+     "supports": "S(v,s)=((v-s)/v)^2*b scoring; single-sided scores /3 inside 10-90c and zero outside; 10,080 samples per epoch; daily payout; $1M August program."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog",
+     "title": "Polymarket changelog",
+     "date": "2026-03-17",
+     "quality": "hard-data",
+     "supports": "'$2M+ in liquidity rewards ... Orders must be active on the book for a minimum of 3.5 seconds to be eligible.'"
+    },
+    {
+     "url": "https://arxiv.org/html/2606.16852v1",
+     "title": "The Ghosts of Polymarket (Shen et al.)",
+     "date": "2026-06-15",
+     "quality": "paper",
+     "supports": "Reward manipulation variant: $13,397.65 flowed to 1,567 attacker addresses; one address ran 466 proxy traps in three days, settled zero fills, received $4,425.88 in rewards."
+    },
+    {
+     "url": "https://github.com/warproxxx/poly-maker",
+     "title": "poly-maker README",
+     "date": "read 2026-09-20",
+     "quality": "self-reported",
+     "supports": "'QUIET (farm rewards in-band)' regime and market selector ranking by reward + rebate income vs volatility."
+    }
+   ],
+   "failure_modes": "One news gap costs months of rewards; pools shrink or end; anti-gaming rules (min resting time); the exploit variant is ToS-violating and largely closed by the May 2026 deposit-wallet change.",
+   "cheap_validation": "Pull the incentivised-market list daily; estimate competing in-band depth from the book; compute expected reward share per $1k quoted and rank.",
+   "flags": "Cancel-before-settlement / ghost-quote variants are exploits and ToS violations; legit in-band quoting is fine."
+  },
+  {
+   "name": "International event-linked liquidity programmes: live-sports reward concentration",
+   "one_line": "Concentrate quoting capital on the handful of international markets that carry almost all liquidity-reward dollars: NFL game markets at $15,771/day each, March Madness live moneylines at $60k/day, time-boxed programmes like the $1M August crypto TWAP pool.",
+   "category": "Market-making",
+   "maturity": "Emerging",
+   "mechanism": "International liquidity rewards score resting orders every minute with S = ((v-s)/v)^2 x size, take min of the two sides (single-sided counts at 1/c, c = 3.0, only while mid is in 0.10-0.90; two-sided required outside), and pay daily at midnight UTC with a $1 minimum. Each market has its own min size, max spread and daily rate. A Gamma/CLOB snapshot on 2026-09-20 shows NFL moneylines at rewardsDailyRate 15,771.43 (min size 1,000 shares, max spread 2.5c), NFL spreads/totals at about $11,657/day, a neg-risk politics market at $1,500/day, while roughly two-thirds of the ~1,000 rewarded markets pay under $10/day. Time-boxed programmes are announced in the changelog: March Madness 2026 $2M+ ($7.5k/day pre-game ML, $60k/day live ML, $8k 1st-half ML, orders must rest at least 3.5 seconds), August 2026 crypto up/down $1M (BTC 5-minute alone $300k). The CLOB endpoint /rewards/markets/current lists every rewarded condition with native_daily_rate and total_daily_rate.",
+   "edge_source": "Subsidy is extremely concentrated and publicly enumerable; the quadratic score rewards being tight, not being big; sports markets carry a 1-second matching delay on marketable orders which gives resting quotes cancel time; NFL markets showed feeType zero_fees on 2026-09-20, so more two-way retail flow.",
+   "why_might_beat_market": "Per-market reward of $15.8k/day against visible depth of $150k-$300k implies double-digit percent per day on qualifying resting capital before adverse selection for whoever holds a meaningful Q share during live play, when most LPs pull quotes.",
+   "failure_modes": "In-play jumps (scores, injuries) pick off resting quotes even with a 1s delay; reward share is unobservable ex ante (no competitiveness field in the rewards endpoint); programmes end abruptly (August crypto programme already ended); 3.5-second minimum rest rules can be applied; min size 1,000 shares per side.",
+   "cheap_validation": "Run a paper quoter that logs, each minute, the Q score your intended quotes would have had versus the full book (the book is public), for one NFL Sunday; estimated share x $15,771 versus simulated markouts gives the go/no-go without capital.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://gamma-api.polymarket.com/markets?limit=1&active=true&closed=false&order=volume24hr&ascending=false&offset=1",
+     "title": "Gamma API market nfl-min-chi-2026-09-20",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "rewardsDailyRate 15771.428571, rewardsMinSize 1000, rewardsMaxSpread 2.5, secondsDelay 1, feeType zero_fees, umaBond 250, umaReward 0.8."
+    },
+    {
+     "url": "https://clob.polymarket.com/rewards/markets/current",
+     "title": "CLOB current reward markets",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "About 1,000 rewarded conditions, native_daily_rate vs total_daily_rate fields, distribution heavily skewed to <$10/day (counts as summarised by fetch model, approximate)."
+    },
+    {
+     "url": "https://docs.polymarket.com/programs/liquidity-rewards.md",
+     "title": "Liquidity Rewards",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Scoring formula, c = 3.0, per-minute sampling over 10,080 samples per epoch, daily payout, $1 minimum; August crypto TWAP programme $1M with per-asset split."
+    },
+    {
+     "url": "https://docs.polymarket.com/changelog/predictions.md",
+     "title": "Predictions changelog",
+     "date": "2026-03-17 entry",
+     "quality": "hard-data",
+     "supports": "March Madness $2M+ programme, $60k/day live full-game ML, 3.5-second minimum order life."
+    }
+   ]
+  },
+  {
+   "name": "Sponsored-reward pool sniping",
+   "one_line": "Detect newly sponsored liquidity pools (anyone can fund one from $0.1/day, Polymarket takes no cut) on low-competition markets and be the first compliant two-sided quoter.",
+   "category": "Incentive farming",
+   "maturity": "Experimental",
+   "mechanism": "Any user can deposit collateral into the on-chain Rewards contract to sponsor a market for a fixed period (example in the help centre: $500 over 10 days = $50/day). Sponsored dollars are distributed to LPs every 24h at 00:00 UTC pro rata to liquidity score, unused daily allocations flow back to the sponsor, early cancellation refunds from the next midnight, and unspent funds are refunded if the market resolves early. The CLOB rewards endpoint exposes native_daily_rate and total_daily_rate per condition, so the difference identifies sponsored money. A watcher diffs this endpoint, ranks new sponsored pools by daily rate divided by currently qualifying book depth, and posts minimum-size two-sided quotes inside the max spread.",
+   "edge_source": "Attention and speed: sponsors tend to fund niche markets that professional LPs do not monitor, so early Q share is high until others notice.",
+   "why_might_beat_market": "On a market with an empty qualifying book the first quoter takes close to 100% of the day's pool with min-size orders; adverse selection is limited because the sponsor's motive is usually promotion, not information.",
+   "failure_modes": "Pools are small; the sponsor may be an informed trader paying to attract exactly your liquidity (see next candidate); sub-$1 daily earnings are forfeited, not accrued; niche markets have rule ambiguity and slow resolution.",
+   "cheap_validation": "Poll /rewards/markets/current hourly for two weeks, log every condition where total_daily_rate exceeds native_daily_rate, and record qualifying depth at detection time and 24h later.",
+   "flags": "",
+   "evidence": [
+    {
+     "url": "https://help.polymarket.com/en/articles/13755867-sponsor-market-rewards",
+     "title": "Sponsor Market Rewards",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Open sponsorship, $0.1/day minimum, no Polymarket fee, on-chain Rewards contract, daily 00:00 UTC distribution, refund rules."
+    },
+    {
+     "url": "https://clob.polymarket.com/rewards/markets/current",
+     "title": "CLOB current reward markets",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Separate native_daily_rate and total_daily_rate fields plus rewards_max_spread and rewards_min_size per condition."
+    },
+    {
+     "url": "https://help.polymarket.com/en/articles/13364466-liquidity-rewards",
+     "title": "Liquidity Rewards (help centre)",
+     "date": "undated",
+     "quality": "hard-data",
+     "supports": "A day pays only if earnings reach $1; sub-$1 amounts do not roll over; two-sided needed when mid < $0.10."
+    }
+   ]
+  },
+  {
+   "name": "Polymarket US Liquidity Incentive Program: resting-order pools on the CFTC book",
+   "one_line": "Rest near-touch size on Polymarket US sports contracts to split published per-game pools (NFL moneyline live pool $32,000 per game) scored by random once-per-second book snapshots, paid whether or not you fill.",
+   "category": "Incentive farming",
+   "maturity": "Emerging",
+   "mechanism": "The US exchange (QCEX, USD-collateralised, separate accounts and book) snapshots every order book at a random instant each second. Score = discountFactor^(ticks from best price) x order size, each side normalised to 1.0 per snapshot, and only size up to the programme's targetSize counts. Pools are per market and per period (early = listing to 6h before event, day_of, live, or daily for futures); NFL moneyline on 2026-09-20: early $400, day_of $550, live $32,000 (discount 0.25, target 150,000 contracts); NFL spreads live $27,000, totals $24,000, player props $17,000; CFB T1 spreads $8,500; UFC main ML $10,000; MLB ML $2,500. Rewards are calculated within 5 business days of period end and credited within 2 more, $1 minimum, no cap; fills additionally earn the maker rebate (theta 0.0125, $0.31 per 100 contracts at 50c) at execution. Every programme is enumerable without auth at api.prod.polymarketexchange.com/v1/incentives (programId, marketSlug, period, rewardPool, discountFactor, targetSize).",
+   "edge_source": "Pure subsidy with fully published, machine-readable parameters; the participant set is restricted to KYC'd US residents/entities so competition is thinner than on the crypto venue; live-period pools are large precisely because in-game quoting is toxic, so a good in-play fair-value model converts subsidy into profit.",
+   "why_might_beat_market": "A single NFL game's live moneyline pool ($32k) is of the same order as the whole displayed depth of the equivalent international market (Gamma liquidityNum $146k-$306k) and twice the international reward for the same game ($15.8k/day). Steep discount factors (0.10-0.35) mean only top-of-book size scores, so a small team with a tight in-play model out-scores passive size.",
+   "failure_modes": "In-play adverse selection can exceed the pool share; target sizes are large (150k contracts per side on NFL ML = roughly $75k+ per side per game); pools are cut without notice (2026-07-10: MLB $20k->$12.5k/game, PGA $150k->$50k/tournament, UFC ML $15k->$10k; 2026-07-02 politics $500->$250/day); payout lag about 7 business days; programme is listed under Institutional Incentive Programs and retail-API eligibility is unverified; cancelled/postponed events pay nothing; approved Market Maker Program firms (terms undisclosed) may dominate.",
+   "cheap_validation": "No account needed: poll /v1/incentives plus gateway.polymarket.us/v1/markets/{slug}/bbo and book for one NFL week, reconstruct per-second top-of-book size, and compute the score share a hypothetical 10k-contract two-sided quote at best would have earned; compare against in-play mid markouts from the public trade tape to estimate net $ per $ of resting capital.",
+   "flags": "US residents / US entities only (a non-US team needs a US entity and the Entity Participant agreement). CFTC-regulated venue: spoofing, wash trading and layering to win snapshots are Commodity Exchange Act violations, not just ToS issues.",
+   "evidence": [
+    {
+     "url": "https://polymarket.us/rewards",
+     "title": "Polymarket US live reward schedules",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Per-programme live pools, discount factors, target sizes: NFL ML live $32,000 / 0.25 / 150,000; spreads $27,000; totals $24,000; player props $17,000; CFB, UFC, MLB, tennis etc."
+    },
+    {
+     "url": "https://api.prod.polymarketexchange.com/v1/incentives?pageSize=50&orderBy=reward&orderDirection=desc&statuses=active",
+     "title": "Public incentives API",
+     "date": "fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Per-market entries e.g. nfl_moneyline_live_20260916 rewardPool 32000, day_of 550, early 400, with discountFactor and targetSize; public, no auth."
+    },
+    {
+     "url": "https://docs.polymarket.us/incentives/liquidity.md",
+     "title": "Liquidity Incentive Program",
+     "date": "undated, fetched 2026-09-20",
+     "quality": "hard-data",
+     "supports": "Scoring formula, random per-second snapshots, per-side normalisation, target size, periods, payout timing, $1 minimum, no cap."
+    },
+    {
+     "url": "https://docs.polymarket.us/changelog.md",
+     "title": "Polymarket US changelog",
+     "date": "2026-05-21 to 2026-09-19",
+     "quality": "hard-data",
+     "supports": "World Cup pool raised to $50,000/game (Jun 11), NBA Playoffs total $103,500/game (Jun 5), cricket $500/match, broad cuts on Jul 2 and Jul 10 2026."
+    },
+    {
+     "url": "https://docs.polymarket.us/fees.md",
+     "title": "Fee Schedule",
+     "date": "effective 2026-09-17",
+     "quality": "hard-data",
+     "supports": "Taker theta 0.0695 ($1.74/100 at 50c), maker rebate theta 0.0125 ($0.31/100) paid at execution; taker rebates 10/25/50% at $250k/$1M/$10M monthly volume."
+    }
+   ]
+  }
+ ]
+}
