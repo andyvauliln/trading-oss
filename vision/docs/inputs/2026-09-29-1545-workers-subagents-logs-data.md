@@ -1,0 +1,17 @@
+# in-20260929-1545: Workers as scripts, sub-agents, logs, data, routing
+- At: 2026-09-29T15:45:29Z · Where: project chat · Source: chat · Ref: cmsg_01Sk8xdkWKCz34CUCfVMyQbxPoD1wgo6djYWkLr1aHxvWC
+- Categories: workers-jobs, structure, configs
+- Summary: The owner decided that workers are just scripts described in config, sub-agents are Claude Code sub-agents under .claude, logs and data are organised by source, and model/platform routing is a separate config file.
+
+## Raw input
+~~~text
+│   │   ├── workers/                          # [12] scheduled scripts/agents that produce data
+│   │   ├── subagents/                        # [13] common sub-agents (worker + AI pre-analysis)
+│   │   ├── scripts/                          # [14] common scripts (create-agent, run, triggers)
+│   │   ├── logs/                             # [15] system-level logs
+│   │   ├── data/                             # [16] shared data store (JSON/MD)
+│   │   └── platforms-and-models/             # [17] AI routing: object -> platform/model/effort Well, let's um, speak about this ones. So workers, mm, how I see workers is just scripts. So basically, we can all scripts just keep in a scripts and yeah, we will just will need some configuration files where like we describe all workers they schedules how they runs for what they are also in the scripts yeah could be a decision scripts for example buy sell and And there could be system or per agent uh, scripts. Sub agents also let's remove and for now it will be sub agents under Claude Code. So they will live them. And there's a dot cloud. Claude. And for now, they will be only yeah, sub agents that uh, for the system, for the whole system. Yeah, logs also like uh, system all system logs that common or whatever by service by by worker by sub agents agent data also same so kind of worker per agent per sub agent per system uh, any data um, something similar something yeah not Platforms and models, I think, yeah, it should be also kind of in the config then. And where we set up and just configure what models used where or platform. Uh, an agent. And should be separated, yeah, also. File. From the common. Okay, let's um, speak about these ones. So workers, um, how I see workers is just scripts. So basically, we can all scripts just keep in a scripts. And yeah, we will just we'll need some configuration files where like we describe all workers, their schedules, how they run, for what they are. Also in the scripts, yeah, could be uh, decision scripts, for example, buy, sell, and And there could be system or per agent uh, scripts. Sub agents also let's remove. And for now, it will be sub agents under the cloud. Cloud, I mean. I mean, Claude Code. So they will leave them under the dot cloud cloud. And for now, there will be only yeah, sub agents that uh, for the system, for the whole system. Yeah, logs also like uh, system, all system logs, is that common? Or whatever, by service, by, by worker, by sub agents, agent. Data also same, so kind of, uh, Per worker, per agent, per sub agent, per system, uh, any data. Um, something symlink, something, yeah. Not. Platforms and models, I think, yeah, it should be also kind of in a config then. And where we set up and just configure what models used where or platform uh, and agent. And should be separated, yeah, also file from the common.
+~~~
+
+## Processed into
+- D-007; D-008; D-009; D-010; D-011; vision.md v0.5; file-tree.md v0.8 ([11.10], [11.11], [14], [15], [16], [10.1.1]; [12], [13], [17] retired); feature-map.md v0.6
