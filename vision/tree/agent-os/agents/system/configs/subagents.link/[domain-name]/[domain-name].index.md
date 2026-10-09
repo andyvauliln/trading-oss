@@ -1,15 +1,16 @@
 ---
 about: agent-os/agents/system/configs/subagents.link/[domain-name]/
 node: n-11.2.1
-basis: 1a157c36d927
+basis: 2c81af3b9662
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:03:12Z
 ---
 # [domain-name]/
 
 ## What it is
 
-A link to one domain's settings folder, named after the domain, for example `prediction-market-agents/`. Through it the system sees that domain's settings and jobs without keeping a copy.
+A link to one domain's settings folder, named after the domain, for example `prediction-market/` for the prediction-market domain inside `trading/`. Through it the system sees that domain's settings and jobs without keeping a copy.
 
 ## Who looks after it
 

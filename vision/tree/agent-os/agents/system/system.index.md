@@ -1,9 +1,10 @@
 ---
 about: agent-os/agents/system/
 node: n-10
-basis: 4b1061de5587
+basis: fdaace49da75
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:03:12Z
 ---
 # system/
 

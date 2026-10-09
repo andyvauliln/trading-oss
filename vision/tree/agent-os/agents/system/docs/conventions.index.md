@@ -1,9 +1,10 @@
 ---
 about: agent-os/agents/system/docs/conventions.md
 node: n-2.7
-basis: 8f257618dff8
+basis: dd9bd68bda3e
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:03:12Z
 ---
 # conventions.md
 

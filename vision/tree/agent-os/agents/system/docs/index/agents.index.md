@@ -1,10 +1,10 @@
 ---
 about: agent-os/agents/system/docs/index/agents.md
 node: n-2.18.1
-basis: 3129ccba5d49
+basis: bffc232586b6
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
-confirmed: 2026-10-07T19:03:52Z
+confirmed: 2026-10-09T10:03:12Z
 ---
 # agents.md
 

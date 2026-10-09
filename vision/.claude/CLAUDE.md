@@ -29,8 +29,8 @@ Before you touch a file or folder, read its How it works file: `vision.index.md`
 | All agents: every domain, the system included, each with its agent, settings, scripts, logs, data, tests and research | `agents/` |
 | The docs: vision, README, the rebuild prompt for AI, more for people one by one | `agents/system/docs/` |
 | The knowledge base agent, the project IDE agent and their skills | `agents/system/.claude/agents/`, `agents/system/.claude/skills/` |
-| The topic notes agents read while they work: architecture, conventions, safety, flows, schemas, how-to, the index; each domain adds its own, such as the prediction-market domain's `trading-` notes | `agents/system/docs/`, `agents/prediction-market-agents/docs/` |
-| Research, kept by the level it serves: the system's own and each domain's | `agents/system/research/`, `agents/prediction-market-agents/research/` |
+| The topic notes agents read while they work: architecture, conventions, safety, flows, schemas, how-to, the index; each domain adds its own, such as the prediction-market domain's `trading-` notes | `agents/system/docs/`, `agents/trading/prediction-market/docs/` |
+| Research, kept by the level it serves: the system's own and each domain's | `agents/system/research/`, `agents/trading/prediction-market/research/` |
 | The File Tree page and its data | `apps/project-IDE/current-ui/` |
 | The same page on the owner's server, with Claude Code behind its request box | `apps/project-IDE/server/` |
 | This project's records: every input word for word, decisions, changelog, the tree notes, the knowledge map, the notes behind each doc, page edits, working notes, plans, retired files | `apps/project-IDE/data/` |

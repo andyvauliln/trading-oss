@@ -1,9 +1,10 @@
 ---
 about: agent-os/agents/system/research/subagents.link/
 node: n-10.9.3
-basis: 987260f197c9
+basis: 07477b4bf368
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:03:12Z
 ---
 # subagents.link/
 

@@ -43,7 +43,7 @@ flowchart TB
     VEN["Venues and accounts<br/>test or live"]
     SYS["agents/system/ [10]<br/>scheduler, relink, load-secret [14.1]"]
 
-    subgraph DOM["agents/prediction-market-agents/ [19]: domain level"]
+    subgraph DOM["agents/trading/prediction-market/ [19]: domain level"]
         DOMA["domain agent [19.1.5]<br/>+ domain SI [19.1.1.2]"]
         CFG["domain config [19.2.4]<br/>risk, accounts, venues"]
         PW["polymarket-prices worker [19.3.5]"]

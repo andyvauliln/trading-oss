@@ -1,4 +1,4 @@
-# Agent OS: Decisions (v1.12)
+# Agent OS: Decisions (v1.13)
 
 This is the decision log: what the owner decided, when, why, and which inputs and objects it touched. It is history. The rules a decision made live in the topic docs (conventions.md, safety.md, data-schemas.md, common/, how-to/ and the file docs in file-tree.md), and each entry below points to where its rule lives today. When a later decision changes an earlier one, the earlier entry stays and its status says what replaced it. Numbers are never reused. The knowledge agent [10.1.1.2] adds one entry per owner decision (knowledge-intake, step 6). D-033 (the knowledge base itself) is recorded by its own entry.
 
@@ -564,7 +564,17 @@ Status words: **active** (in force), **partly superseded by D-0xx** (some of it 
 - **Sources:** in-20261007-0904, D-056
 - **Changed:** the tree notes (new items under [19], [14.3] and [54.3] moved, [42] retired), the topic notes split into general and `trading-` notes, the helper agents and skills, `CLAUDE.md`.
 
+### D-059: Trading is a folder of domains; trading gets its own three docs
+<!-- k: id=d-059 applies=[4],[19],[56],[56.1],[2.1],[2.2],[2.22] sources=in-20261009-0940,D-056,D-058 status=decided -->
+- **Decision:** `agents/trading/` [56] holds the trading domains: the prediction-market domain moves to `agents/trading/prediction-market/` [19] (numbers kept), and a later one is `agents/trading/copytrading/`. `agents/trading/docs/` [56.1] holds trading's own vision, README and rebuild prompt. The system's three docs are rewritten in general terms. The prediction-market and copy-trading docs are not touched now.
+- **Date:** 2026-10-09
+- **Why:** the owner's message: "prediction market is a trading domain we can just add it to one folder trading/prediction-market", "put in a trading/docs first 3 documents that relates to trading", "make for system agent also 3 files and that is it for now".
+- **Status:** decided. Our defaults: `trading/` has only its `docs/` for now (no agent, configs or scripts of its own); the trading notes, config and scripts stay in the prediction-market domain until the owner says otherwise; the domain's file names (`prediction-market-agents.config.json` and the like) keep their names; the system still reaches each domain through `subagents.link/`.
+- **Sources:** in-20261009-0940, D-056, D-058
+- **Changed:** the tree notes ([4], [19], new [56]), the paths in the notes, tools and mirror tree, the system's README and rebuild prompt, trading's new three docs.
+
 ## Changelog
+- v1.13 (2026-10-09): D-059 added.
 - v1.12 (2026-10-07): D-058 added; D-057 status (the one clash, `server.py`).
 - v1.11 (2026-10-07): D-056, D-057 added; D-054 status (named).
 - v1.10 (2026-10-07): D-053 changed: a rebuild prompt listed at every level.

@@ -9,9 +9,9 @@ Nothing is built yet, so no agent is active or has a created date. `status` says
 | name | type | domain | parent | route | mode | status | created | path |
 |---|---|---|---|---|---|---|---|---|
 | `sys-system-agent` | system | system | - | open: [11.11] has no `system` type | - | planned | - | `agents/system/` [10] |
-| `pm-domain-agent` | domain | prediction-markets | - | `opus-5.5` (type `domain`) | - | planned | - | `agents/prediction-market-agents/` [19] |
-| `pm-strategy-1-agent.opus55-test` | strategy | prediction-markets | - | `opus-5.5` by its name; [11.11] has no `strategy` type, so it needs a named route | test | planned | - | `agents/prediction-market-agents/strategy-1-agent/` [21] |
-| `pm-strategy-1.momentum-v1.opus55-test` | variant | prediction-markets | none (`agent.parent: null`) | `opus-5.5` (type `main`; its `main-run` job also names `opus-5.5`) | test | example | - | `agents/prediction-market-agents/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test/` [23] |
+| `pm-domain-agent` | domain | prediction-markets | - | `opus-5.5` (type `domain`) | - | planned | - | `agents/trading/prediction-market/` [19] |
+| `pm-strategy-1-agent.opus55-test` | strategy | prediction-markets | - | `opus-5.5` by its name; [11.11] has no `strategy` type, so it needs a named route | test | planned | - | `agents/trading/prediction-market/strategy-1-agent/` [21] |
+| `pm-strategy-1.momentum-v1.opus55-test` | variant | prediction-markets | none (`agent.parent: null`) | `opus-5.5` (type `main`; its `main-run` job also names `opus-5.5`) | test | example | - | `agents/trading/prediction-market/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test/` [23] |
 | `pm-strategy-1.momentum-v2.opus55-test` | variant | prediction-markets | `pm-strategy-1.momentum-v1.opus55-test` (the research example `r-0001` in [50] led to it) | `opus-5.5` by its name | test | example | - | not in the tree; would sit next to [23] |
 | `pm-strategy-1.momentum-v2.sonnet55-test` | variant | prediction-markets | not stated | `sonnet-5.5` by its name | test | example | - | not in the tree; only in the explorer's `subagents.link/` example (tools/enrich.py) |
 | `pm-momentum-v1-agent-opus55-test` | variant | prediction-markets | - | - | test | replaced | - | old name of [23]; replaced by D-032 |

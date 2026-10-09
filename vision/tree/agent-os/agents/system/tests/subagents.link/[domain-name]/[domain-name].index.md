@@ -1,9 +1,10 @@
 ---
 about: agent-os/agents/system/tests/subagents.link/[domain-name]/
 node: n-10.8.3.1
-basis: 25ab7ccb9945
+basis: 181c93538151
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:03:12Z
 ---
 # [domain-name]/
 

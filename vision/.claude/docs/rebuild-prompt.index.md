@@ -1,16 +1,16 @@
 ---
 about: agent-os/agents/system/docs/rebuild-prompt.md
 node: n-2.22
-basis: b472291bf30c
+basis: f6ea621dc9a1
 written: 2026-10-07T08:58:18Z
 by: knowledge-base-agent
-confirmed: 2026-10-07T09:34:43Z
+confirmed: 2026-10-09T09:57:03Z
 ---
 # rebuild-prompt.md
 
 ## What it is
 
-A prompt for an AI coding agent, such as Claude Code. Given only this file and an empty repository, the agent rebuilds the Agent OS and ends with the same working system: the same folders and files, the same formats and settings, the same scripts, agents and helpers, the same safety rules and the same project IDE. It is the full, exact spec of the system as it is designed today.
+A prompt for an AI coding agent, such as Claude Code. Given this file and an empty repository, the agent builds the top of the repository and the system's own folder exactly: the same folders and files, formats, settings, scripts, helpers, safety rules and project IDE. It then runs the rebuild prompts of the levels below in order, starting with trading's, which lists the prediction-market domain's. It holds nothing about trading itself.
 
 ## Who looks after it
 

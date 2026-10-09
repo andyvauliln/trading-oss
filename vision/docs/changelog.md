@@ -2,6 +2,10 @@
 
 System-level history: what changed in the OS design, when, and from which decision. Newest first. Per-agent changes stay in each agent's own `docs/changes.md` [46]. The knowledge agent adds one line per processed input or system change (knowledge-intake, step 6).
 
+## 2026-10-09
+
+- **Trading is a folder of domains (D-059).** The owner asked that the prediction-market domain sit in `agents/trading/prediction-market/`, with copy trading next as `agents/trading/copytrading/`, and that trading get its own three docs. `agents/trading/docs/` now has a vision, a README and a rebuild prompt (planning copies in `vision/docs/trading/`). The system's README and rebuild prompt were rewritten in general terms; the trading text they held is kept in `archive/2026-10-09/` for the prediction-market domain's own docs. Page v48.
+
 ## 2026-10-07
 
 - **The Agent OS, with trading in its own domain (D-056 to D-058).** The owner renamed the system to the Agent OS (`agent-os/`), a home for agents of any kind, and asked that everything about trading move down into the prediction-market domain, which a later trading domain copies. The system level now keeps only what holds for any agent: test and live modes, the owner's approval to go live, a general stop switch, limits in code, the key rules and the shared machinery. The domain got its own config (risk limits, trading accounts, venues, fees, the order stop switch), the shared buy, sell and risk scripts, the Polymarket price collector with its logs and data, ten `trading-` notes and `doc-outlines.md`, its runbooks for money and a list of trading accounts; the planned copy-trading domain left the tree. Every How it works file is now named without its file's extension (`vision.index.md`), every file and folder has an empty Details file (`.meta.json`), and the page's switch is called "metadata". The system's notes were split into general and `trading-` notes, and all 399 How it works files were checked again. File Tree page v45 and v46, file-tree.md v1.31 and v1.32.

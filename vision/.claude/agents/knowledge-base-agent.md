@@ -100,7 +100,7 @@ The system, every domain (prediction markets first, and later more) and every ag
 
 - the system's docs cover the whole project;
 - a domain's docs cover why that domain and how it reaches its goal;
-- the docs of a level below a domain cover what that domain's `docs/doc-outlines.md` says they cover: there each domain gives the outlines and lengths of the docs of the levels it defines (for the prediction-market domain, `agents/prediction-market-agents/docs/doc-outlines.md`).
+- the docs of a level below a domain cover what that domain's `docs/doc-outlines.md` says they cover: there each domain gives the outlines and lengths of the docs of the levels it defines (for the prediction-market domain, `agents/trading/prediction-market/docs/doc-outlines.md`).
 
 Shared things are explained in full once, at the highest level where they apply. Lower levels sum up in a sentence or two what they share with the level above, then describe only what is different. A parent reaches its children's docs through `subagents.link/`.
 

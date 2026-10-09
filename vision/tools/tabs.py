@@ -396,8 +396,8 @@ def job(id, purpose, type, run, schedule, run_on="local", platform=None, model="
 JOB_FILES = {  # num -> (agent name, workspace)
  "11.10": ("system", "agents/system"),
  "19.2.1": ("prediction-market-agents", "agents/prediction-market-agents"),
- "21.2.1": ("strategy-1-agent", "agents/prediction-market-agents/strategy-1-agent"),
- "27.4": ("pm-strategy-1.momentum-v1.opus55-test", "agents/prediction-market-agents/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test"),
+ "21.2.1": ("strategy-1-agent", "agents/trading/prediction-market/strategy-1-agent"),
+ "27.4": ("pm-strategy-1.momentum-v1.opus55-test", "agents/trading/prediction-market/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test"),
 }
 JOBS = {
  "11.10": [
@@ -438,7 +438,7 @@ JOBS = {
   job("compare-variants", "Side-by-side report of every variant's results", "workflow", "compare-variants", "after strategy-session", model="sonnet-5.5", effort="medium",
       outputs="data/variant-report/latest.md", max_turns="20", timeout="20m"),
   job("strategy-self-improvement", "Try improvements as new test variants", "subagent", "pm-strategy-1-self-improvement-agent", "cron 30 3 * * *",
-      model="opus-5.5", effort="xhigh", prompt="@docs/prompts/strategy-si.md", allowed_tools="Read, Grep, Glob, Bash(node ../../system/scripts/system/create-agent.system.js *)",
+      model="opus-5.5", effort="xhigh", prompt="@docs/prompts/strategy-si.md", allowed_tools="Read, Grep, Glob, Bash(node ../../../system/scripts/system/create-agent.system.js *)",
       permission_mode="acceptEdits", max_turns="60", max_cost_usd="5", timeout="90m"),
  ],
  "27.4": [

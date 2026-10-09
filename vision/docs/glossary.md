@@ -46,7 +46,7 @@ Docs work like the other content folders: the shared docs are real files in `age
 
 ### Domain
 <!-- k: id=term-domain applies=path:agents/* sources=D-013,in-20260929-1452,D-056 status=decided -->
-One area of work, such as prediction markets [19], and its folder directly under `agents/`. The system [10] is a domain too.
+One area of work, such as prediction markets [19], and its folder under `agents/` (a trading domain sits inside `agents/trading/`, D-059). The system [10] is a domain too.
 
 ### Domain owner (main domain agent)
 <!-- k: id=term-domain-owner applies=[19.1.5] sources=in-20260929-1455,D-022,D-056 status=decided -->

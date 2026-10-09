@@ -1,15 +1,16 @@
 ---
 about: agent-os/agents/
 node: n-4
-basis: b048af954e00
-written: 2026-10-07T19:09:34Z
+basis: 898ccf7c8393
+written: 2026-10-09T09:55:29Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:03:12Z
 ---
 # agents/
 
 ## Summary
 
-All agents of the Agent OS, one folder per domain. The system is a domain too: `system/` holds the system agent and everything every agent shares, whatever its domain. `prediction-market-agents/` is the first domain and holds everything about trading; a later trading domain is copied from it. Inside it sit its strategy agents, and inside each strategy its trading agents, one per version being tested.
+All agents of the Agent OS, one folder per domain. The system is a domain too: `system/` holds the system agent and everything every agent shares, whatever its domain. `trading/` is a folder of trading domains with trading's own docs; its first domain, `trading/prediction-market/`, holds everything about trading today, and the next, `trading/copytrading/`, will be copied from it. Inside the prediction-market domain sit its strategy agents, and inside each strategy its trading agents, one per version being tested.
 
 Every level uses one identical agent folder: `.claude/` with the level's prompt, then `configs/`, `scripts/`, `logs/`, `data/`, `docs/`, `tests/`, `research/` and the level files. Each content folder holds the level's own files, file links to what it reads elsewhere, and `subagents.link/` to its children. Agents are created by `create-agent`, and self-improvement creates new test versions. Secrets, the apps and cloned code live outside this folder.
 

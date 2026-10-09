@@ -1,10 +1,10 @@
 ---
 about: agent-os/agents/system/docs/
 node: n-2
-basis: aa2ac3013768
+basis: e086bf7a362e
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
-confirmed: 2026-10-07T19:22:45Z
+confirmed: 2026-10-09T10:03:12Z
 ---
 # docs/
 
