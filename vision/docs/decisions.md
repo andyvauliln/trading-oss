@@ -573,7 +573,17 @@ Status words: **active** (in force), **partly superseded by D-0xx** (some of it 
 - **Sources:** in-20261009-0940, D-056, D-058
 - **Changed:** the tree notes ([4], [19], new [56]), the paths in the notes, tools and mirror tree, the system's README and rebuild prompt, trading's new three docs.
 
+### D-060: Voice input for the page's AI boxes, transcribed by Groq
+<!-- k: id=d-060 applies=[53],[53.1.1],[53.3],[53.3.2],[53.3.4],[53.3.5] sources=in-20261009-1019 status=decided -->
+- **Decision:** the request box and the delete note box get a microphone button: press to record (5 minutes at most), the text is added to the box, and the owner sends it as usual. The project IDE server transcribes through Groq's free speech models (`voice.py` [53.3.5], route `api/voice`), trying the models listed in its config in order and moving on after a rate limit or an error. The key `GROQ_API_KEY` sits only in the git-ignored keys file; the page never sees it.
+- **Date:** 2026-10-09
+- **Why:** the owner's message: "voice button for the ai inputs on ui so when press we start recording 5 min limit", "we ll use groq free model for that rotate them if one have rate limit or problems", "put it in a secretes".
+- **Status:** decided. Our defaults: the models `whisper-large-v3-turbo` then `whisper-large-v3`; the text is added to the box, not sent by itself; the button shows only on the owner's server, because claude.ai pages get no microphone and cannot reach Groq.
+- **Sources:** in-20261009-1019
+- **Changed:** the page [53.1.1], the server [53.3.2], its config [53.3.4], new `voice.py` [53.3.5], the server README [53.3.1].
+
 ## Changelog
+- v1.14 (2026-10-09): D-060 added.
 - v1.13 (2026-10-09): D-059 added.
 - v1.12 (2026-10-07): D-058 added; D-057 status (the one clash, `server.py`).
 - v1.11 (2026-10-07): D-056, D-057 added; D-054 status (named).

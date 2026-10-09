@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-09T10:04:13Z",
+ "built": "2026-10-09T10:32:04Z",
  "docs": {
   "README.md": {
    "title": "Agent OS: Knowledge base (v0.2)",
@@ -46,7 +46,7 @@
   },
   "changelog.md": {
    "title": "Agent OS: Changelog (v0.5)",
-   "hash": "9c5782fc2382",
+   "hash": "a9c72ee3fcaa",
    "entries": []
   },
   "conventions.md": {
@@ -147,7 +147,7 @@
   },
   "decisions.md": {
    "title": "Agent OS: Decisions (v1.13)",
-   "hash": "bcc1b226299a",
+   "hash": "e03305ffe5b1",
    "entries": [
     "d-001",
     "d-002",
@@ -207,7 +207,8 @@
     "d-056",
     "d-057",
     "d-058",
-    "d-059"
+    "d-059",
+    "d-060"
    ]
   },
   "feature-map.md": {
@@ -2335,6 +2336,7 @@
     "n-53.3",
     "n-53.3.2",
     "n-53.3.3",
+    "n-53.3.5",
     "p-agent-os-agents-system-.claude-workflows-workflow-name-.js",
     "p-agent-os-agents-trading-prediction-market-.claude-workflows-workflow-name-.js",
     "p-agent-os-agents-trading-prediction-market-strategy-1-agent-.claude-workflows-workflow-name-.js",
@@ -6479,6 +6481,7 @@
     "n-49.2.3",
     "n-53.3.2",
     "n-53.3.3",
+    "n-53.3.5",
     "p-agent-os-agents-system-.claude-workflows-workflow-name-.js",
     "p-agent-os-agents-trading-prediction-market-.claude-workflows-workflow-name-.js",
     "p-agent-os-agents-trading-prediction-market-strategy-1-agent-.claude-workflows-workflow-name-.js",
@@ -6773,6 +6776,36 @@
    ],
    "inherited_by": [],
    "chars": 1298
+  },
+  "d-060": {
+   "id": "d-060",
+   "doc": "decisions.md",
+   "heading": "D-060: Voice input for the page's AI boxes, transcribed by Groq",
+   "level": 3,
+   "line": 576,
+   "applies_raw": [
+    "[53]",
+    "[53.1.1]",
+    "[53.3]",
+    "[53.3.2]",
+    "[53.3.4]",
+    "[53.3.5]"
+   ],
+   "sources": [
+    "in-20261009-1019"
+   ],
+   "status": "decided",
+   "hash": "d04405a02bf5",
+   "nodes": [
+    "n-53",
+    "n-53.1.1",
+    "n-53.3",
+    "n-53.3.2",
+    "n-53.3.4",
+    "n-53.3.5"
+   ],
+   "inherited_by": [],
+   "chars": 1140
   },
   "fm-data-collection-workers": {
    "id": "fm-data-collection-workers",
@@ -21748,7 +21781,7 @@
     "53.1.1"
    ],
    "status": "file-doc",
-   "hash": "5c5e13d92ede"
+   "hash": "85faf5854031"
   },
   "ft-53.1.2": {
    "id": "ft-53.1.2",
@@ -21768,7 +21801,7 @@
     "53.3"
    ],
    "status": "file-doc",
-   "hash": "bb2a13efea1e"
+   "hash": "6a7911a8af93"
   },
   "ft-53.3.1": {
    "id": "ft-53.3.1",
@@ -21808,7 +21841,17 @@
     "53.3.4"
    ],
    "status": "file-doc",
-   "hash": "055bd2a73c00"
+   "hash": "6963a90819dd"
+  },
+  "ft-53.3.5": {
+   "id": "ft-53.3.5",
+   "doc": "file-tree.md",
+   "heading": "[53.3.5] `voice.py` (owner, D-060)",
+   "nums": [
+    "53.3.5"
+   ],
+   "status": "file-doc",
+   "hash": "05fd8dfe7677"
   },
   "ft-53.2": {
    "id": "ft-53.2",
@@ -25828,7 +25871,7 @@
    ],
    "inherited": [],
    "basis": "cd8604d9ab82",
-   "summary_state": "stale"
+   "summary_state": "fresh"
   },
   "n-56.1.1": {
    "num": "56.1.1",
@@ -25842,7 +25885,7 @@
    "direct": [],
    "inherited": [],
    "basis": "144895ef93fd",
-   "summary_state": "stale"
+   "summary_state": "fresh"
   },
   "n-56.1.2": {
    "num": "56.1.2",
@@ -25856,7 +25899,7 @@
    "direct": [],
    "inherited": [],
    "basis": "147765503685",
-   "summary_state": "stale"
+   "summary_state": "fresh"
   },
   "n-56.1.3": {
    "num": "56.1.3",
@@ -25870,7 +25913,7 @@
    "direct": [],
    "inherited": [],
    "basis": "ff738fca7272",
-   "summary_state": "stale"
+   "summary_state": "fresh"
   },
   "n-19": {
    "num": "19",
@@ -32192,11 +32235,12 @@
     "d-049",
     "d-055",
     "d-057",
+    "d-060",
     "fm-ui-monitoring-and-control",
     "ov-parts-ui-apps"
    ],
    "inherited": [],
-   "basis": "f9224aa8fb49",
+   "basis": "34701421636a",
    "summary_state": "fresh"
   },
   "n-53.4": {
@@ -32284,7 +32328,7 @@
    "same_as": null,
    "direct": [],
    "inherited": [],
-   "basis": "476032759938",
+   "basis": "866f24a21312",
    "summary_state": "fresh"
   },
   "n-53.1.1": {
@@ -32301,10 +32345,11 @@
     "d-042",
     "d-044",
     "d-046",
-    "d-057"
+    "d-057",
+    "d-060"
    ],
    "inherited": [],
-   "basis": "70dcece4e425",
+   "basis": "bbd24314cede",
    "summary_state": "fresh"
   },
   "n-53.1.2": {
@@ -32335,6 +32380,7 @@
     "n-53.3.1",
     "n-53.3.2",
     "n-53.3.3",
+    "n-53.3.5",
     "n-53.3.4"
    ],
    "file_doc": "ft-53.3",
@@ -32344,10 +32390,11 @@
     "d-042",
     "d-043",
     "d-044",
-    "d-046"
+    "d-046",
+    "d-060"
    ],
    "inherited": [],
-   "basis": "000e40383b83",
+   "basis": "11d68992fb45",
    "summary_state": "fresh"
   },
   "n-53.3.1": {
@@ -32379,10 +32426,11 @@
     "conv-one-job-per-file",
     "d-043",
     "d-044",
-    "d-050"
+    "d-050",
+    "d-060"
    ],
    "inherited": [],
-   "basis": "0840f1ce4a62",
+   "basis": "3ab7494ff6ae",
    "summary_state": "fresh"
   },
   "n-53.3.3": {
@@ -32404,6 +32452,24 @@
    "basis": "cec23e79d846",
    "summary_state": "fresh"
   },
+  "n-53.3.5": {
+   "num": "53.3.5",
+   "path": "apps/project-IDE/server/voice.py",
+   "name": "voice.py",
+   "type": "file",
+   "parent": "n-53.3",
+   "children": [],
+   "file_doc": "ft-53.3.5",
+   "same_as": null,
+   "direct": [
+    "conv-one-job-per-file",
+    "d-050",
+    "d-060"
+   ],
+   "inherited": [],
+   "basis": "88848f43be9f",
+   "summary_state": "fresh"
+  },
   "n-53.3.4": {
    "num": "53.3.4",
    "path": "apps/project-IDE/server/server.config.json",
@@ -32418,10 +32484,11 @@
     "schema-encoding-time-units",
     "schema-agent-ids",
     "d-043",
-    "d-044"
+    "d-044",
+    "d-060"
    ],
    "inherited": [],
-   "basis": "f5044654c716",
+   "basis": "3bbf27c1c80e",
    "summary_state": "fresh"
   },
   "n-53.2": {
@@ -34960,9 +35027,36 @@
     "docs-knowledge"
    ],
    "summary": "The owner makes trading a folder: agents/trading/prediction-market, later trading/copytrading; trading/docs gets its first three docs (vision, README, rebuild prompt); the prediction-market and copytrading docs are not touched now; the system also gets its three docs, and that is all for now.",
-   "processed_into": "in progress",
+   "processed_into": [
+    "D-059",
+    "file-tree.md v1.33",
+    "docs/trading/",
+    "system README and rebuild prompt",
+    "page v48"
+   ],
    "entries": [
     "d-059"
+   ]
+  },
+  "in-20261009-1019": {
+   "at": "2026-10-09T10:19:02Z",
+   "where": "thread \"Interactive file tree UI\"",
+   "file": "2026-10-09-1019-voice-input.md",
+   "categories": [
+    "ui",
+    "apps",
+    "secrets"
+   ],
+   "summary": "The owner adds a voice button to the page's AI inputs: press to record (5 minute limit), the words appear in the box, and sending gives them to the agent as usual; transcription uses Groq's free models, rotating when one hits a rate limit or fails; the Groq key goes in the secrets (stored under the key name GROQ_API_KEY; the value is not written here).",
+   "processed_into": [
+    "D-060",
+    "file-tree.md [53.3.5]",
+    "server/voice.py",
+    "the page",
+    "page v49"
+   ],
+   "entries": [
+    "d-060"
    ]
   }
  },

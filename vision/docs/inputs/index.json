@@ -1792,6 +1792,29 @@
     "page v48"
    ],
    "answered": true
+  },
+  {
+   "id": "in-20261009-1019",
+   "at": "2026-10-09T10:19:02Z",
+   "where": "thread \"Interactive file tree UI\"",
+   "source": "chat",
+   "ref": "cmsg_01Sk8xdkWKCz34CUCfVMyQbxEAvqu7YNJvJpEgpRPCcsDE",
+   "file": "2026-10-09-1019-voice-input.md",
+   "chars": 300,
+   "categories": [
+    "ui",
+    "apps",
+    "secrets"
+   ],
+   "summary": "The owner adds a voice button to the page's AI inputs: press to record (5 minute limit), the words appear in the box, and sending gives them to the agent as usual; transcription uses Groq's free models, rotating when one hits a rate limit or fails; the Groq key goes in the secrets (stored under the key name GROQ_API_KEY; the value is not written here).",
+   "processed_into": [
+    "D-060",
+    "file-tree.md [53.3.5]",
+    "server/voice.py",
+    "the page",
+    "page v49"
+   ],
+   "answered": true
   }
  ]
 }

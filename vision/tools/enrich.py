@@ -807,7 +807,7 @@ CLAUDE_DRAFTS = build_map.IF.DRAFTS   # planning copies of the .claude folder; t
 VISION_FILES = {"10.1.2.5.2.1": "tools/README.md", "10.1.2.5.2.2": "tools/parse.py", "10.1.2.5.2.3": "tools/enrich.py",
                 "10.1.2.5.2.4": "tools/tabs.py", "10.1.2.5.2.5": "tools/build_map.py", "10.1.2.5.2.6": "tools/index_files.py", "10.1.2.5.2.7": "tools/check_page.js",
                 "53.2.3": "tools/overrides.json", "53.1.1": "explorer/file-tree-explorer.html",
-                "53.3.1": "server/README.md", "53.3.2": "server/server.py", "53.3.3": "server/claude_bridge.py", "53.3.4": "server/server.config.json"}
+                "53.3.1": "server/README.md", "53.3.2": "server/server.py", "53.3.3": "server/claude_bridge.py", "53.3.4": "server/server.config.json", "53.3.5": "server/voice.py"}
 for x in out_nodes:
     x["fields"] = tabs.fields_for(x)
     x["custom_tabs"] = tabs.custom_tabs_for(x)

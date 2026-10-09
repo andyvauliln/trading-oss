@@ -11,7 +11,21 @@
  "log_dir": "agents/system/logs/subagents/project-ide-agent",
  "secrets": {
   "file": ".secrets/test/.env",
-  "keys": ["ANTHROPIC_API_KEY"]
+  "keys": [
+   "ANTHROPIC_API_KEY",
+   "GROQ_API_KEY"
+  ]
+ },
+ "voice": {
+  "_about": "Voice input for the request boxes (voice.py): Groq speech to text. Models are tried in order; one that hits a rate limit or fails is skipped for the next. The key's value stays in the keys file.",
+  "url": "https://api.groq.com/openai/v1/audio/transcriptions",
+  "models": [
+   "whisper-large-v3-turbo",
+   "whisper-large-v3"
+  ],
+  "key": "GROQ_API_KEY",
+  "max_seconds": 300,
+  "language": null
  },
  "claude": {
   "cwd": "agents/system",
@@ -20,12 +34,67 @@
   "max_budget_usd": 3,
   "approval_timeout_s": 900,
   "allow": [
-   "Read", "Glob", "Grep", "LS", "Edit", "Write", "MultiEdit", "NotebookEdit", "TodoWrite", "Task", "Agent", "Skill", "WebSearch", "WebFetch",
-   "Bash(cd *)", "Bash(python3 *)", "Bash(node *)", "Bash(ls *)", "Bash(cat *)", "Bash(head *)", "Bash(tail *)", "Bash(wc *)", "Bash(grep *)", "Bash(rg *)", "Bash(find *)",
-   "Bash(mkdir *)", "Bash(cp *)", "Bash(mv *)", "Bash(jq *)", "Bash(diff *)",
-   "Bash(git status*)", "Bash(git ls-files*)", "Bash(git grep*)", "Bash(git diff*)", "Bash(git log*)", "Bash(git show*)", "Bash(git add *)", "Bash(git commit *)", "Bash(git pull*)", "Bash(git fetch*)", "Bash(git merge *)"
+   "Read",
+   "Glob",
+   "Grep",
+   "LS",
+   "Edit",
+   "Write",
+   "MultiEdit",
+   "NotebookEdit",
+   "TodoWrite",
+   "Task",
+   "Agent",
+   "Skill",
+   "WebSearch",
+   "WebFetch",
+   "Bash(cd *)",
+   "Bash(python3 *)",
+   "Bash(node *)",
+   "Bash(ls *)",
+   "Bash(cat *)",
+   "Bash(head *)",
+   "Bash(tail *)",
+   "Bash(wc *)",
+   "Bash(grep *)",
+   "Bash(rg *)",
+   "Bash(find *)",
+   "Bash(mkdir *)",
+   "Bash(cp *)",
+   "Bash(mv *)",
+   "Bash(jq *)",
+   "Bash(diff *)",
+   "Bash(git status*)",
+   "Bash(git ls-files*)",
+   "Bash(git grep*)",
+   "Bash(git diff*)",
+   "Bash(git log*)",
+   "Bash(git show*)",
+   "Bash(git add *)",
+   "Bash(git commit *)",
+   "Bash(git pull*)",
+   "Bash(git fetch*)",
+   "Bash(git merge *)"
   ],
-  "ask_owner": ["git push", "git reset", "git rebase", "git checkout --", "git clean", "rm ", "rmdir ", "chmod ", "chown ", "sudo ", "curl ", "wget ", "pip install", "npm install", "kill "],
-  "never": [".secrets"]
+  "ask_owner": [
+   "git push",
+   "git reset",
+   "git rebase",
+   "git checkout --",
+   "git clean",
+   "rm ",
+   "rmdir ",
+   "chmod ",
+   "chown ",
+   "sudo ",
+   "curl ",
+   "wget ",
+   "pip install",
+   "npm install",
+   "kill "
+  ],
+  "never": [
+   ".secrets"
+  ]
  }
 }

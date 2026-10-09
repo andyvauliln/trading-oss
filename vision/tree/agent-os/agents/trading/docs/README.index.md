@@ -1,9 +1,10 @@
 ---
 about: agent-os/agents/trading/docs/README.md
 node: n-56.1.1
-basis: a29b2ee11f49
+basis: 144895ef93fd
 written: 2026-10-09T09:55:29Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:30:32Z
 ---
 # README.md
 

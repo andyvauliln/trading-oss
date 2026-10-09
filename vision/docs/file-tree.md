@@ -386,7 +386,8 @@ agent-os/                                   # [0] repo/workspace root
     │   │   ├── README.md                     # [53.3.1] how to start it and reach it safely
     │   │   ├── server.py                     # [53.3.2] serves the page from the repository, keeps page notes as files, writes edits into files, runs requests
     │   │   ├── claude_bridge.py              # [53.3.3] runs each request as a Claude Code session started in agents/system/ and streams it to the page
-    │   │   └── server.config.json            # [53.3.4] address, model, what Claude Code may do, what waits for the owner's click
+    │   │   ├── voice.py                      # [53.3.5] turns a voice recording from the page into text through Groq, switching models on limits (D-060)
+    │   │   └── server.config.json            # [53.3.4] address, model, what Claude Code may do, what waits for the owner's click, the voice models
     │   └── data/                             # [53.2] this project's knowledge and the data the page is built from
     │       ├── README.md                     # [53.2.1] how the knowledge is kept: layers, knowledge tags, the flow (was the knowledge base guide)
     │       ├── file-tree.md                  # [2.13] this document: the tree notes, annotated tree + one section per object (was [6])
@@ -1387,6 +1388,7 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 
 ### [53.1.1] `file-tree-explorer.html` (D-041)
 - **Purpose:** the page itself: the tree with search and filters, and for every file and folder its tabs (How it works, File, Example, Questions, and extra tabs such as jobs, links, tests or key names). The owner can edit a file or its How it works, leave notes and messages and ask questions; all of that waits in the page's own store until the next sync (ide-sync [10.1.2.6]).
+- **Voice button (owner, D-060):** on the owner's server, the request box and the delete note box have a microphone button: press to record, press again to stop (at most 5 minutes, with a timer); the server turns the recording into text [53.3.5] and the page adds it to the box to check and send. On claude.ai the button is hidden, because a claude.ai page gets no microphone and cannot reach Groq.
 - **Index files in the tree (owner, 2026-10-05 14:03):** every file and folder shows its `.index.md` as its own row (a file's right under it, a folder's first inside it); clicking it opens the item's How it works, which is that file. A `☑ metadata` switch above the tree hides or shows them, together with the Details files (`.meta.json`) since D-057; the filter finds them by name ("README.index").
 - **On its own File tab (owner, 2026-10-05 14:21):** the page shows its own source, the same file that is published. `enrich.py` [10.1.2.5.2.3] reads it from `explorer/` when it builds the data, so the finished page goes there first. A long file shows 3,000 lines at a time with a button for more, and its size.
 - **Opened elsewhere (owner question, 2026-10-05 14:33):** served by any web server next to [53.1.2], it shows the same page, view only: saving and asking Claude come from claude.ai, so the header says "view only" and a message sent there says it reaches no one. Opening the file straight from disk does not load the data. The claude.ai link changes only when the files are published to it again.
@@ -1407,7 +1409,7 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 
 ### [53.3] `apps/project-IDE/server/` (D-042, D-043)
 - **Purpose:** the File Tree page on the owner's own server, with an agent behind its request box: a request typed on the page goes to Claude Code working in the repository from the system folder `agents/system/` (D-043), with the system's `CLAUDE.md` [10.1.5], the knowledge base agent [10.1.1.2], the project IDE agent [10.1.1.3] and their skills. Claude Code can answer, change files, add items, run a skill or an agent; the page shows its progress and reloads the tree when it is done. Notes, comments and edits made on this page go straight into the files, with no sync.
-- **Contents:** [53.3.1] `README.md`, [53.3.2] `server.py`, [53.3.3] `claude_bridge.py`, [53.3.4] `server.config.json`.
+- **Contents:** [53.3.1] `README.md`, [53.3.2] `server.py`, [53.3.3] `claude_bridge.py`, [53.3.4] `server.config.json`, [53.3.5] `voice.py`.
 - **One page, two homes:** the page [53.1.1] is the same file. On claude.ai it keeps notes in the page's store and asks Claude on the page; on the server it finds this service next to it and uses it instead.
 - **Built (D-043):** the four files are written and tested on a copy of the repository; it goes live on the server after the GitHub sync.
 - **Safety:** listens only on the machine (127.0.0.1); the owner reaches it through an SSH tunnel or a private network, never the open internet, because whoever reaches it can make Claude Code change files and run commands. Claude Code never reads `.secrets/` [47], never pushes, deletes or acts live (in trading: touches real money) without the owner's click; checks before every tool call enforce it.
@@ -1430,7 +1432,14 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 
 ### [53.3.4] `server.config.json` (D-043)
 - **Purpose:** the server's settings: address and port (127.0.0.1:8765), the page and store folders, write-through on or off, the keys file and the key names Claude Code gets (`ANTHROPIC_API_KEY`; values stay in `.secrets/test/.env` [47.1]), where Claude Code starts (`agents/system`), the model (empty: Claude Code's default, later from [11.11]), limits per request (turns, dollars), the allow list, the words that always wait for the owner (`git push`, `rm `, `curl `, installs ...), the paths nothing may touch, the log folder.
+- **Voice (D-060):** `secrets.keys` also names `GROQ_API_KEY`, which only `voice.py` [53.3.5] gets, never Claude Code; `voice` lists the Groq address, the models in the order they are tried (`whisper-large-v3-turbo`, then `whisper-large-v3`), the key name, the 300-second limit and the language (empty: detected).
 - **Draft:** `/mnt/project-files/vision/server/server.config.json`.
+
+### [53.3.5] `voice.py` (owner, D-060)
+- **Purpose:** voice input for the page's request boxes. The page records up to 5 minutes in the browser and posts the audio to `api/voice` on the server [53.3.2]; this module sends it to Groq's speech-to-text API and returns the text, which the page adds to the box for the owner to check and send. It tries the models listed in the config [53.3.4] in order; a model that answers with a rate limit is skipped until its wait is over, and an error moves on to the next one. The recording is not kept. Standard library only.
+- **Key:** `GROQ_API_KEY` from the keys file `.secrets/test/.env` [47.1]; the value never reaches the page, the logs or Claude Code.
+- **Writers / readers:** the project IDE agent [10.1.1.3] keeps it; the server calls it.
+- **Draft:** `/mnt/project-files/vision/server/voice.py`; tested with a stand-in for Groq (a rate limit on the first model, the answer from the second) and on a test server with a recorded voice message in the browser. Groq itself was not reachable from the planning machine.
 
 ### [53.2] `apps/project-IDE/data/` (owner request, D-041)
 - **Purpose:** this project's knowledge and the data the page is built from, in one place any Claude can read to catch up: every owner input, the decisions and the changelog, the tree notes, the knowledge map, the notes behind the people docs, the owner's page edits, the working notes, the plans and retired files.

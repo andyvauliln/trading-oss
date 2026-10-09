@@ -141,12 +141,26 @@
    "id": "2026-10-09-0940-trading-folder",
    "file": "2026-10-09-0940-trading-folder.md",
    "title": "Trading as a folder of domains, and the top docs",
-   "status": "building",
+   "status": "done",
    "inputs": [
     "in-20261009-0940"
    ],
    "decisions": [
     "D-059"
+   ],
+   "created": "2026-10-09",
+   "updated": "2026-10-09"
+  },
+  {
+   "id": "2026-10-09-1019-voice-input",
+   "file": "2026-10-09-1019-voice-input.md",
+   "title": "Voice input for the page's AI boxes",
+   "status": "done",
+   "inputs": [
+    "in-20261009-1019"
+   ],
+   "decisions": [
+    "D-060"
    ],
    "created": "2026-10-09",
    "updated": "2026-10-09"

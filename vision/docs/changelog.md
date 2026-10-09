@@ -4,6 +4,7 @@ System-level history: what changed in the OS design, when, and from which decisi
 
 ## 2026-10-09
 
+- **Voice input on the owner's server (D-060).** The owner asked for a voice button on the page's AI inputs. On the owner's server the request box and the delete note box now have a microphone button that records up to 5 minutes; the new `voice.py` sends the recording to Groq's free speech models, switching models on a rate limit or an error, and the text goes into the box to check and send. The key is kept only in the keys file. Page v49.
 - **Trading is a folder of domains (D-059).** The owner asked that the prediction-market domain sit in `agents/trading/prediction-market/`, with copy trading next as `agents/trading/copytrading/`, and that trading get its own three docs. `agents/trading/docs/` now has a vision, a README and a rebuild prompt (planning copies in `vision/docs/trading/`). The system's README and rebuild prompt were rewritten in general terms; the trading text they held is kept in `archive/2026-10-09/` for the prediction-market domain's own docs. Page v48.
 
 ## 2026-10-07
