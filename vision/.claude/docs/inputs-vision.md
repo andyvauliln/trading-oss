@@ -481,6 +481,7 @@ The project IDE lets the owner manage, analyse and monitor the system. It gives 
 | TAB-08 | A custom view can contain custom logic, not only a table. Example: one view for all skills. |
 | TAB-09 | Markdown files open in a read view. It has a white mode and a black mode. |
 | TAB-10 | Long lines in edit mode must wrap to the screen width. |
+| TAB-17 | The owner must be able to edit a file in the Read view. |
 
 ### 15.3 Tabs of a folder
 

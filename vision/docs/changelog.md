@@ -3,6 +3,7 @@
 System-level history: what changed in the OS design, when, and from which decision. Newest first. Per-agent changes stay in each agent's own `docs/changes.md` [46]. The knowledge agent adds one line per processed input or system change (knowledge-intake, step 6).
 
 ## 2026-10-09
+- **Edit in the Read view.** The owner asked to edit files in the view mode. In the File tab's Read view, a double-click (or double-tap) on a paragraph, heading, list or table opens its Markdown in place; Save or Ctrl+Enter writes only those lines to the file, the same save as the Edit button. Page v55.
 - **An inputs vision for the system.** The owner asked to check that every one of their inputs is stored and then to write `system/docs/inputs-vision.md`: every requirement from their inputs, by scope, without repeated or overruled logic, in ASD-STE100. All 104 owner messages were checked; five from today were missing and are now filed. The new doc has 18 scopes and 262 rules (D-062).
 - **The metadata switch now hides metadata files found on disk.** The owner asked why files like `.claude.meta.json` stayed in the tree with the switch off. Real `.index.md` and `.meta.json` files scanned from the repository now follow the switch, and when it is on, one that its item already shows as a metadata row is not shown twice. Page v53.
 
