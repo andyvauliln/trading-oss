@@ -1815,6 +1815,27 @@
     "page v49"
    ],
    "answered": true
+  },
+  {
+   "id": "in-20261009-1040",
+   "at": "2026-10-09T10:40:41Z",
+   "where": "File Tree page, Apply changes",
+   "source": "page",
+   "ref": "pmv0u42nau2pa",
+   "file": "2026-10-09-1040-apply-jobs-off.md",
+   "chars": 248,
+   "categories": [
+    "jobs",
+    "secrets",
+    "page-sync"
+   ],
+   "summary": "Apply changes from the page: the owner turned off every job in the system's jobs file (relink, check-links, news-digest, system-self-improvement, knowledge-sync) and wrote the Groq key into the keys file's text on the page (value redacted; it already sits in the keys file), with the page's ripple adding GROQ_API_KEY to the keys file's example.",
+   "processed_into": [
+    "tools/tabs.py",
+    "tools/overrides.json [47.1.1]",
+    "page v50"
+   ],
+   "answered": true
   }
  ]
 }

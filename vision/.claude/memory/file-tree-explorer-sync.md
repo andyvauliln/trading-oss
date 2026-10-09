@@ -4,7 +4,7 @@ description: How the File Tree page (artifact), its data and the docs stay in sy
 metadata:
   type: project
 ---
-The File Tree page: artifact https://claude.ai/artifact/72v2Uppt6jpfXLCjKNX9xs. Source /mnt/project-files/vision/explorer/file-tree-explorer.html; republish by url with `files: {"file-tree.data.json": ...}`. State 2026-10-09: artifact version 49 / data v43 / file-tree.md v1.33 / 405 nodes (agents/trading/ with pm inside; system's 3 docs general). Capabilities {db, sample, user, comments}: a non-empty set is a full set, so restate all four on every publish that passes capabilities.
+The File Tree page: artifact https://claude.ai/artifact/72v2Uppt6jpfXLCjKNX9xs. Source /mnt/project-files/vision/explorer/file-tree-explorer.html; republish by url with `files: {"file-tree.data.json": ...}`. State 2026-10-09: artifact version 50 / data v44 / file-tree.md v1.33 / 405 nodes (agents/trading/ with pm inside; system's 3 docs general). Capabilities {db, sample, user, comments}: a non-empty set is a full set, so restate all four on every publish that passes capabilities.
 
 **Build (ide-build):** copy the finished page into vision/explorer/ FIRST (the data embeds the page source for [53.1.1]); `cd vision/tools; python3 parse.py $S/parsed.json; DATA_VERSION=N python3 enrich.py $S/parsed.json $S/ftdN.json`; copy to vision/file-tree.data.json, vision/explorer/ and $S/explorer/; `build_map.py --stale` / `--set json` (BY=knowledge-base-agent) / `--confirm ids` until (many nodes: one worker per subtree) "fresh, 0 missing or stale, 0 orphans" (can take >120s, use timeout); `node check_page.js <dir> <shots|-> n-0 n-...` (ids need the `n-` prefix) must print "page ok"; publish.
 

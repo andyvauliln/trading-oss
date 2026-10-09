@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-09T10:32:04Z",
+ "built": "2026-10-09T10:49:33Z",
  "docs": {
   "README.md": {
    "title": "Agent OS: Knowledge base (v0.2)",
@@ -20818,7 +20818,7 @@
     "11.10"
    ],
    "status": "file-doc",
-   "hash": "3e2f3622059b"
+   "hash": "84ff33dea8f3"
   },
   "ft-11.11": {
    "id": "ft-11.11",
@@ -24492,7 +24492,7 @@
     "idx-workers"
    ],
    "inherited": [],
-   "basis": "f5ab5e2486f8",
+   "basis": "7c1542d4df4a",
    "summary_state": "fresh"
   },
   "n-11.11": {
@@ -35058,6 +35058,23 @@
    "entries": [
     "d-060"
    ]
+  },
+  "in-20261009-1040": {
+   "at": "2026-10-09T10:40:41Z",
+   "where": "File Tree page, Apply changes",
+   "file": "2026-10-09-1040-apply-jobs-off.md",
+   "categories": [
+    "jobs",
+    "secrets",
+    "page-sync"
+   ],
+   "summary": "Apply changes from the page: the owner turned off every job in the system's jobs file (relink, check-links, news-digest, system-self-improvement, knowledge-sync) and wrote the Groq key into the keys file's text on the page (value redacted; it already sits in the keys file), with the page's ripple adding GROQ_API_KEY to the keys file's example.",
+   "processed_into": [
+    "tools/tabs.py",
+    "tools/overrides.json [47.1.1]",
+    "page v50"
+   ],
+   "entries": []
   }
  },
  "problems": []
