@@ -7,6 +7,7 @@ This folder runs the File Tree page on your own machine, with Claude Code behind
 - The repository cloned on the server, with a way to push.
 - Python 3.10 or newer, Node, and Claude Code with its SDK: `npm install -g @anthropic-ai/claude-code` and `pip install claude-agent-sdk`.
 - A way for Claude Code to sign in. Either put an API key in the keys file `.secrets/test/.env` as `ANTHROPIC_API_KEY=...`, or sign Claude Code in once with `claude` in a terminal. The settings name the key; its value never leaves the keys file.
+- For voice input, a Groq key in the same keys file as `GROQ_API_KEY=...` (free at console.groq.com). Without it the microphone button stays hidden.
 
 ## Start it
 
@@ -32,6 +33,7 @@ Never open the port to the internet or put the service behind a public address. 
 - **Notes, comments and edits** are saved at once as small JSON files in `apps/project-IDE/data/page-store/`, so they are in the repository and nothing waits on claude.ai. An edit to a file's text is also written straight into that file, and an edit to How it works into the item's `.index.md`.
 - **A request in the box** runs as a Claude Code session started in `agents/system/`. From there Claude Code loads the system's agents and skills, including the system's `CLAUDE.md` in `agents/system/.claude/`, so it works by the same rules as every other Claude on the project: it files your request, does the work, rebuilds the page and commits. The page shows each step while it works, then the answer with its cost and time, and reloads the tree if files changed. A follow-up in the same box continues the same conversation.
 - **Delete** next to a file's or folder's name opens a short form with an optional note for Claude, such as what to move or keep first. Claude Code deletes the item and its How it works file straight away, then cleans the project of it: its place in the notes, links to it and mentions of it in other files. It keeps your note in mind, files the deletion and commits. The item stays on the page, struck through, until the next sync, and "Bring it back" undoes it the same way.
+- **Voice input**: the microphone button next to the request box and the delete note box records you, up to 5 minutes, with a timer; press it again to stop. The server sends the recording to Groq and the text is added to the box, so you can check it before you send. If one Groq model hits its rate limit or fails, the next one in `server.config.json` is tried. The recording is not kept. The browser asks once for the microphone; open the page as `127.0.0.1` or `localhost`, since browsers allow the microphone only there or over HTTPS.
 - **Steps that need your click** show up in the chat with Allow and Refuse buttons: pushing to GitHub, deleting anything other than the item you deleted, installing, network tools, and anything outside the repository. Nothing from the page can open the keys folder. A question nobody answers is refused after fifteen minutes.
 - **Apply changes** at the top of the page shows how many items are marked changed. Pressing it starts one Claude Code run in the chat of the top folder: Claude Code brings everything waiting on the page into the files (the sync), rebuilds the page and commits, and the page loads the new tree.
 - **The "changed" mark** shows on everything a request from the page touched: your edits and notes, new and deleted items, requests in the box, and every file Claude Code changed for you. The marks stay until the next sync.
@@ -61,4 +63,5 @@ Never open the port to the internet or put the service behind a public address. 
 
 - `server.py`: the web service: the page, the store, write-through and the request box.
 - `claude_bridge.py`: runs each request as a Claude Code session and checks every step first.
+- `voice.py`: turns a recording into text through Groq.
 - `server.config.json`: the settings.

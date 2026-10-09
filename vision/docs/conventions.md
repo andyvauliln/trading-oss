@@ -17,7 +17,7 @@ The rules that keep hundreds of agents consistent and machine-readable: how agen
 ### Level agent IDs and folder names
 <!-- k: id=conv-level-ids applies=[10],[19],[2.18.1] sources=D-012,D-032,D-056 status=proposed -->
 - Domain and system agents: `[code]-domain-agent` for a domain (`pm-domain-agent` for [19]), `sys-system-agent` for [10].
-- Level folders keep their structural names (`system/`, `prediction-market-agents/`). The ID lives in the level's config and in the registry [2.18.1]. A running agent's folder name is its ID.
+- Level folders keep their structural names (`system/`, `prediction-market/`). The ID lives in the level's config and in the registry [2.18.1]. A running agent's folder name is its ID.
 - Trading adds its own rules in the prediction-market domain's `trading-conventions.md` (strategy agent IDs).
 
 ### Sub-agent and support agent names
@@ -46,7 +46,7 @@ The rules that keep hundreds of agents consistent and machine-readable: how agen
 ## The .link naming rule
 <!-- k: id=conv-link-names applies=[2.7],name:*.link.*,name:subagents.link,path:agents/**/subagents.link/* sources=D-002,D-030,in-20260929-1520,in-20260930-1045 status=decided -->
 - Every symlinked file or folder has `.link` in its name (D-002), e.g. `relink.system.link.js`, `subagents.link/`.
-- Links directly inside a `.link` folder are named after their child only, without `.link` of their own; the folder name marks them (D-030). Example: `docs/subagents.link/prediction-market-agents/`.
+- Links directly inside a `.link` folder are named after their child only, without `.link` of their own; the folder name marks them (D-030). Example: `docs/subagents.link/prediction-market/`.
 - A path with neither is a real file or folder, owned by the folder it sits in.
 - In the file tree, `A -> B` means A is a symlink to B.
 
@@ -231,10 +231,10 @@ research/
 
 ```text
 agents/system/docs/                                        # system's own docs [2]
-└── subagents.link/prediction-market-agents/               # [2.20.1] -> agents/prediction-market-agents/docs/
-agents/prediction-market-agents/docs/                      # domain's own docs [19.6]
+└── subagents.link/prediction-market/                      # [2.20.1] -> agents/trading/prediction-market/docs/
+agents/trading/prediction-market/docs/                      # domain's own docs [19.6]
 └── subagents.link/strategy-1-agent/                       # [19.6.1.1] -> .../strategy-1-agent/docs/
-agents/prediction-market-agents/strategy-1-agent/docs/     # strategy's own docs [21.6]
+agents/trading/prediction-market/strategy-1-agent/docs/     # strategy's own docs [21.6]
 └── subagents.link/pm-strategy-1.momentum-v1.opus55-test/  # [21.6.1.1] -> that agent's docs/ [46]
 ```
 

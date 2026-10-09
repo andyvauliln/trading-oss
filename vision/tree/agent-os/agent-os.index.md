@@ -1,17 +1,17 @@
 ---
 about: agent-os/
 node: n-0
-basis: 46fa0672e939
-written: 2026-10-07T19:11:00Z
+basis: 0de59e2b20ed
+written: 2026-10-09T09:55:29Z
 by: knowledge-base-agent
 ---
 # agent-os/
 
 ## Summary
 
-The system's workspace, the Agent OS: a home for AI agents of any kind, such as trading, social media or management. Trading is the first kind and lives entirely in the prediction-market domain, which runs many trading agents side by side, tests every idea in test mode first and keeps what works, with the owner approving anything that touches real money; a later trading domain is copied from it. The system level keeps only what holds for any agent: test and live modes, the owner's approval to go live, a general stop switch, limits in code, the key rules and the shared machinery.
+The system's workspace, the Agent OS: a home for AI agents of any kind, such as trading, social media or management. Trading is the first kind and lives in `agents/trading/`, a folder of trading domains; its first, the prediction-market domain, runs many trading agents side by side, tests every idea in test mode first and keeps what works, with the owner approving anything that touches real money; the next trading domain, copy trading, is copied from it. The system level keeps only what holds for any agent: test and live modes, the owner's approval to go live, a general stop switch, limits in code, the key rules and the shared machinery.
 
-Agents at every level work in the same standard folder, and everything is a plain file the owner can open. The workspace is one GitHub repository: `README.md`; `agents/`, with every agent, the shared files, the docs for people and `agents/system/.claude/CLAUDE.md`, which AI sessions read first; `apps/`, with our own apps and the outside ones, among them `project-IDE/`, the owner's File Tree page; and `.secrets/`, which stays on the machine and out of git. Every file and folder has a short How it works file and a Details file (`.meta.json`, empty for now). Nothing is built yet.
+Agents at every level work in the same standard folder, and everything is a plain file the owner can open. The workspace is one GitHub repository: `README.md` at the top; `agents/`, with every agent, the shared files, the docs for people and `agents/system/.claude/CLAUDE.md`, which AI sessions read first; `apps/`, with our own apps and the outside ones, each with its own docs, among them `project-IDE/`, the owner's File Tree page; and `.secrets/`, which stays on the machine and out of git. Every file and folder has a short How it works file (`vision.index.md` for `vision.md`) and a Details file (`.meta.json`, empty for now). Nothing is built yet.
 
 ## Keep in mind
 

@@ -1,10 +1,10 @@
 ---
 about: agent-os/agents/system/.claude/agents/knowledge-base-agent.md
 node: n-10.1.1.2
-basis: 8c7df93fd236
+basis: 6698c20578fd
 written: 2026-10-06T20:55:10Z
 by: knowledge-base-agent
-confirmed: 2026-10-07T19:02:04Z
+confirmed: 2026-10-09T09:57:03Z
 ---
 # knowledge-base-agent.md
 

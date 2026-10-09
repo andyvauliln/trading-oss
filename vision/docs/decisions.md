@@ -1,4 +1,4 @@
-# Agent OS: Decisions (v1.12)
+# Agent OS: Decisions (v1.13)
 
 This is the decision log: what the owner decided, when, why, and which inputs and objects it touched. It is history. The rules a decision made live in the topic docs (conventions.md, safety.md, data-schemas.md, common/, how-to/ and the file docs in file-tree.md), and each entry below points to where its rule lives today. When a later decision changes an earlier one, the earlier entry stays and its status says what replaced it. Numbers are never reused. The knowledge agent [10.1.1.2] adds one entry per owner decision (knowledge-intake, step 6). D-033 (the knowledge base itself) is recorded by its own entry.
 
@@ -564,7 +564,37 @@ Status words: **active** (in force), **partly superseded by D-0xx** (some of it 
 - **Sources:** in-20261007-0904, D-056
 - **Changed:** the tree notes (new items under [19], [14.3] and [54.3] moved, [42] retired), the topic notes split into general and `trading-` notes, the helper agents and skills, `CLAUDE.md`.
 
+### D-059: Trading is a folder of domains; trading gets its own three docs
+<!-- k: id=d-059 applies=[4],[19],[56],[56.1],[2.1],[2.2],[2.22] sources=in-20261009-0940,D-056,D-058 status=decided -->
+- **Decision:** `agents/trading/` [56] holds the trading domains: the prediction-market domain moves to `agents/trading/prediction-market/` [19] (numbers kept), and a later one is `agents/trading/copytrading/`. `agents/trading/docs/` [56.1] holds trading's own vision, README and rebuild prompt. The system's three docs are rewritten in general terms. The prediction-market and copy-trading docs are not touched now.
+- **Date:** 2026-10-09
+- **Why:** the owner's message: "prediction market is a trading domain we can just add it to one folder trading/prediction-market", "put in a trading/docs first 3 documents that relates to trading", "make for system agent also 3 files and that is it for now".
+- **Status:** decided. Our defaults: `trading/` has only its `docs/` for now (no agent, configs or scripts of its own); the trading notes, config and scripts stay in the prediction-market domain until the owner says otherwise; the domain's file names (`prediction-market-agents.config.json` and the like) keep their names; the system still reaches each domain through `subagents.link/`.
+- **Sources:** in-20261009-0940, D-056, D-058
+- **Changed:** the tree notes ([4], [19], new [56]), the paths in the notes, tools and mirror tree, the system's README and rebuild prompt, trading's new three docs.
+
+### D-060: Voice input for the page's AI boxes, transcribed by Groq
+<!-- k: id=d-060 applies=[53],[53.1.1],[53.3],[53.3.2],[53.3.4],[53.3.5] sources=in-20261009-1019 status=decided -->
+- **Decision:** the request box and the delete note box get a microphone button: press to record (5 minutes at most), the text is added to the box, and the owner sends it as usual. The project IDE server transcribes through Groq's free speech models (`voice.py` [53.3.5], route `api/voice`), trying the models listed in its config in order and moving on after a rate limit or an error. The key `GROQ_API_KEY` sits only in the git-ignored keys file; the page never sees it.
+- **Date:** 2026-10-09
+- **Why:** the owner's message: "voice button for the ai inputs on ui so when press we start recording 5 min limit", "we ll use groq free model for that rotate them if one have rate limit or problems", "put it in a secretes".
+- **Status:** decided. Our defaults: the models `whisper-large-v3-turbo` then `whisper-large-v3`; the text is added to the box, not sent by itself; the button shows only on the owner's server, because claude.ai pages get no microphone and cannot reach Groq.
+- **Sources:** in-20261009-1019
+- **Changed:** the page [53.1.1], the server [53.3.2], its config [53.3.4], new `voice.py` [53.3.5], the server README [53.3.1].
+
+### D-061: The research studies move to agents/trading/researches/; the page shows the real files
+<!-- k: id=d-061 applies=[56],[56.2],[54.1],[54.2],[54.3] sources=in-20261009-1230,D-045,D-059 status=decided -->
+- **Decision:** the repository's top-level `researches/` moves to `agents/trading/researches/` [56.2], with its three studies: prediction-market research [54.1], self-improving agents [54.2] and trading-agent architectures [54.3]. The File Tree page marks every item that exists in the repository and lists every real file under such a folder, read from the repository at each build.
+- **Date:** 2026-10-09
+- **Why:** the owner's message: "get last version from github there will be researches folder move it to trading/researches folder, and make sync that current file tree represent real file tree in a project".
+- **Status:** decided. Our defaults: the folder keeps the owner's name `researches/` (every agent's own folder is `research/`); all three studies move, the self-improving-agents study included, as the owner moved the whole folder; the planning copy `vision/` is not shown as part of the tree (it becomes the project IDE's data); real files found by the scan get no How it works file of their own, their folder's describes them.
+- **Sources:** in-20261009-1230, D-045, D-059
+- **Changed:** the repository (the move), the tree notes ([56], new [56.2], [54], [54.1]-[54.3]), the page build (`enrich.py` lists real files), the mirror tree.
+
 ## Changelog
+- v1.15 (2026-10-09): D-061 added.
+- v1.14 (2026-10-09): D-060 added.
+- v1.13 (2026-10-09): D-059 added.
 - v1.12 (2026-10-07): D-058 added; D-057 status (the one clash, `server.py`).
 - v1.11 (2026-10-07): D-056, D-057 added; D-054 status (named).
 - v1.10 (2026-10-07): D-053 changed: a rebuild prompt listed at every level.

@@ -51,12 +51,14 @@
    }
   ],
   "example": {
-   "body": "# .secrets/test/.env  (git-ignored, chmod 600)\n# FAKE values for illustration only - not the real key list.\n# One file for all test keys: sections by type, prefixes per account/platform.\n\n# --- Mode ---\nTRADING_OS_ENV=test\n\n# --- Models ---\nANTHROPIC_API_KEY=sk-ant-api03-XXXXXXXXXXXXXXXXXXXX\nOPENROUTER_API_KEY=\n\n# --- Platforms / accounts ---\n# Polymarket account 1 (acct-pm-test-1)\nPOLYMARKET_ACCT1_API_KEY=00000000-0000-0000-0000-000000000000\nPOLYMARKET_ACCT1_API_SECRET=ZmFrZS1zZWNyZXQtZXhhbXBsZQ==\nPOLYMARKET_ACCT1_API_PASSPHRASE=example-passphrase\nPOLYMARKET_ACCT1_WALLET_PRIVATE_KEY=0x0000000000000000000000000000000000000000000000000000000000000001\n\n# --- Notifications ---\nNOTIFY_TELEGRAM_BOT_TOKEN=\n",
+   "body": "# .secrets/test/.env  (git-ignored, chmod 600)\n# FAKE values for illustration only - not the real key list.\n# One file for all test keys: sections by type, prefixes per account/platform.\n\n# --- Mode ---\nAGENT_OS_ENV=test\n\n# --- Models ---\nANTHROPIC_API_KEY=sk-ant-api03-XXXXXXXXXXXXXXXXXXXX\nGROQ_API_KEY=gsk_XXXXXXXXXXXXXXXXXXXXXXXX\nOPENROUTER_API_KEY=\n\n# --- Platforms / accounts ---\n# Polymarket account 1 (acct-pm-test-1)\nPOLYMARKET_ACCT1_API_KEY=00000000-0000-0000-0000-000000000000\nPOLYMARKET_ACCT1_API_SECRET=ZmFrZS1zZWNyZXQtZXhhbXBsZQ==\nPOLYMARKET_ACCT1_API_PASSPHRASE=example-passphrase\nPOLYMARKET_ACCT1_WALLET_PRIVATE_KEY=0x0000000000000000000000000000000000000000000000000000000000000001\n\n# --- Notifications ---\nNOTIFY_TELEGRAM_BOT_TOKEN=\n",
    "lang": "dotenv",
-   "note": "Shape of the file: KEY=value lines grouped in comment sections, prefixes per account/platform. This is only an illustration; the real key list lives in the Variables tab and in the local file.",
+   "note": "Shape of the file: KEY=value lines grouped in comment sections, prefixes per account/platform. Values here are fake illustrations; the real key list lives in the Variables tab and in the local file, which since 2026-10-09 holds GROQ_API_KEY for voice input.",
    "title": ".secrets/test/.env with fake values, grouped in sections"
   },
-  "open_questions": []
+  "open_questions": [
+   "Is Groq also added as a model platform in models.config.json [11.11], beyond speech to text for voice input?"
+  ]
  },
  "47.2.1": {
   "name": ".env",

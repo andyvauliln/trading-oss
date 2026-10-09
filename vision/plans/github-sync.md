@@ -56,7 +56,7 @@ The planning folder in the cloud project is laid out differently, so the first s
 | `docs/` topic notes (overview, architecture, conventions, safety, flows, schemas, metrics, glossary, roadmap, feature map, how-to, common, index) | `agents/system/docs/` |
 | `.claude/knowledge/sources/`, the earlier vision notes | `apps/project-IDE/data/sources/` |
 | `tools/overrides.json`, `.claude/memory/`, `plans/`, `archive/` | `apps/project-IDE/data/` |
-| in the repository today: `researches/prediction-market-research/`; `researches/self-improving-agents/` and `researches/trding-agents-arhiteches/` | `agents/prediction-market-agents/research/`; `agents/system/research/` (the root `researches/` goes away) |
+| in the repository today: `researches/prediction-market-research/`; `researches/self-improving-agents/` and `researches/trding-agents-arhiteches/` | `agents/trading/prediction-market/research/`; `agents/system/research/` (the root `researches/` goes away) |
 | every How it works file (next to the drafts, or in `tree/trading-os/...`) | next to its file or inside its folder |
 
 The scripts' paths are switched to the repository layout in the same step, and the build must report every How it works file fresh with no orphans before the first commit. After the first sync, the cloud project works from a clone of the repository, so both sides have the same layout.

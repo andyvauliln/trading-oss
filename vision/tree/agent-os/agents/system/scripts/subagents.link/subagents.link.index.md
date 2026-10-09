@@ -1,10 +1,10 @@
 ---
 about: agent-os/agents/system/scripts/subagents.link/
 node: n-14.4
-basis: 123164310679
+basis: 9d7f7efba57d
 written: 2026-10-01T00:57:24Z
 by: summary-worker
-confirmed: 2026-10-07T19:02:04Z
+confirmed: 2026-10-09T10:03:12Z
 ---
 # subagents.link/
 

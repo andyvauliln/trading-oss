@@ -1,9 +1,10 @@
 ---
 about: agent-os/agents/system/logs/subagents.link/[domain-name]/
 node: n-15.5.1
-basis: c0cf1a3673f7
+basis: 1f3b94b11d13
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:03:12Z
 ---
 # [domain-name]/
 

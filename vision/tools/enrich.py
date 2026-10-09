@@ -57,10 +57,10 @@ def sec_for(n):
 # relative path inside a level folder, to borrow the example agent's section
 LEVEL_ROOTS = [
  "agent-os/agents/system/",
- "agent-os/agents/prediction-market-agents/",
- "agent-os/agents/prediction-market-agents/strategy-1-agent/",
+ "agent-os/agents/trading/prediction-market/",
+ "agent-os/agents/trading/prediction-market/strategy-1-agent/",
 ]
-VARIANT = "agent-os/agents/prediction-market-agents/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test/"
+VARIANT = "agent-os/agents/trading/prediction-market/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test/"
 bypath = {n["path"]: n for n in nodes}
 def equivalent(n):
     """For level files with no own section, the matching node in the example agent."""
@@ -152,7 +152,7 @@ index   agents/system/data/system/links.index.json updated""", title="What a run
    "Agent tests: headless Claude Code in a temporary copy of the level folder, fixtures only, mode forced to test, no secrets (load-secret refuses)."],
   ex("text", """
 $ ls -l tests/agents/run-tests.system.link.js
-run-tests.system.link.js -> ../../../../../system/scripts/system/run-tests.system.js
+run-tests.system.link.js -> ../../../../../../system/scripts/system/run-tests.system.js
 
 $ node tests/agents/run-tests.system.link.js
 level  pm-strategy-1.momentum-v1.opus55-test   kind agents   config tests/agents/tests.config.json
@@ -272,7 +272,7 @@ memory: project
   ["A real folder that holds only folder links, one per direct child agent (D-030).",
    "Entries need no .link of their own: the folder name marks them. Never followed recursively."],
   ex("text", """
-agents/prediction-market-agents/strategy-1-agent/docs/subagents.link/
+agents/trading/prediction-market/strategy-1-agent/docs/subagents.link/
 ├── pm-strategy-1.momentum-v1.opus55-test -> ../../pm-strategy-1.momentum-v1.opus55-test/docs
 ├── pm-strategy-1.momentum-v2.opus55-test -> ../../pm-strategy-1.momentum-v2.opus55-test/docs
 └── pm-strategy-1.momentum-v2.sonnet55-test -> ../../pm-strategy-1.momentum-v2.sonnet55-test/docs""", title="What it looks like on disk (strategy level, docs)")),
@@ -346,7 +346,7 @@ node "$ROOT/agents/system/scripts/system/relink.system.js" --agent-dir "$PWD"
 # Start one run of this agent (called by the scheduler for the main-run job, D-029)
 set -euo pipefail
 cd "$(dirname "$0")"
-node ../../../system/scripts/system/run-agent.system.js --agent "$(basename "$PWD")" "$@"
+node ../../../../system/scripts/system/run-agent.system.js --agent "$(basename "$PWD")" "$@"
 """)),
 ]
 
@@ -485,11 +485,11 @@ export function decide(cfg, signals) {
  "30.1": ex("text", """
 scripts/risk-check.decision.link.js -> ../../../scripts/decisions/risk-check.decision.js""", title="On disk (its domain's shared risk check)"),
  "30.2": ex("text", """
-scripts/run-tests.system.link.js -> ../../../../system/scripts/system/run-tests.system.js
+scripts/run-tests.system.link.js -> ../../../../../system/scripts/system/run-tests.system.js
 usage: node scripts/run-tests.system.link.js [--kind agents|scripts] [--id t-scripts-001] [--schedule on_change]"""),
  "27.1": ex("text", """
-configs/system.config.link.json -> ../../../../system/configs/system.config.json
-configs/models.config.link.json -> ../../../../system/configs/models.config.json
+configs/system.config.link.json -> ../../../../../system/configs/system.config.json
+configs/models.config.link.json -> ../../../../../system/configs/models.config.json
 configs/prediction-market-agents.config.link.json -> ../../../configs/prediction-market-agents.config.json""", title="On disk"),
  "34.1": ex("text", """
 2026-09-29T10:05:00Z INFO  polymarket-prices run=4812 fetched=187 markets in 2.3s
@@ -510,8 +510,8 @@ data/get-polymarket-data/
 ├── latest.json        # stable target for other agents' file links
 └── clean.json         # written by clean-data.system.js"""),
  "46.1": ex("text", """
-docs/safety.link.md             -> ../../../../system/docs/safety.md
-docs/agent-architecture.link.md -> ../../../../system/docs/common/agent-architecture.md
+docs/safety.link.md             -> ../../../../../system/docs/safety.md
+docs/agent-architecture.link.md -> ../../../../../system/docs/common/agent-architecture.md
 docs/trading-safety.link.md     -> ../../../docs/trading-safety.md
 docs/trading-agent-architecture.link.md -> ../../../docs/common/trading-agent-architecture.md"""),
  "46.6": ex("markdown", """
@@ -538,7 +538,7 @@ also let's make ui for the file tree, generally it suppose to be main document f
 Processed into: file-tree.md v1.10, feature-map.md §11"""),
  "15.1": ex("jsonl", """
 {"ts":"2026-09-29T10:00:00Z","src":"scheduler","event":"run_started","agent":"pm-strategy-1.momentum-v1.opus55-test","run":"r-20260929-1000"}
-{"ts":"2026-09-29T10:03:12Z","src":"scheduler","event":"important_change","file":"agents/prediction-market-agents/data/polymarket-prices/latest.json","action":"cancel_and_restart","agent":"pm-strategy-1.momentum-v1.opus55-test"}
+{"ts":"2026-09-29T10:03:12Z","src":"scheduler","event":"important_change","file":"agents/trading/prediction-market/data/polymarket-prices/latest.json","action":"cancel_and_restart","agent":"pm-strategy-1.momentum-v1.opus55-test"}
 {"ts":"2026-09-29T10:04:00Z","src":"check-links","event":"broken_link","path":".../data/markets-catalog.link.json","severity":"medium"}
 {"ts":"2026-09-29T10:05:00Z","src":"costs","agent":"pm-strategy-1.momentum-v1.opus55-test","tokens_in":48211,"tokens_out":2310,"usd":0.41}"""),
  "15.2": ex("jsonl", """
@@ -582,7 +582,7 @@ data/polymarket-prices/
 | name | type | domain | parent | route | mode | status | created | path |
 |---|---|---|---|---|---|---|---|---|
 | sys-system-agent | system | system | - | opus-5.5 | test | active | 2026-09-29 | agents/system/ |
-| pm-domain-agent | domain | prediction-markets | - | opus-5.5 | test | active | 2026-09-29 | agents/prediction-market-agents/ |
+| pm-domain-agent | domain | prediction-markets | - | opus-5.5 | test | active | 2026-09-29 | agents/trading/prediction-market/ |
 | pm-strategy-1.momentum-v1.opus55-test | variant | prediction-markets | - | opus-5.5 | test | active | 2026-09-29 | .../strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test/ |"""),
 }
 # runs.jsonl line example (numberless node)
@@ -780,7 +780,8 @@ DRAFTS.update({"19.6.5": PM + "trading-overview.md", "19.6.6": PM + "trading-arc
                "19.6.16.3": PM + "common/strategy-si-templates.md",
                "19.6.17.1": PM + "how-to/create-strategy-or-variant.md", "19.6.17.2": PM + "how-to/go-live-with-money.md",
                "19.6.17.3": PM + "how-to/add-trading-account.md", "19.6.17.4": PM + "how-to/stop-trading-agent.md",
-               "19.6.18.1": PM + "index/accounts.md"})
+               "19.6.18.1": PM + "index/accounts.md",
+               "56.1.1": "trading/README.md", "56.1.2": "trading/vision.md", "56.1.3": "trading/rebuild-prompt.md"})
 DRAFTS = {k: v for k, v in DRAFTS.items() if os.path.exists(f"{DOCS_DIR}/{v}")}
 for x in out_nodes:
     if x["num"] in DRAFTS:
@@ -806,7 +807,7 @@ CLAUDE_DRAFTS = build_map.IF.DRAFTS   # planning copies of the .claude folder; t
 VISION_FILES = {"10.1.2.5.2.1": "tools/README.md", "10.1.2.5.2.2": "tools/parse.py", "10.1.2.5.2.3": "tools/enrich.py",
                 "10.1.2.5.2.4": "tools/tabs.py", "10.1.2.5.2.5": "tools/build_map.py", "10.1.2.5.2.6": "tools/index_files.py", "10.1.2.5.2.7": "tools/check_page.js",
                 "53.2.3": "tools/overrides.json", "53.1.1": "explorer/file-tree-explorer.html",
-                "53.3.1": "server/README.md", "53.3.2": "server/server.py", "53.3.3": "server/claude_bridge.py", "53.3.4": "server/server.config.json"}
+                "53.3.1": "server/README.md", "53.3.2": "server/server.py", "53.3.3": "server/claude_bridge.py", "53.3.4": "server/server.config.json", "53.3.5": "server/voice.py"}
 for x in out_nodes:
     x["fields"] = tabs.fields_for(x)
     x["custom_tabs"] = tabs.custom_tabs_for(x)
@@ -896,6 +897,60 @@ KNOWLEDGE = {eid: {"doc": e["doc"], "heading": e["heading"], "status": e["status
                    "applies": e["applies_raw"], "nodes": e["nodes"], "text": _clip(e["text"])} for eid, e in KENTRIES.items()}
 INPUTS = {k: {"at": v.get("at"), "where": v.get("where"), "summary": v.get("summary"), "file": v.get("file")} for k, v in KMAP["inputs"].items()}
 print("knowledge:", len(KNOWLEDGE), "entries;", sum(1 for x in out_nodes if x["how"]), "summaries;", len(KMAP["problems"]), "map problems")
+
+# ---- the real file tree (owner, 2026-10-09, D-061): every real file and folder under a folder that exists in the
+# repository is listed, even when the tree notes do not name it. Such items carry "scanned": true; they get no How it
+# works file of their own (their folder's describes them). vision/ (the planning copy) and git's own files are left out.
+SCAN_SKIP = {".git", "__pycache__", "node_modules", ".secrets", "vision", ".DS_Store"}
+def _scan(parent):
+    rel = parent["path"][len("agent-os/"):]
+    d = os.path.join(REPO, rel)
+    if not os.path.isdir(d):
+        return
+    have = {c["path"] for c in out_nodes if c.get("parent") == parent["id"]}
+    for name in sorted(os.listdir(d)):
+        if name in SCAN_SKIP or (rel == "" and name.endswith(".md") is False and name.startswith(".")):
+            continue
+        full = os.path.join(d, name)
+        isdir = os.path.isdir(full)
+        path = parent["path"] + name + ("/" if isdir else "")
+        if path in have:
+            continue
+        x = {k: None for k in out_nodes[0]}
+        x.update({"id": "r-" + re.sub(r"[^A-Za-z0-9._-]+", "-", path[len("agent-os/"):].rstrip("/")), "num": None, "name": name + ("/" if isdir else ""),
+                  "path": path, "type": "folder" if isdir else "file", "link": False, "placeholder": False, "parent": parent["id"],
+                  "children": [], "status": "decided", "exists": True, "scanned": True, "details": [], "open_questions": [], "rules": [],
+                  "concepts": [], "decisions": ["D-061"], "features": [], "custom_tabs": [], "qa": [], "fields": [],
+                  "summary": "Found in the repository; the folder's How it works describes it.", "knowledge": {"direct": [], "inherited": []}})
+        if not isdir:
+            x["content_source"] = f"repo andyvauliln/trading-oss: {path[len('agent-os/'):]}"
+            if os.path.getsize(full) > 200000:
+                x["content"] = None; x["content_source"] += " (too large for the page; open it in the repository)"
+            else:
+                try:
+                    x["content"] = open(full, encoding="utf-8").read()
+                except (UnicodeDecodeError, OSError):
+                    x["content"] = None; x["content_source"] += " (not a text file)"
+        out_nodes.append(x)
+        parent.setdefault("children", []).append(x["id"])
+        if isdir:
+            _scan(x)
+for _x in list(out_nodes):
+    if _x["type"] == "folder" and _x.get("exists") and not _x.get("scanned") and not _x.get("link") and "[" not in _x["path"] \
+            and _x["path"].startswith("agent-os/") and _x["path"] != "agent-os/":
+        _scan(_x)
+_root = out_nodes[0]
+for _name in sorted(os.listdir(REPO)) if os.path.isdir(REPO) else []:   # files at the top of the repository (README, HANDOFF)
+    _f = os.path.join(REPO, _name)
+    if os.path.isfile(_f) and _name.endswith(".md") and not any(c["path"] == "agent-os/" + _name for c in out_nodes):
+        _x = {k: None for k in out_nodes[0]}
+        _x.update({"id": "r-" + _name, "name": _name, "path": "agent-os/" + _name, "type": "file", "link": False, "placeholder": False,
+                   "parent": _root["id"], "children": [], "status": "decided", "exists": True, "scanned": True, "details": [], "open_questions": [],
+                   "rules": [], "concepts": [], "decisions": ["D-061"], "features": [], "custom_tabs": [], "qa": [], "fields": [],
+                   "summary": "Found at the top of the repository.", "knowledge": {"direct": [], "inherited": []},
+                   "content": open(_f, encoding="utf-8").read(), "content_source": f"repo andyvauliln/trading-oss: {_name}"})
+        out_nodes.append(_x); _root.setdefault("children", []).append(_x["id"])
+print("real files listed:", sum(1 for x in out_nodes if x.get("scanned")))
 
 retired = [{"nums": r["nums"], "heading": r["heading"],
             "text": " ".join(i["text"] for i in r["items"])} for r in P["retired"]]

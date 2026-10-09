@@ -16,7 +16,7 @@ There is no root `docs/` (D-017), no root `CLAUDE.md` (the file every Claude rea
 
 ## Domains under agents/
 <!-- k: id=arch-domains applies=[4],path:agents/* sources=D-013,D-015,in-20260929-1616 status=decided -->
-- Every direct child of `agents/` is a domain: `system/` [10], `prediction-market-agents/` [19], more later. There is no extra `domains/` level.
+- `agents/` holds the domains: `system/` [10] directly, and the trading domains inside the folder `trading/` [56], starting with `trading/prediction-market/` [19] (D-059). There is no extra `domains/` level.
 - `system/` is a domain like the others. It differs in two ways only: its level agent runs the whole system, and its content folders also hold the shared files every agent uses.
 - A domain's folder is its domain agent's folder. The agents below it are sub-folders of it, in the levels the domain defines. The prediction-market domain's strategy and variant folders: its `trading-architecture.md`.
 
@@ -27,7 +27,7 @@ Every agent sits at a level, and every level has the same standard folder (D-022
 | Level | Folder | Prompt | Responsible for | Children |
 |---|---|---|---|---|
 | System | `agents/system/` [10] | [10.1.5] system manager | all domains, system health and development, the shared files, the owner's questions about the whole system | domains |
-| Domain | e.g. `prediction-market-agents/` [19] | [19.1.5] domain owner | its domain: finds, creates and updates its agents, keeps the domain running smoothly, answers the owner's questions and comments | the first level the domain defines |
+| Domain | e.g. `trading/prediction-market/` [19] | [19.1.5] domain owner | its domain: finds, creates and updates its agents, keeps the domain running smoothly, answers the owner's questions and comments | the first level the domain defines |
 
 - Every agent has a parent, and a parent sees its children through `subagents.link/` (`arch-child-links`).
 - The domain-owner role is the domain's own prompt, not a sub-agent (D-022 reconciles D-018).

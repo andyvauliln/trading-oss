@@ -1,9 +1,10 @@
 ---
 about: agent-os/agents/system/scripts/subagents.link/[domain-name]/
 node: n-14.4.1
-basis: 175d8be1c9ed
+basis: c44471703698
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T10:03:12Z
 ---
 # [domain-name]/
 

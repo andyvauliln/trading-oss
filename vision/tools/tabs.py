@@ -188,6 +188,7 @@ ENV_ROWS = [
  {"name": "POLYMARKET_ACCT1_API_SECRET", "purpose": "Secret paired with the API key", "used_by": "acct-pm-test-1", "required": True, "format": "base64"},
  {"name": "POLYMARKET_ACCT1_API_PASSPHRASE", "purpose": "Passphrase paired with the API key", "used_by": "acct-pm-test-1", "required": True, "format": "text"},
  {"name": "POLYMARKET_ACCT1_WALLET_PRIVATE_KEY", "purpose": "Signs orders for the account's wallet", "used_by": "acct-pm-test-1", "required": True, "format": "0x + 64 hex"},
+ {"name": "GROQ_API_KEY", "purpose": "Groq speech to text for voice input in the project IDE (D-060); test file only", "used_by": "apps/project-IDE/server/voice.py", "required": False, "format": "gsk_..."},
  {"name": "OPENROUTER_API_KEY", "purpose": "Other models via OpenRouter (not connected yet)", "used_by": "models.config.json", "required": False, "format": "sk-or-..."},
  {"name": "NOTIFY_TELEGRAM_BOT_TOKEN", "purpose": "Alerts to Telegram (later)", "used_by": "notifier", "required": False, "format": "123:ABC..."},
 ]
@@ -199,13 +200,14 @@ ENV_FAKE = {
  "POLYMARKET_ACCT1_API_SECRET": "ZmFrZS1zZWNyZXQtZXhhbXBsZQ==",
  "POLYMARKET_ACCT1_API_PASSPHRASE": "example-passphrase",
  "POLYMARKET_ACCT1_WALLET_PRIVATE_KEY": "0x" + "0" * 63 + "1",
+ "GROQ_API_KEY": "gsk_XXXXXXXXXXXXXXXXXXXXXXXX",
  "OPENROUTER_API_KEY": "",
  "NOTIFY_TELEGRAM_BOT_TOKEN": "",
 }
 
 def env_rows(num):
     if num == "47.2.1":
-        return [dict(r, used_by=r["used_by"].replace("test", "live")) for r in ENV_ROWS if r["name"] != "OPENROUTER_API_KEY"]
+        return [dict(r, used_by=r["used_by"].replace("test", "live")) for r in ENV_ROWS if r["name"] not in ("OPENROUTER_API_KEY", "GROQ_API_KEY")]
     return ENV_ROWS
 
 def env_fields(num):
@@ -395,9 +397,9 @@ def job(id, purpose, type, run, schedule, run_on="local", platform=None, model="
     return r
 JOB_FILES = {  # num -> (agent name, workspace)
  "11.10": ("system", "agents/system"),
- "19.2.1": ("prediction-market-agents", "agents/prediction-market-agents"),
- "21.2.1": ("strategy-1-agent", "agents/prediction-market-agents/strategy-1-agent"),
- "27.4": ("pm-strategy-1.momentum-v1.opus55-test", "agents/prediction-market-agents/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test"),
+ "19.2.1": ("prediction-market-agents", "agents/trading/prediction-market"),
+ "21.2.1": ("strategy-1-agent", "agents/trading/prediction-market/strategy-1-agent"),
+ "27.4": ("pm-strategy-1.momentum-v1.opus55-test", "agents/trading/prediction-market/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test"),
 }
 JOBS = {
  "11.10": [
@@ -438,7 +440,7 @@ JOBS = {
   job("compare-variants", "Side-by-side report of every variant's results", "workflow", "compare-variants", "after strategy-session", model="sonnet-5.5", effort="medium",
       outputs="data/variant-report/latest.md", max_turns="20", timeout="20m"),
   job("strategy-self-improvement", "Try improvements as new test variants", "subagent", "pm-strategy-1-self-improvement-agent", "cron 30 3 * * *",
-      model="opus-5.5", effort="xhigh", prompt="@docs/prompts/strategy-si.md", allowed_tools="Read, Grep, Glob, Bash(node ../../system/scripts/system/create-agent.system.js *)",
+      model="opus-5.5", effort="xhigh", prompt="@docs/prompts/strategy-si.md", allowed_tools="Read, Grep, Glob, Bash(node ../../../system/scripts/system/create-agent.system.js *)",
       permission_mode="acceptEdits", max_turns="60", max_cost_usd="5", timeout="90m"),
  ],
  "27.4": [
@@ -452,6 +454,9 @@ JOBS = {
       timezone="UTC", prompt="Close every open position on markets that resolve within the next hour. Test mode only.", max_turns="15", max_cost_usd="0.5", notify="always"),
  ],
 }
+# The owner turned every system job off on the page (2026-10-09, in-20261009-1040): they stay in the file and never run until turned on.
+for _r in JOBS["11.10"]:
+    _r["enabled"] = False
 LIST_KEYS = ("allowed_tools", "on_change", "outputs", "secret_keys")
 NUM_KEYS = ("max_turns", "retries", "max_cost_usd")
 def job_json(r, defaults):

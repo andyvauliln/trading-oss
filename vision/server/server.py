@@ -8,7 +8,9 @@ it what claude.ai gives it there:
 - write-through: an edit to a file's text goes straight into that file, and an edit to
   How it works into the item's How it works file (vision.md has vision.index.md);
 - the request box: each request runs as a Claude Code session (claude_bridge.py) and
-  streams its progress to the page.
+  streams its progress to the page;
+- voice input for the request boxes: a recording goes to Groq and comes back as text
+  (voice.py).
 
 Start it from the top of the repository:
     python3 apps/project-IDE/server/server.py
@@ -31,6 +33,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.dont_write_bytecode = True   # no __pycache__ in the repository
 import claude_bridge  # noqa: E402
+import voice  # noqa: E402
 
 CONFIG = os.environ.get("IDE_CONFIG", os.path.join(HERE, "server.config.json"))
 COLLECTIONS = {"nodes", "changes", "inputs"}       # what the page keeps (same as on claude.ai)
@@ -200,7 +203,11 @@ class App:
         self.store = Store(os.path.join(self.repo, self.cfg.get("store_dir", "apps/project-IDE/data/page-store")))
         never = self.cfg.get("claude", {}).get("never", [".secrets"])
         self.write = WriteThrough(self.repo, os.path.join(self.page_dir, self.data), never) if self.cfg.get("write_through", True) else None
-        self.bridge = claude_bridge.Bridge(self.cfg, self.repo, load_secrets(self.cfg, self.repo))
+        secrets = load_secrets(self.cfg, self.repo)
+        self.voice = voice.Voice(self.cfg, secrets)
+        # Claude Code gets only its own keys, never the voice key
+        vkey = self.voice.cfg["key"]
+        self.bridge = claude_bridge.Bridge(self.cfg, self.repo, {k: v for k, v in secrets.items() if k != vkey})
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -255,7 +262,8 @@ class Handler(BaseHTTPRequestHandler):
         if parts[1:] == ["health"]:
             b = a.bridge
             return self._send(200, {"ok": True, "server": "project-ide", "agent": b.available, "agent_error": claude_bridge.SDK_ERROR,
-                                    "repo": os.path.basename(a.repo), "claude_cwd": os.path.relpath(b.cwd, a.repo), "write_through": bool(a.write)})
+                                    "repo": os.path.basename(a.repo), "claude_cwd": os.path.relpath(b.cwd, a.repo), "write_through": bool(a.write),
+                                    "voice": a.voice.available, "voice_max_seconds": a.voice.cfg["max_seconds"]})
         if len(parts) == 3 and parts[1] == "store":
             try:
                 return self._send(200, {"docs": a.store.list(parts[2])})
@@ -294,6 +302,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(403, {"error": "local only"})
         parts, _ = self._route()
         a = self.app
+        if parts == ["api", "voice"] and method == "POST":
+            return self._voice()
         try:
             body = self._body()
         except ValueError:
@@ -330,6 +340,19 @@ class Handler(BaseHTTPRequestHandler):
         except RuntimeError as e:
             return self._send(503, {"error": str(e)})
         return self._send(404, {"error": "not found"})
+
+    def _voice(self):
+        """The raw recording in the body; its text back. The audio is not kept."""
+        n = int(self.headers.get("Content-Length") or 0)
+        if n > self.app.voice.cfg["max_bytes"]:
+            return self._send(413, {"error": "recording too large"})
+        audio = self.rfile.read(n) if n else b""
+        try:
+            return self._send(200, self.app.voice.transcribe(audio, self.headers.get("Content-Type")))
+        except ValueError as e:
+            return self._send(400, {"error": str(e)})
+        except RuntimeError as e:
+            return self._send(503, {"error": str(e)})
 
     def do_POST(self):
         self._write("POST")

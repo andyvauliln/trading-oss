@@ -100,7 +100,7 @@ Example for `system.workers.json`:
   "readers": ["scheduler", "run-job", "the jobs index", "the page"],
   "changes_when": "a job is added, changed, rescheduled, paused or removed",
   "related": [
-    {"path": "agents/prediction-market-agents/configs/prediction-market-agents.workers.json", "how": "same format as"},
+    {"path": "agents/trading/prediction-market/configs/prediction-market-agents.workers.json", "how": "same format as"},
     {"path": "agents/system/scripts/system/", "how": "read by (scheduler, run-job)"},
     {"path": "agents/system/docs/data-schemas.md", "how": "documented in"}
   ],
@@ -141,7 +141,7 @@ Example for `system.workers.json`:
       "The scheduler finds every jobs file by looking through all agents' configs folders."
     ],
     "parts_changed": ["the whole file: a new format"],
-    "other_files": ["agents/prediction-market-agents/configs/prediction-market-agents.workers.json"],
+    "other_files": ["agents/trading/prediction-market/configs/prediction-market-agents.workers.json"],
     "commit": null
   }
 ]

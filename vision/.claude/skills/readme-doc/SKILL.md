@@ -119,7 +119,7 @@ Too deep, the inside of an agent (an example from the prediction-market domain):
 
 Right:
 
-> Each trading agent runs one variation of its strategy, reads the data files its strategy needs and writes its decisions to its own `logs/`. What it trades and when is described in its own docs: `agents/prediction-market-agents/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test/docs/README.md`.
+> Each trading agent runs one variation of its strategy, reads the data files its strategy needs and writes its decisions to its own `logs/`. What it trades and when is described in its own docs: `agents/trading/prediction-market/strategy-1-agent/pm-strategy-1.momentum-v1.opus55-test/docs/README.md`.
 
 ## Steps
 

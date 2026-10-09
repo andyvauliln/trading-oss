@@ -1,10 +1,10 @@
 ---
 about: agent-os/agents/system/configs/system.workers.json
 node: n-11.10
-basis: f5ab5e2486f8
+basis: 7c1542d4df4a
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
-confirmed: 2026-10-07T19:08:15Z
+confirmed: 2026-10-09T10:48:55Z
 ---
 # system.workers.json
 
@@ -14,7 +14,7 @@ The list of everything the system agent itself runs, on a schedule or on demand:
 
 ## Who looks after it
 
-The owner, from the dashboard: turning jobs on or off and changing when, where and with which model they run. The system's helpers propose changes.
+The owner, from the dashboard: turning jobs on or off and changing when, where and with which model they run. The system's helpers propose changes. For now every job is off (the owner, 2026-10-09): they stay in the file and run only once turned on.
 
 ## When and how it changes
 

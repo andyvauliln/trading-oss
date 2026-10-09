@@ -1,10 +1,10 @@
 ---
 about: agent-os/agents/system/docs/index/subagents.md
 node: n-2.18.3
-basis: 02558f105ac5
+basis: 9944723ffa67
 written: 2026-10-07T19:01:11Z
 by: knowledge-base-agent
-confirmed: 2026-10-07T19:08:15Z
+confirmed: 2026-10-09T09:57:03Z
 ---
 # subagents.md
 

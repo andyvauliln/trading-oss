@@ -1,4 +1,4 @@
-# Agent OS: File tree (v1.32)
+# Agent OS: File tree (v1.34)
 
 > Skeleton of the folder layout from the owner's v0.2 input (see `vision.md` §7). Every object is numbered. We will go through them one by one: the owner answers the open questions and this file is updated. Names in `[brackets]` are placeholders. One example agent (`pm-strategy-1.momentum-v1.opus55-test`, named per D-012) is fully expanded. "Momentum" is only a placeholder modification name.
 
@@ -133,241 +133,247 @@ agent-os/                                   # [0] repo/workspace root
 │   │   ├── research/                         # [10.9] system research history (D-025)
 │   │   │   ├── index.json                    # [10.9.1] every item: question, status, results, decisions, links
 │   │   │   ├── [research-id]-[slug]/         # [10.9.2] one folder per item: README.md + artifacts
-│   │   │   ├── self-improving-agents/        # [54.2] study: approaches and architectures for agents that improve themselves (moved from researches/, D-045)
 │   │   │   └── subagents.link/               # [10.9.3] one folder link per domain (D-030)
 │   │   │       └── [domain-name]/            # [10.9.3.1] -> that domain's research/ [19.13]
 │   │   ├── package.json                      # [10.4] JS deps (shared scripts)
 │   │   ├── requirements.txt                  # [10.5] Python deps (shared scripts)
 │   │   ├── init.sh                           # [10.6] installs the git hooks, runs relink for the whole project (D-031)
 │   │   ├── start.sh                          # [10.7] starts the scheduler (all jobs, D-029) + system session
-│   └── prediction-market-agents/             # [19] DOMAIN-LEVEL AGENT (standard folder [2.7.1])
-│       ├── .claude/                          # [19.1] domain-level Claude Code
-│       │   ├── CLAUDE.md                     # [19.1.5] DOMAIN OWNER prompt (was [19.7]) (D-024: inside .claude/)
-│       │   ├── settings.json                 # [19.1.6] permissions (deny .secrets/live/**, D-027), hooks, env, model, statusLine, outputStyle; committed
-│       │   ├── settings.local.json           # [19.1.7] personal overrides; git-ignored
-│       │   ├── rules/                        # [19.1.8] topic rules; `paths:` frontmatter; subfolders ok
-│       │   │   └── [topic].md
-│       │   ├── skills/                       # [19.1.2] skills: one folder each
-│       │   │   └── [skill-name]/SKILL.md     # + supporting files
-│       │   ├── commands/                     # [19.1.9] single-file prompts, /name
-│       │   │   └── [command-name].md
-│       │   ├── agents/                       # [19.1.1] sub-agents (own context/tools)
-│       │   │   ├── pm-self-improvement-agent.md # [19.1.1.2] self-improvement sub-agent, this level (D-018)
-│       │   │   └── [subagent-name].md
-│       │   ├── workflows/                    # [19.1.10] workflow scripts; each becomes /<name>
-│       │   │   └── [workflow-name].js
-│       │   ├── output-styles/                # [19.1.11]
-│       │   │   └── [style-name].md
-│       │   ├── agent-memory/                 # [19.1.12] `memory: project` sub-agent memory (incl. SI)
-│       │   │   └── [subagent-name]/MEMORY.md
-│       │   └── agent-memory-local/           # [19.1.13] `memory: local`; git-ignored
-│       ├── configs/                          # [19.2] domain config + file links
-│       │   ├── prediction-market-agents.config.json # [19.2.4] domain settings: risk limits, trading accounts, venues, fees, market filters, currency, the order stop switch, trade notifications (D-058)
-│       │   ├── prediction-market-agents.workers.json # [19.2.1] domain jobs: when, where it runs, platform, model (D-029)
-│       │   ├── prediction-market-agents.links.json   # [19.2.3] domain file links: what, from where (D-031)
-│       │   └── subagents.link/               # [19.2.2] one folder link per strategy agent (D-030)
-│       │       └── [agent-name]/             # [19.2.2.1] -> that strategy's configs/ [21.2]
-│       ├── scripts/                          # [19.3] domain scripts + file links
-│       │   ├── markets-catalog.worker.py     # [19.3.3] domain worker: catalogue of the markets the domain trades -> data/markets-catalog/ (job in [19.2.1])
-│       │   ├── decisions/                    # [14.3] *.decision.*: shared buy/sell/risk-check blocks for every trading agent (moved from the system, number kept, D-058)
-│       │   ├── polymarket-prices.worker.py   # [19.3.5] domain worker: Polymarket prices -> data/polymarket-prices/ (job in [19.2.1]; was the system's shared-worker example, D-058)
-│       │   ├── relink.system.link.js         # [19.3.2] -> [14.1] relink; relinks this agent (D-031)
-│       │   └── subagents.link/               # [19.3.1] one folder link per strategy agent (D-030)
-│       │       └── [agent-name]/             # [19.3.1.1] -> that strategy's scripts/ [21.3]
-│       ├── logs/                             # [19.4] domain session + domain SI logs
-│       │   ├── jobs/[job-id]/                # [19.4.2] run logs of the domain's jobs: history.jsonl + latest.log (D-058)
-│       │   ├── services/[service]/           # [19.4.3] acting services' order logs (test/live), the source of every PnL number (D-058)
-│       │   └── subagents.link/               # [19.4.1] one folder link per strategy agent (D-030)
-│       │       └── [agent-name]/             # [19.4.1.1] -> that strategy's logs/ [21.4]
-│       ├── data/                             # [19.5] domain data + file links
-│       │   ├── markets-catalog/              # [19.5.2] latest.json from [19.3.3]; strategies and variants link it (@domain)
-│       │   ├── polymarket-prices/            # [19.5.3] latest.json + dated files from [19.3.5]; trading agents link it (@domain, D-058)
-│       │   └── subagents.link/               # [19.5.1] one folder link per strategy agent (D-030)
-│       │       └── [agent-name]/             # [19.5.1.1] -> that strategy's data/ [21.5]
-│       ├── docs/                             # [19.6] domain docs + file links
-│       │   ├── README.md                     # [19.6.2] every part of the domain exactly, with the path to each part's docs (D-034, D-048)
-│       │   ├── vision.md                     # [19.6.3] the domain's own vision: why it, how it makes money, examples (D-034, D-048)
-│       │   ├── rebuild-prompt.md             # [19.6.4] how an AI builds the domain's own folder again exactly (D-053)
-│       │   ├── trading-overview.md           # [19.6.5] the trading layer of the overview: run loop with orders, strategy loop (D-058)
-│       │   ├── trading-architecture.md       # [19.6.6] strategy and trading-agent levels, variants
-│       │   ├── trading-conventions.md        # [19.6.7] strategy and variant names, account ids, decision scripts, trading config fields
-│       │   ├── trading-safety.md             # [19.6.8] money rules: live gate with accounts, risk limits, order stop switch, positions on stop
-│       │   ├── trading-data-schemas.md       # [19.6.9] domain config, trading fields, decisions, order log, positions, metrics snapshot
-│       │   ├── trading-flows.md              # [19.6.10] decision to execution, strategy loop, promote with money, stop with positions
-│       │   ├── trading-metrics.md            # [19.6.11] PnL, win rate, drawdown, calibration, promotion thresholds
-│       │   ├── trading-glossary.md           # [19.6.12] trading words: strategy, variant, champion and challenger, funded account, PnL
-│       │   ├── trading-roadmap.md            # [19.6.13] strategies, venues, live trading, trading open questions
-│       │   ├── trading-feature-map.md        # [19.6.14] trading features -> files that implement them
-│       │   ├── doc-outlines.md               # [19.6.15] outlines and lengths of the strategy and trading-agent docs
-│       │   ├── common/                       # [19.6.16] trading knowledge every trading agent shares
-│       │   │   ├── trading-agent-architecture.md # [19.6.16.1] run loop with buy, sell, sell all; positions; memory across variants
-│       │   │   ├── trading-prompt.md         # [19.6.16.2] the trading layer of the common prompt
-│       │   │   └── strategy-si-templates.md  # [19.6.16.3] templates the self-improvement agents build strategies from
-│       │   ├── how-to/                       # [19.6.17] trading runbooks
-│       │   │   ├── create-strategy-or-variant.md # [19.6.17.1] create a strategy or a variant
-│       │   │   ├── go-live-with-money.md     # [19.6.17.2] test -> live with a funded account and the owner's approval
-│       │   │   ├── add-trading-account.md    # [19.6.17.3] add a trading account and its keys
-│       │   │   └── stop-trading-agent.md     # [19.6.17.4] stop a trading agent: close positions, unfund the account
-│       │   ├── index/                        # [19.6.18] the domain's own lists
-│       │   │   └── accounts.md               # [19.6.18.1] every trading account: venue, funded, approved by the owner, capital, used by
-│       │   └── subagents.link/               # [19.6.1] one folder link per strategy agent (D-030)
-│       │       └── [agent-name]/             # [19.6.1.1] -> that strategy's docs/ [21.6]
-│       ├── tests/                            # [19.12] domain tests (D-025); run by run-tests [14.1]
-│       │   ├── agents/                       # [19.12.1] tests of the prompt + sub-agents (LLM behaviour)
-│       │   │   ├── tests.config.json         # [19.12.1.1] every agent test: enabled, last_run, last_result, next_action
-│       │   │   ├── [test-id].test.md         # [19.12.1.2] scenario, fixtures, expected behaviour
-│       │   │   └── run-tests.system.link.js  # [19.12.1.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind agents preset)
-│       │   ├── scripts/                      # [19.12.2] tests of scripts
-│       │   │   ├── tests.config.json         # [19.12.2.1] every script test (same fields)
-│       │   │   ├── [test-id].test.[js|py]    # [19.12.2.2]
-│       │   │   └── run-tests.system.link.js  # [19.12.2.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind scripts preset)
-│       │   └── subagents.link/               # [19.12.3] one folder link per strategy agent (D-030)
-│       │       └── [agent-name]/             # [19.12.3.1] -> that strategy's tests/ [21.12]
-│       ├── research/                         # [19.13] domain research history (D-025)
-│       │   ├── index.json                    # [19.13.1] every item: question, status, results, decisions, links
-│       │   ├── [research-id]-[slug]/         # [19.13.2] one folder per item: README.md + artifacts
-│       │   ├── prediction-market-research/   # [54.1] about 40 studies of prediction-market strategies + the pipeline that wrote them (moved from researches/, D-045)
-│       │   ├── trding-agents-arhiteches/     # [54.3] study: trading agent architectures: specs, diagrams, a page (moved from the system's research, number kept, D-058)
-│       │   └── subagents.link/               # [19.13.3] one folder link per strategy agent (D-030)
-│       │       └── [agent-name]/             # [19.13.3.1] -> that strategy's research/ [21.13]
-│       ├── package.json                      # [19.8]
-│       ├── requirements.txt                  # [19.9]
-│       ├── init.sh                           # [19.10] setup; runs relink for this agent (D-031)
-│       ├── start.sh                          # [19.11] starts the domain session
-│       └── strategy-1-agent/                 # [21] STRATEGY-LEVEL AGENT (standard folder [2.7.1])
-│           ├── .claude/                      # [21.1] strategy-level Claude Code
-│           │   ├── CLAUDE.md                 # [21.1.5] STRATEGY MANAGER prompt (was [21.7]) (D-024: inside .claude/)
-│           │   ├── settings.json             # [21.1.6] permissions (deny .secrets/live/**, D-027), hooks, env, model, statusLine, outputStyle; committed
-│           │   ├── settings.local.json       # [21.1.7] personal overrides; git-ignored
-│           │   ├── rules/                    # [21.1.8] topic rules; `paths:` frontmatter; subfolders ok
+│   └── trading/                              # [56] TRADING: a folder of trading domains, with trading's own docs (owner, D-059)
+│       ├── researches/                       # [56.2] EXISTS: the research studies, moved here from the repo's top-level researches/ (owner, 2026-10-09, D-061)
+│       │   ├── prediction-market-research/   # [54.1] EXISTS: about 57 studies of prediction-market strategies, their evidence, and the pipeline that wrote them
+│       │   ├── self-improving-agents/        # [54.2] EXISTS: study: approaches and architectures for agents that improve themselves
+│       │   └── trding-agents-arhiteches/     # [54.3] EXISTS: study: trading agent architectures: specs, diagrams, a page
+│       ├── docs/                             # [56.1] trading's own docs for people
+│       │   ├── README.md                     # [56.1.1] every part of trading exactly: its domains and where each part's docs are
+│       │   ├── vision.md                     # [56.1.2] why trading, what all trading domains share, how a new one is made
+│       │   └── rebuild-prompt.md             # [56.1.3] how an AI builds trading's folder again; lists its domains' prompts in order
+│       └── prediction-market/                # [19] DOMAIN-LEVEL AGENT (standard folder [2.7.1]), moved into trading/ (D-059)
+│           ├── .claude/                          # [19.1] domain-level Claude Code
+│           │   ├── CLAUDE.md                     # [19.1.5] DOMAIN OWNER prompt (was [19.7]) (D-024: inside .claude/)
+│           │   ├── settings.json                 # [19.1.6] permissions (deny .secrets/live/**, D-027), hooks, env, model, statusLine, outputStyle; committed
+│           │   ├── settings.local.json           # [19.1.7] personal overrides; git-ignored
+│           │   ├── rules/                        # [19.1.8] topic rules; `paths:` frontmatter; subfolders ok
 │           │   │   └── [topic].md
-│           │   ├── skills/                   # [21.1.2] skills: one folder each
-│           │   │   └── [skill-name]/SKILL.md # + supporting files
-│           │   ├── commands/                 # [21.1.9] single-file prompts, /name
+│           │   ├── skills/                       # [19.1.2] skills: one folder each
+│           │   │   └── [skill-name]/SKILL.md     # + supporting files
+│           │   ├── commands/                     # [19.1.9] single-file prompts, /name
 │           │   │   └── [command-name].md
-│           │   ├── agents/                   # [21.1.1] sub-agents (own context/tools)
-│           │   │   ├── pm-strategy-1-self-improvement-agent.md # [21.1.1.1] self-improvement sub-agent, this level (D-018)
+│           │   ├── agents/                       # [19.1.1] sub-agents (own context/tools)
+│           │   │   ├── pm-self-improvement-agent.md # [19.1.1.2] self-improvement sub-agent, this level (D-018)
 │           │   │   └── [subagent-name].md
-│           │   ├── workflows/                # [21.1.10] workflow scripts; each becomes /<name>
+│           │   ├── workflows/                    # [19.1.10] workflow scripts; each becomes /<name>
 │           │   │   └── [workflow-name].js
-│           │   ├── output-styles/            # [21.1.11]
+│           │   ├── output-styles/                # [19.1.11]
 │           │   │   └── [style-name].md
-│           │   ├── agent-memory/             # [21.1.12] `memory: project` sub-agent memory (incl. SI)
+│           │   ├── agent-memory/                 # [19.1.12] `memory: project` sub-agent memory (incl. SI)
 │           │   │   └── [subagent-name]/MEMORY.md
-│           │   └── agent-memory-local/       # [21.1.13] `memory: local`; git-ignored
-│           ├── configs/                      # [21.2] strategy config + file links
-│           │   ├── strategy-1-agent.workers.json # [21.2.1] strategy jobs, e.g. the strategy session and its SI run (D-029)
-│           │   ├── strategy-1-agent.links.json   # [21.2.3] strategy file links: what, from where (D-031)
-│           │   └── subagents.link/           # [21.2.2] one folder link per trading agent (D-030)
-│           │       └── [agent-name]/         # [21.2.2.1] -> that agent's configs/ [27]
-│           ├── scripts/                      # [21.3] strategy scripts + file links
-│           │   ├── relink.system.link.js     # [21.3.2] -> [14.1] relink; relinks this agent (D-031)
-│           │   └── subagents.link/           # [21.3.1] one folder link per trading agent (D-030)
-│           │       └── [agent-name]/         # [21.3.1.1] -> that agent's scripts/ [30]
-│           ├── logs/                         # [21.4] strategy session + strategy SI logs
-│           │   └── subagents.link/           # [21.4.1] one folder link per trading agent (D-030)
-│           │       └── [agent-name]/         # [21.4.1.1] -> that agent's logs/ [34]
-│           ├── data/                         # [21.5] strategy data: cross-variant history
-│           │   └── subagents.link/           # [21.5.1] one folder link per trading agent (D-030)
-│           │       └── [agent-name]/         # [21.5.1.1] -> that agent's data/ [35]
-│           ├── docs/                         # [21.6] strategy definition, docs + file links
-│           │   ├── README.md                 # [21.6.2] every part of the strategy exactly, with the path to each part's docs (D-034, D-048)
-│           │   ├── vision.md                 # [21.6.3] the strategy's own vision: why it, how it makes money, examples (D-034, D-048)
-│           │   ├── rebuild-prompt.md         # [21.6.4] how an AI builds the strategy's own folder again exactly (D-053)
-│           │   └── subagents.link/           # [21.6.1] one folder link per trading agent (D-030)
-│           │       └── [agent-name]/         # [21.6.1.1] -> that agent's docs/ [46]
-│           ├── tests/                        # [21.12] strategy tests (D-025); run by run-tests [14.1]
-│           │   ├── agents/                   # [21.12.1] tests of the prompt + sub-agents (LLM behaviour)
-│           │   │   ├── tests.config.json     # [21.12.1.1] every agent test: enabled, last_run, last_result, next_action
-│           │   │   ├── [test-id].test.md     # [21.12.1.2] scenario, fixtures, expected behaviour
-│           │   │   └── run-tests.system.link.js # [21.12.1.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind agents preset)
-│           │   ├── scripts/                  # [21.12.2] tests of scripts
-│           │   │   ├── tests.config.json     # [21.12.2.1] every script test (same fields)
-│           │   │   ├── [test-id].test.[js|py] # [21.12.2.2]
-│           │   │   └── run-tests.system.link.js # [21.12.2.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind scripts preset)
-│           │   └── subagents.link/           # [21.12.3] one folder link per trading agent (D-030)
-│           │       └── [agent-name]/         # [21.12.3.1] -> that agent's tests/ [49]
-│           ├── research/                     # [21.13] strategy research history (D-025)
-│           │   ├── index.json                # [21.13.1] every item: question, status, results, decisions, links
-│           │   ├── [research-id]-[slug]/     # [21.13.2] one folder per item: README.md + artifacts
-│           │   └── subagents.link/           # [21.13.3] one folder link per trading agent (D-030)
-│           │       └── [agent-name]/         # [21.13.3.1] -> that agent's research/ [50]
-│           ├── package.json                  # [21.8]
-│           ├── requirements.txt              # [21.9]
-│           ├── init.sh                       # [21.10] setup; runs relink for this agent (D-031)
-│           ├── start.sh                      # [21.11] starts the strategy session
-│           └── pm-strategy-1.momentum-v1.opus55-test/       # [23] EXAMPLE variant of strategy 1 (standard folder [2.7.1])
-│               ├── .claude/                            # [24] agent-level Claude Code (own files only; no .claude links, D-030)
-│               │   ├── CLAUDE.md                       # [24.5] trading agent prompt (was [37]) (D-024: inside .claude/)
-│               │   ├── settings.json                   # [24.6] permissions (deny .secrets/live/**, D-027), hooks, env, model, statusLine, outputStyle; committed
-│               │   ├── settings.local.json             # [24.7] personal overrides; git-ignored
-│               │   ├── rules/                          # [24.8] topic rules; `paths:` frontmatter; subfolders ok
+│           │   └── agent-memory-local/           # [19.1.13] `memory: local`; git-ignored
+│           ├── configs/                          # [19.2] domain config + file links
+│           │   ├── prediction-market-agents.config.json # [19.2.4] domain settings: risk limits, trading accounts, venues, fees, market filters, currency, the order stop switch, trade notifications (D-058)
+│           │   ├── prediction-market-agents.workers.json # [19.2.1] domain jobs: when, where it runs, platform, model (D-029)
+│           │   ├── prediction-market-agents.links.json   # [19.2.3] domain file links: what, from where (D-031)
+│           │   └── subagents.link/               # [19.2.2] one folder link per strategy agent (D-030)
+│           │       └── [agent-name]/             # [19.2.2.1] -> that strategy's configs/ [21.2]
+│           ├── scripts/                          # [19.3] domain scripts + file links
+│           │   ├── markets-catalog.worker.py     # [19.3.3] domain worker: catalogue of the markets the domain trades -> data/markets-catalog/ (job in [19.2.1])
+│           │   ├── decisions/                    # [14.3] *.decision.*: shared buy/sell/risk-check blocks for every trading agent (moved from the system, number kept, D-058)
+│           │   ├── polymarket-prices.worker.py   # [19.3.5] domain worker: Polymarket prices -> data/polymarket-prices/ (job in [19.2.1]; was the system's shared-worker example, D-058)
+│           │   ├── relink.system.link.js         # [19.3.2] -> [14.1] relink; relinks this agent (D-031)
+│           │   └── subagents.link/               # [19.3.1] one folder link per strategy agent (D-030)
+│           │       └── [agent-name]/             # [19.3.1.1] -> that strategy's scripts/ [21.3]
+│           ├── logs/                             # [19.4] domain session + domain SI logs
+│           │   ├── jobs/[job-id]/                # [19.4.2] run logs of the domain's jobs: history.jsonl + latest.log (D-058)
+│           │   ├── services/[service]/           # [19.4.3] acting services' order logs (test/live), the source of every PnL number (D-058)
+│           │   └── subagents.link/               # [19.4.1] one folder link per strategy agent (D-030)
+│           │       └── [agent-name]/             # [19.4.1.1] -> that strategy's logs/ [21.4]
+│           ├── data/                             # [19.5] domain data + file links
+│           │   ├── markets-catalog/              # [19.5.2] latest.json from [19.3.3]; strategies and variants link it (@domain)
+│           │   ├── polymarket-prices/            # [19.5.3] latest.json + dated files from [19.3.5]; trading agents link it (@domain, D-058)
+│           │   └── subagents.link/               # [19.5.1] one folder link per strategy agent (D-030)
+│           │       └── [agent-name]/             # [19.5.1.1] -> that strategy's data/ [21.5]
+│           ├── docs/                             # [19.6] domain docs + file links
+│           │   ├── README.md                     # [19.6.2] every part of the domain exactly, with the path to each part's docs (D-034, D-048)
+│           │   ├── vision.md                     # [19.6.3] the domain's own vision: why it, how it makes money, examples (D-034, D-048)
+│           │   ├── rebuild-prompt.md             # [19.6.4] how an AI builds the domain's own folder again exactly (D-053)
+│           │   ├── trading-overview.md           # [19.6.5] the trading layer of the overview: run loop with orders, strategy loop (D-058)
+│           │   ├── trading-architecture.md       # [19.6.6] strategy and trading-agent levels, variants
+│           │   ├── trading-conventions.md        # [19.6.7] strategy and variant names, account ids, decision scripts, trading config fields
+│           │   ├── trading-safety.md             # [19.6.8] money rules: live gate with accounts, risk limits, order stop switch, positions on stop
+│           │   ├── trading-data-schemas.md       # [19.6.9] domain config, trading fields, decisions, order log, positions, metrics snapshot
+│           │   ├── trading-flows.md              # [19.6.10] decision to execution, strategy loop, promote with money, stop with positions
+│           │   ├── trading-metrics.md            # [19.6.11] PnL, win rate, drawdown, calibration, promotion thresholds
+│           │   ├── trading-glossary.md           # [19.6.12] trading words: strategy, variant, champion and challenger, funded account, PnL
+│           │   ├── trading-roadmap.md            # [19.6.13] strategies, venues, live trading, trading open questions
+│           │   ├── trading-feature-map.md        # [19.6.14] trading features -> files that implement them
+│           │   ├── doc-outlines.md               # [19.6.15] outlines and lengths of the strategy and trading-agent docs
+│           │   ├── common/                       # [19.6.16] trading knowledge every trading agent shares
+│           │   │   ├── trading-agent-architecture.md # [19.6.16.1] run loop with buy, sell, sell all; positions; memory across variants
+│           │   │   ├── trading-prompt.md         # [19.6.16.2] the trading layer of the common prompt
+│           │   │   └── strategy-si-templates.md  # [19.6.16.3] templates the self-improvement agents build strategies from
+│           │   ├── how-to/                       # [19.6.17] trading runbooks
+│           │   │   ├── create-strategy-or-variant.md # [19.6.17.1] create a strategy or a variant
+│           │   │   ├── go-live-with-money.md     # [19.6.17.2] test -> live with a funded account and the owner's approval
+│           │   │   ├── add-trading-account.md    # [19.6.17.3] add a trading account and its keys
+│           │   │   └── stop-trading-agent.md     # [19.6.17.4] stop a trading agent: close positions, unfund the account
+│           │   ├── index/                        # [19.6.18] the domain's own lists
+│           │   │   └── accounts.md               # [19.6.18.1] every trading account: venue, funded, approved by the owner, capital, used by
+│           │   └── subagents.link/               # [19.6.1] one folder link per strategy agent (D-030)
+│           │       └── [agent-name]/             # [19.6.1.1] -> that strategy's docs/ [21.6]
+│           ├── tests/                            # [19.12] domain tests (D-025); run by run-tests [14.1]
+│           │   ├── agents/                       # [19.12.1] tests of the prompt + sub-agents (LLM behaviour)
+│           │   │   ├── tests.config.json         # [19.12.1.1] every agent test: enabled, last_run, last_result, next_action
+│           │   │   ├── [test-id].test.md         # [19.12.1.2] scenario, fixtures, expected behaviour
+│           │   │   └── run-tests.system.link.js  # [19.12.1.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind agents preset)
+│           │   ├── scripts/                      # [19.12.2] tests of scripts
+│           │   │   ├── tests.config.json         # [19.12.2.1] every script test (same fields)
+│           │   │   ├── [test-id].test.[js|py]    # [19.12.2.2]
+│           │   │   └── run-tests.system.link.js  # [19.12.2.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind scripts preset)
+│           │   └── subagents.link/               # [19.12.3] one folder link per strategy agent (D-030)
+│           │       └── [agent-name]/             # [19.12.3.1] -> that strategy's tests/ [21.12]
+│           ├── research/                         # [19.13] domain research history (D-025)
+│           │   ├── index.json                    # [19.13.1] every item: question, status, results, decisions, links
+│           │   ├── [research-id]-[slug]/         # [19.13.2] one folder per item: README.md + artifacts
+│           │   └── subagents.link/               # [19.13.3] one folder link per strategy agent (D-030)
+│           │       └── [agent-name]/             # [19.13.3.1] -> that strategy's research/ [21.13]
+│           ├── package.json                      # [19.8]
+│           ├── requirements.txt                  # [19.9]
+│           ├── init.sh                           # [19.10] setup; runs relink for this agent (D-031)
+│           ├── start.sh                          # [19.11] starts the domain session
+│           └── strategy-1-agent/                 # [21] STRATEGY-LEVEL AGENT (standard folder [2.7.1])
+│               ├── .claude/                      # [21.1] strategy-level Claude Code
+│               │   ├── CLAUDE.md                 # [21.1.5] STRATEGY MANAGER prompt (was [21.7]) (D-024: inside .claude/)
+│               │   ├── settings.json             # [21.1.6] permissions (deny .secrets/live/**, D-027), hooks, env, model, statusLine, outputStyle; committed
+│               │   ├── settings.local.json       # [21.1.7] personal overrides; git-ignored
+│               │   ├── rules/                    # [21.1.8] topic rules; `paths:` frontmatter; subfolders ok
 │               │   │   └── [topic].md
-│               │   ├── skills/                         # [25] skills: one folder each
-│               │   │   └── [skill-name]/SKILL.md       # + supporting files
-│               │   ├── commands/                       # [24.9] single-file prompts, /name
+│               │   ├── skills/                   # [21.1.2] skills: one folder each
+│               │   │   └── [skill-name]/SKILL.md # + supporting files
+│               │   ├── commands/                 # [21.1.9] single-file prompts, /name
 │               │   │   └── [command-name].md
-│               │   ├── agents/                         # [26] sub-agents (own context/tools)
+│               │   ├── agents/                   # [21.1.1] sub-agents (own context/tools)
+│               │   │   ├── pm-strategy-1-self-improvement-agent.md # [21.1.1.1] self-improvement sub-agent, this level (D-018)
 │               │   │   └── [subagent-name].md
-│               │   ├── workflows/                      # [24.10] workflow scripts; each becomes /<name>
+│               │   ├── workflows/                # [21.1.10] workflow scripts; each becomes /<name>
 │               │   │   └── [workflow-name].js
-│               │   ├── output-styles/                  # [24.11]
+│               │   ├── output-styles/            # [21.1.11]
 │               │   │   └── [style-name].md
-│               │   ├── agent-memory/                   # [24.12] `memory: project` sub-agent memory (incl. SI)
+│               │   ├── agent-memory/             # [21.1.12] `memory: project` sub-agent memory (incl. SI)
 │               │   │   └── [subagent-name]/MEMORY.md
-│               │   └── agent-memory-local/             # [24.13] `memory: local`; git-ignored
-│               ├── configs/                            # [27] own configs + file links
-│               │   ├── pm-strategy-1.momentum-v1.opus55-test.config.json  # [27.2] own config: mode, risk, strategy
-│               │   ├── pm-strategy-1.momentum-v1.opus55-test.workers.json # [27.4] own jobs: main run, workers, one-off jobs (D-029)
-│               │   ├── pm-strategy-1.momentum-v1.opus55-test.links.json   # [27.3] own file links: what, from where (D-031; was the `links` section of [27.2])
-│               │   ├── system.config.link.json         # [27.1] -> [11.1] system/configs/system.config.json
-│               │   ├── prediction-market-agents.config.link.json # [27.1] -> [19.2.4] its domain's config (@domain, D-058)
-│               │   └── models.config.link.json         # [27.1] -> [11.11] system/configs/models.config.json
-│               ├── scripts/                            # [30] own scripts + file links; kind in suffix
-│               │   ├── get-polymarket-data.worker.py   # [31] worker: fetch market data
-│               │   ├── clean-data.system.js            # [32] system script: clean/normalise
-│               │   ├── make-buy.decision.js            # [33] decision script (buy/sell)
-│               │   ├── risk-check.decision.link.js     # [30.1] -> [14.3] its domain's scripts/decisions/risk-check.decision.js (@domain)
-│               │   ├── relink.system.link.js           # [30.3] -> [14.1] relink; the agent reruns it after editing its links file (D-031)
-│               │   └── run-tests.system.link.js        # [30.2] -> [14.1] system/scripts/system/run-tests.system.js (D-025)
-│               ├── logs/                               # [34] own logs + file links (only if needed)
-│               │   ├── runs.jsonl                      # own run log, one line per run
-│               │   ├── run-[date].md                   # one readable report per run
-│               │   ├── polymarket-prices.worker.link.log  # [34.1] -> [19.4.2] its domain's logs/jobs/polymarket-prices/latest.log (@domain)
-│               │   └── tests.jsonl                     # [34.2] one line per test run (D-025)
-│               ├── data/                               # [35] own data + file links
-│               │   ├── get-polymarket-data/            # [35.2] own outputs, one folder per producer
-│               │   ├── polymarket-prices.link.json     # [35.1] -> [19.5.3] its domain's data/polymarket-prices/latest.json (@domain)
-│               │   ├── news-digest.link.md             # [35.1] -> [16.3] system/data/subagents/news-digest/latest.md
-│               │   └── markets-catalog.link.json       # [35.1] -> [19.5] its domain's data/markets-catalog/latest.json (@domain, D-031)
-│               ├── docs/                               # [46] own docs + file links
-│               │   ├── README.md                           # [46.2] what it is, its parent variant, route and mode
-│               │   ├── strategy.md                         # [46.5] its strategy in plain words
-│               │   ├── changes.md                          # [46.6] exactly what differs from its parent and what is being tested
-│               │   ├── decisions.md                        # [46.7] a summary of its notable decisions
-│               │   ├── notes.md                            # [46.8] the owner's comments and the answers
-│               │   ├── vision.md                           # [46.3] what the agent tests and why, results so far, what comes next (D-034, D-053)
-│               │   ├── rebuild-prompt.md                   # [46.4] how an AI builds this agent's folder again exactly (D-053)
-│               │   ├── safety.link.md                  # [46.1] -> [2.8] system/docs/safety.md
-│               │   ├── agent-architecture.link.md      # [46.1] -> [2.17.1] system/docs/common/agent-architecture.md
-│               │   ├── trading-safety.link.md          # [46.1] -> [19.6.8] its domain's docs/trading-safety.md (@domain, D-058)
-│               │   └── trading-agent-architecture.link.md # [46.1] -> [19.6.16.1] its domain's docs/common/trading-agent-architecture.md (@domain, D-058)
-│               ├── tests/                              # [49] agent tests (D-025); run by run-tests [14.1]
-│               │   ├── agents/                         # [49.1] tests of the prompt + sub-agents (LLM behaviour)
-│               │   │   ├── tests.config.json           # [49.1.1] every agent test: enabled, last_run, last_result, next_action
-│               │   │   ├── [test-id].test.md           # [49.1.2] scenario, fixtures, expected behaviour
-│               │   │   └── run-tests.system.link.js    # [49.1.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind agents preset)
-│               │   └── scripts/                        # [49.2] tests of scripts
-│               │       ├── tests.config.json           # [49.2.1] every script test (same fields)
-│               │       ├── [test-id].test.[js|py]      # [49.2.2]
-│               │       └── run-tests.system.link.js    # [49.2.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind scripts preset)
-│               ├── research/                           # [50] agent research history (D-025)
-│               │   ├── index.json                      # [50.1] every item: question, status, results, decisions, links
-│               │   └── [research-id]-[slug]/           # [50.2] one folder per item: README.md + artifacts
-│               ├── package.json                        # [38] JS deps + npm scripts
-│               ├── requirements.txt                    # [39] Python deps
-│               ├── init.sh                             # [40] setup; runs relink for this agent (D-031)
-│               └── start.sh                            # [41] start one run / the scheduler
+│               │   └── agent-memory-local/       # [21.1.13] `memory: local`; git-ignored
+│               ├── configs/                      # [21.2] strategy config + file links
+│               │   ├── strategy-1-agent.workers.json # [21.2.1] strategy jobs, e.g. the strategy session and its SI run (D-029)
+│               │   ├── strategy-1-agent.links.json   # [21.2.3] strategy file links: what, from where (D-031)
+│               │   └── subagents.link/           # [21.2.2] one folder link per trading agent (D-030)
+│               │       └── [agent-name]/         # [21.2.2.1] -> that agent's configs/ [27]
+│               ├── scripts/                      # [21.3] strategy scripts + file links
+│               │   ├── relink.system.link.js     # [21.3.2] -> [14.1] relink; relinks this agent (D-031)
+│               │   └── subagents.link/           # [21.3.1] one folder link per trading agent (D-030)
+│               │       └── [agent-name]/         # [21.3.1.1] -> that agent's scripts/ [30]
+│               ├── logs/                         # [21.4] strategy session + strategy SI logs
+│               │   └── subagents.link/           # [21.4.1] one folder link per trading agent (D-030)
+│               │       └── [agent-name]/         # [21.4.1.1] -> that agent's logs/ [34]
+│               ├── data/                         # [21.5] strategy data: cross-variant history
+│               │   └── subagents.link/           # [21.5.1] one folder link per trading agent (D-030)
+│               │       └── [agent-name]/         # [21.5.1.1] -> that agent's data/ [35]
+│               ├── docs/                         # [21.6] strategy definition, docs + file links
+│               │   ├── README.md                 # [21.6.2] every part of the strategy exactly, with the path to each part's docs (D-034, D-048)
+│               │   ├── vision.md                 # [21.6.3] the strategy's own vision: why it, how it makes money, examples (D-034, D-048)
+│               │   ├── rebuild-prompt.md         # [21.6.4] how an AI builds the strategy's own folder again exactly (D-053)
+│               │   └── subagents.link/           # [21.6.1] one folder link per trading agent (D-030)
+│               │       └── [agent-name]/         # [21.6.1.1] -> that agent's docs/ [46]
+│               ├── tests/                        # [21.12] strategy tests (D-025); run by run-tests [14.1]
+│               │   ├── agents/                   # [21.12.1] tests of the prompt + sub-agents (LLM behaviour)
+│               │   │   ├── tests.config.json     # [21.12.1.1] every agent test: enabled, last_run, last_result, next_action
+│               │   │   ├── [test-id].test.md     # [21.12.1.2] scenario, fixtures, expected behaviour
+│               │   │   └── run-tests.system.link.js # [21.12.1.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind agents preset)
+│               │   ├── scripts/                  # [21.12.2] tests of scripts
+│               │   │   ├── tests.config.json     # [21.12.2.1] every script test (same fields)
+│               │   │   ├── [test-id].test.[js|py] # [21.12.2.2]
+│               │   │   └── run-tests.system.link.js # [21.12.2.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind scripts preset)
+│               │   └── subagents.link/           # [21.12.3] one folder link per trading agent (D-030)
+│               │       └── [agent-name]/         # [21.12.3.1] -> that agent's tests/ [49]
+│               ├── research/                     # [21.13] strategy research history (D-025)
+│               │   ├── index.json                # [21.13.1] every item: question, status, results, decisions, links
+│               │   ├── [research-id]-[slug]/     # [21.13.2] one folder per item: README.md + artifacts
+│               │   └── subagents.link/           # [21.13.3] one folder link per trading agent (D-030)
+│               │       └── [agent-name]/         # [21.13.3.1] -> that agent's research/ [50]
+│               ├── package.json                  # [21.8]
+│               ├── requirements.txt              # [21.9]
+│               ├── init.sh                       # [21.10] setup; runs relink for this agent (D-031)
+│               ├── start.sh                      # [21.11] starts the strategy session
+│               └── pm-strategy-1.momentum-v1.opus55-test/       # [23] EXAMPLE variant of strategy 1 (standard folder [2.7.1])
+│                   ├── .claude/                            # [24] agent-level Claude Code (own files only; no .claude links, D-030)
+│                   │   ├── CLAUDE.md                       # [24.5] trading agent prompt (was [37]) (D-024: inside .claude/)
+│                   │   ├── settings.json                   # [24.6] permissions (deny .secrets/live/**, D-027), hooks, env, model, statusLine, outputStyle; committed
+│                   │   ├── settings.local.json             # [24.7] personal overrides; git-ignored
+│                   │   ├── rules/                          # [24.8] topic rules; `paths:` frontmatter; subfolders ok
+│                   │   │   └── [topic].md
+│                   │   ├── skills/                         # [25] skills: one folder each
+│                   │   │   └── [skill-name]/SKILL.md       # + supporting files
+│                   │   ├── commands/                       # [24.9] single-file prompts, /name
+│                   │   │   └── [command-name].md
+│                   │   ├── agents/                         # [26] sub-agents (own context/tools)
+│                   │   │   └── [subagent-name].md
+│                   │   ├── workflows/                      # [24.10] workflow scripts; each becomes /<name>
+│                   │   │   └── [workflow-name].js
+│                   │   ├── output-styles/                  # [24.11]
+│                   │   │   └── [style-name].md
+│                   │   ├── agent-memory/                   # [24.12] `memory: project` sub-agent memory (incl. SI)
+│                   │   │   └── [subagent-name]/MEMORY.md
+│                   │   └── agent-memory-local/             # [24.13] `memory: local`; git-ignored
+│                   ├── configs/                            # [27] own configs + file links
+│                   │   ├── pm-strategy-1.momentum-v1.opus55-test.config.json  # [27.2] own config: mode, risk, strategy
+│                   │   ├── pm-strategy-1.momentum-v1.opus55-test.workers.json # [27.4] own jobs: main run, workers, one-off jobs (D-029)
+│                   │   ├── pm-strategy-1.momentum-v1.opus55-test.links.json   # [27.3] own file links: what, from where (D-031; was the `links` section of [27.2])
+│                   │   ├── system.config.link.json         # [27.1] -> [11.1] system/configs/system.config.json
+│                   │   ├── prediction-market-agents.config.link.json # [27.1] -> [19.2.4] its domain's config (@domain, D-058)
+│                   │   └── models.config.link.json         # [27.1] -> [11.11] system/configs/models.config.json
+│                   ├── scripts/                            # [30] own scripts + file links; kind in suffix
+│                   │   ├── get-polymarket-data.worker.py   # [31] worker: fetch market data
+│                   │   ├── clean-data.system.js            # [32] system script: clean/normalise
+│                   │   ├── make-buy.decision.js            # [33] decision script (buy/sell)
+│                   │   ├── risk-check.decision.link.js     # [30.1] -> [14.3] its domain's scripts/decisions/risk-check.decision.js (@domain)
+│                   │   ├── relink.system.link.js           # [30.3] -> [14.1] relink; the agent reruns it after editing its links file (D-031)
+│                   │   └── run-tests.system.link.js        # [30.2] -> [14.1] system/scripts/system/run-tests.system.js (D-025)
+│                   ├── logs/                               # [34] own logs + file links (only if needed)
+│                   │   ├── runs.jsonl                      # own run log, one line per run
+│                   │   ├── run-[date].md                   # one readable report per run
+│                   │   ├── polymarket-prices.worker.link.log  # [34.1] -> [19.4.2] its domain's logs/jobs/polymarket-prices/latest.log (@domain)
+│                   │   └── tests.jsonl                     # [34.2] one line per test run (D-025)
+│                   ├── data/                               # [35] own data + file links
+│                   │   ├── get-polymarket-data/            # [35.2] own outputs, one folder per producer
+│                   │   ├── polymarket-prices.link.json     # [35.1] -> [19.5.3] its domain's data/polymarket-prices/latest.json (@domain)
+│                   │   ├── news-digest.link.md             # [35.1] -> [16.3] system/data/subagents/news-digest/latest.md
+│                   │   └── markets-catalog.link.json       # [35.1] -> [19.5] its domain's data/markets-catalog/latest.json (@domain, D-031)
+│                   ├── docs/                               # [46] own docs + file links
+│                   │   ├── README.md                           # [46.2] what it is, its parent variant, route and mode
+│                   │   ├── strategy.md                         # [46.5] its strategy in plain words
+│                   │   ├── changes.md                          # [46.6] exactly what differs from its parent and what is being tested
+│                   │   ├── decisions.md                        # [46.7] a summary of its notable decisions
+│                   │   ├── notes.md                            # [46.8] the owner's comments and the answers
+│                   │   ├── vision.md                           # [46.3] what the agent tests and why, results so far, what comes next (D-034, D-053)
+│                   │   ├── rebuild-prompt.md                   # [46.4] how an AI builds this agent's folder again exactly (D-053)
+│                   │   ├── safety.link.md                  # [46.1] -> [2.8] system/docs/safety.md
+│                   │   ├── agent-architecture.link.md      # [46.1] -> [2.17.1] system/docs/common/agent-architecture.md
+│                   │   ├── trading-safety.link.md          # [46.1] -> [19.6.8] its domain's docs/trading-safety.md (@domain, D-058)
+│                   │   └── trading-agent-architecture.link.md # [46.1] -> [19.6.16.1] its domain's docs/common/trading-agent-architecture.md (@domain, D-058)
+│                   ├── tests/                              # [49] agent tests (D-025); run by run-tests [14.1]
+│                   │   ├── agents/                         # [49.1] tests of the prompt + sub-agents (LLM behaviour)
+│                   │   │   ├── tests.config.json           # [49.1.1] every agent test: enabled, last_run, last_result, next_action
+│                   │   │   ├── [test-id].test.md           # [49.1.2] scenario, fixtures, expected behaviour
+│                   │   │   └── run-tests.system.link.js    # [49.1.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind agents preset)
+│                   │   └── scripts/                        # [49.2] tests of scripts
+│                   │       ├── tests.config.json           # [49.2.1] every script test (same fields)
+│                   │       ├── [test-id].test.[js|py]      # [49.2.2]
+│                   │       └── run-tests.system.link.js    # [49.2.3] -> [14.1] run-tests; runs this folder's tests.config.json (--kind scripts preset)
+│                   ├── research/                           # [50] agent research history (D-025)
+│                   │   ├── index.json                      # [50.1] every item: question, status, results, decisions, links
+│                   │   └── [research-id]-[slug]/           # [50.2] one folder per item: README.md + artifacts
+│                   ├── package.json                        # [38] JS deps + npm scripts
+│                   ├── requirements.txt                    # [39] Python deps
+│                   ├── init.sh                             # [40] setup; runs relink for this agent (D-031)
+│                   └── start.sh                            # [41] start one run / the scheduler
 └── apps/                                     # [43] applications: our own, such as the project IDE; apps we use, forked from GitHub; research clones in temp/ (D-055)
     ├── project-IDE/                          # [53] the owner's IDE: the File Tree page and everything it needs (owner, D-041)
     │   ├── docs/                             # [53.4] the app's own docs, like every app's (D-055)
@@ -381,7 +387,8 @@ agent-os/                                   # [0] repo/workspace root
     │   │   ├── README.md                     # [53.3.1] how to start it and reach it safely
     │   │   ├── server.py                     # [53.3.2] serves the page from the repository, keeps page notes as files, writes edits into files, runs requests
     │   │   ├── claude_bridge.py              # [53.3.3] runs each request as a Claude Code session started in agents/system/ and streams it to the page
-    │   │   └── server.config.json            # [53.3.4] address, model, what Claude Code may do, what waits for the owner's click
+    │   │   ├── voice.py                      # [53.3.5] turns a voice recording from the page into text through Groq, switching models on limits (D-060)
+    │   │   └── server.config.json            # [53.3.4] address, model, what Claude Code may do, what waits for the owner's click, the voice models
     │   └── data/                             # [53.2] this project's knowledge and the data the page is built from
     │       ├── README.md                     # [53.2.1] how the knowledge is kept: layers, knowledge tags, the flow (was the knowledge base guide)
     │       ├── file-tree.md                  # [2.13] this document: the tree notes, annotated tree + one section per object (was [6])
@@ -636,7 +643,7 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 - Kept as a number so the other object numbers stay stable.
 
 ### [4] `agents/` (D-013)
-- **Purpose:** all domains. Every direct child is a domain: `system/` [10], `prediction-market-agents/` [19], and more later of any kind (the planned copy-trading domain [42] left the tree, D-056). **Layout (our proposal, kept by D-013):** a flat `agents/[domain]/` (no `domains/` or `trading-domains/` level), because every child is a domain anyway. The old `trading-domains/` [18] is retired.
+- **Purpose:** all agents. Its children are the system domain `system/` [10] and the folders of kinds of domains, today `trading/` [56], which holds the prediction-market domain `trading/prediction-market/` [19] (owner, D-059). More domains and kinds come later; the next trading domain is `trading/copytrading/` (not in the tree yet). The old `trading-domains/` [18] is retired.
 - **Shape of a domain:** `.claude/` (domain level, D-016), then the levels the domain defines (the prediction-market domain: strategy folders, then trading agents). The system domain also holds the shared `configs/`, `scripts/`, `logs/`, `data/` [11]–[16].
 - **Belongs elsewhere:** nothing doc-related: shared docs are in the system domain [2], agent docs in each agent [46]; cloned repos → `apps/` [43]; the prediction-market domain's dashboard → `apps/trading-ui/` [45]; secrets → repo-root `.secrets/` [47], outside `agents/` (configs hold only key names, `secret_keys`; D-023, D-027).
 - **Writers / readers:** the create-agent script [14.1] creates agent folders; the domain agent [19.1.5] and SI sub-agents [21.1.1.1] create variants; agents run here.
@@ -825,6 +832,7 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 
 ### [11.10] `system.workers.json` (D-029; was `workers.config.json`, D-007)
 - **Purpose:** the system agent's own **jobs**: everything the system runs on a schedule or on demand, such as the data collectors shared by several domains [14.2], relinking and link checks, tests, index rebuilds and its sub-agent runs (SI [10.1.1.1]; the knowledge agent [10.1.1.2] as the `knowledge-sync` job, on changes under `agents/**` or `docs/inputs/**` and nightly, D-033). Every other agent has the same file for its own jobs in its `configs/` (domain [19.2.1], strategy [21.2.1], agent [27.4]), all in this format. The system sees each domain's file through [11.2] `subagents.link/` (D-030), and deeper ones one level down at a time.
+- **All off for now (owner, page 2026-10-09, in-20261009-1040):** every system job has `enabled: false`; they stay in the file and run only once the owner turns them on.
 - **What a job is (D-029):** either a plain **script** (`platform: none`) or an **AI run** on a coding-agent platform: the agent itself (`agent`: its main run, in its own folder), a `subagent`, a `skill`, a `workflow` or a slash `command`.
 - **Job fields (proposed):** `id` (unique in the file) · `enabled` (turn off without deleting) · `purpose` · `type` (script | agent | subagent | skill | workflow | command) · `run` (the command for a script; the sub-agent, skill, workflow or command name otherwise) · `schedule` · `timezone` · `run_on` (local | cloud | desktop | github-actions) · `platform` (none | claude-code | cursor | codex) · `model` (`route` = take it from [11.11]) · `effort` · for AI runs: `prompt` (text, or `@path` to a prompt file), `workspace` (the folder it runs in; default the owner agent's folder), `allowed_tools`, `permission_mode`, `max_turns`, `max_cost_usd` · `secret_keys` (local runs only) · `inputs`, `outputs` · `on_change` (paths whose change starts the job; for the main run it cancels and restarts the current run) · `timeout`, `retries`, `concurrency` (skip | queue | restart) · `mode` (test | live; live needs owner approval) · `notify` (never | failure | always). The file's `defaults` fill in anything a job leaves out.
 - **`schedule` (proposed, one short string):** `every 15m` / `every 6h` / `every 1d` · `cron 0 22 * * 1-5` · `once 2026-11-03 20:00` (runs one time, then shows as done) · `after [job-id]` (when that job succeeds) · `manual` (only from the UI or a command). Time zone from the job, else the file's `defaults`, else [11.1] `defaults.timezone`.
@@ -897,7 +905,31 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 ### [18] (retired: `trading-domains/`)
 - D-013: domains sit directly under `agents/`, and `system/` is one of them.
 
-### [19] `agents/prediction-market-agents/`
+### [56] `agents/trading/` (owner, D-059)
+- **Purpose:** the folder of all trading domains. Today it holds the prediction-market domain `prediction-market/` [19]; the next trading domain is `copytrading/`, copied from it when the owner asks (D-056). Every trading domain keeps its own standard agent folder inside.
+- **Holds for now (D-059, D-061):** `docs/` [56.1], `researches/` [56.2] with the research studies (the first real files of the tree), and its domains. It has no agent, settings or scripts of its own; the shared trading notes, the domain config and the buy, sell and risk scripts stay in the prediction-market domain until the owner says otherwise.
+- **Writers / readers:** the knowledge base agent [10.1.1.2] keeps its docs; the system reaches each trading domain through `subagents.link/` as before.
+
+### [56.2] `agents/trading/researches/` (owner, 2026-10-09, D-061)
+- **Purpose:** the research studies, real files in the repository: [54.1] prediction-market strategies, [54.2] self-improving agents, [54.3] trading-agent architectures. The owner moved the repository's top-level `researches/` here: "move it to trading/researches folder".
+- **Real file tree:** this is the first part of the tree that exists in the repository. The page marks what exists and lists every real file under it, read from the repository at each build (D-061).
+- **Open:** the name `researches/` differs from the `research/` folder every agent has (D-025); kept as the owner named it.
+
+### [56.1] `agents/trading/docs/` (owner, D-059)
+- **Purpose:** trading's own docs for people, the same three every level has (D-053): [56.1.1] `README.md`, [56.1.2] `vision.md` and [56.1.3] `rebuild-prompt.md`.
+- **Writers / readers:** the knowledge base agent [10.1.1.2] with the vision, README and rebuild prompt skills; the system's docs point here; each trading domain's docs build on these.
+- **Planning copy:** `vision/docs/trading/` while we plan.
+
+### [56.1.1] `agents/trading/docs/README.md` (owner, D-059)
+- **Purpose:** every part of trading exactly: its layout, each trading domain with the path to its README, and what is still open. Its In short uses the vision's words. Written 2026-10-09.
+
+### [56.1.2] `agents/trading/docs/vision.md` (owner, D-059)
+- **Purpose:** why trading has its own folder, the trading domains, the rules every trading domain shares, how a new trading domain is copied from the prediction-market domain, examples, where it stands and what is open. Written 2026-10-09.
+
+### [56.1.3] `agents/trading/docs/rebuild-prompt.md` (owner, D-059)
+- **Purpose:** how an AI builds `agents/trading/` again: only this folder and its docs, assuming the system exists, then its domains' rebuild prompts in build order (prediction market first, copy trading later). Written 2026-10-09.
+
+### [19] `agents/trading/prediction-market/`
 - **Purpose:** prediction-market domain (Polymarket first) and the **domain-level agent** (D-022), responsible for its domain. It has the standard agent folder [2.7.1]: [19.1] `.claude/`, [19.2] `configs/`, [19.3] `scripts/`, [19.4] `logs/`, [19.5] `data/`, [19.6] `docs/`, [19.1.5] `.claude/CLAUDE.md`, [19.8] `package.json`, [19.9] `requirements.txt`, [19.10] `init.sh`, [19.11] `start.sh`, [19.12] `tests/`, [19.13] `research/` (D-025, [2.7.3]).
 - **[19.1.5] `.claude/CLAUDE.md` = the domain owner (D-022 reconciles D-018):** the domain's own prompt now carries the domain-owner role (strategies, health, Q&A, owner comments). Since D-058 it also carries the trading duties that sat in the system manager's prompt: it oversees every area of trading in the domain, and a hard limit on money or risk goes in code, in the decision scripts and the risk check [14.3], never only in a prompt. The separate sub-agent file `pm-domain-owner-agent.md` [19.1.1.1] is retired. The domain SI sub-agent [19.1.1.2] stays in `.claude/agents/`.
 - **[19.11] `start.sh`:** starts the domain session in this folder (as the `domain-session` job in [19.2.1], D-029, and on owner questions from the UI).
@@ -1363,6 +1395,7 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 
 ### [53.1.1] `file-tree-explorer.html` (D-041)
 - **Purpose:** the page itself: the tree with search and filters, and for every file and folder its tabs (How it works, File, Example, Questions, and extra tabs such as jobs, links, tests or key names). The owner can edit a file or its How it works, leave notes and messages and ask questions; all of that waits in the page's own store until the next sync (ide-sync [10.1.2.6]).
+- **Voice button (owner, D-060):** on the owner's server, the request box and the delete note box have a microphone button: press to record, press again to stop (at most 5 minutes, with a timer); the server turns the recording into text [53.3.5] and the page adds it to the box to check and send. On claude.ai the button is hidden, because a claude.ai page gets no microphone and cannot reach Groq.
 - **Index files in the tree (owner, 2026-10-05 14:03):** every file and folder shows its `.index.md` as its own row (a file's right under it, a folder's first inside it); clicking it opens the item's How it works, which is that file. A `☑ metadata` switch above the tree hides or shows them, together with the Details files (`.meta.json`) since D-057; the filter finds them by name ("README.index").
 - **On its own File tab (owner, 2026-10-05 14:21):** the page shows its own source, the same file that is published. `enrich.py` [10.1.2.5.2.3] reads it from `explorer/` when it builds the data, so the finished page goes there first. A long file shows 3,000 lines at a time with a button for more, and its size.
 - **Opened elsewhere (owner question, 2026-10-05 14:33):** served by any web server next to [53.1.2], it shows the same page, view only: saving and asking Claude come from claude.ai, so the header says "view only" and a message sent there says it reaches no one. Opening the file straight from disk does not load the data. The claude.ai link changes only when the files are published to it again.
@@ -1383,7 +1416,7 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 
 ### [53.3] `apps/project-IDE/server/` (D-042, D-043)
 - **Purpose:** the File Tree page on the owner's own server, with an agent behind its request box: a request typed on the page goes to Claude Code working in the repository from the system folder `agents/system/` (D-043), with the system's `CLAUDE.md` [10.1.5], the knowledge base agent [10.1.1.2], the project IDE agent [10.1.1.3] and their skills. Claude Code can answer, change files, add items, run a skill or an agent; the page shows its progress and reloads the tree when it is done. Notes, comments and edits made on this page go straight into the files, with no sync.
-- **Contents:** [53.3.1] `README.md`, [53.3.2] `server.py`, [53.3.3] `claude_bridge.py`, [53.3.4] `server.config.json`.
+- **Contents:** [53.3.1] `README.md`, [53.3.2] `server.py`, [53.3.3] `claude_bridge.py`, [53.3.4] `server.config.json`, [53.3.5] `voice.py`.
 - **One page, two homes:** the page [53.1.1] is the same file. On claude.ai it keeps notes in the page's store and asks Claude on the page; on the server it finds this service next to it and uses it instead.
 - **Built (D-043):** the four files are written and tested on a copy of the repository; it goes live on the server after the GitHub sync.
 - **Safety:** listens only on the machine (127.0.0.1); the owner reaches it through an SSH tunnel or a private network, never the open internet, because whoever reaches it can make Claude Code change files and run commands. Claude Code never reads `.secrets/` [47], never pushes, deletes or acts live (in trading: touches real money) without the owner's click; checks before every tool call enforce it.
@@ -1406,7 +1439,14 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 
 ### [53.3.4] `server.config.json` (D-043)
 - **Purpose:** the server's settings: address and port (127.0.0.1:8765), the page and store folders, write-through on or off, the keys file and the key names Claude Code gets (`ANTHROPIC_API_KEY`; values stay in `.secrets/test/.env` [47.1]), where Claude Code starts (`agents/system`), the model (empty: Claude Code's default, later from [11.11]), limits per request (turns, dollars), the allow list, the words that always wait for the owner (`git push`, `rm `, `curl `, installs ...), the paths nothing may touch, the log folder.
+- **Voice (D-060):** `secrets.keys` also names `GROQ_API_KEY`, which only `voice.py` [53.3.5] gets, never Claude Code; `voice` lists the Groq address, the models in the order they are tried (`whisper-large-v3-turbo`, then `whisper-large-v3`), the key name, the 300-second limit and the language (empty: detected).
 - **Draft:** `/mnt/project-files/vision/server/server.config.json`.
+
+### [53.3.5] `voice.py` (owner, D-060)
+- **Purpose:** voice input for the page's request boxes. The page records up to 5 minutes in the browser and posts the audio to `api/voice` on the server [53.3.2]; this module sends it to Groq's speech-to-text API and returns the text, which the page adds to the box for the owner to check and send. It tries the models listed in the config [53.3.4] in order; a model that answers with a rate limit is skipped until its wait is over, and an error moves on to the next one. The recording is not kept. Standard library only.
+- **Key:** `GROQ_API_KEY` from the keys file `.secrets/test/.env` [47.1]; the value never reaches the page, the logs or Claude Code.
+- **Writers / readers:** the project IDE agent [10.1.1.3] keeps it; the server calls it.
+- **Draft:** `/mnt/project-files/vision/server/voice.py`; tested with a stand-in for Groq (a rate limit on the first model, the answer from the second) and on a test server with a recorded voice message in the browser. Groq itself was not reachable from the planning machine.
 
 ### [53.2] `apps/project-IDE/data/` (owner request, D-041)
 - **Purpose:** this project's knowledge and the data the page is built from, in one place any Claude can read to catch up: every owner input, the decisions and the changelog, the tree notes, the knowledge map, the notes behind the people docs, the owner's page edits, the working notes, the plans and retired files.
@@ -1452,18 +1492,19 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 
 ### [54] (retired: no root `researches/`; research lives inside the agents, owner 2026-10-06, D-045)
 - **Owner (2026-10-06):** "now all researches folders inside agents".
-- **Where the studies went (our default):** each moves, with its number, into the research folder of the level it serves: [54.1] into the prediction-market domain's `research/` [19.13]; [54.2] into the system's `research/` [10.9]; [54.3] first into the system's, then into the prediction-market domain's (2026-10-07, D-058). The files inside are the research itself; each folder's How it works describes them as a group, so they get no index files of their own. The move happens in the repository at the GitHub sync.
+- **Now (owner, 2026-10-09, D-061):** all three studies sit in `agents/trading/researches/` [56.2], moved there in the repository by the owner's word: "move it to trading/researches folder".
+- **Before (our default, replaced by D-061):** each moves, with its number, into the research folder of the level it serves: [54.1] into the prediction-market domain's `research/` [19.13]; [54.2] into the system's `research/` [10.9]; [54.3] first into the system's, then into the prediction-market domain's (2026-10-07, D-058). The files inside are the research itself; each folder's How it works describes them as a group, so they get no index files of their own. The move happens in the repository at the GitHub sync.
 
-### [54.1] `agents/prediction-market-agents/research/prediction-market-research/` (moved from `researches/`, D-045)
-- **Purpose:** about 40 studies of ways to make money on prediction markets (market making, arbitrage across venues, trading on news and feeds, forecasting models, copy trading and more), each with the evidence on whether it works, plus `_pipeline/`, the scripts and notes that produced them. The first Polymarket strategy is chosen from here.
+### [54.1] `agents/trading/researches/prediction-market-research/` (real; moved by the owner, D-061)
+- **Purpose:** about 57 studies of ways to make money on prediction markets (market making, arbitrage across venues, trading on news and feeds, forecasting models, copy trading and more), each with the evidence on whether it works (`_evidence/`), plus `_pipeline/`, the scripts and notes that produced them. The first Polymarket strategy is chosen from here.
+- **Real files:** the page lists every file in it as found in the repository; the folder's How it works describes them.
 
-### [54.2] `agents/system/research/self-improving-agents/` (moved from `researches/`, D-045)
-- **Purpose:** one study of approaches and architectures for agents that improve themselves; background for the self-improvement helpers at every level.
+### [54.2] `agents/trading/researches/self-improving-agents/` (real; moved by the owner, D-061)
+- **Purpose:** one study of approaches and architectures for agents that improve themselves; background for the self-improvement helpers at every level. It sits with the trading research because the owner moved the whole folder; whether it belongs to the system's research instead is open.
 
-### [54.3] `agents/prediction-market-agents/research/trding-agents-arhiteches/` (moved from `researches/`, D-045; from the system's research to the domain's, D-058)
+### [54.3] `agents/trading/researches/trding-agents-arhiteches/` (real; moved by the owner, D-061)
 - **Purpose:** how trading agents are built: a README, specs, diagrams and a page that shows them. Background for the trading-agent architecture [19.6.16.1] (name kept as in the repository).
-- **Open:** fix the spelling of `trding-agents-arhiteches` when the repo is synced?
----
+- **Open:** fix the spelling of `trding-agents-arhiteches`?
 
 ## Changelog
 
@@ -1493,6 +1534,8 @@ Each object lists its **purpose**, **contents**, **writers / readers** and **ope
 - **v1.15** – owner request D-031: every agent has a links file `configs/[name].links.json` (format in the new [11.13] `system.links.json`; new [19.2.3], [21.2.3]; [27.3] turned from the `links` section of [27.2] into the variant's own file): which file, from where (system, own domain or strategy, another domain, any agent by unique name), where it appears, why, required. New shared `relink` script [14.1] builds every link from these files plus the child links, removes stale ones, runs the `check-links` rules and writes the links index [16.1]; it runs on a links-file change (scheduler watch), at review time (git pre-commit, post-merge, post-checkout; owner approval in the UI), when an agent edits its own links file (it reruns relink; `PostToolUse` hook in `settings.json`) and from create-agent/init.sh. New relink links [19.3.2], [21.3.2], [30.3]; new runbook [2.11.9]. Updated [2.6], [2.7], [2.7.1], [2.7.2], [2.7.4], [2.7.5], [2.11.1], [2.11.2], [2.11.5], [2.14], [2.17], [10], [11], [11.10], [15], [16], [27], [30], [40]; `init.sh` now only calls relink. Fixed a stale [11.12] reference in [2.11.1].
 - **v1.16** – owner input D-032 (saved draft on [23]): variant names start with their strategy, `[strategy-id].[own-name]-v[N].[platform-model]-[test|live]`; the example agent [23] renamed to `pm-strategy-1.momentum-v1.opus55-test` everywhere; the strategy agent's ID carries its platform/model and mode (`pm-strategy-1-agent.opus55-test`, folder name unchanged); the strategy self-improvement loop in [21], [23], [2.7]. Owner request D-033: the knowledge base. This file moved to `vision/docs/file-tree.md` with the other docs; [2] describes the layers; [2.1] the tag format and flow; [2.6] points to `docs/decisions.md` (the seed list moved there); [2.10] inputs with `index.json` [2.10.2] and `README.md` [2.10.3]; runbooks [2.11.6]–[2.11.8] added to the tree and [2.11.10] `process-an-input.md` new; [2.18.7] `links.md`, [2.18.8] `knowledge-map.json`, [2.18.9] `summaries.json`; new [2.21] `architecture.md`; [10.1.1.2] is now `sys-knowledge-agent.md` with skills [10.1.2.1] `knowledge-intake` and [10.1.2.2] `knowledge-summarise`; `build-map` in [14.1]; job `knowledge-sync` in [11.10] replaces `docs-refresh`; "docs agent" renamed to "knowledge agent" throughout. Page edits folded: [48] `.gitignore` (runtime logs/data and local Cursor state ignored), new sections [47.1.1], [47.2.1], [47.3] (index kept in sync automatically), [1] README draft.
 - **v1.11** – owner request: every `tests/agents/` and `tests/scripts/` folder gets its own runner link `run-tests.system.link.js` → [14.1] ([10.8.1.3]/[10.8.2.3], [19.12.1.3]/[19.12.2.3], [21.12.1.3]/[21.12.2.3], [49.1.3]/[49.2.3]); called from a test folder it presets the kind and that folder's `tests.config.json`. [30.2] stays for running both kinds. Described how agent tests run (headless Claude Code on fixtures in a temp copy, test mode, no secrets). Updated [2.7.3], [2.11.7], [14.1], [49].
+- **v1.34** – owner, 2026-10-09 12:30 (D-061): the repository's `researches/` moved to `agents/trading/researches/` [56.2] with [54.1], [54.2] and [54.3]; the page lists the real files found there.
+- **v1.33** – owner, 2026-10-09 09:40 (D-059): new [56] `agents/trading/` with [56.1] `docs/` and its three docs [56.1.1] to [56.1.3]; the prediction-market domain [19] moves to `agents/trading/prediction-market/` with its numbers and file names; [4] says its children are the system and the kinds of domains.
 - **v1.32** – owner, 2026-10-07 09:04 (D-056, D-058): trading moves down into the prediction-market domain [19]: new [19.2.4] domain config, [19.3.5] Polymarket price collector, [19.4.2] job logs, [19.4.3] order logs, [19.5.3] its data, the `trading-` notes [19.6.5] to [19.6.15] with [19.6.16] `common/`, [19.6.17] `how-to/`, [19.6.18] `index/`; [14.3] `scripts/decisions/` and [54.3] the trading study move into the domain with their numbers; [42] copy-trading retired with the `whale-signals` and `top-traders` links; the system's sections ([1], [4], [10], [11], [11.1], [11.10], [11.11], [11.13], [14], [15], [16], [2.7], [2.8], [2.14], [2.16], [2.17], [2.18], [47]) say only what holds for any agent; the trading agent links its domain's config, scripts, data and `trading-safety.md`; the research index's `related.variants` is now `related.agents`.
 - **v1.31** – owner, 2026-10-07 09:04 (D-056, D-057): the system is the Agent OS, root [0] `agent-os/`; every How it works file is named without the file's extension and every file and folder has an empty Details file (`.meta.json`), shown on the page with the `☑ metadata` switch; one tree line per file: the trading agent's docs [46.2] split into `README.md` [46.2], `strategy.md` [46.5], `changes.md` [46.6], `decisions.md` [46.7], `notes.md` [46.8], and its logs line into `runs.jsonl` and `run-[date].md`.
 - **v1.30** – owner, 2026-10-07 08:52 (D-053): every domain, strategy and trading agent lists its own rebuild prompt (new [19.6.4], [21.6.4], [46.4]); the trading agent also its own vision (new [46.3]); [2.22] says every level has one.

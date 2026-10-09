@@ -1,9 +1,10 @@
 ---
 about: agent-os/apps/trading-ui/
 node: n-45
-basis: 345b8a331cd7
+basis: fc4916df0f4d
 written: 2026-10-07T14:21:32Z
 by: knowledge-base-agent
+confirmed: 2026-10-09T09:57:03Z
 ---
 # trading-ui/
 

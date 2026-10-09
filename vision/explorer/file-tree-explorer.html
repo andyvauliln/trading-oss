@@ -488,6 +488,12 @@ table.jt tr.off td { color: var(--muted); }
 .inputrow textarea { flex: 1 1 260px; min-height: 42px; max-height: 160px; resize: vertical; padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); line-height: 1.45; }
 .inputrow .side { display: flex; gap: 6px; align-items: center; }
 .inputrow select { padding: 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); font-size: 12.5px; color: var(--muted); }
+.btn.mic { display: inline-flex; align-items: center; gap: 5px; font-variant-numeric: tabular-nums; }
+.btn.mic svg { width: 15px; height: 15px; flex: none; }
+.btn.mic.rec { border-color: var(--danger); color: var(--danger); }
+.btn.mic.rec svg { animation: micpulse 1.2s ease-in-out infinite; }
+@keyframes micpulse { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .btn.mic.rec svg { animation: none; } }
 .dockhint { padding: 0 24px 8px; font-size: 12px; color: var(--muted); margin-top: -6px; }
 .dockhint.err { color: var(--danger); }
 
@@ -569,6 +575,7 @@ del.w { background: var(--danger-soft); }
             <select id="tier" aria-label="Model" title="Model">
               <option value="complex">Most capable</option><option value="default">Balanced</option><option value="quick">Fastest</option>
             </select>
+            <button class="btn mic" type="button" id="mic-ask" data-voice="ask" hidden title="Speak instead of typing (up to 5 minutes)" aria-label="Record a voice message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span></span></button>
             <button class="btn quiet" type="button" id="clear" hidden title="Clear this file's chat">Clear</button>
             <button class="btn quiet" type="button" id="stop" hidden>Stop</button>
             <button class="btn primary" type="button" id="send">Send</button>
@@ -1656,7 +1663,7 @@ function deleteBox(n) {
   return `<div class="delbox" role="group" aria-label="Delete ${esc(n.name)}">
     <p><b>Delete ${esc(n.name)}?</b> Claude deletes ${what} and cleans the project of it: its How it works file, its place in the notes, and every link to it and mention of it in other files.</p>
     <label>Note for Claude (optional)<textarea id="del-note" rows="3" placeholder="What to keep in mind while deleting. For example: move its rules into risk.md first, or leave the old decisions that mention it as they are.">${esc(DEL_NOTE[n.id] || "")}</textarea></label>
-    <div class="editacts"><button class="btn danger-fill" type="button" id="del-go" ${off ? "disabled" : ""}>Delete and clean up</button><button class="btn" type="button" id="del-cancel">Cancel</button></div>
+    <div class="editacts"><button class="btn danger-fill" type="button" id="del-go" ${off ? "disabled" : ""}>Delete and clean up</button>${voiceButton("del-note")}<button class="btn" type="button" id="del-cancel">Cancel</button></div>
     <p class="note-muted" id="del-status">${how}</p></div>`;
 }
 function deletedNote(n) {
@@ -1824,6 +1831,69 @@ function renderChat() {
 
 let busy = null, ctl = null;
 function setBusy(id) { busy = id; $("#send").disabled = !!id; $("#stop").hidden = !id; if (!id) APPLY_RUN = false; renderApply(); }
+/* ---------- voice input (owner's server only): record up to 5 minutes, the server turns it into text with Groq, the text goes into the box ---------- */
+const VOICE = { rec: null, target: null, timer: null, t0: 0, busy: false };
+const MIC_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+const voiceOn = () => !!(SERVER && SERVER.voice && navigator.mediaDevices && window.MediaRecorder);
+function voiceButton(target) {
+  return voiceOn() ? `<button class="btn mic" type="button" data-voice="${target}" title="Speak instead of typing (up to 5 minutes)" aria-label="Record a voice message">${MIC_ICON}<span></span></button>` : "";
+}
+const mmss = s => Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
+function voicePaint() {
+  const limit = (SERVER && SERVER.voice_max_seconds) || 300, on = !!VOICE.rec;
+  document.querySelectorAll("[data-voice]").forEach(b => {
+    const mine = b.dataset.voice === VOICE.target, lab = b.querySelector("span");
+    b.classList.toggle("rec", on && mine);
+    b.disabled = (on && !mine) || VOICE.busy;
+    if (lab) lab.textContent = on && mine ? `${mmss((Date.now() - VOICE.t0) / 1000)} / ${mmss(limit)}` : VOICE.busy && mine ? "Writing…" : "";
+    b.setAttribute("aria-label", on && mine ? "Stop recording" : "Record a voice message");
+  });
+}
+async function voiceStart(target) {
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+  catch { return hint("The browser did not allow the microphone. Allow it for this page and press the button again.", true); }
+  const type = ["audio/webm;codecs=opus", "audio/ogg;codecs=opus", "audio/mp4"].find(x => MediaRecorder.isTypeSupported(x)) || "";
+  const rec = new MediaRecorder(stream, type ? { mimeType: type, audioBitsPerSecond: 32000 } : undefined), parts = [];
+  rec.ondataavailable = e => e.data.size && parts.push(e.data);
+  rec.onstop = () => { stream.getTracks().forEach(x => x.stop()); voiceSend(new Blob(parts, { type: rec.mimeType || type || "audio/webm" })); };
+  const limit = (SERVER.voice_max_seconds || 300) * 1000;
+  Object.assign(VOICE, { rec, target, t0: Date.now() });
+  VOICE.timer = setInterval(() => { if (Date.now() - VOICE.t0 >= limit) voiceStop(); else voicePaint(); }, 500);
+  rec.start(1000);
+  hint("Recording. Press the microphone again to stop; it stops by itself at " + mmss(limit / 1000) + ".");
+  voicePaint();
+}
+function voiceStop() {
+  clearInterval(VOICE.timer);
+  const r = VOICE.rec; VOICE.rec = null; VOICE.busy = true; voicePaint();
+  if (r && r.state !== "inactive") r.stop();
+}
+async function voiceSend(blob) {
+  const target = VOICE.target;
+  hint("Turning your recording into text…");
+  try {
+    const r = await fetch("api/voice", { method: "POST", headers: { "content-type": blob.type }, body: blob });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || "the server answered " + r.status);
+    const box = $("#" + target), text = (j.text || "").trim();
+    if (!text) hint("Nothing was heard in the recording.", true);
+    else if (box) {
+      box.value = box.value.trim() ? box.value.replace(/\s*$/, " ") + text : text;
+      box.dispatchEvent(new Event("input", { bubbles: true }));
+      box.focus(); box.setSelectionRange(box.value.length, box.value.length);
+      hint("Your words are in the box. Check them, then send.");
+    }
+  } catch (e) { hint("The recording could not be turned into text: " + e.message, true); }
+  VOICE.busy = false; VOICE.target = null; voicePaint();
+}
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("[data-voice]");
+  if (!b || !voiceOn()) return;
+  ev.preventDefault(); ev.stopPropagation();
+  if (VOICE.rec) { if (VOICE.target === b.dataset.voice) voiceStop(); return; }
+  if (!VOICE.busy) voiceStart(b.dataset.voice);
+}, true);
 function hint(t, err) { const h = $("#hint"); h.textContent = t; h.className = "dockhint" + (err ? " err" : ""); }
 let DEFAULT_HINT = "Ask anything or say what to change: requests get a draft you can check and save. Every message and answer is kept and brought into the files at the next sync. Enter sends, Shift+Enter adds a line.";
 
@@ -2356,6 +2426,7 @@ async function connectServer() {
   const v = $("#ver");
   if (!h || !h.ok) { dbArrived(null); v.textContent += " · view only"; v.title = "Opened outside claude.ai: you can read everything, but notes, edits and questions to Claude work only on claude.ai or on your server."; return; }
   SERVER = h; uid = "owner"; $("#tier").hidden = true;   // Claude Code picks its model from the server's settings
+  $("#mic-ask").hidden = !voiceOn();
   v.textContent += " · on your server";
   v.title = h.agent ? `Notes and edits are saved in the repository; requests run as Claude Code sessions in ${h.claude_cwd}.` : "Notes and edits are saved in the repository. The request box is off: " + (h.agent_error || "Claude Code is not set up.");
   DEFAULT_HINT = h.agent ? "Ask or say what to do: Claude Code works in the repository and shows each step. Steps like pushing or deleting wait for your click. Enter sends, Shift+Enter adds a line." : "Claude Code is not set up on this server yet, so the box only saves your message. Enter sends, Shift+Enter adds a line.";
