@@ -288,7 +288,8 @@ def find_node(nodes, key):
 def main():
     args = sys.argv[1:]
     data = load_json(DATA_PATH, None)
-    nodes = data["nodes"]
+    _scanned = {n["id"] for n in data["nodes"] if n.get("scanned")}   # real files found by the scan have no index file (D-061)
+    nodes = [dict(n, children=[c for c in n.get("children") or [] if c not in _scanned]) for n in data["nodes"] if n["id"] not in _scanned]
     summaries = IF.load_all(nodes)
     m, entries, file_docs = build(nodes, summaries)
     byid = {n["id"]: n for n in nodes}

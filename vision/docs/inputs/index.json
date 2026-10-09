@@ -1836,6 +1836,27 @@
     "page v50"
    ],
    "answered": true
+  },
+  {
+   "id": "in-20261009-1230",
+   "at": "2026-10-09T12:30:57Z",
+   "where": "thread \"Interactive file tree UI\"",
+   "source": "chat",
+   "ref": "cmsg_01Sk8xdkWKCz34CUCfVMyQbxHAnP7x6aib4EPEQxuFko43",
+   "file": "2026-10-09-1230-researches-real-tree.md",
+   "chars": 173,
+   "categories": [
+    "structure",
+    "page-sync"
+   ],
+   "summary": "The owner asks to pull the latest repository, move its researches/ folder to trading/researches/, and make the File Tree page show the project's real file tree.",
+   "processed_into": [
+    "D-061",
+    "file-tree.md v1.34",
+    "tools/enrich.py",
+    "page v51"
+   ],
+   "answered": true
   }
  ]
 }

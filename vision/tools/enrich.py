@@ -898,6 +898,60 @@ KNOWLEDGE = {eid: {"doc": e["doc"], "heading": e["heading"], "status": e["status
 INPUTS = {k: {"at": v.get("at"), "where": v.get("where"), "summary": v.get("summary"), "file": v.get("file")} for k, v in KMAP["inputs"].items()}
 print("knowledge:", len(KNOWLEDGE), "entries;", sum(1 for x in out_nodes if x["how"]), "summaries;", len(KMAP["problems"]), "map problems")
 
+# ---- the real file tree (owner, 2026-10-09, D-061): every real file and folder under a folder that exists in the
+# repository is listed, even when the tree notes do not name it. Such items carry "scanned": true; they get no How it
+# works file of their own (their folder's describes them). vision/ (the planning copy) and git's own files are left out.
+SCAN_SKIP = {".git", "__pycache__", "node_modules", ".secrets", "vision", ".DS_Store"}
+def _scan(parent):
+    rel = parent["path"][len("agent-os/"):]
+    d = os.path.join(REPO, rel)
+    if not os.path.isdir(d):
+        return
+    have = {c["path"] for c in out_nodes if c.get("parent") == parent["id"]}
+    for name in sorted(os.listdir(d)):
+        if name in SCAN_SKIP or (rel == "" and name.endswith(".md") is False and name.startswith(".")):
+            continue
+        full = os.path.join(d, name)
+        isdir = os.path.isdir(full)
+        path = parent["path"] + name + ("/" if isdir else "")
+        if path in have:
+            continue
+        x = {k: None for k in out_nodes[0]}
+        x.update({"id": "r-" + re.sub(r"[^A-Za-z0-9._-]+", "-", path[len("agent-os/"):].rstrip("/")), "num": None, "name": name + ("/" if isdir else ""),
+                  "path": path, "type": "folder" if isdir else "file", "link": False, "placeholder": False, "parent": parent["id"],
+                  "children": [], "status": "decided", "exists": True, "scanned": True, "details": [], "open_questions": [], "rules": [],
+                  "concepts": [], "decisions": ["D-061"], "features": [], "custom_tabs": [], "qa": [], "fields": [],
+                  "summary": "Found in the repository; the folder's How it works describes it.", "knowledge": {"direct": [], "inherited": []}})
+        if not isdir:
+            x["content_source"] = f"repo andyvauliln/trading-oss: {path[len('agent-os/'):]}"
+            if os.path.getsize(full) > 200000:
+                x["content"] = None; x["content_source"] += " (too large for the page; open it in the repository)"
+            else:
+                try:
+                    x["content"] = open(full, encoding="utf-8").read()
+                except (UnicodeDecodeError, OSError):
+                    x["content"] = None; x["content_source"] += " (not a text file)"
+        out_nodes.append(x)
+        parent.setdefault("children", []).append(x["id"])
+        if isdir:
+            _scan(x)
+for _x in list(out_nodes):
+    if _x["type"] == "folder" and _x.get("exists") and not _x.get("scanned") and not _x.get("link") and "[" not in _x["path"] \
+            and _x["path"].startswith("agent-os/") and _x["path"] != "agent-os/":
+        _scan(_x)
+_root = out_nodes[0]
+for _name in sorted(os.listdir(REPO)) if os.path.isdir(REPO) else []:   # files at the top of the repository (README, HANDOFF)
+    _f = os.path.join(REPO, _name)
+    if os.path.isfile(_f) and _name.endswith(".md") and not any(c["path"] == "agent-os/" + _name for c in out_nodes):
+        _x = {k: None for k in out_nodes[0]}
+        _x.update({"id": "r-" + _name, "name": _name, "path": "agent-os/" + _name, "type": "file", "link": False, "placeholder": False,
+                   "parent": _root["id"], "children": [], "status": "decided", "exists": True, "scanned": True, "details": [], "open_questions": [],
+                   "rules": [], "concepts": [], "decisions": ["D-061"], "features": [], "custom_tabs": [], "qa": [], "fields": [],
+                   "summary": "Found at the top of the repository.", "knowledge": {"direct": [], "inherited": []},
+                   "content": open(_f, encoding="utf-8").read(), "content_source": f"repo andyvauliln/trading-oss: {_name}"})
+        out_nodes.append(_x); _root.setdefault("children", []).append(_x["id"])
+print("real files listed:", sum(1 for x in out_nodes if x.get("scanned")))
+
 retired = [{"nums": r["nums"], "heading": r["heading"],
             "text": " ".join(i["text"] for i in r["items"])} for r in P["retired"]]
 

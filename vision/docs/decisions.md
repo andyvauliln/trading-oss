@@ -582,7 +582,17 @@ Status words: **active** (in force), **partly superseded by D-0xx** (some of it 
 - **Sources:** in-20261009-1019
 - **Changed:** the page [53.1.1], the server [53.3.2], its config [53.3.4], new `voice.py` [53.3.5], the server README [53.3.1].
 
+### D-061: The research studies move to agents/trading/researches/; the page shows the real files
+<!-- k: id=d-061 applies=[56],[56.2],[54.1],[54.2],[54.3] sources=in-20261009-1230,D-045,D-059 status=decided -->
+- **Decision:** the repository's top-level `researches/` moves to `agents/trading/researches/` [56.2], with its three studies: prediction-market research [54.1], self-improving agents [54.2] and trading-agent architectures [54.3]. The File Tree page marks every item that exists in the repository and lists every real file under such a folder, read from the repository at each build.
+- **Date:** 2026-10-09
+- **Why:** the owner's message: "get last version from github there will be researches folder move it to trading/researches folder, and make sync that current file tree represent real file tree in a project".
+- **Status:** decided. Our defaults: the folder keeps the owner's name `researches/` (every agent's own folder is `research/`); all three studies move, the self-improving-agents study included, as the owner moved the whole folder; the planning copy `vision/` is not shown as part of the tree (it becomes the project IDE's data); real files found by the scan get no How it works file of their own, their folder's describes them.
+- **Sources:** in-20261009-1230, D-045, D-059
+- **Changed:** the repository (the move), the tree notes ([56], new [56.2], [54], [54.1]-[54.3]), the page build (`enrich.py` lists real files), the mirror tree.
+
 ## Changelog
+- v1.15 (2026-10-09): D-061 added.
 - v1.14 (2026-10-09): D-060 added.
 - v1.13 (2026-10-09): D-059 added.
 - v1.12 (2026-10-07): D-058 added; D-057 status (the one clash, `server.py`).

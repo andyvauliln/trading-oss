@@ -15,6 +15,7 @@ Everything from the planning project is in `vision/` (copied 2026-10-07 from the
 ## Where things stand
 
 - Done: the name Agent OS; metadata files (`x.index.md`, empty `x.meta.json`); trading moved into the prediction-market domain (D-056 to D-058); all How it works files fresh; the system vision rewritten in general terms (`vision/.claude/docs/vision.md`).
+- Done 2026-10-09 (D-061): `researches/` moved to `agents/trading/researches/`; the page build lists every real file in the repo (run `enrich.py` with `REPO_DIR` set to a fresh clone).
 - Done 2026-10-09 (D-059): `agents/trading/` holds `prediction-market/` (copy trading next) and `docs/` with trading's vision, README and rebuild prompt (planning copies `vision/docs/trading/`); the system README and rebuild prompt rewritten in general terms. The trading text removed from them is in `vision/archive/2026-10-09/*-trading-parts.md`, for the prediction-market domain's own docs, which are next when the owner asks.
 - Owner's words go into `vision/docs/inputs/` word for word (skill `knowledge-intake`); decisions into `vision/docs/decisions.md`.
 

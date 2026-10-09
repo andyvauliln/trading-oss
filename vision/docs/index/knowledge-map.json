@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-09T10:49:33Z",
+ "built": "2026-10-09T12:43:28Z",
  "docs": {
   "README.md": {
    "title": "Agent OS: Knowledge base (v0.2)",
@@ -46,7 +46,7 @@
   },
   "changelog.md": {
    "title": "Agent OS: Changelog (v0.5)",
-   "hash": "a9c72ee3fcaa",
+   "hash": "296bbd5a3189",
    "entries": []
   },
   "conventions.md": {
@@ -147,7 +147,7 @@
   },
   "decisions.md": {
    "title": "Agent OS: Decisions (v1.13)",
-   "hash": "e03305ffe5b1",
+   "hash": "90bab630f36b",
    "entries": [
     "d-001",
     "d-002",
@@ -208,7 +208,8 @@
     "d-057",
     "d-058",
     "d-059",
-    "d-060"
+    "d-060",
+    "d-061"
    ]
   },
   "feature-map.md": {
@@ -6806,6 +6807,36 @@
    ],
    "inherited_by": [],
    "chars": 1140
+  },
+  "d-061": {
+   "id": "d-061",
+   "doc": "decisions.md",
+   "heading": "D-061: The research studies move to agents/trading/researches/; the page shows the real files",
+   "level": 3,
+   "line": 585,
+   "applies_raw": [
+    "[56]",
+    "[56.2]",
+    "[54.1]",
+    "[54.2]",
+    "[54.3]"
+   ],
+   "sources": [
+    "in-20261009-1230",
+    "D-045",
+    "D-059"
+   ],
+   "status": "decided",
+   "hash": "e9250eadbb15",
+   "nodes": [
+    "n-54.1",
+    "n-54.2",
+    "n-54.3",
+    "n-56",
+    "n-56.2"
+   ],
+   "inherited_by": [],
+   "chars": 1251
   },
   "fm-data-collection-workers": {
    "id": "fm-data-collection-workers",
@@ -20938,7 +20969,17 @@
     "56"
    ],
    "status": "file-doc",
-   "hash": "616ced6d0a39"
+   "hash": "1fdf0192c866"
+  },
+  "ft-56.2": {
+   "id": "ft-56.2",
+   "doc": "file-tree.md",
+   "heading": "[56.2] `agents/trading/researches/` (owner, 2026-10-09, D-061)",
+   "nums": [
+    "56.2"
+   ],
+   "status": "file-doc",
+   "hash": "1be10947220b"
   },
   "ft-56.1": {
    "id": "ft-56.1",
@@ -21951,37 +21992,37 @@
     "54"
    ],
    "status": "retired",
-   "hash": "3bf1718b261e"
+   "hash": "6cf4f7631076"
   },
   "ft-54.1": {
    "id": "ft-54.1",
    "doc": "file-tree.md",
-   "heading": "[54.1] `agents/trading/prediction-market/research/prediction-market-research/` (moved from `researches/`, D-045)",
+   "heading": "[54.1] `agents/trading/researches/prediction-market-research/` (real; moved by the owner, D-061)",
    "nums": [
     "54.1"
    ],
    "status": "file-doc",
-   "hash": "7bf8a5253274"
+   "hash": "090bb227784c"
   },
   "ft-54.2": {
    "id": "ft-54.2",
    "doc": "file-tree.md",
-   "heading": "[54.2] `agents/system/research/self-improving-agents/` (moved from `researches/`, D-045)",
+   "heading": "[54.2] `agents/trading/researches/self-improving-agents/` (real; moved by the owner, D-061)",
    "nums": [
     "54.2"
    ],
    "status": "file-doc",
-   "hash": "f0e5d02466b9"
+   "hash": "564e00569845"
   },
   "ft-54.3": {
    "id": "ft-54.3",
    "doc": "file-tree.md",
-   "heading": "[54.3] `agents/trading/prediction-market/research/trding-agents-arhiteches/` (moved from `researches/`, D-045; from the system's research to the domain's, D-058)",
+   "heading": "[54.3] `agents/trading/researches/trding-agents-arhiteches/` (real; moved by the owner, D-061)",
    "nums": [
     "54.3"
    ],
    "status": "file-doc",
-   "hash": "4b8dccb0e9f2"
+   "hash": "28c0cd95bda9"
   }
  },
  "nodes": {
@@ -22317,7 +22358,7 @@
     "vis-domains"
    ],
    "inherited": [],
-   "basis": "898ccf7c8393",
+   "basis": "04912367795b",
    "summary_state": "fresh"
   },
   "n-10": {
@@ -22373,7 +22414,7 @@
     "idx-agents"
    ],
    "inherited": [],
-   "basis": "fdaace49da75",
+   "basis": "1515b9c3b881",
    "summary_state": "fresh"
   },
   "n-10.1": {
@@ -25602,7 +25643,6 @@
    "children": [
     "n-10.9.1",
     "n-10.9.2",
-    "n-54.2",
     "n-10.9.3"
    ],
    "file_doc": "ft-50",
@@ -25624,7 +25664,7 @@
     "howto-record-research-steps"
    ],
    "inherited": [],
-   "basis": "a54131e7644b",
+   "basis": "31ea29f99440",
    "summary_state": "fresh"
   },
   "n-10.9.1": {
@@ -25670,22 +25710,6 @@
    ],
    "inherited": [],
    "basis": "1a8ef44ff799",
-   "summary_state": "fresh"
-  },
-  "n-54.2": {
-   "num": "54.2",
-   "path": "agents/system/research/self-improving-agents/",
-   "name": "self-improving-agents/",
-   "type": "folder",
-   "parent": "n-10.9",
-   "children": [],
-   "file_doc": "ft-54.2",
-   "same_as": null,
-   "direct": [
-    "d-045"
-   ],
-   "inherited": [],
-   "basis": "9c69f21ce508",
    "summary_state": "fresh"
   },
   "n-10.9.3": {
@@ -25837,6 +25861,7 @@
    "type": "folder",
    "parent": "n-4",
    "children": [
+    "n-56.2",
     "n-56.1",
     "n-19"
    ],
@@ -25845,10 +25870,83 @@
    "direct": [
     "arch-domains",
     "d-059",
+    "d-061",
     "term-domain"
    ],
    "inherited": [],
-   "basis": "81f284041246",
+   "basis": "486e801d005b",
+   "summary_state": "fresh"
+  },
+  "n-56.2": {
+   "num": "56.2",
+   "path": "agents/trading/researches/",
+   "name": "researches/",
+   "type": "folder",
+   "parent": "n-56",
+   "children": [
+    "n-54.1",
+    "n-54.2",
+    "n-54.3"
+   ],
+   "file_doc": "ft-56.2",
+   "same_as": null,
+   "direct": [
+    "d-061"
+   ],
+   "inherited": [],
+   "basis": "3ce89d963373",
+   "summary_state": "fresh"
+  },
+  "n-54.1": {
+   "num": "54.1",
+   "path": "agents/trading/researches/prediction-market-research/",
+   "name": "prediction-market-research/",
+   "type": "folder",
+   "parent": "n-56.2",
+   "children": [],
+   "file_doc": "ft-54.1",
+   "same_as": null,
+   "direct": [
+    "d-045",
+    "d-061"
+   ],
+   "inherited": [],
+   "basis": "069d4cff4c89",
+   "summary_state": "fresh"
+  },
+  "n-54.2": {
+   "num": "54.2",
+   "path": "agents/trading/researches/self-improving-agents/",
+   "name": "self-improving-agents/",
+   "type": "folder",
+   "parent": "n-56.2",
+   "children": [],
+   "file_doc": "ft-54.2",
+   "same_as": null,
+   "direct": [
+    "d-045",
+    "d-061"
+   ],
+   "inherited": [],
+   "basis": "fb8819fd359f",
+   "summary_state": "fresh"
+  },
+  "n-54.3": {
+   "num": "54.3",
+   "path": "agents/trading/researches/trding-agents-arhiteches/",
+   "name": "trding-agents-arhiteches/",
+   "type": "folder",
+   "parent": "n-56.2",
+   "children": [],
+   "file_doc": "ft-54.3",
+   "same_as": null,
+   "direct": [
+    "d-045",
+    "d-058",
+    "d-061"
+   ],
+   "inherited": [],
+   "basis": "f22f45786d63",
    "summary_state": "fresh"
   },
   "n-56.1": {
@@ -25976,7 +26074,7 @@
     "vis-q-mvp"
    ],
    "inherited": [],
-   "basis": "77229763eff8",
+   "basis": "894f0d7ea6ba",
    "summary_state": "fresh"
   },
   "n-19.1": {
@@ -28048,8 +28146,6 @@
    "children": [
     "n-19.13.1",
     "n-19.13.2",
-    "n-54.1",
-    "n-54.3",
     "n-19.13.3"
    ],
    "file_doc": "ft-50",
@@ -28072,7 +28168,7 @@
     "tr-common-si-domain"
    ],
    "inherited": [],
-   "basis": "3e60b2f981fd",
+   "basis": "160e9fa372f5",
    "summary_state": "fresh"
   },
   "n-19.13.1": {
@@ -28118,39 +28214,6 @@
    ],
    "inherited": [],
    "basis": "1a8ef44ff799",
-   "summary_state": "fresh"
-  },
-  "n-54.1": {
-   "num": "54.1",
-   "path": "agents/trading/prediction-market/research/prediction-market-research/",
-   "name": "prediction-market-research/",
-   "type": "folder",
-   "parent": "n-19.13",
-   "children": [],
-   "file_doc": "ft-54.1",
-   "same_as": null,
-   "direct": [
-    "d-045"
-   ],
-   "inherited": [],
-   "basis": "b9ff39cdeffa",
-   "summary_state": "fresh"
-  },
-  "n-54.3": {
-   "num": "54.3",
-   "path": "agents/trading/prediction-market/research/trding-agents-arhiteches/",
-   "name": "trding-agents-arhiteches/",
-   "type": "folder",
-   "parent": "n-19.13",
-   "children": [],
-   "file_doc": "ft-54.3",
-   "same_as": null,
-   "direct": [
-    "d-045",
-    "d-058"
-   ],
-   "inherited": [],
-   "basis": "25e1ce6d50a5",
    "summary_state": "fresh"
   },
   "n-19.13.3": {
@@ -35075,6 +35138,20 @@
     "page v50"
    ],
    "entries": []
+  },
+  "in-20261009-1230": {
+   "at": "2026-10-09T12:30:57Z",
+   "where": "thread \"Interactive file tree UI\"",
+   "file": "2026-10-09-1230-researches-real-tree.md",
+   "categories": [
+    "structure",
+    "page-sync"
+   ],
+   "summary": "The owner asks to pull the latest repository, move its researches/ folder to trading/researches/, and make the File Tree page show the project's real file tree.",
+   "processed_into": "in progress",
+   "entries": [
+    "d-061"
+   ]
   }
  },
  "problems": []
