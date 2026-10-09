@@ -843,6 +843,18 @@ function tabsFor(n) {
 function ancestors(id) { const a = []; let c = NODES[id]?.parent; while (c) { a.unshift(c); c = NODES[c].parent; } return a; }
 let pendingRender = false;
 function rerender() { const a = document.activeElement; if (a && $("#dscroll").contains(a)) a.blur(); renderSheet(); }
+/* real files found in the repository keep their text in real-files.json, loaded the first time one is opened (D-061) */
+const REAL = { p: null, map: null, err: "" };
+function fillReal() { let k = 0; for (const [id, text] of Object.entries(REAL.map || {})) if (NODES[id] && NODES[id].content == null) { NODES[id].content = text; k++; } return k; }
+function loadRealFiles() {
+  if (REAL.map) { if (fillReal()) setTimeout(() => renderSheet()); else if (!REAL.err) REAL.err = "this file is not in the repository copy"; return REAL.p; }   // the tree was reloaded: fill it again
+  if (REAL.p) return REAL.p;
+  REAL.p = fetch("real-files.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(map => { REAL.map = map; fillReal(); })
+    .catch(e => { REAL.err = e.message || String(e); })
+    .then(() => renderSheet());
+  return REAL.p;
+}
 function renderSheet(reset) {
   const n = NODES[selected]; const el = $("#dscroll"); if (!n) { el.innerHTML = ""; return; }
   const a = document.activeElement;
@@ -1132,6 +1144,10 @@ function fileTab(n) {
   }
   const bar = (extra, solo) => `<div class="filebar${solo ? " solo" : ""}"><span class="mono">${rel}</span><span class="src">${esc(src)}</span><span class="grow"></span>${extra}</div>`;
   const commentBtn = `<button class="btn quiet" type="button" id="fe-comment-file">Comment on the file</button>`;
+  if (n.content == null && n.content_lazy) {   // a real file found in the repository: its text comes from real-files.json (D-061)
+    loadRealFiles();
+    return linkNote + `<div>${bar(commentBtn)}<div class="codeview" style="padding:22px 16px;font-family:var(--f-body);color:var(--muted)">${REAL.err ? "The file's text could not be loaded: " + esc(REAL.err) : "Loading the file from the repository copy…"}</div></div>`;
+  }
   if (n.content == null) {
     const btns = `<button class="btn primary" type="button" id="fe-write">Write it</button>${n.example && n.example.body ? '<button class="btn" type="button" id="fe-example">Start from the example</button>' : ""}${commentBtn}`;
     return linkNote + `<div>${bar(btns)}<div class="codeview" style="padding:22px 16px;font-family:var(--f-body);color:var(--muted)">Not created yet.${n.writers_readers ? " Written by: " + inline(n.writers_readers) : ""}</div></div>` + commentsBlock(n, cs.map(c => [c, !!c.line]));

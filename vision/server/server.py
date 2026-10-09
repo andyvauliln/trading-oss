@@ -255,7 +255,7 @@ class Handler(BaseHTTPRequestHandler):
         if not parts:
             return self._send(302, b"", extra={"Location": "/" + a.page})
         if parts[0] != "api":
-            if len(parts) == 1 and parts[0] in (a.page, a.data):
+            if len(parts) == 1 and parts[0] in (a.page, a.data, "real-files.json"):
                 ctype = "text/html; charset=utf-8" if parts[0].endswith(".html") else "application/json; charset=utf-8"
                 return self._send(200, open(os.path.join(a.page_dir, parts[0]), "rb").read(), ctype)
             return self._send(404, {"error": "not found"})

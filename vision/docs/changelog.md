@@ -4,6 +4,7 @@ System-level history: what changed in the OS design, when, and from which decisi
 
 ## 2026-10-09
 
+- **The page shows the whole real file tree.** The owner: "we always should have real represention of file tree on a disk and on ui". Every real file in the repository is now on the page, `vision/` included (1,479 files today); their texts load when one is opened (`real-files.json`). Page v52.
 - **The research studies move to `agents/trading/researches/`; the page shows the real files (D-061).** The owner moved the repository's `researches/` into the trading folder. The page build now reads the repository and lists every real file under a folder that exists, so the tree shows what is really in the project next to what is planned. Page v51.
 - **Every system job off; the Groq key listed (page sync).** From Apply changes on the page, the owner turned off every job in the system's jobs file; they stay in the file. `GROQ_API_KEY` joined the keys file's fields and example with a fake value; the real value stays only in the keys file and was removed from the page. Page v50.
 - **Voice input on the owner's server (D-060).** The owner asked for a voice button on the page's AI inputs. On the owner's server the request box and the delete note box now have a microphone button that records up to 5 minutes; the new `voice.py` sends the recording to Groq's free speech models, switching models on a rate limit or an error, and the text goes into the box to check and send. The key is kept only in the keys file. Page v49.
