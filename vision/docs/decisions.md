@@ -617,3 +617,11 @@ Status words: **active** (in force), **partly superseded by D-0xx** (some of it 
 - v0.3 (2026-10-01): D-034 added.
 - v0.2 (2026-09-30): D-033 added.
 - v0.1 (2026-09-30): created from file-tree.md v1.15, vision.md v0.19 and the owner inputs (D-033). The seed list D-001 to D-031 that stood in file-tree.md [2.6] moved here.
+### D-062: An inputs vision: every owner requirement by scope, in ASD-STE100
+<!-- k: id=d-062 applies=[2.23] sources=in-20261009-1938 status=decided -->
+- **Decision:** `agents/system/docs/inputs-vision.md` [2.23] holds a detailed overview of the project from all of the owner's inputs only. Repeated logic appears once; logic a newer input contradicts is left out. It is divided by scope of logic (for example the system agent and common file rules) and written in ASD-STE100 style. Before it was written, every owner message in the project chat, its reply threads and this thread was checked against `docs/inputs/`; five messages from 2026-10-09 were missing and are now filed.
+- **Date:** 2026-10-09
+- **Why:** the owner wants one systematic, documentation-style view of everything they asked for.
+- **Status:** decided. Ours: rule codes per scope (`SYS-01` and so on), a terms table, an "Open subjects" list, and the knowledge base agent keeping it current after each input.
+- **Changed:** file-tree.md [2.23]; vision/.claude/docs/inputs-vision.md with its metadata files; docs/inputs (5 files added).
+
