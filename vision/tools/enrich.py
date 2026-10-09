@@ -820,10 +820,12 @@ for x in out_nodes:
         if len(x["content"]) > 200000:
             x["content"] = x["content"][:200000] + "\n…(cut for the page; the full file is in the project folder)"
         x["content_source"] = f"draft in the project folder: vision/docs/{DRAFTS[x['num']]}"
+        x["src_file"] = f"vision/docs/{DRAFTS[x['num']]}"   # where an edit on the owner's server is written (server.py)
     rel = x["path"][len("agent-os/"):] if x["path"].startswith("agent-os/") else None
     if rel and x["type"] == "file" and "[" not in rel and os.path.isfile(os.path.join(REPO, rel)):
         x["content"] = open(os.path.join(REPO, rel), encoding="utf-8").read()
         x["content_source"] = f"repo andyvauliln/trading-oss, main: {rel}"
+        x["src_file"] = rel
         x["exists"] = True
     if rel is not None and x["type"] == "folder" and "[" not in rel and os.path.isdir(os.path.join(REPO, rel.rstrip("/"))):
         x["exists"] = True
@@ -832,6 +834,7 @@ for x in out_nodes:
         if os.path.isfile(f):
             x["content"] = open(f, encoding="utf-8").read()
             x["content_source"] = f"draft in the project folder: vision/{VISION_FILES[x['num']]}"
+            x["src_file"] = f"vision/{VISION_FILES[x['num']]}"
     if x["num"] == "53.1.1" and x["content"] is not None:   # the page shows its own source (owner, 2026-10-05 14:21)
         x["content_source"] = "the source of this page, as published: vision/explorer/file-tree-explorer.html"
     if x["num"] == "53.1.2":   # the data cannot hold itself: the page shows the data file it loaded (owner, 2026-10-05 14:21)
@@ -843,6 +846,7 @@ for x in out_nodes:
         if os.path.isfile(f):
             x["content"] = open(f, encoding="utf-8").read()
             x["content_source"] = f"draft in the project folder: vision/{CLAUDE_DRAFTS[x['num']]}"
+            x["src_file"] = f"vision/{CLAUDE_DRAFTS[x['num']]}"
             x["example"] = None
     if x["num"] in DOC_SKILLS:   # a doc's Example is the outline in its skill (owner, 2026-10-05)
         f = os.path.join(os.path.dirname(DOCS_DIR.rstrip("/")), DOC_SKILLS[x["num"]])
@@ -926,6 +930,7 @@ def _scan(parent):
                   "summary": "Found in the repository; the folder's How it works describes it.", "knowledge": {"direct": [], "inherited": []}})
         if not isdir:
             x["content_source"] = f"repo andyvauliln/trading-oss: {path[len('agent-os/'):]}"
+            x["src_file"] = path[len("agent-os/"):]
             if os.path.getsize(full) > 200000:
                 x["content"] = None; x["content_source"] += " (too large for the page; open it in the repository)"
             else:

@@ -1971,6 +1971,26 @@
     "page v55"
    ],
    "answered": true
+  },
+  {
+   "id": "in-20261009-2219",
+   "at": "2026-10-09T22:19:59Z",
+   "where": "thread \"Interactive file tree UI\"",
+   "source": "chat",
+   "ref": "cmsg_01Sk8xdkWKCz34CUCfVMyQbxLNAyMPm2NpbfD1PSw417sX",
+   "file": "2026-10-09-2219-project-ide-on-server.md",
+   "chars": 78,
+   "categories": [
+    "question",
+    "ui"
+   ],
+   "summary": "The owner asks whether starting the project IDE now works the same as the page on claude.ai.",
+   "processed_into": [
+    "server/server.py",
+    "server.config.json",
+    "tools/enrich.py"
+   ],
+   "answered": true
   }
  ]
 }
