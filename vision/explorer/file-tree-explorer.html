@@ -776,11 +776,15 @@ function renderTree() {
   const metaRow = (n, id, depth) => `<div class="row idx${id === selected && tab === "meta" ? " on" : ""}" role="treeitem" data-id="${esc(id)}" data-meta="1" title="Details of ${esc(n.name)}" style="padding-left:${14 + depth * 16}px">${guidesFor(depth)}
       <span class="tw"></span><span class="ic">${ICON.file}</span><span class="nm">${markName(metaName(n), matcher && matcher.mark)}</span><span class="num"></span></div>`;
   const out = [];
+  // a metadata file found on disk follows the same switch; when the switch is on and its item already shows it as a metadata row, it is not shown twice
+  const famOf = (s, c, nm) => s && showFam(c) && (idxName(s) === nm || metaName(s) === nm);
+  const famShown = n => { const p = NODES[n.parent]; return !!p && (famOf(p, n.parent, n.name) || p.children.some(c => c !== n.id && famOf(NODES[c], c, n.name))); };
+  const hideScannedMeta = n => n.scanned && !hasIdx(n) && (!showIdx || changedMode || famShown(n));
   const walk = (id, depth) => {
-    const n = NODES[id]; if (!n || (keep && !keep.has(id))) return;
+    const n = NODES[id]; if (!n || (keep && !keep.has(id)) || hideScannedMeta(n)) return;
     const kids = n._deleted ? [] : kidsOf(id);   // a deleted item stays, struck through, until the sync
     const folderIdx = n.type === "folder" && showIdxOf(id), folderMeta = n.type === "folder" && showMetaOf(id);
-    const isOpen = keep ? true : expanded.has(id), hasKids = (keep ? kids.some(k => keep.has(k)) : kids.length > 0) || folderIdx || folderMeta;
+    const isOpen = keep ? true : expanded.has(id), hasKids = kids.some(k => NODES[k] && (!keep || keep.has(k)) && !hideScannedMeta(NODES[k])) || folderIdx || folderMeta;
     const icon = n.link ? ICON.link : (n.type === "folder" ? ICON.folder : ICON.file);
     const guides = guidesFor(depth);
     const chg = CHANGED[id];

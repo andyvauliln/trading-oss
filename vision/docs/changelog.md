@@ -3,6 +3,7 @@
 System-level history: what changed in the OS design, when, and from which decision. Newest first. Per-agent changes stay in each agent's own `docs/changes.md` [46]. The knowledge agent adds one line per processed input or system change (knowledge-intake, step 6).
 
 ## 2026-10-09
+- **The metadata switch now hides metadata files found on disk.** The owner asked why files like `.claude.meta.json` stayed in the tree with the switch off. Real `.index.md` and `.meta.json` files scanned from the repository now follow the switch, and when it is on, one that its item already shows as a metadata row is not shown twice. Page v53.
 
 - **The page shows the whole real file tree.** The owner: "we always should have real represention of file tree on a disk and on ui". Every real file in the repository is now on the page, `vision/` included (1,479 files today); their texts load when one is opened (`real-files.json`). Page v52.
 - **The research studies move to `agents/trading/researches/`; the page shows the real files (D-061).** The owner moved the repository's `researches/` into the trading folder. The page build now reads the repository and lists every real file under a folder that exists, so the tree shows what is really in the project next to what is planned. Page v51.
