@@ -1,0 +1,63 @@
+{
+ "n": "53",
+ "slug": "critic-pool-panel-twins",
+ "file": "53-critic-pool-panel-twins.md",
+ "band": "speculative",
+ "name": "Culture panels: critic, jury and voter twins (Rotten Tomatoes ladders, awards, Eurovision)",
+ "one_line": "Model each member of an enumerable panel (Tomatometer critics, guild voters, Eurovision juries) and convolve into a bracket or winner distribution before reviews or results land; unproven: on 135 resolved RT ladders the price beats an unconditional score prior by 0.12 Brier per rung seven days out, but by only 0.04 (CI includes zero) on ladders whose reviews had not landed.",
+ "category": "Speculative-novel",
+ "maturity": "Experimental; no critic, jury or voter twin scored against a price anywhere; statistical human RT trading exists on Kalshi (self-reported); LLM taste evidence negative (super-omnivorous, twins r = 0.20)",
+ "requires_ai": "optional; statistical core does the work, LLM personas only pre-embargo",
+ "edge": "Hypothetical: panel decomposition before the embargo; filing-time drift to the snapshot",
+ "capital": "<$1k-$3k; $0-171 within 5c per side on mid RT rungs, seasonal awards",
+ "build_time": "3-5 weeks solo for the statistical core; lawful critic-history data open-ended",
+ "opportunity_size": "Polymarket RT ladders $1.8M Jan-Sep 2026 (median $10.7k, down from $29.8k in 2025); Kalshi ~29x; awards/Eurovision $M but efficient",
+ "expected_results": "no public data, theoretical only; guess -$60 to +$60/month before costs",
+ "competition": "Kalshi hobbyist statisticians, reward quoters; bookmakers anchor Eurovision; no twin trader",
+ "flag": "grey; RT ToS bars scraping and AI training; never pay or pressure critics",
+ "validate": "Replay core vs mid at embargo-1h on 80+ ladders; kill if persona layer = core or blend = mid",
+ "top_risk": "Market already prices pre-review info; embargo jump runs over resting quotes",
+ "evidence_grade": "D",
+ "solo_fit": 1,
+ "solo_fit_reason": "The statistical core is cheap to build, but lawful per-critic data is blocked by RT's terms, the pre-embargo window is a few days with a median $2.3k of fills per ladder, live mid rungs carry $0-171 within 5c at a median 11.5c spread, and awards / Eurovision are either efficient (favourites 35 of 46 Oscars categories, 10 of 10 media-voted awards) or bookmaker-anchored; the only soft spot (pre-review ladders, market Brier 0.199) is thin and hindsight-identified.",
+ "compounds_with": [
+  "recurring-count-mention-counter-markets",
+  "statistical-mispricing-models",
+  "llm-forecasting-agents",
+  "synthetic-audience-pre-release-demand",
+  "simulated-stakeholder-polling",
+  "maker-reward-pool-farming"
+ ],
+ "speed_class": "execution-sensitive: forecasts are slow, but quotes must be pulled before the embargo jump",
+ "results_1k": "forward test only; -$110 to +$20/month (guess)",
+ "results_5k": "marginal; -$310 to +$40/month with seasonal awards (guess)",
+ "results_10k": "not as sized; -$520 to +$20/month, depth and lock-up (guess)",
+ "min_capital": "$0 until the kill test passes; ~$1k in RT ladders after",
+ "capacity_ceiling": "~$2-3k: pre-embargo near-mid RT turnover plus seasonal award positions",
+ "services": [
+  "Polymarket Gamma API",
+  "Polymarket CLOB REST+WS (book, prices-history)",
+  "Polymarket Data API trades (optional)",
+  "Kalshi public API (KXRT, scoring only)",
+  "Rotten Tomatoes pages (resolution source; ToS limits)",
+  "licensed critic verdict histories (none found)",
+  "LLM APIs (optional persona layer)",
+  "bookmaker odds aggregator (Eurovision arm)",
+  "VPS hosting"
+ ],
+ "monthly_running_cost": "minimum ~$15-30; comfortable ~$150-400; plus any critic-data licence",
+ "changes_made": [
+  "Written 2026-09-29 with live checks and widened per critic note (a) to culture panels (RT ladders, Oscars and other awards, media-voted MVP awards, Eurovision); critic note (b) not applied: pre-release audience demand stays in file 76, box-office counts in file 23.",
+  "Own baseline: 143 RT events from Gamma (tag + public search), 135 resolved ladders / 660 rungs scored at 14 d / 7 d / 3 d / 1 d / 2 h with CLOB prices-history (market Brier 0.154 / 0.146 / 0.067 / 0.031 / 0.016); leave-future-out score prior loses by 0.118-0.125 per rung before reviews; embargo proxy median 38c move 4.9 days before the snapshot; Data API fill timing on 30 ladders (median 5% of volume before the proxy); late knife-edge YES underpricing (-7 to -11c at six horizons, Bonferroni includes zero) recorded as a filing-time hypothesis.",
+  "Winner markets: 46 Oscars categories 2025-26, 6 Eurovision events, 10 media-voted awards scored at 30 / 7 / 1 d; Kalshi KXRT volumes (median 435k contracts vs Polymarket $14.5k on shared films); live books on 4 RT ladders and Oscars / Grammys 2027 favourites.",
+  "Adjacent field fetched: 2606.30085 (super-omnivorous taste), 2510.08338 (aggregates 90% of test-retest), 2509.19088 (r = 0.20), 2510.14205 (DPRF writes sentiment-conditioned text, no verdict prediction), Eurovision papers 2002.06609 / 1705.06721 / 1308.6312, 2404.07396 (Oscars leakage); RT Terms of Use (no crawlers, data mining or AI training); Kalshi News RT guide (2024) and Resident Evil embargo piece; eurovisionworld bookmaker tables.",
+  "Cite-check + skeptic pass 2026-09-29 (23 sources re-fetched or re-run: 8 arXiv via the API plus the 2404.07396 and DPRF full texts, Kalshi News x2, RT terms, eurovisionworld x2, Polymarket fee docs, HN / GitHub / Gamma for [17][21][23], Kalshi KXRT re-queried (25 ladders, median 434,763, total 20.7M confirmed), every own analysis script re-run; 21 confirmed, 2 corrected, 0 removed, 1 unresolved headline (NY Mag, still headline-only)): (1) the 'market beats the prior before reviews land' claim was overstated: 27 of the 51 compared ladders had already had their largest move seven days out; on the 24 pre-review ladders the market (Brier 0.199) beats the prior by only 0.044 [-0.026, +0.113] (14 d: 0.081 [-0.012, +0.180]); one-line summary, edge (a) and row rewritten. (2) Late-drift rule re-priced at the measured median live half-spread (5.75c, median spread 11.5c on 20-80c rungs) plus the culture fee: +5.1c [-2.9, +14.0] at 24 h, not significant before any multiple-comparison correction (writer's +8.3c assumed 2.5c). (3) The embargo proxy is now labelled hindsight-chosen (no Gamma description states an embargo; the ex-ante fixed horizons show the same step 0.146 -> 0.067), the validation plan records embargo times forward, the RT terms quote was corrected to the page's wording, the Kalshi 'Established' wording softened to one self-reported trader in venue marketing, both Gamma-disputed rungs confirmed was_disputed:false in /v2/resolutions, awards-favourite depth corrected to ~$440-2,600 per side, jurisdiction note widened to the ~43 restricted jurisdictions. Oscars 35/46, Eurovision (Austria 21.5%, Bulgaria 3.6%), media-voted 10/10, volumes and power figures (77 / 19 ladders for a 0.2 blend) reproduced."
+ ],
+ "open_doubts": [
+  "The embargo proxy (largest 6-hour move) is chosen with hindsight; the pre- vs post-review split that shows the market's weak pre-review Brier (0.199) depends on it, and 23 ladders moved most within ~7 h of listing. Announced embargo times must be recorded forward before the split can be trusted.",
+  "Prices are hourly prices-history points, not executable quotes; live spreads were sampled once on 8 mid rungs (median 11.5c), not at T-24h on the historical ladders.",
+  "Kalshi volumes are contracts (<= $1 each) and Polymarket Gamma volume counts both legs, so the ~29x ratio is indicative only.",
+  "Eurovisionworld snapshots are dated 16-17 May 2026 and 18 May 2025 (closed events), so the bookmaker-vs-Polymarket comparison is not like-for-like in time.",
+  "No lawful per-critic data source was found or priced; the NY Magazine rigging piece and the IGN paid-critics story remain headline-only; the Eurovision 2027 host-city insider allegation is a hobby repository's claim."
+ ]
+}

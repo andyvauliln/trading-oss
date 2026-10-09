@@ -1067,20 +1067,6 @@
  "stage2_slices_remaining": [
   [
    {
-    "n": "52",
-    "slug": "elite-selection-bargaining-simulators",
-    "file": "52-elite-selection-bargaining-simulators.md",
-    "band": "speculative",
-    "deepen": false
-   },
-   {
-    "n": "57",
-    "slug": "cross-lingual-source-silo-tilt",
-    "file": "57-cross-lingual-source-silo-tilt.md",
-    "band": "speculative",
-    "deepen": false
-   },
-   {
     "n": "62",
     "slug": "llm-monoculture-herd-factor",
     "file": "62-llm-monoculture-herd-factor.md",
@@ -1117,13 +1103,6 @@
    }
   ],
   [
-   {
-    "n": "53",
-    "slug": "critic-pool-panel-twins",
-    "file": "53-critic-pool-panel-twins.md",
-    "band": "speculative",
-    "deepen": false
-   },
    {
     "n": "58",
     "slug": "market-anchored-selective-deference",
@@ -1169,13 +1148,6 @@
   ],
   [
    {
-    "n": "54",
-    "slug": "speaker-twin-mention-montecarlo",
-    "file": "54-speaker-twin-mention-montecarlo.md",
-    "band": "speculative",
-    "deepen": false
-   },
-   {
     "n": "59",
     "slug": "recursive-self-improving-forecaster",
     "file": "59-recursive-self-improving-forecaster.md",
@@ -1220,13 +1192,6 @@
   ],
   [
    {
-    "n": "55",
-    "slug": "internal-agent-prediction-market",
-    "file": "55-internal-agent-prediction-market.md",
-    "band": "speculative",
-    "deepen": false
-   },
-   {
     "n": "60",
     "slug": "evolutionary-agent-strategy-factory",
     "file": "60-evolutionary-agent-strategy-factory.md",
@@ -1263,13 +1228,6 @@
    }
   ],
   [
-   {
-    "n": "56",
-    "slug": "adversarial-debate-price-residual",
-    "file": "56-adversarial-debate-price-residual.md",
-    "band": "speculative",
-    "deepen": false
-   },
    {
     "n": "61",
     "slug": "evaluation-promotion-allocation-metalayer",
@@ -1502,5 +1460,50 @@
    "deepen": false
   }
  ],
- "_note_2026_09_29": "Files 01-34, 50, 51 exist on disk. 32 and 33 were written 2026-09-28 by the two-slot run that then hit a usage limit; they were verified 2026-09-29. 34, 50, 51 written and verified 2026-09-29 with at most 2 agents in parallel (owner's rule). stage2_slices_remaining: 33 items (52-84, all speculative). Next batch in numeric order: 52, 53, 54, 55, 56."
+ "_note_2026_09_29": "Files 01-34, 50, 51 exist on disk. 32 and 33 were written 2026-09-28 by the two-slot run that then hit a usage limit; they were verified 2026-09-29. 34, 50, 51 written and verified 2026-09-29 with at most 2 agents in parallel (owner's rule). stage2_slices_remaining: 33 items (52-84, all speculative). Next batch in numeric order: 52, 53, 54, 55, 56.",
+ "done_items_2026_09_29_b": [
+  {
+   "n": "52",
+   "slug": "elite-selection-bargaining-simulators",
+   "file": "52-elite-selection-bargaining-simulators.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "53",
+   "slug": "critic-pool-panel-twins",
+   "file": "53-critic-pool-panel-twins.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "54",
+   "slug": "speaker-twin-mention-montecarlo",
+   "file": "54-speaker-twin-mention-montecarlo.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "55",
+   "slug": "internal-agent-prediction-market",
+   "file": "55-internal-agent-prediction-market.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "56",
+   "slug": "adversarial-debate-price-residual",
+   "file": "56-adversarial-debate-price-residual.md",
+   "band": "speculative",
+   "deepen": false
+  },
+  {
+   "n": "57",
+   "slug": "cross-lingual-source-silo-tilt",
+   "file": "57-cross-lingual-source-silo-tilt.md",
+   "band": "speculative",
+   "deepen": false
+  }
+ ],
+ "_note_2026_09_29_b": "Files 01-34, 50-57 exist on disk, all verified. 52-57 written and verified 2026-09-29 (second session of the day) with at most 2 agents in parallel (owner's rule). stage2_slices_remaining: 27 items (58-84, all speculative). Next batch in numeric order: 58, 59, 60, 61, 62, 63."
 }
